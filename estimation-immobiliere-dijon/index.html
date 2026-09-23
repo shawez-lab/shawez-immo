@@ -664,7 +664,7 @@ var PATHS=window.__PATHS||null; /* défini par le build multi-pages : {'/estimat
 function href(route){ return PATHS?(PATHS[route]||route):('#'+route); }
 function navTo(route){ if(PATHS){location.href=href(route);} else {location.hash='#'+route;} }
 var SND='<svg viewBox="0 0 24 24" class="off"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M23 9l-6 6M17 9l6 6"/></svg><svg viewBox="0 0 24 24" class="on"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a9 9 0 0 1 0 14"/></svg>';
-var MEDIA=(PATHS?'/':'')+'media/';
+var MEDIA='/';
 function reelHTML(r){return '<figure class="reel" data-src="'+MEDIA+r.f+'.mp4"><div class="reel-v"><video muted playsinline loop preload="none" poster="'+MEDIA+r.f+'-poster.webp" width="640" height="1136" aria-label="'+r.t+'"></video><button type="button" class="tap">Lire la vidéo</button></div><button type="button" class="snd" aria-label="Activer le son" aria-pressed="false">'+SND+'</button><figcaption><b>'+r.t+'</b><span>'+r.s+'</span></figcaption></figure>';}
 function buildReels(container){ if(!container)return; container.innerHTML=REELS.map(reelHTML).join(''); }
 buildReels($('#reels-home')); buildReels($('#reels-page'));
