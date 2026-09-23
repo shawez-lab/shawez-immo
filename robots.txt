@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /merci/
+Sitemap: https://shawez-immo.com/sitemap.xml
