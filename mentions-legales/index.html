@@ -444,6 +444,73 @@ footer{border-top:1px solid var(--line);padding:clamp(40px,5vw,72px) 0 calc(28px
 .state{border:1px solid var(--line);padding:16px 18px;display:none;gap:8px;font-size:.94rem;} .state.show{display:grid;} .state.ok{border-color:#2F7A4F;} .state.ko{border-color:#A23B2A;}
 .sec-mid{padding-block:clamp(48px,6vw,88px);}
 @media(prefers-reduced-motion:reduce){.rv,.mask>span,.fade,.btn,.why-img img,.strip img{transition:none!important;animation:none!important;} .hero-vid figcaption i{animation:none;}}
+/* ---------- MOBILE v4 (≤760px) : vidéo en bandeau, texte sur fond net ---------- */
+@media(max-width:760px){
+  :root{--gutter:20px;}
+  body{font-size:16px;}
+  /* Accueil : bandeau vidéo en haut, puis texte sur fond nuit uni */
+  #hero{display:block;min-height:0;padding-top:0;background:var(--night);}
+  #hero .hero-bg{display:none;}
+  #hero .hero-in{display:flex;flex-direction:column;gap:0;padding:0;max-width:none;}
+  #hero .hero-vid{order:-1;position:relative;inset:auto;z-index:0;width:100%;height:min(52svh,460px);min-height:320px;aspect-ratio:auto;border-radius:0;box-shadow:none;justify-self:stretch;}
+  #hero .hero-vid::before{content:"";position:absolute;inset:0 0 auto 0;height:120px;z-index:1;background:linear-gradient(180deg,rgba(15,14,12,.72),rgba(15,14,12,0));pointer-events:none;}
+  #hero .hero-vid::after{height:34%;background:linear-gradient(0deg,var(--night) 0%,rgba(15,14,12,.55) 45%,rgba(15,14,12,0) 100%);}
+  #hero .hero-vid figcaption{display:flex;left:var(--gutter);right:var(--gutter);bottom:18px;font-size:.66rem;}
+  #hero .hero-txt{position:relative;z-index:2;padding:6px var(--gutter) 44px;gap:18px;background:var(--night);}
+  #hero .hero-txt .label{font-size:.68rem;letter-spacing:.14em;line-height:1.5;}
+  #hero h1{font-size:clamp(2.05rem,9.4vw,2.6rem);line-height:1.04;max-width:none;}
+  #hero .hero-tag{font-size:1.2rem;margin:0;color:var(--night-ink);}
+  #hero .hero-txt .lede{font-size:1rem;line-height:1.6;color:#CFC8BB;max-width:none;}
+  #hero .hero-assure{font-size:.82rem;line-height:1.45;align-items:flex-start;color:#B9B2A6;}
+  #hero .hero-assure i{flex:0 0 18px;margin-top:.7em;}
+
+  /* Pages avec photo d'en-tête : photo en bandeau, texte dessous */
+  .page-hero .pimg{position:relative;height:min(46svh,380px);min-height:260px;}
+  .page-hero .pimg img{opacity:1;}
+  .page-hero .pimg::after{background:linear-gradient(180deg,rgba(15,14,12,.7) 0%,rgba(15,14,12,0) 32%,rgba(15,14,12,0) 62%,var(--night) 100%);}
+  .page-hero .page-head{padding-top:4px;}
+  .page-hero.dim-out::after{display:none;}
+
+  /* En-têtes de page */
+  .page-head{padding-block:calc(var(--nav-h) + 36px) 32px;}
+  .page-head.dark{padding-bottom:44px;}
+  .page-head .display{max-width:none!important;}
+  .d-xl{font-size:clamp(2rem,8.6vw,2.5rem);line-height:1.06;}
+  .d-l{font-size:clamp(1.7rem,7vw,2.1rem);}
+  .lede{font-size:1.02rem;line-height:1.6;}
+  .sec{padding-block:64px;}
+  .sec-head{margin-bottom:28px;}
+
+  /* Boutons : pleine largeur, empilés */
+  .btn-row{flex-direction:column;align-items:stretch;gap:10px;}
+  .btn-row>.btn,.btn-row>a.btn{width:100%;}
+  .btn{white-space:normal;text-align:center;line-height:1.25;}
+  .btn-lg{min-height:56px;padding-inline:22px;}
+  .cat .btn,.final .btn,.cta .btn{width:100%;}
+  .form-nav{flex-direction:column-reverse;}
+  .form-nav .btn{width:100%;}
+  #menu .btn-primary{width:100%;}
+
+  /* Garde-fous anti-débordement */
+  .display,h1,h2,h3,.lede,.body,.article{overflow-wrap:anywhere;hyphens:manual;}
+  .article img,.article video,.article table{max-width:100%;}
+  .art-head .frame,.art-side{max-width:none;}
+  #proof .proof-v{font-size:2.2rem;}
+  .map-wrap .legend{position:static;display:block;margin-top:12px;}
+  .terr-list li{grid-template-columns:1fr;gap:2px;}
+  .terr-list li span:last-child{text-align:left;}
+  .display{text-wrap:pretty;}
+  .reels-grid{gap:10px;}
+  .reels-grid .reel figcaption{left:12px;right:12px;bottom:12px;}
+  .reels-grid .reel figcaption b{font-size:.95rem;}
+  .reels-grid .reel figcaption span{font-size:.7rem;}
+  .route>.proof-attr{padding-inline:var(--gutter);margin-top:0;}
+}
+@media(max-width:380px){
+  #hero h1{font-size:1.95rem;}
+  .d-xl{font-size:1.9rem;}
+}
+/* ---------- /MOBILE v4 ---------- */
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://shawez-immo.com/#site", "url": "https://shawez-immo.com/", "name": "Shawez Ali — Agent immobilier à Dijon", "inLanguage": "fr-FR", "publisher": {"@id": "https://shawez-immo.com/#shawez"}}, {"@type": "Person", "@id": "https://shawez-immo.com/#shawez", "name": "Shawez Ali", "givenName": "Shawez", "familyName": "Ali", "jobTitle": "Agent commercial en immobilier", "description": "Agent commercial en immobilier à Dijon, rattaché à l'agence GRAVELIN IMMO : estimation, vente d'appartements, maisons, immeubles et commerces, mise en valeur en photos et vidéo.", "url": "https://shawez-immo.com/", "image": "https://shawez-immo.com/assets/shawez-ali-portrait-veste-verte.webp", "email": "shawez@gravelin-immo.com", "telephone": "+33767579228", "worksFor": {"@id": "https://shawez-immo.com/#gravelin"}, "sameAs": ["https://www.instagram.com/shawez_immobilier", "https://www.linkedin.com/in/shawez-ali"], "workLocation": {"@type": "Place", "address": {"@type": "PostalAddress", "streetAddress": "30 rue Bannelier", "postalCode": "21000", "addressLocality": "Dijon", "addressCountry": "FR"}}, "knowsAbout": ["Estimation immobilière", "Vente immobilière", "Cession de fonds de commerce", "Immobilier commercial", "Vidéo immobilière"], "areaServed": [{"@type": "City", "name": "Dijon"}, {"@type": "City", "name": "Talant"}, {"@type": "City", "name": "Fontaine-lès-Dijon"}, {"@type": "City", "name": "Chenôve"}, {"@type": "City", "name": "Saint-Apollinaire"}, {"@type": "City", "name": "Neuilly-lès-Dijon"}, {"@type": "City", "name": "Nuits-Saint-Georges"}, {"@type": "City", "name": "Beaune"}]}, {"@type": "RealEstateAgent", "@id": "https://shawez-immo.com/#gravelin", "name": "GRAVELIN IMMO", "url": "https://www.gravelin-immo.com/", "telephone": "+33345343531", "openingHoursSpecification": [{"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "10:00", "closes": "18:30"}], "address": {"@type": "PostalAddress", "streetAddress": "30 rue Bannelier", "postalCode": "21000", "addressLocality": "Dijon", "addressCountry": "FR"}, "employee": {"@id": "https://shawez-immo.com/#shawez"}}, {"@type": "WebPage", "@id": "https://shawez-immo.com/mentions-legales/#page", "url": "https://shawez-immo.com/mentions-legales/", "name": "Mentions légales — shawez-immo.com", "description": "Éditeur, statut d'agent commercial, agence titulaire de la carte professionnelle, hébergement.", "inLanguage": "fr-FR", "isPartOf": {"@id": "https://shawez-immo.com/#site"}, "about": {"@id": "https://shawez-immo.com/#shawez"}, "dateModified": "2026-09-21"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://shawez-immo.com/"}, {"@type": "ListItem", "position": 2, "name": "Mentions légales", "item": "https://shawez-immo.com/mentions-legales/"}]}]}</script>
 </head>
