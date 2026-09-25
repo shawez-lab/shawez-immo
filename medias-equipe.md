@@ -10,7 +10,8 @@ Règles appliquées : uniquement des plans et photos nets, bien exposés, sans t
 | Fichier source | Fichier publié | Où il est utilisé |
 |---|---|---|
 | vidéo horizontale (2).MP4 (4K, 85 s) | `film-equipe.mp4` (1920×1080, 42 s, H.264 High, AAC 96 k, faststart, 22,5 Mo) | Accueil, section « Le film » ; page Vidéos, en tête ; lien depuis la page À propos et la page Vendre ; JSON-LD VideoObject |
-| idem | `film-equipe-bg.mp4` (1920×1080, muet, 44 s, 23 Mo, encodage deux passes) | Fond vidéo du héros de l'accueil sur ordinateur (≥ 900 px) ; inclut les deux plans où Shawez montre un livre à sa collègue (30–33 s de l'original), ajoutés à sa demande |
+| idem | `film-equipe-bg.mp4` (1920×1080, muet, 44 s, 23 Mo, encodage deux passes) | Fond vidéo du héros de l'accueil sur ordinateur (≥ 900 px) ; inclut les deux plans où Shawez montre un livre à sa collègue (30–33 s de l'original), placés en ouverture à sa demande (personal branding), puis la maison |
+| idem, image à 2 s du fond | `film-equipe-bg-poster.webp` (1920×1080) | Image d'attente du héros sur ordinateur : Shawez montre un livre à sa collègue |
 | idem, image à 4,5 s | `film-equipe-poster.webp` (1920×1080) | Affiche du film et du héros sur ordinateur |
 | IMG_1232.MOV (le vidéaste filme Shawez au stabilisateur, dans un jardin) | `equipe-v1.mp4` (640×1136, 14 s) + `equipe-v1-poster.webp` (540×960) | Mur de vidéos (accueil et page Vidéos) : « En tournage, derrière la caméra » |
 | IMG_1232.MOV, image à 11 s | `assets/equipe-05-videaste-tournage-exterieur.webp` (900×1600) | Accueil, carte « La diffusion » |
