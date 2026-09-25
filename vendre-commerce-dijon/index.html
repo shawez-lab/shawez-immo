@@ -604,12 +604,24 @@ label.pill:has(input:focus-visible){outline:2px solid var(--accent);outline-offs
 #biens .biens-nav .arrows{display:flex;gap:8px;}
 #biens .biens-nav button{width:42px;height:42px;border-radius:50%;border:1px solid var(--night-line);background:transparent;color:var(--night-ink);cursor:pointer;font-size:1rem;}
 #biens .biens-nav button:hover{border-color:var(--night-accent);}
-.biens-row{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:2px;}
+#biens{padding-bottom:clamp(28px,4vw,56px);}
+.biens-row{--edge:max(var(--gutter),calc((100vw - var(--maxw)) / 2 + var(--gutter)));display:flex!important;gap:clamp(12px,1.4vw,20px);overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-padding-inline:var(--edge);padding:6px var(--edge) 34px;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
 .biens-row::-webkit-scrollbar{display:none;}
-.biens-row .reel{flex:0 0 clamp(250px,23vw,330px);scroll-snap-align:start;}
-.biens-row .reel figcaption span{display:block;}
-@media(max-width:899px){#biens .biens-nav .arrows{display:none;} .biens-row .reel{flex-basis:74%;}}
-@media(min-width:600px) and (max-width:899px){.biens-row .reel{flex-basis:42%;}}
+.biens-row::after{content:"";flex:0 0 1px;}
+.biens-row .reel{flex:0 0 clamp(236px,21vw,318px);scroll-snap-align:start;margin:0;transition:transform .6s var(--ease);}
+.biens-row .reel-v{border-radius:22px!important;box-shadow:0 26px 50px -24px rgba(0,0,0,.85),0 0 0 1px rgba(243,239,230,.08)!important;transform:translateZ(0);}
+.biens-row .reel-v video{transition:transform 1.2s var(--ease);}
+@media(hover:hover){.biens-row .reel:hover{transform:translateY(-6px);} .biens-row .reel:hover .reel-v video{transform:scale(1.035);}}
+.biens-row .reel-v::after{height:48%!important;background:linear-gradient(0deg,rgba(15,14,12,.82),rgba(15,14,12,0))!important;}
+.biens-row .reel figcaption{left:20px;right:20px;bottom:20px;}
+.biens-row .reel figcaption b{font-size:clamp(1.02rem,1.25vw,1.18rem);line-height:1.2;}
+.biens-row .reel figcaption span{display:inline-block;margin-top:8px;padding:4px 10px;border-radius:999px;background:rgba(243,239,230,.14);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:var(--night-ink);font-size:.7rem;letter-spacing:.06em;}
+.biens-row .reel .snd{top:14px;right:14px;}
+#biens .biens-nav button{transition:border-color .25s,background .25s,opacity .25s;}
+#biens .biens-nav button:hover{background:rgba(243,239,230,.08);}
+#biens .biens-nav button[disabled]{opacity:.3;cursor:default;}
+@media(max-width:899px){#biens .biens-nav .arrows{display:none;} .biens-row .reel{flex-basis:72%;} .biens-row .reel-v{border-radius:18px!important;}}
+@media(min-width:600px) and (max-width:899px){.biens-row .reel{flex-basis:40%;}}
 /* petit bloc simulateur */
 #home-sim .cat{padding:clamp(18px,2.4vw,28px) clamp(20px,3vw,36px);}
 #home-sim .cat h2{margin:6px 0 4px!important;}
@@ -901,7 +913,10 @@ function armReels(root){
 }
 function pauseAllReels(){ $$('.reel video').forEach(function(v){v.pause();}); }
 /* flèches du carrousel */
-$$('[data-reels-prev],[data-reels-next]').forEach(function(b){ b.addEventListener('click',function(){ var r=$(b.getAttribute('data-target')||'#reels-home'); var w=($('.reel',r)||{}).offsetWidth||280; r.scrollBy({left:(b.hasAttribute('data-reels-next')?1:-1)*(w+16),behavior:PERF==='accessible'?'auto':'smooth'}); }); });
+$$('[data-reels-prev],[data-reels-next]').forEach(function(b){ b.addEventListener('click',function(){ var r=$(b.getAttribute('data-target')||'#reels-home'); var w=($('.reel',r)||{}).offsetWidth||280; var step=r.id==='biens-row'?Math.max(w+16,Math.floor(r.clientWidth*0.8)):(w+16); r.scrollBy({left:(b.hasAttribute('data-reels-next')?1:-1)*step,behavior:PERF==='accessible'?'auto':'smooth'}); }); });
+(function(){ var r=$('#biens-row'); if(!r)return; var pv=$('[data-reels-prev][data-target="#biens-row"]'), nx=$('[data-reels-next][data-target="#biens-row"]');
+  function upd(){ if(!pv||!nx)return; pv.disabled=r.scrollLeft<8; nx.disabled=r.scrollLeft+r.clientWidth>=r.scrollWidth-8; }
+  r.addEventListener('scroll',function(){requestAnimationFrame(upd);},{passive:true}); window.addEventListener('resize',upd); upd(); })();
 
 /* hero : lecture automatique (iPhone : muted posé en JS, relances) */
 var heroV=$('#hero-video');
