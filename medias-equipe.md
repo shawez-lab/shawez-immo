@@ -10,7 +10,7 @@ Règles appliquées : uniquement des plans et photos nets, bien exposés, sans t
 | Fichier source | Fichier publié | Où il est utilisé |
 |---|---|---|
 | vidéo horizontale (2).MP4 (4K, 85 s) | `film-equipe.mp4` (1920×1080, 42 s, H.264 High, AAC 96 k, faststart, 22,5 Mo) | Accueil, section « Le film » ; page Vidéos, en tête ; lien depuis la page À propos et la page Vendre ; JSON-LD VideoObject |
-| idem | `film-equipe-bg.mp4` (1280×720, muet, 6,9 Mo) | Fond vidéo du héros de l'accueil sur ordinateur (≥ 900 px) |
+| idem | `film-equipe-bg.mp4` (1920×1080, muet, 44 s, 23 Mo, encodage deux passes) | Fond vidéo du héros de l'accueil sur ordinateur (≥ 900 px) ; inclut les deux plans où Shawez montre un livre à sa collègue (30–33 s de l'original), ajoutés à sa demande |
 | idem, image à 4,5 s | `film-equipe-poster.webp` (1920×1080) | Affiche du film et du héros sur ordinateur |
 | IMG_1232.MOV (le vidéaste filme Shawez au stabilisateur, dans un jardin) | `equipe-v1.mp4` (640×1136, 14 s) + `equipe-v1-poster.webp` (540×960) | Mur de vidéos (accueil et page Vidéos) : « En tournage, derrière la caméra » |
 | IMG_1232.MOV, image à 11 s | `assets/equipe-05-videaste-tournage-exterieur.webp` (900×1600) | Accueil, carte « La diffusion » |
@@ -27,7 +27,7 @@ Montage du film : les 45 secondes demandées ont été ramenées à 42 s de plan
 
 | Fichier source | Raison |
 |---|---|
-| vidéo horizontale : plans de 0 à 5 s, 11–13 s, 30–33 s | Une femme apparaît (mains sur la platine, à la fenêtre, avec Shawez) : tiers, exclu |
+| vidéo horizontale : plans de 0 à 5 s et 11–13 s | Écartés au départ, faute de savoir qui était la personne. Shawez a précisé qu'il s'agit de sa collègue ; les plans 30–33 s (avec Shawez) sont désormais dans le fond du héros |
 | vidéo horizontale : transitions filées (26 s, 36 s, 57 s, 64 s) | Images floues |
 | copy_D284E68B….MOV (montage vertical 14 s) | Tiers (femme en chemise blanche) sur la plupart des plans ; plan 1 : plaque d'immatriculation lisible ; plans du portail rouge : sous-titres incrustés |
 | IMG_0767.MOV | Le vidéaste filme une femme (tiers) |
