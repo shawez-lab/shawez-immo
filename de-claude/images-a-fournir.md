@@ -8,7 +8,7 @@ Une ligne par image : nom produit ← asset source du dépôt.
 - post-hotel.jpg ← assets/shawez-ali-hotel-commerce-dijon.webp
 - post-maison-beaune.jpg ← assets/maison-pierre-volets-rouges-beaune.webp
 - post-appartement-centre.jpg ← assets/appartement-centre-historique-dijon-salon.webp
-- post-shawez-portrait.jpg ← assets/shawez-ali-portrait-costume-bleu.webp
+- post-shawez-portrait.jpg ← assets/shawez-ali-portrait-costume-rose.webp
 - post-shawez-visite.jpg ← assets/shawez-ali-depart-visite-dijon.webp
 - post-prix-m2.jpg ← assets/shawez-ali-explique-prix-m2-dijon.webp
 - post-photo-annonce.jpg ← assets/shawez-ali-conseil-photo-annonce.webp
