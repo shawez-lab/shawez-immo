@@ -13,6 +13,8 @@ Règles appliquées : uniquement des plans et photos nets, bien exposés, sans t
 | idem | `film-equipe-bg.mp4` (1920×1080, muet, 44 s, 23 Mo, encodage deux passes) | Fond vidéo du héros de l'accueil sur ordinateur (≥ 900 px) ; inclut les deux plans où Shawez montre un livre à sa collègue (30–33 s de l'original), placés en ouverture à sa demande (personal branding), puis la maison |
 | idem, image à 2 s du fond | `film-equipe-bg-poster.webp` (1920×1080) | Image d'attente du héros sur ordinateur : Shawez montre un livre à sa collègue |
 | idem, image à 4,5 s | `film-equipe-poster.webp` (1920×1080) | Affiche du film et du héros sur ordinateur |
+| vidéo horizontale (2).MP4 (4K) + IMG_1232.MOV | `hero.mp4` (1080×1920, 21,9 s, H.264 High, sans piste audio, faststart, 10,6 Mo) + `hero-720.mp4` (720×1280, 4,5 Mo, servi sur connexion lente) | Héros de l'accueil sur mobile (v5). Recadrage vertical dans la 4K (jamais d'agrandissement) : ouverture sur Shawez qui montre un livre à sa collègue (31,7 s de l'original, ralenti), Shawez filmé au stabilisateur (IMG_1232, 13,8 s), puis sept plans de la longère ; stabilisation, étalonnage chaud, boucle sans coupure (fondu enchaîné de 0,4 s) |
+| idem, première image | `hero-poster.webp` (1080×1920) | Image d'attente du héros sur mobile, préchargée |
 | IMG_1232.MOV (le vidéaste filme Shawez au stabilisateur, dans un jardin) | `equipe-v1.mp4` (640×1136, 14 s) + `equipe-v1-poster.webp` (540×960) | Mur de vidéos (accueil et page Vidéos) : « En tournage, derrière la caméra » |
 | IMG_1232.MOV, image à 11 s | `assets/equipe-05-videaste-tournage-exterieur.webp` (900×1600) | Accueil, carte « La diffusion » |
 | IMG_0995.JPG | `assets/equipe-01-shawez-videaste-cuisine-pierre.webp` (1200×1600) | Accueil, carte « Le tournage » ; galerie À propos |
@@ -23,6 +25,8 @@ Règles appliquées : uniquement des plans et photos nets, bien exposés, sans t
 | DSC06188.ARW (Sony, portrait de Shawez en costume rose) | `assets/shawez-ali-portrait-costume-rose.webp` (1280×1600) | Accueil, bloc « Qui je suis » (remplace l'arrêt sur image en costume bleu, moins net) |
 
 Montage du film : les 45 secondes demandées ont été ramenées à 42 s de plans propres, coupés sur les coupes d'origine, avec un fondu de 0,5 s au début et à la fin. Musique d'origine conservée en continu.
+
+Reels (`v*.mp4`, 640×1136) : les masters en 1080×1920 ne sont ni dans le dépôt ni dans le Drive. Le cahier v5 demandait de les réencoder en 1080×1920 ; sans source plus grande, ils restent à leur résolution d'origine (aucun agrandissement), et leurs posters ont été régénérés en 640×1136 depuis les vidéos. À remplacer dès que les exports 1080×1920 seront fournis.
 
 ## Écartés, et pourquoi
 
