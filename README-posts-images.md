@@ -20,7 +20,8 @@ Format : JPG carré 1200×1200, qualité 88, RVB, sans métadonnées. Recadrage 
    ```
    (ou `python3 outils/posts_images.py autre-liste.md`). Le script écrit les JPG dans `posts-images/` et affiche, pour chaque image, le recadrage choisi et si la source a dû être agrandie. Il s'arrête en erreur si un asset est introuvable.
 3. **On vérifie les images, puis on pousse sur `main`** : Cloudflare Pages publie. On contrôle qu'une adresse répond 200, par exemple `https://shawez-immo.com/posts-images/post-chateau.jpg`.
-4. **On dépose les mêmes fichiers, mêmes noms, dans Drive `posts/images`** (connecteur Google Drive, dossier id ci-dessus), puis on vérifie qu'ils y sont listés. Si un fichier du même nom existe déjà, on le remplace au lieu d'en créer un doublon.
+4. **On dépose les mêmes fichiers, mêmes noms, dans Drive `posts/images`** (dossier id ci-dessus), puis on vérifie qu'ils y sont listés. Si un fichier du même nom existe déjà, on le remplace au lieu d'en créer un doublon.
+   Attention : le connecteur Google Drive de Claude n'importe pas de fichier depuis une adresse web ; il faut lui passer le contenu en base64 dans l'appel, ce qui n'est pas praticable pour des JPG de 100 à 300 Ko. Le dépôt se fait donc à la main (glisser les fichiers de `posts-images/` dans le dossier Drive) ou par un outil qui a un accès Drive direct. Claude vérifie ensuite la liste du dossier avec le connecteur.
 
 ## Règles
 
