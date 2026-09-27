@@ -15,3 +15,15 @@
   Cache-Control: public, max-age=31536000, immutable
 /favicon.ico
   Cache-Control: public, max-age=604800
+/estimation-en-ligne/*
+  ! Content-Security-Policy
+  ! Permissions-Policy
+  Content-Security-Policy: default-src 'self'; frame-src https://www.gravelin-immo.com; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; media-src 'self'; connect-src 'self'; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests
+  Permissions-Policy: camera=(), microphone=(), geolocation=(self "https://www.gravelin-immo.com"), interest-cohort=()
+  X-Robots-Tag: noindex
+/biens-a-vendre/*
+  ! Content-Security-Policy
+  ! Permissions-Policy
+  Content-Security-Policy: default-src 'self'; frame-src https://www.gravelin-immo.com; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; media-src 'self'; connect-src 'self'; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests
+  Permissions-Policy: camera=(), microphone=(), geolocation=(self "https://www.gravelin-immo.com"), interest-cohort=()
+  X-Robots-Tag: noindex
