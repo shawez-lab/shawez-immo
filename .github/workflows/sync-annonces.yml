@@ -1,0 +1,63 @@
+name: Synchronisation des annonces
+
+# Chaque jour à 6 h, heure de Paris. GitHub ne connaît que l'heure UTC :
+# deux déclenchements (4 h et 5 h UTC), le script ne tourne que celui où il est 6 h à Paris
+# (été : UTC+2, hiver : UTC+1).
+on:
+  schedule:
+    - cron: '0 4 * * *'
+    - cron: '0 5 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-annonces
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Heure de Paris
+        id: heure
+        run: |
+          h=$(TZ=Europe/Paris date +%H)
+          echo "Heure à Paris : $h"
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] || [ "$h" = "06" ]; then echo "go=1" >> "$GITHUB_OUTPUT"; else echo "go=0" >> "$GITHUB_OUTPUT"; fi
+
+      - uses: actions/checkout@v4
+        if: steps.heure.outputs.go == '1'
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        if: steps.heure.outputs.go == '1'
+        with:
+          python-version: '3.12'
+
+      - name: Dépendances
+        if: steps.heure.outputs.go == '1'
+        run: pip install --quiet pillow
+
+      - name: Synchronisation
+        if: steps.heure.outputs.go == '1'
+        env:
+          TZ: Europe/Paris
+        run: python3 outils/sync_annonces.py
+
+      - name: Commit sur main s'il y a des changements
+        if: steps.heure.outputs.go == '1'
+        run: |
+          git config user.name "sync-annonces"
+          git config user.email "sync-annonces@users.noreply.github.com"
+          git add -A annonces.json annonces annonces-log.md biens-a-vendre-dijon sitemap.xml de-claude
+          if git diff --cached --quiet; then
+            echo "Aucun changement."
+          else
+            git commit -m "Annonces : synchronisation du $(TZ=Europe/Paris date +%d/%m/%Y)"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi

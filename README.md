@@ -54,3 +54,30 @@ Source unique : **`avis.json`**, à la racine. Le script `outils/avis.py` en tir
 
 - Uniquement les avis de la fiche « Shawez Ali — Agent immobilier ». Jamais ceux de la fiche Gravelin Immo.
 - Tous les avis, y compris les moins bons ; aucun texte modifié, aucun avis inventé ni sélectionné.
+
+## Annonces de l'agence
+
+Chaque jour à 6 h (heure de Paris), l'action GitHub `.github/workflows/sync-annonces.yml` lance `outils/sync_annonces.py`, puis commit sur `main` s'il y a des changements. Cloudflare republie le site.
+
+Le script lit https://www.gravelin-immo.com/vente/1 à 5 (robots.txt respecté, 2 s entre deux requêtes) et chaque fiche. Il écrit :
+
+- **`annonces.json`**, la source unique : pour chaque référence, le type, la commune et le code postal (jamais l'adresse), le prix, la surface, les pièces, le tableau de caractéristiques, les dépenses d'énergie estimées, les mentions de l'agence, la description expurgée des adresses et des noms, les photos, ainsi que `first_seen`, `last_seen`, `status` et `status_changed`. Il contient aussi la file des posts Google (`posts`).
+- **`annonces/<ref>/1.jpg …`** : toutes les photos, en JPG de 1200 px de large, qualité 85, plus `1-600.webp` pour les cartes. Les images qui ressemblent à un plan ou à un document scanné sont écartées. Le dossier est exclu de l'indexation (`robots.txt`).
+- **`/biens-a-vendre-dijon/`** : la page des biens, avec les cartes, les filtres par type et par commune, et un JSON-LD `ItemList` + `Offer`. Un clic ouvre la fiche de l'agence dans la page `/biens-a-vendre/?fiche=…`.
+- **`de-claude/annonces-google.md`** : la file des posts de la fiche Google, pour Twin.
+- **`annonces-log.md`** : le journal des changements.
+
+Statuts :
+- « en vente » ;
+- « sous compromis » ou « vendu », seulement si l'agence l'affiche ;
+- « retirée » (affiché « N'est plus disponible ») pour une annonce disparue sans mention.
+
+Les biens vendus restent dans la grille 60 jours, puis passent dans « Vendus récemment ».
+
+Titres, textes des cartes et textes des posts sont écrits par le script à partir des champs structurés : type, pièces, surface, commune, prix et trois atouts tirés du tableau de caractéristiques. Ils ne reprennent jamais la description de l'agence : ni contenu dupliqué, ni adresse. Un dernier contrôle refuse tout texte qui contiendrait une adresse ou un nom de personne. Les liens vers l'agence sont de la forme `…/vente/<commune>/<type>/<id>-bien/?utm_source=shawez-immo` ; l'agence redirige vers sa fiche.
+
+Exclure une photo (plaque lisible, personne, document) : dans `annonces.json`, mettre sa source à `null` dans `photos.sources` de l'annonce et supprimer le fichier ; le script ne la téléchargera plus. Les photos des nouvelles annonces ne sont contrôlées automatiquement que pour les plans et documents scannés : un coup d'œil reste utile.
+
+Sécurités : si le script trouve 0 annonce, ou moins de la moitié des annonces actives la veille, il ne modifie rien et écrit `de-claude/alerte-sync.md`.
+
+Lancer à la main : `python3 outils/sync_annonces.py`. Pour seulement régénérer la page et la file depuis `annonces.json` : `python3 outils/sync_annonces.py --sans-web`.
