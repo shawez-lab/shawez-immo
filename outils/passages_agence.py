@@ -43,7 +43,7 @@ CSS = """<style id="sortie-css">
 #sortie.on{opacity:1;}
 #sortie img{width:64px;height:auto;animation:sortie-in .5s ease both;}
 #sortie p{margin:0;max-width:22em;font-family:var(--font-text,'Schibsted Grotesk',sans-serif);font-size:16px;line-height:1.5;color:rgba(243,239,230,.88);}
-#sortie p strong{display:block;margin-bottom:6px;font-family:var(--font-display,'Fraunces',serif);font-weight:360;font-size:24px;line-height:1.2;color:#F3EFE6;}
+#sortie p strong{display:block;margin-bottom:6px;font-family:var(--font-display,'Familjen Grotesk',sans-serif);font-weight:360;font-size:24px;line-height:1.2;color:#F3EFE6;}
 @keyframes sortie-in{from{opacity:0;transform:scale(.92);}to{opacity:1;transform:none;}}
 @media(prefers-reduced-motion:reduce){#sortie,#sortie img{transition:none;animation:none;}}
 </style>"""

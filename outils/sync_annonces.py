@@ -552,14 +552,14 @@ def page(etat):
     types = sorted({a['type'] for a in grille}); communes = sorted({a['commune'] for a in grille})
     opt = lambda vs: ''.join('<option>%s</option>' % html.escape(v) for v in vs)
     main = ('<main id="main">\n<section class="route" data-route="/biens-a-vendre-dijon" id="r-annonces">\n'
-            '  <div class="page-head shell"><h1 class="display d-xl">Biens à vendre à Dijon et autour</h1>'
-            '<p class="lede">Ce sont les biens de l\'agence GRAVELIN IMMO. Je peux vous faire visiter chacun d\'eux. La liste est mise à jour tous les matins.</p></div>\n'
+            '  <div class="page-head shell"><p class="label">Biens à vendre</p><h1 class="display d-xl" style="margin-top:14px;">Biens à vendre à Dijon <em>et alentours.</em></h1>'
+            '<p class="lede">Les biens de l\'agence GRAVELIN IMMO, que je vous fais visiter. Mis à jour chaque matin.</p></div>\n'
             '  <div class="shell" style="padding-bottom:clamp(72px,10vw,136px);">\n'
             '    <div class="an-filtres"><label>Type<select id="f-type"><option value="">Tous les types</option>%s</select></label>'
             '<label>Commune<select id="f-commune"><option value="">Toutes les communes</option>%s</select></label></div>\n'
             '    <p class="an-n" id="an-n" aria-live="polite">%d biens</p>\n'
             '    <ul class="an-grid" id="an-grid">%s</ul>\n%s'
-            '    <p class="an-note">Ces annonces viennent du site de l\'agence GRAVELIN IMMO. Les prix incluent les honoraires. Le diagnostic énergétique et les informations sur les risques sont sur la fiche de chaque bien.</p>\n'
+            '    <p class="an-note">Annonces de l\'agence GRAVELIN IMMO, reprises chaque matin. Prix honoraires inclus. Le détail, le diagnostic de performance énergétique et les informations sur les risques figurent sur la fiche de chaque bien.</p>\n'
             '  </div>\n</section>\n</main>'
             % (opt(types), opt(communes), len(grille), ''.join(carte_html(a) for a in grille),
                ('    <details class="an-vendus"><summary>Vendus récemment (%d)</summary><ul class="an-grid">%s</ul></details>\n' % (len(vendus), ''.join(carte_html(a) for a in vendus))) if vendus else ''))
