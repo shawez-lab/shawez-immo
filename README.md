@@ -4,12 +4,10 @@ Site statique publié par Cloudflare Pages à chaque poussée sur `main`.
 
 Autres procédures : [images des posts Google](README-posts-images.md) · [registre des médias](medias-equipe.md).
 
-## Typographie et ton
+## Typographie
 
-- Titres : **Familjen Grotesk** (600) ; texte : **Schibsted Grotesk** (400 à 700). Deux polices libres (OFL), hébergées sur le site (`assets/fonts/`, 55 Ko en tout), avec des polices de repli calibrées pour éviter tout saut de mise en page au chargement.
-- Pas d'italique ni de mot en couleur dans les titres, pas de petits surtitres en capitales, pas de point final dans les titres.
-- `python3 outils/typo.py` applique ces règles à toutes les pages (relançable).
-- Textes : à la première personne, phrases simples et concrètes, sans tirets cadratins (—), sans formules toutes faites. Aucun chiffre ni fait inventé.
+- Titres : **Familjen Grotesk** (avec son italique pour les mots en couleur) ; texte : **Schibsted Grotesk**. Polices libres (OFL), hébergées sur le site (`assets/fonts/`), avec des polices de repli calibrées.
+- `python3 outils/typo.py` ne change que la police : textes, couleurs, italiques et surtitres restent tels quels.
 
 ## Avis Google
 
