@@ -7,18 +7,23 @@
 <meta name="robots" content="noindex, follow">
 <meta name="description" content="L'outil d'estimation en ligne de l'agence GRAVELIN IMMO, présenté par Shawez Ali.">
 <meta name="theme-color" content="#0F0E0C">
+<link rel="preload" href="/assets/fonts/familjen.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/schibsted.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/favicon.png" type="image/png" sizes="any">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<link rel="preload" href="/assets/fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preconnect" href="https://www.gravelin-immo.com">
 <style>
-@font-face{font-family:'Manrope';font-weight:400 700;font-display:swap;src:url(/assets/fonts/manrope.woff2) format('woff2');}
+@font-face{font-family:'Familjen Grotesk';font-style:normal;font-weight:400 700;font-display:swap;src:url(/assets/fonts/familjen.woff2) format('woff2');}
+@font-face{font-family:'Schibsted Grotesk';font-style:normal;font-weight:400 700;font-display:swap;src:url(/assets/fonts/schibsted.woff2) format('woff2');}
+@font-face{font-family:'Familjen Repli';font-weight:400 700;src:local('Arial Bold'),local('Arial-BoldMT'),local('Liberation Sans Bold'),local('LiberationSans-Bold');size-adjust:91%;ascent-override:112.6%;descent-override:24.7%;line-gap-override:0%;}
+@font-face{font-family:'Schibsted Repli';font-weight:400 500;src:local('Arial'),local('ArialMT'),local('Liberation Sans'),local('LiberationSans');size-adjust:104%;ascent-override:93.9%;descent-override:24.8%;line-gap-override:0%;}
+@font-face{font-family:'Schibsted Repli';font-weight:600 700;src:local('Arial Bold'),local('Arial-BoldMT'),local('Liberation Sans Bold'),local('LiberationSans-Bold');size-adjust:99.8%;ascent-override:97.9%;descent-override:25.8%;line-gap-override:0%;}
 :root{--bar:calc(56px + env(safe-area-inset-top,0px));}
 *{box-sizing:border-box;}
-html,body{margin:0;height:100%;background:#0F0E0C;color:#F3EFE6;font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;}
+html,body{margin:0;height:100%;background:#0F0E0C;color:#F3EFE6;font-family:'Schibsted Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;}
 .sas-bar{position:sticky;top:0;z-index:2;height:var(--bar);padding:env(safe-area-inset-top,0px) max(12px,env(safe-area-inset-right,0px)) 0 max(8px,env(safe-area-inset-left,0px));display:grid;grid-template-columns:auto auto 1fr;align-items:center;gap:10px;background:#0F0E0C;border-bottom:1px solid rgba(243,239,230,.1);}
-.sas-back{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 12px;border:1px solid rgba(243,239,230,.28);border-radius:999px;background:transparent;color:#F3EFE6;font:600 14px/1 'Manrope',sans-serif;cursor:pointer;text-decoration:none;}
+.sas-back{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 12px;border:1px solid rgba(243,239,230,.28);border-radius:999px;background:transparent;color:#F3EFE6;font:600 14px/1 'Schibsted Grotesk',sans-serif;cursor:pointer;text-decoration:none;}
 .sas-back:focus-visible,.sas-logo:focus-visible,.sas-help a:focus-visible{outline:2px solid #E3B341;outline-offset:2px;}
 .sas-logo{display:inline-flex;align-items:center;min-height:44px;}
 .sas-logo img{display:block;width:104px;height:auto;}
@@ -34,6 +39,37 @@ html,body{margin:0;height:100%;background:#0F0E0C;color:#F3EFE6;font-family:'Man
 .sas-help a{color:#E3B341;}
 @media(max-width:360px){.sas-logo img{width:88px;}.sas-note{font-size:11px;}}
 @media(prefers-reduced-motion:reduce){.sas-load i{animation-duration:2.4s;}}
+</style>
+<style id="typo-v9">
+/* v9 : Familjen Grotesk pour les titres, Schibsted Grotesk pour le texte. Pas d'italique, pas de mot en couleur dans les titres. */
+*{font-variation-settings:normal!important;}
+body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLegibility;}
+.display,.t,.q,.proof-v,.why-card h3,.reel figcaption b,.beliefs b,.map-card b,.card h3,.gnote .big,.way b,.block h3,.block h2,
+.steps .n,.steps h3,.faq summary,.legal h2,.cway b,.step-t h2,.est-who b,.est-side .how li b,.post h3,.article h2,.bareme td:last-child,
+.sim-big,.sim-kv dd,.sim-peek b,#biens .biens-t,.proof-grid.facts4 .fact b,.proof-grid.facts4 .fact,.tips a,.yt-band .yt-t,.est-now h2,.est-or,
+.gets li b,.crew .card h3,.tips-cards b,#hero h1,#menu li a,.who-ov b,#sortie p strong,.avis-note .n,.an-t,#equipe .why-card h3,
+.biens-row .reel figcaption b,.sec-head .display,.sec-m .display.d-l,.sec-m .display.d-xl,.avis-card .who,.pod .t,.ep-t,.final .display{font-family:var(--font-display);font-weight:600!important;font-style:normal!important;letter-spacing:-.02em;}
+.display{letter-spacing:-.028em;line-height:1.04;}
+#hero h1{letter-spacing:-.03em;line-height:1.02;}
+.display em,.t em,.q em,h1 em,h2 em,h3 em,.hero-tag em,.who-ov em{font-style:normal!important;font-weight:inherit!important;color:inherit!important;}
+.q,.hero-tag,#hero .hero-tag,#biens .biens-t,.article blockquote,.proof-v .sfx,.why-img .n,em.ph{font-style:normal!important;}
+.hero-tag,#hero .hero-tag{font-family:var(--font-text)!important;font-weight:500!important;letter-spacing:0;}
+.article blockquote{font-family:var(--font-text);font-weight:500;font-size:1.15rem;}
+#menu li a{font-weight:600!important;letter-spacing:-.025em;}
+.label,.tips-cards em,.an-st{text-transform:none!important;letter-spacing:0!important;}
+.label{font-size:14px!important;font-weight:600;}
+.tips-cards em{font-size:13px;font-weight:600;}
+#curtain .c-name{letter-spacing:.2em;}
+.brand small,.hero-vid figcaption,.who-img .cap,.agency,.map-wrap .legend,.strip figcaption,.eps small,.steps .get b,.ft h4,.ft .ft-h,.ft .soon small,
+.post .meta,.article th,.bareme th,.sim-kv dt,.sim-peek span,.film .film-play span{text-transform:none!important;letter-spacing:0!important;font-size:13px!important;}
+.strip figcaption,.who-img .cap,.film .film-play span{font-size:14px!important;font-weight:600!important;}
+.ft .ft-h,.ft h4{font-size:14px!important;}
+.sec-head{max-width:none!important;}.sec-head p,.sec-head .body,.sec-head .lede{max-width:38em;}
+h2.display,.sec-head .display,.sec-head h2{max-width:16em!important;}
+@media(max-width:767px){#hero h1{font-size:clamp(34px,9.6vw,42px)!important;}}
+@media(min-width:768px){#hero h1{font-size:clamp(2.6rem,4.6vw,4.2rem)!important;}}
+.btn,.btn-primary,button{font-family:var(--font-text);font-weight:600;letter-spacing:0;}
+.body,.lede,p{font-feature-settings:"kern","liga";}
 </style>
 </head>
 <body>

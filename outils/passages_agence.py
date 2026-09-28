@@ -42,7 +42,7 @@ CSS = """<style id="sortie-css">
 #sortie{position:fixed;inset:0;z-index:400;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;padding:calc(24px + env(safe-area-inset-top,0px)) 28px calc(24px + env(safe-area-inset-bottom,0px));background:#0F0E0C;color:#F3EFE6;text-align:center;opacity:0;transition:opacity .22s ease;}
 #sortie.on{opacity:1;}
 #sortie img{width:64px;height:auto;animation:sortie-in .5s ease both;}
-#sortie p{margin:0;max-width:22em;font-family:var(--font-text,'Manrope',sans-serif);font-size:16px;line-height:1.5;color:rgba(243,239,230,.88);}
+#sortie p{margin:0;max-width:22em;font-family:var(--font-text,'Schibsted Grotesk',sans-serif);font-size:16px;line-height:1.5;color:rgba(243,239,230,.88);}
 #sortie p strong{display:block;margin-bottom:6px;font-family:var(--font-display,'Fraunces',serif);font-weight:360;font-size:24px;line-height:1.2;color:#F3EFE6;}
 @keyframes sortie-in{from{opacity:0;transform:scale(.92);}to{opacity:1;transform:none;}}
 @media(prefers-reduced-motion:reduce){#sortie,#sortie img{transition:none;animation:none;}}
@@ -92,15 +92,15 @@ SAS = """<!doctype html>
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/favicon.png" type="image/png" sizes="any">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-<link rel="preload" href="/assets/fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/schibsted.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preconnect" href="https://www.gravelin-immo.com">
 <style>
-@font-face{{font-family:'Manrope';font-weight:400 700;font-display:swap;src:url(/assets/fonts/manrope.woff2) format('woff2');}}
+@font-face{{font-family:'Schibsted Grotesk';font-weight:400 700;font-display:swap;src:url(/assets/fonts/schibsted.woff2) format('woff2');}}
 :root{{--bar:calc(56px + env(safe-area-inset-top,0px));}}
 *{{box-sizing:border-box;}}
-html,body{{margin:0;height:100%;background:#0F0E0C;color:#F3EFE6;font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;}}
+html,body{{margin:0;height:100%;background:#0F0E0C;color:#F3EFE6;font-family:'Schibsted Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;}}
 .sas-bar{{position:sticky;top:0;z-index:2;height:var(--bar);padding:env(safe-area-inset-top,0px) max(12px,env(safe-area-inset-right,0px)) 0 max(8px,env(safe-area-inset-left,0px));display:grid;grid-template-columns:auto auto 1fr;align-items:center;gap:10px;background:#0F0E0C;border-bottom:1px solid rgba(243,239,230,.1);}}
-.sas-back{{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 12px;border:1px solid rgba(243,239,230,.28);border-radius:999px;background:transparent;color:#F3EFE6;font:600 14px/1 'Manrope',sans-serif;cursor:pointer;text-decoration:none;}}
+.sas-back{{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 12px;border:1px solid rgba(243,239,230,.28);border-radius:999px;background:transparent;color:#F3EFE6;font:600 14px/1 'Schibsted Grotesk',sans-serif;cursor:pointer;text-decoration:none;}}
 .sas-back:focus-visible,.sas-logo:focus-visible,.sas-help a:focus-visible{{outline:2px solid #E3B341;outline-offset:2px;}}
 .sas-logo{{display:inline-flex;align-items:center;min-height:44px;}}
 .sas-logo img{{display:block;width:104px;height:auto;}}
