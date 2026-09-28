@@ -58,6 +58,9 @@ html,body{margin:0;height:100%;background:#0F0E0C;color:#F3EFE6;font-family:'Man
   b.addEventListener('click',function(e){ if(interne&&history.length>1){ e.preventDefault(); history.back(); } });
   /* chargement : l'indicateur s'efface au chargement de l'outil, 1 s au plus */
   var st=document.querySelector('.sas-stage'), f=st.querySelector('iframe'), done=function(){ st.classList.add('sas-ready'); };
+  /* ?fiche= : fiche d'un bien de l'agence (uniquement www.gravelin-immo.com/vente/…) */
+  try{ var q=new URLSearchParams(location.search).get('fiche');
+    if(q&&/^https:\/\/www\.gravelin-immo\.com\/vente\/[\w\/.-]+(\?[\w=&.-]*)?$/.test(q)){ f.src=q; var h=document.querySelector('.sas-help a'); if(h)h.href=q; } }catch(e){}
   f.addEventListener('load',done); setTimeout(done,1000);
 })();
 </script>
