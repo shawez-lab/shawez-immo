@@ -66,7 +66,7 @@ def carte(a, complet=False):
 def entete():
     n = F['nombre']
     return ('<div class="avis-score"><p class="avis-note"><span class="n">%s</span>%s</p>'
-            '<p class="avis-count">%d avis sur la fiche Google « %s »</p></div>'
+            '<p class="avis-count">%d avis sur ma fiche Google « %s »</p></div>'
             % (fr(F['note']), etoiles(round(F['note'])), n, E(F['nom'])))
 
 def boutons(page_avis=False):
@@ -76,7 +76,7 @@ def boutons(page_avis=False):
         b += '<a class="btn-text" href="/avis/">Comment les avis sont affichés <span class="arw">→</span></a>'
     return '<div class="btn-row avis-btns">%s</div>' % b
 
-VIDE = '<p class="avis-vide body">Les avis se lisent sur la fiche Google, tels que leurs auteurs les ont écrits.</p>'
+VIDE = '<p class="avis-vide body">Vous pouvez lire tous les avis sur ma fiche Google.</p>'
 
 def bloc_accueil():
     h = ['<!-- avis:accueil -->', '<div class="avis-head rv">', entete(), '</div>']
