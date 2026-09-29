@@ -1,5 +1,5 @@
-"""Police seule : Familjen Grotesk (titres, avec italique) + Schibsted Grotesk (texte) à la place de Fraunces + Manrope.
-Ne touche ni aux textes, ni aux couleurs, ni aux mots en italique, ni aux surtitres. Relançable.
+"""Typographie seule : Familjen Grotesk (titres, avec italique) + Schibsted Grotesk (texte) à la place de Fraunces + Manrope.
+Polices, tailles, graisses, interlignages. Ne touche ni aux textes, ni aux couleurs, ni aux mots en italique, ni aux surtitres. Relançable.
 
     python3 outils/typo.py
 """
@@ -20,6 +20,28 @@ FACES = """@font-face{font-family:'Familjen Grotesk';font-style:normal;font-weig
 DISPLAY = "--font-display:'Familjen Grotesk','Familjen Repli',Arial,sans-serif;"
 TEXT = "--font-text:'Schibsted Grotesk','Schibsted Repli',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;"
 
+TITRES = """.display,.t,.q,.proof-v,.why-card h3,.reel figcaption b,.beliefs b,.map-card b,.card h3,.gnote .big,.way b,.block h3,.block h2,
+.steps .n,.steps h3,.faq summary,.legal h2,.cway b,.step-t h2,.est-who b,.est-side .how li b,.post h3,.article h2,.bareme td:last-child,
+.sim-big,.sim-kv dd,.sim-peek b,#biens .biens-t,.proof-grid.facts4 .fact b,.proof-grid.facts4 .fact,.tips a,.yt-band .yt-t,.est-now h2,.est-or,
+.gets li b,.crew .card h3,.tips-cards b,#hero h1,#menu li a,.who-ov b,#sortie p strong,.avis-note .n,.an-t,#equipe .why-card h3,
+.biens-row .reel figcaption b,.sec-head .display,.sec-m .display.d-l,.sec-m .display.d-xl,.avis-card .who,.pod .t,.ep-t,.final .display"""
+
+# Tailles, graisses et interlignages de la typographie v9. Les couleurs, les mots en italique et les surtitres restent ceux d'origine.
+CSS = """<style id="typo-v9">
+*{font-variation-settings:normal!important;}
+body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLegibility;}
+%s{font-family:var(--font-display);font-weight:600!important;letter-spacing:-.02em;}
+.display{letter-spacing:-.028em;line-height:1.04;}
+#hero h1{letter-spacing:-.03em;line-height:1.02;}
+.display em,.t em,.q em,h1 em,h2 em,h3 em,.who-ov em{font-weight:inherit!important;}
+.article blockquote{font-weight:500;font-size:1.15rem;}
+#menu li a{font-weight:600!important;letter-spacing:-.025em;}
+@media(max-width:767px){#hero h1{font-size:clamp(34px,9.6vw,42px)!important;}}
+@media(min-width:768px){#hero h1{font-size:clamp(2.6rem,4.6vw,4.2rem)!important;}}
+.btn,.btn-primary,button{font-family:var(--font-text);font-weight:600;letter-spacing:0;}
+.body,.lede,p{font-feature-settings:"kern","liga";}
+</style>""" % TITRES
+
 def patch(s, gabarit=False):
     if gabarit:   # scripts Python qui fabriquent des pages : seulement les noms de police
         s = s.replace('/assets/fonts/manrope.woff2', '/assets/fonts/schibsted.woff2')
@@ -38,6 +60,9 @@ def patch(s, gabarit=False):
     s = s.replace("'Fraunces','Fraunces Repli Texte',Georgia,serif", 'var(--font-display)')
     s = s.replace("'Manrope',-apple-system", "'Schibsted Grotesk',-apple-system")
     s = s.replace("'Manrope',sans-serif", "'Schibsted Grotesk',sans-serif").replace("'Fraunces',serif", "'Familjen Grotesk',sans-serif")
+    if not gabarit and '--font-display' in s:
+        s = re.sub(r'<style id="typo-v9">.*?</style>\n?', '', s, flags=re.S)
+        s = s.replace('</head>', CSS + '\n</head>', 1)
     return s
 
 if __name__ == '__main__':
