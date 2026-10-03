@@ -9,6 +9,32 @@ Autres procédures : [images des posts Google](README-posts-images.md) · [regis
 - Titres : **Familjen Grotesk** (avec son italique pour les mots en couleur) ; texte : **Schibsted Grotesk**. Polices libres (OFL), hébergées sur le site (`assets/fonts/`), avec des polices de repli calibrées.
 - `python3 outils/typo.py` applique la typographie (polices, tailles, graisses, interlignages, bloc `typo-v9`) : textes, couleurs, italiques et surtitres restent tels quels.
 
+## Construction : flux RSS et balises
+
+`python3 outils/build.py` (relançable), lancé automatiquement par GitHub Actions (`build.yml`) à chaque poussée sur `main` qui touche une page, et après la synchronisation quotidienne des annonces :
+
+- **Flux RSS des Conseils** : `https://shawez-immo.com/conseils/feed.xml`, refait à partir de `conseils-vendeurs/*/index.html` (titre, lien, date, résumé, texte et image de chaque article, tirés du JSON-LD et de la page). Un nouvel article y apparaît dès qu'il est publié.
+- `<link rel="alternate" type="application/rss+xml" href="/conseils/feed.xml">` dans le `<head>` de toutes les pages.
+- **Mesure d'audience Metricool** (marque 7212231), balise avant `</body>` de toutes les pages. Testée le 3 octobre 2026 avec Playwright (ordinateur et iPhone, deux visites) : aucun cookie, aucun `localStorage` ni `sessionStorage`, aucun `Set-Cookie` ; elle envoie seulement un pixel `c3po.jpg` avec l'adresse de la page, la taille de la fenêtre et la page de provenance. Journal : `de-claude/metricool-test.md`. `tracker.metricool.com` est autorisé dans `_headers` (`script-src`, `connect-src`, `img-src`). Pas de bandeau cookies : il n'y a pas de cookie. Si Metricool change un jour son script, refaire le test avant tout.
+
+## Formulaire d'estimation
+
+Le formulaire (`/estimation-immobiliere-dijon/`) appelle `/api/lead` :
+
+- `GET /api/lead` répond `{"ready":true}` → la demande est envoyée au Worker `outils/lead-worker.js`, qui la transmet à Shawez par e-mail (et au webhook `LEAD_WEBHOOK_URL` s'il existe). Le visiteur voit « Demande reçue » avec une référence, ou « La transmission automatique n'a pas abouti » avec les boutons WhatsApp et e-mail. Le Worker ne stocke rien.
+- Pas de Worker, ou Worker non configuré → envoi par WhatsApp ou e-mail depuis l'appareil du visiteur (comportement d'origine). Aucune donnée n'est envoyée avant de savoir que le Worker est prêt.
+
+Mise en service du Worker (une fois) :
+
+1. Cloudflare → **Compute** › **Email Service** › **Email Routing** → **Onboard Domain** → `shawez-immo.com` → **Done** (enregistrements DNS ajoutés automatiquement).
+2. Même page, **Destination Addresses** → saisir `shawez@gravelin-immo.com` → valider, puis cliquer **Verify email address** dans l'e-mail reçu.
+3. Cloudflare → **My Profile** › **API Tokens** → **Create Token** → modèle **Edit Cloudflare Workers** → *Account Resources* : le compte de Shawez ; *Zone Resources* : `shawez-immo.com` → **Continue to summary** → **Create Token** → copier le jeton.
+4. Cloudflare → **Workers & Pages** : copier l'**Account ID** (colonne de droite).
+5. GitHub → dépôt `shawez-lab/shawez-immo` → **Settings** › **Secrets and variables** › **Actions** → **New repository secret** : `CLOUDFLARE_API_TOKEN` (le jeton), puis `CLOUDFLARE_ACCOUNT_ID` (l'identifiant).
+6. GitHub → **Actions** → **Déployer le Worker du formulaire** → **Run workflow**. La dernière étape vérifie que `https://shawez-immo.com/api/lead` répond `{"ready":true}`.
+
+Configuration du Worker : `outils/lead-worker.toml` (route `shawez-immo.com/api/lead*`, liaison e-mail `EMAIL`, `LEAD_FROM`, `LEAD_TO`).
+
 ## Avis Google
 
 Source unique : **`avis.json`**, à la racine. Le script `outils/avis.py` en tire :

@@ -1,0 +1,19 @@
+# Worker du formulaire d'estimation (outils/lead-worker.js). Déployé par .github/workflows/lead-worker.yml.
+name = "shawez-lead"
+main = "lead-worker.js"
+compatibility_date = "2025-09-01"
+workers_dev = false
+
+# Même adresse que le site : le formulaire appelle /api/lead, sans réglage de sécurité supplémentaire.
+routes = [{ pattern = "shawez-immo.com/api/lead*", zone_name = "shawez-immo.com" }]
+
+# Envoi par e-mail : Email Routing activé sur shawez-immo.com, adresse de destination vérifiée.
+send_email = [{ name = "EMAIL", destination_address = "shawez@gravelin-immo.com" }]
+
+[vars]
+LEAD_FROM = "formulaire@shawez-immo.com"
+LEAD_TO = "shawez@gravelin-immo.com"
+# Webhook facultatif (ex. GoHighLevel) : en secret, jamais ici → Worker > Paramètres > Variables et secrets > LEAD_WEBHOOK_URL
+
+[observability]
+enabled = true

@@ -7,6 +7,7 @@
 <meta name="description" content="Le prix juste dès le départ, une mise en valeur qui fait venir les acheteurs, un seul interlocuteur jusqu&#x27;aux clés : comment je vends à Dijon.">
 <meta name="robots" content="index,follow,max-image-preview:large,max-video-preview:-1">
 <link rel="canonical" href="https://shawez-immo.com/vendre-bien-immobilier-dijon/">
+<link rel="alternate" type="application/rss+xml" href="/conseils/feed.xml">
 <meta name="theme-color" content="#0F0E0C">
 <link rel="preload" href="/assets/fonts/familjen.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/schibsted.woff2" as="font" type="font/woff2" crossorigin>
@@ -1215,7 +1216,7 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
     </div>
   </div>
 </footer>
-<script>window.__PATHS={"/": "/", "/estimation": "/estimation-immobiliere-dijon/", "/vendre": "/vendre-bien-immobilier-dijon/", "/commerces": "/vendre-commerce-dijon/", "/conseils": "/conseils-vendeurs/", "/conseils/choisir-agent-immobilier-dijon": "/conseils-vendeurs/choisir-agent-immobilier-dijon/", "/conseils/prix-affiche-prix-signe-dijon": "/conseils-vendeurs/prix-affiche-prix-signe-dijon/", "/conseils/trois-premieres-semaines-vente": "/conseils-vendeurs/trois-premieres-semaines-vente/", "/conseils/vendre-un-commerce-dijon": "/conseils-vendeurs/vendre-un-commerce-dijon/", "/conseils/premiere-photo-annonce-immobiliere": "/conseils-vendeurs/premiere-photo-annonce-immobiliere/", "/a-propos": "/shawez-ali-agent-immobilier-dijon/", "/videos": "/videos-immobilier-dijon/", "/podcast": "/podcast/", "/territoire": "/secteurs-dijon-nuits-saint-georges-beaune/", "/avis": "/avis/", "/contact": "/contact/", "/honoraires": "/honoraires/", "/mentions-legales": "/mentions-legales/", "/confidentialite": "/politique-de-confidentialite/", "/cookies": "/cookies/", "/merci": "/merci/", "/simulateur": "/simulateur-pret-immobilier-dijon/", "/404": "/404.html"};window.SHAWEZ_LEAD_ENDPOINT=null;/* point de collecte des demandes : à renseigner à la connexion (voir docs/integration) */</script>
+<script>window.__PATHS={"/": "/", "/estimation": "/estimation-immobiliere-dijon/", "/vendre": "/vendre-bien-immobilier-dijon/", "/commerces": "/vendre-commerce-dijon/", "/conseils": "/conseils-vendeurs/", "/conseils/choisir-agent-immobilier-dijon": "/conseils-vendeurs/choisir-agent-immobilier-dijon/", "/conseils/prix-affiche-prix-signe-dijon": "/conseils-vendeurs/prix-affiche-prix-signe-dijon/", "/conseils/trois-premieres-semaines-vente": "/conseils-vendeurs/trois-premieres-semaines-vente/", "/conseils/vendre-un-commerce-dijon": "/conseils-vendeurs/vendre-un-commerce-dijon/", "/conseils/premiere-photo-annonce-immobiliere": "/conseils-vendeurs/premiere-photo-annonce-immobiliere/", "/a-propos": "/shawez-ali-agent-immobilier-dijon/", "/videos": "/videos-immobilier-dijon/", "/podcast": "/podcast/", "/territoire": "/secteurs-dijon-nuits-saint-georges-beaune/", "/avis": "/avis/", "/contact": "/contact/", "/honoraires": "/honoraires/", "/mentions-legales": "/mentions-legales/", "/confidentialite": "/politique-de-confidentialite/", "/cookies": "/cookies/", "/merci": "/merci/", "/simulateur": "/simulateur-pret-immobilier-dijon/", "/404": "/404.html"};window.SHAWEZ_LEAD_ENDPOINT='/api/lead';/* point de collecte : Worker outils/lead-worker.js sur la route shawez-immo.com/api/lead ; tant qu'il ne répond pas {ready:true}, l'envoi passe par WhatsApp ou e-mail */</script>
 <script>
 (function(){
 'use strict';
@@ -1517,11 +1518,18 @@ buildMap($('#map-home')); buildMap($('#map-page'));
     return ok; }
   $$('[data-next]',form).forEach(function(b){b.addEventListener('click',function(){ if(validate(cur))goStep(cur+1); });});
   $$('[data-prev]',form).forEach(function(b){b.addEventListener('click',function(){ goStep(Math.max(1,cur-1)); });});
-  form.addEventListener('submit',function(e){ e.preventDefault(); if(!validate(3))return; buildRecap(); goStep(4); if(window.SHAWEZ_LEAD_ENDPOINT){sendLead();} });
+  form.addEventListener('submit',function(e){ e.preventDefault(); if(!validate(3))return; buildRecap(); goStep(4); if(window.SHAWEZ_LEAD_ENDPOINT){probeLead();} });
   /* ---- envoi vers le point de collecte (prêt à connecter) ----
      window.SHAWEZ_LEAD_ENDPOINT = 'https://…/lead' ; contrat de champs : voir docs/integration.
      États affichés honnêtement : envoi… / reçue (202 + référence) / échec (repli WhatsApp ou e-mail). */
   function setState(cls,html){ var st=$('#est-state'); st.className='state show '+cls; st.innerHTML=html; }
+  /* le Worker est-il là et configuré ? (GET sans aucune donnée) ; sinon, envoi par WhatsApp ou e-mail comme avant */
+  function probeLead(){
+    $('#send-row').hidden=true; $('#send-note').hidden=true; setState('','Préparation de l\'envoi…');
+    var ctrl=('AbortController' in window)?new AbortController():null; var t=setTimeout(function(){if(ctrl)ctrl.abort();},5000);
+    fetch(window.SHAWEZ_LEAD_ENDPOINT,{method:'GET',cache:'no-store',signal:ctrl?ctrl.signal:undefined}).then(function(r){ clearTimeout(t); return r.ok?r.json():{}; }).catch(function(){ clearTimeout(t); return {}; })
+    .then(function(j){ if(j&&j.ready===true){ sendLead(); } else { var st=$('#est-state'); st.className='state'; st.innerHTML=''; $('#send-row').hidden=false; $('#send-note').hidden=false; } });
+  }
   function payload(){ return {type:state.type||'',commune:state.commune||'',surface:state.surface?Number(state.surface):null,pieces:state.pieces||'',delai:state.delai||'',deja_en_agence:state.agence==='Oui',message:state.message||'',prenom:state.prenom||'',nom:state.nom||'',email:(state.email||'').trim(),telephone:(state.tel||'').replace(/\s/g,''),creneau:state.creneau||'',consent_notice:!!$('#f-consent').checked,consent_newsletter:!!$('#f-news').checked,website:($('#f-website')||{}).value||'',source:'shawez-immo.com',page:location.href.split('?')[0],ts:new Date().toISOString(),schema:'lead.v1'}; }
   function sendLead(){
     setState('','Envoi de votre demande…'); $('#send-row').hidden=true; $('#send-note').hidden=true;
@@ -1574,5 +1582,6 @@ updateTone();
   window.addEventListener('pageshow',function(e){ hide(); if(e.persisted){ var m=document.getElementById('menu'), x=document.getElementById('menu-close'); if(m&&x&&m.classList.contains('open'))x.click(); } });
 })();
 </script>
+<script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"33710f67a0c16d7cbb94d1b2ba10e7a8"})});</script>
 </body>
 </html>
