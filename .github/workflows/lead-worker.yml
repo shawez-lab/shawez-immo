@@ -1,0 +1,47 @@
+name: Déployer le Worker du formulaire
+
+# Met en ligne outils/lead-worker.js sur shawez-immo.com/api/lead (configuration : outils/lead-worker.toml).
+# Ne fait rien tant que les secrets CLOUDFLARE_API_TOKEN et CLOUDFLARE_ACCOUNT_ID n'existent pas dans le dépôt.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'outils/lead-worker.js'
+      - 'outils/lead-worker.toml'
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - name: Secrets présents ?
+        id: ok
+        run: |
+          if [ -n "$CLOUDFLARE_API_TOKEN" ] && [ -n "$CLOUDFLARE_ACCOUNT_ID" ]; then echo "go=1" >> "$GITHUB_OUTPUT";
+          else echo "go=0" >> "$GITHUB_OUTPUT"; echo "::notice::Secrets Cloudflare absents : Worker non déployé (voir README, Formulaire d'estimation)."; fi
+
+      - uses: actions/checkout@v4
+        if: steps.ok.outputs.go == '1'
+
+      - uses: actions/setup-node@v4
+        if: steps.ok.outputs.go == '1'
+        with:
+          node-version: '22'
+
+      - name: Déploiement
+        if: steps.ok.outputs.go == '1'
+        run: npx --yes wrangler@4 deploy --config outils/lead-worker.toml
+
+      - name: Vérification en ligne
+        if: steps.ok.outputs.go == '1'
+        run: |
+          sleep 20
+          r=$(curl -s https://shawez-immo.com/api/lead); echo "GET https://shawez-immo.com/api/lead → $r"
+          echo "$r" | grep -q '"ready":true' || { echo "::error::Le Worker ne répond pas {\"ready\":true}"; exit 1; }

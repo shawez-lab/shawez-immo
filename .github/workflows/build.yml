@@ -1,0 +1,49 @@
+name: Construction du site
+
+# À chaque poussée sur main qui touche une page ou un article : flux RSS des Conseils (/conseils/feed.xml),
+# lien vers le flux et balise Metricool sur toutes les pages (outils/build.py, relançable).
+# Le commit fait ici avec GITHUB_TOKEN ne relance pas ce workflow ; Cloudflare Pages le publie comme les autres.
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**.html'
+      - 'assets/**'
+      - 'outils/build.py'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-site
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Construction
+        run: python3 outils/build.py
+
+      - name: Commit sur main s'il y a des changements
+        run: |
+          git config user.name "build-site"
+          git config user.email "build-site@users.noreply.github.com"
+          git add -A conseils '*.html'
+          if git diff --cached --quiet; then
+            echo "Rien à reconstruire."
+          else
+            git commit -m "Construction : flux RSS des Conseils et balises des pages"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi

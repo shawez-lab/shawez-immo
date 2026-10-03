@@ -48,12 +48,16 @@ jobs:
           TZ: Europe/Paris
         run: python3 outils/sync_annonces.py
 
+      - name: Construction (flux RSS, balises des pages)
+        if: steps.heure.outputs.go == '1'
+        run: python3 outils/build.py
+
       - name: Commit sur main s'il y a des changements
         if: steps.heure.outputs.go == '1'
         run: |
           git config user.name "sync-annonces"
           git config user.email "sync-annonces@users.noreply.github.com"
-          git add -A annonces.json annonces annonces-log.md biens-a-vendre-dijon sitemap.xml de-claude
+          git add -A annonces.json annonces annonces-log.md biens-a-vendre-dijon sitemap.xml de-claude conseils
           if git diff --cached --quiet; then
             echo "Aucun changement."
           else
