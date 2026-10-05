@@ -1114,6 +1114,14 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 .btn,.btn-primary,button{font-family:var(--font-text);font-weight:600;letter-spacing:0;}
 .body,.lede,p{font-feature-settings:"kern","liga";}
 </style>
+<style id="texte-css">
+/* blocs de texte : mêmes polices et couleurs que .body, deux colonnes sur grand écran */
+.texte-cols{max-width:none;columns:2 22em;column-gap:clamp(40px,6vw,104px);}
+.texte-cols p{margin:0 0 1.2em;line-height:1.7;break-inside:avoid;}
+#home-texte{padding-top:clamp(64px,9vw,120px);}
+@media(min-width:768px){#home-texte{padding-bottom:0;}}
+.reels-est{margin-top:14px;} .reels-est .btn{width:100%;}
+</style>
 </head>
 <body data-route="/">
 <script>try{if(!matchMedia('(prefers-reduced-motion:reduce)').matches){document.documentElement.classList.add('hero-wait');if(!sessionStorage.getItem('intro'))document.documentElement.classList.add('curtain-on');}}catch(e){}</script>
@@ -1298,7 +1306,21 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
       <div class="sec-head row"><div><p class="label rv">Les biens, en visite</p><h2 class="display d-l rv" style="margin-top:14px;">Chaque bien a droit <em>à son film.</em></h2></div><a class="btn rv" href="/videos-immobilier-dijon/">Toutes les vidéos <span class="arw">→</span></a></div>
       <div class="reels" id="reels-home"></div>
       <a class="btn m-only reels-all" href="/videos-immobilier-dijon/">Voir toutes les vidéos <span class="arw">→</span></a>
+      <div class="m-only reels-est"><a class="btn btn-primary btn-lg" href="https://www.gravelin-immo.com/estimation?expand=estimation_rapide_group&amp;utm_source=shawez-immo#estimation-formulaires" data-sortie="estimation">Estimer mon bien <span class="arw">→</span></a></div>
       <div class="reels-hint"><span>Les vidéos se lancent toutes seules ; touchez le haut-parleur pour le son.</span><div class="arrows"><button type="button" data-reels-prev data-target="#reels-home" aria-label="Vidéos précédentes">←</button><button type="button" data-reels-next data-target="#reels-home" aria-label="Vidéos suivantes">→</button></div></div>
+    </div>
+  </div>
+
+  <!-- COMMENT JE TRAVAILLE -->
+  <div class="shell texte" id="home-texte">
+    <div class="sec-head"><p class="label rv">Ma façon de travailler</p><h2 class="display d-l rv" style="margin-top:14px;">Vendre ou acheter à Dijon&nbsp;: <em>comment je travaille.</em></h2></div>
+    <div class="body texte-cols rv">
+      <p>Je suis Shawez Ali, agent commercial de l'agence GRAVELIN IMMO à Dijon. Je m'occupe de la vente d'une maison, d'un appartement ou d'un immeuble, et j'accompagne aussi ceux qui achètent les biens que je présente. Le point de départ ne change pas : comprendre le bien et votre projet avant de parler de prix.</p>
+      <p>La première estimation se fait chez vous. Je regarde l'état du bien, l'étage, l'exposition, les travaux déjà faits et ceux qui restent, puis je compare avec les ventes réellement signées dans le secteur et avec les biens en concurrence. Vous recevez un avis de valeur argumenté, que vous pouvez discuter point par point.</p>
+      <p>Si vous décidez de vendre avec moi, nous signons un mandat, comme la loi l'exige avant toute diffusion. Il peut être simple ou exclusif. En exclusivité, votre bien n'a qu'un interlocuteur, un seul prix et une seule présentation sur les portails. Je vous explique les deux formules, et c'est vous qui choisissez.</p>
+      <p>Pour un appartement en copropriété, je réunis dès le début le règlement, les procès-verbaux d'assemblée générale et le détail des charges. Un acquéreur les demande avant de faire une offre : les avoir prêts évite d'attendre le syndic au mauvais moment.</p>
+      <p>Un bien à rénover se vend aussi, à condition de le présenter honnêtement. Diagnostic de performance énergétique, devis quand il y en a, idées d'aménagement en home staging virtuel : l'acheteur voit ce qu'il achète et ce qu'il pourra en faire.</p>
+      <p>Côté achat, j'accompagne l'acquéreur de la visite jusqu'au notaire : questions sur le bien, offre écrite, financement, compromis, puis acte authentique. Que vous vendiez ou que vous achetiez, vous parlez à la même personne du premier appel à la remise des clés.</p>
     </div>
   </div>
 

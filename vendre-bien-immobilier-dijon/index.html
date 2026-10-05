@@ -1083,6 +1083,14 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 .btn,.btn-primary,button{font-family:var(--font-text);font-weight:600;letter-spacing:0;}
 .body,.lede,p{font-feature-settings:"kern","liga";}
 </style>
+<style id="texte-css">
+/* blocs de texte : mêmes polices et couleurs que .body, deux colonnes sur grand écran */
+.texte-cols{max-width:none;columns:2 22em;column-gap:clamp(40px,6vw,104px);}
+.texte-cols p{margin:0 0 1.2em;line-height:1.7;break-inside:avoid;}
+#home-texte{padding-top:clamp(64px,9vw,120px);}
+@media(min-width:768px){#home-texte{padding-bottom:0;}}
+.reels-est{margin-top:14px;} .reels-est .btn{width:100%;}
+</style>
 </head>
 <body data-route="/vendre">
 <header id="nav">
@@ -1181,6 +1189,21 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
     <div class="second rv">
       <div><p class="label">Déjà en agence ?</p><p class="q" style="font-size:clamp(1.25rem,2vw,1.7rem);margin:10px 0 8px;">Le bien est en vente depuis des mois et rien ne bouge ?</p><p class="body" style="margin:0;">Demandez un second avis. Je reprends l'estimation depuis le début, sans regarder le prix affiché. Vous restez libre de la suite.</p></div>
       <a class="btn btn-primary" href="/estimation-immobiliere-dijon/">Demander un second avis <span class="arw">→</span></a>
+    </div>
+  </div>
+  <div class="shell texte" id="vendre-texte" style="padding-top:clamp(72px,10vw,136px);">
+    <div class="sec-head"><p class="label rv">Vendre, en pratique</p><h2 class="display d-l rv" style="margin-top:14px;">Préparer la vente, <em>sans mauvaise surprise.</em></h2></div>
+    <div class="body texte-cols rv">
+      <p>Une vente se prépare avant la mise en ligne. Avant de publier quoi que ce soit, je rassemble avec vous les pièces que l'acquéreur et le notaire demanderont : titre de propriété, diagnostics techniques, dernier avis de taxe foncière et, pour un appartement, les documents de la copropriété.</p>
+      <p>Les diagnostics dépendent du bien : performance énergétique, électricité et gaz quand les installations sont anciennes, amiante et plomb selon l'année de construction, état des risques dans tous les cas. Les connaître tôt permet de fixer le prix en conséquence, plutôt que de le renégocier après une visite.</p>
+      <p>Pour une maison ou un immeuble en monopropriété classé E, F ou G au diagnostic de performance énergétique, un audit énergétique doit aussi être remis aux acheteurs. Anticipé, ce n'est pas un frein : l'audit propose des scénarios de travaux, et l'acheteur sait d'emblée sur quoi il s'engage.</p>
+      <p>Pour un immeuble entier, le dossier s'élargit : état locatif, baux en cours, travaux réalisés sur les parties communes et sur les logements. Un investisseur raisonne en loyers et en travaux à venir, et je prépare les documents qui lui permettent de faire ses calculs sans attendre.</p>
+      <p>Le prix de départ vient de l'estimation, pas d'un espoir. Je vous montre les ventes signées à proximité et les biens en concurrence, et nous décidons ensemble. Un prix argumenté se défend face à un acquéreur qui a fait ses propres recherches.</p>
+      <p>La présentation compte autant que le prix. Robin et Jason font les photos, le film et les prises de vue par drone, puis viennent les plans et la visite virtuelle. L'annonce part ensuite sur les portails et les réseaux, avec les mêmes images partout.</p>
+      <p>Après chaque visite, je vous rapporte ce que l'acheteur a dit, y compris ce qui l'a gêné. Vous décidez de la suite avec des retours précis plutôt qu'avec des impressions.</p>
+      <p>Si le bien est en indivision ou vient d'une succession, tous les propriétaires signent le mandat, puis l'acte. Je vous aide à réunir les accords et les pièces dès le départ, en lien avec le notaire, pour que la vente ne s'arrête pas au moment de signer.</p>
+      <p>Quand une offre arrive, elle est écrite. Nous l'examinons ensemble : prix, conditions suspensives, date de signature souhaitée. Une fois l'offre acceptée, le compromis ou la promesse de vente est signé, l'acquéreur dispose de son délai de rétractation, puis l'acte authentique chez le notaire conclut la vente.</p>
+      <p>Je suis agent commercial de l'agence GRAVELIN IMMO : le mandat est signé avec l'agence, et c'est moi qui le suis de bout en bout. Le barème des honoraires est public, sur la page <a class="link" href="/honoraires/">Honoraires</a>.</p>
     </div>
   </div>
   <div class="sec shell">
