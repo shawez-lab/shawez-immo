@@ -1083,6 +1083,14 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 .btn,.btn-primary,button{font-family:var(--font-text);font-weight:600;letter-spacing:0;}
 .body,.lede,p{font-feature-settings:"kern","liga";}
 </style>
+<style id="texte-css">
+/* blocs de texte : mêmes polices et couleurs que .body, deux colonnes sur grand écran */
+.texte-cols{max-width:none;columns:2 22em;column-gap:clamp(40px,6vw,104px);}
+.texte-cols p{margin:0 0 1.2em;line-height:1.7;break-inside:avoid;}
+#home-texte{padding-top:clamp(64px,9vw,120px);}
+@media(min-width:768px){#home-texte{padding-bottom:0;}}
+.reels-est{margin-top:14px;} .reels-est .btn{width:100%;}
+</style>
 </head>
 <body data-route="/territoire">
 <header id="nav">
@@ -1147,6 +1155,20 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
         <li><span>Montmuzard</span><span>studio, estimé</span></li>
       </ul>
       
+    </div>
+  </div>
+  <div class="shell texte" id="territoire-texte" style="padding-bottom:clamp(72px,10vw,136px);">
+    <div class="sec-head"><p class="label rv">Secteur par secteur</p><h2 class="display d-l rv" style="margin-top:14px;">Ce qui change <em>d'une commune à l'autre.</em></h2></div>
+    <div class="body texte-cols rv">
+      <p>Je travaille à Dijon, dans les communes de la métropole et jusqu'à Beaune par la Côte. Le métier reste le même partout, mais les biens, les acheteurs et les questions qu'ils posent changent d'un secteur à l'autre.</p>
+      <p>Dans le centre historique de Dijon, beaucoup de biens sont des appartements dans des immeubles anciens en copropriété. Les acquéreurs y regardent de près les parties communes, les travaux votés et les charges. Le centre est aussi un site patrimonial remarquable : pour un bien à rénover, certains travaux passent par l'avis de l'architecte des Bâtiments de France, et mieux vaut le savoir avant de fixer un prix.</p>
+      <p>À Montchapet, République, aux Grésilles, à Drapeau-Maladière ou à Montmuzard, le marché mêle maisons de ville et appartements en résidence. L'estimation s'y fait presque rue par rue : deux biens voisins peuvent se vendre différemment selon l'étage, l'extérieur ou le stationnement.</p>
+      <p>Dans les résidences plus récentes de la métropole, les questions portent moins sur le bâti que sur les charges, le mode de chauffage et le stationnement. Ces informations figurent dans le dossier dès la première visite.</p>
+      <p>À Talant et à Fontaine-lès-Dijon, sur les hauteurs au nord-ouest de la ville, la demande porte souvent sur des maisons avec jardin. Le terrain, la vue et l'état de la maison font la différence, et un film tourné au drone montre ce qu'une photo ne montre pas.</p>
+      <p>À Chenôve, Saint-Apollinaire ou Neuilly-lès-Dijon, on vend des appartements familiaux comme des maisons. L'acheteur compare avec Dijon : surface, extérieur, trajets, coût de l'énergie. Le diagnostic de performance énergétique y est lu avec attention, et je le présente dès l'annonce.</p>
+      <p>Plus au sud, Nuits-Saint-Georges et Beaune, sur la Route des Grands Crus, ont leur propre marché : maisons de village, demeures de caractère, biens liés à la vigne. Les acheteurs viennent parfois de loin, et la visite en vidéo leur permet de se faire une idée avant de se déplacer.</p>
+      <p>Pour les acquéreurs, la carte est aussi un point de départ. Selon le budget et le mode de vie, un appartement au centre de Dijon, une maison à Talant ou une maison de village vers Nuits-Saint-Georges répondent à des projets très différents. Je vous dis ce que j'observe dans chaque secteur, sans chercher à vous orienter vers un bien plutôt qu'un autre.</p>
+      <p>Partout, je reste agent commercial de l'agence GRAVELIN IMMO, à Dijon. Touchez une commune sur la carte pour voir ce que j'y ai déjà fait, ou <a class="link" href="/estimation-immobiliere-dijon/">demandez l'estimation de votre bien</a>.</p>
     </div>
   </div>
 </section>

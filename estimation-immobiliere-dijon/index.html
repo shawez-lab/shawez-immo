@@ -1083,6 +1083,14 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 .btn,.btn-primary,button{font-family:var(--font-text);font-weight:600;letter-spacing:0;}
 .body,.lede,p{font-feature-settings:"kern","liga";}
 </style>
+<style id="texte-css">
+/* blocs de texte : mêmes polices et couleurs que .body, deux colonnes sur grand écran */
+.texte-cols{max-width:none;columns:2 22em;column-gap:clamp(40px,6vw,104px);}
+.texte-cols p{margin:0 0 1.2em;line-height:1.7;break-inside:avoid;}
+#home-texte{padding-top:clamp(64px,9vw,120px);}
+@media(min-width:768px){#home-texte{padding-bottom:0;}}
+.reels-est{margin-top:14px;} .reels-est .btn{width:100%;}
+</style>
 </head>
 <body data-route="/estimation">
 <header id="nav">
@@ -1234,6 +1242,20 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
       </div>
       <div class="card"><p class="label">Vous achetez aussi ?</p><h3 class="t" style="font-size:1.3rem;">Combien pouvez-vous emprunter ?</h3><p class="small" style="margin:0;">Revenus, crédits en cours, apport, durée : le simulateur calcule votre budget d'achat en direct.</p><a class="link" href="/simulateur-pret-immobilier-dijon/">Ouvrir le simulateur →</a></div>
     </aside>
+  </div>
+  <div class="shell texte" id="estimation-texte" style="padding-block:clamp(72px,10vw,136px);">
+    <div class="sec-head"><p class="label rv">L'estimation, en détail</p><h2 class="display d-l rv" style="margin-top:14px;">Ce que contient <em>votre avis de valeur.</em></h2></div>
+    <div class="body texte-cols rv">
+      <p>Une estimation sérieuse part du bien, pas d'une moyenne. Un outil en ligne donne un premier ordre d'idée à partir de quelques critères. L'estimation que je fais tient compte de ce qu'aucun formulaire ne voit : la lumière, le bruit, l'état réel, la vue, la tenue de la copropriété.</p>
+      <p>Le rendez-vous dure le temps qu'il faut pour voir chaque pièce, les annexes et l'extérieur. Si vous le pouvez, préparez le titre de propriété, les diagnostics existants, l'avis de taxe foncière et, pour un appartement, les derniers procès-verbaux d'assemblée générale : ils évitent les approximations.</p>
+      <p>Je commence par les ventes signées. La base publique DVF recense les ventes passées devant notaire, avec le prix, la surface et la date. Je retiens celles qui ressemblent vraiment à votre bien : même type, même secteur et, quand c'est possible, même époque de construction.</p>
+      <p>Je regarde ensuite la concurrence : les biens à vendre au même moment, ce qu'ils proposent et depuis quand ils sont en ligne. C'est à eux que l'acheteur comparera votre bien, et pas à des ventes anciennes.</p>
+      <p>Pour un appartement, la copropriété pèse dans la valeur : montant des charges, travaux votés ou à prévoir, état des parties communes. Pour une maison, ce sont plutôt le terrain, la toiture, le chauffage et l'isolation. Le diagnostic de performance énergétique entre dans le calcul dans les deux cas.</p>
+      <p>Un bien à rénover s'estime à partir de ce qu'il pourra devenir et de ce que coûteront les travaux. S'il existe des devis, je les intègre, pour que le prix proposé tienne face à un acheteur qui fera le même calcul.</p>
+      <p>Si votre bien est déjà en vente avec une autre agence, je peux vous donner un second avis. Je reprends l'estimation depuis le début, sans partir du prix affiché, et je vous dis franchement ce que j'en pense.</p>
+      <p>Vous recevez un avis de valeur écrit, avec les références qui l'appuient. Ce n'est pas une expertise judiciaire : c'est l'avis argumenté d'un professionnel du marché local, qui sert à décider d'un prix de mise en vente. Pour une succession ou une donation, il peut servir de base de discussion avec le notaire.</p>
+      <p>L'estimation est offerte et ne vous engage à rien. Si vous décidez ensuite de vendre, nous parlerons du mandat, simple ou exclusif. Sinon, l'avis de valeur vous reste, et vous pourrez me demander de le mettre à jour quand votre projet se précisera. Je suis agent commercial de l'agence GRAVELIN IMMO, et c'est moi qui fais l'estimation, du premier échange jusqu'au dossier.</p>
+    </div>
   </div>
 </section>
 </main>
