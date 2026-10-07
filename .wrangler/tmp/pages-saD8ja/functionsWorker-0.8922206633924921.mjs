@@ -410,6 +410,13 @@ function mailPossible(env) {
   return !!(env.EMAIL || env.MAILER);
 }
 __name(mailPossible, "mailPossible");
+function peutEcrire(env, to) {
+  if (!mailPossible(env)) return false;
+  if (String(env.CLIENT_MAIL || "") === "1") return true;
+  const verifiees = String((env.ADMIN_EMAILS || "shawez@gravelin-immo.com") + "," + (env.NOTIFY_EMAILS || "shawez@gravelin-immo.com")).toLowerCase().split(/[,;\s]+/).filter(Boolean);
+  return verifiees.includes(String(to || "").toLowerCase());
+}
+__name(peutEcrire, "peutEcrire");
 function mime({ from, to, subject, text, html, replyTo }) {
   const fr = "b" + crypto.randomUUID().replace(/-/g, "");
   const domaine = from.split("@")[1];
@@ -517,6 +524,7 @@ var ROUTES = {
   "GET /admin/comptes": adminComptes,
   "POST /admin/demande": adminDemande,
   "POST /admin/compte/supprimer": adminSupprimerCompte,
+  "POST /admin/compte/lien": adminLienMdp,
   "GET /admin/export.csv": adminExport
 };
 async function sante({ env, request }) {
@@ -734,7 +742,7 @@ async function consommerJeton(env, t, usage) {
 }
 __name(consommerJeton, "consommerJeton");
 async function lienVerification(env, request, compte) {
-  if (!mailPossible(env)) return false;
+  if (!peutEcrire(env, compte.email)) return false;
   const t = await nouveauJeton(env, compte.id, "verif", 7 * 24 * 3600);
   const lien = `${new URL(request.url).origin}/api/espace/verifier?jeton=${t}`;
   return envoyer(env, {
@@ -769,7 +777,7 @@ async function oubli({ request, env }) {
   const d = await corps(request, 1e3);
   const e = email(d.email);
   await limiter(env, "oubli:" + ip(request), 5, 3600);
-  if (!mailPossible(env)) return json(200, { envoye: false, raison: "email_indisponible" });
+  if (!peutEcrire(env, e)) return json(200, { envoye: false, raison: "email_indisponible" });
   const c = await (await db(env)).prepare("SELECT * FROM comptes WHERE email = ?1").bind(e).first();
   if (c) {
     const t = await nouveauJeton(env, c.id, "reinit", 3600);
@@ -832,7 +840,7 @@ async function moi({ request, env }) {
   const c = await compteSession(request, env);
   if (!c) return json(200, { compte: null, email: mailPossible(env) });
   const r = await (await db(env)).prepare("SELECT * FROM demandes WHERE compte_id = ?1 ORDER BY cree_le DESC").bind(c.id).all();
-  return json(200, { compte: comptepublic(c, env), demandes: r.results.map(demandePublique), email: mailPossible(env) });
+  return json(200, { compte: comptepublic(c, env), demandes: r.results.map(demandePublique), email: peutEcrire(env, c.email) });
 }
 __name(moi, "moi");
 async function supprimerCompte({ request, env }) {
@@ -913,6 +921,16 @@ async function adminSupprimerCompte({ request, env }) {
   return json(200, { ok: true });
 }
 __name(adminSupprimerCompte, "adminSupprimerCompte");
+async function adminLienMdp({ request, env }) {
+  await exigerAdmin(request, env);
+  const d = await corps(request, 500);
+  const id = entier(d.id, 1, 1e12, { requis: true, nom: "id" });
+  const c = await (await db(env)).prepare("SELECT id FROM comptes WHERE id = ?1").bind(id).first();
+  if (!c) throw new Erreur(404, "introuvable");
+  const t = await nouveauJeton(env, id, "reinit", 24 * 3600);
+  return json(200, { lien: `${new URL(request.url).origin}/mon-espace/?reinit=${t}` });
+}
+__name(adminLienMdp, "adminLienMdp");
 var csvCase = /* @__PURE__ */ __name((v) => {
   let s = v == null ? "" : String(v);
   if (/^[=+\-@\t\r]/.test(s)) s = "'" + s;
@@ -1574,7 +1592,7 @@ var jsonError = /* @__PURE__ */ __name(async (request, env, _ctx, middlewareCtx)
 }, "jsonError");
 var middleware_miniflare3_json_error_default = jsonError;
 
-// ../.wrangler/tmp/bundle-hjm921/middleware-insertion-facade.js
+// ../.wrangler/tmp/bundle-wnFSZV/middleware-insertion-facade.js
 var __INTERNAL_WRANGLER_MIDDLEWARE__ = [
   middleware_ensure_req_body_drained_default,
   middleware_miniflare3_json_error_default
@@ -1606,7 +1624,7 @@ function __facade_invoke__(request, env, ctx, dispatch, finalMiddleware) {
 }
 __name(__facade_invoke__, "__facade_invoke__");
 
-// ../.wrangler/tmp/bundle-hjm921/middleware-loader.entry.ts
+// ../.wrangler/tmp/bundle-wnFSZV/middleware-loader.entry.ts
 var __Facade_ScheduledController__ = class ___Facade_ScheduledController__ {
   constructor(scheduledTime, cron, noRetry) {
     this.scheduledTime = scheduledTime;

@@ -166,3 +166,9 @@
 .ee-row select,.ee-row textarea{width:100%;border:1px solid var(--line-strong);border-radius:12px;background:var(--ground);padding:12px 14px;font:inherit;font-size:.95rem;color:var(--ink);}
 .ee-row textarea{min-height:110px;resize:vertical;}
 .ee-row .saved{font-size:.84rem;color:#215A39;}
+/* champs mot de passe : même dessin que les autres champs du site */
+.field input[type=password]{width:100%;min-height:56px;border:1px solid var(--line-strong);border-radius:12px;background:var(--ground);padding:14px 16px;font:inherit;font-size:1.02rem;color:var(--ink);transition:border-color .25s,box-shadow .25s;}
+.field input[type=password]:focus{outline:none;border-color:var(--ink);box-shadow:0 0 0 4px var(--accent-soft);}
+.field.err input[type=password]{border-color:#A23B2A;}
+.ee-nav .btn{white-space:nowrap;}
+.field.err .ee-list .ee-opt,.field.err .ee-grid2 .ee-opt{border-color:#A23B2A;}

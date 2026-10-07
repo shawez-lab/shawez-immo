@@ -18,6 +18,7 @@
      GET  /api/espace/admin/comptes
      POST /api/espace/admin/demande         { id, statut?, notes? }
      POST /api/espace/admin/compte/supprimer { id }
+     POST /api/espace/admin/compte/lien     { id } : lien « nouveau mot de passe » (24 h) à transmettre au client
      GET  /api/espace/admin/export.csv?quoi=demandes|comptes
 */
 import {
@@ -26,7 +27,7 @@ import {
   estAdmin, admins, comptepublic, maintenant, STATUTS,
 } from '../../_lib/base.js';
 import { estimer } from '../../_lib/estimation.js';
-import { envoyer, mailPossible, gabarit, bouton, esc } from '../../_lib/mail.js';
+import { envoyer, mailPossible, peutEcrire, gabarit, bouton, esc } from '../../_lib/mail.js';
 
 
 
@@ -61,6 +62,7 @@ const ROUTES = {
   'GET /admin/comptes': adminComptes,
   'POST /admin/demande': adminDemande,
   'POST /admin/compte/supprimer': adminSupprimerCompte,
+  'POST /admin/compte/lien': adminLienMdp,
   'GET /admin/export.csv': adminExport,
 };
 
@@ -256,7 +258,7 @@ async function consommerJeton(env, t, usage) {
 }
 
 async function lienVerification(env, request, compte) {
-  if (!mailPossible(env)) return false;
+  if (!peutEcrire(env, compte.email)) return false;
   const t = await nouveauJeton(env, compte.id, 'verif', 7 * 24 * 3600);
   const lien = `${new URL(request.url).origin}/api/espace/verifier?jeton=${t}`;
   return envoyer(env, {
@@ -286,7 +288,7 @@ async function oubli({ request, env }) {
   const d = await corps(request, 1000);
   const e = lireEmail(d.email);
   await limiter(env, 'oubli:' + ip(request), 5, 3600);
-  if (!mailPossible(env)) return json(200, { envoye: false, raison: 'email_indisponible' });
+  if (!peutEcrire(env, e)) return json(200, { envoye: false, raison: 'email_indisponible' });
   const c = await (await db(env)).prepare('SELECT * FROM comptes WHERE email = ?1').bind(e).first();
   if (c) {
     const t = await nouveauJeton(env, c.id, 'reinit', 3600);
@@ -332,7 +334,7 @@ async function moi({ request, env }) {
   const c = await compteSession(request, env);
   if (!c) return json(200, { compte: null, email: mailPossible(env) });
   const r = await (await db(env)).prepare('SELECT * FROM demandes WHERE compte_id = ?1 ORDER BY cree_le DESC').bind(c.id).all();
-  return json(200, { compte: comptepublic(c, env), demandes: r.results.map(demandePublique), email: mailPossible(env) });
+  return json(200, { compte: comptepublic(c, env), demandes: r.results.map(demandePublique), email: peutEcrire(env, c.email) });
 }
 
 async function supprimerCompte({ request, env }) {
@@ -407,6 +409,16 @@ async function adminSupprimerCompte({ request, env }) {
   if (id === moiAdmin.id) throw new Erreur(400, 'soi_meme');
   await effacerCompte(env, id);
   return json(200, { ok: true });
+}
+
+async function adminLienMdp({ request, env }) {
+  await exigerAdmin(request, env);
+  const d = await corps(request, 500);
+  const id = entier(d.id, 1, 1e12, { requis: true, nom: 'id' });
+  const c = await (await db(env)).prepare('SELECT id FROM comptes WHERE id = ?1').bind(id).first();
+  if (!c) throw new Erreur(404, 'introuvable');
+  const t = await nouveauJeton(env, id, 'reinit', 24 * 3600);
+  return json(200, { lien: `${new URL(request.url).origin}/mon-espace/?reinit=${t}` });
 }
 
 const csvCase = (v) => {

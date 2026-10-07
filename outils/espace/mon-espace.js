@@ -82,7 +82,7 @@
     EE.api('/mot-de-passe/oubli',{body:{email:$('#mo-email').value.trim()}}).then(function(d){
       if(d._status!==200){msg(f,EE.message(d));return;}
       if(d.envoye)msg(f,'Si un espace existe avec cette adresse, un lien vient d\'y être envoyé (pensez aux indésirables). Il est valable 1 heure.',true);
-      else msg(f,'L\'envoi d\'e-mails n\'est pas encore en service. Appelez Shawez au 07 67 57 92 28 : il vous aide à récupérer votre accès.');
+      else msg(f,'Appelez ou écrivez à Shawez (07 67 57 92 28, WhatsApp ou shawez@gravelin-immo.com) : il vous envoie un lien pour choisir un nouveau mot de passe.');
     });
   });
   /* réinitialisation */

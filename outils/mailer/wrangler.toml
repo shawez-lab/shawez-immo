@@ -1,0 +1,18 @@
+# Worker « shawez-mailer » : envoi des e-mails de l'espace estimation (voir index.js).
+# Déployé par Cloudflare (Workers Builds) depuis ce dossier, à chaque poussée sur main.
+name = "shawez-mailer"
+main = "index.js"
+compatibility_date = "2025-09-01"
+
+# Pas d'adresse publique : seul le site l'appelle, par liaison de service (MAILER).
+workers_dev = false
+preview_urls = false
+
+# Email Routing activé sur shawez-immo.com ; les destinataires doivent être des adresses vérifiées.
+send_email = [{ name = "EMAIL" }]
+
+[vars]
+MAIL_FROM = "estimation@shawez-immo.com"
+
+[observability]
+enabled = true
