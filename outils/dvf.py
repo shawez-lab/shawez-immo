@@ -37,11 +37,18 @@ TUILE = 0.05
 
 
 def annees_publiees():
-    """Les années disponibles dans geo-dvf/latest (liste du dossier)."""
-    with urllib.request.urlopen(BASE + '/', timeout=60) as r:
-        html = r.read().decode('utf-8', 'replace')
-    import re
-    return sorted({int(a) for a in re.findall(r'href="(\d{4})/"', html)})
+    """Les années disponibles dans geo-dvf/latest : on essaie les 8 dernières années (requête HEAD)."""
+    trouvees = []
+    for an in range(date.today().year, date.today().year - 8, -1):
+        req = urllib.request.Request(f'{BASE}/{an}/departements/{DEP}.csv.gz', method='HEAD',
+                                     headers={'User-Agent': 'shawez-immo.com (estimation en ligne)'})
+        try:
+            with urllib.request.urlopen(req, timeout=60) as r:
+                if r.status == 200:
+                    trouvees.append(an)
+        except Exception as e:
+            print(f'  {an} : indisponible ({e})', flush=True)
+    return sorted(trouvees)
 
 
 def lire(source):
