@@ -194,6 +194,12 @@ async function limiter(env, cle, max, secondes) {
 __name(limiter, "limiter");
 __name2(limiter, "limiter");
 var ITER = 1e5;
+function reglerHachage(env) {
+  const n = Number(env && env.PBKDF2_ITER);
+  if (Number.isInteger(n) && n >= 1e4 && n <= 1e5) ITER = n;
+}
+__name(reglerHachage, "reglerHachage");
+__name2(reglerHachage, "reglerHachage");
 var b64 = /* @__PURE__ */ __name2((buf) => btoa(String.fromCharCode(...new Uint8Array(buf))), "b64");
 var deb64 = /* @__PURE__ */ __name2((s) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0)), "deb64");
 async function derive(mdp, sel, iter) {
@@ -533,6 +539,7 @@ async function onRequest(context) {
   const { request, env, params } = context;
   const chemin = "/" + [].concat(params.route || []).join("/");
   try {
+    reglerHachage(env);
     verifierOrigine(request);
     const r = ROUTES[`${request.method} ${chemin}`];
     if (!r) return json(404, { error: "introuvable" });

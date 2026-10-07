@@ -24,7 +24,7 @@
 import {
   db, json, Erreur, corps, texte, entier, choix, email as lireEmail, telephone, motDePasse, verifierOrigine,
   ip, limiter, hacher, verifierMdp, jeton, sha256, ouvrirSession, cookieEfface, compteSession, fermerSession,
-  estAdmin, admins, comptepublic, maintenant, STATUTS,
+  estAdmin, admins, comptepublic, maintenant, STATUTS, reglerHachage,
 } from '../../_lib/base.js';
 import { estimer } from '../../_lib/estimation.js';
 import { envoyer, mailPossible, peutEcrire, gabarit, bouton, esc } from '../../_lib/mail.js';
@@ -35,6 +35,7 @@ export async function onRequest(context) {
   const { request, env, params } = context;
   const chemin = '/' + [].concat(params.route || []).join('/');
   try {
+    reglerHachage(env);
     verifierOrigine(request);
     const r = ROUTES[`${request.method} ${chemin}`];
     if (!r) return json(404, { error: 'introuvable' });
