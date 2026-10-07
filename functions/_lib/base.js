@@ -165,7 +165,13 @@ export async function limiter(env, cle, max, secondes) {
 }
 
 /* ---------- Mots de passe : PBKDF2-SHA256 (WebCrypto) ---------- */
-const ITER = 100000;   // maximum accepté par WebCrypto dans les Workers
+// 100 000 : maximum accepté par WebCrypto dans les Workers. Réglable par la variable PBKDF2_ITER
+// (chaque empreinte garde son propre nombre d'itérations : changer la valeur ne casse aucun compte).
+let ITER = 100000;
+export function reglerHachage(env) {
+  const n = Number(env && env.PBKDF2_ITER);
+  if (Number.isInteger(n) && n >= 10000 && n <= 100000) ITER = n;
+}
 const b64 = (buf) => btoa(String.fromCharCode(...new Uint8Array(buf)));
 const deb64 = (s) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0));
 
