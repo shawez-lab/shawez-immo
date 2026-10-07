@@ -1,0 +1,168 @@
+<section class="route ee" data-route="/estimer" id="r-estimer">
+  <div class="page-head shell">
+    <p class="label">Estimation en ligne</p>
+    <h1 class="display d-xl" style="margin-top:14px;">Combien vaut votre bien <em>aujourd'hui ?</em></h1>
+    <p class="lede">Six questions, deux minutes. Une fourchette calculée sur les ventes réelles autour de chez vous, puis l'avis de Shawez, sur place.</p>
+  </div>
+  <div class="shell">
+    <form class="form ee-wrap" id="ee-form" novalidate autocomplete="on">
+      <div class="hp" aria-hidden="true"><label for="ee-website">Site web</label><input type="text" id="ee-website" name="website" tabindex="-1" autocomplete="off"></div>
+      <ol class="ee-steps" id="ee-steps" aria-hidden="true">
+        <li><span><b>1</b>Adresse</span></li><li><span><b>2</b>Type</span></li><li><span><b>3</b>Le bien</span></li><li><span><b>4</b>Atouts</span></li><li><span><b>5</b>Prix</span></li><li><span><b>6</b>Projet</span></li>
+      </ol>
+
+      <!-- 1 ADRESSE -->
+      <div class="ee-step" data-s="adresse" tabindex="-1">
+        <div class="ee-head"><p class="ee-count">Étape 1 sur 6</p><h2 class="ee-q">Où se trouve <em>votre bien ?</em></h2><p class="ee-sub">Le numéro et la rue suffisent : on compare avec les ventes de la rue et du quartier.</p></div>
+        <div class="field ee-addr">
+          <label for="ee-adresse">Adresse du bien</label>
+          <div style="position:relative;">
+            <svg class="pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+            <input type="text" id="ee-adresse" name="adresse" placeholder="ex. 30 rue Bannelier, Dijon" autocomplete="street-address" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="ee-sugg" spellcheck="false">
+          </div>
+          <ul class="ee-sugg" id="ee-sugg" role="listbox" aria-label="Adresses proposées" hidden></ul>
+          <span class="msg">Choisissez l'adresse dans la liste.</span>
+        </div>
+        <p class="ee-picked" id="ee-picked" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span></span></p>
+        <div class="ee-nav"><span></span><button type="button" class="btn btn-primary btn-lg" data-next>Étape suivante <span class="arw">→</span></button></div>
+      </div>
+
+      <!-- 2 TYPE -->
+      <div class="ee-step" data-s="type" tabindex="-1" hidden>
+        <div class="ee-head"><p class="ee-count">Étape 2 sur 6</p><h2 class="ee-q">C'est <em>plutôt…</em></h2></div>
+        <div class="ee-tiles" role="group" aria-label="Type de bien">
+          <button type="button" class="ee-tile" data-type="appartement" aria-pressed="false"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M10 42V8h22v34M32 18h8v24M6 42h38"/><path d="M15 14h3M24 14h3M15 21h3M24 21h3M15 28h3M24 28h3M19 42v-7h6v7"/></svg>Un appartement</button>
+          <button type="button" class="ee-tile" data-type="maison" aria-pressed="false"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 22 24 8l18 14M11 18v24h26V18M6 42h36"/><path d="M20 42V31h8v11M15 25h4M29 25h4"/></svg>Une maison</button>
+        </div>
+        <p class="ee-more">Un commerce, des murs, un immeuble, un terrain ? <button type="button" id="ee-autre-btn" aria-expanded="false">C'est par ici</button></p>
+        <div class="field" id="ee-autre" hidden>
+          <span class="lab">Votre bien</span>
+          <div class="pills" role="group" aria-label="Autre type de bien">
+            <button type="button" class="pill" data-autre="commerce">Fonds de commerce</button><button type="button" class="pill" data-autre="murs">Murs commerciaux</button><button type="button" class="pill" data-autre="immeuble">Immeuble</button><button type="button" class="pill" data-autre="terrain">Terrain</button><button type="button" class="pill" data-autre="autre">Autre</button>
+          </div>
+          <p class="note">Pas de fourchette automatique pour ces biens : Shawez les étudie lui-même et vous rappelle sous 24 h.</p>
+        </div>
+        <span class="msg" id="ee-type-msg" hidden>Choisissez un type de bien.</span>
+        <div class="ee-nav"><button type="button" class="btn" data-prev>Retour</button><button type="button" class="btn btn-primary btn-lg" data-next>Étape suivante <span class="arw">→</span></button></div>
+      </div>
+
+      <!-- 3 LE BIEN -->
+      <div class="ee-step" data-s="bien" tabindex="-1" hidden>
+        <div class="ee-head"><p class="ee-count">Étape 3 sur 6</p><h2 class="ee-q">Parlons <em>du bien.</em></h2></div>
+        <div class="field">
+          <label for="ee-surface" id="ee-surface-lab">Surface habitable</label>
+          <div class="ee-unit"><input type="number" id="ee-surface" inputmode="numeric" min="9" max="2000" placeholder="ex. 72"><i>m²</i></div>
+          <span class="hint" id="ee-surface-hint">Surface loi Carrez si vous l'avez, sinon une surface approximative.</span>
+          <span class="msg">Indiquez la surface (en m²).</span>
+        </div>
+        <div class="ee-stps" data-pour="appartement maison">
+          <div class="ee-stp" data-k="etage" data-min="0" data-max="40" data-v="1" data-pour="appartement"><div class="l">Étage du bien<small>0 = rez-de-chaussée</small></div><div class="c"><button type="button" data-d="-1" aria-label="Moins">−</button><output aria-live="polite">1</output><button type="button" data-d="1" aria-label="Plus">+</button></div></div>
+          <div class="ee-stp" data-k="etages_immeuble" data-min="0" data-max="40" data-v="4" data-pour="appartement"><div class="l">Étages de l'immeuble<small>Sans compter le rez-de-chaussée</small></div><div class="c"><button type="button" data-d="-1" aria-label="Moins">−</button><output aria-live="polite">4</output><button type="button" data-d="1" aria-label="Plus">+</button></div></div>
+          <div class="ee-stp" data-k="niveaux" data-min="1" data-max="6" data-v="2" data-pour="maison"><div class="l">Niveaux habitables<small>1 = plain-pied</small></div><div class="c"><button type="button" data-d="-1" aria-label="Moins">−</button><output aria-live="polite">2</output><button type="button" data-d="1" aria-label="Plus">+</button></div></div>
+          <div class="ee-stp" data-k="pieces" data-min="1" data-max="20" data-v="3"><div class="l">Pièces<small>Sans la cuisine ni les salles d'eau</small></div><div class="c"><button type="button" data-d="-1" aria-label="Moins">−</button><output aria-live="polite">3</output><button type="button" data-d="1" aria-label="Plus">+</button></div></div>
+          <div class="ee-stp" data-k="chambres" data-min="0" data-max="15" data-v="2"><div class="l">Chambres</div><div class="c"><button type="button" data-d="-1" aria-label="Moins">−</button><output aria-live="polite">2</output><button type="button" data-d="1" aria-label="Plus">+</button></div></div>
+        </div>
+        <div class="field" data-pour="maison">
+          <label for="ee-terrain">Surface du terrain</label>
+          <div class="ee-unit"><input type="number" id="ee-terrain" inputmode="numeric" min="0" max="1000000" placeholder="ex. 600"><i>m²</i></div>
+          <span class="hint">0 s'il n'y a pas de terrain.</span>
+          <span class="msg">Indiquez la surface du terrain (0 s'il n'y en a pas).</span>
+        </div>
+        <div class="field" data-pour="appartement maison">
+          <span class="lab">Époque de construction</span>
+          <div class="ee-grid2" data-choix="epoque" role="group" aria-label="Époque de construction">
+            <button type="button" class="ee-opt" data-v="avant1948">Avant 1948</button><button type="button" class="ee-opt" data-v="1948-1974">1948 – 1974</button><button type="button" class="ee-opt" data-v="1975-2000">1975 – 2000</button><button type="button" class="ee-opt" data-v="2001-2012">2001 – 2012</button><button type="button" class="ee-opt" data-v="apres2012">Après 2012</button><button type="button" class="ee-opt" data-v="nsp">Je ne sais pas</button>
+          </div>
+          <span class="msg">Choisissez une époque (ou « Je ne sais pas »).</span>
+        </div>
+        <div class="field" data-pour="appartement maison">
+          <span class="lab">État général</span>
+          <div class="ee-list" data-choix="etat" role="group" aria-label="État général">
+            <button type="button" class="ee-opt" data-v="travaux"><span>Travaux importants<small>Électricité, plomberie, toiture ou rénovation complète</small></span></button>
+            <button type="button" class="ee-opt" data-v="rafraichir"><span>Quelques travaux<small>Peintures, sols, cuisine à reprendre</small></span></button>
+            <button type="button" class="ee-opt" data-v="bon"><span>Bon état<small>On peut y habiter tel quel</small></span></button>
+            <button type="button" class="ee-opt" data-v="neuf"><span>Refait à neuf<small>Rénové il y a moins de 5 ans, ou neuf</small></span></button>
+          </div>
+          <span class="msg">Choisissez l'état général.</span>
+        </div>
+        <div class="field" data-pour="autre">
+          <label for="ee-message">En quelques mots</label>
+          <textarea id="ee-message" maxlength="1500" placeholder="Activité, chiffre d'affaires, loyer, nombre de lots… ce qui vous semble utile."></textarea>
+        </div>
+        <div class="ee-nav"><button type="button" class="btn" data-prev>Retour</button><button type="button" class="btn btn-primary btn-lg" data-next>Étape suivante <span class="arw">→</span></button></div>
+      </div>
+
+      <!-- 4 ATOUTS -->
+      <div class="ee-step" data-s="atouts" tabindex="-1" hidden>
+        <div class="ee-head"><p class="ee-count">Étape 4 sur 6</p><h2 class="ee-q">Ce qui fait <em>la différence.</em></h2><p class="ee-sub">Cochez tout ce qui s'applique.</p></div>
+        <div class="ee-checks">
+          <label class="ee-check" data-pour="appartement"><input type="checkbox" name="ascenseur"><i></i>Ascenseur</label>
+          <label class="ee-check" data-pour="appartement"><input type="checkbox" name="balcon"><i></i>Balcon</label>
+          <label class="ee-check"><input type="checkbox" name="terrasse"><i></i>Terrasse</label>
+          <label class="ee-check" data-pour="appartement"><input type="checkbox" name="cave"><i></i>Cave</label>
+          <label class="ee-check" data-pour="appartement"><input type="checkbox" name="gardien"><i></i>Gardien</label>
+          <label class="ee-check" data-pour="appartement"><input type="checkbox" name="parking"><i></i>Place de parking</label>
+          <label class="ee-check" data-pour="appartement"><input type="checkbox" name="parking_box"><i></i>Garage ou box</label>
+          <label class="ee-check" data-pour="maison"><input type="checkbox" name="plain_pied"><i></i>Plain-pied</label>
+          <label class="ee-check" data-pour="maison"><input type="checkbox" name="piscine"><i></i>Piscine</label>
+          <label class="ee-check" data-pour="maison"><input type="checkbox" name="garage"><i></i>Garage</label>
+        </div>
+        <div class="ee-nav"><button type="button" class="btn" data-prev>Retour</button><button type="button" class="btn btn-primary btn-lg" data-next>Étape suivante <span class="arw">→</span></button></div>
+      </div>
+
+      <!-- 5 PRIX -->
+      <div class="ee-step" data-s="prix" tabindex="-1" hidden>
+        <div class="ee-head"><p class="ee-count">Étape 5 sur 6</p><h2 class="ee-q">Et vous, vous l'imaginez <em>à combien ?</em></h2><p class="ee-sub">Facultatif. Ça aide Shawez à comprendre votre projet ; ça ne change pas le calcul.</p></div>
+        <div class="field">
+          <label for="ee-prix">Prix de vente idéal</label>
+          <div class="ee-unit"><input type="text" id="ee-prix" inputmode="numeric" placeholder="ex. 250 000" autocomplete="off"><i>€</i></div>
+          <span class="msg">Indiquez un montant en euros, ou laissez vide.</span>
+        </div>
+        <div class="ee-nav"><button type="button" class="btn" data-prev>Retour</button><button type="button" class="btn btn-primary btn-lg" data-next>Étape suivante <span class="arw">→</span></button></div>
+      </div>
+
+      <!-- 6 PROJET -->
+      <div class="ee-step" data-s="projet" tabindex="-1" hidden>
+        <div class="ee-head"><p class="ee-count">Étape 6 sur 6</p><h2 class="ee-q">Vous pensez vendre <em>quand ?</em></h2></div>
+        <div class="field">
+          <div class="ee-list" data-choix="delai" role="group" aria-label="Délai de vente">
+            <button type="button" class="ee-opt" data-v="asap">Dès que possible</button>
+            <button type="button" class="ee-opt" data-v="6mois">Dans les 6 mois</button>
+            <button type="button" class="ee-opt" data-v="plus6mois">Dans plus de 6 mois</button>
+            <button type="button" class="ee-opt" data-v="nsp">Je ne sais pas encore</button>
+            <button type="button" class="ee-opt" data-v="aucun">Pas de projet, je me renseigne</button>
+          </div>
+          <span class="msg">Choisissez une réponse.</span>
+        </div>
+        <div class="ee-nav"><button type="button" class="btn" data-prev>Retour</button><button type="button" class="btn btn-primary btn-lg" data-next>Voir mon estimation <span class="arw">→</span></button></div>
+      </div>
+
+      <!-- COORDONNÉES -->
+      <div class="ee-step" data-s="contact" tabindex="-1" hidden>
+        <div class="ee-head"><p class="label">C'est prêt</p><h2 class="ee-q">Votre estimation est <em>prête.</em></h2><p class="ee-sub" id="ee-contact-sub">Créez votre espace pour l'afficher : vous la retrouverez à tout moment, avec l'avancement de votre dossier.</p></div>
+        <div id="ee-logged" class="ee-who" hidden><img src="/assets/shawez-ali-portrait-costume-rose-800.webp" alt="" width="52" height="52" loading="lazy"><p></p></div>
+        <div id="ee-new">
+          <div class="field"><span class="lab">Civilité</span><div class="ee-civ" role="group" aria-label="Civilité"><button type="button" class="pill" data-civ="Mme">Madame</button><button type="button" class="pill" data-civ="M.">Monsieur</button></div></div>
+          <div class="row2" style="margin-top:18px;">
+            <div class="field"><label for="ee-prenom">Prénom</label><input type="text" id="ee-prenom" autocomplete="given-name" maxlength="80"><span class="msg">Indiquez votre prénom.</span></div>
+            <div class="field"><label for="ee-nom">Nom</label><input type="text" id="ee-nom" autocomplete="family-name" maxlength="80"><span class="msg">Indiquez votre nom.</span></div>
+          </div>
+          <div class="field" style="margin-top:18px;"><label for="ee-email">E-mail</label><input type="email" id="ee-email" autocomplete="email" inputmode="email" maxlength="160"><span class="msg">Indiquez une adresse e-mail valide.</span></div>
+        </div>
+        <div class="field"><label for="ee-tel">Téléphone</label><input type="tel" id="ee-tel" autocomplete="tel" inputmode="tel" maxlength="30" placeholder="06 12 34 56 78"><span class="msg">Indiquez un numéro de téléphone valide.</span></div>
+        <div class="field" id="ee-pw-field"><label for="ee-mdp">Mot de passe de votre espace</label><div class="ee-pw"><input type="password" id="ee-mdp" autocomplete="new-password" minlength="8" maxlength="200"><button type="button" data-voir="ee-mdp">Afficher</button></div><span class="hint" id="ee-mdp-hint">8 caractères au moins.</span><span class="msg">8 caractères au moins.</span></div>
+        <p class="ee-err" id="ee-exist" hidden>Un espace existe déjà avec cet e-mail. Saisissez son mot de passe ci-dessus, ou <a href="/mon-espace/?oubli=1">choisissez-en un nouveau</a>.</p>
+        <div class="field" id="ee-consent-f"><label class="consent"><input type="checkbox" id="ee-consent"><span>J'accepte que GRAVELIN IMMO utilise ces informations pour calculer mon estimation, créer mon espace et me recontacter à ce sujet. <a href="/politique-de-confidentialite/#espace-estimation">Confidentialité</a></span></label><span class="msg">Cochez la case pour continuer.</span></div>
+        <p class="ee-err" id="ee-err" hidden></p>
+        <div class="ee-nav"><button type="button" class="btn" data-prev>Retour</button><button type="submit" class="btn btn-primary btn-lg" id="ee-submit">Afficher mon estimation <span class="arw">→</span></button></div>
+        <p class="ee-fine">Aucun démarchage commercial : seul Shawez vous recontacte, au sujet de ce bien. Vous pouvez supprimer votre espace quand vous voulez.</p>
+      </div>
+    </form>
+
+    <!-- RÉSULTAT -->
+    <div class="ee-wrap" id="ee-result" hidden tabindex="-1">
+      <div class="ee-res tone-dark" data-tone="dark" id="ee-res-box"></div>
+      <div class="ee-who" style="margin-top:14px;"><img src="/assets/shawez-ali-portrait-costume-rose-800.webp" alt="" width="52" height="52" loading="lazy"><p><b>Shawez a reçu votre demande.</b> Il vous appelle pour en parler et, si vous le souhaitez, fixer une visite : c'est elle qui donne le prix juste.</p></div>
+    </div>
+  </div>
+</section>
