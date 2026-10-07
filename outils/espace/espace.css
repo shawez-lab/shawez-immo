@@ -172,3 +172,5 @@
 .field.err input[type=password]{border-color:#A23B2A;}
 .ee-nav .btn{white-space:nowrap;}
 .field.err .ee-list .ee-opt,.field.err .ee-grid2 .ee-opt{border-color:#A23B2A;}
+.ee-kv li span:first-child{white-space:nowrap;flex:0 0 auto;}
+.ee-skip{white-space:nowrap;}
