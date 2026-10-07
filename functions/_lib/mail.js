@@ -1,6 +1,6 @@
 /* Envoi d'e-mails depuis l'API.
    - Liaison « send_email » nommée EMAIL (Cloudflare Email Routing / Email Service), si le projet la propose ;
-   - sinon liaison de service MAILER vers le petit Worker outils/mailer-worker.js, qui porte la liaison EMAIL.
+   - sinon liaison de service MAILER vers le Worker outils/mailer/ (shawez-mailer), qui porte la liaison EMAIL.
    Expéditeur : MAIL_FROM (défaut estimation@shawez-immo.com). Sans liaison, rien n'est envoyé et on le dit. */
 
 const enc = (s) => '=?UTF-8?B?' + btoa(unescape(encodeURIComponent(s))) + '?=';
@@ -8,6 +8,17 @@ const b64 = (s) => btoa(unescape(encodeURIComponent(s))).replace(/.{76}/g, '$&\r
 
 export function mailPossible(env) {
   return !!(env.EMAIL || env.MAILER);
+}
+
+/* Email Routing n'écrit qu'aux adresses vérifiées (admins, destinataires des notifications).
+   Pour écrire aux clients (lien de vérification, mot de passe oublié), il faut un service d'envoi
+   ouvert à tous les destinataires (Cloudflare Email Sending) : variable CLIENT_MAIL = 1. */
+export function peutEcrire(env, to) {
+  if (!mailPossible(env)) return false;
+  if (String(env.CLIENT_MAIL || '') === '1') return true;
+  const verifiees = String((env.ADMIN_EMAILS || 'shawez@gravelin-immo.com') + ',' + (env.NOTIFY_EMAILS || 'shawez@gravelin-immo.com'))
+    .toLowerCase().split(/[,;\s]+/).filter(Boolean);
+  return verifiees.includes(String(to || '').toLowerCase());
 }
 
 function mime({ from, to, subject, text, html, replyTo }) {

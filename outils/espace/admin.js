@@ -51,7 +51,7 @@
     $('#ad-crows').innerHTML=l.length?l.map(function(c){
       return '<details class="ee-row" data-cid="'+c.id+'"><summary><b>'+EE.esc([c.civilite,c.prenom,c.nom].filter(Boolean).join(' ')||c.email)+'</b><span class="st">'+c.demandes+' est.</span><small>'+EE.esc(c.email)+' · '+EE.esc(c.telephone||'')+' · créé le '+EE.date(c.cree_le)+(c.admin?' · admin':'')+'</small></summary>'+
         '<div class="in"><ul class="ee-kv">'+[['E-mail',c.email+(c.verifie?' (confirmé)':' (non confirmé)')],['Téléphone',c.telephone||'—'],['Source',c.source||'—'],['Dernière connexion',c.derniere_connexion?EE.date(c.derniere_connexion):'—']].map(function(x){return '<li><span>'+x[0]+'</span><span>'+EE.esc(x[1])+'</span></li>';}).join('')+'</ul>'+
-        '<div class="acts">'+(c.telephone?'<a class="btn btn-primary" href="tel:'+EE.esc(c.telephone.replace(/[^\d+]/g,''))+'">Appeler</a>':'')+(c.admin?'':'<button type="button" class="btn" data-del="'+c.id+'">Supprimer ce compte</button>')+'</div></div></details>';
+        '<div class="acts">'+(c.telephone?'<a class="btn btn-primary" href="tel:'+EE.esc(c.telephone.replace(/[^\d+]/g,''))+'">Appeler</a>':'')+'<button type="button" class="btn" data-lien="'+c.id+'">Lien nouveau mot de passe</button>'+(c.admin?'':'<button type="button" class="btn" data-del="'+c.id+'">Supprimer ce compte</button>')+'</div><p class="ee-ok" data-lien-out hidden></p></div></details>';
     }).join(''):'<div class="ee-empty">Aucun compte.</div>';
   }
   function charger(){
@@ -86,6 +86,20 @@
   });
   function alertMsg(row,t){var s=$('.saved',row);s.hidden=false;s.style.color='#7E2C1F';s.textContent=t;}
   $('#ad-crows').addEventListener('click',function(e){
+    var l=e.target.closest('[data-lien]');
+    if(l){
+      var row=l.closest('.ee-row'), out=$('[data-lien-out]',row), c=C.filter(function(x){return x.id===+l.getAttribute('data-lien');})[0]||{};
+      EE.api('/admin/compte/lien',{body:{id:+l.getAttribute('data-lien')}}).then(function(d){
+        out.hidden=false;
+        if(d._status!==200){out.className='ee-err';out.textContent=EE.message(d);return;}
+        var txt='Bonjour '+(c.prenom||'')+', voici le lien pour choisir un nouveau mot de passe pour votre espace (valable 24 h) : '+d.lien;
+        out.className='ee-ok';
+        out.innerHTML='Lien valable 24 h, à transmettre au client :<br><span style="word-break:break-all;">'+EE.esc(d.lien)+'</span><br>'+
+          (c.telephone?'<a href="https://wa.me/'+EE.esc(String(c.telephone).replace(/\D/g,'').replace(/^0/,'33'))+'?text='+encodeURIComponent(txt)+'" target="_blank" rel="noopener">Envoyer par WhatsApp</a> · ':'')+
+          '<a href="mailto:'+EE.esc(c.email)+'?subject='+encodeURIComponent('Votre espace estimation')+'&body='+encodeURIComponent(txt)+'">par e-mail</a>';
+      });
+      return;
+    }
     var b=e.target.closest('[data-del]'); if(!b)return;
     if(b.getAttribute('data-ok')!=='1'){b.setAttribute('data-ok','1');b.textContent='Confirmer : compte et estimations effacés';return;}
     EE.api('/admin/compte/supprimer',{body:{id:+b.getAttribute('data-del')}}).then(function(d){ if(d._status===200)charger(); else b.textContent=EE.message(d); });
