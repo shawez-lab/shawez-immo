@@ -1,0 +1,47 @@
+name: Données DVF pour l'estimation
+
+# Ventes réelles DVF de la Côte-d'Or (3 dernières années) → donnees-dvf/, lues par l'API d'estimation (/estimer/).
+# Une fois par mois (le 5, DVF est mis à jour deux fois par an, en avril et en octobre), à la demande,
+# et quand le script change.
+on:
+  schedule:
+    - cron: '17 3 5 * *'
+  workflow_dispatch: {}
+  push:
+    paths:
+      - 'outils/dvf.py'
+      - '.github/workflows/dvf.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dvf-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  dvf:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Téléchargement et préparation
+        run: python3 outils/dvf.py
+
+      - name: Commit s'il y a des changements
+        run: |
+          git config user.name "donnees-dvf"
+          git config user.email "donnees-dvf@users.noreply.github.com"
+          git add -A donnees-dvf
+          if git diff --cached --quiet; then
+            echo "Données inchangées."
+          else
+            git commit -m "Données DVF : ventes de la Côte-d'Or mises à jour"
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git push origin HEAD:"${GITHUB_REF_NAME}"
+          fi
