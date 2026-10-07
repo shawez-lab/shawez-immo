@@ -4,4 +4,8 @@ Disallow: /merci/
 Disallow: /posts-images/
 Disallow: /annonces/
 Disallow: /de-claude/
+Disallow: /admin/
+Disallow: /mon-espace/
+Disallow: /donnees-dvf/
+Disallow: /api/
 Sitemap: https://shawez-immo.com/sitemap.xml

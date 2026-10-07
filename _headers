@@ -2,7 +2,7 @@
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://tracker.metricool.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://tracker.metricool.com; media-src 'self'; connect-src 'self' https://tracker.metricool.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://tracker.metricool.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://tracker.metricool.com; media-src 'self'; connect-src 'self' https://tracker.metricool.com https://api-adresse.data.gouv.fr https://data.geopf.fr; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests
   Strict-Transport-Security: max-age=31536000; includeSubDomains
   Cross-Origin-Opener-Policy: same-origin
 /assets/*
@@ -18,12 +18,21 @@
 /estimation-en-ligne/*
   ! Content-Security-Policy
   ! Permissions-Policy
-  Content-Security-Policy: default-src 'self'; frame-src https://www.gravelin-immo.com; script-src 'self' 'unsafe-inline' https://tracker.metricool.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://tracker.metricool.com; media-src 'self'; connect-src 'self' https://tracker.metricool.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; frame-src https://www.gravelin-immo.com; script-src 'self' 'unsafe-inline' https://tracker.metricool.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://tracker.metricool.com; media-src 'self'; connect-src 'self' https://tracker.metricool.com https://api-adresse.data.gouv.fr https://data.geopf.fr; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests
   Permissions-Policy: camera=(), microphone=(), geolocation=(self "https://www.gravelin-immo.com"), interest-cohort=()
   X-Robots-Tag: noindex
 /biens-a-vendre/*
   ! Content-Security-Policy
   ! Permissions-Policy
-  Content-Security-Policy: default-src 'self'; frame-src https://www.gravelin-immo.com; script-src 'self' 'unsafe-inline' https://tracker.metricool.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://tracker.metricool.com; media-src 'self'; connect-src 'self' https://tracker.metricool.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; frame-src https://www.gravelin-immo.com; script-src 'self' 'unsafe-inline' https://tracker.metricool.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://tracker.metricool.com; media-src 'self'; connect-src 'self' https://tracker.metricool.com https://api-adresse.data.gouv.fr https://data.geopf.fr; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests
   Permissions-Policy: camera=(), microphone=(), geolocation=(self "https://www.gravelin-immo.com"), interest-cohort=()
   X-Robots-Tag: noindex
+/admin/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store
+/mon-espace/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store
+/donnees-dvf/*
+  X-Robots-Tag: noindex
+  Cache-Control: public, max-age=86400
