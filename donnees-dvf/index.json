@@ -428,5 +428,11 @@
   "aaaamm",
   "pieces",
   "terrain"
+ ],
+ "detail": [
+  "prix",
+  "voie",
+  "commune",
+  "jour"
  ]
 }
