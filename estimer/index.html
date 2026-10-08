@@ -1090,6 +1090,19 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 @media(min-width:768px){#home-texte{padding-bottom:0;}}
 .reels-est{margin-top:14px;} .reels-est .btn{width:100%;}
 </style>
+<style id="compte-v1">
+/* Pictogramme « Mon espace » de l'en-tête : mène à /mon-espace/, pastille verte quand on est connecté */
+.nav-compte{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;width:42px;height:42px;flex:0 0 auto;border:1px solid currentColor;border-radius:999px;color:inherit;text-decoration:none;font-size:.88rem;font-weight:600;white-space:nowrap;transition:background .25s;}
+.nav-compte svg{width:20px;height:20px;flex:0 0 auto;}
+.nav-compte:hover{background:rgba(127,127,127,.18);}
+.nav-compte:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+.nav-compte .nc-txt{display:none;}
+.nav-compte .nc-dot{display:none;position:absolute;top:-1px;right:-1px;width:11px;height:11px;border-radius:50%;background:#3FA66B;box-shadow:0 0 0 2px rgba(15,14,12,.35);}
+.nav-compte.is-in .nc-dot{display:block;}
+@media(min-width:760px){.nav-compte.is-in{width:auto;padding:0 16px 0 13px;}.nav-compte.is-in .nc-txt{display:inline;}.nav-compte.is-in .nc-dot{position:static;box-shadow:none;width:9px;height:9px;order:-1;}}
+@media(max-width:359px){.nav-compte{width:38px;height:38px;}}
+#menu .m-alt+.m-alt{margin-top:10px;}
+</style>
 <style id="espace-v1">
 /* ---------- ESPACE ESTIMATION (estimer, mon-espace, admin) — mêmes jetons que le site ---------- */
 .ee{padding-bottom:clamp(72px,10vw,136px);}
@@ -1099,7 +1112,7 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 .ee-head{display:flex;flex-direction:column;gap:6px;margin-bottom:22px;}
 .ee-count{font-size:.78rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--accent-text);margin:0;}
 .ee-steps{list-style:none;margin:0 0 22px;padding:0;display:flex;gap:6px;}
-.ee-steps li{flex:1;display:flex;flex-direction:column;gap:8px;font-size:.78rem;font-weight:600;color:var(--dim);min-width:0;}
+.ee-steps li{flex:1;display:flex;flex-direction:column;gap:8px;font-size:.78rem;font-weight:600;color:var(--muted);min-width:0;}
 .ee-steps li::before{content:"";height:3px;border-radius:99px;background:var(--stone-2);transition:background .4s var(--ease);}
 .ee-steps li.done::before,.ee-steps li.on::before{background:var(--ink);}
 .ee-steps li.on{color:var(--ink);}
@@ -1210,7 +1223,7 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 .ee-card .meta{font-size:.86rem;color:var(--muted);margin:0;}
 .ee-card .fp{font-family:var(--font-display);font-weight:360;font-size:1.7rem;line-height:1.1;margin:0;font-variant-numeric:tabular-nums;}
 .ee-tl{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}
-.ee-tl li{display:flex;flex-direction:column;gap:8px;font-size:.8rem;font-weight:600;color:var(--dim);}
+.ee-tl li{display:flex;flex-direction:column;gap:8px;font-size:.8rem;font-weight:600;color:var(--muted);}
 .ee-tl li::before{content:"";height:4px;border-radius:99px;background:var(--stone-2);}
 .ee-tl li.done{color:var(--ink);}
 .ee-tl li.done::before{background:var(--accent);}
@@ -1267,6 +1280,67 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 .field.err .ee-list .ee-opt,.field.err .ee-grid2 .ee-opt{border-color:#A23B2A;}
 .ee-kv li span:first-child{white-space:nowrap;flex:0 0 auto;}
 .ee-skip{white-space:nowrap;}
+/* ---------- v2 : résultat immédiat, connexion par lien, fichiers, suivi ---------- */
+.ee label small,.ee .lab small{font-weight:400;color:var(--muted);}
+.ee-q-s{font-size:1.4rem;}
+.ee-price-txt{font-size:clamp(2rem,6vw,3rem);}
+.ee-ref{margin-top:0;border-top:0;}
+.ee-card .fp-txt{font-size:1.3rem;}
+.ee-nav-col{flex-direction:column;align-items:stretch;}
+.ee-nav-col .btn{width:100%;white-space:normal;text-align:center;}
+.ee-step .ee-links{margin-top:0;}
+.ee-links a,.ee-links button{min-height:32px;}
+/* après le résultat : retrouver son estimation (jamais avant) */
+.ee-apres{margin-top:14px;padding:clamp(18px,3vw,28px);border:1px solid var(--line);border-radius:16px;background:var(--surface);display:flex;flex-direction:column;gap:14px;}
+.ee-apres[hidden]{display:none;}
+.ee-apres .ee-q{font-size:clamp(1.3rem,2.4vw,1.6rem);}
+.ee-apres .form{padding:0;border:0;background:none;display:flex;flex-direction:column;gap:14px;}
+.ee-apres .form[hidden]{display:none;}
+.ee-apres-liens{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;}
+.ee-apres-liens .btn{min-height:52px;}
+.ee-who img[hidden]{display:none;}
+/* fichiers : photos, documents, avis de valeur */
+.ee-files{display:flex;flex-direction:column;gap:10px;padding-top:14px;border-top:1px solid var(--line);}
+.ee-files .lab{margin:0;font-weight:600;font-size:.92rem;}
+.ee-files .hint{font-size:.82rem;color:var(--muted);margin:0;}
+.ee-flist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;}
+.ee-flist:empty{display:none;}
+.ee-flist li{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px;border:1px solid var(--line);border-radius:12px;background:var(--ground);}
+.ee-flist a{display:flex;align-items:center;gap:12px;min-width:0;flex:1 1 auto;text-decoration:none;color:var(--ink);}
+.ee-flist img,.ee-flist i{width:56px;height:56px;border-radius:8px;object-fit:cover;flex:0 0 auto;}
+.ee-flist i{display:grid;place-items:center;background:var(--stone);font-style:normal;font-size:.68rem;font-weight:700;letter-spacing:.06em;color:var(--ink-2);}
+.ee-flist a span{display:flex;flex-direction:column;min-width:0;}
+.ee-flist b{font-weight:600;font-size:.92rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.ee-flist small{font-size:.8rem;color:var(--muted);}
+.ee-flist button{flex:0 0 auto;min-height:44px;padding:0 10px;border:0;background:none;font:inherit;font-size:.85rem;font-weight:600;color:var(--ink-2);text-decoration:underline;text-underline-offset:4px;cursor:pointer;}
+.ee-add{position:relative;align-self:flex-start;min-height:48px;cursor:pointer;white-space:normal;text-align:center;}
+.ee-add input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;}
+.ee-add:has(input:focus-visible){outline:2px solid var(--accent);outline-offset:3px;}
+.ee-add.busy{opacity:.55;pointer-events:none;}
+.ee-avis{display:flex;flex-direction:column;gap:8px;}
+.ee-avis .btn{width:100%;justify-content:center;min-height:54px;white-space:normal;text-align:center;}
+/* admin */
+.ee-col{display:flex;flex-direction:column;gap:12px;}
+.ee-late{color:#7E2C1F;font-weight:700;}
+.ee-row input[type=date]{width:100%;min-height:48px;border:1px solid var(--line-strong);border-radius:12px;background:var(--ground);padding:10px 14px;font:inherit;font-size:.95rem;color:var(--ink);}
+.ee-row>summary .st.appele{background:rgba(22,22,26,.08);color:var(--ink);}
+.ee-row>summary .st.visite{background:rgba(47,122,79,.12);color:#215A39;}
+.ee-row>summary .st.close{background:var(--stone);color:var(--muted);}
+.ee-row>summary small{white-space:normal;}
+.ee-tools select{flex:0 1 auto;max-width:100%;}
+.ee-card .acts{display:flex;flex-wrap:wrap;gap:8px;}
+/* petits écrans : rien ne dépasse de la carte */
+.ee-nav .btn{min-width:0;}
+@media(max-width:480px){
+  .ee-nav{gap:8px;}
+  .ee-nav .btn{padding-inline:18px;}
+  .ee-nav [data-prev]{padding-inline:16px;}
+  /* dernier écran : le bouton principal sur toute la largeur, « Retour » dessous */
+  .ee-nav-fin{flex-direction:column-reverse;align-items:stretch;}
+  .ee-nav-fin .btn{width:100%;}
+  .ee-apres-liens .btn{width:100%;}
+  .ee-hello .btn{width:100%;}
+}
 </style>
 </head>
 <body data-route="/estimer">
@@ -1285,7 +1359,7 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
   </nav>
   <div class="nav-cta">
     <a class="btn nav-tel" href="tel:+33767579228">07 67 57 92 28</a>
-    <a class="btn btn-primary" href="/estimer/"><span>Estimer mon bien</span></a>
+    <a class="nav-compte" href="/mon-espace/" data-compte aria-label="Mon espace : se connecter" title="Mon espace : se connecter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M4.8 20c.9-3.6 3.7-5.6 7.2-5.6s6.300 2 7.200 5.600"/></svg><span class="nc-txt">Connecté</span><span class="nc-dot" aria-hidden="true"></span></a><a class="btn btn-primary" href="/estimer/"><span>Estimer mon bien</span></a>
     <button id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu">Menu</button>
   </div>
 </header>
@@ -1302,7 +1376,7 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
     <li><a href="/contact/">Contact <small>Appel, WhatsApp, e-mail</small></a></li>
   </ul>
   <a class="btn btn-primary btn-lg" href="/estimer/">Estimer mon bien <span class="arw">→</span></a>
-  <a class="m-alt" href="/estimation-immobiliere-dijon/">Estimation par Shawez</a>
+  <a class="m-alt" href="/estimation-immobiliere-dijon/">Estimation par Shawez</a><a class="m-alt" href="/mon-espace/" data-compte><span data-compte-txt>Mon espace</span></a>
   <div class="m-foot">
     <a href="tel:+33767579228">07 67 57 92 28</a>
     <a href="mailto:shawez@gravelin-immo.com">shawez@gravelin-immo.com</a>
@@ -1325,8 +1399,8 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
   </div>
   <div class="shell">
     <form class="form ee-wrap" id="ee-form" novalidate autocomplete="on">
-      <div class="hp" aria-hidden="true"><label for="ee-website">Site web</label><input type="text" id="ee-website" name="website" tabindex="-1" autocomplete="off"></div>
-      <ol class="ee-steps" id="ee-steps" aria-hidden="true">
+      <div class="hp" aria-hidden="true"><label for="ee-hp">Ne rien écrire ici</label><input type="text" id="ee-hp" name="ee_hp_k7" tabindex="-1" autocomplete="off" data-lpignore="true" data-1p-ignore data-form-type="other"></div>
+      <ol class="ee-steps" id="ee-steps" aria-label="Étapes de l'estimation">
         <li><span><b>1</b>Adresse</span></li><li><span><b>2</b>Type</span></li><li><span><b>3</b>Le bien</span></li><li><span><b>4</b>Atouts</span></li><li><span><b>5</b>Prix</span></li><li><span><b>6</b>Projet</span></li>
       </ol>
 
@@ -1337,10 +1411,10 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
           <label for="ee-adresse">Adresse du bien</label>
           <div style="position:relative;">
             <svg class="pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
-            <input type="text" id="ee-adresse" name="adresse" placeholder="ex. 30 rue Bannelier, Dijon" autocomplete="street-address" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="ee-sugg" spellcheck="false">
+            <input type="text" id="ee-adresse" name="adresse" placeholder="ex. 30 rue Bannelier, Dijon" autocomplete="street-address" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="ee-sugg" aria-describedby="ee-adresse-msg" spellcheck="false" enterkeyhint="search">
           </div>
           <ul class="ee-sugg" id="ee-sugg" role="listbox" aria-label="Adresses proposées" hidden></ul>
-          <span class="msg">Choisissez l'adresse dans la liste.</span>
+          <span class="msg" id="ee-adresse-msg">Choisissez l'adresse dans la liste.</span>
         </div>
         <p class="ee-picked" id="ee-picked" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span></span></p>
         <div class="ee-nav"><span></span><button type="button" class="btn btn-primary btn-lg" data-next>Étape suivante <span class="arw">→</span></button></div>
@@ -1456,32 +1530,42 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
         <div class="ee-nav"><button type="button" class="btn" data-prev>Retour</button><button type="button" class="btn btn-primary btn-lg" data-next>Voir mon estimation <span class="arw">→</span></button></div>
       </div>
 
-      <!-- COORDONNÉES -->
+      <!-- COORDONNÉES : un seul écran, pas de mot de passe -->
       <div class="ee-step" data-s="contact" tabindex="-1" hidden>
-        <div class="ee-head"><p class="label">C'est prêt</p><h2 class="ee-q">Votre estimation est <em>prête.</em></h2><p class="ee-sub" id="ee-contact-sub">Créez votre espace pour l'afficher : vous la retrouverez à tout moment, avec l'avancement de votre dossier.</p></div>
-        <div id="ee-logged" class="ee-who" hidden><img src="/assets/shawez-ali-portrait-costume-rose-800.webp" alt="" width="52" height="52" loading="lazy"><p></p></div>
+        <div class="ee-head"><p class="label">C'est prêt</p><h2 class="ee-q">Votre estimation est <em>prête.</em></h2><p class="ee-sub" id="ee-contact-sub">Dites-nous à qui la montrer : elle s'affiche tout de suite après.</p></div>
+        <div id="ee-logged" class="ee-who" hidden><img data-ee-portrait alt="" width="52" height="52" loading="lazy" hidden><p></p></div>
         <div id="ee-new">
-          <div class="field"><span class="lab">Civilité</span><div class="ee-civ" role="group" aria-label="Civilité"><button type="button" class="pill" data-civ="Mme">Madame</button><button type="button" class="pill" data-civ="M.">Monsieur</button></div></div>
+          <div class="field"><span class="lab" id="ee-civ-lab">Civilité</span><div class="ee-civ" role="group" aria-labelledby="ee-civ-lab"><button type="button" class="pill" data-civ="Mme">Madame</button><button type="button" class="pill" data-civ="M.">Monsieur</button></div></div>
           <div class="row2" style="margin-top:18px;">
-            <div class="field"><label for="ee-prenom">Prénom</label><input type="text" id="ee-prenom" autocomplete="given-name" maxlength="80"><span class="msg">Indiquez votre prénom.</span></div>
-            <div class="field"><label for="ee-nom">Nom</label><input type="text" id="ee-nom" autocomplete="family-name" maxlength="80"><span class="msg">Indiquez votre nom.</span></div>
+            <div class="field"><label for="ee-prenom">Prénom</label><input type="text" id="ee-prenom" autocomplete="given-name" maxlength="80" autocapitalize="words"><span class="msg">Indiquez votre prénom.</span></div>
+            <div class="field"><label for="ee-nom">Nom</label><input type="text" id="ee-nom" autocomplete="family-name" maxlength="80" autocapitalize="words"><span class="msg">Indiquez votre nom.</span></div>
           </div>
-          <div class="field" style="margin-top:18px;"><label for="ee-email">E-mail</label><input type="email" id="ee-email" autocomplete="email" inputmode="email" maxlength="160"><span class="msg">Indiquez une adresse e-mail valide.</span></div>
+          <div class="field" style="margin-top:18px;"><label for="ee-email">E-mail</label><input type="email" id="ee-email" autocomplete="email" inputmode="email" maxlength="160" autocapitalize="off" autocorrect="off" spellcheck="false"><span class="msg">Indiquez une adresse e-mail valide (ex. prenom@exemple.fr).</span></div>
         </div>
-        <div class="field"><label for="ee-tel">Téléphone</label><input type="tel" id="ee-tel" autocomplete="tel" inputmode="tel" maxlength="30" placeholder="06 12 34 56 78"><span class="msg">Indiquez un numéro de téléphone valide.</span></div>
-        <div class="field" id="ee-pw-field"><label for="ee-mdp">Mot de passe de votre espace</label><div class="ee-pw"><input type="password" id="ee-mdp" autocomplete="new-password" minlength="8" maxlength="200"><button type="button" data-voir="ee-mdp">Afficher</button></div><span class="hint" id="ee-mdp-hint">8 caractères au moins.</span><span class="msg">8 caractères au moins.</span></div>
-        <p class="ee-err" id="ee-exist" hidden>Un espace existe déjà avec cet e-mail. Saisissez son mot de passe ci-dessus, ou <a href="/mon-espace/?oubli=1">choisissez-en un nouveau</a>.</p>
-        <div class="field" id="ee-consent-f"><label class="consent"><input type="checkbox" id="ee-consent"><span>J'accepte que GRAVELIN IMMO utilise ces informations pour calculer mon estimation, créer mon espace et me recontacter à ce sujet. <a href="/politique-de-confidentialite/#espace-estimation">Confidentialité</a></span></label><span class="msg">Cochez la case pour continuer.</span></div>
-        <p class="ee-err" id="ee-err" hidden></p>
-        <div class="ee-nav"><button type="button" class="btn" data-prev>Retour</button><button type="submit" class="btn btn-primary btn-lg" id="ee-submit">Afficher mon estimation <span class="arw">→</span></button></div>
-        <p class="ee-fine">Aucun démarchage commercial : seul Shawez vous recontacte, au sujet de ce bien. Vous pouvez supprimer votre espace quand vous voulez.</p>
+        <div class="field"><label for="ee-tel">Téléphone</label><input type="tel" id="ee-tel" autocomplete="tel" inputmode="tel" maxlength="30" placeholder="06 12 34 56 78"><span class="msg">Indiquez un numéro de téléphone valide (ex. 06 12 34 56 78).</span></div>
+        <div class="field" id="ee-consent-f"><label class="consent"><input type="checkbox" id="ee-consent"><span>J'accepte que GRAVELIN IMMO utilise ces informations pour calculer mon estimation, créer mon espace personnel et me recontacter à ce sujet. <a href="/politique-de-confidentialite/#espace-estimation" data-ee-lien="confidentialite">Confidentialité</a></span></label><span class="msg">Cochez la case pour continuer.</span></div>
+        <p class="ee-err" id="ee-err" role="alert" hidden></p>
+        <div class="ee-nav ee-nav-fin"><button type="button" class="btn" data-prev>Retour</button><button type="submit" class="btn btn-primary btn-lg" id="ee-submit"><span id="ee-submit-txt">Afficher mon estimation</span> <span class="arw">→</span></button></div>
+        <p class="ee-fine">Pas de mot de passe à créer : votre espace s'ouvre avec votre e-mail. Aucun démarchage : seul <span data-ee-txt="conseiller">Shawez</span> vous recontacte, au sujet de ce bien.</p>
       </div>
     </form>
 
-    <!-- RÉSULTAT -->
-    <div class="ee-wrap" id="ee-result" hidden tabindex="-1">
+    <!-- RÉSULTAT : affiché tout de suite, rien ne le retarde -->
+    <div class="ee-wrap" id="ee-result" hidden tabindex="-1" aria-live="polite">
       <div class="ee-res tone-dark" data-tone="dark" id="ee-res-box"></div>
-      <div class="ee-who" style="margin-top:14px;"><img src="/assets/shawez-ali-portrait-costume-rose-800.webp" alt="" width="52" height="52" loading="lazy"><p><b>Shawez a reçu votre demande.</b> Il vous appelle pour en parler et, si vous le souhaitez, fixer une visite : c'est elle qui donne le prix juste.</p></div>
+      <div class="ee-who" style="margin-top:14px;"><img data-ee-portrait alt="" width="52" height="52" loading="lazy" hidden><p><b><span data-ee-txt="conseiller">Shawez</span> a reçu votre demande.</b> Il vous appelle pour en parler et, si vous le souhaitez, fixer une visite gratuite : c'est elle qui donne le prix juste. Ensuite, il vous remet un avis de valeur détaillé.</p></div>
+
+      <!-- après le résultat seulement : retrouver son estimation -->
+      <div class="ee-apres" id="ee-apres" hidden>
+        <h2 class="ee-q" id="ee-apres-titre"></h2>
+        <p class="ee-sub" id="ee-apres-txt"></p>
+        <form class="form ee-mdp" id="ee-mdp-form" novalidate hidden>
+          <div class="field"><label for="ee-mdp">Mot de passe <small>(facultatif)</small></label><div class="ee-pw"><input type="password" id="ee-mdp" autocomplete="new-password" minlength="8" maxlength="200" aria-describedby="ee-mdp-hint"><button type="button" data-voir="ee-mdp" aria-pressed="false">Afficher</button></div><span class="hint" id="ee-mdp-hint">8 caractères au moins. Vous pourrez aussi le faire plus tard, depuis votre espace.</span><span class="msg">8 caractères au moins.</span></div>
+          <p class="ee-err" role="alert" hidden></p><p class="ee-ok" role="status" hidden></p>
+          <div class="ee-nav"><span></span><button type="submit" class="btn">Enregistrer ce mot de passe</button></div>
+        </form>
+        <div class="ee-apres-liens"><a class="btn btn-primary" id="ee-apres-espace" href="/mon-espace/">Ouvrir mon espace <span class="arw">→</span></a><button type="button" class="ee-skip" id="ee-refaire">Estimer un autre bien</button></div>
+      </div>
     </div>
   </div>
 </section>
@@ -1498,7 +1582,7 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
       </div>
       <div><p class="ft-h">Vendre</p><ul><li><a href="/estimer/">Estimer mon bien</a></li><li><a href="/estimation-immobiliere-dijon/">Estimation par Shawez</a></li><li><a href="/vendre-bien-immobilier-dijon/">Vendre à Dijon</a></li><li><a href="/vendre-commerce-dijon/">Commerces</a></li><li><a href="https://www.gravelin-immo.com/vente/1?utm_source=shawez-immo" data-sortie="biens">Voir les biens à vendre</a></li><li><a href="/honoraires/">Honoraires</a></li></ul></div>
       <div><p class="ft-h">Découvrir</p><ul><li><a href="/conseils-vendeurs/">Conseils aux vendeurs</a></li><li><a href="/simulateur-pret-immobilier-dijon/">Simulateur de prêt</a></li><li><a href="/videos-immobilier-dijon/">Vidéos</a></li><li><a href="/shawez-ali-agent-immobilier-dijon/">À propos</a></li><li><a href="/secteurs-dijon-nuits-saint-georges-beaune/">Territoire</a></li><li><a href="/avis/">Avis</a></li><li><a href="/podcast/">Podcast</a></li></ul></div>
-      <div><p class="ft-h">Pratique</p><ul><li><a href="/contact/">Contact</a></li><li><a href="/mentions-legales/">Mentions légales</a></li><li><a href="/politique-de-confidentialite/">Confidentialité</a></li><li><a href="/cookies/">Cookies</a></li><li><a href="https://www.instagram.com/shawez_immobilier" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.linkedin.com/in/shawez-ali" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://www.youtube.com/@gravelinimmo" target="_blank" rel="noopener">YouTube</a></li></ul></div>
+      <div><p class="ft-h">Pratique</p><ul><li><a href="/contact/">Contact</a></li><li><a href="/mon-espace/">Mon espace</a></li><li><a href="/mentions-legales/">Mentions légales</a></li><li><a href="/politique-de-confidentialite/">Confidentialité</a></li><li><a href="/cookies/">Cookies</a></li><li><a href="https://www.instagram.com/shawez_immobilier" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.linkedin.com/in/shawez-ali" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://www.youtube.com/@gravelinimmo" target="_blank" rel="noopener">YouTube</a></li></ul></div>
     </div>
     <div class="ft-bot">
       <span>© 2026 Shawez Ali · Agent commercial en immobilier, GRAVELIN IMMO</span>
@@ -1873,85 +1957,156 @@ updateTone();
 })();
 </script>
 <script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"33710f67a0c16d7cbb94d1b2ba10e7a8"})});</script>
+<script id="compte-js">
+/* Pictogramme « Mon espace » : état connecté d'après le témoin se_ok (posé par l'API à la connexion, retiré à la déconnexion) */
+window.EECompte=function(){var on=/(?:^|;\s*)se_ok=1/.test(document.cookie||'');[].forEach.call(document.querySelectorAll('[data-compte]'),function(a){a.classList.toggle('is-in',on);var t=on?'Mon espace : connecté':'Mon espace : se connecter';if(a.hasAttribute('aria-label')){a.setAttribute('aria-label',t);a.title=t;}var x=a.querySelector('[data-compte-txt]');if(x)x.textContent=on?'Mon espace · connecté':'Mon espace';});};
+window.EECompte();window.addEventListener('pageshow',window.EECompte);
+</script>
 <script id="espace-js">
-/* Espace estimation : outils communs (estimer, mon-espace, admin) */
+/* Espace estimation : outils communs (estimer, mon-espace, admin).
+   Le même module sert les deux sites ; ce qui change d'un site à l'autre est dans EE_CONF (défini avant ce script
+   par la page, sinon valeurs de shawez-immo.com) et dans la feuille de thème. */
 var EE=(function(){
   'use strict';
+  var CONF={site:'',api:'/api/espace',estimer:'/estimer/',espace:'/mon-espace/',admin:'/admin/',
+    tel:'+33767579228',telAffiche:'07 67 57 92 28',conseiller:'Shawez',email:'shawez@gravelin-immo.com',
+    confidentialite:'/politique-de-confidentialite/#espace-estimation',portrait:''};
+  var ext=window.EE_CONF||{}; Object.keys(ext).forEach(function(k){CONF[k]=ext[k];});
+
   function $(s,c){return (c||document).querySelector(s);}
   function $$(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s));}
   function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
-  function euros(n){return n==null?'':Math.round(n).toLocaleString('fr-FR').replace(/ | /g,' ')+' €';}
+  function euros(n){return n==null?'':Math.round(n).toLocaleString('fr-FR').replace(/[  ]/g,' ')+' €';}
   function date(s){try{return new Date(s).toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'});}catch(e){return s;}}
-  function mois(s){ if(!s)return ''; try{return new Date(s+'T12:00:00').toLocaleDateString('fr-FR',{month:'long',year:'numeric'});}catch(e){return s;} }
+  function jour(s){ if(!s)return ''; var p=String(s).slice(0,10).split('-'); return p.length===3?p[2]+'/'+p[1]+'/'+p[0]:s; }
+  function mois(s){ if(!s)return ''; try{return new Date(String(s).slice(0,10)+'T12:00:00').toLocaleDateString('fr-FR',{month:'long',year:'numeric'});}catch(e){return s;} }
+  function taille(o){ return o>=1048576?(o/1048576).toLocaleString('fr-FR',{maximumFractionDigits:1})+' Mo':Math.max(1,Math.round(o/1024))+' Ko'; }
+  function rayon(r){ return r>=1000?(r/1000).toLocaleString('fr-FR')+' km':r+' m'; }
+
+  /* Appel de l'API. Délai de garde : sur un réseau lent, on rend la main avec un message clair plutôt que d'attendre sans fin. */
   function api(chemin,opts){
     opts=opts||{};
     var init={method:opts.method||'GET',credentials:'same-origin',headers:{}};
-    if(opts.body!==undefined){init.method=opts.method||'POST';init.headers['Content-Type']='application/json';init.body=JSON.stringify(opts.body);}
-    return fetch('/api/espace'+chemin,init).then(function(r){
-      return r.json().catch(function(){return {};}).then(function(d){d=d||{};d._status=r.status;return d;});
-    },function(){return {_status:0,error:'reseau'};});
+    if(opts.fichier){init.method='POST';init.body=opts.fichier;init.headers['Content-Type']=opts.fichier.type||'application/octet-stream';init.headers['X-Fichier-Nom']=encodeURIComponent(opts.nom||opts.fichier.name||'fichier');}
+    else if(opts.body!==undefined){init.method=opts.method||'POST';init.headers['Content-Type']='application/json';init.body=JSON.stringify(opts.body);}
+    var ctrl=window.AbortController?new AbortController():null, t=null;
+    if(ctrl){init.signal=ctrl.signal;t=setTimeout(function(){ctrl.abort();},opts.delai||30000);}
+    return fetch(CONF.api+chemin,init).then(function(r){
+      clearTimeout(t);
+      return r.json().catch(function(){return {};}).then(function(d){d=d||{};d._status=r.status;if(r.status>=500&&!d.error)d.error='serveur';return d;});
+    },function(){clearTimeout(t);return {_status:0,error:'reseau'};});
   }
-  var MSG={reseau:"La connexion a échoué. Vérifiez votre réseau et réessayez.",trop_de_demandes:"Trop d'essais d'affilée. Réessayez dans quelques minutes.",identifiants:"E-mail ou mot de passe incorrect.",serveur:"Un souci technique de notre côté. Réessayez, ou appelez Shawez au 07 67 57 92 28.",base_absente:"L'espace n'est pas encore ouvert. Appelez Shawez au 07 67 57 92 28.",compte_existe:"Un espace existe déjà avec cet e-mail.",champs:"Un champ est incomplet ou mal rempli.",jeton:"Ce lien n'est plus valable. Demandez-en un nouveau.",origine:"Requête refusée.",connexion:"Votre session a expiré : reconnectez-vous."};
+  var MSG={
+    reseau:"La connexion a échoué ou a mis trop de temps. Vérifiez votre réseau et réessayez : rien n'est perdu.",
+    trop_de_demandes:"Trop d'essais d'affilée. Réessayez dans quelques minutes.",
+    identifiants:"E-mail ou mot de passe incorrect.",
+    sans_mot_de_passe:"Cet espace existe, mais sans mot de passe : il a été créé pendant votre estimation.",
+    serveur:"Un souci technique de notre côté. Réessayez, ou appelez "+CONF.conseiller+" au "+CONF.telAffiche+".",
+    base_absente:"L'espace n'est pas encore ouvert. Appelez "+CONF.conseiller+" au "+CONF.telAffiche+".",
+    compte_existe:"Un espace existe déjà avec cet e-mail.",
+    champs:"Un champ est incomplet ou mal rempli.",
+    jeton:"Ce lien n'est plus valable (il ne sert qu'une fois). Demandez-en un nouveau.",
+    origine:"Requête refusée.",
+    connexion:"Votre session a expiré : reconnectez-vous.",
+    interdit:"Ce compte n'a pas accès à cette page.",
+    introuvable:"Introuvable.",
+    taille:"Ce fichier dépasse 10 Mo.",
+    type_fichier:"Format non accepté. Envoyez une photo (JPEG, PNG, WebP, HEIC) ou un PDF.",
+    pdf_attendu:"L'avis de valeur doit être un fichier PDF.",
+    trop_de_fichiers:"Il y a déjà 30 fichiers sur cette estimation.",
+    stockage_plein:"L'espace de stockage est plein : envoyez ce fichier par e-mail à "+CONF.email+"."
+  };
   function message(d){return MSG[d&&d.error]||MSG.serveur;}
-  var TEL='+33767579228';
-  function wa(txt){return 'https://wa.me/33767579228?text='+encodeURIComponent(txt);}
-  /* bloc résultat (fond sombre) */
+  var CHAMPS={email:"L'adresse e-mail n'est pas valide.",telephone:"Le numéro de téléphone n'est pas valide.",prenom:"Indiquez votre prénom.",nom:"Indiquez votre nom.",mot_de_passe:"Le mot de passe doit compter 8 caractères au moins.",consentement:"Cochez la case pour continuer.",adresse:"L'adresse du bien est incomplète.",surface:"La surface n'est pas valide.",confirmation:"Écrivez SUPPRIMER pour confirmer."};
+  function messageChamp(d){return (d&&d.error==='champs'&&CHAMPS[d.champ])||message(d);}
+
+  function wa(txt){return 'https://wa.me/'+CONF.tel.replace(/\D/g,'')+'?text='+encodeURIComponent(txt);}
+
+  /* Bloc résultat (fond sombre) : la fourchette, puis d'où elle vient. */
   function resultat(res,ref,adresse){
     var h='';
     if(res&&res.fourchette){
       h+='<p class="label">Votre estimation · indicative</p>'+
-        '<p class="ee-price"><span>'+euros(res.bas)+'</span><em>–</em><span>'+euros(res.haut)+'</span></p>'+
+        '<p class="ee-price" data-test="fourchette"><span>'+euros(res.bas)+'</span><em>–</em><span>'+euros(res.haut)+'</span></p>'+
         '<p class="ee-m2">Soit environ <b>'+euros(res.prix_m2)+'/m²</b>'+(adresse?' · '+esc(adresse):'')+'</p>'+
         '<p class="ee-warn"><span><b>Indicatif, à confirmer par une visite.</b> Le calcul ne voit ni la lumière, ni la vue, ni les finitions : c\'est la visite qui donne le prix juste.</span></p>'+
         '<ul class="ee-facts">'+
-          '<li><span>Ventes comparables</span><span>'+res.comparables+' ventes à moins de '+(res.rayon>=1000?(res.rayon/1000).toLocaleString('fr-FR')+' km':res.rayon+' m')+'</span></li>'+
-          '<li><span>Prix médian du secteur</span><span>'+euros(res.m2_quartier)+'/m²</span></li>'+
-          ((res.ajustements||[]).length?'<li><span>Ajustements</span><span>'+res.ajustements.map(function(a){return esc(a.libelle)+' '+(a.pct>0?'+':'')+a.pct+' %';}).join('<br>')+'</span></li>':'')+
-          '<li><span>Source</span><span>Ventes réelles DVF'+(res.annees?' '+res.annees[0]+'–'+res.annees[res.annees.length-1]:'')+(res.donnees_du?', à jour de '+mois(res.donnees_du):'')+'</span></li>'+
+          '<li><span>Ventes comparables utilisées</span><span data-test="ventes">'+res.comparables+' ventes réelles</span></li>'+
+          '<li><span>Rayon</span><span data-test="rayon">à moins de '+rayon(res.rayon)+'</span></li>'+
+          '<li><span>Prix médian de ces ventes</span><span>'+euros(res.m2_quartier)+'/m²</span></li>'+
+          ((res.ajustements||[]).length?'<li><span>Ajustements pour votre bien</span><span>'+res.ajustements.map(function(a){return esc(a.libelle)+' '+(a.pct>0?'+':'')+a.pct+' %';}).join('<br>')+'</span></li>':'')+
+          '<li><span>Date des données</span><span data-test="donnees">Ventes DVF'+(res.annees?' '+res.annees[0]+'–'+res.annees[res.annees.length-1]:'')+(res.donnees_du?', à jour de '+mois(res.donnees_du):'')+'</span></li>'+
         '</ul>';
     } else {
+      var r=res&&res.raison;
       h+='<p class="label">Votre demande est enregistrée</p>'+
-        '<p class="ee-price" style="font-size:clamp(2rem,6vw,3rem);">Shawez vous rappelle <em>sous 24 h.</em></p>'+
-        '<p class="ee-m2">'+(res&&res.raison==='peu_de_ventes'?"Il y a eu trop peu de ventes comparables près de chez vous pour donner une fourchette fiable : Shawez l'étudie lui-même.":res&&res.raison==='type'?"Pour ce type de bien, l'estimation se fait sur pièces : Shawez l'étudie lui-même.":res&&res.raison==='hors_zone'?"Ce secteur est hors de la Côte-d'Or : Shawez vous dit ce qu'il peut faire pour vous.":"Shawez étudie votre bien lui-même et vous donne une première fourchette au téléphone.")+'</p>'+
+        '<p class="ee-price ee-price-txt" data-test="rappel">Je vous rappelle <em>sous 24 h.</em></p>'+
+        '<p class="ee-m2">'+(r==='peu_de_ventes'?"Il y a eu trop peu de ventes comparables près de chez vous"+(res.comparables!=null?' ('+res.comparables+' seulement)':'')+" pour donner une fourchette fiable. Pas de prix au hasard : "+CONF.conseiller+" l'étudie lui-même.":r==='type'?"Pour ce type de bien, l'estimation se fait sur pièces : "+CONF.conseiller+" l'étudie lui-même.":r==='hors_zone'?"Ce secteur est hors de la Côte-d'Or : "+CONF.conseiller+" vous dit ce qu'il peut faire pour vous.":CONF.conseiller+" étudie votre bien lui-même et vous donne une première fourchette au téléphone.")+'</p>'+
         (res&&res.donnees_du?'<p class="ee-warn"><span>Données des ventes réelles (DVF) à jour de '+mois(res.donnees_du)+'.</span></p>':'');
     }
-    if(ref)h+='<ul class="ee-facts" style="margin-top:0;border-top:0;"><li><span>Référence</span><span>'+esc(ref)+'</span></li></ul>';
+    if(ref)h+='<ul class="ee-facts ee-ref"><li><span>Référence</span><span data-test="reference">'+esc(ref)+'</span></li></ul>';
     h+='<div class="btn-row">'+
-      '<a class="btn btn-primary btn-lg" href="tel:'+TEL+'">Prendre rendez-vous <span class="arw">→</span></a>'+
-      '<a class="btn btn-ghost" href="'+wa('Bonjour Shawez, je viens de faire mon estimation en ligne'+(ref?' (réf. '+ref+')':'')+'. ')+'" target="_blank" rel="noopener">WhatsApp</a>'+
-      '<a class="btn btn-ghost" href="/mon-espace/">Mon espace</a>'+
+      '<a class="btn btn-primary btn-lg" href="tel:'+CONF.tel+'">Prendre rendez-vous <span class="arw">→</span></a>'+
+      '<a class="btn btn-ghost" href="'+wa('Bonjour '+CONF.conseiller+', je viens de faire mon estimation en ligne'+(ref?' (réf. '+ref+')':'')+'. ')+'" target="_blank" rel="noopener">WhatsApp</a>'+
     '</div>';
     return h;
   }
   function voirMdp(root){
-    $$('[data-voir]',root).forEach(function(b){b.addEventListener('click',function(){var i=document.getElementById(b.getAttribute('data-voir'));var v=i.type==='password';i.type=v?'text':'password';b.textContent=v?'Masquer':'Afficher';});});
+    $$('[data-voir]',root).forEach(function(b){b.addEventListener('click',function(){var i=document.getElementById(b.getAttribute('data-voir'));var v=i.type==='password';i.type=v?'text':'password';b.textContent=v?'Masquer':'Afficher';b.setAttribute('aria-pressed',String(v));});});
   }
-  return {$:$,$$:$$,esc:esc,euros:euros,date:date,mois:mois,api:api,message:message,resultat:resultat,voirMdp:voirMdp,TEL:TEL,wa:wa};
+  /* champ en erreur : classe + aria-invalid, pour l'œil et pour les lecteurs d'écran */
+  function err(el,on){
+    var f=el.closest('.field'); if(f)f.classList.toggle('err',!!on);
+    if(el.setAttribute){ if(on)el.setAttribute('aria-invalid','true'); else el.removeAttribute('aria-invalid'); }
+    return !on;
+  }
+  function emailOk(v){return /^[^\s@"<>(),;:]+@[^\s@"<>(),;:]+\.[a-z]{2,}$/i.test(String(v||'').trim());}
+  function telOk(v){v=String(v||'').trim();var n=v.replace(/\D/g,'').length;return /^[+\d][\d\s.\-()]{7,}$/.test(v)&&n>=9&&n<=15;}
+
+  /* Témoin « connecté » (cookie se_ok, sans valeur secrète) : le pictogramme de l'en-tête le lit sur toutes les pages. */
+  function connecte(){return /(?:^|;\s*)se_ok=1/.test(document.cookie||'');}
+  function pictogramme(){ try{ if(window.EECompte)window.EECompte(); }catch(e){} }
+
+  /* Portrait du conseiller : affiché seulement si le site en fournit un. */
+  function portraits(root){ $$('img[data-ee-portrait]',root).forEach(function(i){ if(CONF.portrait){i.src=CONF.portrait;i.hidden=false;} else i.hidden=true; }); }
+
+  /* Mémoire du parcours dans l'onglet (sessionStorage) : jamais bloquant si le navigateur la refuse. */
+  var mem={
+    lire:function(k){try{var v=window.sessionStorage.getItem(k);return v?JSON.parse(v):null;}catch(e){return null;}},
+    ecrire:function(k,v){try{window.sessionStorage.setItem(k,JSON.stringify(v));}catch(e){}},
+    effacer:function(k){try{window.sessionStorage.removeItem(k);}catch(e){}}
+  };
+  function uuid(){ try{ if(window.crypto&&crypto.randomUUID)return crypto.randomUUID(); }catch(e){} return 'c'+Date.now().toString(36)+Math.random().toString(36).slice(2,12)+Math.random().toString(36).slice(2,12); }
+
+  return {CONF:CONF,$:$,$$:$$,esc:esc,euros:euros,date:date,jour:jour,mois:mois,taille:taille,rayon:rayon,api:api,message:message,messageChamp:messageChamp,resultat:resultat,voirMdp:voirMdp,err:err,emailOk:emailOk,telOk:telOk,connecte:connecte,pictogramme:pictogramme,portraits:portraits,mem:mem,uuid:uuid,TEL:CONF.tel,wa:wa};
 })();
 
-/* Parcours d'estimation /estimer/ : une question par écran, 6 étapes, puis coordonnées et résultat */
+/* Parcours d'estimation /estimer/ : une question par écran, 6 étapes, puis un seul écran de coordonnées
+   et le résultat tout de suite. Pas de mot de passe : le compte est créé avec l'e-mail. */
 (function(){
   'use strict';
-  var $=EE.$, $$=EE.$$;
+  var $=EE.$, $$=EE.$$, err=EE.err;
   var form=$('#ee-form'); if(!form)return;
-  var T0=Date.now();
+  var CLE_MEM='ee-parcours-v2', DUREE_MEM=2*3600*1000;
   var ORDRE=['adresse','type','bien','atouts','prix','projet','contact'];
   var steps={}; $$('.ee-step',form).forEach(function(s){steps[s.getAttribute('data-s')]=s;});
   var barre=$$('#ee-steps li');
   var R={type:'',adresse:'',code_postal:'',commune:'',citycode:'',lat:null,lon:null,epoque:'',etat:'',delai:'',autre_type:''};
-  var civ='', compte=null, cur='adresse';
+  var civ='', compte=null, cur='adresse', T0=Date.now(), CLE=EE.uuid(), pret=false;
+  EE.portraits(document);
+  $$('[data-ee-txt=conseiller]').forEach(function(e){e.textContent=EE.CONF.conseiller;});
+  $$('[data-ee-lien=confidentialite]').forEach(function(a){a.href=EE.CONF.confidentialite;});
 
   /* ---------- session : déjà connecté ? ---------- */
-  EE.api('/moi').then(function(d){
-    if(d&&d.compte){
-      compte=d.compte;
-      $('#ee-new').hidden=true; $('#ee-pw-field').hidden=true;
-      var w=$('#ee-logged'); w.hidden=false;
-      $('p',w).innerHTML='Connecté en tant que <b>'+EE.esc((compte.prenom+' '+compte.nom).trim()||compte.email)+'</b>. L\'estimation sera ajoutée à votre espace.';
-      $('#ee-contact-sub').textContent='Vérifiez votre numéro : Shawez vous appelle pour en parler.';
-      if(compte.telephone)$('#ee-tel').value=compte.telephone;
-    }
-  });
+  function appliquerCompte(){
+    if(!compte)return;
+    $('#ee-new').hidden=true;
+    var w=$('#ee-logged'); w.hidden=false;
+    $('p',w).innerHTML='Connecté en tant que <b>'+EE.esc(((compte.prenom||'')+' '+(compte.nom||'')).trim()||compte.email)+'</b>. L\'estimation sera ajoutée à votre espace.';
+    $('#ee-contact-sub').textContent='Vérifiez votre numéro : '+EE.CONF.conseiller+' vous appelle pour en parler.';
+    if(compte.telephone&&!$('#ee-tel').value)$('#ee-tel').value=compte.telephone;
+  }
+  EE.api('/moi').then(function(d){ if(d&&d.compte){compte=d.compte;appliquerCompte();} EE.pictogramme(); });
 
   /* ---------- étapes visibles selon le type ---------- */
   function sequence(){
@@ -1964,18 +2119,21 @@ var EE=(function(){
       el.hidden=pour.indexOf(R.type||'appartement')<0;
     });
     var autre=R.type==='autre';
-    $('#ee-surface-lab').textContent=autre?'Surface approximative (facultatif)':R.type==='maison'?'Surface habitable':'Surface habitable';
+    $('#ee-surface-lab').textContent=autre?'Surface approximative (facultatif)':'Surface habitable';
     $('#ee-surface-hint').textContent=autre?'Si vous la connaissez.':R.type==='maison'?'Une surface approximative suffit.':'Surface loi Carrez si vous l\'avez, sinon une surface approximative.';
   }
+  var change=0;   // heure du dernier changement d'étape
   function aller(nom,focus){
+    var seq=sequence(); if(seq.indexOf(nom)<0)nom=seq[0];
+    if(nom!==cur)change=Date.now();
     cur=nom;
-    var seq=sequence(), i=seq.indexOf(nom);
+    var i=seq.indexOf(nom);
     Object.keys(steps).forEach(function(k){steps[k].hidden=(k!==nom);});
     // barre : position dans les 6 étapes numérotées
     var num=Math.min(i,5);
     if(R.type==='autre'){ num={adresse:0,type:1,bien:2,projet:5,contact:6}[nom]; }
     if(nom==='contact')num=6;
-    barre.forEach(function(li,k){li.classList.toggle('done',k<num);li.classList.toggle('on',k===num);});
+    barre.forEach(function(li,k){li.classList.toggle('done',k<num);li.classList.toggle('on',k===num);if(k===num)li.setAttribute('aria-current','step');else li.removeAttribute('aria-current');});
     var c=$('.ee-count',steps[nom]); if(c&&R.type==='autre'){ c.textContent='Étape '+(i+1)+' sur 4'; }
     else if(c){ c.textContent='Étape '+(ORDRE.indexOf(nom)+1)+' sur 6'; }
     if(focus!==false){
@@ -1983,10 +2141,11 @@ var EE=(function(){
       if(window.scrollY>top||window.scrollY<top-window.innerHeight*0.6)window.scrollTo({top:top,behavior:'smooth'});
       steps[nom].focus({preventScroll:true});
     }
+    memoriser();
   }
 
   /* ---------- 1. adresse ---------- */
-  var inp=$('#ee-adresse'), ul=$('#ee-sugg'), picked=$('#ee-picked'), items=[], sel=-1, tmr=null, seqReq=0;
+  var inp=$('#ee-adresse'), ul=$('#ee-sugg'), picked=$('#ee-picked'), items=[], sel=-1, tmr=null, seqReq=0, rechercheKo=false;
   var SOURCES=['https://api-adresse.data.gouv.fr/search/','https://data.geopf.fr/geocodage/search'];
   function chercher(q){
     var n=++seqReq;
@@ -1994,99 +2153,119 @@ var EE=(function(){
     function essai(k){
       return fetch(SOURCES[k]+qs).then(function(r){if(!r.ok)throw 0;return r.json();}).catch(function(){ if(k+1<SOURCES.length)return essai(k+1); throw 0; });
     }
-    essai(0).then(function(d){ if(n!==seqReq)return; items=(d.features||[]).map(function(f){var p=f.properties;return {label:p.label,name:p.name,city:p.city,postcode:p.postcode,citycode:p.citycode,context:p.context,type:p.type,lon:f.geometry.coordinates[0],lat:f.geometry.coordinates[1]};}); afficher(); })
-      .catch(function(){ if(n!==seqReq)return; items=[]; afficher(); });
+    essai(0).then(function(d){ if(n!==seqReq)return; rechercheKo=false; items=(d.features||[]).map(function(f){var p=f.properties;return {label:p.label,name:p.name,city:p.city,postcode:p.postcode,citycode:p.citycode,context:p.context,type:p.type,lon:f.geometry.coordinates[0],lat:f.geometry.coordinates[1]};}); afficher(); })
+      .catch(function(){ if(n!==seqReq)return; rechercheKo=true; items=[]; afficher(); });
   }
   function afficher(){
-    sel=-1;
+    sel=-1; inp.removeAttribute('aria-activedescendant');
     if(!items.length){ul.hidden=true;inp.setAttribute('aria-expanded','false');return;}
-    ul.innerHTML=items.map(function(it,k){return '<li role="option" id="ee-o'+k+'" aria-selected="false" data-k="'+k+'"><b>'+EE.esc(it.name)+'</b><span>'+EE.esc(it.postcode+' '+it.city+(it.context?' · '+it.context.split(', ').slice(-1)[0]:''))+'</span></li>';}).join('');
+    ul.innerHTML=items.map(function(it,k){return '<li role="option" id="ee-o'+k+'" aria-selected="false" data-k="'+k+'"><b>'+EE.esc(it.name)+'</b><span>'+EE.esc((it.postcode||'')+' '+(it.city||'')+(it.context?' · '+it.context.split(', ').slice(-1)[0]:''))+'</span></li>';}).join('');
     ul.hidden=false; inp.setAttribute('aria-expanded','true');
   }
+  function retenue(){
+    if(R.lat==null){picked.hidden=true;return;}
+    $('span',picked).textContent=R.adresse_type==='municipality'?'Commune retenue : '+R.adresse+'. Ajoutez le numéro et la rue pour un calcul plus précis.':'Adresse retenue : '+R.adresse;
+    picked.hidden=false;
+  }
   function choisir(it){
-    R.adresse=it.label; R.code_postal=it.postcode||''; R.commune=it.city||''; R.citycode=it.citycode||''; R.lat=it.lat; R.lon=it.lon;
+    R.adresse=it.label; R.code_postal=it.postcode||''; R.commune=it.city||''; R.citycode=it.citycode||''; R.lat=it.lat; R.lon=it.lon; R.adresse_type=it.type||'';
     inp.value=it.label; ul.hidden=true; inp.setAttribute('aria-expanded','false');
-    $('span',picked).textContent=it.type==='municipality'?'Commune retenue : '+it.label+'. Ajoutez le numéro et la rue pour un calcul plus précis.':'Adresse retenue : '+it.label;
-    picked.hidden=false; inp.closest('.field').classList.remove('err');
+    retenue(); err(inp,false); memoriser();
   }
   inp.addEventListener('input',function(){
-    R.lat=R.lon=null; R.adresse=''; picked.hidden=true;
+    R.lat=R.lon=null; R.adresse=''; R.code_postal=''; R.commune=''; R.citycode=''; picked.hidden=true; inp.dataset.libre='';
     clearTimeout(tmr); var q=inp.value.trim();
     if(q.length<3){items=[];afficher();return;}
     tmr=setTimeout(function(){chercher(q);},180);
   });
   inp.addEventListener('keydown',function(e){
+    if(e.key==='Enter'){
+      e.preventDefault();
+      if(!ul.hidden&&sel>=0){choisir(items[sel]);return;}
+      if(!ul.hidden&&items.length===1){choisir(items[0]);return;}
+      suivant(); return;
+    }
     if(ul.hidden)return;
     if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();sel=(sel+(e.key==='ArrowDown'?1:-1)+items.length)%items.length;$$('li',ul).forEach(function(li,k){li.setAttribute('aria-selected',String(k===sel));});inp.setAttribute('aria-activedescendant','ee-o'+sel);}
-    else if(e.key==='Enter'){ if(sel>=0){e.preventDefault();choisir(items[sel]);} }
-    else if(e.key==='Escape'){ul.hidden=true;}
+    else if(e.key==='Escape'){ul.hidden=true;inp.setAttribute('aria-expanded','false');}
   });
   ul.addEventListener('mousedown',function(e){e.preventDefault();});
   ul.addEventListener('click',function(e){var li=e.target.closest('li');if(li)choisir(items[+li.getAttribute('data-k')]);});
   inp.addEventListener('blur',function(){setTimeout(function(){ul.hidden=true;inp.setAttribute('aria-expanded','false');},150);});
 
   /* ---------- 2. type ---------- */
+  function presser(liste,actif){liste.forEach(function(x){x.setAttribute('aria-pressed',String(actif(x)));});}
   $$('.ee-tile',form).forEach(function(b){b.addEventListener('click',function(){
     R.type=b.getAttribute('data-type'); R.autre_type='';
-    $$('.ee-tile',form).forEach(function(x){x.setAttribute('aria-pressed',String(x===b));});
-    $$('[data-autre]',form).forEach(function(x){x.setAttribute('aria-pressed','false');});
-    $('#ee-type-msg').hidden=true; appliquerType();
-    setTimeout(function(){suivant();},180);
+    presser($$('.ee-tile',form),function(x){return x===b;});
+    presser($$('[data-autre]',form),function(){return false;});
+    $('#ee-type-msg').hidden=true; appliquerType(); memoriser();
+    setTimeout(function(){ if(cur==='type')suivant(); },180);
   });});
   $('#ee-autre-btn').addEventListener('click',function(){var a=$('#ee-autre');a.hidden=!a.hidden;this.setAttribute('aria-expanded',String(!a.hidden));});
-  $$('[data-autre]',form).forEach(function(b){b.addEventListener('click',function(){
+  $$('[data-autre]',form).forEach(function(b){b.setAttribute('aria-pressed','false');b.addEventListener('click',function(){
     R.type='autre'; R.autre_type=b.getAttribute('data-autre');
-    $$('[data-autre]',form).forEach(function(x){x.setAttribute('aria-pressed',String(x===b));});
-    $$('.ee-tile',form).forEach(function(x){x.setAttribute('aria-pressed','false');});
-    $('#ee-type-msg').hidden=true; appliquerType();
+    presser($$('[data-autre]',form),function(x){return x===b;});
+    presser($$('.ee-tile',form),function(){return false;});
+    $('#ee-type-msg').hidden=true; appliquerType(); memoriser();
   });});
 
   /* ---------- 3. compteurs et choix ---------- */
+  function majCompteur(s){
+    var o=$('output',s), min=+s.getAttribute('data-min'), max=+s.getAttribute('data-max'), k=s.getAttribute('data-k'), v=+s.getAttribute('data-v');
+    o.textContent=(k==='etage'&&v===0)?'RDC':v; $$('button',s)[0].disabled=v<=min; $$('button',s)[1].disabled=v>=max;
+  }
   $$('.ee-stp',form).forEach(function(s){
-    var o=$('output',s), min=+s.getAttribute('data-min'), max=+s.getAttribute('data-max'), k=s.getAttribute('data-k');
-    function maj(){var v=+s.getAttribute('data-v'); o.textContent=(k==='etage'&&v===0)?'RDC':v; $$('button',s)[0].disabled=v<=min; $$('button',s)[1].disabled=v>=max;}
-    $$('button',s).forEach(function(b){b.addEventListener('click',function(){var v=Math.max(min,Math.min(max,+s.getAttribute('data-v')+(+b.getAttribute('data-d'))));s.setAttribute('data-v',v);maj();
+    var min=+s.getAttribute('data-min'), max=+s.getAttribute('data-max'), k=s.getAttribute('data-k'), nom=$('.l',s).firstChild.textContent;
+    $$('button',s)[0].setAttribute('aria-label',nom+' : moins'); $$('button',s)[1].setAttribute('aria-label',nom+' : plus');
+    $$('button',s).forEach(function(b){b.addEventListener('click',function(){var v=Math.max(min,Math.min(max,+s.getAttribute('data-v')+(+b.getAttribute('data-d'))));s.setAttribute('data-v',v);majCompteur(s);
       if(k==='niveaux'){var pp=form.querySelector('input[name=plain_pied]');if(pp)pp.checked=(v===1);}
+      memoriser();
     });});
-    maj();
+    majCompteur(s);
   });
-  function val(k){var s=form.querySelector('.ee-stp[data-k="'+k+'"]');return s?+s.getAttribute('data-v'):null;}
+  function stp(k){return form.querySelector('.ee-stp[data-k="'+k+'"]');}
+  function val(k){var s=stp(k);return s?+s.getAttribute('data-v'):null;}
+  function fixer(k,v){var s=stp(k);if(s){s.setAttribute('data-v',v);majCompteur(s);}}
   $$('[data-choix]',form).forEach(function(g){
     var k=g.getAttribute('data-choix');
     $$('.ee-opt',g).forEach(function(b){b.setAttribute('aria-pressed','false');b.addEventListener('click',function(){
-      R[k]=b.getAttribute('data-v'); $$('.ee-opt',g).forEach(function(x){x.setAttribute('aria-pressed',String(x===b));});
-      g.closest('.field').classList.remove('err');
-      if(k==='delai')setTimeout(function(){suivant();},180);
+      R[k]=b.getAttribute('data-v'); presser($$('.ee-opt',g),function(x){return x===b;});
+      err(g,false); memoriser();
+      if(k==='delai')setTimeout(function(){ if(cur==='projet')suivant(); },180);
     });});
   });
   /* prix : espaces de milliers à la saisie */
   var prix=$('#ee-prix');
-  prix.addEventListener('input',function(){var d=prix.value.replace(/\D/g,'').slice(0,9);prix.value=d?(+d).toLocaleString('fr-FR'):'';});
+  prix.addEventListener('input',function(){var d=prix.value.replace(/\D/g,'').slice(0,9);prix.value=d?(+d).toLocaleString('fr-FR').replace(/[  ]/g,' '):'';});
 
   /* ---------- validation par étape ---------- */
-  function err(el,on){var f=el.closest('.field');if(f)f.classList.toggle('err',!!on);return !on;}
   function valider(nom){
     if(nom==='adresse'){
       if(R.lat==null){
-        // pas d'adresse choisie dans la liste : si la recherche est indisponible, on garde le texte saisi
         var t=inp.value.trim();
-        if(t.length>=3&&!items.length&&inp.dataset.libre==='1'){R.adresse=t;return true;}
-        if(t.length>=3&&!items.length){inp.dataset.libre='1';}
+        // la recherche d'adresses ne répond pas : on garde le texte saisi, Shawez rappellera
+        if(t.length>=6&&rechercheKo){R.adresse=t;return err(inp,false);}
+        // une seule proposition : on la prend
+        if(items.length===1&&t.length>=3){choisir(items[0]);return true;}
+        $('#ee-adresse-msg').textContent=t.length<3?'Écrivez le numéro et la rue (ex. 30 rue Bannelier, Dijon).':'Choisissez votre adresse dans la liste qui s\'affiche.';
+        if(items.length&&t.length>=3){ul.hidden=false;inp.setAttribute('aria-expanded','true');}
         return err(inp,true);
       }
       return err(inp,false);
     }
     if(nom==='type'){ var ok=!!R.type&&(R.type!=='autre'||!!R.autre_type); $('#ee-type-msg').hidden=ok; $('#ee-type-msg').style.display=ok?'':'block'; return ok; }
     if(nom==='bien'){
-      var s=$('#ee-surface'), v=s.value.trim(), ok2=true;
+      var s=$('#ee-surface'), v=s.value.trim().replace(',','.'), ok2=true;
       if(R.type==='autre'){ ok2=err(s,v!==''&&!(+v>=1&&+v<=100000)); return ok2; }
       ok2=err(s,!(+v>=9&&+v<=2000))&&ok2;
       if(R.type==='maison'){var t2=$('#ee-terrain');ok2=err(t2,t2.value.trim()===''||!(+t2.value>=0&&+t2.value<=1000000))&&ok2;}
       ok2=err($('[data-choix=epoque]',form),!R.epoque)&&ok2;
       ok2=err($('[data-choix=etat]',form),!R.etat)&&ok2;
-      if(R.type==='appartement'&&val('etage')>val('etages_immeuble')){ var e=form.querySelector('.ee-stp[data-k="etages_immeuble"]'); e.setAttribute('data-v',val('etage')); $('output',e).textContent=val('etage'); }
-      if(R.type==='appartement'||R.type==='maison'){ if(val('chambres')>=val('pieces')&&val('pieces')>1){ var c=form.querySelector('.ee-stp[data-k="chambres"]'); c.setAttribute('data-v',val('pieces')-1); $('output',c).textContent=val('pieces')-1; } }
-      if(!ok2){var f=steps.bien.querySelector('.field.err');if(f)f.scrollIntoView({block:'center',behavior:'smooth'});}
+      if(R.type==='appartement'&&val('etage')>val('etages_immeuble'))fixer('etages_immeuble',val('etage'));
+      if(val('chambres')>=val('pieces')&&val('pieces')>1)fixer('chambres',val('pieces')-1);
+      if(val('pieces')===1&&val('chambres')>1)fixer('chambres',1);
+      if(!ok2){var f=steps.bien.querySelector('.field.err');if(f){f.scrollIntoView({block:'center',behavior:'smooth'});var c=f.querySelector('input,button');if(c)c.focus({preventScroll:true});}}
       return ok2;
     }
     if(nom==='prix'){ return true; }
@@ -2098,66 +2277,172 @@ var EE=(function(){
     var seq=sequence(), i=seq.indexOf(cur);
     if(i<seq.length-1)aller(seq[i+1]);
   }
-  function precedent(){var seq=sequence(),i=seq.indexOf(cur);if(i>0)aller(seq[i-1]);}
-  $$('[data-next]',form).forEach(function(b){b.addEventListener('click',suivant);});
-  $$('[data-prev]',form).forEach(function(b){b.addEventListener('click',precedent);});
+  function precedent(){ var seq=sequence(),i=seq.indexOf(cur);if(i>0)aller(seq[i-1]); }
+  /* Un double clic ne fait pas sauter une étape : le second clic tombe sur le bouton de l'étape suivante, au même
+     endroit. On l'ignore (2e clic d'un double clic, ou clic dans le quart de seconde qui suit un changement d'étape). */
+  function tropTot(e){ return (e&&e.detail>1)||Date.now()-change<250; }
+  /* Même garde pour toute la page : après un changement d'étape, l'écran n'a plus la même hauteur, et le second clic
+     d'un double clic tomberait sur un lien du pied de page. On l'avale. */
+  document.addEventListener('click',function(e){ if(e.isTrusted!==false&&Date.now()-change<300&&change){e.preventDefault();e.stopPropagation();} },true);
+  $$('[data-next]',form).forEach(function(b){b.addEventListener('click',function(e){ if(!tropTot(e))suivant(); });});
+  $$('[data-prev]',form).forEach(function(b){b.addEventListener('click',function(e){ if(!tropTot(e))precedent(); });});
   form.addEventListener('keydown',function(e){ if(e.key==='Enter'&&e.target.tagName==='INPUT'&&e.target.type!=='checkbox'&&cur!=='contact'&&e.target!==inp){e.preventDefault();suivant();} });
+  form.addEventListener('input',function(e){ if(e.target.closest('.field.err')&&e.target.id!=='ee-adresse')err(e.target,false); memoriserBientot(); });
+  form.addEventListener('change',memoriserBientot);
 
   /* ---------- coordonnées ---------- */
-  $$('[data-civ]',form).forEach(function(b){b.setAttribute('aria-pressed','false');b.addEventListener('click',function(){civ=b.getAttribute('data-civ');$$('[data-civ]',form).forEach(function(x){x.setAttribute('aria-pressed',String(x===b));});});});
-  EE.voirMdp(form);
+  $$('[data-civ]',form).forEach(function(b){b.setAttribute('aria-pressed','false');b.addEventListener('click',function(){civ=b.getAttribute('data-civ');presser($$('[data-civ]',form),function(x){return x===b;});memoriser();});});
   function reponses(){
     var o={type:R.type,adresse:R.adresse,code_postal:R.code_postal,commune:R.commune,citycode:R.citycode,lat:R.lat,lon:R.lon,delai:R.delai};
     var p=prix.value.replace(/\D/g,''); if(p&&R.type!=='autre')o.prix_ideal=+p;
-    var s=$('#ee-surface').value.trim(); if(s)o.surface=+s;
+    var s=$('#ee-surface').value.trim().replace(',','.'); if(s)o.surface=Math.round(+s);
     if(R.type==='autre'){o.autre_type=R.autre_type;o.message=$('#ee-message').value.trim();return o;}
     o.pieces=val('pieces');o.chambres=val('chambres');o.epoque=R.epoque;o.etat=R.etat;
     o.terrasse=form.querySelector('input[name=terrasse]').checked;
     if(R.type==='appartement'){o.etage=val('etage');o.etages_immeuble=val('etages_immeuble');['ascenseur','balcon','cave','gardien','parking','parking_box'].forEach(function(k){o[k]=form.querySelector('input[name='+k+']').checked;});}
-    else {o.terrain=+$('#ee-terrain').value;o.niveaux=val('niveaux');['plain_pied','piscine','garage'].forEach(function(k){o[k]=form.querySelector('input[name='+k+']').checked;});}
+    else {o.terrain=Math.round(+$('#ee-terrain').value);o.niveaux=val('niveaux');['plain_pied','piscine','garage'].forEach(function(k){o[k]=form.querySelector('input[name='+k+']').checked;});}
     return o;
   }
   var envoi=false;
+  function bouton(actif){ var b=$('#ee-submit'); b.disabled=!actif; b.setAttribute('aria-busy',String(!actif)); $('#ee-submit-txt').textContent=actif?'Afficher mon estimation':'Calcul en cours…'; }
   form.addEventListener('submit',function(e){
     e.preventDefault(); if(envoi)return;
     if(cur!=='contact'){suivant();return;}
-    var ok=true, tel=$('#ee-tel');
-    var telOk=/^[+\d][\d\s.\-()]{7,}$/.test(tel.value.trim())&&tel.value.replace(/\D/g,'').length>=9;
-    ok=err(tel,!telOk)&&ok;
+    if(Date.now()-change<250)return;   // second clic d'un double clic sur « Voir mon estimation »
+    var ok=true, tel=$('#ee-tel'), mail=$('#ee-email');
+    mail.value=mail.value.replace(/\s+/g,'');
     if(!compte){
       ok=err($('#ee-prenom'),!$('#ee-prenom').value.trim())&&ok;
       ok=err($('#ee-nom'),!$('#ee-nom').value.trim())&&ok;
-      ok=err($('#ee-email'),!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test($('#ee-email').value.trim()))&&ok;
-      ok=err($('#ee-mdp'),$('#ee-mdp').value.length<8)&&ok;
+      ok=err(mail,!EE.emailOk(mail.value))&&ok;
     }
+    ok=err(tel,!EE.telOk(tel.value))&&ok;
     ok=err($('#ee-consent'),!$('#ee-consent').checked)&&ok;
-    if(!ok){var f=steps.contact.querySelector('.field.err');if(f)f.scrollIntoView({block:'center',behavior:'smooth'});return;}
-    var corps={reponses:reponses(),consentement:true,website:$('#ee-website').value,duree:Date.now()-T0,
-      contact:compte?{telephone:tel.value.trim()}:{civilite:civ,prenom:$('#ee-prenom').value.trim(),nom:$('#ee-nom').value.trim(),email:$('#ee-email').value.trim(),telephone:tel.value.trim(),mot_de_passe:$('#ee-mdp').value}};
-    envoi=true; var b=$('#ee-submit'); b.disabled=true; b.firstChild.textContent='Calcul en cours… ';
-    $('#ee-err').hidden=true; $('#ee-exist').hidden=true;
-    EE.api('/estimation',{body:corps}).then(function(d){
-      envoi=false; b.disabled=false; b.firstChild.textContent='Afficher mon estimation ';
-      if(d._status===201||d._status===202){
-        form.hidden=true;
-        var box=$('#ee-res-box'); box.innerHTML=EE.resultat(d.resultat,d.reference,R.adresse);
-        var res=$('#ee-result'); res.hidden=false;
-        window.scrollTo({top:res.getBoundingClientRect().top+window.scrollY-90,behavior:'smooth'}); res.focus({preventScroll:true});
+    var m=$('#ee-err'); m.hidden=true;
+    if(!ok){var f=steps.contact.querySelector('.field.err');if(f){f.scrollIntoView({block:'center',behavior:'smooth'});var c=f.querySelector('input');if(c)c.focus({preventScroll:true});}return;}
+    // tout le parcours doit être complet (au cas où l'on arrive ici par un état incomplet)
+    var seq=sequence();
+    for(var i=0;i<seq.length-1;i++){ if(!valider(seq[i])){aller(seq[i]);return;} }
+    var corps={reponses:reponses(),consentement:true,ee_hp:$('#ee-hp').value,duree:Date.now()-T0,cle:CLE,site:EE.CONF.site||undefined,
+      contact:compte?{telephone:tel.value.trim()}:{civilite:civ,prenom:$('#ee-prenom').value.trim(),nom:$('#ee-nom').value.trim(),email:mail.value.trim(),telephone:tel.value.trim()}};
+    envoi=true; bouton(false);
+    EE.api('/estimation',{body:corps,delai:45000}).then(function(d){
+      envoi=false; bouton(true);
+      if(d._status===200||d._status===201){
+        var etat={resultat:d.resultat,reference:d.reference,adresse:R.adresse,espace:d.espace||{},email:compte?compte.email:mail.value.trim(),mdp:false};
+        memoriser(etat);
+        montrer(etat,true);
         try{ if(window.beTracker)window.beTracker.t({hash:'33710f67a0c16d7cbb94d1b2ba10e7a8'}); }catch(x){}
         return;
       }
-      if(d.error==='compte_existe'){ $('#ee-exist').hidden=false; $('#ee-mdp').value=''; $('#ee-mdp').focus(); $('#ee-mdp-hint').textContent='Le mot de passe de votre espace existant.'; return; }
       if(d.error==='champs'&&d.champ){
-        var map={telephone:'#ee-tel',email:'#ee-email',prenom:'#ee-prenom',nom:'#ee-nom',mot_de_passe:'#ee-mdp',consentement:'#ee-consent'};
+        var map={telephone:'#ee-tel',email:'#ee-email',prenom:'#ee-prenom',nom:'#ee-nom',consentement:'#ee-consent'};
         if(map[d.champ]){err($(map[d.champ]),true);$(map[d.champ]).focus();return;}
+        var retour={adresse:'adresse',code_postal:'adresse',lat:'adresse',lon:'adresse',surface:'bien',terrain:'bien',pieces:'bien',chambres:'bien',epoque:'bien',etat:'bien',type:'type',autre_type:'type',delai:'projet'}[d.champ];
+        if(retour){aller(retour);valider(retour);return;}
       }
-      var m=$('#ee-err'); m.textContent=EE.message(d); m.hidden=false;
+      m.textContent=EE.messageChamp(d); m.hidden=false; m.scrollIntoView({block:'center',behavior:'smooth'});
     });
   });
 
-  appliquerType(); aller('adresse',false);
-  /* adresse passée dans l'URL (?adresse=…) : on pré-remplit */
-  var q=new URLSearchParams(location.search).get('adresse'); if(q){inp.value=q;chercher(q);}
+  /* ---------- résultat, puis (après seulement) de quoi le retrouver ---------- */
+  function montrer(etat,defiler){
+    form.hidden=true;
+    $('#ee-res-box').innerHTML=EE.resultat(etat.resultat,etat.reference,etat.adresse);
+    var res=$('#ee-result'); res.hidden=false;
+    apres(etat);
+    EE.pictogramme();
+    if(defiler){ window.scrollTo({top:res.getBoundingClientRect().top+window.scrollY-90,behavior:'smooth'}); res.focus({preventScroll:true}); }
+  }
+  function apres(etat){
+    var e=etat.espace||{}, box=$('#ee-apres'), titre=$('#ee-apres-titre'), txt=$('#ee-apres-txt'), f=$('#ee-mdp-form'), lien=$('#ee-apres-espace');
+    var mail='<b>'+EE.esc(etat.email||'')+'</b>';
+    box.hidden=false; f.hidden=true; lien.hidden=false; lien.href=EE.CONF.espace;
+    if(e.connecte){
+      titre.innerHTML='Retrouvez-la <em>quand vous voulez.</em>';
+      if(e.nouveau){
+        txt.innerHTML='Votre espace est créé avec '+mail+' : cette estimation y est rangée, avec l\'avancement de votre dossier.'+(e.lien==='envoye'?' Un e-mail vient de partir avec votre estimation et un lien pour y revenir.':'');
+        if(!etat.mdp&&!e.mot_de_passe){
+          f.hidden=false;
+          $('#ee-mdp-hint').textContent=e.lien==='envoye'?'8 caractères au moins. Facultatif : le lien reçu par e-mail suffit.':'8 caractères au moins. Facultatif, mais utile pour retrouver votre estimation depuis un autre appareil.';
+        } else if(etat.mdp){ txt.innerHTML+=' Votre mot de passe est enregistré.'; }
+      } else {
+        txt.innerHTML='Cette estimation est ajoutée à votre espace.';
+      }
+    } else if(e.existant){
+      titre.innerHTML='Vous avez déjà <em>un espace.</em>';
+      lien.href=EE.CONF.espace+'?email='+encodeURIComponent(etat.email||'');
+      lien.firstChild.textContent='Me connecter ';
+      txt.innerHTML='Un espace existe déjà avec '+mail+' : cette estimation y est rangée.'+
+        (e.lien==='envoye'?' Ouvrez le lien que nous venons de vous envoyer par e-mail pour la retrouver.'
+          :e.en_attente?' Elle y apparaîtra dès que votre adresse e-mail sera confirmée : '+EE.esc(EE.CONF.conseiller)+' vous envoie un lien de connexion quand il vous appelle.'
+          :' Connectez-vous pour la retrouver.');
+    } else { box.hidden=true; }
+  }
+  EE.voirMdp(document);
+  $('#ee-mdp-form').addEventListener('submit',function(e){
+    e.preventDefault(); var f=this, i=$('#ee-mdp'), ko=$('.ee-err',f), ok=$('.ee-ok',f);
+    ko.hidden=true; ok.hidden=true;
+    if(!err(i,i.value.trim().length<8)){i.focus();return;}
+    var b=$('[type=submit]',f); b.disabled=true;
+    EE.api('/mot-de-passe/definir',{body:{mot_de_passe:i.value}}).then(function(d){
+      b.disabled=false;
+      if(d._status===200){
+        i.value=''; $('.field',f).hidden=true; $('.ee-nav',f).hidden=true;
+        ok.textContent='Mot de passe enregistré. Vous pourrez vous connecter avec votre e-mail et ce mot de passe.'; ok.hidden=false;
+        var m=EE.mem.lire(CLE_MEM); if(m&&m.fini){m.fini.mdp=true;EE.mem.ecrire(CLE_MEM,m);}
+        return;
+      }
+      ko.textContent=d.error==='connexion'?'Votre session a expiré. Ouvrez votre espace pour choisir un mot de passe.':EE.messageChamp(d); ko.hidden=false;
+    });
+  });
+  $('#ee-refaire').addEventListener('click',function(){ EE.mem.effacer(CLE_MEM); location.href=EE.CONF.estimer; });
+
+  /* ---------- mémoire du parcours : un rechargement ne fait rien perdre ---------- */
+  var tm=null;
+  function memoriserBientot(){ clearTimeout(tm); tm=setTimeout(function(){memoriser();},250); }
+  function memoriser(fini){
+    if(!pret)return;
+    var ancien=EE.mem.lire(CLE_MEM)||{};
+    var m={v:2,t0:T0,cle:CLE,cur:cur,R:R,civ:civ,libre:inp.dataset.libre||'',adresseSaisie:inp.value,
+      champs:{},compteurs:{},coches:{},autreOuvert:!$('#ee-autre').hidden,fini:fini||ancien.fini||null};
+    ['ee-surface','ee-terrain','ee-prix','ee-message','ee-prenom','ee-nom','ee-email','ee-tel'].forEach(function(id){var el=document.getElementById(id);if(el)m.champs[id]=el.value;});
+    $$('.ee-stp',form).forEach(function(s){m.compteurs[s.getAttribute('data-k')]=+s.getAttribute('data-v');});
+    $$('.ee-check input, #ee-consent',form).forEach(function(c){m.coches[c.name||c.id]=c.checked;});
+    EE.mem.ecrire(CLE_MEM,m);
+  }
+  function restaurer(){
+    var m=EE.mem.lire(CLE_MEM);
+    if(!m||m.v!==2||!m.t0||Date.now()-m.t0>DUREE_MEM){EE.mem.effacer(CLE_MEM);return false;}
+    T0=m.t0; CLE=m.cle||CLE; civ=m.civ||'';
+    Object.keys(m.R||{}).forEach(function(k){R[k]=m.R[k];});
+    Object.keys(m.champs||{}).forEach(function(id){var el=document.getElementById(id);if(el&&m.champs[id]!=null)el.value=m.champs[id];});
+    Object.keys(m.compteurs||{}).forEach(function(k){fixer(k,m.compteurs[k]);});
+    Object.keys(m.coches||{}).forEach(function(k){var c=form.querySelector('input[name="'+k+'"]')||document.getElementById(k);if(c)c.checked=!!m.coches[k];});
+    inp.value=m.adresseSaisie||R.adresse||''; if(m.libre)inp.dataset.libre=m.libre;
+    retenue();
+    presser($$('.ee-tile',form),function(x){return x.getAttribute('data-type')===R.type;});
+    presser($$('[data-autre]',form),function(x){return R.type==='autre'&&x.getAttribute('data-autre')===R.autre_type;});
+    if(m.autreOuvert||R.type==='autre'){$('#ee-autre').hidden=false;$('#ee-autre-btn').setAttribute('aria-expanded','true');}
+    $$('[data-choix]',form).forEach(function(g){var k=g.getAttribute('data-choix');presser($$('.ee-opt',g),function(x){return x.getAttribute('data-v')===R[k];});});
+    presser($$('[data-civ]',form),function(x){return x.getAttribute('data-civ')===civ;});
+    appliquerType();
+    if(m.fini){ pret=true; montrer(m.fini,false); return true; }
+    // on revient à l'étape en cours, sans dépasser la première étape incomplète
+    var seq=sequence(), cible=seq.indexOf(m.cur); if(cible<0)cible=0;
+    var i=0; pret=false;
+    while(i<cible&&valider(seq[i]))i++;
+    $$('.field.err',form).forEach(function(f){f.classList.remove('err');}); $('#ee-type-msg').hidden=true; $('#ee-type-msg').style.display='';
+    pret=true; aller(seq[i],false);
+    return true;
+  }
+
+  appliquerType();
+  if(!restaurer()){
+    pret=true; aller('adresse',false);
+    /* adresse passée dans l'URL (?adresse=…) : on pré-remplit */
+    var q=new URLSearchParams(location.search).get('adresse'); if(q){inp.value=q;chercher(q);}
+  }
 })();
 </script>
 </body>
