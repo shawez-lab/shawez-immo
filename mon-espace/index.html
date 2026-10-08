@@ -156,7 +156,7 @@ html[data-tone="dark"] #nav .brand .lg-ink{display:none;} html[data-tone="dark"]
 #nav .btn-primary span{color:var(--ground);} html[data-tone="dark"] #nav .btn-primary span{color:var(--night);}
 #burger{display:none;background:none;border:1px solid currentColor;color:inherit;border-radius:var(--r-pill);padding:0 14px;height:42px;cursor:pointer;font-size:.88rem;font-weight:600;}
 @media(max-width:1240px){.nav-links{display:none;} #burger{display:inline-flex;align-items:center;gap:8px;} .nav-cta .btn-primary{display:none;}}
-@media(max-width:480px){.brand small{display:none;} .nav-tel{display:none;}}
+.nav-tel{white-space:nowrap;flex-shrink:0;}@media(max-width:480px){.brand small{display:none;} .nav-tel{display:none;}}
 
 #menu{position:fixed;inset:0;z-index:150;background:var(--night);color:var(--night-ink);display:flex;flex-direction:column;padding:var(--s5) var(--gutter) var(--s7);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity var(--t-base) var(--ease),transform var(--t-base) var(--ease),visibility 0s linear var(--t-base);overflow:auto;}
 #menu.open{opacity:1;visibility:visible;transform:none;transition:opacity var(--t-base) var(--ease),transform var(--t-base) var(--ease);}
@@ -1982,8 +1982,11 @@ var EE=(function(){
         (res&&res.donnees_du?'<p class="ee-warn"><span>Données des ventes réelles (DVF) à jour de '+mois(res.donnees_du)+'.</span></p>':'');
     }
     if(ref)h+='<ul class="ee-facts ee-ref"><li><span>Référence</span><span data-test="reference">'+esc(ref)+'</span></li></ul>';
+    /* « Prendre rendez-vous » : appel sur téléphone ; sur ordinateur (un lien tel: n'y fait rien), WhatsApp avec le message prêt. */
+    var ordi=!!(window.matchMedia&&window.matchMedia('(hover: hover) and (pointer: fine)').matches);
+    var rdv=ordi?wa('Bonjour '+CONF.conseiller+', je viens de faire une estimation'+(ref?' (réf. '+ref+')':'')+', je voudrais un rendez-vous.'):'tel:'+CONF.tel;
     h+='<div class="btn-row">'+
-      '<a class="btn btn-primary btn-lg" href="tel:'+CONF.tel+'">Prendre rendez-vous <span class="arw">→</span></a>'+
+      '<a class="btn btn-primary btn-lg" data-test="rdv" href="'+rdv+'"'+(ordi?' target="_blank" rel="noopener"':'')+'>Prendre rendez-vous <span class="arw">→</span></a>'+
       '<a class="btn btn-ghost" href="'+wa('Bonjour '+CONF.conseiller+', je viens de faire mon estimation en ligne'+(ref?' (réf. '+ref+')':'')+'. ')+'" target="_blank" rel="noopener">WhatsApp</a>'+
     '</div>';
     return h;

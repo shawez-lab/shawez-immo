@@ -393,7 +393,8 @@ def synchronise(etat):
         mentions = list(dict.fromkeys(c['mentions'] + f['mentions_fiche']))
         vus_st = {STATUTS.get(m_.lower().strip()) for m_ in mentions}
         statut = 'vendu' if 'vendu' in vus_st else 'sous compromis' if 'sous compromis' in vus_st else 'en vente'
-        nouveau = {'ref': ref, 'id': c['id'], 'chemin': c['chemin'],   # remplacé par sa forme neutre avant l'écriture 'type': typ, 'commune': c['commune'], 'cp': c['cp'],
+        # « chemin » est remplacé par sa forme neutre avant l'écriture
+        nouveau = {'ref': ref, 'id': c['id'], 'chemin': c['chemin'], 'type': typ, 'commune': c['commune'], 'cp': c['cp'],
                    'prix': c['prix'], 'surface': surf, 'compo_agence': c['compo'], 'pieces': int(pieces) if pieces else None,
                    'caracteristiques': tab, 'energie': f['energie'], 'dpe': None,
                    'description_expurgee': expurge(f['description']), 'mentions_agence': mentions}
