@@ -1,0 +1,7 @@
+[31000,"LA CROIX DE CHEVRE","Ménessaire",26]
+[105500,"LE GOUSSET","Ménessaire",17]
+[40000,"LE VILLAGE","Ménessaire",14]
+[35000,"LE VILLAGE","Ménessaire",12]
+[14000,"LE VILLAGE","Ménessaire",5]
+[80000,"LE VILLAGE","Ménessaire",19]
+[61000,"LE VILLAGE","Ménessaire",15]

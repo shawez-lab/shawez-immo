@@ -93,7 +93,9 @@ test('étape 2 : créneaux de visite après le résultat, frise des 10 étapes d
   for (const f of ['avis-pdf.js', 'pdf-lib.min.js', 'fontkit.umd.min.js', 'familjen-400.woff', 'schibsted-600.woff', 'logo-gravelin-ink.png']) {
     expect((await request.get('/assets/avis/' + f)).status(), f).toBe(200);
   }
-  expect((await request.get('/donnees-dvf/d/100_946.json')).status()).toBe(200);
+  const detail = await request.get('/donnees-dvf/d/100_946.txt');
+  expect(detail.status()).toBe(200);
+  expect(JSON.parse((await detail.text()).split('\n')[0]).length).toBe(4);
   await supprimer(page);
 });
 

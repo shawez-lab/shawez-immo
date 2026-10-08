@@ -1,0 +1,6 @@
+[45000,"HAMEAU DE FONTAINEROT","Savilly",8]
+[80000,"LE VILLAGE","Savilly",30]
+[128000,"LE VILLAGE","Savilly",12]
+[74000,"LE VILLAGE","Villiers-en-Morvan",28]
+[83700,"LE VILLAGE","Villiers-en-Morvan",29]
+[50000,"CHAMP PEAU","Villiers-en-Morvan",22]

@@ -1,0 +1,3 @@
+[500950,"RUE DE GURGY","Buxerolles",13]
+[40000,"SEN DES ROCHES","Gurgy-le-Château",19]
+[124500,"RUE DU BOURG","Gurgy-le-Château",6]

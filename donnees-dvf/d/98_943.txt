@@ -1,0 +1,4 @@
+[350000,"CHEM DE LA BARBE BLANCHE","Nuits-Saint-Georges",30]
+[340000,"RUE DU LAVOIR","Nuits-Saint-Georges",27]
+[403325,"CHEM DES MENAS","Nuits-Saint-Georges",4]
+[269460,"RUE AMONT","Chambolle-Musigny",24]

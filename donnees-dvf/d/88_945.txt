@@ -1,0 +1,8 @@
+[198000,"RUE DE LA CHARRIERE","Marcilly-Ogny",31]
+[154500,"RUE DES PRES CORBEAUX","Marcilly-Ogny",20]
+[340000,"RUE DU CORRIDOR","Mont-Saint-Jean",26]
+[141500,"RUE DE LA CHAPELLE","Mont-Saint-Jean",16]
+[300000,"RUE DE GLANOT","Mont-Saint-Jean",7]
+[20000,"RUE DE GLANOT","Mont-Saint-Jean",5]
+[146920,"RUE DE MONTBERTHAULT","Mont-Saint-Jean",17]
+[171000,"RUE DU SERAIS","Mont-Saint-Jean",8]

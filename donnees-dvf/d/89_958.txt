@@ -1,0 +1,7 @@
+[230000,"FERME DE BELLEVUE","Pothières",27]
+[63000,"RUE DU SAUVAGE","Noiron-sur-Seine",21]
+[70000,"RLE GIROT","Noiron-sur-Seine",11]
+[75000,"RUE DU SAUVAGE","Noiron-sur-Seine",30]
+[59000,"RUE DES CROTS","Noiron-sur-Seine",25]
+[18500,"RUE DU CARON","Noiron-sur-Seine",23]
+[140000,"VOIE DE MUSSY","Noiron-sur-Seine",27]

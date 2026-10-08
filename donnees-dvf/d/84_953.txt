@@ -1,0 +1,8 @@
+[50000,"RUE DES FAUBOURGS","Rougemont",22]
+[135000,"SEN COMMUNAL DIT DE LA TOUR","Rougemont",14]
+[151700,"RUE DES FOSSES","Rougemont",30]
+[77000,"RUE DES JUIFS","Rougemont",1]
+[29500,"RUE GRANDE RUE","Rougemont",28]
+[86000,"PETITE RUE DES JUIFS","Rougemont",11]
+[60000,"RUE DE LA VERTE","Rougemont",29]
+[545000,"RUE DE LA FORGE","Rougemont",16]

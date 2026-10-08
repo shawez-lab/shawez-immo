@@ -1,0 +1,6 @@
+[70000,"LE VILLAGE","Champagny",20]
+[195000,"RENTE DU VAL DE LA SAULE","Vaux-Saules",18]
+[224400,"GRANDE RUE","Poncey-sur-l'Ignon",15]
+[99000,"RUE DE PELLEREY","Poncey-sur-l'Ignon",24]
+[15000,"CHE DE FONTENILLE","Poncey-sur-l'Ignon",9]
+[245000,"RUE HAUTE","Poncey-sur-l'Ignon",20]

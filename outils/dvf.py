@@ -13,8 +13,8 @@ Sortie : donnees-dvf/
   t/<x>_<y>.json        une tuile de 0,05° × 0,05° (environ 4 × 5,5 km) :
                         [[lat, lon, type, surface, prix_m2, aaaamm, pieces, terrain], ...]
                         type : 0 = appartement, 1 = maison ; terrain en m² (0 pour un appartement)
-  d/<x>_<y>.json        le détail des mêmes ventes, ligne pour ligne (même ordre que la tuile), pour l'avis de valeur :
-                        [[prix, voie, commune, jour], ...]  prix = valeur foncière en euros (le prix signé, tel que publié),
+  d/<x>_<y>.txt         le détail des mêmes ventes, une par ligne de texte (même ordre que la tuile), pour l'avis de valeur :
+                        [prix, voie, commune, jour]  prix = valeur foncière en euros (le prix signé, tel que publié),
                         voie = nom de la voie sans le numéro, jour = jour du mois de la vente
 
 Lancer : python3 outils/dvf.py  (ou --dossier <dossier contenant 21-<année>.csv.gz> pour travailler hors ligne)
@@ -163,8 +163,9 @@ def main():
         with open(os.path.join(tmp, 't', nom + '.json'), 'w') as f:
             json.dump([c[0] for c in lst], f, separators=(',', ':'))
         # le détail, ligne pour ligne : lu seulement pour préparer un avis de valeur (l'estimation en ligne ne le charge pas)
-        with open(os.path.join(tmp, 'd', nom + '.json'), 'w', encoding='utf-8') as f:
-            json.dump([c[1] for c in lst], f, ensure_ascii=False, separators=(',', ':'))
+        # une vente par ligne : l'API ne décode que les lignes dont elle a besoin (une douzaine), pas tout le fichier
+        with open(os.path.join(tmp, 'd', nom + '.txt'), 'w', encoding='utf-8') as f:
+            f.write('\n'.join(json.dumps(c[1], ensure_ascii=False, separators=(',', ':')) for c in lst))
     index = {
         'source': 'DVF géolocalisées (Etalab, DGFiP), Licence Ouverte 2.0',
         'departement': DEP,

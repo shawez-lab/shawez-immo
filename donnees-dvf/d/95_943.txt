@@ -1,0 +1,5 @@
+[296900,"RTE DE BEAUNE","Détain-et-Bruant",19]
+[21000,"RTE DE DETAIN","Détain-et-Bruant",1]
+[222000,"CHEM LARRET GANDEAU","Détain-et-Bruant",21]
+[115000,"RTE DE DETAIN","Détain-et-Bruant",24]
+[14000,"RTE DE COLLONGES","Détain-et-Bruant",23]
