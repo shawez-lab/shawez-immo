@@ -99,6 +99,34 @@ test('étape 2 : créneaux de visite après le résultat, frise des 10 étapes d
   await supprimer(page);
 });
 
+/* Étape 3 du système parfait, sur la vraie base, côté vendeur : son espace sait afficher offres, comptes rendus et
+   notaire (vides pour un dossier neuf), les nouvelles routes de l'agence lui sont fermées, /admin/ propose la connexion
+   par lien, la tâche horaire rend aussi les e-mails du matin. La saisie par l'agence est vérifiée par la série locale. */
+test('étape 3 : espace du vendeur prêt pour la suite, admin fermé, connexion de l\'agence par lien', async ({ page, request }) => {
+  expect(await (await request.get('/api/espace/taches')).json()).toMatchObject({ ok: true, courriers: expect.any(Number) });
+  const { reponse } = await estimationComplete(page, { adresse: '30 rue Bannelier Dijon' }, { prenom: 'Essai', nom: 'Automatique' });
+  const id = reponse.corps.demande_id;
+  expect(id).toBeGreaterThan(0);
+  const d = (await moi(page)).demandes[0];
+  expect(d).toMatchObject({ comptes_rendus: [], offres: [], notaire: null });
+  await page.goto('/mon-espace/');
+  const carte = page.locator('#me-cards .ee-card').first();
+  await expect(carte).toBeVisible();
+  // rien à montrer tant que rien n'est saisi
+  await expect(carte.locator('.ee-part')).toHaveCount(0);
+  await expect(carte.locator('.ee-files .lab')).toHaveText('Photos et documents');
+  for (const [chemin, corps] of [['/admin/compte-rendu', { demande: id, visite_le: '2026-10-01', texte: 'x', publie: true }], ['/admin/offre', { demande: id, montant: 200000 }], ['/admin/notaire', { demande: id, nom: 'x' }]]) {
+    expect((await api(page, chemin, corps))._status, chemin).toBe(403);
+  }
+  expect((await api(page, '/admin/suite?demande=' + id))._status).toBe(403);
+  await supprimer(page);
+  // sans connexion : /admin/ propose le lien de connexion (aucun envoi ici)
+  await page.goto('/admin/');
+  await expect(page.locator('#ad-lien')).toBeVisible();
+  await expect(page.locator('#ad-lien-btn')).toContainText('Recevoir mon lien de connexion');
+  await page.screenshot({ path: `captures/apercu-${test.info().project.name}-admin-connexion.png` });
+});
+
 test('le pictogramme est sur toutes les pages', async ({ page }) => {
   for (const p of ['/', '/estimer/', '/mon-espace/', '/vendre-bien-immobilier-dijon/', '/conseils-vendeurs/', '/contact/', '/honoraires/', '/avis/', '/biens-a-vendre-dijon/', '/simulateur-pret-immobilier-dijon/', '/mentions-legales/']) {
     await page.goto(p, { waitUntil: 'domcontentloaded' });

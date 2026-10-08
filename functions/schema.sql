@@ -80,3 +80,10 @@ CREATE TABLE IF NOT EXISTS reglages (
 --   demandes.resultat TEXT                  résultat complet affiché au client (JSON)
 --   sessions.prouve INTEGER DEFAULT 0       session ouverte par un lien reçu par e-mail
 -- comptes.mdp = '' : compte sans mot de passe (connexion par lien).
+
+-- Système parfait (tables ajoutées à côté des premières ; version notée dans reglages « schema_sp ») :
+--   étape 2 : evenements (journal de chaque dossier), visites (visite d'estimation), avis (avis de valeur)
+--             demandes.raison, demandes.statut_le
+--   étape 3 : comptes_rendus (visite_le, texte, publie, publie_le), offres (montant, recue_le, conditions, statut),
+--             notaires (nom, coordonnees, etapes en JSON), courriers (e-mails au vendeur gardés entre 21 h et 8 h)
+--             fichiers.libelle (nature d'un document déposé par l'agence : mandat, diagnostics, compromis…)

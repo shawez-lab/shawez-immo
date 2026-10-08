@@ -39,7 +39,7 @@ function nomPropre(brut, ext) {
 }
 
 /* Enregistre le corps de la requête comme fichier d'une demande. */
-export async function deposer(env, request, { demandeId, compteId, role, par, pdfSeul = false }) {
+export async function deposer(env, request, { demandeId, compteId, role, par, pdfSeul = false, libelle = null }) {
   const annonce = Number(request.headers.get('Content-Length') || 0);
   if (annonce > TAILLE_MAX) throw new Erreur(413, 'taille');
   const octets = new Uint8Array(await request.arrayBuffer());
@@ -56,7 +56,7 @@ export async function deposer(env, request, { demandeId, compteId, role, par, pd
   const f = {
     id: crypto.randomUUID().replace(/-/g, ''), demande_id: demandeId, compte_id: compteId, role,
     nom: nomPropre(request.headers.get('X-Fichier-Nom'), TYPES[type]), type, taille: octets.length,
-    blocs: 0, stockage: env.FICHIERS ? 'r2' : 'd1', depose_par: par, cree_le: maintenant(),
+    blocs: 0, stockage: env.FICHIERS ? 'r2' : 'd1', depose_par: par, cree_le: maintenant(), libelle: libelle || null,
   };
   if (env.FICHIERS) {
     await env.FICHIERS.put(`espace/${f.id}`, octets, { httpMetadata: { contentType: type } });
@@ -74,9 +74,9 @@ export async function deposer(env, request, { demandeId, compteId, role, par, pd
     }
   }
   await base.prepare(
-    `INSERT INTO fichiers (id, demande_id, compte_id, role, nom, type, taille, blocs, stockage, depose_par, cree_le)
-     VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11)`
-  ).bind(f.id, f.demande_id, f.compte_id, f.role, f.nom, f.type, f.taille, f.blocs, f.stockage, f.depose_par, f.cree_le).run();
+    `INSERT INTO fichiers (id, demande_id, compte_id, role, nom, type, taille, blocs, stockage, depose_par, cree_le, libelle)
+     VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12)`
+  ).bind(f.id, f.demande_id, f.compte_id, f.role, f.nom, f.type, f.taille, f.blocs, f.stockage, f.depose_par, f.cree_le, f.libelle).run();
   return f;
 }
 

@@ -1433,6 +1433,57 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 .ee-ventes b{font-weight:600;font-size:.92rem;}
 .ee-ventes small{font-size:.82rem;color:var(--muted);}
 .ee-ventes small i{font-style:normal;font-weight:600;color:#7E2C1F;}
+/* ---------- v4 (système parfait, étape 3) : comptes rendus de visite, offres, notaire, documents de la vente ---------- */
+/* vendeur : une partie par sujet, dans la carte du dossier */
+.ee-part{display:flex;flex-direction:column;gap:10px;padding-top:14px;border-top:1px solid var(--line);}
+.ee-part h4{font-family:var(--font-text);font-weight:600;font-size:.92rem;margin:0;display:flex;align-items:baseline;gap:8px;}
+.ee-part h4 small{font-weight:600;font-size:.74rem;color:var(--accent-text);}
+.ee-items{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;}
+.ee-items:empty{display:none;}
+.ee-items li{display:flex;flex-direction:column;gap:6px;padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--ground);min-width:0;}
+.ee-items .t{margin:0;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.ee-items .t b{font-weight:600;font-size:.96rem;}
+.ee-items .t b.prix{font-family:var(--font-display);font-weight:420;font-size:1.45rem;line-height:1.1;font-variant-numeric:tabular-nums;}
+.ee-items .txt{margin:0;font-size:.94rem;line-height:1.55;color:var(--ink-2);white-space:pre-line;overflow-wrap:anywhere;}
+.ee-items .meta{margin:0;font-size:.84rem;color:var(--muted);}
+.ee-items .ee-links{margin-top:2px;}
+.tag{flex:0 0 auto;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 9px;border-radius:99px;background:var(--stone);color:var(--ink-2);white-space:nowrap;}
+.tag.ok{background:rgba(47,122,79,.12);color:#215A39;}
+.tag.att{background:var(--accent-soft);color:var(--accent-text);}
+.ee-notaire{margin:0;display:flex;flex-direction:column;gap:2px;font-size:.92rem;color:var(--ink-2);}
+.ee-notaire b{font-family:var(--font-display);font-weight:420;font-size:1.15rem;color:var(--ink);}
+.ee-part .ee-frise ol{margin-top:0;border-top:1px solid var(--line);}
+.ee-part .ee-frise li span{min-width:0;}
+.ee-part .ee-frise>summary{margin-top:2px;}
+.ee-part details.ee-frise .ee-items{margin-top:8px;}
+/* agence : trois blocs repliables par dossier */
+.ee-suite{display:flex;flex-direction:column;gap:12px;}
+.ee-suite:empty{display:none;}
+.ee-plie>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:32px;}
+.ee-plie>summary::-webkit-details-marker{display:none;}
+.ee-plie>summary .lab{font-weight:600;font-size:.92rem;}
+.ee-plie>summary small{font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:10px;text-align:right;}
+.ee-plie>summary small::after{content:"";width:8px;height:8px;border:solid var(--ink-2);border-width:0 1.5px 1.5px 0;transform:translateY(-2px) rotate(45deg);transition:transform .2s;flex:0 0 auto;}
+.ee-plie[open]>summary small::after{transform:translateY(2px) rotate(-135deg);}
+.ee-plie>summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px;}
+.ee-plie-in{display:flex;flex-direction:column;gap:12px;padding-top:10px;}
+.ee-plie>summary .lab{flex:1 1 auto;}
+.ee-plie>summary small{flex:0 1 auto;}
+.ee-plie .ee-2{align-items:end;grid-template-columns:minmax(0,1fr) minmax(0,1fr);}
+.ee-plie .ee-2 input{min-width:0;}
+.ee-plie .ee-items li{background:var(--surface);}
+.ee-part .ee-frise li:last-child{border-bottom:0;}
+.ee-saisie{display:flex;flex-direction:column;gap:10px;padding-top:12px;border-top:1px solid var(--line);}
+.ee-plie[data-edit] .ee-saisie{border-top-color:var(--ink);}
+.ee-plie .field{gap:6px;}
+.ee-plie textarea{min-height:120px;}
+.ee-row .ee-items select{background:var(--ground);}
+.ee-etapes{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border-top:1px solid var(--line);}
+.ee-etapes li{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;padding:10px 0;border-bottom:1px solid var(--line);}
+.ee-etapes .ee-check-l{align-items:flex-start;color:var(--ink);font-weight:600;line-height:1.35;}
+.ee-etapes .ee-check-l input{margin-top:1px;}
+@media(min-width:560px){.ee-etapes li{grid-template-columns:minmax(0,1fr) 170px;align-items:center;}}
+.ee-files .field{gap:6px;}
 </style>
 </head>
 <body data-route="/mon-espace">
@@ -2036,7 +2087,7 @@ var EE=(function(){
     avis_absent:"Créez d'abord le PDF de l'avis de valeur."
   };
   function message(d){return MSG[d&&d.error]||MSG.serveur;}
-  var CHAMPS={email:"L'adresse e-mail n'est pas valide.",telephone:"Le numéro de téléphone n'est pas valide.",prenom:"Indiquez votre prénom.",nom:"Indiquez votre nom.",mot_de_passe:"Le mot de passe doit compter 8 caractères au moins.",consentement:"Cochez la case pour continuer.",adresse:"L'adresse du bien est incomplète.",surface:"La surface n'est pas valide.",confirmation:"Écrivez SUPPRIMER pour confirmer.",creneaux:"Ce créneau n'est plus proposé : choisissez-en un autre.",debut:"La date de la visite n'est pas valide.",prix_bas:"Indiquez la fourchette de prix (basse et haute).",prix_haut:"La valeur haute doit dépasser la valeur basse.",rdv_url:"Collez le lien de votre page de réservation Google Agenda (https://calendar.app.google/…).",atouts:"8 lignes au plus, 240 caractères par ligne.",vigilance:"8 lignes au plus, 240 caractères par ligne."};
+  var CHAMPS={email:"L'adresse e-mail n'est pas valide.",telephone:"Le numéro de téléphone n'est pas valide.",prenom:"Indiquez votre prénom.",nom:"Indiquez votre nom.",mot_de_passe:"Le mot de passe doit compter 8 caractères au moins.",consentement:"Cochez la case pour continuer.",adresse:"L'adresse du bien est incomplète.",surface:"La surface n'est pas valide.",confirmation:"Écrivez SUPPRIMER pour confirmer.",creneaux:"Ce créneau n'est plus proposé : choisissez-en un autre.",debut:"La date de la visite n'est pas valide.",prix_bas:"Indiquez la fourchette de prix (basse et haute).",prix_haut:"La valeur haute doit dépasser la valeur basse.",rdv_url:"Collez le lien de votre page de réservation Google Agenda (https://calendar.app.google/…).",atouts:"8 lignes au plus, 240 caractères par ligne.",vigilance:"8 lignes au plus, 240 caractères par ligne.",visite_le:"Indiquez la date de la visite (aujourd'hui au plus tard).",texte:"Écrivez ou dictez le compte rendu (3 000 caractères au plus).",montant:"Indiquez le montant de l'offre, en euros.",recue_le:"La date de l'offre n'est pas valide.",conditions:"Les conditions sont trop longues (1 500 caractères au plus).",etapes:"Une date d'étape n'est pas valide.",nom_notaire:"Le nom du notaire est trop long.",coordonnees:"Les coordonnées sont trop longues (300 caractères au plus)."};
   function messageChamp(d){return (d&&d.error==='champs'&&CHAMPS[d.champ])||message(d);}
 
   function wa(txt){return 'https://wa.me/'+CONF.tel.replace(/\D/g,'')+'?text='+encodeURIComponent(txt);}
@@ -2100,6 +2151,7 @@ var EE=(function(){
   /* ---------- Dates à l'heure de Paris (le vendeur peut être ailleurs : la visite, elle, est à Dijon) ---------- */
   function fr(iso,o){ o=o||{}; o.timeZone='Europe/Paris'; try{return new Date(iso).toLocaleDateString('fr-FR',o);}catch(e){return String(iso);} }
   function heure(iso){ try{ var p=new Intl.DateTimeFormat('fr-FR',{timeZone:'Europe/Paris',hour:'numeric',minute:'2-digit',hourCycle:'h23'}).formatToParts(new Date(iso)),h='',m=''; p.forEach(function(x){if(x.type==='hour')h=String(+x.value);if(x.type==='minute')m=x.value;}); return h+' h'+(m!=='00'?' '+m:''); }catch(e){return '';} }
+  function jourLong(j){ if(!j)return ''; try{return new Date(String(j).slice(0,10)+'T12:00:00Z').toLocaleDateString('fr-FR',{timeZone:'UTC',weekday:'long',day:'numeric',month:'long'});}catch(e){return String(j);} }
   function quand(iso){ return fr(iso,{weekday:'long',day:'numeric',month:'long'})+' à '+heure(iso); }
   function quandCourt(iso){ return fr(iso,{weekday:'short',day:'numeric',month:'short'}).replace(/\./g,'')+' '+heure(iso); }
 
@@ -2188,10 +2240,11 @@ var EE=(function(){
     return scripts[src];
   }
 
-  return {quand:quand,quandCourt:quandCourt,heure:heure,visite:visite,script:script,CONF:CONF,$:$,$$:$$,esc:esc,euros:euros,date:date,jour:jour,mois:mois,taille:taille,rayon:rayon,api:api,message:message,messageChamp:messageChamp,resultat:resultat,voirMdp:voirMdp,err:err,emailOk:emailOk,telOk:telOk,connecte:connecte,pictogramme:pictogramme,portraits:portraits,mem:mem,uuid:uuid,TEL:CONF.tel,wa:wa};
+  return {jourLong:jourLong,quand:quand,quandCourt:quandCourt,heure:heure,visite:visite,script:script,CONF:CONF,$:$,$$:$$,esc:esc,euros:euros,date:date,jour:jour,mois:mois,taille:taille,rayon:rayon,api:api,message:message,messageChamp:messageChamp,resultat:resultat,voirMdp:voirMdp,err:err,emailOk:emailOk,telOk:telOk,connecte:connecte,pictogramme:pictogramme,portraits:portraits,mem:mem,uuid:uuid,TEL:CONF.tel,wa:wa};
 })();
 
-/* /mon-espace/ : connexion (lien reçu par e-mail ou mot de passe), estimations, avancement, avis de valeur, photos et documents */
+/* /mon-espace/ : connexion (lien reçu par e-mail ou mot de passe), estimations, avancement, avis de valeur, photos et documents ;
+   après le mandat : offres, comptes rendus de visite, notaire, documents de la vente */
 (function(){
   'use strict';
   var $=EE.$, $$=EE.$$, err=EE.err, C=EE.CONF;
@@ -2235,14 +2288,36 @@ var EE=(function(){
     var img=/^image\/(jpeg|png|webp)$/.test(f.type);
     return '<li data-fid="'+EE.esc(f.id)+'">'+
       '<a href="'+lienFichier(f)+'"'+(img?' target="_blank" rel="noopener"':' download="'+EE.esc(f.nom)+'"')+'>'+(img?'<img src="'+lienFichier(f)+'" alt="" loading="lazy" width="56" height="56">':'<i aria-hidden="true">'+(f.type==='application/pdf'?'PDF':'DOC')+'</i>')+
-      '<span><b>'+EE.esc(f.nom)+'</b><small>'+EE.taille(f.taille)+(f.depose_par==='agence'?' · déposé par '+EE.esc(C.conseiller):'')+'</small></span></a>'+
+      '<span><b>'+EE.esc(f.libelle||f.nom)+'</b><small>'+(f.libelle?EE.esc(f.nom)+' · ':'')+EE.taille(f.taille)+(f.depose_par==='agence'?' · déposé par '+EE.esc(C.conseiller)+(f.cree_le?' le '+EE.jour(f.cree_le):''):'')+'</small></span></a>'+
       (f.depose_par==='client'?'<button type="button" data-suppr="'+EE.esc(f.id)+'" aria-label="Retirer '+EE.esc(f.nom)+'">Retirer</button>':'')+'</li>';
+  }
+  /* ---------- après le mandat : offres, comptes rendus de visite, notaire (affichés dès qu'il y a quelque chose) ---------- */
+  function partOffres(d){
+    var l=d.offres||[]; if(!l.length)return '';
+    return '<div class="ee-part" data-test="offres"><h4>'+(l.length>1?'Offres reçues':'Offre reçue')+'</h4><ul class="ee-items">'+l.map(function(o){
+      return '<li><p class="t"><b class="prix">'+EE.euros(o.montant)+'</b><span class="tag'+(o.statut==='acceptee'?' ok':o.statut==='etude'?' att':'')+'">'+EE.esc(o.statut_libelle)+'</span></p><p class="meta">Reçue le '+EE.jour(o.recue_le)+'</p>'+(o.conditions?'<p class="txt">'+EE.esc(o.conditions)+'</p>':'')+'</li>';
+    }).join('')+'</ul></div>';
+  }
+  function partComptesRendus(d){
+    var l=d.comptes_rendus||[]; if(!l.length)return '';
+    function un(c){ return '<li><p class="t"><b>Visite du '+EE.esc(EE.jourLong(c.visite_le))+'</b></p><p class="txt">'+EE.esc(c.texte)+'</p></li>'; }
+    return '<div class="ee-part" data-test="comptes-rendus"><h4>Comptes rendus de visite <small>'+l.length+'</small></h4><ul class="ee-items">'+l.slice(0,3).map(un).join('')+'</ul>'+
+      (l.length>3?'<details class="ee-frise"><summary>Voir les '+(l.length-3>1?(l.length-3)+' comptes rendus précédents':'le compte rendu précédent')+'</summary><ul class="ee-items">'+l.slice(3).map(un).join('')+'</ul></details>':'')+'</div>';
+  }
+  function partNotaire(d){
+    var n=d.notaire; if(!n)return '';
+    return '<div class="ee-part" data-test="notaire"><h4>Chez le notaire</h4>'+
+      (n.nom||n.coordonnees?'<p class="ee-notaire">'+(n.nom?'<b>'+EE.esc(n.nom)+'</b>':'')+(n.coordonnees?'<span>'+EE.esc(n.coordonnees)+'</span>':'')+'</p>':'')+
+      '<div class="ee-frise"><ol>'+(n.etapes||[]).map(function(e){
+        return '<li class="'+(e.fait?'fait':'avenir')+'"><span>'+EE.esc(e.libelle)+'</span>'+(e.le?'<small>'+(e.fait?'le ':'prévu le ')+EE.jour(e.le)+'</small>':e.fait?'<small>fait</small>':'')+'</li>';
+      }).join('')+'</ol></div></div>';
   }
   function carte(d){
     var rang=(d.parcours||[]).filter(function(e){return e.etat!=='avenir';}).length-1;
     DOSSIERS[d.id]=d;
     var titre=(TYPES[d.type]||'Bien')+(d.surface?' · '+d.surface+' m²':'')+(d.pieces?' · '+d.pieces+' p.':'');
-    var avis=(d.fichiers||[]).filter(function(f){return f.role==='avis';}), autres=(d.fichiers||[]).filter(function(f){return f.role!=='avis';});
+    var avis=(d.fichiers||[]).filter(function(f){return f.role==='avis';}), autres=(d.fichiers||[]).filter(function(f){return f.role!=='avis'&&f.depose_par!=='agence';});
+    var docs=(d.fichiers||[]).filter(function(f){return f.role!=='avis'&&f.depose_par==='agence';});
     return '<article class="ee-card" data-id="'+d.id+'">'+
       '<div><h3>'+EE.esc(titre)+'</h3><p class="meta">'+EE.esc(d.adresse||d.commune||'')+'</p></div>'+
       (d.prix_bas?'<div><p class="fp">'+EE.euros(d.prix_bas)+' – '+EE.euros(d.prix_haut)+'</p><p class="meta">Environ '+EE.euros(d.prix_m2)+'/m² · '+d.comparables+' ventes comparables'+(d.rayon?' à moins de '+EE.rayon(d.rayon):'')+(d.donnees_du?' · données à jour de '+EE.mois(d.donnees_du):'')+' · indicatif, à confirmer par une visite</p></div>'
@@ -2251,7 +2326,9 @@ var EE=(function(){
       '<div class="ee-rdv" data-rdv="'+d.id+'" hidden></div>'+
       (avis.length?'<div class="ee-avis">'+avis.map(function(f){return '<a class="btn btn-primary" href="'+lienFichier(f)+'" download="'+EE.esc(f.nom)+'">Télécharger mon avis de valeur (PDF) <span class="arw">↓</span></a>';}).join('')+'</div>'
         :rang>=3&&d.statut!=='close'&&d.statut!=='pause'?'<p class="meta">Votre avis de valeur vous a été remis ; il sera aussi déposé ici.</p>':'')+
-      '<div class="ee-files"><p class="lab">Photos et documents</p>'+
+      partOffres(d)+partComptesRendus(d)+partNotaire(d)+
+      (docs.length?'<div class="ee-part" data-test="documents"><h4>Documents de votre vente</h4><ul class="ee-flist">'+docs.map(fichier).join('')+'</ul></div>':'')+
+      '<div class="ee-files"><p class="lab">'+(docs.length?'Vos photos et documents':'Photos et documents')+'</p>'+
         '<ul class="ee-flist">'+autres.map(fichier).join('')+'</ul>'+
         '<label class="btn ee-add"><input type="file" multiple accept="image/jpeg,image/png,image/webp,image/heic,image/heif,application/pdf" data-ajout="'+d.id+'">Ajouter des photos ou des documents</label>'+
         '<p class="hint">Photos (JPEG, PNG, HEIC) ou PDF, 10 Mo au plus par fichier. Seuls '+EE.esc(C.conseiller)+' et l\'agence les voient.</p>'+
@@ -2409,7 +2486,7 @@ var EE=(function(){
   }
   $('#me-cards').addEventListener('change',function(e){
     var input=e.target.closest('[data-ajout]'); if(!input||!input.files||!input.files.length)return;
-    var card=input.closest('.ee-card'), zone=$('.ee-files',card), liste=$('.ee-flist',card), id=input.getAttribute('data-ajout');
+    var card=input.closest('.ee-card'), zone=$('.ee-files',card), liste=$('.ee-flist',zone), id=input.getAttribute('data-ajout');
     var fichiers=Array.prototype.slice.call(input.files), n=0, erreurs=[], lab=input.parentNode;
     msg(zone,''); lab.classList.add('busy'); input.disabled=true;
     function suite(){

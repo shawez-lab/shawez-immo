@@ -7,7 +7,14 @@
   <div class="shell">
     <div class="ee-wrap" id="ad-load" role="status" aria-label="Chargement"><div class="ee-load"></div></div>
     <div class="ee-wrap" id="ad-no" hidden>
-      <div class="ee-empty"><p style="margin:0;" id="ad-no-txt">Cet espace est réservé à l'agence. Connectez-vous avec votre compte administrateur.</p><a class="btn btn-primary" href="/mon-espace/" data-ee-lien="espace">Me connecter <span class="arw">→</span></a></div>
+      <form class="form" id="ad-lien" novalidate>
+        <div class="ee-step">
+          <div class="ee-head"><h2 class="ee-q">Ouvrir <em>l'espace agence.</em></h2><p class="ee-sub" id="ad-no-txt">Cet espace est réservé à l'agence. Indiquez votre adresse : vous recevez un lien qui l'ouvre, sans mot de passe.</p></div>
+          <div class="field"><label for="ad-email">E-mail de l'agence</label><input type="email" id="ad-email" autocomplete="username" inputmode="email" autocapitalize="off" autocorrect="off" spellcheck="false"><span class="msg">Indiquez votre adresse e-mail.</span></div>
+          <p class="ee-err" role="alert" hidden></p><p class="ee-ok" role="status" hidden></p>
+          <div class="ee-nav ee-nav-col"><button type="submit" class="btn btn-primary btn-lg" id="ad-lien-btn">Recevoir mon lien de connexion <span class="arw">→</span></button><a class="btn btn-lg" href="/mon-espace/" data-ee-lien="espace">Me connecter avec un mot de passe</a></div>
+        </div>
+      </form>
     </div>
     <div class="ee-wide" id="ad-in" hidden>
       <div class="ee-stats" id="ad-stats"></div>
