@@ -29,6 +29,7 @@ La recherche d'adresses est remplacée par des adresses de test (`tests/aides.mj
 | `08-visite-statuts` | visite d'estimation : 3 créneaux proposés après le résultat, alerte à l'agence, confirmation d'un clic, e-mail de confirmation (quoi préparer, plan de l'agence), déplacement, rappel la veille à 18 h (une seule fois) ; les 10 statuts : frise du vendeur, prochaine action et retard, e-mail court à chaque changement, sorties sans e-mail, journal, Google Sheet ; droits et validation |
 | `09-avis-de-valeur` | avis de valeur : ventes DVF réelles (prix signés), choix des ventes citées, PDF de 6 à 10 pages fabriqué dans la page, brouillon invisible pour le vendeur, validation en un clic (statut, espace, e-mail, journal) ; moins de 5 ventes : pas de fourchette proposée, rien sans celle de l'agent |
 | `10-accessibilite-etape2` | règles WCAG A et AA sur les nouveaux écrans ; choix d'un créneau au clavier |
+| `11-apres-mandat` | après le mandat : comptes rendus de visite (brouillon, publié, corrigé, supprimé ; le dossier passe à « Visites en cours »), offres (le dossier passe à « Offre reçue », prochaine action chiffrée et datée, acceptée ou refusée), notaire (étapes, date de l'acte), documents (nature) ; ce que voit le vendeur ; droits ; **heures calmes** (rien ne part au vendeur entre 21 h et 8 h, tout part à 8 h, une seule fois) ; /admin/ ouvert par un lien reçu par e-mail ; règles WCAG A et AA ; captures `etape3-*` |
 | `90-captures` | captures de chaque étape et du résultat → `captures/` ; rien ne dépasse de l'écran |
 
 ## Sur le site en ligne

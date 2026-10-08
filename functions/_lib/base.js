@@ -120,12 +120,52 @@ CREATE TABLE IF NOT EXISTS avis (
   fichier_id TEXT,
   prepare_le TEXT, valide_le TEXT, maj_le TEXT
 );
+CREATE TABLE IF NOT EXISTS comptes_rendus (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  demande_id INTEGER NOT NULL,
+  visite_le TEXT NOT NULL,
+  texte TEXT NOT NULL,
+  publie INTEGER NOT NULL DEFAULT 0,
+  publie_le TEXT,
+  cree_le TEXT NOT NULL, maj_le TEXT
+);
+CREATE INDEX IF NOT EXISTS comptes_rendus_demande ON comptes_rendus(demande_id);
+CREATE TABLE IF NOT EXISTS offres (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  demande_id INTEGER NOT NULL,
+  montant INTEGER NOT NULL,
+  recue_le TEXT NOT NULL,
+  conditions TEXT NOT NULL DEFAULT '',
+  statut TEXT NOT NULL DEFAULT 'etude',
+  decidee_le TEXT,
+  cree_le TEXT NOT NULL, maj_le TEXT
+);
+CREATE INDEX IF NOT EXISTS offres_demande ON offres(demande_id);
+CREATE TABLE IF NOT EXISTS notaires (
+  demande_id INTEGER PRIMARY KEY,
+  nom TEXT NOT NULL DEFAULT '',
+  coordonnees TEXT NOT NULL DEFAULT '',
+  etapes TEXT NOT NULL DEFAULT '{}',
+  maj_le TEXT
+);
+CREATE TABLE IF NOT EXISTS courriers (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  demande_id INTEGER NOT NULL,
+  motif TEXT NOT NULL,
+  contenu TEXT NOT NULL,
+  origine TEXT NOT NULL,
+  cree_le TEXT NOT NULL,
+  envoye_le TEXT
+);
 `;
 const COLONNES_SP = [
   ['demandes', 'raison', 'TEXT'],       // « Pas maintenant » ou « Perdu » : la raison notée par l'agence
   ['demandes', 'statut_le', 'TEXT'],    // date du dernier changement de statut
+  ['fichiers', 'libelle', 'TEXT'],      // nature d'un document déposé par l'agence (mandat, diagnostics, compromis…)
 ];
-const VERSION_SP = '1';
+/* 1 : étape 2 (journal, visites, avis de valeur). 2 : étape 3 (comptes rendus de visite, offres, notaire, e-mails
+   gardés pour le matin, nature des documents). */
+const VERSION_SP = '2';
 
 /* Les 10 statuts d'un dossier, dans l'ordre (jamais plus), et les deux sorties : « Pas maintenant » (relance programmée)
    et « Perdu » (raison notée). Les clés des cinq premiers statuts sont celles de la première version. */
@@ -190,7 +230,7 @@ export async function db(env) {
       await env.DB.prepare('CREATE UNIQUE INDEX IF NOT EXISTS demandes_cle ON demandes(cle)').run();
       await env.DB.prepare("INSERT INTO reglages (cle, valeur) VALUES ('schema', ?1) ON CONFLICT(cle) DO UPDATE SET valeur = ?1").bind(VERSION_SCHEMA).run();
     }
-    if (versionSp !== VERSION_SP) {
+    if (!(Number(versionSp) >= Number(VERSION_SP))) {
       await env.DB.batch(ordres(SCHEMA_SP));
       await colonnes(COLONNES_SP);
       await env.DB.prepare("INSERT INTO reglages (cle, valeur) VALUES ('schema_sp', ?1) ON CONFLICT(cle) DO UPDATE SET valeur = ?1").bind(VERSION_SP).run();

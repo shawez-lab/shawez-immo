@@ -1,8 +1,9 @@
-/* /admin/ : toutes les demandes des deux sites et tous les comptes ; statut, rappel, notes, fichiers, export CSV */
+/* /admin/ : toutes les demandes des deux sites et tous les comptes ; statut, rappel, notes, fichiers, export CSV ;
+   visite d'estimation, avis de valeur ; après le mandat : comptes rendus de visite, offres, documents, notaire */
 (function(){
   'use strict';
   var $=EE.$, $$=EE.$$, C=EE.CONF;
-  var D=[], Cp=[], STATUTS={}, TAILLE_MAX=10*1024*1024, MAIL_CLIENTS=false, AVIS={};
+  var D=[], Cp=[], STATUTS={}, TAILLE_MAX=10*1024*1024, MAIL_CLIENTS=false, AVIS={}, SUITE={}, OFFRES={}, DOCS={}, AUJ='';
   $$('[data-ee-lien]').forEach(function(a){var k=a.getAttribute('data-ee-lien');if(C[k])a.href=C[k];});
   $('#ad-export').href=C.api+'/admin/export.csv?quoi=demandes'; $('#ad-export-c').href=C.api+'/admin/export.csv?quoi=comptes';
   var LIB={
@@ -26,7 +27,7 @@
   }
   function lienFichier(f){return C.api+'/fichier?id='+encodeURIComponent(f.id);}
   function fichier(f){
-    return '<li data-fid="'+EE.esc(f.id)+'"><a href="'+lienFichier(f)+'" target="_blank" rel="noopener"><i aria-hidden="true">'+(f.role==='avis'?'AVIS':f.type==='application/pdf'?'PDF':'IMG')+'</i><span><b>'+EE.esc(f.nom)+'</b><small>'+EE.taille(f.taille)+' · '+(f.role==='avis'?'avis de valeur, visible par le vendeur':f.role==='brouillon'?'brouillon, invisible pour le vendeur':f.depose_par==='client'?'déposé par le client':'déposé par l\'agence')+' · '+EE.jour(f.cree_le)+'</small></span></a><button type="button" data-fsuppr="'+EE.esc(f.id)+'" aria-label="Retirer '+EE.esc(f.nom)+'">Retirer</button></li>';
+    return '<li data-fid="'+EE.esc(f.id)+'"><a href="'+lienFichier(f)+'" target="_blank" rel="noopener"><i aria-hidden="true">'+(f.role==='avis'?'AVIS':f.type==='application/pdf'?'PDF':'IMG')+'</i><span><b>'+EE.esc(f.nom)+'</b><small>'+EE.taille(f.taille)+' · '+(f.role==='avis'?'avis de valeur, visible par le vendeur':f.role==='brouillon'?'brouillon, invisible pour le vendeur':f.depose_par==='client'?'déposé par le client':(f.libelle?EE.esc(f.libelle)+' · ':'')+'déposé par l\'agence, visible par le vendeur')+' · '+EE.jour(f.cree_le)+'</small></span></a><button type="button" data-fsuppr="'+EE.esc(f.id)+'" aria-label="Retirer '+EE.esc(f.nom)+'">Retirer</button></li>';
   }
   function retard(d){ return !!(d.action&&d.action.retard); }
   function echeance(iso){ if(!iso)return ''; var j=EE.quandCourt(iso); return j; }
@@ -74,9 +75,11 @@
         '<div class="field"><label for="ad-no-'+d.id+'">Notes (visibles par l\'agence seulement)</label><textarea id="ad-no-'+d.id+'" data-f="notes" maxlength="5000">'+EE.esc(d.notes||'')+'</textarea></div>'+
         '<div class="acts"><button type="button" class="btn btn-primary" data-save>Enregistrer</button><span class="saved" role="status" hidden>Enregistré</span></div>'+
         blocAvis(d)+
+        '<div class="ee-suite" data-suite></div>'+
         '<div class="ee-files"><p class="lab">Fichiers du dossier</p><ul class="ee-flist">'+(d.fichiers||[]).map(fichier).join('')+'</ul>'+
           '<div class="acts"><label class="btn ee-add"><input type="file" accept="application/pdf" data-depot="avis">Déposer un avis de valeur fait ailleurs (PDF)</label><label class="btn ee-add"><input type="file" multiple accept="image/jpeg,image/png,image/webp,image/heic,image/heif,application/pdf" data-depot="document">Ajouter un document</label></div>'+
-          '<p class="hint">Le client voit l\'avis de valeur et les documents dans son espace. 10 Mo au plus par fichier.</p><p class="ee-err" role="alert" hidden></p><p class="ee-ok" role="status" hidden></p></div>'+
+          '<div class="field"><label for="ad-dn-'+d.id+'">Nature du prochain document</label><select id="ad-dn-'+d.id+'" data-doc-nature><option value="">Document</option>'+Object.keys(DOCS).map(function(k){return '<option value="'+k+'">'+EE.esc(DOCS[k])+'</option>';}).join('')+'</select></div>'+
+          '<p class="hint">Le vendeur voit l\'avis de valeur et les documents dans son espace (mandat, diagnostics, compromis…). 10 Mo au plus par fichier.</p><p class="ee-err" role="alert" hidden></p><p class="ee-ok" role="status" hidden></p></div>'+
         '<details class="ee-journal" data-journal><summary>Journal du dossier</summary><ul></ul></details>'+
         '<div class="ee-links">'+(d.suspect?'<button type="button" data-humain>Ce n\'est pas un robot</button>':'')+'<button type="button" class="ee-danger" data-dsuppr>Supprimer cette demande</button></div>'+
       '</div>'+
@@ -113,12 +116,13 @@
       $('#ad-load').hidden=true;
       if(r[0]._status!==200){
         $('#ad-no').hidden=false; $('#ad-in').hidden=true;
-        if(r[0].error==='admin_non_verifie')$('#ad-no-txt').textContent='Votre adresse doit être confirmée avant d\'ouvrir l\'espace agence : connectez-vous par le lien reçu par e-mail (Mon espace → « Recevoir mon lien de connexion »).';
+        if(r[0].error==='admin_non_verifie')$('#ad-no-txt').textContent='Votre adresse doit être confirmée avant d\'ouvrir l\'espace agence : demandez votre lien de connexion ci-dessous et ouvrez-le depuis votre boîte e-mail.';
         else if(r[0].error==='interdit')$('#ad-no-txt').textContent='Ce compte n\'a pas accès à l\'espace agence.';
         else if(r[0]._status!==401&&r[0]._status!==403)$('#ad-no-txt').textContent=EE.message(r[0]);
         return;
       }
       STATUTS=r[0].statuts; D=r[0].demandes; Cp=r[1].comptes||[]; if(r[0].taille_max)TAILLE_MAX=r[0].taille_max; MAIL_CLIENTS=!!r[0].email_clients;
+      OFFRES=r[0].statuts_offre||{}; DOCS=r[0].documents||{}; AUJ=r[0].aujourdhui||new Date().toISOString().slice(0,10); SUITE={};
       var ru=$('#ad-rdv-url'); if(ru&&document.activeElement!==ru)ru.value=r[0].rdv_url||'';
       var s=$('#ad-statut'), v=s.value;
       s.innerHTML='<option value="">Tous les statuts</option>'+Object.keys(STATUTS).map(function(k){return '<option value="'+k+'">'+EE.esc(STATUTS[k])+'</option>';}).join(''); s.value=v;
@@ -128,6 +132,8 @@
   $('#ad-q').addEventListener('input',filtrer); $('#ad-statut').addEventListener('change',filtrer); $('#ad-site').addEventListener('change',filtrer); $('#ad-qc').addEventListener('input',comptes);
   $$('[data-vue]').forEach(function(b){b.addEventListener('click',function(){var v=b.getAttribute('data-vue');['demandes','comptes','reglages'].forEach(function(k){$('#ad-'+k).hidden=v!==k;});$$('[data-vue]').forEach(function(x){x.setAttribute('aria-pressed',String(x===b));});});});
 
+  /* ce qu'il est advenu de l'e-mail au vendeur, en fin de message */
+  function mailTxt(m){ return m==='envoye'?' · e-mail envoyé au vendeur.':m==='differe'?' · e-mail au vendeur prévu à 8 h (rien ne part entre 21 h et 8 h).':MAIL_CLIENTS?'.':' · prévenez-le par téléphone (e-mails pas encore ouverts).'; }
   function note(row,t,ko){var s=$('.saved',row);s.hidden=false;s.style.color=ko?'#7E2C1F':'';s.textContent=t;if(!ko)setTimeout(function(){s.hidden=true;},2500);}
   function zoneMsg(zone,txt,ok){var e=$(ok?'.ee-ok':'.ee-err',zone),a=$(ok?'.ee-err':'.ee-ok',zone);a.hidden=true;e.textContent=txt||'';e.hidden=!txt;}
   function demande(id){return D.filter(function(k){return k.id===id;})[0];}
@@ -145,18 +151,28 @@
     var jr=$('[data-journal]',row); if(jr&&jr.open)journal(jr,x.id);
     stats();
   }
-  var TRACES={statut:'Statut',visite_demandee:'Créneaux proposés par le vendeur',visite_fixee:'Visite fixée',visite_annulee:'Visite annulée',visite_agenda:'Page de réservation ouverte par le vendeur',rappel_visite:'Rappel de visite',avis_prepare:'Avis de valeur : brouillon commencé',avis_envoye:'Avis de valeur envoyé',mail:'E-mail au vendeur'};
+  var TRACES={statut:'Statut',visite_demandee:'Créneaux proposés par le vendeur',visite_fixee:'Visite fixée',visite_annulee:'Visite annulée',visite_agenda:'Page de réservation ouverte par le vendeur',rappel_visite:'Rappel de visite',avis_prepare:'Avis de valeur : brouillon commencé',avis_envoye:'Avis de valeur envoyé',mail:'E-mail au vendeur',cr_publie:'Compte rendu de visite publié',cr_supprime:'Compte rendu de visite supprimé',offre_recue:'Offre reçue',offre_statut:'Offre',offre_supprimee:'Offre supprimée',notaire:'Notaire',document:'Document déposé'};
   function trace(e){
     var d=e.detail||{}, t=TRACES[e.type]||e.type;
     if(e.type==='statut')t='Statut : '+(STATUTS[e.vers]||e.vers)+(d.raison?' ('+d.raison+')':'');
     else if(e.type==='visite_fixee'&&d.debut)t='Visite fixée : '+EE.quandCourt(d.debut);
     else if(e.type==='visite_demandee'&&d.creneaux)t='Créneaux proposés : '+d.creneaux.map(EE.quandCourt).join(', ');
-    else if(e.type==='mail')t=(d.envoye?'E-mail envoyé : ':'E-mail non envoyé : ')+(d.sujet||'')+(d.envoye?'':d.raison==='email_clients_ferme'?' (envoi aux vendeurs pas encore ouvert)':d.raison==='adresse_de_test'?' (adresse d\'essai)':'');
+    else if(e.type==='mail')t=(d.envoye?'E-mail envoyé : ':'E-mail non envoyé : ')+(d.sujet||'')+(d.envoye?'':d.raison==='email_clients_ferme'?' (envoi aux vendeurs pas encore ouvert)':d.raison==='adresse_de_test'?' (adresse d\'essai)':d.raison==='heures_calmes'?' (gardé pour 8 h)':d.raison==='perime'?' (plus d\'actualité)':'');
     else if(e.type==='rappel_visite')t='Rappel de visite '+(d.envoye?'envoyé':'non envoyé');
+    else if(e.type==='cr_publie')t='Compte rendu publié (visite du '+EE.jour(d.visite_le)+(d.soir_meme?', le jour même':'')+')';
+    else if(e.type==='offre_recue')t='Offre reçue : '+EE.euros(d.montant);
+    else if(e.type==='offre_statut')t='Offre de '+EE.euros(d.montant)+' : '+String(OFFRES[d.statut]||d.statut).toLowerCase();
+    else if(e.type==='offre_supprimee')t='Offre supprimée : '+EE.euros(d.montant);
+    else if(e.type==='notaire')t='Notaire'+(d.nom?' : '+d.nom:'')+((d.faites||[]).length?' · '+d.faites.join(', '):'')+(d.rdv?' · acte prévu le '+EE.jour(d.rdv):'');
+    else if(e.type==='document')t='Document déposé : '+(d.libelle?d.libelle+' · ':'')+(d.nom||'');
     return '<li><span>'+EE.esc(t)+'</span><span>'+EE.esc(EE.quandCourt(e.cree_le))+'</span></li>';
   }
   function journal(det,id){ EE.api('/admin/journal?demande='+id).then(function(d){ $('ul',det).innerHTML=d._status===200?d.journal.map(trace).join(''):'<li><span>'+EE.esc(EE.message(d))+'</span><span></span></li>'; }); }
-  $('#ad-rows').addEventListener('toggle',function(e){ var det=e.target; if(det&&det.hasAttribute&&det.hasAttribute('data-journal')&&det.open)journal(det,+det.closest('.ee-row').getAttribute('data-id')); },true);
+  $('#ad-rows').addEventListener('toggle',function(e){
+    var det=e.target; if(!det||!det.hasAttribute||!det.open)return;
+    if(det.hasAttribute('data-journal'))journal(det,+det.closest('.ee-row').getAttribute('data-id'));
+    else if(det.classList.contains('ee-row'))suiteCharger(det,+det.getAttribute('data-id'));
+  },true);
   $('#ad-rows').addEventListener('change',function(e){ var s=e.target.closest('[data-f=statut]'); if(!s)return; var row=s.closest('.ee-row'); $('[data-raison-f]',row).hidden=!(s.value==='pause'||s.value==='close'); });
 
   /* ---------- avis de valeur : brouillon, PDF fabriqué dans le navigateur, validation en un clic ---------- */
@@ -251,11 +267,193 @@
       maj(row,x,d.demande);
       b.hidden=true;
       $('[data-avis-etat]',row).textContent='Envoyé au vendeur le '+EE.jour(new Date().toISOString())+'.';
-      zoneMsg(ed,'Avis de valeur déposé dans l\'espace du vendeur'+(d.mail==='envoye'?' · e-mail envoyé.':MAIL_CLIENTS?'.':' · prévenez-le par téléphone (e-mails pas encore ouverts).'),true);
+      zoneMsg(ed,'Avis de valeur déposé dans l\'espace du vendeur'+(d.mail==='envoye'?' · e-mail envoyé.':mailTxt(d.mail)),true);
     });
   }
+
+  /* ---------- après le mandat : comptes rendus de visite, offres, notaire (chargés à l'ouverture du dossier) ---------- */
+  function prevenirCase(attr,txt){ return '<label class="ee-check-l"><input type="checkbox" '+attr+(MAIL_CLIENTS?' checked':' disabled')+'>'+(MAIL_CLIENTS?txt:'E-mails aux vendeurs pas encore ouverts : prévenez-le par téléphone')+'</label>'; }
+  function tete(titre,compte){ return '<summary><span class="lab">'+titre+'</span><small>'+EE.esc(compte)+'</small></summary><div class="ee-plie-in">'; }
+  function pluriel(n,un,des){ return n+' '+(n>1?des:un); }
+  function blocCr(id,s,ouvert){
+    var l=s.comptes_rendus||[], pub=l.filter(function(c){return c.publie;}).length, p='ad-cr-'+id+'-';
+    return '<details class="ee-bloc ee-plie" data-bloc="cr"'+(ouvert?' open':'')+'>'+tete('Comptes rendus de visite',l.length?pluriel(pub,'publié','publiés')+(l.length>pub?' · '+pluriel(l.length-pub,'brouillon','brouillons'):''):'aucun')+
+      '<p class="hint">Après chaque visite, le soir même : dictez trois lignes, publiez. Le vendeur les lit dans son espace.</p>'+
+      '<ul class="ee-items">'+l.map(function(c){
+        return '<li data-cr="'+c.id+'"><p class="t"><b>Visite du '+EE.esc(EE.jourLong(c.visite_le))+'</b><span class="tag'+(c.publie?' ok':'')+'">'+(c.publie?'Publié':'Brouillon')+'</span></p><p class="txt">'+EE.esc(c.texte)+'</p>'+
+          '<div class="ee-links">'+(c.publie?'':'<button type="button" data-cr-publier>Publier</button>')+'<button type="button" data-cr-modifier>Modifier</button><button type="button" class="ee-danger" data-cr-suppr>Supprimer</button></div></li>';
+      }).join('')+'</ul>'+
+      '<div class="ee-saisie" data-saisie>'+
+        '<div class="field"><label for="'+p+'d">Date de la visite</label><input type="date" id="'+p+'d" data-cr-f="visite_le" max="'+AUJ+'" value="'+AUJ+'"></div>'+
+        '<div class="field"><label for="'+p+'t">Compte rendu <small>(dictez : le texte est repris tel quel)</small></label><textarea id="'+p+'t" data-cr-f="texte" maxlength="3000"></textarea></div>'+
+        '<label class="ee-check-l"><input type="checkbox" data-cr-f="publie" checked>Publier tout de suite dans l\'espace du vendeur</label>'+
+        prevenirCase('data-cr-f="prevenir"','Le prévenir par e-mail à la publication')+
+        '<p class="ee-err" role="alert" hidden></p><p class="ee-ok" role="status" hidden></p>'+
+        '<div class="acts"><button type="button" class="btn btn-primary" data-cr-save>Enregistrer le compte rendu</button><button type="button" class="btn" data-annuler hidden>Annuler</button></div>'+
+      '</div></div></details>';
+  }
+  function blocOffres(id,s,ouvert){
+    var l=s.offres||[], p='ad-of-'+id+'-', etude=l.filter(function(o){return o.statut==='etude';}).length;
+    return '<details class="ee-bloc ee-plie" data-bloc="offres"'+(ouvert?' open':'')+'>'+tete('Offres',l.length?pluriel(l.length,'offre','offres')+(etude?' · '+etude+' à l\'étude':''):'aucune')+
+      '<p class="hint">Chaque offre reçue, dès qu\'elle arrive. Le vendeur la voit dans son espace : montant, date, conditions, où elle en est.</p>'+
+      '<ul class="ee-items">'+l.map(function(o){
+        return '<li data-of="'+o.id+'"><p class="t"><b>'+EE.euros(o.montant)+'</b><span class="tag'+(o.statut==='acceptee'?' ok':o.statut==='etude'?' att':'')+'">'+EE.esc(o.statut_libelle)+'</span></p><p class="meta">Reçue le '+EE.jour(o.recue_le)+'</p>'+(o.conditions?'<p class="txt">'+EE.esc(o.conditions)+'</p>':'')+
+          '<div class="field"><label for="'+p+'s'+o.id+'">Où en est cette offre</label><select id="'+p+'s'+o.id+'" data-of-statut>'+Object.keys(OFFRES).map(function(k){return '<option value="'+k+'"'+(k===o.statut?' selected':'')+'>'+EE.esc(OFFRES[k])+'</option>';}).join('')+'</select></div>'+
+          '<div class="ee-links"><button type="button" data-of-modifier>Modifier</button><button type="button" class="ee-danger" data-of-suppr>Supprimer</button></div></li>';
+      }).join('')+'</ul>'+
+      '<div class="ee-saisie" data-saisie>'+
+        '<div class="ee-2"><div class="field"><label for="'+p+'m">Montant (€)</label><input type="number" inputmode="numeric" id="'+p+'m" data-of-f="montant" min="1000" step="500"></div>'+
+        '<div class="field"><label for="'+p+'d">Reçue le</label><input type="date" id="'+p+'d" data-of-f="recue_le" max="'+AUJ+'" value="'+AUJ+'"></div></div>'+
+        '<div class="field"><label for="'+p+'c">Conditions <small>(financement, délai, conditions suspensives)</small></label><textarea id="'+p+'c" data-of-f="conditions" maxlength="1500"></textarea></div>'+
+        prevenirCase('data-of-f="prevenir"','Prévenir le vendeur par e-mail')+
+        '<p class="ee-err" role="alert" hidden></p><p class="ee-ok" role="status" hidden></p>'+
+        '<div class="acts"><button type="button" class="btn btn-primary" data-of-save>Enregistrer l\'offre</button><button type="button" class="btn" data-annuler hidden>Annuler</button></div>'+
+      '</div></div></details>';
+  }
+  function blocNotaire(id,s,ouvert){
+    var n=s.notaire||{etapes:[]}, p='ad-nt-'+id+'-', faites=(n.etapes||[]).filter(function(e){return e.fait;}).length;
+    return '<details class="ee-bloc ee-plie" data-bloc="notaire"'+(ouvert?' open':'')+'>'+tete('Notaire',n.nom?n.nom+(faites?' · '+pluriel(faites,'étape passée','étapes passées'):''):'à renseigner')+
+      '<p class="hint">Du compromis à l\'acte : le vendeur voit le notaire et chaque étape passée dans son espace.</p>'+
+      '<div class="field"><label for="'+p+'n">Notaire</label><input type="text" id="'+p+'n" data-nt-f="nom" maxlength="120" placeholder="Maître …" value="'+EE.esc(n.nom||'')+'"></div>'+
+      '<div class="field"><label for="'+p+'c">Coordonnées de l\'étude <small>(adresse, téléphone)</small></label><input type="text" id="'+p+'c" data-nt-f="coordonnees" maxlength="300" value="'+EE.esc(n.coordonnees||'')+'"></div>'+
+      '<ul class="ee-etapes">'+(n.etapes||[]).map(function(e){
+        return '<li data-nt-etape="'+EE.esc(e.cle)+'"><label class="ee-check-l"><input type="checkbox" data-nt-fait'+(e.fait?' checked':'')+'>'+EE.esc(e.libelle)+'</label><input type="date" data-nt-le value="'+EE.esc(e.le||'')+'" aria-label="Date : '+EE.esc(e.libelle)+'"></li>';
+      }).join('')+'</ul>'+
+      '<p class="hint">Cochez une étape quand elle est passée. Une date sans coche : c\'est la date prévue.</p>'+
+      prevenirCase('data-nt-f="prevenir"','Prévenir le vendeur par e-mail quand une étape passe')+
+      '<p class="ee-err" role="alert" hidden></p><p class="ee-ok" role="status" hidden></p>'+
+      '<div class="acts"><button type="button" class="btn btn-primary" data-nt-save>Enregistrer</button></div>'+
+    '</div></details>';
+  }
+  function suiteRendre(row,id){
+    var z=$('[data-suite]',row), s=SUITE[id], x=demande(id)||{}; if(!z||!s)return;
+    var etat={}; $$('details[data-bloc]',z).forEach(function(d){etat[d.getAttribute('data-bloc')]=d.open;});
+    function o(k,statuts){ return etat[k]!==undefined?etat[k]:statuts.indexOf(x.statut)>=0; }
+    z.innerHTML=blocCr(id,s,o('cr',['annonce','visites']))+blocOffres(id,s,o('offres',['visites','offre']))+blocNotaire(id,s,o('notaire',['offre','compromis']));
+  }
+  function suiteCharger(row,id){
+    var z=$('[data-suite]',row); if(!z)return;
+    if(SUITE[id]){ if(!z.firstChild)suiteRendre(row,id); return; }
+    z.innerHTML='<div class="ee-load" style="height:64px;" role="status" aria-label="Chargement"></div>';
+    EE.api('/admin/suite?demande='+id).then(function(d){
+      if(d._status!==200){z.innerHTML='<p class="ee-err">'+EE.esc(EE.message(d))+'</p>';return;}
+      SUITE[id]=d; suiteRendre(row,id);
+    });
+  }
+  function ranger(l,cle){ return l.sort(function(a,b){ return a[cle]===b[cle]?b.id-a.id:(a[cle]<b[cle]?1:-1); }); }
+  /* après un enregistrement : la liste à jour, la ligne du dossier (statut, prochaine action), le message */
+  function suiteApres(row,id,bloc,d,txt){
+    suiteRendre(row,id); maj(row,demande(id),d.demande);
+    zoneMsg($('[data-bloc='+bloc+']',row),txt,true);
+  }
+  function confirmer(b,txt){ if(b.getAttribute('data-ok')==='1')return true; b.setAttribute('data-ok','1'); b.textContent=txt; return false; }
+  function suiteClic(e,row,id){
+    var t=e.target.closest('button'); if(!t)return false;
+    var zone=t.closest('details[data-bloc]'); if(!zone||!SUITE[id])return false;
+    var s=SUITE[id], li=t.closest('li'), f;
+    /* --- comptes rendus --- */
+    if(t.hasAttribute('data-cr-save')){
+      f=function(k){return $('[data-cr-f='+k+']',zone);};
+      var c={visite_le:f('visite_le').value,texte:f('texte').value,publie:f('publie').checked,prevenir:f('prevenir').checked}, ce=zone.getAttribute('data-edit');
+      if(ce)c.id=+ce; else c.demande=id;
+      if(!c.visite_le){zoneMsg(zone,'Indiquez la date de la visite.');f('visite_le').focus();return true;}
+      if(!c.texte.trim()){zoneMsg(zone,'Écrivez ou dictez le compte rendu.');f('texte').focus();return true;}
+      t.disabled=true;
+      EE.api('/admin/compte-rendu',{body:c}).then(function(d){
+        t.disabled=false;
+        if(d._status>=300){zoneMsg(zone,EE.messageChamp(d));return;}
+        s.comptes_rendus=ranger(s.comptes_rendus.filter(function(k){return k.id!==d.compte_rendu.id;}).concat([d.compte_rendu]),'visite_le');
+        suiteApres(row,id,'cr',d,!d.compte_rendu.publie?'Brouillon enregistré : le vendeur ne le voit pas encore.':ce&&d.mail==='non'?'Compte rendu modifié.':'Compte rendu publié dans l\'espace du vendeur'+mailTxt(d.mail));
+      });
+      return true;
+    }
+    if(t.hasAttribute('data-cr-publier')){
+      t.disabled=true;
+      EE.api('/admin/compte-rendu',{body:{id:+li.getAttribute('data-cr'),publie:true,prevenir:$('[data-cr-f=prevenir]',zone).checked}}).then(function(d){
+        t.disabled=false;
+        if(d._status!==200){zoneMsg(zone,EE.messageChamp(d));return;}
+        s.comptes_rendus=s.comptes_rendus.map(function(k){return k.id===d.compte_rendu.id?d.compte_rendu:k;});
+        suiteApres(row,id,'cr',d,'Compte rendu publié dans l\'espace du vendeur'+mailTxt(d.mail));
+      });
+      return true;
+    }
+    if(t.hasAttribute('data-cr-modifier')){
+      var cr=s.comptes_rendus.filter(function(k){return k.id===+li.getAttribute('data-cr');})[0]; if(!cr)return true;
+      zone.setAttribute('data-edit',cr.id);
+      $('[data-cr-f=visite_le]',zone).value=cr.visite_le; $('[data-cr-f=texte]',zone).value=cr.texte; $('[data-cr-f=publie]',zone).checked=!!cr.publie;
+      $('[data-cr-save]',zone).textContent='Enregistrer les changements'; $('[data-annuler]',zone).hidden=false; $('[data-cr-f=texte]',zone).focus();
+      return true;
+    }
+    if(t.hasAttribute('data-cr-suppr')){
+      if(!confirmer(t,'Confirmer la suppression'))return true;
+      var cid=+li.getAttribute('data-cr');
+      EE.api('/admin/compte-rendu',{body:{id:cid,supprimer:true}}).then(function(d){
+        if(d._status!==200){zoneMsg(zone,EE.message(d));return;}
+        s.comptes_rendus=s.comptes_rendus.filter(function(k){return k.id!==cid;}); suiteRendre(row,id); zoneMsg($('[data-bloc=cr]',row),'Compte rendu supprimé.',true);
+      });
+      return true;
+    }
+    /* --- offres --- */
+    if(t.hasAttribute('data-of-save')){
+      f=function(k){return $('[data-of-f='+k+']',zone);};
+      var o={montant:f('montant').value,recue_le:f('recue_le').value,conditions:f('conditions').value,prevenir:f('prevenir').checked}, oe=zone.getAttribute('data-edit');
+      if(oe)o.id=+oe; else o.demande=id;
+      if(!(+o.montant>=1000)){zoneMsg(zone,'Indiquez le montant de l\'offre, en euros.');f('montant').focus();return true;}
+      t.disabled=true;
+      EE.api('/admin/offre',{body:o}).then(function(d){
+        t.disabled=false;
+        if(d._status>=300){zoneMsg(zone,EE.messageChamp(d));return;}
+        s.offres=ranger(s.offres.filter(function(k){return k.id!==d.offre.id;}).concat([d.offre]),'recue_le');
+        suiteApres(row,id,'offres',d,oe?'Offre modifiée.':'Offre enregistrée : le vendeur la voit dans son espace'+mailTxt(d.mail));
+      });
+      return true;
+    }
+    if(t.hasAttribute('data-of-modifier')){
+      var of=s.offres.filter(function(k){return k.id===+li.getAttribute('data-of');})[0]; if(!of)return true;
+      zone.setAttribute('data-edit',of.id);
+      $('[data-of-f=montant]',zone).value=of.montant; $('[data-of-f=recue_le]',zone).value=of.recue_le; $('[data-of-f=conditions]',zone).value=of.conditions||'';
+      $('[data-of-save]',zone).textContent='Enregistrer les changements'; $('[data-annuler]',zone).hidden=false; $('[data-of-f=montant]',zone).focus();
+      return true;
+    }
+    if(t.hasAttribute('data-of-suppr')){
+      if(!confirmer(t,'Confirmer la suppression'))return true;
+      var oid=+li.getAttribute('data-of');
+      EE.api('/admin/offre',{body:{id:oid,supprimer:true}}).then(function(d){
+        if(d._status!==200){zoneMsg(zone,EE.message(d));return;}
+        s.offres=s.offres.filter(function(k){return k.id!==oid;}); suiteApres(row,id,'offres',d,'Offre supprimée.');
+      });
+      return true;
+    }
+    /* --- notaire --- */
+    if(t.hasAttribute('data-nt-save')){
+      var etapes={}; $$('[data-nt-etape]',zone).forEach(function(l){ etapes[l.getAttribute('data-nt-etape')]={fait:$('[data-nt-fait]',l).checked,le:$('[data-nt-le]',l).value}; });
+      t.disabled=true;
+      EE.api('/admin/notaire',{body:{demande:id,nom:$('[data-nt-f=nom]',zone).value,coordonnees:$('[data-nt-f=coordonnees]',zone).value,etapes:etapes,prevenir:$('[data-nt-f=prevenir]',zone).checked}}).then(function(d){
+        t.disabled=false;
+        if(d._status!==200){zoneMsg(zone,EE.messageChamp(d));return;}
+        s.notaire=d.notaire; suiteRendre(row,id);
+        zoneMsg($('[data-bloc=notaire]',row),'Enregistré : le vendeur le voit dans son espace'+(d.mail==='non'?'.':mailTxt(d.mail)),true);
+      });
+      return true;
+    }
+    if(t.hasAttribute('data-annuler')){ zone.removeAttribute('data-edit'); suiteRendre(row,id); return true; }
+    return false;
+  }
+  /* une offre change d'état (à l'étude, acceptée, refusée…) : enregistré dès le choix */
+  $('#ad-rows').addEventListener('change',function(e){
+    var sel=e.target.closest('[data-of-statut]'); if(!sel)return;
+    var row=sel.closest('.ee-row'), id=+row.getAttribute('data-id'), oid=+sel.closest('li').getAttribute('data-of'), zone=sel.closest('details[data-bloc]');
+    sel.disabled=true;
+    EE.api('/admin/offre',{body:{id:oid,statut:sel.value}}).then(function(d){
+      sel.disabled=false;
+      if(d._status!==200){zoneMsg(zone,EE.messageChamp(d));return;}
+      SUITE[id].offres=SUITE[id].offres.map(function(k){return k.id===oid?d.offre:k;});
+      suiteApres(row,id,'offres',d,'Offre de '+EE.euros(d.offre.montant)+' : '+String(d.offre.statut_libelle).toLowerCase()+'. Le vendeur le voit dans son espace.');
+    });
+  });
   $('#ad-rows').addEventListener('click',function(e){
     var row=e.target.closest('.ee-row'); if(!row)return; var id=+row.getAttribute('data-id'), x=demande(id);
+    if(suiteClic(e,row,id))return;
     var b=e.target.closest('[data-save]');
     if(b){
       var corps={id:id,statut:$('[data-f=statut]',row).value,notes:$('[data-f=notes]',row).value,rappel_le:$('[data-f=rappel_le]',row).value,raison:$('[data-f=raison]',row).value,prevenir:$('[data-f=prevenir]',row).checked};
@@ -264,7 +462,7 @@
         b.disabled=false;
         if(d._status!==200){note(row,EE.messageChamp(d),true);return;}
         maj(row,x,d.demande);
-        note(row,d.mail==='envoye'?'Enregistré · e-mail envoyé au vendeur':'Enregistré');
+        note(row,d.mail==='envoye'?'Enregistré · e-mail envoyé au vendeur':d.mail==='differe'?'Enregistré · e-mail au vendeur prévu à 8 h':'Enregistré');
       });
       return;
     }
@@ -282,7 +480,7 @@
         vf.disabled=false;
         if(d._status!==200){zoneMsg(zone,EE.messageChamp(d));return;}
         maj(row,x,d.demande);
-        zoneMsg($('[data-bloc=visite]',row),corpsV.annuler?'Visite annulée.':'Visite fixée'+(d.mail==='envoye'?' · confirmation envoyée au vendeur par e-mail.':MAIL_CLIENTS?'.':' · prévenez le vendeur par téléphone (e-mails pas encore ouverts).'),true);
+        zoneMsg($('[data-bloc=visite]',row),corpsV.annuler?'Visite annulée.':'Visite fixée'+(d.mail==='envoye'?' · confirmation envoyée au vendeur par e-mail.':mailTxt(d.mail)),true);
       });
       return;
     }
@@ -320,7 +518,7 @@
       var f=fichiers[n++];
       if(f.size>TAILLE_MAX){erreurs.push(f.name+' : plus de 10 Mo.');return suite();}
       zoneMsg(zone,'Envoi '+n+' sur '+fichiers.length+'…',true);
-      EE.api('/admin/fichier?demande='+id+'&role='+role,{fichier:f,nom:f.name,delai:120000}).then(function(d){
+      EE.api('/admin/fichier?demande='+id+'&role='+role+(role==='document'&&$('[data-doc-nature]',row).value?'&libelle='+$('[data-doc-nature]',row).value:''),{fichier:f,nom:f.name,delai:120000}).then(function(d){
         if(d._status===201){
           liste.insertAdjacentHTML('beforeend',fichier(d.fichier)); if(x){(x.fichiers=x.fichiers||[]).push(d.fichier);}
           if(d.statut&&x&&x.statut!==d.statut){x.statut=d.statut;$('[data-f=statut]',row).value=d.statut;var st=$('summary .st',row);st.className='st '+d.statut;st.textContent=STATUTS[d.statut];stats();}
@@ -367,7 +565,25 @@
       out.className='ee-ok'; out.textContent=d.rdv_url?'Enregistré : les vendeurs choisissent leur créneau dans votre agenda.':'Enregistré : les vendeurs proposent jusqu\'à 3 créneaux, vous confirmez.';
     });
   });
-  /* arrivée depuis l'e-mail d'alerte : /admin/?q=<référence> */
-  var q0=new URLSearchParams(location.search).get('q'); if(q0)$('#ad-q').value=q0;
-  charger();
+  /* connexion sans mot de passe : l'agence demande son lien ici, il rouvre cette page (c'est aussi l'entrée des agents) */
+  $('#ad-lien').addEventListener('submit',function(e){
+    e.preventDefault(); var f=this, m=$('#ad-email'), b=$('#ad-lien-btn'); m.value=m.value.replace(/\s+/g,'');
+    if(!EE.err(m,!EE.emailOk(m.value))){m.focus();return;}
+    zoneMsg(f,''); b.disabled=true;
+    EE.api('/lien',{body:{email:m.value,vers:'admin',site:C.site||undefined}}).then(function(d){
+      b.disabled=false;
+      if(d._status!==200){zoneMsg(f,EE.messageChamp(d));return;}
+      if(d.envoye)zoneMsg(f,'Si cette adresse est celle de l\'agence, un lien vient d\'y être envoyé. Il ouvre l\'espace agence, dure 30 minutes et ne sert qu\'une fois.',true);
+      else zoneMsg(f,'L\'envoi de liens vers cette adresse n\'est pas encore ouvert. Connectez-vous avec votre mot de passe.');
+    });
+  });
+  /* arrivée depuis l'e-mail d'alerte : /admin/?q=<référence> ; depuis le lien de connexion : /admin/?lien=<jeton> */
+  var qs0=new URLSearchParams(location.search), q0=qs0.get('q'); if(q0)$('#ad-q').value=q0;
+  if(qs0.get('lien')){
+    EE.api('/lien/ouvrir',{body:{jeton:qs0.get('lien')}}).then(function(d){
+      qs0.delete('lien'); history.replaceState(null,'',location.pathname+(qs0.toString()?'?'+qs0.toString():''));
+      EE.pictogramme();
+      charger().then(function(){ if(d._status!==200&&!$('#ad-no').hidden)zoneMsg($('#ad-lien'),d.error==='jeton'?'Ce lien de connexion n\'est plus valable : il dure 30 minutes et ne sert qu\'une fois. Demandez-en un nouveau.':EE.message(d)); });
+    });
+  } else charger();
 })();

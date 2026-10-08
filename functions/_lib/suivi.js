@@ -86,7 +86,7 @@ export function echeanceAppel(creeLe) {
 /* ---------- Prochaine action de l'agence, avec son échéance ----------
    Rien ne doit rester sans prochaine action : chaque statut en a une. « rappel_le » (date choisie à la main dans
    l'admin) passe devant l'échéance calculée quand elle existe. */
-export function prochaineAction(d, visite, maintenant = new Date()) {
+export function prochaineAction(d, visite, maintenant = new Date(), plus = {}) {
   const rappel = d.rappel_le ? deParis(+d.rappel_le.slice(0, 4), +d.rappel_le.slice(5, 7), +d.rappel_le.slice(8, 10), 19) : null;
   // rdv : l'échéance est un rendez-vous (« le … »), pas une date limite (« avant le … »)
   const r = (texte, echeance, rdv = false) => {
@@ -116,7 +116,13 @@ export function prochaineAction(d, visite, maintenant = new Date()) {
     case 'mandat': return r('Photos, puis mise en ligne de l\'annonce (Modelo)');
     case 'annonce': return r('Organiser les premières visites');
     case 'visites': return r('Compte rendu au vendeur après chaque visite, le soir même');
-    case 'offre': return r('Présenter l\'offre au vendeur');
+    case 'offre': {
+      // une offre à l'étude : elle se présente au vendeur dans les 24 heures (jamais une offre sans réponse)
+      const o = plus.offre;
+      if (o) return r(`Présenter l'offre de ${eurosFr(o.montant)} au vendeur`, rappel || new Date(new Date(o.cree_le).getTime() + 24 * 3600000));
+      if (plus.acceptee) return r('Offre acceptée : préparer le compromis avec le notaire');
+      return r('Présenter l\'offre au vendeur');
+    }
     case 'compromis': return r('Suivre le dossier chez le notaire jusqu\'à l\'acte');
     case 'pause': return r(d.rappel_le ? 'Relancer' : 'Choisir une date de relance');
     default: return { texte: '', echeance: null, retard: false, rdv: false };
@@ -139,7 +145,7 @@ export function frise(statut, datesParStatut = {}) {
   }));
 }
 
-export function suiteVendeur(d, visite, conseiller = 'Shawez') {
+export function suiteVendeur(d, visite, conseiller = 'Shawez', offres = {}) {
   const v = visite && visite.etat !== 'annulee' ? visite : null;
   switch (d.statut) {
     case 'recue':
@@ -156,7 +162,7 @@ export function suiteVendeur(d, visite, conseiller = 'Shawez') {
     case 'mandat': return 'Les photos, puis la mise en ligne de l\'annonce.';
     case 'annonce': return 'Les premières visites.';
     case 'visites': return 'Après chaque visite, un compte rendu le soir même, ici.';
-    case 'offre': return `${conseiller} vous présente l'offre. C'est vous qui décidez.`;
+    case 'offre': return offres.acceptee && !offres.offre ? 'La signature du compromis, chez le notaire.' : `${conseiller} vous présente l'offre. C'est vous qui décidez.`;
     case 'compromis': return 'La signature de l\'acte, chez le notaire.';
     case 'acte': return 'La vente est signée. Merci de votre confiance.';
     case 'pause': return d.rappel_le ? `Dossier en pause. ${conseiller} reprend contact avec vous autour du ${d.rappel_le.slice(8, 10)}/${d.rappel_le.slice(5, 7)}.` : `Dossier en pause. Un mot à ${conseiller} suffit pour le reprendre.`;
@@ -241,6 +247,65 @@ export function mailVisite(genre, { debut, adresse, deplacee = false }) {
     bouton: 'Ouvrir mon espace',
   };
 }
+
+/* ---------- Étape 3 : après le mandat (comptes rendus de visite, offres, notaire) ---------- */
+export const eurosFr = (n) => (n == null ? '' : Math.round(n).toLocaleString('fr-FR').replace(/[\u202F\u00A0]/g, ' ') + ' €');
+
+/* Où en est une offre. « etude » : reçue, pas encore de réponse du vendeur. */
+export const OFFRES = { etude: 'À l\'étude', acceptee: 'Acceptée', contre: 'Contre-proposition', refusee: 'Refusée', retiree: 'Retirée par l\'acheteur' };
+
+/* Les étapes chez le notaire, entre le compromis et l'acte (ces deux-là sont des statuts du dossier). */
+export const ETAPES_NOTAIRE = [
+  ['dossier', 'Dossier transmis au notaire'],
+  ['retractation', 'Fin du délai de rétractation de l\'acheteur (10 jours)'],
+  ['pret', 'Accord de prêt de l\'acheteur'],
+  ['preemption', 'Droit de préemption de la mairie levé'],
+  ['rdv', 'Rendez-vous de signature de l\'acte'],
+];
+
+/* Nature d'un document déposé par l'agence dans le dossier. */
+export const DOCUMENTS = { mandat: 'Mandat', diagnostics: 'Diagnostics', titre: 'Titre de propriété', offre: 'Offre d\'achat', compromis: 'Compromis', notaire: 'Document du notaire' };
+
+const jourDeVisite = (jour) => jourLong(jour + 'T12:00:00Z');      // « vendredi 9 octobre », pour une date AAAA-MM-JJ
+
+export function mailCompteRendu(visiteLe, aujourdhui) {
+  const quand = visiteLe === aujourdhui ? 'd\'aujourd\'hui' : `du ${jourDeVisite(visiteLe)}`;
+  return {
+    sujet: `Compte rendu de la visite ${quand}`, titre: 'Compte rendu de visite',
+    paragraphes: [`Le compte rendu de la visite ${quand} est dans votre espace.`, 'Une question ? Appelez-moi au 07 67 57 92 28.'],
+    bouton: 'Lire le compte rendu',
+  };
+}
+
+/* Une offre qui ne change pas le statut du dossier (il est déjà à « Offre reçue », ou pas encore sous mandat). */
+export function mailOffre(bien = 'votre bien', premiere = false) {
+  const titre = premiere ? 'Une offre est arrivée' : 'Une nouvelle offre est arrivée';
+  return {
+    sujet: titre, titre,
+    paragraphes: [`${premiere ? 'Une offre' : 'Une nouvelle offre'} vient d'arriver pour ${bien}. Le détail est dans votre espace.`, 'Je vous appelle pour vous la présenter : c\'est vous qui décidez.'],
+    bouton: 'Voir l\'offre',
+  };
+}
+
+/* Du nouveau chez le notaire (entre le compromis et l'acte, là où un vendeur attend sans nouvelles) :
+   faites = libellés des étapes passées depuis la dernière fois ; rdvLe = date de signature de l'acte, si elle vient d'être fixée. */
+export function mailNotaire(faites = [], rdvLe = '') {
+  const min = (e) => e.charAt(0).toLowerCase() + e.slice(1);
+  const jourActe = rdvLe ? dateFr(rdvLe + 'T12:00:00Z', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }) : '';
+  return {
+    sujet: rdvLe ? `Signature de l'acte prévue le ${jourActe}` : faites.length === 1 ? `Chez le notaire : ${min(faites[0])}` : 'Du nouveau chez le notaire',
+    titre: 'Du nouveau chez le notaire',
+    paragraphes: [
+      faites.length ? `${faites.length === 1 ? 'Une étape de plus est passée' : 'De nouvelles étapes sont passées'} chez le notaire : ${faites.map(min).join(' ; ')}.` : null,
+      rdvLe ? `La signature de l'acte est prévue le ${jourActe}.` : null,
+      'Vous suivez la suite dans votre espace. Je reste votre interlocuteur jusqu\'à la signature.',
+    ].filter(Boolean),
+    bouton: 'Ouvrir mon espace',
+  };
+}
+
+/* Heures calmes : aucun e-mail au vendeur entre 21 h et 8 h (heure de Paris). Ce qui se décide le soir part à 8 h. */
+export function heuresCalmes(d = new Date()) { const p = paris(d); return p.h >= 21 || p.h < 8; }
 
 /* Lien « Ajouter à mon agenda Google » (pour l'agence) : un événement prérempli, sans aucun accès au compte. */
 export function lienAgenda({ debut, duree = DUREE_VISITE, titre, lieu, details }) {

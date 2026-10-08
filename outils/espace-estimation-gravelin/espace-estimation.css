@@ -382,3 +382,54 @@
 .ee-module .ee-ventes b{font-weight:600;font-size:.92rem;}
 .ee-module .ee-ventes small{font-size:.82rem;color:var(--muted);}
 .ee-module .ee-ventes small i{font-style:normal;font-weight:600;color:var(--ee-erreur,#7E2C1F);}
+/* ---------- v4 (système parfait, étape 3) : comptes rendus de visite, offres, notaire, documents de la vente ---------- */
+/* vendeur : une partie par sujet, dans la carte du dossier */
+.ee-module .ee-part{display:flex;flex-direction:column;gap:10px;padding-top:14px;border-top:1px solid var(--line);}
+.ee-module .ee-part h4{font-family:var(--font-text);font-weight:600;font-size:.92rem;margin:0;display:flex;align-items:baseline;gap:8px;}
+.ee-module .ee-part h4 small{font-weight:600;font-size:.74rem;color:var(--accent-text);}
+.ee-module .ee-items{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;}
+.ee-module .ee-items:empty{display:none;}
+.ee-module .ee-items li{display:flex;flex-direction:column;gap:6px;padding:14px;border:1px solid var(--line);border-radius:var(--ee-r-champ,12px);background:var(--ground);min-width:0;}
+.ee-module .ee-items .t{margin:0;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.ee-module .ee-items .t b{font-weight:600;font-size:.96rem;}
+.ee-module .ee-items .t b.prix{font-family:var(--font-display);font-weight:420;font-size:1.45rem;line-height:1.1;font-variant-numeric:tabular-nums;}
+.ee-module .ee-items .txt{margin:0;font-size:.94rem;line-height:1.55;color:var(--ink-2);white-space:pre-line;overflow-wrap:anywhere;}
+.ee-module .ee-items .meta{margin:0;font-size:.84rem;color:var(--muted);}
+.ee-module .ee-items .ee-links{margin-top:2px;}
+.ee-module .tag{flex:0 0 auto;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 9px;border-radius:99px;background:var(--stone);color:var(--ink-2);white-space:nowrap;}
+.ee-module .tag.ok{background:rgba(47,122,79,.12);color:var(--ee-ok,#215A39);}
+.ee-module .tag.att{background:var(--accent-soft);color:var(--accent-text);}
+.ee-module .ee-notaire{margin:0;display:flex;flex-direction:column;gap:2px;font-size:.92rem;color:var(--ink-2);}
+.ee-module .ee-notaire b{font-family:var(--font-display);font-weight:420;font-size:1.15rem;color:var(--ink);}
+.ee-module .ee-part .ee-frise ol{margin-top:0;border-top:1px solid var(--line);}
+.ee-module .ee-part .ee-frise li span{min-width:0;}
+.ee-module .ee-part .ee-frise>summary{margin-top:2px;}
+.ee-module .ee-part details.ee-frise .ee-items{margin-top:8px;}
+/* agence : trois blocs repliables par dossier */
+.ee-module .ee-suite{display:flex;flex-direction:column;gap:12px;}
+.ee-module .ee-suite:empty{display:none;}
+.ee-module .ee-plie>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:32px;}
+.ee-module .ee-plie>summary::-webkit-details-marker{display:none;}
+.ee-module .ee-plie>summary .lab{font-weight:600;font-size:.92rem;}
+.ee-module .ee-plie>summary small{font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:10px;text-align:right;}
+.ee-module .ee-plie>summary small::after{content:"";width:8px;height:8px;border:solid var(--ink-2);border-width:0 1.5px 1.5px 0;transform:translateY(-2px) rotate(45deg);transition:transform .2s;flex:0 0 auto;}
+.ee-module .ee-plie[open]>summary small::after{transform:translateY(2px) rotate(-135deg);}
+.ee-module .ee-plie>summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px;}
+.ee-module .ee-plie-in{display:flex;flex-direction:column;gap:12px;padding-top:10px;}
+.ee-module .ee-plie>summary .lab{flex:1 1 auto;}
+.ee-module .ee-plie>summary small{flex:0 1 auto;}
+.ee-module .ee-plie .ee-2{align-items:end;grid-template-columns:minmax(0,1fr) minmax(0,1fr);}
+.ee-module .ee-plie .ee-2 input{min-width:0;}
+.ee-module .ee-plie .ee-items li{background:var(--surface);}
+.ee-module .ee-part .ee-frise li:last-child{border-bottom:0;}
+.ee-module .ee-saisie{display:flex;flex-direction:column;gap:10px;padding-top:12px;border-top:1px solid var(--line);}
+.ee-module .ee-plie[data-edit] .ee-saisie{border-top-color:var(--ink);}
+.ee-module .ee-plie .field{gap:6px;}
+.ee-module .ee-plie textarea{min-height:120px;}
+.ee-module .ee-row .ee-items select{background:var(--ground);}
+.ee-module .ee-etapes{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border-top:1px solid var(--line);}
+.ee-module .ee-etapes li{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;padding:10px 0;border-bottom:1px solid var(--line);}
+.ee-module .ee-etapes .ee-check-l{align-items:flex-start;color:var(--ink);font-weight:600;line-height:1.35;}
+.ee-module .ee-etapes .ee-check-l input{margin-top:1px;}
+@media(min-width:560px){.ee-module .ee-etapes li{grid-template-columns:minmax(0,1fr) 170px;align-items:center;}}
+.ee-module .ee-files .field{gap:6px;}
