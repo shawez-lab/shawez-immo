@@ -278,7 +278,7 @@
     if(e.connecte){
       titre.innerHTML='Retrouvez-la <em>quand vous voulez.</em>';
       if(e.nouveau){
-        txt.innerHTML='Votre espace est créé avec '+mail+' : cette estimation y est rangée, avec l\'avancement de votre dossier.'+(e.lien==='envoye'?' Un e-mail vient de partir avec votre estimation et un lien pour y revenir.':'');
+        txt.innerHTML='Votre espace est créé avec '+mail+' : cette estimation y est rangée, avec l\'avancement de votre dossier.'+(e.lien==='envoye'?' Un e-mail vient de partir avec votre estimation et un lien pour y revenir.':' Gardez cette page ou choisissez un mot de passe pour revenir.');
         if(!etat.mdp&&!e.mot_de_passe){
           f.hidden=false;
           $('#ee-mdp-hint').textContent=e.lien==='envoye'?'8 caractères au moins. Facultatif : le lien reçu par e-mail suffit.':'8 caractères au moins. Facultatif, mais utile pour retrouver votre estimation depuis un autre appareil.';

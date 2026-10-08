@@ -6,6 +6,8 @@
      GET  /api/espace/sante                 état : base, données DVF, e-mail
      POST /api/espace/estimation            parcours /estimer/ : enregistre la demande, crée le compte (sans mot de passe),
                                             renvoie la fourchette tout de suite
+     POST /api/espace/acces                 { email } → 1re étape de la connexion : « mot_de_passe » si l'espace en a un,
+                                            sinon lien de connexion envoyé (même réponse pour une adresse inconnue)
      POST /api/espace/lien                  { email } → lien de connexion par e-mail (30 min, usage unique)
      POST /api/espace/lien/ouvrir           { jeton } → ouvre la session
      POST /api/espace/connexion             { email, mot_de_passe } (pour ceux qui ont choisi un mot de passe)
@@ -62,6 +64,7 @@ export async function onRequest(context) {
 const ROUTES = {
   'GET /sante': sante,
   'POST /estimation': estimation,
+  'POST /acces': acces,
   'POST /lien': lienDemander,
   'POST /lien/ouvrir': lienOuvrir,
   'POST /connexion': connexion,
@@ -273,12 +276,13 @@ async function estimation(ctx) {
       cookie = await ouvrirSession(env, c.id);
       connecte = true;
     }
+    // l'e-mail de la première réponse est peut-être parti, mais rien ne le garantit : on ne l'annonce pas
     let res = null;
     try { res = JSON.parse(deja.resultat || 'null'); } catch (e) { /* ancien format */ }
     return json(200, {
       reference: deja.reference, resultat: res || { fourchette: false, raison: 'rappel' }, rejoue: true,
       compte: connecte ? comptepublic(c, env) : null,
-      espace: { connecte, nouveau: connecte && !c.verifie && !c.mdp, existant: !connecte && !!c, en_attente: !!deja.en_attente, lien: c && !deja.suspect && peutEcrire(env, c.email) ? 'envoye' : 'indisponible', mot_de_passe: !!(c && c.mdp) },
+      espace: { connecte, nouveau: connecte && !c.verifie && !c.mdp, existant: !connecte && !!c, en_attente: !!deja.en_attente, lien: 'indisponible', mot_de_passe: !!(c && c.mdp) },
     }, cookie ? { 'Set-Cookie': cookie } : {});
   };
   const rejoue = await rejouer();
@@ -338,16 +342,20 @@ async function estimation(ctx) {
   if (nouveau) cookie = await ouvrirSession(env, compte.id);
 
   const ecrireAuClient = !suspect && peutEcrire(env, contact.email);
-  ctx.waitUntil((async () => {
-    if (!adresseDeTest(contact.email)) await notifier(env, request, ref, rep, contact, res, lieu, suspect).catch((e) => console.log('notification', e && e.message));
-    if (ecrireAuClient) await mailResultat(env, request, compte, ref, rep, contact, res, lieu).catch((e) => console.log('mail client', e && e.message));
-  })());
+  if (!adresseDeTest(contact.email)) ctx.waitUntil(notifier(env, request, ref, rep, contact, res, lieu, suspect).catch((e) => console.log('notification', e && e.message)));
+  // L'e-mail au client est attendu (8 s au plus) : la page ne dit « un e-mail vient de partir » que s'il est vraiment parti.
+  let mailParti = false;
+  if (ecrireAuClient) {
+    const envoi = mailResultat(env, request, compte, ref, rep, contact, res, lieu).catch((e) => { console.log('mail client', e && e.message); return false; });
+    ctx.waitUntil(envoi);
+    mailParti = await Promise.race([envoi, new Promise((r) => setTimeout(() => r(false), 8000))]);
+  }
 
   const connecte = !!session || nouveau;
   return json(201, {
     reference: ref, resultat: res,
     compte: connecte ? comptepublic(compte, env) : null,
-    espace: { connecte, nouveau, existant: !connecte, en_attente: !!enAttente, lien: ecrireAuClient ? 'envoye' : 'indisponible', mot_de_passe: !!compte.mdp },
+    espace: { connecte, nouveau, existant: !connecte, en_attente: !!enAttente, lien: mailParti === true ? 'envoye' : 'indisponible', mot_de_passe: !!compte.mdp },
   }, cookie ? { 'Set-Cookie': cookie } : {});
 }
 
@@ -449,10 +457,24 @@ const SIGNATURE_HTML = '<b>Shawez Ali</b> – Gravelin Immo<br><a href="tel:+337
 
 async function lienDemander({ request, env }) {
   const d = await corps(request, 1000);
+  return json(200, await envoyerLien(request, env, d, lireEmail(d.email)));
+}
+
+/* Connexion en deux temps : l'e-mail d'abord. L'espace a un mot de passe → on le demande (rien n'est envoyé) ;
+   sinon (pas de mot de passe, ou pas d'espace) → le lien part tout de suite, avec la même réponse dans les deux cas. */
+async function acces({ request, env }) {
+  const d = await corps(request, 1000);
   const e = lireEmail(d.email);
+  await limiter(env, 'acces:' + ip(request), 30, 3600);
+  const c = await (await db(env)).prepare('SELECT mdp FROM comptes WHERE email = ?1').bind(e).first();
+  if (c && c.mdp) return json(200, { etape: 'mot_de_passe' });
+  return json(200, { etape: 'lien', ...(await envoyerLien(request, env, d, e)) });
+}
+
+async function envoyerLien(request, env, d, e) {
   await limiter(env, 'lien:' + ip(request), 8, 3600);
   await limiter(env, 'lien:' + e, 4, 3600);
-  if (!peutEcrire(env, e)) return json(200, { envoye: false, raison: 'email_indisponible' });
+  if (!peutEcrire(env, e)) return { envoye: false, raison: 'email_indisponible' };
   const base = await db(env);
   let c = await base.prepare('SELECT * FROM comptes WHERE email = ?1').bind(e).first();
   // l'agence n'a pas à « créer un compte » : le premier lien demandé par une adresse d'admin crée le sien
@@ -473,7 +495,7 @@ async function lienDemander({ request, env }) {
     });
   }
   // même réponse que le compte existe ou non
-  return json(200, { envoye: true });
+  return { envoye: true };
 }
 
 async function lienOuvrir({ request, env }) {
@@ -963,7 +985,7 @@ async function mailResultat(env, request, compte, ref, rep, c, res, lieu) {
     introHtml = paragraphe(`Bonjour ${esc(c.prenom)},<br>j'ai bien reçu votre demande pour ${bien}, ${esc(rep.adresse)}.<br>Il n'y a pas assez de ventes comparables pour vous donner une fourchette automatique fiable : je l'étudie moi-même et <b>je vous rappelle sous 24 h</b>.`);
   }
   const suite = 'La suite : je vous appelle pour en parler. Si vous le souhaitez, je passe voir le bien (c\'est gratuit et sans engagement), puis je vous remets un avis de valeur détaillé, par écrit.';
-  await envoyer(env, {
+  return envoyer(env, {
     to: c.email,
     subject: sujet,
     replyTo: 'shawez@gravelin-immo.com',

@@ -44,6 +44,7 @@ test('LE BUG : estimation → accueil → pictogramme → connecté ; puis mot d
   await expect(pictogramme(page)).not.toHaveClass(/is-in/);
   await pictogramme(page).click();
   await page.locator('#me-email').fill(contact.email.toUpperCase());
+  await page.locator('#me-cnx-btn').click();                       // « Continuer » → mot de passe demandé
   await page.locator('#me-mdp').fill('Essai-automatique-2026 ');
   await page.locator('#me-cnx-btn').click();
   await expect(page.locator('#me-in')).toBeVisible();

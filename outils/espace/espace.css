@@ -238,3 +238,10 @@
   .ee-grid2 .ee-opt{padding-inline:14px;}
   .ee-grid2 .ee-opt::after{display:none;}
 }
+/* connexion en deux temps : e-mail, puis mot de passe ou lien envoyé */
+.ee-envoye{padding:16px 18px;border-radius:14px;background:rgba(47,122,79,.09);color:#215A39;font-size:.98rem;line-height:1.55;}
+.ee-envoye p{margin:0;}
+.ee-envoye b{color:inherit;word-break:break-word;}
+.ee-envoye-act{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin-top:14px!important;}
+.ee-envoye-act .btn{background:#fff;}
+.ee-envoye[hidden],.field[hidden],.ee-links [hidden],.ee-nav[hidden]{display:none;}
