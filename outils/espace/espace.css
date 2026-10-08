@@ -363,7 +363,9 @@
 .ee-plie-in{display:flex;flex-direction:column;gap:12px;padding-top:10px;}
 .ee-plie>summary .lab{flex:1 1 auto;}
 .ee-plie>summary small{flex:0 1 auto;}
-.ee-plie .ee-2{align-items:end;grid-template-columns:minmax(0,1fr) minmax(0,1fr);}
+/* montant et date : l'un sous l'autre sur téléphone (un champ date ne se serre pas), côte à côte au-delà */
+.ee-plie .ee-2{align-items:end;grid-template-columns:minmax(0,1fr);}
+@media(min-width:560px){.ee-plie .ee-2{grid-template-columns:minmax(0,1fr) minmax(0,1fr);}}
 .ee-plie .ee-2 input{min-width:0;}
 .ee-plie .ee-items li{background:var(--surface);}
 .ee-part .ee-frise li:last-child{border-bottom:0;}
