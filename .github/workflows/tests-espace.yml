@@ -1,0 +1,83 @@
+name: Tests de l'espace estimation (en ligne)
+
+# Parcours /estimer/ → résultat → accueil → pictogramme → /mon-espace/, sur le site en ligne, iPhone 13 et ordinateur,
+# avec la vraie recherche d'adresses et la vraie base ; contrôle de la fourchette sur 10 adresses ; Lighthouse mobile.
+# Les essais utilisent des e-mails en @test.invalid (aucun e-mail, aucune alerte, hors Google Sheet) et suppriment
+# leur compte à la fin. Branche espace-estimation → l'aperçu ; branche main → shawez-immo.com.
+on:
+  workflow_dispatch:
+    inputs:
+      base:
+        description: Adresse du site à tester (vide = selon la branche)
+        required: false
+        default: ''
+  push:
+    branches: [espace-estimation, main]
+    paths:
+      - 'functions/**'
+      - 'outils/espace/**'
+      - 'outils/tests-espace/**'
+      - 'estimer/**'
+      - 'mon-espace/**'
+      - 'admin/**'
+      - '.github/workflows/tests-espace.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tests-espace-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  en-ligne:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: outils/tests-espace
+    env:
+      EE_APERCU: '1'
+      EE_BASE: ${{ inputs.base || (github.ref_name == 'main' && 'https://shawez-immo.com' || 'https://espace-estimation.shawez-immo.pages.dev') }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Outils de test
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+
+      - name: Attendre que le site en ligne soit à jour
+        run: |
+          attendue=$(grep -o "const VERSION = '[^']*'" "../../functions/api/espace/[[route]].js" | cut -d"'" -f2)
+          echo "Version attendue : $attendue sur $EE_BASE"
+          for i in $(seq 1 40); do
+            vue=$(curl -s -m 15 "$EE_BASE/api/espace/sante" | grep -o '"version":"[^"]*"' | cut -d'"' -f4 || true)
+            if [ "$vue" = "$attendue" ]; then echo "À jour après $((i * 15 - 15)) s."; exit 0; fi
+            echo "  en ligne : ${vue:-rien} — nouvel essai dans 15 s"
+            sleep 15
+          done
+          echo "Le site en ligne n'a pas la version attendue." >&2
+          exit 1
+
+      - name: Tests sur le site en ligne (iPhone 13 et ordinateur)
+        run: npx playwright test --config=apercu.config.mjs
+
+      - name: Lighthouse mobile sur /estimer/ (seuil 90)
+        if: always()
+        run: node lighthouse.mjs "$EE_BASE" /estimer/
+
+      - name: Captures et rapports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tests-espace
+          path: |
+            outils/tests-espace/captures/
+            outils/tests-espace/test-results/
+          if-no-files-found: ignore
+          retention-days: 14

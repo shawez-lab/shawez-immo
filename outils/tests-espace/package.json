@@ -1,0 +1,17 @@
+{
+  "name": "tests-espace-estimation",
+  "private": true,
+  "description": "Tests Playwright de l'espace estimation (/estimer/, /mon-espace/, /admin/). Voir README.md.",
+  "scripts": {
+    "serveur": "node serveur.mjs",
+    "test": "playwright test",
+    "test:apercu": "playwright test --config=apercu.config.mjs",
+    "lighthouse": "node lighthouse.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56.0",
+    "wrangler": "^4.40.0",
+    "@axe-core/playwright": "^4.10.0",
+    "lighthouse": "^12.0.0"
+  }
+}
