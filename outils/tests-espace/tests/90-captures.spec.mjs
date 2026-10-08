@@ -17,6 +17,11 @@ test('captures du parcours, du résultat et de l\'espace', async ({ page }, info
     expect.soft(d.page, `largeur de page à l'écran « ${nom} »`).toBeLessThanOrEqual(d.ecran);
     expect.soft(d.hors, `éléments qui dépassent à l'écran « ${nom} »`).toEqual([]);
     await page.screenshot({ path: `${dossier}/${String(++n).padStart(2, '0')}-${nom}.png`, fullPage: plein, animations: 'disabled' });
+    // et le bloc seul (formulaire, résultat ou espace), pour le compte rendu
+    for (const bloc of ['#ee-form', '#ee-result', '#me-in']) {
+      const el = page.locator(bloc);
+      if (await el.count() && await el.isVisible()) { await el.screenshot({ path: `${dossier}/bloc-${String(n).padStart(2, '0')}-${nom}.png`, animations: 'disabled' }); break; }
+    }
   };
   await fausseBan(page);
   await page.goto('/');

@@ -11,6 +11,10 @@ on:
         description: Adresse du site à tester (vide = selon la branche)
         required: false
         default: ''
+      essai_alerte:
+        description: Envoyer une alerte d'essai dans la boîte de Shawez (oui / non)
+        required: false
+        default: 'non'
   push:
     branches: [espace-estimation, main]
     paths:
@@ -39,6 +43,7 @@ jobs:
     env:
       EE_APERCU: '1'
       EE_BASE: ${{ inputs.base || (github.ref_name == 'main' && 'https://shawez-immo.com' || 'https://espace-estimation.shawez-immo.pages.dev') }}
+      EE_ESSAI_ALERTE: ${{ inputs.essai_alerte == 'oui' && '1' || '' }}
     steps:
       - uses: actions/checkout@v4
 

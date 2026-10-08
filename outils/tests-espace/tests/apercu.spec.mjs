@@ -82,6 +82,27 @@ test('adresse avec « bis » et accents', async ({ page }, info) => {
   await expect(page.locator('#ee-picked')).toContainText(/Préfecture/);
 });
 
+/* L'alerte « nouvelle estimation » part-elle pour de vrai ? Une seule demande d'essai, dont l'e-mail de contact est une
+   variante de l'adresse de Shawez (shawez+essai…@) : la seule boîte qui peut recevoir quoi que ce soit est la sienne.
+   Le compte d'essai est supprimé aussitôt (la demande disparaît de l'admin et du Google Sheet). */
+test('alerte à l\'agence : une demande d\'essai, puis le bilan d\'envoi', async ({ page, request }, info) => {
+  test.skip(info.project.name !== 'iphone13' || !process.env.EE_ESSAI_ALERTE, 'une seule fois, et seulement sur demande (EE_ESSAI_ALERTE=1)');
+  const avant = await (await request.get('/api/espace/sante')).json();
+  test.skip(avant.email_clients === true, 'l\'envoi aux clients est ouvert : pas d\'essai avec une adresse inventée');
+  const email = `shawez+essai-alerte-${Date.now().toString(36)}@gravelin-immo.com`;
+  const { reponse } = await estimationComplete(page, { adresse: '30 rue Bannelier Dijon' }, { civ: 'M.', prenom: 'Essai', nom: 'AUTOMATIQUE (à ignorer)', email, tel: '07 67 57 92 28' });
+  expect(reponse.statut).toBe(201);
+  console.log('demande d\'essai :', reponse.corps.reference);
+  let apres = avant;
+  for (let i = 0; i < 20; i++) {
+    await page.waitForTimeout(1500);
+    apres = await (await request.get('/api/espace/sante')).json();
+    if (apres.derniere_alerte && (!avant.derniere_alerte || apres.derniere_alerte.quand !== avant.derniere_alerte.quand)) break;
+  }
+  console.log('BILAN ALERTE :', JSON.stringify(apres.derniere_alerte || null), '· service e-mail relié :', apres.email);
+  await supprimer(page);
+});
+
 /* ---------- La fourchette sur 10 adresses réelles ---------- */
 const ADRESSES = [
   ['Dijon centre', '12 rue Musette Dijon', { type: 'appartement', surface: '55', epoque: 'avant1948', etat: 'bon' }],

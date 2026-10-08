@@ -289,4 +289,7 @@
   .ee-module .ee-nav-fin .btn{width:100%;}
   .ee-module .ee-apres-liens .btn{width:100%;}
   .ee-module .ee-hello .btn{width:100%;}
+  /* époque : deux colonnes étroites, le libellé tient sur une ligne */
+  .ee-module .ee-grid2 .ee-opt{padding-inline:14px;}
+  .ee-module .ee-grid2 .ee-opt::after{display:none;}
 }
