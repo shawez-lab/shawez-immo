@@ -70,8 +70,8 @@ test('suivi complet : statut, rappel, notes, avis de valeur PDF, photos du clien
   await page.goto('/admin/?q=' + ref);
   const ligne = page.locator('#ad-rows .ee-row');
   await expect(ligne).toHaveCount(1);
-  await expect(ligne.locator('summary')).toContainText('Mme Élodie Besançon');
-  await expect(ligne.locator('summary .st')).toHaveText('Nouvelle');
+  await expect(ligne.locator(':scope > summary')).toContainText('Mme Élodie Besançon');
+  await expect(ligne.locator('summary .st')).toHaveText('Estimation reçue');
   await expect(ligne).toHaveAttribute('open', '');
   await expect(ligne).toContainText('245 000 €');
   await expect(ligne).toContainText('shawez-immo.com');
@@ -82,28 +82,29 @@ test('suivi complet : statut, rappel, notes, avis de valeur PDF, photos du clien
   await ligne.locator('[data-f="rappel_le"]').fill('2026-10-12');
   await ligne.locator('[data-f="notes"]').fill('Souhaite vendre au printemps. Rappeler lundi matin.');
   await ligne.locator('[data-save]').click();
-  await expect(ligne.locator('.saved')).toHaveText('Enregistré');
+  await expect(ligne.locator('.saved')).toContainText('Enregistré');
   await expect(ligne.locator('summary .st')).toHaveText('Appelé');
   await page.reload();
   await expect(ligne.locator('[data-f="statut"]')).toHaveValue('appele');
   await expect(ligne.locator('[data-f="rappel_le"]')).toHaveValue('2026-10-12');
   await expect(ligne.locator('[data-f="notes"]')).toHaveValue('Souhaite vendre au printemps. Rappeler lundi matin.');
-  await expect(ligne.locator('summary')).toContainText('rappeler avant le 12/10/2026');
+  await expect(ligne.locator(':scope > summary')).toContainText('rappeler avant le 12/10/2026');
   // date de rappel invalide : refusée par le serveur
   expect((await api(page, '/admin/demande', { id: 1, rappel_le: '12/10/2026' }))._status).toBe(400);
 
-  // 4. le client voit l'avancement : « Demande reçue » (le détail interne « Appelé » ne lui est pas montré)
+  // 4. le client voit l'avancement : étape 2 sur 10, « Premier appel » (les notes de l'agence ne lui sont pas montrées)
   await pc.goto('/mon-espace/');
   const carte = pc.locator('#me-cards .ee-card').first();
-  await expect(carte.locator('.ee-tl li[aria-current="step"]')).toHaveText('Demande reçue');
+  await expect(carte.locator('[data-test="etape"]')).toHaveText('Premier appel');
+  await expect(carte.locator('.ee-etape span')).toHaveText('Étape 2 sur 10');
   await expect(carte).not.toContainText('Rappeler lundi');
 
   // 5. visite prévue
   await ligne.locator('[data-f="statut"]').selectOption('visite');
   await ligne.locator('[data-save]').click();
-  await expect(ligne.locator('.saved')).toHaveText('Enregistré');
+  await expect(ligne.locator('.saved')).toContainText('Enregistré');
   await pc.reload();
-  await expect(carte.locator('.ee-tl li[aria-current="step"]')).toHaveText('Visite prévue');
+  await expect(carte.locator('[data-test="etape"]')).toHaveText('Visite d\'estimation');
 
   // 6. l'agence dépose l'avis de valeur : PDF seulement
   await ligne.locator('input[data-depot="avis"]').setInputFiles({ name: 'photo.png', mimeType: 'image/png', buffer: PNG });
@@ -115,7 +116,7 @@ test('suivi complet : statut, rappel, notes, avis de valeur PDF, photos du clien
 
   // 7. le client le télécharge
   await pc.reload();
-  await expect(carte.locator('.ee-tl li[aria-current="step"]')).toHaveText('Avis de valeur envoyé');
+  await expect(carte.locator('[data-test="etape"]')).toHaveText('Avis de valeur');
   const bouton = carte.locator('.ee-avis a');
   await expect(bouton).toContainText('Télécharger mon avis de valeur (PDF)');
   const [dl] = await Promise.all([pc.waitForEvent('download'), bouton.click()]);
@@ -196,7 +197,9 @@ test('suivi complet : statut, rappel, notes, avis de valeur PDF, photos du clien
   const l = tableau.find((x) => x[16] === ref);
   expect(l.slice(1, 10)).toEqual(['shawez', 'Mme', 'Élodie', 'Besançon', '06 12 34 56 78', contact.email, '30 Rue Bannelier 21000 Dijon', 'Appartement', '72 m²']);
   expect(l[10]).toMatch(/^\d{3} \d{3} € – \d{3} \d{3} €$/);
-  expect(l.slice(11, 16)).toEqual(['Dans les 6 mois', '245 000 €', 'avis envoyé', 'Relancer avant le 12/10/2026', 'Souhaite vendre au printemps. Rappeler lundi matin.']);
+  expect(l.slice(11, 14)).toEqual(['Dans les 6 mois', '245 000 €', 'avis envoyé']);
+  expect(l[14]).toMatch(/^Appeler pour présenter l'avis de valeur, proposer le mandat — avant le 12\/10 à 19 h/);
+  expect(l[15]).toBe('Souhaite vendre au printemps. Rappeler lundi matin.');
   expect(l[0]).toMatch(/^\d{2}\/\d{2}\/\d{4} \d{2}:\d{2}$/);
   // l'ancienne clé ne marche plus dès qu'une nouvelle est créée
   const nouvelle = await api(page, '/admin/flux', {});
@@ -248,7 +251,7 @@ test('demande venue du site de l\'agence : notée « gravelin », visible avec l
   await page.locator('#ad-site').selectOption('gravelin');
   await page.locator('#ad-q').fill(r.reference);
   await expect(page.locator('#ad-rows .ee-row')).toHaveCount(1);
-  await expect(page.locator('#ad-rows .ee-row summary')).toContainText('gravelin-immo.com');
+  await expect(page.locator('#ad-rows .ee-row > summary')).toContainText('gravelin-immo.com');
   const f = await api(page, '/admin/flux', {});
   const flux = await (await request.get(f.adresse)).text();
   expect(flux.split('\r\n').find((l) => l.endsWith(r.reference))).toContain(',gravelin,M.,Paul,Agence,03 80 00 00 00,');
