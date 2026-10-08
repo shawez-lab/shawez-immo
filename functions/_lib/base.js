@@ -86,15 +86,80 @@ const COLONNES = [
 ];
 const VERSION_SCHEMA = '3';
 
-/* Statuts d'une demande (côté agence). Le client, lui, voit trois étapes : reçue → visite prévue → avis de valeur envoyé. */
+/* Système parfait (étapes 2 à 4) : tables ajoutées à côté des premières, sans rien changer à celles-ci.
+   Leur version est notée à part (réglage « schema_sp ») : le site en ligne et l'aperçu partagent la même base,
+   et l'ancienne version du code ne doit rien avoir à refaire quand la nouvelle ajoute ses tables. */
+export const SCHEMA_SP = `
+CREATE TABLE IF NOT EXISTS evenements (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  demande_id INTEGER NOT NULL,
+  type TEXT NOT NULL,
+  de TEXT, vers TEXT,
+  detail TEXT,
+  par TEXT NOT NULL,
+  cree_le TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS evenements_demande ON evenements(demande_id, id);
+CREATE TABLE IF NOT EXISTS visites (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  demande_id INTEGER NOT NULL,
+  etat TEXT NOT NULL DEFAULT 'demandee',
+  creneaux TEXT NOT NULL DEFAULT '[]',
+  debut TEXT,
+  duree INTEGER NOT NULL DEFAULT 45,
+  message TEXT NOT NULL DEFAULT '',
+  demandee_le TEXT, fixee_le TEXT, rappel_le TEXT,
+  cree_le TEXT NOT NULL, maj_le TEXT
+);
+CREATE INDEX IF NOT EXISTS visites_demande ON visites(demande_id);
+CREATE INDEX IF NOT EXISTS visites_debut ON visites(debut);
+CREATE TABLE IF NOT EXISTS avis (
+  demande_id INTEGER PRIMARY KEY,
+  contenu TEXT NOT NULL DEFAULT '{}',
+  ventes TEXT,
+  fichier_id TEXT,
+  prepare_le TEXT, valide_le TEXT, maj_le TEXT
+);
+`;
+const COLONNES_SP = [
+  ['demandes', 'raison', 'TEXT'],       // « Pas maintenant » ou « Perdu » : la raison notée par l'agence
+  ['demandes', 'statut_le', 'TEXT'],    // date du dernier changement de statut
+];
+const VERSION_SP = '1';
+
+/* Les 10 statuts d'un dossier, dans l'ordre (jamais plus), et les deux sorties : « Pas maintenant » (relance programmée)
+   et « Perdu » (raison notée). Les clés des cinq premiers statuts sont celles de la première version. */
+export const PARCOURS = ['recue', 'appele', 'visite', 'avis', 'mandat', 'annonce', 'visites', 'offre', 'compromis', 'acte'];
+export const SORTIES = ['pause', 'close'];
 export const STATUTS = {
-  recue: 'Nouvelle',
+  recue: 'Estimation reçue',
   appele: 'Appelé',
   visite: 'Visite prévue',
   avis: 'Avis de valeur envoyé',
+  mandat: 'Mandat signé',
+  annonce: 'Annonce en ligne',
+  visites: 'Visites en cours',
+  offre: 'Offre reçue',
+  compromis: 'Compromis signé',
+  acte: 'Acte signé',
+  pause: 'Pas maintenant',
   close: 'Perdu',
 };
-export const STATUTS_CLIENT = { recue: 'Demande reçue', appele: 'Demande reçue', visite: 'Visite prévue', avis: 'Avis de valeur envoyé', close: 'Dossier clos' };
+/* Les mêmes étapes, dites au vendeur dans son espace. */
+export const STATUTS_CLIENT = {
+  recue: 'Estimation reçue',
+  appele: 'Premier appel',
+  visite: 'Visite d\'estimation',
+  avis: 'Avis de valeur',
+  mandat: 'Mandat signé',
+  annonce: 'Annonce en ligne',
+  visites: 'Visites',
+  offre: 'Offre reçue',
+  compromis: 'Compromis signé',
+  acte: 'Acte signé',
+  pause: 'En pause',
+  close: 'Dossier clos',
+};
 
 let pret = false;
 export async function db(env) {
@@ -102,21 +167,33 @@ export async function db(env) {
   if (!pret) {
     // une seule petite lecture quand la base est à jour ; sinon création des tables et des colonnes manquantes
     let version = null;
-    try { const r = await env.DB.prepare("SELECT valeur FROM reglages WHERE cle = 'schema'").first(); version = r && r.valeur; } catch (e) { /* première fois */ }
-    if (version !== VERSION_SCHEMA) {
-      const ordres = SCHEMA.split(';').map((s) => s.trim()).filter(Boolean);
-      await env.DB.batch(ordres.map((s) => env.DB.prepare(s)));
-      for (const table of [...new Set(COLONNES.map((c) => c[0]))]) {
+    let versionSp = null;
+    try {
+      const r = await env.DB.prepare("SELECT cle, valeur FROM reglages WHERE cle IN ('schema', 'schema_sp')").all();
+      for (const l of r.results || []) { if (l.cle === 'schema') version = l.valeur; else versionSp = l.valeur; }
+    } catch (e) { /* première fois */ }
+    const colonnes = async (liste) => {
+      for (const table of [...new Set(liste.map((c) => c[0]))]) {
         const info = await env.DB.prepare(`PRAGMA table_info(${table})`).all();
         const presentes = new Set((info.results || []).map((c) => c.name));
-        for (const [t, nom, type] of COLONNES) {
+        for (const [t, nom, type] of liste) {
           if (t !== table || presentes.has(nom)) continue;
           try { await env.DB.prepare(`ALTER TABLE ${t} ADD COLUMN ${nom} ${type}`).run(); }
           catch (e) { if (!/duplicate column/i.test(String(e && e.message))) throw e; }
         }
       }
+    };
+    const ordres = (sql) => sql.split(';').map((s) => s.trim()).filter(Boolean).map((s) => env.DB.prepare(s));
+    if (version !== VERSION_SCHEMA) {
+      await env.DB.batch(ordres(SCHEMA));
+      await colonnes(COLONNES);
       await env.DB.prepare('CREATE UNIQUE INDEX IF NOT EXISTS demandes_cle ON demandes(cle)').run();
       await env.DB.prepare("INSERT INTO reglages (cle, valeur) VALUES ('schema', ?1) ON CONFLICT(cle) DO UPDATE SET valeur = ?1").bind(VERSION_SCHEMA).run();
+    }
+    if (versionSp !== VERSION_SP) {
+      await env.DB.batch(ordres(SCHEMA_SP));
+      await colonnes(COLONNES_SP);
+      await env.DB.prepare("INSERT INTO reglages (cle, valeur) VALUES ('schema_sp', ?1) ON CONFLICT(cle) DO UPDATE SET valeur = ?1").bind(VERSION_SP).run();
     }
     pret = true;
   }

@@ -1,8 +1,8 @@
 <section class="route ee" data-route="/admin" id="r-admin">
   <div class="page-head shell">
     <p class="label">Espace agence</p>
-    <h1 class="display d-xl" style="margin-top:14px;">Estimations <em>et comptes.</em></h1>
-    <p class="lede" id="ad-lede">Toutes les demandes reçues par les deux sites, leur avancement et vos notes.</p>
+    <h1 class="display d-xl" style="margin-top:14px;">Dossiers <em>vendeurs.</em></h1>
+    <p class="lede" id="ad-lede">Chaque dossier, son statut et sa prochaine action. Les actions en retard sont en haut.</p>
   </div>
   <div class="shell">
     <div class="ee-wrap" id="ad-load" role="status" aria-label="Chargement"><div class="ee-load"></div></div>
@@ -11,7 +11,7 @@
     </div>
     <div class="ee-wide" id="ad-in" hidden>
       <div class="ee-stats" id="ad-stats"></div>
-      <div class="ee-tabs" role="group" aria-label="Vue"><button type="button" class="pill" data-vue="demandes" aria-pressed="true">Demandes</button><button type="button" class="pill" data-vue="comptes" aria-pressed="false">Comptes</button><button type="button" class="pill" data-vue="reglages" aria-pressed="false">Google Sheet</button></div>
+      <div class="ee-tabs" role="group" aria-label="Vue"><button type="button" class="pill" data-vue="demandes" aria-pressed="true">Demandes</button><button type="button" class="pill" data-vue="comptes" aria-pressed="false">Comptes</button><button type="button" class="pill" data-vue="reglages" aria-pressed="false">Réglages</button></div>
       <div id="ad-demandes">
         <div class="ee-tools">
           <input type="search" id="ad-q" placeholder="Nom, e-mail, téléphone, commune, référence…" aria-label="Rechercher">
@@ -29,6 +29,13 @@
         <div class="ee-rows" id="ad-crows"></div>
       </div>
       <div id="ad-reglages" hidden>
+        <div class="ee-card" style="margin-bottom:14px;">
+          <h3>Visites d'estimation</h3>
+          <p class="meta">Aujourd'hui, le vendeur propose jusqu'à 3 créneaux (du lundi au samedi, 9 h – 19 h, 45 minutes) et vous confirmez d'un clic dans son dossier. Si vous créez une page de réservation dans Google Agenda (« Planning de rendez-vous »), collez son lien ici : le vendeur choisira directement dans votre agenda.</p>
+          <div class="field"><label for="ad-rdv-url">Lien de la page de réservation Google Agenda <small>(facultatif)</small></label><input type="url" id="ad-rdv-url" inputmode="url" placeholder="https://calendar.app.google/…" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
+          <div class="acts"><button type="button" class="btn" id="ad-rdv-save">Enregistrer</button></div>
+          <p class="ee-ok" id="ad-rdv-out" role="status" hidden></p>
+        </div>
         <div class="ee-card">
           <h3>Demandes dans Google Sheets</h3>
           <p class="meta">L'onglet « Site » du tableau « Relance leads » se remplit tout seul : une formule relit les demandes environ toutes les heures. Colonnes : date, site, civilité, prénom, nom, téléphone, e-mail, adresse du bien, type, surface, fourchette, délai de vente, prix idéal, statut, prochaine action, notes, référence. Le statut, la date de rappel et les notes se changent ici, dans chaque demande.</p>

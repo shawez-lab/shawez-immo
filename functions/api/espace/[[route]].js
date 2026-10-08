@@ -15,8 +15,11 @@
      POST /api/espace/mot-de-passe/reinit   { jeton, mot_de_passe }
      GET  /api/espace/verifier?jeton=…      anciens liens de confirmation : renvoi vers /mon-espace/?lien=…
      GET  /api/espace/flux/site.csv?cle=…   demandes pour le Google Sheet (IMPORTDATA), protégé par une clé
+     GET  /api/espace/creneaux              créneaux de visite d'estimation proposables (lundi-samedi, 9 h-19 h, 45 min)
+     GET  /api/espace/taches                tâches à heure fixe (rappel de visite la veille à 18 h) ; sans effet si rien n'est dû
    Client connecté
-     GET  /api/espace/moi                   compte + ses demandes + ses fichiers
+     GET  /api/espace/moi                   compte + ses demandes (frise, prochaine étape, visite) + ses fichiers
+     POST /api/espace/visite                { demande, creneaux: [1 à 3 débuts], message?, deplacer? } : demande de visite
      POST /api/espace/verification          renvoie le lien de vérification
      POST /api/espace/mot-de-passe/definir  { mot_de_passe, actuel? } : choisir ou changer son mot de passe
      POST /api/espace/compte/supprimer      { mot_de_passe } ou { confirmation: 'SUPPRIMER' }
@@ -26,7 +29,15 @@
    Admin (e-mail dans ADMIN_EMAILS et vérifié)
      GET  /api/espace/admin/demandes
      GET  /api/espace/admin/comptes
-     POST /api/espace/admin/demande         { id, statut?, notes?, rappel_le? }
+     POST /api/espace/admin/demande         { id, statut?, notes?, rappel_le?, raison?, prevenir? } ; un changement de statut
+                                            est noté au journal et annoncé au vendeur par e-mail (sauf prevenir: false)
+     POST /api/espace/admin/visite          { demande, debut | debut_local, prevenir? } fixe la visite ; { demande, annuler: true }
+     GET  /api/espace/admin/avis?demande=…  avis de valeur : brouillon, ventes comparables réelles (DVF), valeurs proposées
+     POST /api/espace/admin/avis            { demande, contenu } enregistre le brouillon (notes, atouts, vigilance, fourchette, stratégie)
+     POST /api/espace/admin/avis/brouillon?demande=…   dépôt du PDF brouillon (corps = le PDF ; invisible pour le vendeur)
+     POST /api/espace/admin/avis/valider    { demande, prevenir? } : le brouillon devient l'avis de valeur du vendeur
+     GET  /api/espace/admin/journal?demande=…   tout ce qui s'est passé sur un dossier
+     POST /api/espace/admin/reglages        { rdv_url } : page de réservation Google Agenda (facultatif)
      POST /api/espace/admin/demande/supprimer { id }
      POST /api/espace/admin/fichier?demande=…&role=avis|document   dépôt de l'avis de valeur (PDF) ou d'un document
      POST /api/espace/admin/compte/supprimer { id }
@@ -37,9 +48,13 @@
 import {
   db, json, Erreur, corps, texte, entier, choix, email as lireEmail, telephone, motDePasse, verifierOrigine,
   ip, limiter, hacher, verifierMdp, jeton, sha256, ouvrirSession, cookieEfface, temoinPresent, compteSession, fermerSession,
-  estAdmin, admins, comptepublic, maintenant, STATUTS, STATUTS_CLIENT, reglerHachage,
+  estAdmin, admins, comptepublic, maintenant, STATUTS, STATUTS_CLIENT, PARCOURS, reglerHachage,
 } from '../../_lib/base.js';
-import { estimer } from '../../_lib/estimation.js';
+import { estimer, ventesComparables } from '../../_lib/estimation.js';
+import {
+  paris, deParis, quandFr, quandCourt, creneaux, creneauValide, prochaineAction, lireCreneaux, frise, suiteVendeur,
+  mailStatut, mailVisite, lienAgenda, heureFr, AGENCE, DUREE_VISITE,
+} from '../../_lib/suivi.js';
 import { envoyer, mailPossible, mailClients, peutEcrire, destinatairesAlerte, adresseDeTest, gabarit, paragraphe, bouton, esc } from '../../_lib/mail.js';
 import { deposer, lire as lireFichier, supprimerFichier, fichiersDe, supprimerFichiersDe, TAILLE_MAX } from '../../_lib/fichiers.js';
 
@@ -51,7 +66,9 @@ export async function onRequest(context) {
     verifierOrigine(request);
     const r = ROUTES[`${request.method} ${chemin}`];
     if (!r) return json(404, { error: 'introuvable' });
-    return await r(context);
+    const reponse = await r(context);
+    tachesAuPassage(context);
+    return reponse;
   } catch (e) {
     if (e instanceof Erreur) return json(e.status, { error: e.code, ...(e.extra || {}) });
     console.log('erreur', e && e.stack);
@@ -87,13 +104,23 @@ const ROUTES = {
   'POST /admin/compte/lien': adminLien,
   'POST /admin/flux': adminFlux,
   'GET /admin/export.csv': adminExport,
+  'GET /creneaux': creneauxDispo,
+  'GET /taches': taches,
+  'POST /visite': visiteDemander,
+  'POST /admin/visite': adminVisite,
+  'GET /admin/avis': adminAvisLire,
+  'POST /admin/avis': adminAvisEnregistrer,
+  'POST /admin/avis/brouillon': adminAvisBrouillon,
+  'POST /admin/avis/valider': adminAvisValider,
+  'GET /admin/journal': adminJournal,
+  'POST /admin/reglages': adminReglages,
 };
 
 /* ------------------------------------------------------------------ */
 
 /* Version de l'API : les tests sur l'aperçu attendent de la voir avant de commencer (le site met une à deux minutes
    à se mettre à jour après une poussée). À changer à chaque évolution de l'API. */
-const VERSION = '2026-10-08.2';
+const VERSION = '2026-10-08.3';
 
 /* Clé du flux Google Sheet : on ne garde que son empreinte. Celle-ci est la clé de mise en service ; dès qu'un admin
    en génère une nouvelle (/admin/ → « Google Sheet »), c'est l'empreinte en base qui fait foi. */
@@ -277,6 +304,7 @@ async function estimation(ctx) {
     try { res = JSON.parse(deja.resultat || 'null'); } catch (e) { /* ancien format */ }
     return json(200, {
       reference: deja.reference, resultat: res || { fourchette: false, raison: 'rappel' }, rejoue: true,
+      demande_id: connecte && !deja.en_attente ? deja.id : null,
       compte: connecte ? comptepublic(c, env) : null,
       espace: { connecte, nouveau: connecte && !c.verifie && !c.mdp, existant: !connecte && !!c, en_attente: !!deja.en_attente, lien: c && !deja.suspect && peutEcrire(env, c.email) ? 'envoye' : 'indisponible', mot_de_passe: !!(c && c.mdp) },
     }, cookie ? { 'Set-Cookie': cookie } : {});
@@ -320,15 +348,16 @@ async function estimation(ctx) {
 
   const res = await estimer(env, request.url, rep);
   const ref = reference();
+  let demandeId = null;
   try {
-    await base.prepare(
+    demandeId = (await base.prepare(
       `INSERT INTO demandes (reference, compte_id, source, type, adresse, code_postal, commune, lat, lon, reponses, contact,
          prix_bas, prix_haut, prix_m2, comparables, rayon, donnees_du, cree_le, en_attente, cle, suspect, resultat)
-       VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, ?17, ?18, ?19, ?20, ?21, ?22)`
+       VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, ?17, ?18, ?19, ?20, ?21, ?22) RETURNING id`
     ).bind(ref, compte.id, lieu, rep.type, rep.adresse, rep.code_postal, rep.commune, rep.lat, rep.lon,
       JSON.stringify(rep), JSON.stringify(contact),
       res.fourchette ? res.bas : null, res.fourchette ? res.haut : null, res.fourchette ? res.prix_m2 : null,
-      res.comparables ?? null, res.rayon ?? null, res.donnees_du || null, t, enAttente, cle, suspect ? 1 : 0, JSON.stringify(res)).run();
+      res.comparables ?? null, res.rayon ?? null, res.donnees_du || null, t, enAttente, cle, suspect ? 1 : 0, JSON.stringify(res)).first()).id;
   } catch (e) {
     // deux envois arrivés en même temps avec la même clé : le second rend la demande du premier
     const r = await rejouer();
@@ -346,6 +375,7 @@ async function estimation(ctx) {
   const connecte = !!session || nouveau;
   return json(201, {
     reference: ref, resultat: res,
+    demande_id: connecte && !enAttente ? demandeId : null,
     compte: connecte ? comptepublic(compte, env) : null,
     espace: { connecte, nouveau, existant: !connecte, en_attente: !!enAttente, lien: ecrireAuClient ? 'envoye' : 'indisponible', mot_de_passe: !!compte.mdp },
   }, cookie ? { 'Set-Cookie': cookie } : {});
@@ -391,12 +421,13 @@ async function inscription(ctx) {
   return json(201, { compte: comptepublic(compte, env) }, { 'Set-Cookie': await ouvrirSession(env, compte.id) });
 }
 
-async function nouveauJeton(env, compteId, usage, secondes) {
+async function nouveauJeton(env, compteId, usage, secondes, { garder = false } = {}) {
   const t = jeton();
   const base = await db(env);
   const maintenantS = Math.floor(Date.now() / 1000);
   await base.batch([
-    base.prepare('DELETE FROM jetons WHERE (compte_id = ?1 AND usage = ?2) OR expire < ?3').bind(compteId, usage, maintenantS),
+    garder ? base.prepare('DELETE FROM jetons WHERE expire < ?1').bind(maintenantS)
+      : base.prepare('DELETE FROM jetons WHERE (compte_id = ?1 AND usage = ?2) OR expire < ?3').bind(compteId, usage, maintenantS),
     base.prepare('INSERT INTO jetons (id, compte_id, usage, expire) VALUES (?1, ?2, ?3, ?4)').bind(await sha256(t), compteId, usage, maintenantS + secondes),
   ]);
   return t;
@@ -479,7 +510,7 @@ async function lienDemander({ request, env }) {
 async function lienOuvrir({ request, env }) {
   const d = await corps(request, 1000);
   await limiter(env, 'ouvrir:' + ip(request), 30, 3600);
-  const id = await consommerJeton(env, d.jeton, ['magique', 'acces', 'verif']);
+  const id = await consommerJeton(env, d.jeton, ['magique', 'acces', 'verif', 'suivi']);
   if (!id) throw new Erreur(400, 'jeton');
   const session = await compteSession(request, env);
   const retire = await prouver(env, id, session);
@@ -592,13 +623,22 @@ async function moi({ request, env }) {
   }
   const base = await db(env);
   const r = await base.prepare('SELECT * FROM demandes WHERE compte_id = ?1 AND en_attente = 0 ORDER BY cree_le DESC').bind(c.id).all();
-  const fichiers = await fichiersDe(env, r.results.map((d) => d.id));
+  const ids = r.results.map((d) => d.id);
+  const fichiers = await fichiersDe(env, ids);
+  const visites = await visitesDe(base, ids);
+  const dates = await datesStatuts(base, ids);
   return json(200, {
     compte: comptepublic(c, env),
-    demandes: r.results.map((d) => ({ ...demandePublique(d), fichiers: fichiers.filter((f) => f.demande_id === d.id).map(fichierPublic) })),
+    demandes: r.results.map((d) => ({
+      ...demandePublique(d),
+      ...suiviVendeur(d, visites.get(d.id), dates.get(d.id)),
+      // le brouillon de l'avis de valeur reste à l'agence tant qu'il n'est pas validé
+      fichiers: fichiers.filter((f) => f.demande_id === d.id && f.role !== 'brouillon').map(fichierPublic),
+    })),
     en_attente: await enAttenteDe(base, c.id),
     email: peutEcrire(env, c.email),
     taille_max: TAILLE_MAX,
+    rdv_url: await reglage(base, 'rdv_url'),
   });
 }
 
@@ -619,6 +659,7 @@ async function effacerCompte(env, id) {
   const base = await db(env);
   const dem = await base.prepare('SELECT id FROM demandes WHERE compte_id = ?1').bind(id).all();
   await supprimerFichiersDe(env, dem.results.map((d) => d.id));
+  await effacerSuivi(base, dem.results.map((d) => d.id));
   await base.batch([
     base.prepare('DELETE FROM demandes WHERE compte_id = ?1').bind(id),
     base.prepare('DELETE FROM sessions WHERE compte_id = ?1').bind(id),
@@ -649,7 +690,7 @@ async function fichierLire({ request, env }) {
   const id = texte(new URL(request.url).searchParams.get('id'), 64, { requis: true, nom: 'id' });
   const base = await db(env);
   const f = await base.prepare('SELECT f.*, d.compte_id AS proprietaire, d.en_attente AS attente FROM fichiers f JOIN demandes d ON d.id = f.demande_id WHERE f.id = ?1').bind(id).first();
-  if (!f || !(estAdmin(c, env) || (f.proprietaire === c.id && !f.attente))) throw new Erreur(404, 'introuvable');
+  if (!f || !(estAdmin(c, env) || (f.proprietaire === c.id && !f.attente && f.role !== 'brouillon'))) throw new Erreur(404, 'introuvable');
   return lireFichier(env, f);
 }
 
@@ -666,7 +707,8 @@ async function fichierSupprimer({ request, env }) {
   return json(200, { ok: true });
 }
 
-async function adminFichier({ request, env }) {
+async function adminFichier(ctx) {
+  const { request, env } = ctx;
   const moiAdmin = await exigerAdmin(request, env);
   const url = new URL(request.url);
   const demandeId = entier(url.searchParams.get('demande'), 1, 1e12, { requis: true, nom: 'demande' });
@@ -677,9 +719,9 @@ async function adminFichier({ request, env }) {
   const f = await deposer(env, request, { demandeId, compteId: moiAdmin.id, role, par: 'agence', pdfSeul: role === 'avis' });
   let statut = dem.statut;
   // l'avis de valeur est déposé : le dossier passe à « avis de valeur envoyé »
-  if (role === 'avis' && ['recue', 'appele', 'visite'].includes(dem.statut)) {
-    statut = 'avis';
-    await base.prepare('UPDATE demandes SET statut = ?1, maj_le = ?2 WHERE id = ?3').bind(statut, maintenant(), demandeId).run();
+  if (role === 'avis') {
+    await journal(base, demandeId, 'avis_envoye', 'agence', { fichier: f.id, depot: 'manuel' });
+    if (avant(dem.statut, 'avis')) statut = (await changerStatut(ctx, dem, 'avis', { prevenir: new URL(request.url).searchParams.get('prevenir') !== '0' })).statut;
   }
   return json(201, { fichier: fichierPublic(f), statut });
 }
@@ -701,15 +743,24 @@ async function adminDemandes({ request, env }) {
   const r = await base.prepare(
     `SELECT d.*, c.email AS compte_email FROM demandes d LEFT JOIN comptes c ON c.id = d.compte_id ORDER BY d.cree_le DESC LIMIT 2000`
   ).all();
-  const fichiers = await fichiersDe(env, r.results.map((d) => d.id));
+  const ids = r.results.map((d) => d.id);
+  const fichiers = await fichiersDe(env, ids);
+  const visites = await visitesDe(base, ids);
+  const traces = await dernieresTraces(base);
+  const avis = new Map((await base.prepare('SELECT demande_id, fichier_id, prepare_le, valide_le FROM avis').all()).results.map((a) => [a.demande_id, a]));
   return json(200, {
     statuts: STATUTS,
+    parcours: PARCOURS,
     stockage: env.FICHIERS ? 'r2' : 'd1',
     taille_max: TAILLE_MAX,
+    email_clients: mailClients(env),
+    rdv_url: await reglage(base, 'rdv_url'),
     demandes: r.results.map((d) => ({
-      ...demandePublique(d, STATUTS), site: siteDe(d.source), notes: d.notes, rappel_le: d.rappel_le || '', suspect: !!d.suspect, en_attente: !!d.en_attente,
+      ...vueAgence(d, visites.get(d.id)),
       test: adresseDeTest(lireJson(d.contact).email),
       contact: lireJson(d.contact), reponses: lireJson(d.reponses), compte_email: d.compte_email,
+      trace: traces.get(d.id) || null,
+      avis: avis.get(d.id) ? { prepare_le: avis.get(d.id).prepare_le, valide_le: avis.get(d.id).valide_le } : null,
       fichiers: fichiers.filter((f) => f.demande_id === d.id).map(fichierPublic),
     })),
   });
@@ -725,26 +776,38 @@ async function adminComptes({ request, env }) {
   return json(200, { comptes: r.results.map((c) => ({ ...c, site: siteDe(c.source), mot_de_passe: !!c.mot_de_passe, admin: estAdmin(c, env) })) });
 }
 
-async function adminDemande({ request, env }) {
+async function adminDemande(ctx) {
+  const { request, env } = ctx;
   await exigerAdmin(request, env);
   const d = await corps(request, 8000);
   const id = entier(d.id, 1, 1e12, { requis: true, nom: 'id' });
   const sets = [];
   const vals = [];
-  if (d.statut != null) { sets.push('statut = ?'); vals.push(choix(d.statut, Object.keys(STATUTS), { requis: true, nom: 'statut' })); }
+  const statut = d.statut != null ? choix(d.statut, Object.keys(STATUTS), { requis: true, nom: 'statut' }) : null;
   if (d.notes != null) { sets.push('notes = ?'); vals.push(texte(d.notes, 5000, { nom: 'notes' })); }
+  if (d.raison != null) { sets.push('raison = ?'); vals.push(texte(d.raison, 300, { nom: 'raison' }) || null); }
   if (d.rappel_le != null) {
     const j = texte(d.rappel_le, 10, { nom: 'rappel_le' });
     if (j && (!/^\d{4}-\d{2}-\d{2}$/.test(j) || Number.isNaN(Date.parse(j)))) throw new Erreur(400, 'champs', { champ: 'rappel_le' });
     sets.push('rappel_le = ?'); vals.push(j || null);
   }
   if (d.suspect === false) sets.push('suspect = 0');
-  if (!sets.length) throw new Erreur(400, 'champs');
-  sets.push('maj_le = ?');
-  vals.push(maintenant(), id);
-  const r = await (await db(env)).prepare(`UPDATE demandes SET ${sets.join(', ')} WHERE id = ? RETURNING *`).bind(...vals).first();
+  if (!sets.length && !statut) throw new Erreur(400, 'champs');
+  const base = await db(env);
+  let r = await base.prepare('SELECT * FROM demandes WHERE id = ?1').bind(id).first();
   if (!r) throw new Erreur(404, 'introuvable');
-  return json(200, { demande: { ...demandePublique(r, STATUTS), notes: r.notes, rappel_le: r.rappel_le || '', suspect: !!r.suspect } });
+  if (sets.length) {
+    sets.push('maj_le = ?');
+    vals.push(maintenant(), id);
+    r = await base.prepare(`UPDATE demandes SET ${sets.join(', ')} WHERE id = ? RETURNING *`).bind(...vals).first();
+  }
+  // le changement de statut : noté au journal, annoncé au vendeur (un e-mail court), sauf demande contraire
+  let mail = 'non';
+  if (statut && statut !== r.statut) {
+    r = await changerStatut(ctx, r, statut, { prevenir: d.prevenir !== false, raison: r.raison || undefined });
+    mail = r._mail;
+  }
+  return json(200, { demande: vueAgence(r, (await visitesDe(base, [id])).get(id)), mail });
 }
 
 async function adminSupprimerDemande({ request, env }) {
@@ -752,6 +815,7 @@ async function adminSupprimerDemande({ request, env }) {
   const d = await corps(request, 500);
   const id = entier(d.id, 1, 1e12, { requis: true, nom: 'id' });
   await supprimerFichiersDe(env, [id]);
+  await effacerSuivi(await db(env), [id]);
   await (await db(env)).prepare('DELETE FROM demandes WHERE id = ?1').bind(id).run();
   return json(200, { ok: true });
 }
@@ -839,7 +903,10 @@ async function adminExport({ request, env }) {
 /* ---------------------- Flux pour le Google Sheet « Relance leads », onglet « Site » ----------------------
    =IMPORTDATA("https://…/api/espace/flux/site.csv?cle=…") en A1 : Google relit l'adresse environ toutes les heures.
    Une ligne par demande, de la plus ancienne à la plus récente (les lignes ne bougent pas quand une demande arrive). */
-const STATUTS_SHEET = { recue: 'nouvelle', appele: 'appelé', visite: 'visite prévue', avis: 'avis envoyé', close: 'perdu' };
+const STATUTS_SHEET = {
+  recue: 'nouvelle', appele: 'appelé', visite: 'visite prévue', avis: 'avis envoyé', mandat: 'mandat signé', annonce: 'annonce en ligne',
+  visites: 'visites en cours', offre: 'offre reçue', compromis: 'compromis signé', acte: 'acte signé', pause: 'pas maintenant', close: 'perdu',
+};
 
 function telephoneLisible(t) {
   const s = String(t || '').trim();
@@ -849,15 +916,12 @@ function telephoneLisible(t) {
   return s;
 }
 
-function prochaineAction(d) {
-  const avant = d.rappel_le ? ` avant le ${jourFr(d.rappel_le)}` : '';
-  switch (d.statut) {
-    case 'recue': return d.prix_bas ? `Appeler${avant || ' dans les 15 min'}` : `Appeler${avant || ' sous 24 h'} (pas de fourchette automatique)`;
-    case 'appele': return avant ? `Rappeler${avant}` : 'Proposer une visite';
-    case 'visite': return `Visite, puis avis de valeur${avant}`;
-    case 'avis': return avant ? `Relancer${avant}` : "Relancer après l'avis de valeur";
-    default: return '';
-  }
+/* Prochaine action, telle qu'elle s'écrit dans le tableau : « Appeler — avant le 08/10 à 10 h 15 ». */
+const echeanceFr = (iso) => { const p = paris(new Date(iso)); return `${String(p.j).padStart(2, '0')}/${String(p.m).padStart(2, '0')} à ${heureFr(iso)}`; };
+function actionSheet(d, visite) {
+  const a = prochaineAction(d, visite);
+  if (!a.texte) return '';
+  return a.echeance ? `${a.texte} — ${a.rdv ? 'le' : 'avant le'} ${echeanceFr(a.echeance)}${a.retard ? ' (en retard)' : ''}` : a.texte;
 }
 
 async function flux({ request, env }) {
@@ -865,6 +929,7 @@ async function flux({ request, env }) {
   await limiter(env, 'flux:' + ip(request), 120, 3600);
   if (!(await cleValide(env, url.searchParams.get('cle')))) throw new Erreur(403, 'interdit');
   const r = await (await db(env)).prepare('SELECT * FROM demandes ORDER BY id ASC').all();
+  const visites = await visitesDe(await db(env), null);
   const lignes = [['date', 'site', 'civilité', 'prénom', 'nom', 'téléphone', 'e-mail', 'adresse du bien', 'type', 'surface', 'fourchette', 'délai de vente', 'prix idéal', 'statut', 'prochaine action', 'notes', 'référence']];
   for (const d of r.results) {
     const c = lireJson(d.contact);
@@ -876,8 +941,8 @@ async function flux({ request, env }) {
       typeLibelle(q), q.surface ? `${q.surface} m²` : '',
       d.prix_bas ? `${euros(d.prix_bas)} – ${euros(d.prix_haut)}` : 'pas de fourchette (rappel)',
       LIBELLES.delai[q.delai] || '', q.prix_ideal ? euros(q.prix_ideal) : '',
-      STATUTS_SHEET[d.statut] || d.statut, prochaineAction(d),
-      [d.suspect ? 'Robot possible : à vérifier.' : '', d.notes || ''].filter(Boolean).join(' '), d.reference,
+      STATUTS_SHEET[d.statut] || d.statut, actionSheet(d, visites.get(d.id)),
+      [d.suspect ? 'Robot possible : à vérifier.' : '', d.raison ? `Raison : ${d.raison}.` : '', d.notes || ''].filter(Boolean).join(' '), d.reference,
     ]);
   }
   const tsv = url.searchParams.get('format') === 'tsv';
@@ -972,4 +1037,465 @@ async function mailResultat(env, request, compte, ref, rep, c, res, lieu) {
       + `<tr><td style="padding:0 24px 8px;">${bouton(lien, 'Ouvrir mon espace', true, lieu)}${bouton('tel:+33767579228', 'Appeler Shawez', false, lieu)}</td></tr>`
       + paragraphe(`<span style="font-size:14px;color:#6B655C;">Le bouton « Ouvrir mon espace » est valable 30 minutes. Passé ce délai, demandez un nouveau lien sur <a href="${esc(espace)}" style="color:inherit;">la page Mon espace</a>. Référence ${esc(ref)}.</span><br><br>${SIGNATURE_HTML}`), lieu),
   });
+}
+
+/* =====================================================================================================
+   SYSTÈME PARFAIT — étape 2 : les 10 statuts, la visite d'estimation réservable, l'avis de valeur
+   ===================================================================================================== */
+
+const avant = (statut, repere) => {
+  const i = PARCOURS.indexOf(statut);
+  return i === -1 || i < PARCOURS.indexOf(repere);       // « pause » et « close » comptent comme avant : le dossier reprend
+};
+
+async function reglage(base, cle) {
+  try { const r = await base.prepare('SELECT valeur FROM reglages WHERE cle = ?1').bind(cle).first(); return (r && r.valeur) || null; } catch (e) { return null; }
+}
+
+/* Journal d'un dossier : tout ce qui s'y passe, avec la date (c'est lui qui mesure les promesses). */
+async function journal(base, demandeId, type, par, detail, de = null, vers = null) {
+  await base.prepare('INSERT INTO evenements (demande_id, type, de, vers, detail, par, cree_le) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)')
+    .bind(demandeId, type, de, vers, detail ? JSON.stringify(detail) : null, par, maintenant()).run();
+}
+
+async function effacerSuivi(base, ids) {
+  for (const id of ids) {
+    await base.batch([
+      base.prepare('DELETE FROM evenements WHERE demande_id = ?1').bind(id),
+      base.prepare('DELETE FROM visites WHERE demande_id = ?1').bind(id),
+      base.prepare('DELETE FROM avis WHERE demande_id = ?1').bind(id),
+    ]);
+  }
+}
+
+/* La visite en cours de chaque demande (la dernière créée). ids = null : toutes. */
+async function visitesDe(base, ids) {
+  const m = new Map();
+  if (ids && !ids.length) return m;
+  const r = ids && ids.length <= 90
+    ? await base.prepare(`SELECT * FROM visites WHERE demande_id IN (${ids.map((_, i) => `?${i + 1}`).join(',')}) ORDER BY id`).bind(...ids).all()
+    : await base.prepare('SELECT * FROM visites ORDER BY id').all();
+  for (const v of r.results) m.set(v.demande_id, v);
+  return m;
+}
+
+/* Date à laquelle chaque statut a été atteint pour la première fois (frise du vendeur). */
+async function datesStatuts(base, ids) {
+  const m = new Map();
+  if (!ids.length) return m;
+  const r = ids.length <= 90
+    ? await base.prepare(`SELECT demande_id, vers, MIN(cree_le) AS le FROM evenements WHERE type = 'statut' AND demande_id IN (${ids.map((_, i) => `?${i + 1}`).join(',')}) GROUP BY demande_id, vers`).bind(...ids).all()
+    : await base.prepare("SELECT demande_id, vers, MIN(cree_le) AS le FROM evenements WHERE type = 'statut' GROUP BY demande_id, vers").all();
+  for (const e of r.results) { if (!m.has(e.demande_id)) m.set(e.demande_id, {}); m.get(e.demande_id)[e.vers] = e.le; }
+  return m;
+}
+
+async function dernieresTraces(base) {
+  const r = await base.prepare('SELECT e.demande_id, e.type, e.vers, e.par, e.cree_le FROM evenements e JOIN (SELECT demande_id, MAX(id) AS m FROM evenements GROUP BY demande_id) x ON x.m = e.id').all();
+  return new Map(r.results.map((e) => [e.demande_id, { type: e.type, vers: e.vers, par: e.par, le: e.cree_le }]));
+}
+
+const visitePublique = (v) => (v && v.etat !== 'annulee' ? { etat: v.etat, creneaux: lireCreneaux(v), debut: v.debut || null, duree: v.duree, demandee_le: v.demandee_le || null, fixee_le: v.fixee_le || null } : null);
+
+/* Ce que le vendeur voit de l'avancement : la frise des 10 étapes, la prochaine étape, sa visite. */
+function suiviVendeur(d, visite, dates = {}) {
+  const v = visitePublique(visite);
+  return {
+    parcours: frise(d.statut, { ...dates, recue: d.cree_le }),
+    suite: suiteVendeur(d, visite),
+    visite: v,
+    // il peut choisir (ou déplacer) son créneau tant que l'avis de valeur n'est pas parti
+    visite_possible: ['recue', 'appele', 'visite'].includes(d.statut),
+  };
+}
+
+/* Ce que l'agence voit d'une demande. */
+function vueAgence(d, visite) {
+  const v = visitePublique(visite);
+  const c = lireJson(d.contact);
+  return {
+    ...demandePublique(d, STATUTS), site: siteDe(d.source), notes: d.notes, rappel_le: d.rappel_le || '', raison: d.raison || '',
+    suspect: !!d.suspect, en_attente: !!d.en_attente, statut_le: d.statut_le || null,
+    action: prochaineAction(d, visite),
+    visite: v && { ...v, agenda: v.debut ? lienAgenda({
+      debut: v.debut, duree: v.duree, titre: `Visite d'estimation avec ${[c.civilite, c.prenom, c.nom].filter(Boolean).join(' ')}`.trim(),
+      lieu: d.adresse || '', details: `${c.telephone || ''} · ${c.email || ''} · réf. ${d.reference}`,
+    }) : null },
+  };
+}
+
+/* ---------------------- Changement de statut : base, journal, e-mail au vendeur ---------------------- */
+
+async function changerStatut(ctx, demande, vers, { par = 'agence', prevenir = true, raison } = {}) {
+  const { env } = ctx;
+  const base = await db(env);
+  const de = demande.statut;
+  const t = maintenant();
+  const r = await base.prepare('UPDATE demandes SET statut = ?1, maj_le = ?2, statut_le = ?2 WHERE id = ?3 RETURNING *').bind(vers, t, demande.id).first();
+  if (!r) throw new Erreur(404, 'introuvable');
+  if (de !== vers) await journal(base, r.id, 'statut', par, raison ? { raison } : null, de, vers);
+  r._mail = 'non';
+  let visiteEnCours = false;
+  if (de !== vers && prevenir && vers === 'appele') { const v = (await visitesDe(base, [r.id])).get(r.id); visiteEnCours = !!v && v.etat !== 'annulee'; }
+  const contenu = de !== vers && prevenir ? mailStatut(vers, { bien: nomDuBien(r), visiteEnCours }) : null;
+  if (contenu) r._mail = await annoncer(ctx, r, contenu, 'statut:' + vers);
+  return r;
+}
+
+const nomDuBien = (d) => (d.type === 'maison' ? 'votre maison' : d.type === 'appartement' ? 'votre appartement' : 'votre bien');
+
+/* E-mail court au vendeur, signé Shawez Ali, avec un lien qui ouvre son espace (7 jours, une seule fois).
+   Rend « envoye » si un envoi est possible vers cette adresse (il part en tâche de fond), sinon « indisponible ».
+   Le journal garde la trace de ce qui est parti — ou non, et pourquoi. */
+async function annoncer(ctx, demande, contenu, motif) {
+  const { env, request } = ctx;
+  const base = await db(env);
+  const compte = demande.compte_id ? await base.prepare('SELECT * FROM comptes WHERE id = ?1').bind(demande.compte_id).first() : null;
+  const possible = !!compte && !demande.suspect && peutEcrire(env, compte.email);
+  if (!possible) {
+    await journal(base, demande.id, 'mail', 'systeme', { motif, sujet: contenu.sujet, envoye: false, raison: !compte ? 'sans_compte' : demande.suspect ? 'suspect' : adresseDeTest(compte.email) ? 'adresse_de_test' : 'email_clients_ferme' });
+    return 'indisponible';
+  }
+  const lieu = siteDe(demande.source);
+  const envoi = (async () => {
+    const jetonSuivi = await nouveauJeton(env, compte.id, 'suivi', 7 * 24 * 3600, { garder: true });
+    const lien = `${new URL(request.url).origin}/mon-espace/?lien=${jetonSuivi}`;
+    const bonjour = `Bonjour ${compte.prenom || ''}`.trim() + ',';
+    const text = `${bonjour}\n\n${contenu.paragraphes.join('\n\n')}${contenu.plan ? `\nPlan d'accès : ${AGENCE.plan}` : ''}\n\n${contenu.bouton} :\n${lien}\n(lien valable 7 jours ; ensuite, demandez-en un nouveau sur ${new URL(request.url).origin}/mon-espace/)\n\n${SIGNATURE}`;
+    const html = gabarit(contenu.titre,
+      paragraphe(`${esc(bonjour)}<br>${contenu.paragraphes.map(esc).join('<br><br>')}${contenu.plan ? ` <a href="${esc(AGENCE.plan)}" style="color:inherit;">Plan d'accès</a>.` : ''}`)
+      + `<tr><td style="padding:0 24px 8px;">${bouton(lien, contenu.bouton, true, lieu)}${bouton('tel:+33767579228', 'Appeler Shawez', false, lieu)}</td></tr>`
+      + paragraphe(`<span style="font-size:14px;color:#6B655C;">Ce bouton est valable 7 jours. Référence ${esc(demande.reference)}.</span><br><br>${SIGNATURE_HTML}`), lieu);
+    const detail = {};
+    const ok = await envoyer(env, { to: compte.email, subject: contenu.sujet, replyTo: 'shawez@gravelin-immo.com', text, html }, detail);
+    await journal(base, demande.id, 'mail', 'systeme', { motif, sujet: contenu.sujet, envoye: ok, voie: detail.voie || null });
+  })().catch((e) => console.log('annonce', e && e.message));
+  ctx.waitUntil(envoi);
+  return 'envoye';
+}
+
+/* ---------------------- Visite d'estimation ---------------------- */
+
+async function creneauxDispo({ request, env }) {
+  await limiter(env, 'cre:' + ip(request), 240, 3600);
+  let rdv = null;
+  try { rdv = await reglage(await db(env), 'rdv_url'); } catch (e) { /* base absente : les créneaux restent proposables */ }
+  return json(200, { duree: DUREE_VISITE, jours: creneaux(new Date(), 6), rdv_url: rdv });
+}
+
+/* Le vendeur propose jusqu'à trois créneaux : l'agence est prévenue et confirme. */
+async function visiteDemander(ctx) {
+  const { request, env } = ctx;
+  const c = await compteSession(request, env);
+  if (!c) throw new Erreur(401, 'connexion');
+  const d = await corps(request, 3000);
+  await limiter(env, 'vis:' + c.id, 12, 3600);
+  const id = entier(d.demande, 1, 1e12, { requis: true, nom: 'demande' });
+  const base = await db(env);
+  const dem = await base.prepare('SELECT * FROM demandes WHERE id = ?1 AND compte_id = ?2 AND en_attente = 0').bind(id, c.id).first();
+  if (!dem) throw new Erreur(404, 'introuvable');
+  if (!['recue', 'appele', 'visite'].includes(dem.statut)) throw new Erreur(409, 'visite_close');
+  const ancienne = (await visitesDe(base, [id])).get(id);
+
+  // page de réservation Google Agenda ouverte par le vendeur : on le note seulement (l'agenda fait foi)
+  if (d.agenda === true) {
+    await journal(base, id, 'visite_agenda', 'client', null);
+    return json(200, { ok: true });
+  }
+
+  const now = new Date();
+  if (!Array.isArray(d.creneaux)) throw new Erreur(400, 'champs', { champ: 'creneaux' });
+  const liste = [...new Set(d.creneaux)].filter((x) => creneauValide(x, now)).sort();
+  if (!liste.length || liste.length !== new Set(d.creneaux).size || liste.length > 3) throw new Erreur(400, 'champs', { champ: 'creneaux' });
+  const message = texte(d.message, 500, { nom: 'message' });
+  const fixee = ancienne && ancienne.etat === 'fixee' && new Date(ancienne.debut).getTime() > now.getTime();
+  if (fixee && d.deplacer !== true) throw new Erreur(409, 'visite_fixee');
+
+  const t = maintenant();
+  const v = ancienne && ancienne.etat !== 'annulee'
+    ? await base.prepare("UPDATE visites SET etat = 'demandee', creneaux = ?1, debut = NULL, message = ?2, demandee_le = ?3, fixee_le = NULL, rappel_le = NULL, maj_le = ?3 WHERE id = ?4 RETURNING *")
+      .bind(JSON.stringify(liste), message, t, ancienne.id).first()
+    : await base.prepare("INSERT INTO visites (demande_id, etat, creneaux, duree, message, demandee_le, cree_le) VALUES (?1, 'demandee', ?2, ?3, ?4, ?5, ?5) RETURNING *")
+      .bind(id, JSON.stringify(liste), DUREE_VISITE, message, t).first();
+  await journal(base, id, 'visite_demandee', 'client', { creneaux: liste, deplacee: !!fixee });
+
+  const contact = lireJson(dem.contact);
+  if (!adresseDeTest(contact.email)) ctx.waitUntil(alerteVisite(env, request, dem, contact, liste, message, !!fixee).catch((e) => console.log('alerte visite', e && e.message)));
+  return json(201, { ...suiviVendeur(dem, v, {}), parcours: undefined });
+}
+
+/* Alerte à l'agence : le vendeur demande une visite. */
+async function alerteVisite(env, request, dem, c, liste, message, deplacee) {
+  if (!mailPossible(env)) return;
+  const lieu = siteDe(dem.source);
+  const nom = [c.civilite, c.prenom, c.nom].filter(Boolean).join(' ');
+  const admin = new URL('/admin/?q=' + encodeURIComponent(dem.reference), request.url).toString();
+  const tel = 'tel:' + String(c.telephone || '').replace(/[^\d+]/g, '');
+  const titre = deplacee ? 'Visite à déplacer' : 'Visite demandée';
+  const text = `${titre} — ${nom} — ${dem.adresse || dem.commune || ''}\n\nCréneaux proposés :\n${liste.map((x) => '- ' + quandFr(x)).join('\n')}${message ? `\n\nMessage : ${message}` : ''}\n\nConfirmer d'un clic : ${admin}\nAppeler : ${c.telephone || ''}`;
+  const html = gabarit(`${titre} — ${nom}`,
+    paragraphe(`${esc(dem.adresse || dem.commune || '')}<br><b>Créneaux proposés :</b><br>${liste.map((x) => esc(quandFr(x))).join('<br>')}${message ? `<br><br>« ${esc(message)} »` : ''}`)
+    + `<tr><td style="padding:0 24px 12px;">${bouton(admin, 'Confirmer un créneau', true, lieu)}${bouton(tel, 'Appeler ' + (c.prenom || ''), false, lieu)}</td></tr>`
+    + `<tr><td style="padding:4px 24px 8px;font-size:13px;color:#6B655C;">Référence ${esc(dem.reference)} · promesse : confirmer dans l'heure, visite sous 48 h.</td></tr>`, lieu);
+  for (const to of destinatairesAlerte(env)) {
+    await envoyer(env, { to, subject: `${titre} : ${liste.map(quandCourt).join(' / ')} — ${nom} — ${c.telephone || ''}`, text, html, replyTo: c.email });
+  }
+}
+
+/* L'agence fixe la visite (un des créneaux proposés, ou une autre date convenue au téléphone), ou l'annule. */
+async function adminVisite(ctx) {
+  const { request, env } = ctx;
+  await exigerAdmin(request, env);
+  const d = await corps(request, 2000);
+  const id = entier(d.demande, 1, 1e12, { requis: true, nom: 'demande' });
+  const base = await db(env);
+  let dem = await base.prepare('SELECT * FROM demandes WHERE id = ?1').bind(id).first();
+  if (!dem) throw new Erreur(404, 'introuvable');
+  const ancienne = (await visitesDe(base, [id])).get(id);
+  const t = maintenant();
+
+  if (d.annuler === true) {
+    if (!ancienne || ancienne.etat === 'annulee') throw new Erreur(404, 'introuvable');
+    await base.prepare("UPDATE visites SET etat = 'annulee', maj_le = ?1 WHERE id = ?2").bind(t, ancienne.id).run();
+    await journal(base, id, 'visite_annulee', 'agence', ancienne.debut ? { debut: ancienne.debut } : null);
+    return json(200, { demande: vueAgence(dem, null), mail: 'non' });
+  }
+
+  let debut = null;
+  if (typeof d.debut === 'string' && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{3})?Z$/.test(d.debut)) debut = new Date(d.debut);
+  else if (typeof d.debut_local === 'string') {
+    const m = d.debut_local.match(/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})$/);       // heure de Paris, telle que saisie
+    if (m) {
+      debut = deParis(+m[1], +m[2], +m[3], +m[4], +m[5]);
+      const p = paris(debut);     // une date qui n'existe pas (le 45 du mois, 99 h) ne retombe pas sur ce qui a été saisi
+      if (p.a !== +m[1] || p.m !== +m[2] || p.j !== +m[3] || p.h !== +m[4] || p.min !== +m[5]) debut = null;
+    }
+  }
+  const maintenantMs = Date.now();
+  if (!debut || Number.isNaN(debut.getTime()) || debut.getTime() < maintenantMs - 30 * 86400000 || debut.getTime() > maintenantMs + 200 * 86400000) throw new Erreur(400, 'champs', { champ: 'debut' });
+  const iso = debut.toISOString();
+  const deplacee = !!(ancienne && ancienne.etat === 'fixee' && ancienne.debut && ancienne.debut !== iso);
+  const v = ancienne && ancienne.etat !== 'annulee'
+    ? await base.prepare("UPDATE visites SET etat = 'fixee', debut = ?1, fixee_le = ?2, rappel_le = NULL, maj_le = ?2 WHERE id = ?3 RETURNING *").bind(iso, t, ancienne.id).first()
+    : await base.prepare("INSERT INTO visites (demande_id, etat, creneaux, debut, duree, fixee_le, cree_le) VALUES (?1, 'fixee', '[]', ?2, ?3, ?4, ?4) RETURNING *").bind(id, iso, DUREE_VISITE, t).first();
+  await journal(base, id, 'visite_fixee', 'agence', { debut: iso, deplacee, demandee_le: (ancienne && ancienne.demandee_le) || null });
+  // le dossier passe à « Visite prévue » ; l'e-mail de confirmation tient lieu d'annonce
+  if (avant(dem.statut, 'visite')) dem = await changerStatut(ctx, dem, 'visite', { prevenir: false });
+  let mail = 'non';
+  if (d.prevenir !== false && debut.getTime() > maintenantMs) mail = await annoncer(ctx, dem, mailVisite('confirmation', { debut: iso, adresse: dem.adresse, deplacee }), 'visite_fixee');
+  return json(200, { demande: vueAgence(dem, v), mail });
+}
+
+/* ---------------------- Tâches à heure fixe ----------------------
+   Rappel de visite la veille à 18 h (heure de Paris). Appelé chaque heure par GitHub Actions (taches.yml) et, en plus,
+   au passage des autres requêtes en soirée. Sans effet si rien n'est dû ; chaque rappel ne part qu'une fois. */
+async function rappels(ctx, now = new Date()) {
+  const { env } = ctx;
+  const p = paris(now);
+  if (p.h < 18) return 0;
+  const base = await db(env);
+  const demain = deParis(p.a, p.m, p.j + 1, 0).toISOString();
+  const apres = deParis(p.a, p.m, p.j + 2, 0).toISOString();
+  const r = await base.prepare("SELECT * FROM visites WHERE etat = 'fixee' AND rappel_le IS NULL AND debut >= ?1 AND debut < ?2").bind(demain, apres).all();
+  let n = 0;
+  for (const v of r.results) {
+    // on réserve le rappel avant de l'envoyer : deux passages en même temps n'en font qu'un
+    const pris = await base.prepare('UPDATE visites SET rappel_le = ?1 WHERE id = ?2 AND rappel_le IS NULL RETURNING id').bind(maintenant(), v.id).first();
+    if (!pris) continue;
+    const dem = await base.prepare('SELECT * FROM demandes WHERE id = ?1').bind(v.demande_id).first();
+    if (!dem || dem.statut !== 'visite') continue;
+    // confirmée il y a moins de trois heures : l'e-mail de confirmation vient de partir, pas de doublon
+    if (v.fixee_le && now.getTime() - Date.parse(v.fixee_le) < 3 * 3600000) { await journal(base, dem.id, 'rappel_visite', 'systeme', { envoye: false, raison: 'confirmation_recente' }); continue; }
+    const etat = await annoncer(ctx, dem, mailVisite('rappel', { debut: v.debut, adresse: dem.adresse }), 'rappel_visite');
+    await journal(base, dem.id, 'rappel_visite', 'systeme', { envoye: etat === 'envoye', debut: v.debut });
+    if (etat === 'envoye') n++;
+  }
+  return n;
+}
+
+async function taches(ctx) {
+  await limiter(ctx.env, 'taches:' + ip(ctx.request), 60, 3600);
+  // tests locaux seulement (variable HORLOGE_TEST) : l'heure peut être donnée, pour vérifier le rappel de la veille
+  const faux = String(ctx.env.HORLOGE_TEST || '') === '1' ? new Date(new URL(ctx.request.url).searchParams.get('maintenant') || '') : null;
+  return json(200, { ok: true, rappels: await rappels(ctx, faux && !Number.isNaN(faux.getTime()) ? faux : new Date()) });
+}
+
+let dernierPassage = 0;
+function tachesAuPassage(ctx) {
+  const t = Date.now();
+  if (t - dernierPassage < 10 * 60000) return;
+  dernierPassage = t;
+  if (paris(new Date(t)).h < 18) return;
+  ctx.waitUntil(rappels(ctx).catch((e) => console.log('taches', e && e.message)));
+}
+
+/* ---------------------- Avis de valeur ----------------------
+   L'agence prépare le brouillon dans /admin/ : les ventes comparables réelles viennent de DVF, la fourchette proposée
+   est celle de l'estimation quand il y avait au moins 5 ventes ; sinon elle reste vide et Shawez la saisit lui-même.
+   Le PDF est fabriqué dans le navigateur de l'agence (assets/avis/), déposé ici comme brouillon, puis validé en un clic. */
+
+/* Les trois points proposés par défaut reprennent ce que le site promet déjà aux vendeurs (page « Vendre à Dijon ») ;
+   Shawez les adapte à chaque bien. */
+const STRATEGIE = [
+  { titre: 'Le prix juste, dès le départ', texte: 'Un prix d\'affichage fondé sur les ventes réelles du secteur et sur la visite. Les trois premières semaines décident : c\'est là qu\'une annonce est la plus regardée.' },
+  { titre: 'Un film, pas une simple annonce', texte: 'Film de visite, photos professionnelles, plans et visite virtuelle, puis diffusion sur les grands portails et les réseaux : les acheteurs arrivent en ayant déjà vu le bien.' },
+  { titre: 'Vous savez où en est votre vente', texte: 'Un seul interlocuteur du premier appel à la signature, un compte rendu après chaque visite, et votre espace en ligne pour suivre chaque étape.' },
+];
+
+function lireContenuAvis(c) {
+  if (!c || typeof c !== 'object') throw new Erreur(400, 'champs', { champ: 'contenu' });
+  const lignes = (v, nom) => {
+    const l = Array.isArray(v) ? v : String(v || '').split(/\r?\n/);
+    const propres = l.map((x) => texte(String(x == null ? '' : x).replace(/^\s*[-•–]\s*/, ''), 240, { nom })).filter(Boolean);
+    if (propres.length > 8) throw new Erreur(400, 'champs', { champ: nom });
+    return propres;
+  };
+  const strat = (Array.isArray(c.strategie) ? c.strategie : []).slice(0, 3).map((x) => ({ titre: texte(x && x.titre, 90, { nom: 'strategie' }), texte: texte(x && x.texte, 600, { nom: 'strategie' }) })).filter((x) => x.titre || x.texte);
+  const r = {
+    notes: texte(c.notes, 4000, { nom: 'notes' }),
+    atouts: lignes(c.atouts, 'atouts'),
+    vigilance: lignes(c.vigilance, 'vigilance'),
+    strategie: strat,
+    prix_bas: entier(c.prix_bas, 1000, 100000000, { nom: 'prix_bas' }),
+    prix_haut: entier(c.prix_haut, 1000, 100000000, { nom: 'prix_haut' }),
+    date_visite: texte(c.date_visite, 10, { nom: 'date_visite' }),
+    // ventes citées dans le PDF, choisies par l'agent parmi les ventes proposées (absent : le choix par défaut)
+    ventes: Array.isArray(c.ventes) ? c.ventes.slice(0, 12).map((x) => texte(x, 200, { nom: 'ventes' })).filter(Boolean) : null,
+  };
+  if (r.date_visite && (!/^\d{4}-\d{2}-\d{2}$/.test(r.date_visite) || Number.isNaN(Date.parse(r.date_visite)))) throw new Erreur(400, 'champs', { champ: 'date_visite' });
+  if (r.prix_bas != null && r.prix_haut != null && r.prix_haut < r.prix_bas) throw new Erreur(400, 'champs', { champ: 'prix_haut' });
+  return r;
+}
+
+const ATOUTS_LIB = { ascenseur: 'Ascenseur', balcon: 'Balcon', terrasse: 'Terrasse', cave: 'Cave', gardien: 'Gardien', parking: 'Place de parking', parking_box: 'Garage ou box', plain_pied: 'Plain-pied', piscine: 'Piscine', garage: 'Garage' };
+
+/* Tout ce qu'il faut pour écrire l'avis de valeur d'une demande. */
+async function dossierAvis(env, request, dem) {
+  const base = await db(env);
+  const q = lireJson(dem.reponses);
+  const c = lireJson(dem.contact);
+  const a = await base.prepare('SELECT * FROM avis WHERE demande_id = ?1').bind(dem.id).first();
+  const visite = (await visitesDe(base, [dem.id])).get(dem.id);
+  const contenu = a ? lireJson(a.contenu) : {};
+  const comp = await ventesComparables(env, request.url, q, { choix: contenu.ventes });
+  const fichier = a && a.fichier_id ? await base.prepare('SELECT * FROM fichiers WHERE id = ?1').bind(a.fichier_id).first() : null;
+  const dateVisite = visite && visite.etat === 'fixee' && visite.debut ? paris(new Date(visite.debut)).date : '';
+  return {
+    demande: dem.id, reference: dem.reference, site: siteDe(dem.source), statut: dem.statut,
+    avis: a ? { prepare_le: a.prepare_le, valide_le: a.valide_le, maj_le: a.maj_le, fichier: fichier ? fichierPublic(fichier) : null } : null,
+    contenu: {
+      notes: contenu.notes || '', atouts: contenu.atouts || [], vigilance: contenu.vigilance || [],
+      strategie: contenu.strategie && contenu.strategie.length ? contenu.strategie : STRATEGIE,
+      // jamais de prix inventé : la fourchette de l'estimation n'est proposée que si elle reposait sur assez de ventes
+      prix_bas: contenu.prix_bas ?? (comp.assez && dem.prix_bas ? dem.prix_bas : null),
+      prix_haut: contenu.prix_haut ?? (comp.assez && dem.prix_haut ? dem.prix_haut : null),
+      date_visite: contenu.date_visite || dateVisite,
+    },
+    donnees: {
+      client: { civilite: c.civilite || '', prenom: c.prenom || '', nom: c.nom || '' },
+      bien: {
+        type: q.type === 'autre' ? 'autre' : q.type, type_libelle: typeLibelle(q), adresse: dem.adresse || '', commune: dem.commune || '', code_postal: dem.code_postal || '',
+        surface: q.surface ?? null, pieces: q.pieces ?? null, chambres: q.chambres ?? null,
+        etage: q.type === 'appartement' ? q.etage ?? null : null, etages_immeuble: q.type === 'appartement' ? q.etages_immeuble ?? null : null,
+        terrain: q.type === 'maison' ? q.terrain ?? null : null, niveaux: q.type === 'maison' ? q.niveaux ?? null : null,
+        epoque: q.epoque && q.epoque !== 'nsp' ? LIBELLES.epoque[q.epoque] : '', etat: LIBELLES.etat[q.etat] || '',
+        atouts: Object.keys(ATOUTS_LIB).filter((k) => q[k]).map((k) => ATOUTS_LIB[k]),
+      },
+      estimation: dem.prix_bas ? { prix_bas: dem.prix_bas, prix_haut: dem.prix_haut, prix_m2: dem.prix_m2, faite_le: dem.cree_le } : null,
+      marche: comp.marche, ventes: comp.ventes, candidats: comp.candidats, assez_de_ventes: comp.assez, raison: comp.raison || null,
+      conseiller: { nom: 'Shawez Ali', role: 'Agent immobilier', tel: '07 67 57 92 28', email: 'shawez@gravelin-immo.com', agence: AGENCE.nom, adresse: AGENCE.adresse, site: siteDe(dem.source) === 'gravelin' ? 'gravelin-immo.com' : 'shawez-immo.com' },
+    },
+  };
+}
+
+async function demandeAdmin(request, env, id) {
+  await exigerAdmin(request, env);
+  const dem = await (await db(env)).prepare('SELECT * FROM demandes WHERE id = ?1').bind(entier(id, 1, 1e12, { requis: true, nom: 'demande' })).first();
+  if (!dem) throw new Erreur(404, 'introuvable');
+  return dem;
+}
+
+async function adminAvisLire({ request, env }) {
+  const dem = await demandeAdmin(request, env, new URL(request.url).searchParams.get('demande'));
+  return json(200, await dossierAvis(env, request, dem));
+}
+
+async function adminAvisEnregistrer({ request, env }) {
+  const d = await corps(request, 30000);
+  const dem = await demandeAdmin(request, env, d.demande);
+  const contenu = lireContenuAvis(d.contenu);
+  const base = await db(env);
+  const t = maintenant();
+  const comp = await ventesComparables(env, request.url, lireJson(dem.reponses), { choix: contenu.ventes });
+  const deja = await base.prepare('SELECT demande_id FROM avis WHERE demande_id = ?1').bind(dem.id).first();
+  await base.prepare(
+    `INSERT INTO avis (demande_id, contenu, ventes, prepare_le, maj_le) VALUES (?1, ?2, ?3, ?4, ?4)
+     ON CONFLICT(demande_id) DO UPDATE SET contenu = ?2, ventes = ?3, maj_le = ?4`
+  ).bind(dem.id, JSON.stringify(contenu), JSON.stringify({ ventes: comp.ventes, marche: comp.marche, assez: comp.assez }), t).run();
+  if (!deja) await journal(base, dem.id, 'avis_prepare', 'agence', null);
+  return json(200, await dossierAvis(env, request, dem));
+}
+
+/* Le PDF brouillon : gardé avec les fichiers de la demande, sous le rôle « brouillon » (le vendeur ne le voit pas). */
+async function adminAvisBrouillon({ request, env }) {
+  const moiAdmin = await exigerAdmin(request, env);
+  const dem = await demandeAdmin(request, env, new URL(request.url).searchParams.get('demande'));
+  const base = await db(env);
+  const a = await base.prepare('SELECT * FROM avis WHERE demande_id = ?1').bind(dem.id).first();
+  if (!a) throw new Erreur(409, 'avis_absent');
+  for (const f of (await fichiersDe(env, [dem.id])).filter((x) => x.role === 'brouillon')) await supprimerFichier(env, f);
+  const f = await deposer(env, request, { demandeId: dem.id, compteId: moiAdmin.id, role: 'brouillon', par: 'agence', pdfSeul: true });
+  await base.prepare('UPDATE avis SET fichier_id = ?1, maj_le = ?2 WHERE demande_id = ?3').bind(f.id, maintenant(), dem.id).run();
+  return json(201, { fichier: fichierPublic(f) });
+}
+
+/* Validation en un clic : le brouillon devient l'avis de valeur, visible dans l'espace du vendeur ;
+   statut « Avis de valeur envoyé », e-mail au vendeur, journal (et donc Google Sheet au prochain passage). */
+async function adminAvisValider(ctx) {
+  const { request, env } = ctx;
+  const d = await corps(request, 1000);
+  let dem = await demandeAdmin(request, env, d.demande);
+  const base = await db(env);
+  const a = await base.prepare('SELECT * FROM avis WHERE demande_id = ?1').bind(dem.id).first();
+  const contenu = a ? lireJson(a.contenu) : {};
+  const f = a && a.fichier_id ? await base.prepare("SELECT * FROM fichiers WHERE id = ?1 AND demande_id = ?2 AND role = 'brouillon'").bind(a.fichier_id, dem.id).first() : null;
+  if (!f) throw new Erreur(409, 'avis_absent');
+  // jamais d'avis de valeur sans fourchette décidée par l'agent
+  if (!contenu.prix_bas || !contenu.prix_haut) throw new Erreur(400, 'champs', { champ: 'prix_bas' });
+  const t = maintenant();
+  for (const ancien of (await fichiersDe(env, [dem.id])).filter((x) => x.role === 'avis')) await supprimerFichier(env, ancien);
+  await base.batch([
+    base.prepare("UPDATE fichiers SET role = 'avis', cree_le = ?1 WHERE id = ?2").bind(t, f.id),
+    base.prepare('UPDATE avis SET valide_le = ?1, maj_le = ?1 WHERE demande_id = ?2').bind(t, dem.id),
+  ]);
+  const visite = (await visitesDe(base, [dem.id])).get(dem.id);
+  await journal(base, dem.id, 'avis_envoye', 'agence', { fichier: f.id, prix_bas: contenu.prix_bas, prix_haut: contenu.prix_haut, visite: (visite && visite.debut) || null });
+  let mail = 'non';
+  if (avant(dem.statut, 'avis')) { dem = await changerStatut(ctx, dem, 'avis', { prevenir: d.prevenir !== false }); mail = dem._mail; }
+  else if (d.prevenir !== false) mail = await annoncer(ctx, dem, mailStatut('avis', {}), 'avis_envoye');
+  return json(200, { demande: vueAgence(dem, visite), fichier: fichierPublic({ ...f, role: 'avis', cree_le: t }), mail });
+}
+
+async function adminJournal({ request, env }) {
+  const dem = await demandeAdmin(request, env, new URL(request.url).searchParams.get('demande'));
+  const r = await (await db(env)).prepare('SELECT id, type, de, vers, detail, par, cree_le FROM evenements WHERE demande_id = ?1 ORDER BY id DESC LIMIT 200').bind(dem.id).all();
+  return json(200, { journal: [...r.results.map((e) => ({ ...e, detail: e.detail ? lireJson(e.detail) : null })), { id: 0, type: 'statut', de: null, vers: 'recue', detail: null, par: 'client', cree_le: dem.cree_le }] });
+}
+
+/* Réglages de l'agence. rdv_url : la page de réservation Google Agenda (« Planning de rendez-vous »), si elle existe ;
+   l'espace du vendeur la propose alors à la place des trois créneaux. */
+async function adminReglages({ request, env }) {
+  await exigerAdmin(request, env);
+  const d = await corps(request, 2000);
+  const base = await db(env);
+  if (d.rdv_url != null) {
+    const u = texte(d.rdv_url, 400, { nom: 'rdv_url' });
+    if (u) {
+      let ok = false;
+      try { const x = new URL(u); ok = x.protocol === 'https:' && ['calendar.app.google', 'calendar.google.com'].includes(x.hostname); } catch (e) { ok = false; }
+      if (!ok) throw new Erreur(400, 'champs', { champ: 'rdv_url' });
+      await base.prepare("INSERT INTO reglages (cle, valeur) VALUES ('rdv_url', ?1) ON CONFLICT(cle) DO UPDATE SET valeur = ?1").bind(u).run();
+    } else await base.prepare("DELETE FROM reglages WHERE cle = 'rdv_url'").run();
+  }
+  return json(200, { rdv_url: await reglage(base, 'rdv_url') });
 }
