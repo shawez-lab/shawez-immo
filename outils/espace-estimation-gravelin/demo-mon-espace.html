@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Mon espace — GRAVELIN IMMO (démonstration du module)</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#F6F3EC">
+<link rel="stylesheet" href="espace-estimation.css">
+<link rel="stylesheet" href="theme-gravelin.css">
+<style>
+/* Page de démonstration : un en-tête et un pied de page simples, aux couleurs de l'agence, pour voir le module en place.
+   Sur le vrai site, ce sont l'en-tête et le pied de page du site qui l'entourent. */
+html{-webkit-text-size-adjust:100%;}
+body{margin:0;background:#F6F3EC;color:#14161C;font-family:'Geist','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;}
+.g-tete{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:12px;height:64px;padding:0 clamp(20px,5vw,96px);background:rgba(246,243,236,.94);backdrop-filter:blur(12px);border-bottom:1px solid #D3CCBC;}
+.g-logo{font-family:'Fraunces','Iowan Old Style','Palatino Linotype',Georgia,serif;font-size:1.35rem;color:#20376A;text-decoration:none;letter-spacing:-.01em;white-space:nowrap;}
+.g-logo small{display:block;font-family:inherit;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:#5F626C;}
+.g-nav{display:flex;align-items:center;gap:10px;}
+.g-nav a.g-lien{display:none;color:#14161C;text-decoration:none;font-weight:500;font-size:.95rem;padding:0 8px;}
+@media(min-width:900px){.g-nav a.g-lien{display:inline;}}
+.g-compte{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;width:44px;height:44px;border:1.5px solid #14161C;border-radius:999px;color:#14161C;text-decoration:none;font-weight:600;font-size:.9rem;white-space:nowrap;}
+.g-compte svg{width:20px;height:20px;}
+.g-compte span{display:none;}
+.g-compte.is-in::after{content:"";position:absolute;top:-1px;right:-1px;width:11px;height:11px;border-radius:50%;background:#4E7A5A;box-shadow:0 0 0 2px #F6F3EC;}
+@media(min-width:760px){.g-compte.is-in{width:auto;padding:0 16px 0 13px;}.g-compte.is-in span{display:inline;}}
+.g-compte:focus-visible,.g-logo:focus-visible,.g-lien:focus-visible{outline:3px solid #B9773A;outline-offset:3px;}
+.g-bandeau{margin:0;padding:8px clamp(20px,5vw,96px);background:#0F1320;color:#F2EEE4;font-size:.82rem;}
+.g-pied{margin-top:64px;padding:32px clamp(20px,5vw,96px);background:#0F1320;color:#D5D2CB;font-size:.88rem;line-height:1.6;}
+.g-pied a{color:#F2EEE4;}
+</style>
+</head>
+<body>
+<p class="g-bandeau">Démonstration : le module d'estimation à la charte GRAVELIN IMMO. Les demandes faites ici arrivent dans la même base, notées « gravelin ».</p>
+<header class="g-tete">
+  <a class="g-logo" href="demo-estimer.html">Gravelin immo<small>Location &amp; Transaction</small></a>
+  <nav class="g-nav" aria-label="Navigation"><a class="g-lien" href="demo-estimer.html">Estimer mon bien</a>
+    <a class="g-compte" href="demo-mon-espace.html" data-compte aria-label="Mon espace : se connecter" title="Mon espace : se connecter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M4.8 20c.9-3.6 3.7-5.6 7.2-5.6s6.3 2 7.2 5.6"/></svg><span>Connecté</span></a></nav>
+</header>
+<main>
+<div data-espace-estimation="mon-espace"></div>
+</main>
+<footer class="g-pied">GRAVELIN IMMO — 30 rue Bannelier, 21000 Dijon. Page de démonstration du module d'estimation, à ne pas diffuser. <a href="/">Retour à shawez-immo.com</a></footer>
+<script>window.EE_CONF={site:'gravelin',estimer:'demo-estimer.html',espace:'demo-mon-espace.html',admin:'demo-admin.html'};</script>
+<script src="espace-estimation.js"></script>
+</body>
+</html>
