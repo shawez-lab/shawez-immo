@@ -9,7 +9,7 @@
 3. Balise de mesure d'audience Metricool avant </body> de toutes les pages. Testée le 3 octobre 2026 :
    aucun cookie, aucun localStorage ni sessionStorage (journal : de-claude/metricool-test.md).
 """
-import datetime as dt, glob, html, json, os, re, subprocess
+import datetime as dt, glob, html, json, os, re, subprocess, sys
 from zoneinfo import ZoneInfo
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -110,7 +110,7 @@ def flux():
 
 def pages():
     return [f for f in subprocess.check_output(['git', 'ls-files', '*.html'], cwd=ROOT).decode().split()
-            if not f.startswith(('de-claude/', 'cahier'))]
+            if not f.startswith(('de-claude/', 'cahier', 'outils/'))]
 
 def patch(s):
     if RSS_LINK not in s:
@@ -120,7 +120,8 @@ def patch(s):
             s = s.replace('</head>', RSS_LINK + '\n</head>', 1)
     if 'tracker.metricool.com/resources/be.js' not in s:
         i = s.rfind('</body>')
-        s = s[:i] + METRICOOL + '\n' + s[i:]
+        if i >= 0:      # un fragment sans </body> n'est pas une page : on n'y touche pas
+            s = s[:i] + METRICOOL + '\n' + s[i:]
     return s
 
 if __name__ == '__main__':
@@ -132,3 +133,10 @@ if __name__ == '__main__':
         s = open(P(f), encoding='utf-8').read(); n = patch(s)
         if n != s:
             open(P(f), 'w', encoding='utf-8').write(n); print('ok', f)
+    # pictogramme « Mon espace » : toute nouvelle page qui a l'en-tête du site le reçoit (outils/espace.py)
+    try:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import espace
+        espace.pictogramme()
+    except Exception as e:
+        print('pictogramme :', e)
