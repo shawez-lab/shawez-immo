@@ -1,0 +1,50 @@
+/* Thème GRAVELIN IMMO de l'espace estimation — la seule feuille à retoucher pour changer l'habillage.
+   Palette « papier et nuit » du cahier des charges du nouveau site (chapitre 3) : Papier, Lin, Sable, Encre, Fumée,
+   Nuit, Ivoire, et un seul accent, le Cuivre. Polices : Fraunces (titres) et Geist ou Inter (texte), fournies par le
+   site d'accueil ; à défaut, les polices de repli ci-dessous s'appliquent.
+   Bouton principal : Cuivre profond (#955C28) plutôt que Cuivre (#B9773A), pour un texte ivoire lisible
+   (contraste 5,4:1, niveau AA). */
+.ee-module{
+  --ground:#F6F3EC;            /* Papier : fond des pages */
+  --stone:#ECE8DE;             /* Lin : champs, cartes */
+  --stone-2:#D3CCBC;           /* Sable : filets */
+  --surface:#FBF9F4;           /* cartes posées sur le papier (jamais de blanc pur) */
+  --ink:#14161C;               /* Encre */
+  --ink-2:#3B3E48;
+  --muted:#5F626C;             /* Fumée, un ton plus soutenu : lisible en petit corps (AA) */
+  --dim:#6E7079;               /* Fumée */
+  --line:rgba(20,22,28,.14);
+  --line-strong:rgba(20,22,28,.34);
+  --accent:#B9773A;            /* Cuivre */
+  --accent-text:#8A531F;       /* Cuivre profond, pour du texte sur clair (AA) */
+  --accent-soft:rgba(185,119,58,.18);
+  --night:#0F1320;             /* Nuit */
+  --night-2:#1A2030;
+  --night-3:#232B3D;
+  --night-ink:#F2EEE4;         /* Ivoire */
+  --night-ink-2:#D5D2CB;
+  --night-muted:#A9ACB6;
+  --night-line:rgba(242,238,228,.16);
+  --night-accent:#E0A468;      /* Cuivre éclairci, lisible sur Nuit */
+  --font-display:'Fraunces','Iowan Old Style','Palatino Linotype',Georgia,serif;
+  --font-text:'Geist','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --r-m:2px;                   /* champs */
+  --r-pill:999px;              /* boutons */
+  --maxw:1360px;
+  --gutter:clamp(20px,5vw,96px);
+  /* réglages propres au module */
+  --ee-r-carte:8px;            /* cartes */
+  --ee-r-champ:2px;            /* champs, options */
+  --ee-r-petit:2px;
+  --ee-titre-graisse:400;
+  --ee-bouton:#955C28;         /* bouton principal : Cuivre profond */
+  --ee-bouton-survol:#7A4A1E;
+  --ee-bouton-texte:#F2EEE4;
+  --ee-bouton-nuit:#E0A468;    /* bouton principal sur fond Nuit */
+  --ee-bouton-nuit-survol:#EDBB8A;
+  --ee-bouton-nuit-texte:#0F1320;
+  --ee-avert:rgba(224,164,104,.14);
+  --ee-erreur:#A64A32;         /* Terre */
+  --ee-ok:#3D6648;             /* Mousse */
+}
