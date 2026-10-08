@@ -178,3 +178,11 @@ export const api = (page, chemin, corps) => page.evaluate(async ([c, b]) => {
 export const moi = (page) => api(page, '/moi');
 
 export const pictogramme = (page) => page.locator('header#nav a.nav-compte');
+
+/* Ouvre une session admin : l'agence demande son lien de connexion (son compte est créé à la première demande). */
+export async function sessionAdmin(page, request) {
+  await page.goto('/mon-espace/');
+  await api(page, '/deconnexion', {});
+  await connexionParLien(page, request, ADMIN);
+  expect((await moi(page)).compte.admin).toBe(true);
+}

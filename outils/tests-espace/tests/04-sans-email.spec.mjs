@@ -16,6 +16,17 @@ test('sans e-mail aux clients : résultat immédiat, puis mot de passe en option
   expect(reponse.corps.resultat.fourchette).toBe(true);
   expect(reponse.corps.espace).toMatchObject({ connecte: true, nouveau: true, lien: 'indisponible' });
   await expect(page.locator('[data-test="fourchette"]')).toBeVisible();
+  // la visite d'estimation se choisit quand même tout de suite ; rien ne promet un e-mail qui ne partira pas
+  const rdv = page.locator('#ee-rdv');
+  await rdv.locator('[data-rdv-ouvrir]').click();
+  await rdv.locator('.ee-days .pill').nth(1).click();
+  await rdv.locator('.ee-hour').nth(3).click();
+  await rdv.locator('[data-rdv-envoyer]').click();
+  await expect(rdv.locator('[data-test="visite-demandee"]')).toBeVisible();
+  await expect(rdv).not.toContainText('par e-mail');
+  const dossier = (await moi(page)).demandes[0];
+  expect(dossier.visite.etat).toBe('demandee');
+  expect(dossier.suite).toContain('confirme votre créneau');
   // après le résultat, en option
   await expect(page.locator('#ee-mdp-form')).toBeVisible();
   await expect(page.locator('#ee-mdp-hint')).toContainText('Facultatif');
