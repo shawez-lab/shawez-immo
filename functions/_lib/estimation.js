@@ -4,7 +4,8 @@
       publiées, les plus proches de l'adresse. Le rayon s'élargit tant qu'il y a moins de 12 ventes.
    2. Prix au m² de référence : la médiane des comparables.
    3. Ajustements bornés selon l'état, l'étage et l'ascenseur, l'extérieur, le stationnement, l'époque.
-   4. Fourchette : ± la moitié de l’écart interquartile (entre 5 et 10 %), arrondie.
+   4. Fourchette : ± la moitié de l’écart interquartile (entre 5 et 10 % ; jusqu'à 12 % s'il y a peu de ventes
+      ou s'il a fallu les chercher loin), arrondie. Le rayon affiché est la distance de la vente retenue la plus éloignée.
    Moins de 5 comparables, ou un bien hors de la Côte-d'Or : pas de fourchette, on annonce un rappel. */
 
 const RAYONS = {
@@ -121,11 +122,17 @@ export async function estimer(env, requestUrl, r) {
   // au plus les 40 ventes les plus proches
   comps.sort((a, b) => a.d - b.d);
   comps = comps.slice(0, 40);
+  // rayon affiché : la distance réelle de la vente retenue la plus éloignée (arrondie aux 50 m supérieurs),
+  // pas le rayon de recherche — on ne dit pas « à moins de 300 m » si tout est à moins de 150 m, ni l'inverse
+  const recherche = rayon;
+  rayon = Math.min(recherche, Math.max(50, Math.ceil(comps[comps.length - 1].d / 50) * 50));
   const pm2 = comps.map((c) => c.pm2).sort((a, b) => a - b);
   const med = quantile(pm2, 0.5);
   const iqr = quantile(pm2, 0.75) - quantile(pm2, 0.25);
   let marge = Math.max(0.05, Math.min(0.1, iqr / 2 / med));
-  if (comps.length < 10) marge = Math.min(0.12, marge + 0.02);
+  // peu de ventes, ou ventes cherchées loin : la fourchette s'élargit
+  const loin = recherche >= RAYONS[r.type][4];
+  if (comps.length < 10 || loin) marge = Math.min(0.12, marge + 0.02);
   const aj = ajustements(r);
   const m2 = med * (1 + aj.total);
   const centre = m2 * r.surface;

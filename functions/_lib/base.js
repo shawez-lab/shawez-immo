@@ -49,21 +49,75 @@ CREATE TABLE IF NOT EXISTS limites (
   n INTEGER NOT NULL,
   fin INTEGER NOT NULL
 );
+CREATE TABLE IF NOT EXISTS fichiers (
+  id TEXT PRIMARY KEY,
+  demande_id INTEGER NOT NULL,
+  compte_id INTEGER,
+  role TEXT NOT NULL,
+  nom TEXT NOT NULL,
+  type TEXT NOT NULL,
+  taille INTEGER NOT NULL,
+  blocs INTEGER NOT NULL DEFAULT 0,
+  stockage TEXT NOT NULL DEFAULT 'd1',
+  depose_par TEXT NOT NULL,
+  cree_le TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS fichiers_demande ON fichiers(demande_id);
+CREATE TABLE IF NOT EXISTS fichiers_blocs (
+  fichier_id TEXT NOT NULL,
+  n INTEGER NOT NULL,
+  data BLOB NOT NULL,
+  PRIMARY KEY (fichier_id, n)
+);
+CREATE TABLE IF NOT EXISTS reglages (
+  cle TEXT PRIMARY KEY,
+  valeur TEXT NOT NULL
+);
 `;
 
+/* Colonnes ajoutées après la première mise en service (ALTER TABLE si elles manquent). */
+const COLONNES = [
+  ['demandes', 'rappel_le', 'TEXT'],                       // « rappeler avant le » (AAAA-MM-JJ)
+  ['demandes', 'en_attente', 'INTEGER NOT NULL DEFAULT 0'], // rattachée à un compte dont l'e-mail n'est pas encore prouvé
+  ['demandes', 'cle', 'TEXT'],                              // clé d'idempotence du navigateur (double envoi, réseau lent)
+  ['demandes', 'suspect', 'INTEGER NOT NULL DEFAULT 0'],    // robot probable : gardée, mais sans alerte ni compte
+  ['demandes', 'resultat', 'TEXT'],                         // résultat complet affiché au client (JSON)
+  ['sessions', 'prouve', 'INTEGER NOT NULL DEFAULT 0'],     // session ouverte avec une preuve (lien reçu par e-mail, mot de passe)
+];
+const VERSION_SCHEMA = '3';
+
+/* Statuts d'une demande (côté agence). Le client, lui, voit trois étapes : reçue → visite prévue → avis de valeur envoyé. */
 export const STATUTS = {
-  recue: 'Demande reçue',
+  recue: 'Nouvelle',
+  appele: 'Appelé',
   visite: 'Visite prévue',
   avis: 'Avis de valeur envoyé',
-  close: 'Dossier clos',
+  close: 'Perdu',
 };
+export const STATUTS_CLIENT = { recue: 'Demande reçue', appele: 'Demande reçue', visite: 'Visite prévue', avis: 'Avis de valeur envoyé', close: 'Dossier clos' };
 
 let pret = false;
 export async function db(env) {
   if (!env.DB) throw new Erreur(503, 'base_absente');
   if (!pret) {
-    const ordres = SCHEMA.split(';').map((s) => s.trim()).filter(Boolean);
-    await env.DB.batch(ordres.map((s) => env.DB.prepare(s)));
+    // une seule petite lecture quand la base est à jour ; sinon création des tables et des colonnes manquantes
+    let version = null;
+    try { const r = await env.DB.prepare("SELECT valeur FROM reglages WHERE cle = 'schema'").first(); version = r && r.valeur; } catch (e) { /* première fois */ }
+    if (version !== VERSION_SCHEMA) {
+      const ordres = SCHEMA.split(';').map((s) => s.trim()).filter(Boolean);
+      await env.DB.batch(ordres.map((s) => env.DB.prepare(s)));
+      for (const table of [...new Set(COLONNES.map((c) => c[0]))]) {
+        const info = await env.DB.prepare(`PRAGMA table_info(${table})`).all();
+        const presentes = new Set((info.results || []).map((c) => c.name));
+        for (const [t, nom, type] of COLONNES) {
+          if (t !== table || presentes.has(nom)) continue;
+          try { await env.DB.prepare(`ALTER TABLE ${t} ADD COLUMN ${nom} ${type}`).run(); }
+          catch (e) { if (!/duplicate column/i.test(String(e && e.message))) throw e; }
+        }
+      }
+      await env.DB.prepare('CREATE UNIQUE INDEX IF NOT EXISTS demandes_cle ON demandes(cle)').run();
+      await env.DB.prepare("INSERT INTO reglages (cle, valeur) VALUES ('schema', ?1) ON CONFLICT(cle) DO UPDATE SET valeur = ?1").bind(VERSION_SCHEMA).run();
+    }
     pret = true;
   }
   return env.DB;
@@ -120,7 +174,9 @@ export function choix(v, liste, { requis = false, nom = 'champ' } = {}) {
 }
 
 export function email(v) {
-  const s = texte(v, 160, { requis: true, nom: 'email' }).toLowerCase();
+  // mêmes règles à la création et à la connexion : sans espaces (même invisibles), en minuscules
+  const brut = typeof v === 'string' ? v.replace(/[\s\u00A0\u200B-\u200D\u2060\uFEFF]/g, '') : v;
+  const s = texte(brut, 160, { requis: true, nom: 'email' }).toLowerCase();
   if (!/^[^\s@"<>(),;:]+@[^\s@"<>(),;:]+\.[a-z]{2,}$/i.test(s)) throw new Erreur(400, 'champs', { champ: 'email' });
   return s;
 }
@@ -132,9 +188,12 @@ export function telephone(v) {
   return s;
 }
 
+// Les espaces en début et en fin sont retirés, à l'enregistrement comme à la connexion : les claviers de téléphone
+// en ajoutent un après une suggestion, et le mot de passe « ne marchait plus ».
 export function motDePasse(v) {
-  if (typeof v !== 'string' || v.length < 8 || v.length > 200) throw new Erreur(400, 'champs', { champ: 'mot_de_passe' });
-  return v;
+  const s = typeof v === 'string' ? v.trim() : '';
+  if (s.length < 8 || s.length > 200) throw new Erreur(400, 'champs', { champ: 'mot_de_passe' });
+  return s;
 }
 
 /* ---------- Origine : les requêtes qui modifient viennent du site lui-même ---------- */
@@ -151,6 +210,8 @@ export function ip(request) {
 }
 
 export async function limiter(env, cle, max, secondes) {
+  const f = Number(env.LIMITE_FACTEUR);           // tests locaux seulement : multiplie les plafonds
+  if (Number.isFinite(f) && f >= 1 && f <= 1000) max = Math.round(max * f);
   const base = await db(env);
   const t = Math.floor(Date.now() / 1000);
   const r = await base.prepare(
@@ -185,15 +246,21 @@ export async function hacher(mdp) {
   return `pbkdf2-sha256$${ITER}$${b64(sel)}$${b64(await derive(mdp, sel, ITER))}`;
 }
 
-export async function verifierMdp(mdp, stocke) {
-  const [algo, iter, sel, h] = String(stocke || '').split('$');
-  if (algo !== 'pbkdf2-sha256') return false;
-  const calc = new Uint8Array(await derive(mdp, deb64(sel), Number(iter)));
-  const attendu = deb64(h);
+async function memeEmpreinte(mdp, sel, iter, attendu) {
+  const calc = new Uint8Array(await derive(mdp, sel, iter));
   if (calc.length !== attendu.length) return false;
   let diff = 0;
   for (let i = 0; i < calc.length; i++) diff |= calc[i] ^ attendu[i];
   return diff === 0;
+}
+
+export async function verifierMdp(mdp, stocke) {
+  const [algo, iter, sel, h] = String(stocke || '').split('$');
+  if (algo !== 'pbkdf2-sha256' || typeof mdp !== 'string' || !mdp || mdp.length > 200) return false;   // '' = compte sans mot de passe
+  const s = deb64(sel), attendu = deb64(h), n = Number(iter);
+  if (await memeEmpreinte(mdp, s, n, attendu)) return true;
+  const net = mdp.trim();
+  return net !== mdp && net.length > 0 && memeEmpreinte(net, s, n, attendu);
 }
 
 /* ---------- Jetons et sessions ---------- */
@@ -210,19 +277,29 @@ export async function sha256(s) {
 const COOKIE = 'se_session';
 const DUREE = 30 * 24 * 3600;
 
-export async function ouvrirSession(env, compteId) {
+// Deux cookies : la session (HttpOnly, illisible par les scripts) et un simple témoin « se_ok=1 », sans valeur secrète,
+// que les pages lisent pour afficher le pictogramme « connecté » sans appeler l'API à chaque page.
+const TEMOIN = 'se_ok';
+export async function ouvrirSession(env, compteId, prouve = false) {
   const base = await db(env);
   const t = jeton();
   const exp = Math.floor(Date.now() / 1000) + DUREE;
   await base.batch([
-    base.prepare('INSERT INTO sessions (id, compte_id, expire, cree_le) VALUES (?1, ?2, ?3, ?4)').bind(await sha256(t), compteId, exp, maintenant()),
+    base.prepare('INSERT INTO sessions (id, compte_id, expire, cree_le, prouve) VALUES (?1, ?2, ?3, ?4, ?5)').bind(await sha256(t), compteId, exp, maintenant(), prouve ? 1 : 0),
     base.prepare('UPDATE comptes SET derniere_connexion = ?1 WHERE id = ?2').bind(maintenant(), compteId),
     base.prepare('DELETE FROM sessions WHERE expire < ?1').bind(Math.floor(Date.now() / 1000)),
   ]);
-  return `${COOKIE}=${t}; Path=/; Max-Age=${DUREE}; HttpOnly; Secure; SameSite=Lax`;
+  return [
+    `${COOKIE}=${t}; Path=/; Max-Age=${DUREE}; HttpOnly; Secure; SameSite=Lax`,
+    `${TEMOIN}=1; Path=/; Max-Age=${DUREE}; Secure; SameSite=Lax`,
+  ];
 }
 
-export const cookieEfface = `${COOKIE}=; Path=/; Max-Age=0; HttpOnly; Secure; SameSite=Lax`;
+export const cookieEfface = [
+  `${COOKIE}=; Path=/; Max-Age=0; HttpOnly; Secure; SameSite=Lax`,
+  `${TEMOIN}=; Path=/; Max-Age=0; Secure; SameSite=Lax`,
+];
+export const temoinPresent = (request) => /(?:^|;\s*)se_ok=1/.test(request.headers.get('Cookie') || '');
 
 function lireCookie(request) {
   const c = request.headers.get('Cookie') || '';
@@ -235,7 +312,7 @@ export async function compteSession(request, env) {
   if (!t) return null;
   const base = await db(env);
   const r = await base.prepare(
-    `SELECT c.* , s.id AS session_id FROM sessions s JOIN comptes c ON c.id = s.compte_id WHERE s.id = ?1 AND s.expire > ?2`
+    `SELECT c.* , s.id AS session_id, s.prouve AS session_prouvee FROM sessions s JOIN comptes c ON c.id = s.compte_id WHERE s.id = ?1 AND s.expire > ?2`
   ).bind(await sha256(t), Math.floor(Date.now() / 1000)).first();
   return r || null;
 }
@@ -259,6 +336,6 @@ export function estAdmin(compte, env) {
 export function comptepublic(c, env) {
   return {
     email: c.email, civilite: c.civilite || '', prenom: c.prenom || '', nom: c.nom || '', telephone: c.telephone || '',
-    verifie: !!c.verifie, admin: estAdmin(c, env), cree_le: c.cree_le,
+    verifie: !!c.verifie, admin: estAdmin(c, env), cree_le: c.cree_le, mot_de_passe: !!c.mdp,
   };
 }

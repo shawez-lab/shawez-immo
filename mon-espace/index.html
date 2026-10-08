@@ -1090,6 +1090,19 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 @media(min-width:768px){#home-texte{padding-bottom:0;}}
 .reels-est{margin-top:14px;} .reels-est .btn{width:100%;}
 </style>
+<style id="compte-v1">
+/* Pictogramme « Mon espace » de l'en-tête : mène à /mon-espace/, pastille verte quand on est connecté */
+.nav-compte{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;width:42px;height:42px;flex:0 0 auto;border:1px solid currentColor;border-radius:999px;color:inherit;text-decoration:none;font-size:.88rem;font-weight:600;white-space:nowrap;transition:background .25s;}
+.nav-compte svg{width:20px;height:20px;flex:0 0 auto;}
+.nav-compte:hover{background:rgba(127,127,127,.18);}
+.nav-compte:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+.nav-compte .nc-txt{display:none;}
+.nav-compte .nc-dot{display:none;position:absolute;top:-1px;right:-1px;width:11px;height:11px;border-radius:50%;background:#3FA66B;box-shadow:0 0 0 2px rgba(15,14,12,.35);}
+.nav-compte.is-in .nc-dot{display:block;}
+@media(min-width:760px){.nav-compte.is-in{width:auto;padding:0 16px 0 13px;}.nav-compte.is-in .nc-txt{display:inline;}.nav-compte.is-in .nc-dot{position:static;box-shadow:none;width:9px;height:9px;order:-1;}}
+@media(max-width:359px){.nav-compte{width:38px;height:38px;}}
+#menu .m-alt+.m-alt{margin-top:10px;}
+</style>
 <style id="espace-v1">
 /* ---------- ESPACE ESTIMATION (estimer, mon-espace, admin) — mêmes jetons que le site ---------- */
 .ee{padding-bottom:clamp(72px,10vw,136px);}
@@ -1099,7 +1112,7 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 .ee-head{display:flex;flex-direction:column;gap:6px;margin-bottom:22px;}
 .ee-count{font-size:.78rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--accent-text);margin:0;}
 .ee-steps{list-style:none;margin:0 0 22px;padding:0;display:flex;gap:6px;}
-.ee-steps li{flex:1;display:flex;flex-direction:column;gap:8px;font-size:.78rem;font-weight:600;color:var(--dim);min-width:0;}
+.ee-steps li{flex:1;display:flex;flex-direction:column;gap:8px;font-size:.78rem;font-weight:600;color:var(--muted);min-width:0;}
 .ee-steps li::before{content:"";height:3px;border-radius:99px;background:var(--stone-2);transition:background .4s var(--ease);}
 .ee-steps li.done::before,.ee-steps li.on::before{background:var(--ink);}
 .ee-steps li.on{color:var(--ink);}
@@ -1210,7 +1223,7 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 .ee-card .meta{font-size:.86rem;color:var(--muted);margin:0;}
 .ee-card .fp{font-family:var(--font-display);font-weight:360;font-size:1.7rem;line-height:1.1;margin:0;font-variant-numeric:tabular-nums;}
 .ee-tl{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}
-.ee-tl li{display:flex;flex-direction:column;gap:8px;font-size:.8rem;font-weight:600;color:var(--dim);}
+.ee-tl li{display:flex;flex-direction:column;gap:8px;font-size:.8rem;font-weight:600;color:var(--muted);}
 .ee-tl li::before{content:"";height:4px;border-radius:99px;background:var(--stone-2);}
 .ee-tl li.done{color:var(--ink);}
 .ee-tl li.done::before{background:var(--accent);}
@@ -1267,6 +1280,67 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 .field.err .ee-list .ee-opt,.field.err .ee-grid2 .ee-opt{border-color:#A23B2A;}
 .ee-kv li span:first-child{white-space:nowrap;flex:0 0 auto;}
 .ee-skip{white-space:nowrap;}
+/* ---------- v2 : résultat immédiat, connexion par lien, fichiers, suivi ---------- */
+.ee label small,.ee .lab small{font-weight:400;color:var(--muted);}
+.ee-q-s{font-size:1.4rem;}
+.ee-price-txt{font-size:clamp(2rem,6vw,3rem);}
+.ee-ref{margin-top:0;border-top:0;}
+.ee-card .fp-txt{font-size:1.3rem;}
+.ee-nav-col{flex-direction:column;align-items:stretch;}
+.ee-nav-col .btn{width:100%;white-space:normal;text-align:center;}
+.ee-step .ee-links{margin-top:0;}
+.ee-links a,.ee-links button{min-height:32px;}
+/* après le résultat : retrouver son estimation (jamais avant) */
+.ee-apres{margin-top:14px;padding:clamp(18px,3vw,28px);border:1px solid var(--line);border-radius:16px;background:var(--surface);display:flex;flex-direction:column;gap:14px;}
+.ee-apres[hidden]{display:none;}
+.ee-apres .ee-q{font-size:clamp(1.3rem,2.4vw,1.6rem);}
+.ee-apres .form{padding:0;border:0;background:none;display:flex;flex-direction:column;gap:14px;}
+.ee-apres .form[hidden]{display:none;}
+.ee-apres-liens{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;}
+.ee-apres-liens .btn{min-height:52px;}
+.ee-who img[hidden]{display:none;}
+/* fichiers : photos, documents, avis de valeur */
+.ee-files{display:flex;flex-direction:column;gap:10px;padding-top:14px;border-top:1px solid var(--line);}
+.ee-files .lab{margin:0;font-weight:600;font-size:.92rem;}
+.ee-files .hint{font-size:.82rem;color:var(--muted);margin:0;}
+.ee-flist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;}
+.ee-flist:empty{display:none;}
+.ee-flist li{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px;border:1px solid var(--line);border-radius:12px;background:var(--ground);}
+.ee-flist a{display:flex;align-items:center;gap:12px;min-width:0;flex:1 1 auto;text-decoration:none;color:var(--ink);}
+.ee-flist img,.ee-flist i{width:56px;height:56px;border-radius:8px;object-fit:cover;flex:0 0 auto;}
+.ee-flist i{display:grid;place-items:center;background:var(--stone);font-style:normal;font-size:.68rem;font-weight:700;letter-spacing:.06em;color:var(--ink-2);}
+.ee-flist a span{display:flex;flex-direction:column;min-width:0;}
+.ee-flist b{font-weight:600;font-size:.92rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.ee-flist small{font-size:.8rem;color:var(--muted);}
+.ee-flist button{flex:0 0 auto;min-height:44px;padding:0 10px;border:0;background:none;font:inherit;font-size:.85rem;font-weight:600;color:var(--ink-2);text-decoration:underline;text-underline-offset:4px;cursor:pointer;}
+.ee-add{position:relative;align-self:flex-start;min-height:48px;cursor:pointer;white-space:normal;text-align:center;}
+.ee-add input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;}
+.ee-add:has(input:focus-visible){outline:2px solid var(--accent);outline-offset:3px;}
+.ee-add.busy{opacity:.55;pointer-events:none;}
+.ee-avis{display:flex;flex-direction:column;gap:8px;}
+.ee-avis .btn{width:100%;justify-content:center;min-height:54px;white-space:normal;text-align:center;}
+/* admin */
+.ee-col{display:flex;flex-direction:column;gap:12px;}
+.ee-late{color:#7E2C1F;font-weight:700;}
+.ee-row input[type=date]{width:100%;min-height:48px;border:1px solid var(--line-strong);border-radius:12px;background:var(--ground);padding:10px 14px;font:inherit;font-size:.95rem;color:var(--ink);}
+.ee-row>summary .st.appele{background:rgba(22,22,26,.08);color:var(--ink);}
+.ee-row>summary .st.visite{background:rgba(47,122,79,.12);color:#215A39;}
+.ee-row>summary .st.close{background:var(--stone);color:var(--muted);}
+.ee-row>summary small{white-space:normal;}
+.ee-tools select{flex:0 1 auto;max-width:100%;}
+.ee-card .acts{display:flex;flex-wrap:wrap;gap:8px;}
+/* petits écrans : rien ne dépasse de la carte */
+.ee-nav .btn{min-width:0;}
+@media(max-width:480px){
+  .ee-nav{gap:8px;}
+  .ee-nav .btn{padding-inline:18px;}
+  .ee-nav [data-prev]{padding-inline:16px;}
+  /* dernier écran : le bouton principal sur toute la largeur, « Retour » dessous */
+  .ee-nav-fin{flex-direction:column-reverse;align-items:stretch;}
+  .ee-nav-fin .btn{width:100%;}
+  .ee-apres-liens .btn{width:100%;}
+  .ee-hello .btn{width:100%;}
+}
 </style>
 </head>
 <body data-route="/mon-espace">
@@ -1285,7 +1359,7 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
   </nav>
   <div class="nav-cta">
     <a class="btn nav-tel" href="tel:+33767579228">07 67 57 92 28</a>
-    <a class="btn btn-primary" href="/estimer/"><span>Estimer mon bien</span></a>
+    <a class="nav-compte" href="/mon-espace/" data-compte aria-label="Mon espace : se connecter" title="Mon espace : se connecter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M4.8 20c.9-3.6 3.7-5.6 7.2-5.6s6.300 2 7.200 5.600"/></svg><span class="nc-txt">Connecté</span><span class="nc-dot" aria-hidden="true"></span></a><a class="btn btn-primary" href="/estimer/"><span>Estimer mon bien</span></a>
     <button id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu">Menu</button>
   </div>
 </header>
@@ -1302,7 +1376,7 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
     <li><a href="/contact/">Contact <small>Appel, WhatsApp, e-mail</small></a></li>
   </ul>
   <a class="btn btn-primary btn-lg" href="/estimer/">Estimer mon bien <span class="arw">→</span></a>
-  <a class="m-alt" href="/estimation-immobiliere-dijon/">Estimation par Shawez</a>
+  <a class="m-alt" href="/estimation-immobiliere-dijon/">Estimation par Shawez</a><a class="m-alt" href="/mon-espace/" data-compte><span data-compte-txt>Mon espace</span></a>
   <div class="m-foot">
     <a href="tel:+33767579228">07 67 57 92 28</a>
     <a href="mailto:shawez@gravelin-immo.com">shawez@gravelin-immo.com</a>
@@ -1321,49 +1395,53 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
   <div class="page-head shell">
     <p class="label">Mon espace</p>
     <h1 class="display d-xl" style="margin-top:14px;" id="me-titre">Vos estimations, <em>au même endroit.</em></h1>
-    <p class="lede" id="me-lede">Retrouvez vos estimations et l'avancement de votre dossier avec Shawez.</p>
+    <p class="lede" id="me-lede">Retrouvez vos estimations et l'avancement de votre dossier avec <span data-ee-txt="conseiller">Shawez</span>.</p>
   </div>
   <div class="shell">
-    <div class="ee-wrap" id="me-load"><div class="ee-load"></div></div>
+    <div class="ee-wrap" id="me-load" role="status" aria-label="Chargement"><div class="ee-load"></div></div>
 
     <!-- non connecté -->
     <div class="ee-wrap" id="me-out" hidden>
-      <p class="ee-ok" id="me-flash" hidden></p>
-      <div class="ee-tabs" role="group" aria-label="Connexion ou création"><button type="button" class="pill" data-tab="cnx" aria-pressed="true">Se connecter</button><button type="button" class="pill" data-tab="ins" aria-pressed="false">Créer mon espace</button></div>
+      <p class="ee-ok" id="me-flash" role="status" hidden></p>
 
+      <!-- connexion : lien reçu par e-mail, ou mot de passe pour ceux qui en ont choisi un -->
       <form class="form" id="me-cnx" novalidate>
         <div class="ee-step">
-          <div class="ee-head"><h2 class="ee-q">Bon retour <em>parmi nous.</em></h2></div>
-          <div class="field"><label for="me-email">E-mail</label><input type="email" id="me-email" autocomplete="username" inputmode="email"><span class="msg">Indiquez votre e-mail.</span></div>
-          <div class="field"><label for="me-mdp">Mot de passe</label><div class="ee-pw"><input type="password" id="me-mdp" autocomplete="current-password"><button type="button" data-voir="me-mdp">Afficher</button></div><span class="msg">Indiquez votre mot de passe.</span></div>
-          <p class="ee-err" hidden></p>
-          <div class="ee-nav"><button type="button" class="ee-skip" id="me-oubli-btn">Mot de passe oublié ?</button><button type="submit" class="btn btn-primary btn-lg">Me connecter <span class="arw">→</span></button></div>
+          <div class="ee-head"><h2 class="ee-q">Ouvrir <em>mon espace.</em></h2><p class="ee-sub" id="me-cnx-sub">Votre espace a été créé avec votre e-mail, le jour de votre estimation.</p></div>
+          <div class="field"><label for="me-email">E-mail</label><input type="email" id="me-email" autocomplete="username" inputmode="email" autocapitalize="off" autocorrect="off" spellcheck="false"><span class="msg">Indiquez l'e-mail de votre estimation.</span></div>
+          <div class="field" id="me-mdp-f"><label for="me-mdp">Mot de passe <small id="me-mdp-opt">(si vous en avez choisi un)</small></label><div class="ee-pw"><input type="password" id="me-mdp" autocomplete="current-password"><button type="button" data-voir="me-mdp" aria-pressed="false">Afficher</button></div><span class="msg">Indiquez votre mot de passe, ou demandez un lien par e-mail.</span></div>
+          <p class="ee-err" role="alert" hidden></p><p class="ee-ok" role="status" hidden></p>
+          <div class="ee-nav ee-nav-col">
+            <button type="button" class="btn btn-primary btn-lg" id="me-lien-btn">Recevoir mon lien de connexion <span class="arw">→</span></button>
+            <button type="submit" class="btn btn-lg" id="me-cnx-btn">Me connecter avec mon mot de passe</button>
+          </div>
+          <div class="ee-links"><button type="button" id="me-oubli-btn">Mot de passe oublié ?</button><button type="button" data-tab="ins">Créer un espace sans estimation</button><a href="/estimer/" data-ee-lien="estimer">Faire une estimation</a></div>
         </div>
       </form>
 
       <form class="form" id="me-ins" novalidate hidden>
-        <div class="hp" aria-hidden="true"><label for="me-website">Site web</label><input type="text" id="me-website" tabindex="-1" autocomplete="off"></div>
+        <div class="hp" aria-hidden="true"><label for="me-hp">Ne rien écrire ici</label><input type="text" id="me-hp" name="ee_hp_k7" tabindex="-1" autocomplete="off" data-lpignore="true" data-1p-ignore data-form-type="other"></div>
         <div class="ee-step">
-          <div class="ee-head"><h2 class="ee-q">Créer <em>mon espace.</em></h2><p class="ee-sub">Le plus simple reste de <a href="/estimer/">faire une estimation</a> : votre espace est créé au passage.</p></div>
-          <div class="field"><span class="lab">Civilité</span><div class="ee-civ" role="group" aria-label="Civilité"><button type="button" class="pill" data-civ="Mme" aria-pressed="false">Madame</button><button type="button" class="pill" data-civ="M." aria-pressed="false">Monsieur</button></div></div>
+          <div class="ee-head"><h2 class="ee-q">Créer <em>mon espace.</em></h2><p class="ee-sub">Le plus simple reste de <a href="/estimer/" data-ee-lien="estimer">faire une estimation</a> : votre espace est créé au passage, sans mot de passe.</p></div>
+          <div class="field"><span class="lab" id="mi-civ-lab">Civilité</span><div class="ee-civ" role="group" aria-labelledby="mi-civ-lab"><button type="button" class="pill" data-civ="Mme" aria-pressed="false">Madame</button><button type="button" class="pill" data-civ="M." aria-pressed="false">Monsieur</button></div></div>
           <div class="row2">
             <div class="field"><label for="mi-prenom">Prénom</label><input type="text" id="mi-prenom" autocomplete="given-name" maxlength="80"><span class="msg">Indiquez votre prénom.</span></div>
             <div class="field"><label for="mi-nom">Nom</label><input type="text" id="mi-nom" autocomplete="family-name" maxlength="80"><span class="msg">Indiquez votre nom.</span></div>
           </div>
-          <div class="field"><label for="mi-email">E-mail</label><input type="email" id="mi-email" autocomplete="email" inputmode="email" maxlength="160"><span class="msg">Indiquez une adresse e-mail valide.</span></div>
+          <div class="field"><label for="mi-email">E-mail</label><input type="email" id="mi-email" autocomplete="email" inputmode="email" maxlength="160" autocapitalize="off" autocorrect="off" spellcheck="false"><span class="msg">Indiquez une adresse e-mail valide.</span></div>
           <div class="field"><label for="mi-tel">Téléphone</label><input type="tel" id="mi-tel" autocomplete="tel" inputmode="tel" maxlength="30"><span class="msg">Indiquez un numéro valide.</span></div>
-          <div class="field"><label for="mi-mdp">Mot de passe</label><div class="ee-pw"><input type="password" id="mi-mdp" autocomplete="new-password" minlength="8"><button type="button" data-voir="mi-mdp">Afficher</button></div><span class="hint">8 caractères au moins.</span><span class="msg">8 caractères au moins.</span></div>
-          <div class="field"><label class="consent"><input type="checkbox" id="mi-consent"><span>J'accepte que GRAVELIN IMMO utilise ces informations pour gérer mon espace et me recontacter au sujet de mon projet. <a href="/politique-de-confidentialite/#espace-estimation">Confidentialité</a></span></label><span class="msg">Cochez la case pour continuer.</span></div>
-          <p class="ee-err" hidden></p>
-          <div class="ee-nav"><span></span><button type="submit" class="btn btn-primary btn-lg">Créer mon espace <span class="arw">→</span></button></div>
+          <div class="field"><label for="mi-mdp">Mot de passe</label><div class="ee-pw"><input type="password" id="mi-mdp" autocomplete="new-password" minlength="8" aria-describedby="mi-mdp-hint"><button type="button" data-voir="mi-mdp" aria-pressed="false">Afficher</button></div><span class="hint" id="mi-mdp-hint">8 caractères au moins.</span><span class="msg">8 caractères au moins.</span></div>
+          <div class="field"><label class="consent"><input type="checkbox" id="mi-consent"><span>J'accepte que GRAVELIN IMMO utilise ces informations pour gérer mon espace et me recontacter au sujet de mon projet. <a href="/politique-de-confidentialite/#espace-estimation" data-ee-lien="confidentialite">Confidentialité</a></span></label><span class="msg">Cochez la case pour continuer.</span></div>
+          <p class="ee-err" role="alert" hidden></p>
+          <div class="ee-nav"><button type="button" class="btn" data-tab="cnx">Retour</button><button type="submit" class="btn btn-primary btn-lg">Créer mon espace <span class="arw">→</span></button></div>
         </div>
       </form>
 
       <form class="form" id="me-oubli" novalidate hidden>
         <div class="ee-step">
           <div class="ee-head"><h2 class="ee-q">Mot de passe <em>oublié.</em></h2><p class="ee-sub">Indiquez votre e-mail : vous recevez un lien pour en choisir un nouveau.</p></div>
-          <div class="field"><label for="mo-email">E-mail</label><input type="email" id="mo-email" autocomplete="email" inputmode="email"><span class="msg">Indiquez votre e-mail.</span></div>
-          <p class="ee-ok" hidden></p><p class="ee-err" hidden></p>
+          <div class="field"><label for="mo-email">E-mail</label><input type="email" id="mo-email" autocomplete="email" inputmode="email" autocapitalize="off" autocorrect="off" spellcheck="false"><span class="msg">Indiquez votre e-mail.</span></div>
+          <p class="ee-ok" role="status" hidden></p><p class="ee-err" role="alert" hidden></p>
           <div class="ee-nav"><button type="button" class="btn" data-tab="cnx">Retour</button><button type="submit" class="btn btn-primary btn-lg">Recevoir le lien <span class="arw">→</span></button></div>
         </div>
       </form>
@@ -1371,8 +1449,8 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
       <form class="form" id="me-reinit" novalidate hidden>
         <div class="ee-step">
           <div class="ee-head"><h2 class="ee-q">Nouveau <em>mot de passe.</em></h2></div>
-          <div class="field"><label for="mr-mdp">Nouveau mot de passe</label><div class="ee-pw"><input type="password" id="mr-mdp" autocomplete="new-password" minlength="8"><button type="button" data-voir="mr-mdp">Afficher</button></div><span class="hint">8 caractères au moins.</span><span class="msg">8 caractères au moins.</span></div>
-          <p class="ee-err" hidden></p>
+          <div class="field"><label for="mr-mdp">Nouveau mot de passe</label><div class="ee-pw"><input type="password" id="mr-mdp" autocomplete="new-password" minlength="8" aria-describedby="mr-mdp-hint"><button type="button" data-voir="mr-mdp" aria-pressed="false">Afficher</button></div><span class="hint" id="mr-mdp-hint">8 caractères au moins.</span><span class="msg">8 caractères au moins.</span></div>
+          <p class="ee-err" role="alert" hidden></p>
           <div class="ee-nav"><span></span><button type="submit" class="btn btn-primary btn-lg">Enregistrer <span class="arw">→</span></button></div>
         </div>
       </form>
@@ -1380,20 +1458,34 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 
     <!-- connecté -->
     <div class="ee-wrap" id="me-in" hidden>
-      <p class="ee-ok" id="me-verif-ok" hidden>Adresse e-mail confirmée. Merci !</p>
-      <div class="ee-who" id="me-verif" hidden style="margin-bottom:18px;"><p><b>Confirmez votre adresse e-mail.</b> Un lien vous a été envoyé à la création de votre espace. <button type="button" class="ee-skip" id="me-verif-btn" style="margin-left:4px;">Le renvoyer</button></p></div>
-      <div class="ee-hello"><div><p class="label" id="me-bonjour"></p></div><a class="btn btn-primary" href="/estimer/">Nouvelle estimation <span class="arw">→</span></a></div>
+      <p class="ee-ok" id="me-verif-ok" role="status" hidden>Adresse e-mail confirmée. Merci !</p>
+      <div class="ee-who" id="me-attente" hidden style="margin-bottom:18px;"><p></p></div>
+      <div class="ee-who" id="me-verif" hidden style="margin-bottom:18px;"><p><b>Confirmez votre adresse e-mail</b> en ouvrant le lien reçu par e-mail. <button type="button" class="ee-skip" id="me-verif-btn" style="margin-left:4px;">Recevoir un nouveau lien</button></p></div>
+      <div class="ee-hello"><div><p class="label" id="me-bonjour"></p></div><a class="btn btn-primary" href="/estimer/" data-ee-lien="estimer">Nouvelle estimation <span class="arw">→</span></a></div>
       <div class="ee-cards" id="me-cards"></div>
 
       <div class="ee-sec">
         <h2>Mes informations</h2>
         <ul class="ee-kv" id="me-infos"></ul>
-        <div class="ee-links"><a href="/admin/" id="me-admin" hidden>Espace agence</a><button type="button" id="me-logout">Me déconnecter</button><button type="button" class="ee-danger" id="me-del-btn">Supprimer mon espace</button></div>
+
+        <form class="form ee-mdp" id="me-mdp-form" novalidate hidden style="margin-top:18px;">
+          <div class="ee-step">
+            <div class="ee-head"><h2 class="ee-q ee-q-s" id="me-mdp-titre">Choisir <em>un mot de passe</em></h2><p class="ee-sub" id="me-mdp-sub">Facultatif : il permet de vous connecter sans attendre un e-mail.</p></div>
+            <div class="field" id="mp-actuel-f" hidden><label for="mp-actuel">Mot de passe actuel</label><input type="password" id="mp-actuel" autocomplete="current-password"><span class="msg">Indiquez votre mot de passe actuel.</span></div>
+            <div class="field"><label for="mp-mdp">Nouveau mot de passe</label><div class="ee-pw"><input type="password" id="mp-mdp" autocomplete="new-password" minlength="8" aria-describedby="mp-mdp-hint"><button type="button" data-voir="mp-mdp" aria-pressed="false">Afficher</button></div><span class="hint" id="mp-mdp-hint">8 caractères au moins.</span><span class="msg">8 caractères au moins.</span></div>
+            <p class="ee-err" role="alert" hidden></p>
+            <div class="ee-nav"><button type="button" class="btn" id="me-mdp-annule">Annuler</button><button type="submit" class="btn btn-primary">Enregistrer</button></div>
+          </div>
+        </form>
+        <p class="ee-ok" id="me-mdp-ok" role="status" hidden style="margin-top:14px;">Mot de passe enregistré.</p>
+
+        <div class="ee-links"><a href="/admin/" id="me-admin" data-ee-lien="admin" hidden>Espace agence</a><button type="button" id="me-mdp-btn">Choisir un mot de passe</button><button type="button" id="me-logout">Me déconnecter</button><button type="button" class="ee-danger" id="me-del-btn">Supprimer mon espace</button></div>
         <form class="form" id="me-del" novalidate hidden style="margin-top:18px;">
           <div class="ee-step">
-            <div class="ee-head"><h2 class="ee-q" style="font-size:1.4rem;">Supprimer <em>mon espace</em></h2><p class="ee-sub">Votre compte et toutes vos estimations sont effacés définitivement. Confirmez avec votre mot de passe.</p></div>
-            <div class="field"><label for="md-mdp">Mot de passe</label><input type="password" id="md-mdp" autocomplete="current-password"></div>
-            <p class="ee-err" hidden></p>
+            <div class="ee-head"><h2 class="ee-q ee-q-s">Supprimer <em>mon espace</em></h2><p class="ee-sub" id="md-sub">Votre compte, vos estimations et vos fichiers sont effacés définitivement.</p></div>
+            <div class="field" id="md-mdp-f"><label for="md-mdp">Mot de passe</label><input type="password" id="md-mdp" autocomplete="current-password"><span class="msg">Indiquez votre mot de passe.</span></div>
+            <div class="field" id="md-conf-f" hidden><label for="md-conf">Écrivez SUPPRIMER pour confirmer</label><input type="text" id="md-conf" autocomplete="off" autocapitalize="characters"><span class="msg">Écrivez SUPPRIMER (en majuscules) pour confirmer.</span></div>
+            <p class="ee-err" role="alert" hidden></p>
             <div class="ee-nav"><button type="button" class="btn" id="me-del-annule">Annuler</button><button type="submit" class="btn btn-primary">Supprimer définitivement</button></div>
           </div>
         </form>
@@ -1414,7 +1506,7 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
       </div>
       <div><p class="ft-h">Vendre</p><ul><li><a href="/estimer/">Estimer mon bien</a></li><li><a href="/estimation-immobiliere-dijon/">Estimation par Shawez</a></li><li><a href="/vendre-bien-immobilier-dijon/">Vendre à Dijon</a></li><li><a href="/vendre-commerce-dijon/">Commerces</a></li><li><a href="https://www.gravelin-immo.com/vente/1?utm_source=shawez-immo" data-sortie="biens">Voir les biens à vendre</a></li><li><a href="/honoraires/">Honoraires</a></li></ul></div>
       <div><p class="ft-h">Découvrir</p><ul><li><a href="/conseils-vendeurs/">Conseils aux vendeurs</a></li><li><a href="/simulateur-pret-immobilier-dijon/">Simulateur de prêt</a></li><li><a href="/videos-immobilier-dijon/">Vidéos</a></li><li><a href="/shawez-ali-agent-immobilier-dijon/">À propos</a></li><li><a href="/secteurs-dijon-nuits-saint-georges-beaune/">Territoire</a></li><li><a href="/avis/">Avis</a></li><li><a href="/podcast/">Podcast</a></li></ul></div>
-      <div><p class="ft-h">Pratique</p><ul><li><a href="/contact/">Contact</a></li><li><a href="/mentions-legales/">Mentions légales</a></li><li><a href="/politique-de-confidentialite/">Confidentialité</a></li><li><a href="/cookies/">Cookies</a></li><li><a href="https://www.instagram.com/shawez_immobilier" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.linkedin.com/in/shawez-ali" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://www.youtube.com/@gravelinimmo" target="_blank" rel="noopener">YouTube</a></li></ul></div>
+      <div><p class="ft-h">Pratique</p><ul><li><a href="/contact/">Contact</a></li><li><a href="/mon-espace/">Mon espace</a></li><li><a href="/mentions-legales/">Mentions légales</a></li><li><a href="/politique-de-confidentialite/">Confidentialité</a></li><li><a href="/cookies/">Cookies</a></li><li><a href="https://www.instagram.com/shawez_immobilier" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.linkedin.com/in/shawez-ali" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://www.youtube.com/@gravelinimmo" target="_blank" rel="noopener">YouTube</a></li></ul></div>
     </div>
     <div class="ft-bot">
       <span>© 2026 Shawez Ali · Agent commercial en immobilier, GRAVELIN IMMO</span>
@@ -1789,168 +1881,366 @@ updateTone();
 })();
 </script>
 <script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"33710f67a0c16d7cbb94d1b2ba10e7a8"})});</script>
+<script id="compte-js">
+/* Pictogramme « Mon espace » : état connecté d'après le témoin se_ok (posé par l'API à la connexion, retiré à la déconnexion) */
+window.EECompte=function(){var on=/(?:^|;\s*)se_ok=1/.test(document.cookie||'');[].forEach.call(document.querySelectorAll('[data-compte]'),function(a){a.classList.toggle('is-in',on);var t=on?'Mon espace : connecté':'Mon espace : se connecter';if(a.hasAttribute('aria-label')){a.setAttribute('aria-label',t);a.title=t;}var x=a.querySelector('[data-compte-txt]');if(x)x.textContent=on?'Mon espace · connecté':'Mon espace';});};
+window.EECompte();window.addEventListener('pageshow',window.EECompte);
+</script>
 <script id="espace-js">
-/* Espace estimation : outils communs (estimer, mon-espace, admin) */
+/* Espace estimation : outils communs (estimer, mon-espace, admin).
+   Le même module sert les deux sites ; ce qui change d'un site à l'autre est dans EE_CONF (défini avant ce script
+   par la page, sinon valeurs de shawez-immo.com) et dans la feuille de thème. */
 var EE=(function(){
   'use strict';
+  var CONF={site:'',api:'/api/espace',estimer:'/estimer/',espace:'/mon-espace/',admin:'/admin/',
+    tel:'+33767579228',telAffiche:'07 67 57 92 28',conseiller:'Shawez',email:'shawez@gravelin-immo.com',
+    confidentialite:'/politique-de-confidentialite/#espace-estimation',portrait:''};
+  var ext=window.EE_CONF||{}; Object.keys(ext).forEach(function(k){CONF[k]=ext[k];});
+
   function $(s,c){return (c||document).querySelector(s);}
   function $$(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s));}
   function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
-  function euros(n){return n==null?'':Math.round(n).toLocaleString('fr-FR').replace(/ | /g,' ')+' €';}
+  function euros(n){return n==null?'':Math.round(n).toLocaleString('fr-FR').replace(/[  ]/g,' ')+' €';}
   function date(s){try{return new Date(s).toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'});}catch(e){return s;}}
-  function mois(s){ if(!s)return ''; try{return new Date(s+'T12:00:00').toLocaleDateString('fr-FR',{month:'long',year:'numeric'});}catch(e){return s;} }
+  function jour(s){ if(!s)return ''; var p=String(s).slice(0,10).split('-'); return p.length===3?p[2]+'/'+p[1]+'/'+p[0]:s; }
+  function mois(s){ if(!s)return ''; try{return new Date(String(s).slice(0,10)+'T12:00:00').toLocaleDateString('fr-FR',{month:'long',year:'numeric'});}catch(e){return s;} }
+  function taille(o){ return o>=1048576?(o/1048576).toLocaleString('fr-FR',{maximumFractionDigits:1})+' Mo':Math.max(1,Math.round(o/1024))+' Ko'; }
+  function rayon(r){ return r>=1000?(r/1000).toLocaleString('fr-FR')+' km':r+' m'; }
+
+  /* Appel de l'API. Délai de garde : sur un réseau lent, on rend la main avec un message clair plutôt que d'attendre sans fin. */
   function api(chemin,opts){
     opts=opts||{};
     var init={method:opts.method||'GET',credentials:'same-origin',headers:{}};
-    if(opts.body!==undefined){init.method=opts.method||'POST';init.headers['Content-Type']='application/json';init.body=JSON.stringify(opts.body);}
-    return fetch('/api/espace'+chemin,init).then(function(r){
-      return r.json().catch(function(){return {};}).then(function(d){d=d||{};d._status=r.status;return d;});
-    },function(){return {_status:0,error:'reseau'};});
+    if(opts.fichier){init.method='POST';init.body=opts.fichier;init.headers['Content-Type']=opts.fichier.type||'application/octet-stream';init.headers['X-Fichier-Nom']=encodeURIComponent(opts.nom||opts.fichier.name||'fichier');}
+    else if(opts.body!==undefined){init.method=opts.method||'POST';init.headers['Content-Type']='application/json';init.body=JSON.stringify(opts.body);}
+    var ctrl=window.AbortController?new AbortController():null, t=null;
+    if(ctrl){init.signal=ctrl.signal;t=setTimeout(function(){ctrl.abort();},opts.delai||30000);}
+    return fetch(CONF.api+chemin,init).then(function(r){
+      clearTimeout(t);
+      return r.json().catch(function(){return {};}).then(function(d){d=d||{};d._status=r.status;if(r.status>=500&&!d.error)d.error='serveur';return d;});
+    },function(){clearTimeout(t);return {_status:0,error:'reseau'};});
   }
-  var MSG={reseau:"La connexion a échoué. Vérifiez votre réseau et réessayez.",trop_de_demandes:"Trop d'essais d'affilée. Réessayez dans quelques minutes.",identifiants:"E-mail ou mot de passe incorrect.",serveur:"Un souci technique de notre côté. Réessayez, ou appelez Shawez au 07 67 57 92 28.",base_absente:"L'espace n'est pas encore ouvert. Appelez Shawez au 07 67 57 92 28.",compte_existe:"Un espace existe déjà avec cet e-mail.",champs:"Un champ est incomplet ou mal rempli.",jeton:"Ce lien n'est plus valable. Demandez-en un nouveau.",origine:"Requête refusée.",connexion:"Votre session a expiré : reconnectez-vous."};
+  var MSG={
+    reseau:"La connexion a échoué ou a mis trop de temps. Vérifiez votre réseau et réessayez : rien n'est perdu.",
+    trop_de_demandes:"Trop d'essais d'affilée. Réessayez dans quelques minutes.",
+    identifiants:"E-mail ou mot de passe incorrect.",
+    sans_mot_de_passe:"Cet espace existe, mais sans mot de passe : il a été créé pendant votre estimation.",
+    serveur:"Un souci technique de notre côté. Réessayez, ou appelez "+CONF.conseiller+" au "+CONF.telAffiche+".",
+    base_absente:"L'espace n'est pas encore ouvert. Appelez "+CONF.conseiller+" au "+CONF.telAffiche+".",
+    compte_existe:"Un espace existe déjà avec cet e-mail.",
+    champs:"Un champ est incomplet ou mal rempli.",
+    jeton:"Ce lien n'est plus valable (il ne sert qu'une fois). Demandez-en un nouveau.",
+    origine:"Requête refusée.",
+    connexion:"Votre session a expiré : reconnectez-vous.",
+    interdit:"Ce compte n'a pas accès à cette page.",
+    introuvable:"Introuvable.",
+    taille:"Ce fichier dépasse 10 Mo.",
+    type_fichier:"Format non accepté. Envoyez une photo (JPEG, PNG, WebP, HEIC) ou un PDF.",
+    pdf_attendu:"L'avis de valeur doit être un fichier PDF.",
+    trop_de_fichiers:"Il y a déjà 30 fichiers sur cette estimation.",
+    stockage_plein:"L'espace de stockage est plein : envoyez ce fichier par e-mail à "+CONF.email+"."
+  };
   function message(d){return MSG[d&&d.error]||MSG.serveur;}
-  var TEL='+33767579228';
-  function wa(txt){return 'https://wa.me/33767579228?text='+encodeURIComponent(txt);}
-  /* bloc résultat (fond sombre) */
+  var CHAMPS={email:"L'adresse e-mail n'est pas valide.",telephone:"Le numéro de téléphone n'est pas valide.",prenom:"Indiquez votre prénom.",nom:"Indiquez votre nom.",mot_de_passe:"Le mot de passe doit compter 8 caractères au moins.",consentement:"Cochez la case pour continuer.",adresse:"L'adresse du bien est incomplète.",surface:"La surface n'est pas valide.",confirmation:"Écrivez SUPPRIMER pour confirmer."};
+  function messageChamp(d){return (d&&d.error==='champs'&&CHAMPS[d.champ])||message(d);}
+
+  function wa(txt){return 'https://wa.me/'+CONF.tel.replace(/\D/g,'')+'?text='+encodeURIComponent(txt);}
+
+  /* Bloc résultat (fond sombre) : la fourchette, puis d'où elle vient. */
   function resultat(res,ref,adresse){
     var h='';
     if(res&&res.fourchette){
       h+='<p class="label">Votre estimation · indicative</p>'+
-        '<p class="ee-price"><span>'+euros(res.bas)+'</span><em>–</em><span>'+euros(res.haut)+'</span></p>'+
+        '<p class="ee-price" data-test="fourchette"><span>'+euros(res.bas)+'</span><em>–</em><span>'+euros(res.haut)+'</span></p>'+
         '<p class="ee-m2">Soit environ <b>'+euros(res.prix_m2)+'/m²</b>'+(adresse?' · '+esc(adresse):'')+'</p>'+
         '<p class="ee-warn"><span><b>Indicatif, à confirmer par une visite.</b> Le calcul ne voit ni la lumière, ni la vue, ni les finitions : c\'est la visite qui donne le prix juste.</span></p>'+
         '<ul class="ee-facts">'+
-          '<li><span>Ventes comparables</span><span>'+res.comparables+' ventes à moins de '+(res.rayon>=1000?(res.rayon/1000).toLocaleString('fr-FR')+' km':res.rayon+' m')+'</span></li>'+
-          '<li><span>Prix médian du secteur</span><span>'+euros(res.m2_quartier)+'/m²</span></li>'+
-          ((res.ajustements||[]).length?'<li><span>Ajustements</span><span>'+res.ajustements.map(function(a){return esc(a.libelle)+' '+(a.pct>0?'+':'')+a.pct+' %';}).join('<br>')+'</span></li>':'')+
-          '<li><span>Source</span><span>Ventes réelles DVF'+(res.annees?' '+res.annees[0]+'–'+res.annees[res.annees.length-1]:'')+(res.donnees_du?', à jour de '+mois(res.donnees_du):'')+'</span></li>'+
+          '<li><span>Ventes comparables utilisées</span><span data-test="ventes">'+res.comparables+' ventes réelles</span></li>'+
+          '<li><span>Rayon</span><span data-test="rayon">à moins de '+rayon(res.rayon)+'</span></li>'+
+          '<li><span>Prix médian de ces ventes</span><span>'+euros(res.m2_quartier)+'/m²</span></li>'+
+          ((res.ajustements||[]).length?'<li><span>Ajustements pour votre bien</span><span>'+res.ajustements.map(function(a){return esc(a.libelle)+' '+(a.pct>0?'+':'')+a.pct+' %';}).join('<br>')+'</span></li>':'')+
+          '<li><span>Date des données</span><span data-test="donnees">Ventes DVF'+(res.annees?' '+res.annees[0]+'–'+res.annees[res.annees.length-1]:'')+(res.donnees_du?', à jour de '+mois(res.donnees_du):'')+'</span></li>'+
         '</ul>';
     } else {
+      var r=res&&res.raison;
       h+='<p class="label">Votre demande est enregistrée</p>'+
-        '<p class="ee-price" style="font-size:clamp(2rem,6vw,3rem);">Shawez vous rappelle <em>sous 24 h.</em></p>'+
-        '<p class="ee-m2">'+(res&&res.raison==='peu_de_ventes'?"Il y a eu trop peu de ventes comparables près de chez vous pour donner une fourchette fiable : Shawez l'étudie lui-même.":res&&res.raison==='type'?"Pour ce type de bien, l'estimation se fait sur pièces : Shawez l'étudie lui-même.":res&&res.raison==='hors_zone'?"Ce secteur est hors de la Côte-d'Or : Shawez vous dit ce qu'il peut faire pour vous.":"Shawez étudie votre bien lui-même et vous donne une première fourchette au téléphone.")+'</p>'+
+        '<p class="ee-price ee-price-txt" data-test="rappel">Je vous rappelle <em>sous 24 h.</em></p>'+
+        '<p class="ee-m2">'+(r==='peu_de_ventes'?"Il y a eu trop peu de ventes comparables près de chez vous"+(res.comparables!=null?' ('+res.comparables+' seulement)':'')+" pour donner une fourchette fiable. Pas de prix au hasard : "+CONF.conseiller+" l'étudie lui-même.":r==='type'?"Pour ce type de bien, l'estimation se fait sur pièces : "+CONF.conseiller+" l'étudie lui-même.":r==='hors_zone'?"Ce secteur est hors de la Côte-d'Or : "+CONF.conseiller+" vous dit ce qu'il peut faire pour vous.":CONF.conseiller+" étudie votre bien lui-même et vous donne une première fourchette au téléphone.")+'</p>'+
         (res&&res.donnees_du?'<p class="ee-warn"><span>Données des ventes réelles (DVF) à jour de '+mois(res.donnees_du)+'.</span></p>':'');
     }
-    if(ref)h+='<ul class="ee-facts" style="margin-top:0;border-top:0;"><li><span>Référence</span><span>'+esc(ref)+'</span></li></ul>';
+    if(ref)h+='<ul class="ee-facts ee-ref"><li><span>Référence</span><span data-test="reference">'+esc(ref)+'</span></li></ul>';
     h+='<div class="btn-row">'+
-      '<a class="btn btn-primary btn-lg" href="tel:'+TEL+'">Prendre rendez-vous <span class="arw">→</span></a>'+
-      '<a class="btn btn-ghost" href="'+wa('Bonjour Shawez, je viens de faire mon estimation en ligne'+(ref?' (réf. '+ref+')':'')+'. ')+'" target="_blank" rel="noopener">WhatsApp</a>'+
-      '<a class="btn btn-ghost" href="/mon-espace/">Mon espace</a>'+
+      '<a class="btn btn-primary btn-lg" href="tel:'+CONF.tel+'">Prendre rendez-vous <span class="arw">→</span></a>'+
+      '<a class="btn btn-ghost" href="'+wa('Bonjour '+CONF.conseiller+', je viens de faire mon estimation en ligne'+(ref?' (réf. '+ref+')':'')+'. ')+'" target="_blank" rel="noopener">WhatsApp</a>'+
     '</div>';
     return h;
   }
   function voirMdp(root){
-    $$('[data-voir]',root).forEach(function(b){b.addEventListener('click',function(){var i=document.getElementById(b.getAttribute('data-voir'));var v=i.type==='password';i.type=v?'text':'password';b.textContent=v?'Masquer':'Afficher';});});
+    $$('[data-voir]',root).forEach(function(b){b.addEventListener('click',function(){var i=document.getElementById(b.getAttribute('data-voir'));var v=i.type==='password';i.type=v?'text':'password';b.textContent=v?'Masquer':'Afficher';b.setAttribute('aria-pressed',String(v));});});
   }
-  return {$:$,$$:$$,esc:esc,euros:euros,date:date,mois:mois,api:api,message:message,resultat:resultat,voirMdp:voirMdp,TEL:TEL,wa:wa};
+  /* champ en erreur : classe + aria-invalid, pour l'œil et pour les lecteurs d'écran */
+  function err(el,on){
+    var f=el.closest('.field'); if(f)f.classList.toggle('err',!!on);
+    if(el.setAttribute){ if(on)el.setAttribute('aria-invalid','true'); else el.removeAttribute('aria-invalid'); }
+    return !on;
+  }
+  function emailOk(v){return /^[^\s@"<>(),;:]+@[^\s@"<>(),;:]+\.[a-z]{2,}$/i.test(String(v||'').trim());}
+  function telOk(v){v=String(v||'').trim();var n=v.replace(/\D/g,'').length;return /^[+\d][\d\s.\-()]{7,}$/.test(v)&&n>=9&&n<=15;}
+
+  /* Témoin « connecté » (cookie se_ok, sans valeur secrète) : le pictogramme de l'en-tête le lit sur toutes les pages. */
+  function connecte(){return /(?:^|;\s*)se_ok=1/.test(document.cookie||'');}
+  function pictogramme(){ try{ if(window.EECompte)window.EECompte(); }catch(e){} }
+
+  /* Portrait du conseiller : affiché seulement si le site en fournit un. */
+  function portraits(root){ $$('img[data-ee-portrait]',root).forEach(function(i){ if(CONF.portrait){i.src=CONF.portrait;i.hidden=false;} else i.hidden=true; }); }
+
+  /* Mémoire du parcours dans l'onglet (sessionStorage) : jamais bloquant si le navigateur la refuse. */
+  var mem={
+    lire:function(k){try{var v=window.sessionStorage.getItem(k);return v?JSON.parse(v):null;}catch(e){return null;}},
+    ecrire:function(k,v){try{window.sessionStorage.setItem(k,JSON.stringify(v));}catch(e){}},
+    effacer:function(k){try{window.sessionStorage.removeItem(k);}catch(e){}}
+  };
+  function uuid(){ try{ if(window.crypto&&crypto.randomUUID)return crypto.randomUUID(); }catch(e){} return 'c'+Date.now().toString(36)+Math.random().toString(36).slice(2,12)+Math.random().toString(36).slice(2,12); }
+
+  return {CONF:CONF,$:$,$$:$$,esc:esc,euros:euros,date:date,jour:jour,mois:mois,taille:taille,rayon:rayon,api:api,message:message,messageChamp:messageChamp,resultat:resultat,voirMdp:voirMdp,err:err,emailOk:emailOk,telOk:telOk,connecte:connecte,pictogramme:pictogramme,portraits:portraits,mem:mem,uuid:uuid,TEL:CONF.tel,wa:wa};
 })();
 
-/* /mon-espace/ : connexion, création, mot de passe oublié, estimations et avancement */
+/* /mon-espace/ : connexion (lien reçu par e-mail ou mot de passe), estimations, avancement, avis de valeur, photos et documents */
 (function(){
   'use strict';
-  var $=EE.$, $$=EE.$$;
+  var $=EE.$, $$=EE.$$, err=EE.err, C=EE.CONF;
   var out=$('#me-out'), inn=$('#me-in'), load=$('#me-load');
   var qs=new URLSearchParams(location.search);
-  var mailOk=true, civ='';
+  var civ='', compte=null, lienPossible=false, TAILLE_MAX=10*1024*1024;
   EE.voirMdp(document);
+  $$('[data-ee-txt=conseiller]').forEach(function(e){e.textContent=C.conseiller;});
+  $$('[data-ee-lien]').forEach(function(a){var k=a.getAttribute('data-ee-lien');if(C[k])a.href=C[k];});
 
-  function err(el,on){var f=el.closest('.field');if(f)f.classList.toggle('err',!!on);return !on;}
-  function msg(form,txt,ok){var e=$(ok?'.ee-ok':'.ee-err',form);if(!e)return;e.textContent=txt||'';e.hidden=!txt;}
+  function msg(form,txt,ok){var e=$(ok?'.ee-ok':'.ee-err',form);if(!e)return;if(ok){var k=$('.ee-err',form);if(k)k.hidden=true;}else{var o=$('.ee-ok',form);if(o)o.hidden=true;}e.innerHTML=txt||'';e.hidden=!txt;}
+  function flash(txt,ok){var f=$('#me-flash');f.className=ok?'ee-ok':'ee-err';f.textContent=txt;f.hidden=!txt;}
   function onglet(t){
     ['cnx','ins','oubli','reinit'].forEach(function(k){$('#me-'+k).hidden=(k!==t);});
-    $$('.ee-tabs [data-tab]').forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-tab')===t));});
-    $('.ee-tabs').hidden=(t==='oubli'||t==='reinit');
+    var f=$('#me-'+t), c=f&&f.querySelector('input:not([tabindex="-1"])'); if(c&&t!=='cnx')c.focus({preventScroll:true});
   }
   $$('[data-tab]').forEach(function(b){b.addEventListener('click',function(){onglet(b.getAttribute('data-tab'));});});
   $('#me-oubli-btn').addEventListener('click',function(){$('#mo-email').value=$('#me-email').value;onglet('oubli');});
   $$('[data-civ]').forEach(function(b){b.addEventListener('click',function(){civ=b.getAttribute('data-civ');$$('[data-civ]').forEach(function(x){x.setAttribute('aria-pressed',String(x===b));});});});
+  var aide='Demandez-le à '+EE.esc(C.conseiller)+' : <a href="tel:'+C.tel+'">'+C.telAffiche+'</a> (appel ou WhatsApp).';
 
+  /* ---------- estimations ---------- */
   var ETAPES=[['recue','Demande reçue'],['visite','Visite prévue'],['avis','Avis de valeur envoyé']];
   var TYPES={appartement:'Appartement',maison:'Maison',autre:'Bien'};
+  function lienFichier(f){return C.api+'/fichier?id='+encodeURIComponent(f.id);}
+  function fichier(f){
+    var img=/^image\/(jpeg|png|webp)$/.test(f.type);
+    return '<li data-fid="'+EE.esc(f.id)+'">'+
+      '<a href="'+lienFichier(f)+'"'+(img?' target="_blank" rel="noopener"':' download="'+EE.esc(f.nom)+'"')+'>'+(img?'<img src="'+lienFichier(f)+'" alt="" loading="lazy" width="56" height="56">':'<i aria-hidden="true">'+(f.type==='application/pdf'?'PDF':'DOC')+'</i>')+
+      '<span><b>'+EE.esc(f.nom)+'</b><small>'+EE.taille(f.taille)+(f.depose_par==='agence'?' · déposé par '+EE.esc(C.conseiller):'')+'</small></span></a>'+
+      (f.depose_par==='client'?'<button type="button" data-suppr="'+EE.esc(f.id)+'" aria-label="Retirer '+EE.esc(f.nom)+'">Retirer</button>':'')+'</li>';
+  }
   function carte(d){
-    var rang={recue:0,visite:1,avis:2,close:2}[d.statut]||0;
+    var rang={recue:0,appele:0,visite:1,avis:2,close:2}[d.statut]||0;
     var titre=(TYPES[d.type]||'Bien')+(d.surface?' · '+d.surface+' m²':'')+(d.pieces?' · '+d.pieces+' p.':'');
-    return '<article class="ee-card">'+
+    var avis=(d.fichiers||[]).filter(function(f){return f.role==='avis';}), autres=(d.fichiers||[]).filter(function(f){return f.role!=='avis';});
+    return '<article class="ee-card" data-id="'+d.id+'">'+
       '<div><h3>'+EE.esc(titre)+'</h3><p class="meta">'+EE.esc(d.adresse||d.commune||'')+'</p></div>'+
-      (d.prix_bas?'<div><p class="fp">'+EE.euros(d.prix_bas)+' – '+EE.euros(d.prix_haut)+'</p><p class="meta">Environ '+EE.euros(d.prix_m2)+'/m² · '+d.comparables+' ventes comparables · indicatif, à confirmer par une visite</p></div>'
-        :'<div><p class="fp" style="font-size:1.3rem;">Étude personnalisée</p><p class="meta">Shawez étudie votre bien lui-même et vous rappelle.</p></div>')+
+      (d.prix_bas?'<div><p class="fp">'+EE.euros(d.prix_bas)+' – '+EE.euros(d.prix_haut)+'</p><p class="meta">Environ '+EE.euros(d.prix_m2)+'/m² · '+d.comparables+' ventes comparables'+(d.rayon?' à moins de '+EE.rayon(d.rayon):'')+(d.donnees_du?' · données à jour de '+EE.mois(d.donnees_du):'')+' · indicatif, à confirmer par une visite</p></div>'
+        :'<div><p class="fp fp-txt">Étude personnalisée</p><p class="meta">'+EE.esc(C.conseiller)+' étudie votre bien lui-même et vous rappelle.</p></div>')+
       '<ol class="ee-tl" aria-label="Avancement">'+ETAPES.map(function(e,k){return '<li class="'+(k<=rang?'done':'')+'"'+(k===rang?' aria-current="step"':'')+'>'+e[1]+'</li>';}).join('')+'</ol>'+
+      (avis.length?'<div class="ee-avis">'+avis.map(function(f){return '<a class="btn btn-primary" href="'+lienFichier(f)+'" download="'+EE.esc(f.nom)+'">Télécharger mon avis de valeur (PDF) <span class="arw">↓</span></a>';}).join('')+'</div>'
+        :rang>=2&&d.statut!=='close'?'<p class="meta">Votre avis de valeur vous a été remis ; il sera aussi déposé ici.</p>':'')+
+      '<div class="ee-files"><p class="lab">Photos et documents</p>'+
+        '<ul class="ee-flist">'+autres.map(fichier).join('')+'</ul>'+
+        '<label class="btn ee-add"><input type="file" multiple accept="image/jpeg,image/png,image/webp,image/heic,image/heif,application/pdf" data-ajout="'+d.id+'">Ajouter des photos ou des documents</label>'+
+        '<p class="hint">Photos (JPEG, PNG, HEIC) ou PDF, 10 Mo au plus par fichier. Seuls '+EE.esc(C.conseiller)+' et l\'agence les voient.</p>'+
+        '<p class="ee-err" role="alert" hidden></p><p class="ee-ok" role="status" hidden></p></div>'+
       '<p class="meta">Réf. '+EE.esc(d.reference)+' · le '+EE.date(d.cree_le)+(d.statut==='close'?' · dossier clos':'')+'</p>'+
     '</article>';
   }
   function afficher(d){
     load.hidden=true;
-    mailOk=d.email!==false;
-    if(!d.compte){
+    lienPossible=d.email!==false;
+    if(d.taille_max)TAILLE_MAX=d.taille_max;
+    compte=d.compte||null;
+    EE.pictogramme();
+    if(!compte){
       out.hidden=false; inn.hidden=true;
+      // l'envoi de liens aux clients est ouvert : le lien d'abord ; sinon le mot de passe d'abord
+      var bl=$('#me-lien-btn'), bc=$('#me-cnx-btn');
+      if(lienPossible){ bl.className='btn btn-primary btn-lg'; bc.className='btn btn-lg'; }
+      else { bl.className='btn btn-lg'; bc.className='btn btn-primary btn-lg'; bc.parentNode.insertBefore(bc,bl); bl.firstChild.textContent='Recevoir un lien par e-mail '; bc.textContent='Me connecter'; $('#me-mdp-opt').textContent=''; $('#me-cnx-sub').textContent='Connectez-vous avec le mot de passe choisi après votre estimation.'; }
+      if(qs.get('email')&&!$('#me-email').value)$('#me-email').value=qs.get('email');
       if(qs.get('reinit'))onglet('reinit'); else if(qs.get('oubli'))onglet('oubli'); else onglet('cnx');
-      if(qs.get('verifie')==='0'){var f=$('#me-flash');f.className='ee-err';f.textContent='Ce lien de confirmation n\'est plus valable. Connectez-vous pour en recevoir un nouveau.';f.hidden=false;}
+      if(qs.get('verifie')==='0')flash('Ce lien de confirmation n\'est plus valable. Connectez-vous pour en recevoir un nouveau.');
       return;
     }
-    var c=d.compte;
+    var c=compte;
     out.hidden=true; inn.hidden=false;
-    $('#me-titre').innerHTML='Bonjour '+EE.esc(c.prenom||'')+', <em>voici votre espace.</em>';
+    $('#me-titre').innerHTML=(c.prenom?'Bonjour '+EE.esc(c.prenom)+', <em>voici votre espace.</em>':'Bonjour, <em>voici votre espace.</em>');
     $('#me-lede').textContent=d.demandes.length?'Vos estimations et l\'avancement de chaque dossier.':'Vous n\'avez pas encore d\'estimation.';
     $('#me-bonjour').textContent=d.demandes.length+' estimation'+(d.demandes.length>1?'s':'');
-    $('#me-cards').innerHTML=d.demandes.length?d.demandes.map(carte).join(''):'<div class="ee-empty"><p style="margin:0;">Deux minutes suffisent pour connaître la fourchette de prix de votre bien.</p><a class="btn btn-primary" href="/estimer/">Estimer mon bien <span class="arw">→</span></a></div>';
-    $('#me-infos').innerHTML=[['Nom',[c.civilite,c.prenom,c.nom].filter(Boolean).join(' ')],['E-mail',c.email+(c.verifie?'':' (non confirmé)')],['Téléphone',c.telephone||'—'],['Espace créé le',EE.date(c.cree_le)]].map(function(l){return '<li><span>'+l[0]+'</span><span>'+EE.esc(l[1])+'</span></li>';}).join('');
+    $('#me-cards').innerHTML=d.demandes.length?d.demandes.map(carte).join(''):'<div class="ee-empty"><p style="margin:0;">Deux minutes suffisent pour connaître la fourchette de prix de votre bien.</p><a class="btn btn-primary" href="'+C.estimer+'">Estimer mon bien <span class="arw">→</span></a></div>';
+    $('#me-infos').innerHTML=[['Nom',[c.civilite,c.prenom,c.nom].filter(Boolean).join(' ')],['E-mail',c.email+(c.verifie?' (confirmé)':'')],['Téléphone',c.telephone||'—'],['Mot de passe',c.mot_de_passe?'défini':'aucun (connexion par lien)'],['Espace créé le',EE.date(c.cree_le)]].map(function(l){return '<li><span>'+l[0]+'</span><span>'+EE.esc(l[1])+'</span></li>';}).join('');
     $('#me-admin').hidden=!c.admin;
-    $('#me-verif').hidden=!!c.verifie||!mailOk;
+    $('#me-mdp-btn').textContent=c.mot_de_passe?'Changer mon mot de passe':'Choisir un mot de passe';
+    $('#me-verif').hidden=!!c.verifie||!lienPossible;
+    var att=$('#me-attente'); att.hidden=!d.en_attente;
+    if(d.en_attente){
+      $('p',att).innerHTML='<b>'+d.en_attente+' estimation'+(d.en_attente>1?'s attendent':' attend')+' la confirmation de votre e-mail</b> (faite'+(d.en_attente>1?'s':'')+' sans être connecté). '+
+        (lienPossible?'<button type="button" class="ee-skip" id="me-att-btn">Recevoir le lien de confirmation</button>':'Un lien de connexion suffit pour la faire apparaître. '+aide);
+      var ab=$('#me-att-btn'); if(ab)ab.addEventListener('click',function(){ab.disabled=true;EE.api('/lien',{body:{email:c.email}}).then(function(r){ab.textContent=r.envoye?'Lien envoyé : ouvrez-le depuis votre boîte e-mail':'Envoi impossible pour le moment';});});
+    }
     if(qs.get('verifie')==='1')$('#me-verif-ok').hidden=false;
-    if(qs.get('verifie')||qs.get('reinit'))history.replaceState(null,'',location.pathname);
+    if(qs.get('verifie')||qs.get('reinit')||qs.get('lien')||qs.get('email'))history.replaceState(null,'',location.pathname);
   }
-  function charger(){ EE.api('/moi').then(function(d){ if(d._status!==200){load.hidden=true;out.hidden=false;onglet('cnx');msg($('#me-cnx'),EE.message(d));return;} afficher(d); }); }
+  function charger(){ return EE.api('/moi').then(function(d){ if(d._status!==200){load.hidden=true;out.hidden=false;onglet('cnx');msg($('#me-cnx'),EE.message(d));return;} afficher(d); }); }
 
-  /* connexion */
+  /* ---------- connexion par lien ---------- */
+  $('#me-lien-btn').addEventListener('click',function(){
+    var f=$('#me-cnx'), b=this, m=$('#me-email'); m.value=m.value.replace(/\s+/g,'');
+    err($('#me-mdp'),false);
+    if(!err(m,!EE.emailOk(m.value))){m.focus();return;}
+    msg(f,''); b.disabled=true;
+    EE.api('/lien',{body:{email:m.value,site:C.site||undefined}}).then(function(d){
+      b.disabled=false;
+      if(d._status!==200){msg(f,EE.messageChamp(d));return;}
+      if(d.envoye)msg(f,'Si un espace existe avec cette adresse, un lien de connexion vient d\'y être envoyé. Il est valable 30 minutes et ne sert qu\'une fois. Pensez à regarder dans les indésirables.',true);
+      else msg(f,'L\'envoi de liens par e-mail n\'est pas encore ouvert. Connectez-vous avec votre mot de passe si vous en avez choisi un. Sinon, un lien de connexion suffit : '+aide);
+    });
+  });
+  /* ---------- connexion par mot de passe ---------- */
   $('#me-cnx').addEventListener('submit',function(e){
-    e.preventDefault(); var f=this, ok=true;
-    ok=err($('#me-email'),!$('#me-email').value.trim())&&ok; ok=err($('#me-mdp'),!$('#me-mdp').value)&&ok; if(!ok)return;
-    msg(f,''); var b=$('[type=submit]',f); b.disabled=true;
-    EE.api('/connexion',{body:{email:$('#me-email').value.trim(),mot_de_passe:$('#me-mdp').value}}).then(function(d){
-      b.disabled=false; if(d._status===200){ $('#me-mdp').value=''; charger(); window.scrollTo({top:0}); } else msg(f,EE.message(d));
+    e.preventDefault(); var f=this, ok=true, m=$('#me-email'); m.value=m.value.replace(/\s+/g,'');
+    ok=err(m,!EE.emailOk(m.value))&&ok; ok=err($('#me-mdp'),!$('#me-mdp').value)&&ok; if(!ok){(f.querySelector('.field.err input')||m).focus();return;}
+    msg(f,''); var b=$('#me-cnx-btn'); b.disabled=true;
+    EE.api('/connexion',{body:{email:m.value,mot_de_passe:$('#me-mdp').value}}).then(function(d){
+      b.disabled=false;
+      if(d._status===200){ $('#me-mdp').value=''; charger(); window.scrollTo({top:0}); return; }
+      if(d.error==='sans_mot_de_passe'){ msg(f,'Cet espace existe bien, mais sans mot de passe : il a été créé pendant votre estimation. '+(d.lien||lienPossible?'Cliquez sur « Recevoir mon lien de connexion ».':'Un lien de connexion suffit pour l\'ouvrir. '+aide)); return; }
+      if(d.error==='identifiants'){ msg(f,'E-mail ou mot de passe incorrect. Si vous n\'avez jamais choisi de mot de passe, '+(lienPossible?'demandez plutôt un lien de connexion.':'un lien de connexion suffit : '+aide)); return; }
+      msg(f,EE.messageChamp(d));
     });
   });
-  /* création */
+  /* ---------- création sans estimation ---------- */
   $('#me-ins').addEventListener('submit',function(e){
-    e.preventDefault(); var f=this, ok=true;
+    e.preventDefault(); var f=this, ok=true; $('#mi-email').value=$('#mi-email').value.replace(/\s+/g,'');
     ok=err($('#mi-prenom'),!$('#mi-prenom').value.trim())&&ok; ok=err($('#mi-nom'),!$('#mi-nom').value.trim())&&ok;
-    ok=err($('#mi-email'),!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test($('#mi-email').value.trim()))&&ok;
-    ok=err($('#mi-tel'),$('#mi-tel').value.replace(/\D/g,'').length<9)&&ok;
-    ok=err($('#mi-mdp'),$('#mi-mdp').value.length<8)&&ok; ok=err($('#mi-consent'),!$('#mi-consent').checked)&&ok;
-    if(!ok)return; msg(f,''); var b=$('[type=submit]',f); b.disabled=true;
-    EE.api('/inscription',{body:{civilite:civ,prenom:$('#mi-prenom').value.trim(),nom:$('#mi-nom').value.trim(),email:$('#mi-email').value.trim(),telephone:$('#mi-tel').value.trim(),mot_de_passe:$('#mi-mdp').value,consentement:true,website:$('#me-website').value}}).then(function(d){
-      b.disabled=false; if(d._status===201){charger();window.scrollTo({top:0});} else msg(f,d.error==='compte_existe'?'Un espace existe déjà avec cet e-mail : connectez-vous.':EE.message(d));
+    ok=err($('#mi-email'),!EE.emailOk($('#mi-email').value))&&ok;
+    ok=err($('#mi-tel'),!EE.telOk($('#mi-tel').value))&&ok;
+    ok=err($('#mi-mdp'),$('#mi-mdp').value.trim().length<8)&&ok; ok=err($('#mi-consent'),!$('#mi-consent').checked)&&ok;
+    if(!ok){var k=f.querySelector('.field.err input');if(k)k.focus();return;} msg(f,''); var b=$('[type=submit]',f); b.disabled=true;
+    EE.api('/inscription',{body:{civilite:civ,prenom:$('#mi-prenom').value.trim(),nom:$('#mi-nom').value.trim(),email:$('#mi-email').value.trim(),telephone:$('#mi-tel').value.trim(),mot_de_passe:$('#mi-mdp').value,consentement:true,ee_hp:$('#me-hp').value,site:C.site||undefined}}).then(function(d){
+      b.disabled=false; if(d._status===201){charger();window.scrollTo({top:0});} else msg(f,d.error==='compte_existe'?'Un espace existe déjà avec cet e-mail : connectez-vous.':EE.messageChamp(d));
     });
   });
-  /* oubli */
+  /* ---------- mot de passe oublié ---------- */
   $('#me-oubli').addEventListener('submit',function(e){
-    e.preventDefault(); var f=this; if(!err($('#mo-email'),!$('#mo-email').value.trim()))return;
-    msg(f,''); msg(f,'',true);
-    EE.api('/mot-de-passe/oubli',{body:{email:$('#mo-email').value.trim()}}).then(function(d){
-      if(d._status!==200){msg(f,EE.message(d));return;}
+    e.preventDefault(); var f=this, m=$('#mo-email'); m.value=m.value.replace(/\s+/g,''); if(!err(m,!EE.emailOk(m.value)))return;
+    msg(f,'');
+    EE.api('/mot-de-passe/oubli',{body:{email:m.value,site:C.site||undefined}}).then(function(d){
+      if(d._status!==200){msg(f,EE.messageChamp(d));return;}
       if(d.envoye)msg(f,'Si un espace existe avec cette adresse, un lien vient d\'y être envoyé (pensez aux indésirables). Il est valable 1 heure.',true);
-      else msg(f,'Appelez ou écrivez à Shawez (07 67 57 92 28, WhatsApp ou shawez@gravelin-immo.com) : il vous envoie un lien pour choisir un nouveau mot de passe.');
+      else msg(f,'L\'envoi de liens par e-mail n\'est pas encore ouvert. '+aide+' Il vous envoie un lien pour choisir un nouveau mot de passe.');
     });
   });
-  /* réinitialisation */
+  /* ---------- nouveau mot de passe (lien reçu) ---------- */
   $('#me-reinit').addEventListener('submit',function(e){
-    e.preventDefault(); var f=this; if(!err($('#mr-mdp'),$('#mr-mdp').value.length<8))return;
+    e.preventDefault(); var f=this; if(!err($('#mr-mdp'),$('#mr-mdp').value.trim().length<8))return;
     EE.api('/mot-de-passe/reinit',{body:{jeton:qs.get('reinit'),mot_de_passe:$('#mr-mdp').value}}).then(function(d){
-      if(d._status===200){history.replaceState(null,'',location.pathname);qs=new URLSearchParams();charger();} else msg(f,EE.message(d));
+      if(d._status===200){history.replaceState(null,'',location.pathname);qs=new URLSearchParams();charger();} else msg(f,EE.messageChamp(d));
     });
   });
-  /* connecté */
-  $('#me-logout').addEventListener('click',function(){EE.api('/deconnexion',{body:{}}).then(function(){location.href='/mon-espace/';});});
+
+  /* ---------- connecté ---------- */
+  $('#me-logout').addEventListener('click',function(){EE.api('/deconnexion',{body:{}}).then(function(){location.href=C.espace;});});
   $('#me-verif-btn').addEventListener('click',function(){var b=this;b.disabled=true;EE.api('/verification',{body:{}}).then(function(d){b.textContent=d.envoye?'Lien envoyé':'Envoi impossible pour le moment';});});
-  $('#me-del-btn').addEventListener('click',function(){$('#me-del').hidden=false;$('#md-mdp').focus();});
+  /* choisir ou changer son mot de passe */
+  $('#me-mdp-btn').addEventListener('click',function(){
+    var f=$('#me-mdp-form'); f.hidden=false; $('#me-mdp-ok').hidden=true; msg(f,'');
+    $('#mp-actuel-f').hidden=!compte.mot_de_passe;
+    $('#me-mdp-titre').innerHTML=compte.mot_de_passe?'Changer <em>mon mot de passe</em>':'Choisir <em>un mot de passe</em>';
+    $('#me-mdp-sub').textContent=compte.mot_de_passe?'Les autres appareils connectés seront déconnectés.':'Facultatif : il permet de vous connecter sans attendre un e-mail.';
+    (compte.mot_de_passe?$('#mp-actuel'):$('#mp-mdp')).focus();
+  });
+  $('#me-mdp-annule').addEventListener('click',function(){$('#me-mdp-form').hidden=true;});
+  $('#me-mdp-form').addEventListener('submit',function(e){
+    e.preventDefault(); var f=this;
+    if(!err($('#mp-mdp'),$('#mp-mdp').value.trim().length<8)){$('#mp-mdp').focus();return;}
+    var b=$('[type=submit]',f); b.disabled=true; msg(f,'');
+    EE.api('/mot-de-passe/definir',{body:{mot_de_passe:$('#mp-mdp').value,actuel:$('#mp-actuel').value}}).then(function(d){
+      b.disabled=false;
+      if(d._status===200){ $('#mp-mdp').value='';$('#mp-actuel').value=''; f.hidden=true; $('#me-mdp-ok').hidden=false; charger(); return; }
+      msg(f,d.error==='identifiants'?'Le mot de passe actuel est incorrect.':EE.messageChamp(d));
+    });
+  });
+  /* suppression du compte */
+  function modeSuppr(parMdp){ $('#md-mdp-f').hidden=!parMdp; $('#md-conf-f').hidden=parMdp; }
+  $('#me-del-btn').addEventListener('click',function(){$('#me-del').hidden=false;modeSuppr(!!compte.mot_de_passe);(compte.mot_de_passe?$('#md-mdp'):$('#md-conf')).focus();});
   $('#me-del-annule').addEventListener('click',function(){$('#me-del').hidden=true;});
   $('#me-del').addEventListener('submit',function(e){
     e.preventDefault(); var f=this;
-    EE.api('/compte/supprimer',{body:{mot_de_passe:$('#md-mdp').value}}).then(function(d){
-      if(d._status===200){location.href='/';} else msg(f,EE.message(d));
+    EE.api('/compte/supprimer',{body:{mot_de_passe:$('#md-mdp').value,confirmation:$('#md-conf').value}}).then(function(d){
+      if(d._status===200){location.href='/';return;}
+      if(d.error==='champs'&&d.champ==='confirmation'){modeSuppr(false);err($('#md-conf'),true);$('#md-conf').focus();return;}
+      msg(f,d.error==='identifiants'?'Mot de passe incorrect.':EE.messageChamp(d));
     });
   });
-  charger();
+
+  /* ---------- photos et documents ---------- */
+  // Les grandes photos sont allégées dans le navigateur avant l'envoi (2 400 px au plus) : plus rapide, même en 4G.
+  function alleger(file){
+    if(!/^image\/(jpeg|png|webp)$/.test(file.type)||file.size<1500000||!window.createImageBitmap)return Promise.resolve(file);
+    return createImageBitmap(file).then(function(bmp){
+      var r=Math.min(1,2400/Math.max(bmp.width,bmp.height)), c=document.createElement('canvas');
+      c.width=Math.round(bmp.width*r); c.height=Math.round(bmp.height*r);
+      c.getContext('2d').drawImage(bmp,0,0,c.width,c.height);
+      return new Promise(function(res){ c.toBlob(function(b){res(b&&b.size<file.size?b:file);},'image/jpeg',0.85); });
+    }).catch(function(){return file;});
+  }
+  $('#me-cards').addEventListener('change',function(e){
+    var input=e.target.closest('[data-ajout]'); if(!input||!input.files||!input.files.length)return;
+    var card=input.closest('.ee-card'), zone=$('.ee-files',card), liste=$('.ee-flist',card), id=input.getAttribute('data-ajout');
+    var fichiers=Array.prototype.slice.call(input.files), n=0, erreurs=[], lab=input.parentNode;
+    msg(zone,''); lab.classList.add('busy'); input.disabled=true;
+    function suite(){
+      if(n>=fichiers.length){
+        lab.classList.remove('busy'); input.disabled=false; input.value='';
+        if(erreurs.length)msg(zone,erreurs.map(EE.esc).join('<br>'));
+        else msg(zone,fichiers.length>1?fichiers.length+' fichiers ajoutés.':'Fichier ajouté.',true);
+        return;
+      }
+      var f=fichiers[n++];
+      msg(zone,'Envoi '+n+' sur '+fichiers.length+'…',true);
+      alleger(f).then(function(b){
+        if(b.size>TAILLE_MAX){erreurs.push(f.name+' : plus de 10 Mo.');return suite();}
+        return EE.api('/fichier?demande='+id+'&role='+(f.type==='application/pdf'?'document':'photo'),{fichier:b,nom:f.name,delai:120000}).then(function(d){
+          if(d._status===201)liste.insertAdjacentHTML('beforeend',fichier(d.fichier));
+          else erreurs.push(f.name+' : '+EE.message(d));
+          suite();
+        });
+      });
+    }
+    suite();
+  });
+  $('#me-cards').addEventListener('click',function(e){
+    var b=e.target.closest('[data-suppr]'); if(!b)return;
+    if(b.getAttribute('data-ok')!=='1'){b.setAttribute('data-ok','1');b.textContent='Confirmer';return;}
+    b.disabled=true;
+    EE.api('/fichier/supprimer',{body:{id:b.getAttribute('data-suppr')}}).then(function(d){ if(d._status===200){var li=b.closest('li');li.parentNode.removeChild(li);} else {b.disabled=false;b.textContent=EE.message(d);} });
+  });
+
+  /* ---------- arrivée par un lien de connexion (?lien=…) : la page l'échange contre une session ---------- */
+  if(qs.get('lien')){
+    EE.api('/lien/ouvrir',{body:{jeton:qs.get('lien')}}).then(function(d){
+      history.replaceState(null,'',location.pathname);
+      var ok=d._status===200;
+      qs=new URLSearchParams();
+      charger().then(function(){
+        if(ok&&d.mot_de_passe_retire){var n=$('#me-mdp-ok');n.textContent='Votre adresse e-mail est confirmée. Par sécurité, le mot de passe choisi avant cette confirmation a été retiré : vous pouvez en choisir un nouveau ci-dessous.';n.hidden=false;}
+        if(!ok&&!compte)flash(d.error==='jeton'?'Ce lien de connexion n\'est plus valable : il dure 30 minutes et ne sert qu\'une fois. Demandez-en un nouveau ci-dessous.':EE.message(d));
+      });
+    });
+  } else charger();
 })();
 </script>
 </body>

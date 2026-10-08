@@ -6,8 +6,8 @@
   </div>
   <div class="shell">
     <form class="form ee-wrap" id="ee-form" novalidate autocomplete="on">
-      <div class="hp" aria-hidden="true"><label for="ee-website">Site web</label><input type="text" id="ee-website" name="website" tabindex="-1" autocomplete="off"></div>
-      <ol class="ee-steps" id="ee-steps" aria-hidden="true">
+      <div class="hp" aria-hidden="true"><label for="ee-hp">Ne rien écrire ici</label><input type="text" id="ee-hp" name="ee_hp_k7" tabindex="-1" autocomplete="off" data-lpignore="true" data-1p-ignore data-form-type="other"></div>
+      <ol class="ee-steps" id="ee-steps" aria-label="Étapes de l'estimation">
         <li><span><b>1</b>Adresse</span></li><li><span><b>2</b>Type</span></li><li><span><b>3</b>Le bien</span></li><li><span><b>4</b>Atouts</span></li><li><span><b>5</b>Prix</span></li><li><span><b>6</b>Projet</span></li>
       </ol>
 
@@ -18,10 +18,10 @@
           <label for="ee-adresse">Adresse du bien</label>
           <div style="position:relative;">
             <svg class="pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
-            <input type="text" id="ee-adresse" name="adresse" placeholder="ex. 30 rue Bannelier, Dijon" autocomplete="street-address" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="ee-sugg" spellcheck="false">
+            <input type="text" id="ee-adresse" name="adresse" placeholder="ex. 30 rue Bannelier, Dijon" autocomplete="street-address" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="ee-sugg" aria-describedby="ee-adresse-msg" spellcheck="false" enterkeyhint="search">
           </div>
           <ul class="ee-sugg" id="ee-sugg" role="listbox" aria-label="Adresses proposées" hidden></ul>
-          <span class="msg">Choisissez l'adresse dans la liste.</span>
+          <span class="msg" id="ee-adresse-msg">Choisissez l'adresse dans la liste.</span>
         </div>
         <p class="ee-picked" id="ee-picked" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span></span></p>
         <div class="ee-nav"><span></span><button type="button" class="btn btn-primary btn-lg" data-next>Étape suivante <span class="arw">→</span></button></div>
@@ -137,32 +137,42 @@
         <div class="ee-nav"><button type="button" class="btn" data-prev>Retour</button><button type="button" class="btn btn-primary btn-lg" data-next>Voir mon estimation <span class="arw">→</span></button></div>
       </div>
 
-      <!-- COORDONNÉES -->
+      <!-- COORDONNÉES : un seul écran, pas de mot de passe -->
       <div class="ee-step" data-s="contact" tabindex="-1" hidden>
-        <div class="ee-head"><p class="label">C'est prêt</p><h2 class="ee-q">Votre estimation est <em>prête.</em></h2><p class="ee-sub" id="ee-contact-sub">Créez votre espace pour l'afficher : vous la retrouverez à tout moment, avec l'avancement de votre dossier.</p></div>
-        <div id="ee-logged" class="ee-who" hidden><img src="/assets/shawez-ali-portrait-costume-rose-800.webp" alt="" width="52" height="52" loading="lazy"><p></p></div>
+        <div class="ee-head"><p class="label">C'est prêt</p><h2 class="ee-q">Votre estimation est <em>prête.</em></h2><p class="ee-sub" id="ee-contact-sub">Dites-nous à qui la montrer : elle s'affiche tout de suite après.</p></div>
+        <div id="ee-logged" class="ee-who" hidden><img data-ee-portrait alt="" width="52" height="52" loading="lazy" hidden><p></p></div>
         <div id="ee-new">
-          <div class="field"><span class="lab">Civilité</span><div class="ee-civ" role="group" aria-label="Civilité"><button type="button" class="pill" data-civ="Mme">Madame</button><button type="button" class="pill" data-civ="M.">Monsieur</button></div></div>
+          <div class="field"><span class="lab" id="ee-civ-lab">Civilité</span><div class="ee-civ" role="group" aria-labelledby="ee-civ-lab"><button type="button" class="pill" data-civ="Mme">Madame</button><button type="button" class="pill" data-civ="M.">Monsieur</button></div></div>
           <div class="row2" style="margin-top:18px;">
-            <div class="field"><label for="ee-prenom">Prénom</label><input type="text" id="ee-prenom" autocomplete="given-name" maxlength="80"><span class="msg">Indiquez votre prénom.</span></div>
-            <div class="field"><label for="ee-nom">Nom</label><input type="text" id="ee-nom" autocomplete="family-name" maxlength="80"><span class="msg">Indiquez votre nom.</span></div>
+            <div class="field"><label for="ee-prenom">Prénom</label><input type="text" id="ee-prenom" autocomplete="given-name" maxlength="80" autocapitalize="words"><span class="msg">Indiquez votre prénom.</span></div>
+            <div class="field"><label for="ee-nom">Nom</label><input type="text" id="ee-nom" autocomplete="family-name" maxlength="80" autocapitalize="words"><span class="msg">Indiquez votre nom.</span></div>
           </div>
-          <div class="field" style="margin-top:18px;"><label for="ee-email">E-mail</label><input type="email" id="ee-email" autocomplete="email" inputmode="email" maxlength="160"><span class="msg">Indiquez une adresse e-mail valide.</span></div>
+          <div class="field" style="margin-top:18px;"><label for="ee-email">E-mail</label><input type="email" id="ee-email" autocomplete="email" inputmode="email" maxlength="160" autocapitalize="off" autocorrect="off" spellcheck="false"><span class="msg">Indiquez une adresse e-mail valide (ex. prenom@exemple.fr).</span></div>
         </div>
-        <div class="field"><label for="ee-tel">Téléphone</label><input type="tel" id="ee-tel" autocomplete="tel" inputmode="tel" maxlength="30" placeholder="06 12 34 56 78"><span class="msg">Indiquez un numéro de téléphone valide.</span></div>
-        <div class="field" id="ee-pw-field"><label for="ee-mdp">Mot de passe de votre espace</label><div class="ee-pw"><input type="password" id="ee-mdp" autocomplete="new-password" minlength="8" maxlength="200"><button type="button" data-voir="ee-mdp">Afficher</button></div><span class="hint" id="ee-mdp-hint">8 caractères au moins.</span><span class="msg">8 caractères au moins.</span></div>
-        <p class="ee-err" id="ee-exist" hidden>Un espace existe déjà avec cet e-mail. Saisissez son mot de passe ci-dessus, ou <a href="/mon-espace/?oubli=1">choisissez-en un nouveau</a>.</p>
-        <div class="field" id="ee-consent-f"><label class="consent"><input type="checkbox" id="ee-consent"><span>J'accepte que GRAVELIN IMMO utilise ces informations pour calculer mon estimation, créer mon espace et me recontacter à ce sujet. <a href="/politique-de-confidentialite/#espace-estimation">Confidentialité</a></span></label><span class="msg">Cochez la case pour continuer.</span></div>
-        <p class="ee-err" id="ee-err" hidden></p>
-        <div class="ee-nav"><button type="button" class="btn" data-prev>Retour</button><button type="submit" class="btn btn-primary btn-lg" id="ee-submit">Afficher mon estimation <span class="arw">→</span></button></div>
-        <p class="ee-fine">Aucun démarchage commercial : seul Shawez vous recontacte, au sujet de ce bien. Vous pouvez supprimer votre espace quand vous voulez.</p>
+        <div class="field"><label for="ee-tel">Téléphone</label><input type="tel" id="ee-tel" autocomplete="tel" inputmode="tel" maxlength="30" placeholder="06 12 34 56 78"><span class="msg">Indiquez un numéro de téléphone valide (ex. 06 12 34 56 78).</span></div>
+        <div class="field" id="ee-consent-f"><label class="consent"><input type="checkbox" id="ee-consent"><span>J'accepte que GRAVELIN IMMO utilise ces informations pour calculer mon estimation, créer mon espace personnel et me recontacter à ce sujet. <a href="/politique-de-confidentialite/#espace-estimation" data-ee-lien="confidentialite">Confidentialité</a></span></label><span class="msg">Cochez la case pour continuer.</span></div>
+        <p class="ee-err" id="ee-err" role="alert" hidden></p>
+        <div class="ee-nav ee-nav-fin"><button type="button" class="btn" data-prev>Retour</button><button type="submit" class="btn btn-primary btn-lg" id="ee-submit"><span id="ee-submit-txt">Afficher mon estimation</span> <span class="arw">→</span></button></div>
+        <p class="ee-fine">Pas de mot de passe à créer : votre espace s'ouvre avec votre e-mail. Aucun démarchage : seul <span data-ee-txt="conseiller">Shawez</span> vous recontacte, au sujet de ce bien.</p>
       </div>
     </form>
 
-    <!-- RÉSULTAT -->
-    <div class="ee-wrap" id="ee-result" hidden tabindex="-1">
+    <!-- RÉSULTAT : affiché tout de suite, rien ne le retarde -->
+    <div class="ee-wrap" id="ee-result" hidden tabindex="-1" aria-live="polite">
       <div class="ee-res tone-dark" data-tone="dark" id="ee-res-box"></div>
-      <div class="ee-who" style="margin-top:14px;"><img src="/assets/shawez-ali-portrait-costume-rose-800.webp" alt="" width="52" height="52" loading="lazy"><p><b>Shawez a reçu votre demande.</b> Il vous appelle pour en parler et, si vous le souhaitez, fixer une visite : c'est elle qui donne le prix juste.</p></div>
+      <div class="ee-who" style="margin-top:14px;"><img data-ee-portrait alt="" width="52" height="52" loading="lazy" hidden><p><b><span data-ee-txt="conseiller">Shawez</span> a reçu votre demande.</b> Il vous appelle pour en parler et, si vous le souhaitez, fixer une visite gratuite : c'est elle qui donne le prix juste. Ensuite, il vous remet un avis de valeur détaillé.</p></div>
+
+      <!-- après le résultat seulement : retrouver son estimation -->
+      <div class="ee-apres" id="ee-apres" hidden>
+        <h2 class="ee-q" id="ee-apres-titre"></h2>
+        <p class="ee-sub" id="ee-apres-txt"></p>
+        <form class="form ee-mdp" id="ee-mdp-form" novalidate hidden>
+          <div class="field"><label for="ee-mdp">Mot de passe <small>(facultatif)</small></label><div class="ee-pw"><input type="password" id="ee-mdp" autocomplete="new-password" minlength="8" maxlength="200" aria-describedby="ee-mdp-hint"><button type="button" data-voir="ee-mdp" aria-pressed="false">Afficher</button></div><span class="hint" id="ee-mdp-hint">8 caractères au moins. Vous pourrez aussi le faire plus tard, depuis votre espace.</span><span class="msg">8 caractères au moins.</span></div>
+          <p class="ee-err" role="alert" hidden></p><p class="ee-ok" role="status" hidden></p>
+          <div class="ee-nav"><span></span><button type="submit" class="btn">Enregistrer ce mot de passe</button></div>
+        </form>
+        <div class="ee-apres-liens"><a class="btn btn-primary" id="ee-apres-espace" href="/mon-espace/">Ouvrir mon espace <span class="arw">→</span></a><button type="button" class="ee-skip" id="ee-refaire">Estimer un autre bien</button></div>
+      </div>
     </div>
   </div>
 </section>

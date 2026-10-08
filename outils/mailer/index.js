@@ -17,7 +17,7 @@ const adresse = (s) => typeof s === 'string' && /^[^\s@<>"]+@[^\s@<>"]+\.[a-z]{2
 function mime({ from, to, subject, text, html, replyTo }) {
   const fr = 'b' + crypto.randomUUID().replace(/-/g, '');
   return [
-    `From: ${enc('Shawez Ali — Estimation')} <${from}>`,
+    `From: ${enc('Shawez Ali – Gravelin Immo')} <${from}>`,
     `To: <${to}>`,
     replyTo ? `Reply-To: <${replyTo}>` : null,
     `Subject: ${enc(subject)}`,

@@ -2,30 +2,40 @@
   <div class="page-head shell">
     <p class="label">Espace agence</p>
     <h1 class="display d-xl" style="margin-top:14px;">Estimations <em>et comptes.</em></h1>
-    <p class="lede" id="ad-lede">Toutes les demandes reçues par le site, leur avancement et vos notes.</p>
+    <p class="lede" id="ad-lede">Toutes les demandes reçues par les deux sites, leur avancement et vos notes.</p>
   </div>
   <div class="shell">
-    <div class="ee-wrap" id="ad-load"><div class="ee-load"></div></div>
+    <div class="ee-wrap" id="ad-load" role="status" aria-label="Chargement"><div class="ee-load"></div></div>
     <div class="ee-wrap" id="ad-no" hidden>
-      <div class="ee-empty"><p style="margin:0;" id="ad-no-txt">Cet espace est réservé à l'agence. Connectez-vous avec votre compte administrateur.</p><a class="btn btn-primary" href="/mon-espace/">Me connecter <span class="arw">→</span></a></div>
+      <div class="ee-empty"><p style="margin:0;" id="ad-no-txt">Cet espace est réservé à l'agence. Connectez-vous avec votre compte administrateur.</p><a class="btn btn-primary" href="/mon-espace/" data-ee-lien="espace">Me connecter <span class="arw">→</span></a></div>
     </div>
     <div class="ee-wide" id="ad-in" hidden>
       <div class="ee-stats" id="ad-stats"></div>
-      <div class="ee-tabs" role="group" aria-label="Vue"><button type="button" class="pill" data-vue="demandes" aria-pressed="true">Demandes</button><button type="button" class="pill" data-vue="comptes" aria-pressed="false">Comptes</button></div>
+      <div class="ee-tabs" role="group" aria-label="Vue"><button type="button" class="pill" data-vue="demandes" aria-pressed="true">Demandes</button><button type="button" class="pill" data-vue="comptes" aria-pressed="false">Comptes</button><button type="button" class="pill" data-vue="reglages" aria-pressed="false">Google Sheet</button></div>
       <div id="ad-demandes">
         <div class="ee-tools">
           <input type="search" id="ad-q" placeholder="Nom, e-mail, téléphone, commune, référence…" aria-label="Rechercher">
+          <select id="ad-site" aria-label="Site"><option value="">Les deux sites</option><option value="shawez">shawez-immo.com</option><option value="gravelin">gravelin-immo.com</option></select>
           <select id="ad-statut" aria-label="Statut"><option value="">Tous les statuts</option></select>
-          <a class="btn" href="/api/espace/admin/export.csv?quoi=demandes" download>Export CSV</a>
+          <a class="btn" id="ad-export" href="/api/espace/admin/export.csv?quoi=demandes" download>Export CSV</a>
         </div>
         <div class="ee-rows" id="ad-rows"></div>
       </div>
       <div id="ad-comptes" hidden>
         <div class="ee-tools">
           <input type="search" id="ad-qc" placeholder="Nom, e-mail, téléphone…" aria-label="Rechercher un compte">
-          <a class="btn" href="/api/espace/admin/export.csv?quoi=comptes" download>Export CSV</a>
+          <a class="btn" id="ad-export-c" href="/api/espace/admin/export.csv?quoi=comptes" download>Export CSV</a>
         </div>
         <div class="ee-rows" id="ad-crows"></div>
+      </div>
+      <div id="ad-reglages" hidden>
+        <div class="ee-card">
+          <h3>Demandes dans Google Sheets</h3>
+          <p class="meta">L'onglet « Site » du tableau « Relance leads » se remplit tout seul : une formule relit les demandes environ toutes les heures. Colonnes : date, site, civilité, prénom, nom, téléphone, e-mail, adresse du bien, type, surface, fourchette, délai de vente, prix idéal, statut, prochaine action, notes, référence. Le statut, la date de rappel et les notes se changent ici, dans chaque demande.</p>
+          <p class="meta">Besoin d'une nouvelle clé (tableau partagé par erreur, par exemple) ? Le bouton en crée une et coupe l'ancienne : collez alors la nouvelle formule dans la cellule A1 de l'onglet « Site ».</p>
+          <div class="acts"><button type="button" class="btn" id="ad-flux">Créer une nouvelle clé</button></div>
+          <p class="ee-ok" id="ad-flux-out" role="status" hidden></p>
+        </div>
       </div>
     </div>
   </div>
