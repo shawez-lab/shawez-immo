@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 /* Fabrique l'avis de valeur PDF hors navigateur, avec des données d'exemple, pour relire la mise en page :
      node avis-apercu.mjs [sortie.pdf] [peu]        (« peu » : le cas « moins de 5 ventes comparables »)
-   Le même fichier assets/avis/avis-pdf.js tourne dans /admin/ ; ici, window, document et fetch sont simulés. */
+   Le même fichier assets/avis/avis-pdf.js tourne dans /admin/ ; ici, window, document et fetch sont simulés.
+   ATTENTION : la cliente, les notes et les ventes de cet exemple sont inventées, pour régler la mise en page seulement.
+   Ce PDF ne se montre à personne ; un vrai avis de valeur sort de /admin/, avec les ventes réelles de DVF. */
 import { readFileSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { dirname, join, resolve } from 'node:path';
