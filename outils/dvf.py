@@ -13,6 +13,9 @@ Sortie : donnees-dvf/
   t/<x>_<y>.json        une tuile de 0,05° × 0,05° (environ 4 × 5,5 km) :
                         [[lat, lon, type, surface, prix_m2, aaaamm, pieces, terrain], ...]
                         type : 0 = appartement, 1 = maison ; terrain en m² (0 pour un appartement)
+  d/<x>_<y>.json        le détail des mêmes ventes, ligne pour ligne (même ordre que la tuile), pour l'avis de valeur :
+                        [[prix, voie, commune, jour], ...]  prix = valeur foncière en euros (le prix signé, tel que publié),
+                        voie = nom de la voie sans le numéro, jour = jour du mois de la vente
 
 Lancer : python3 outils/dvf.py  (ou --dossier <dossier contenant 21-<année>.csv.gz> pour travailler hors ligne)
 """
@@ -111,8 +114,9 @@ def ventes(flux):
             pieces = int(float(l['nombre_pieces_principales'] or 0))
         except ValueError:
             pieces = 0
+        detail = [int(round(valeur)), ' '.join((l.get('adresse_nom_voie') or '').split()), ' '.join((l.get('nom_commune') or '').split()), int(d[8:10])]
         yield [round(lat, 5), round(lon, 5), 1 if maison else 0, int(round(surf)), int(round(pm2)),
-               int(d[:4] + d[5:7]), pieces, min(terrain, 999999)], d
+               int(d[:4] + d[5:7]), pieces, min(terrain, 999999)], d, detail
 
 
 def main():
@@ -136,8 +140,8 @@ def main():
         src = os.path.join(a.dossier, f'{DEP}-{an}.csv.gz') if a.dossier else f'{BASE}/{an}/departements/{DEP}.csv.gz'
         print('Lecture', src, flush=True)
         k = 0
-        for v, d in ventes(lire(src)):
-            tuiles[(math.floor(v[1] / TUILE), math.floor(v[0] / TUILE))].append(v)
+        for v, d, detail in ventes(lire(src)):
+            tuiles[(math.floor(v[1] / TUILE), math.floor(v[0] / TUILE))].append((v, detail))
             derniere = max(derniere, d)
             k += 1
         print(f'  {an} : {k} ventes simples', flush=True)
@@ -150,13 +154,17 @@ def main():
     tmp = SORTIE + '.tmp'
     shutil.rmtree(tmp, ignore_errors=True)
     os.makedirs(os.path.join(tmp, 't'))
+    os.makedirs(os.path.join(tmp, 'd'))
     noms = []
     for (x, y), lst in sorted(tuiles.items()):
-        lst.sort(key=lambda v: (v[0], v[1], v[5]))
+        lst.sort(key=lambda c: (c[0][0], c[0][1], c[0][5], c[1][3], c[1][0]))
         nom = f'{x}_{y}'
         noms.append(nom)
         with open(os.path.join(tmp, 't', nom + '.json'), 'w') as f:
-            json.dump(lst, f, separators=(',', ':'))
+            json.dump([c[0] for c in lst], f, separators=(',', ':'))
+        # le détail, ligne pour ligne : lu seulement pour préparer un avis de valeur (l'estimation en ligne ne le charge pas)
+        with open(os.path.join(tmp, 'd', nom + '.json'), 'w', encoding='utf-8') as f:
+            json.dump([c[1] for c in lst], f, ensure_ascii=False, separators=(',', ':'))
     index = {
         'source': 'DVF géolocalisées (Etalab, DGFiP), Licence Ouverte 2.0',
         'departement': DEP,
@@ -167,6 +175,7 @@ def main():
         'tuile': TUILE,
         'tuiles': noms,
         'colonnes': ['lat', 'lon', 'type(0 appartement, 1 maison)', 'surface', 'prix_m2', 'aaaamm', 'pieces', 'terrain'],
+        'detail': ['prix', 'voie', 'commune', 'jour'],
     }
     with open(os.path.join(tmp, 'index.json'), 'w') as f:
         json.dump(index, f, ensure_ascii=False, indent=1)
