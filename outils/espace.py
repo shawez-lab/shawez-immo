@@ -135,7 +135,9 @@ def pictogramme():
         t = s
         # en-tête : le pictogramme juste avant le bouton « Estimer mon bien »
         t = re.sub(r'<a class="nav-compte".*?</a>', '', t, flags=re.S)
-        assert CTA in t, f'{rel} : bouton de l\'en-tête introuvable'
+        if CTA not in t:
+            print(f'  {rel} : bouton « Estimer mon bien » de l\'en-tête introuvable, pictogramme non posé')
+            continue
         t = t.replace(CTA, PICTO + CTA, 1)
         # menu mobile et pied de page
         t = t.replace(MENU_ESPACE, '')
@@ -145,10 +147,17 @@ def pictogramme():
         if PIED in t:
             t = t.replace(PIED, PIED + PIED_ESPACE, 1)
         # style et script
-        t = re.sub(r'<style id="compte-v1">.*?</style>\n?', '', t, flags=re.S)
-        t = t.replace('</head>', f'<style id="compte-v1">\n{PICTO_CSS}</style>\n</head>', 1)
-        t = re.sub(r'<script id="compte-js">.*?</script>\n?', '', t, flags=re.S)
-        t = t.replace('</body>', f'<script id="compte-js">\n{PICTO_JS}</script>\n</body>', 1)
+        # (remplacés à leur place s'ils existent déjà : relancer ce script ne déplace rien)
+        style = f'<style id="compte-v1">\n{PICTO_CSS}</style>\n'
+        if '<style id="compte-v1">' in t:
+            t = re.sub(r'<style id="compte-v1">.*?</style>\n?', lambda m: style, t, count=1, flags=re.S)
+        else:
+            t = t.replace('</head>', style + '</head>', 1)
+        script = f'<script id="compte-js">\n{PICTO_JS}</script>\n'
+        if '<script id="compte-js">' in t:
+            t = re.sub(r'<script id="compte-js">.*?</script>\n?', lambda m: script, t, count=1, flags=re.S)
+        else:
+            t = t.replace('</body>', script + '</body>', 1)
         if t != s:
             ecrire(p, t)
             n += 1
