@@ -36,3 +36,5 @@
 /donnees-dvf/*
   X-Robots-Tag: noindex
   Cache-Control: public, max-age=86400
+/outils/*
+  X-Robots-Tag: noindex, nofollow
