@@ -23,7 +23,8 @@ for (const c of chemins) {
   const a = r.lhr.audits;
   console.log(c, JSON.stringify(notes), `LCP ${a['largest-contentful-paint'].displayValue} · TBT ${a['total-blocking-time'].displayValue} · CLS ${a['cumulative-layout-shift'].displayValue}`, '· performance des 3 passages :', passages.map((x) => Math.round(x.lhr.categories.performance.score * 100)).join(', '));
   // /mon-espace/ et /admin/ sont volontairement hors des moteurs de recherche : la note « seo » n'y a pas de sens
-  const prive = /mon-espace|admin/.test(c);
+  // (et un aperçu en *.pages.dev est tout entier hors des moteurs : même chose)
+  const prive = /mon-espace|admin/.test(c) || /\.pages\.dev$/.test(new URL(base).hostname);
   for (const [k, v] of Object.entries(notes)) if (v < 90 && !(prive && k === 'seo')) { ok = false; console.log(`  ✘ ${k} : ${v} (< 90)`); }
   writeFileSync(`captures/lighthouse${c.replace(/\//g, '-').replace(/-$/, '')}.html`, r.report);
 }
