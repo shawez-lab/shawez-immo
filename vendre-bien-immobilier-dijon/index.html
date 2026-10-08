@@ -1091,6 +1091,19 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 @media(min-width:768px){#home-texte{padding-bottom:0;}}
 .reels-est{margin-top:14px;} .reels-est .btn{width:100%;}
 </style>
+<style id="compte-v1">
+/* Pictogramme « Mon espace » de l'en-tête : mène à /mon-espace/, pastille verte quand on est connecté */
+.nav-compte{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;width:42px;height:42px;flex:0 0 auto;border:1px solid currentColor;border-radius:999px;color:inherit;text-decoration:none;font-size:.88rem;font-weight:600;white-space:nowrap;transition:background .25s;}
+.nav-compte svg{width:20px;height:20px;flex:0 0 auto;}
+.nav-compte:hover{background:rgba(127,127,127,.18);}
+.nav-compte:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+.nav-compte .nc-txt{display:none;}
+.nav-compte .nc-dot{display:none;position:absolute;top:-1px;right:-1px;width:11px;height:11px;border-radius:50%;background:#3FA66B;box-shadow:0 0 0 2px rgba(15,14,12,.35);}
+.nav-compte.is-in .nc-dot{display:block;}
+@media(min-width:760px){.nav-compte.is-in{width:auto;padding:0 16px 0 13px;}.nav-compte.is-in .nc-txt{display:inline;}.nav-compte.is-in .nc-dot{position:static;box-shadow:none;width:9px;height:9px;order:-1;}}
+@media(max-width:359px){.nav-compte{width:38px;height:38px;}}
+#menu .m-alt+.m-alt{margin-top:10px;}
+</style>
 </head>
 <body data-route="/vendre">
 <header id="nav">
@@ -1108,7 +1121,7 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
   </nav>
   <div class="nav-cta">
     <a class="btn nav-tel" href="tel:+33767579228">07 67 57 92 28</a>
-    <a class="btn btn-primary" href="/estimer/"><span>Estimer mon bien</span></a>
+    <a class="nav-compte" href="/mon-espace/" data-compte aria-label="Mon espace : se connecter" title="Mon espace : se connecter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M4.8 20c.9-3.6 3.7-5.6 7.2-5.6s6.300 2 7.200 5.600"/></svg><span class="nc-txt">Connecté</span><span class="nc-dot" aria-hidden="true"></span></a><a class="btn btn-primary" href="/estimer/"><span>Estimer mon bien</span></a>
     <button id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu">Menu</button>
   </div>
 </header>
@@ -1125,7 +1138,7 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
     <li><a href="/contact/">Contact <small>Appel, WhatsApp, e-mail</small></a></li>
   </ul>
   <a class="btn btn-primary btn-lg" href="/estimer/">Estimer mon bien <span class="arw">→</span></a>
-  <a class="m-alt" href="/estimation-immobiliere-dijon/">Estimation par Shawez</a>
+  <a class="m-alt" href="/estimation-immobiliere-dijon/">Estimation par Shawez</a><a class="m-alt" href="/mon-espace/" data-compte><span data-compte-txt>Mon espace</span></a>
   <div class="m-foot">
     <a href="tel:+33767579228">07 67 57 92 28</a>
     <a href="mailto:shawez@gravelin-immo.com">shawez@gravelin-immo.com</a>
@@ -1231,7 +1244,7 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
       </div>
       <div><p class="ft-h">Vendre</p><ul><li><a href="/estimer/">Estimer mon bien</a></li><li><a href="/estimation-immobiliere-dijon/">Estimation par Shawez</a></li><li><a href="/vendre-bien-immobilier-dijon/">Vendre à Dijon</a></li><li><a href="/vendre-commerce-dijon/">Commerces</a></li><li><a href="https://www.gravelin-immo.com/vente/1?utm_source=shawez-immo" data-sortie="biens">Voir les biens à vendre</a></li><li><a href="/honoraires/">Honoraires</a></li></ul></div>
       <div><p class="ft-h">Découvrir</p><ul><li><a href="/conseils-vendeurs/">Conseils aux vendeurs</a></li><li><a href="/simulateur-pret-immobilier-dijon/">Simulateur de prêt</a></li><li><a href="/videos-immobilier-dijon/">Vidéos</a></li><li><a href="/shawez-ali-agent-immobilier-dijon/">À propos</a></li><li><a href="/secteurs-dijon-nuits-saint-georges-beaune/">Territoire</a></li><li><a href="/avis/">Avis</a></li><li><a href="/podcast/">Podcast</a></li></ul></div>
-      <div><p class="ft-h">Pratique</p><ul><li><a href="/contact/">Contact</a></li><li><a href="/mentions-legales/">Mentions légales</a></li><li><a href="/politique-de-confidentialite/">Confidentialité</a></li><li><a href="/cookies/">Cookies</a></li><li><a href="https://www.instagram.com/shawez_immobilier" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.linkedin.com/in/shawez-ali" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://www.youtube.com/@gravelinimmo" target="_blank" rel="noopener">YouTube</a></li></ul></div>
+      <div><p class="ft-h">Pratique</p><ul><li><a href="/contact/">Contact</a></li><li><a href="/mon-espace/">Mon espace</a></li><li><a href="/mentions-legales/">Mentions légales</a></li><li><a href="/politique-de-confidentialite/">Confidentialité</a></li><li><a href="/cookies/">Cookies</a></li><li><a href="https://www.instagram.com/shawez_immobilier" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.linkedin.com/in/shawez-ali" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://www.youtube.com/@gravelinimmo" target="_blank" rel="noopener">YouTube</a></li></ul></div>
     </div>
     <div class="ft-bot">
       <span>© 2026 Shawez Ali · Agent commercial en immobilier, GRAVELIN IMMO</span>
@@ -1606,5 +1619,10 @@ updateTone();
 })();
 </script>
 <script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"33710f67a0c16d7cbb94d1b2ba10e7a8"})});</script>
+<script id="compte-js">
+/* Pictogramme « Mon espace » : état connecté d'après le témoin se_ok (posé par l'API à la connexion, retiré à la déconnexion) */
+window.EECompte=function(){var on=/(?:^|;\s*)se_ok=1/.test(document.cookie||'');[].forEach.call(document.querySelectorAll('[data-compte]'),function(a){a.classList.toggle('is-in',on);var t=on?'Mon espace : connecté':'Mon espace : se connecter';if(a.hasAttribute('aria-label')){a.setAttribute('aria-label',t);a.title=t;}var x=a.querySelector('[data-compte-txt]');if(x)x.textContent=on?'Mon espace · connecté':'Mon espace';});};
+window.EECompte();window.addEventListener('pageshow',window.EECompte);
+</script>
 </body>
 </html>

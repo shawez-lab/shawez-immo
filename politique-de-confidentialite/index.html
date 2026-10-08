@@ -1083,6 +1083,19 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 .btn,.btn-primary,button{font-family:var(--font-text);font-weight:600;letter-spacing:0;}
 .body,.lede,p{font-feature-settings:"kern","liga";}
 </style>
+<style id="compte-v1">
+/* Pictogramme « Mon espace » de l'en-tête : mène à /mon-espace/, pastille verte quand on est connecté */
+.nav-compte{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;width:42px;height:42px;flex:0 0 auto;border:1px solid currentColor;border-radius:999px;color:inherit;text-decoration:none;font-size:.88rem;font-weight:600;white-space:nowrap;transition:background .25s;}
+.nav-compte svg{width:20px;height:20px;flex:0 0 auto;}
+.nav-compte:hover{background:rgba(127,127,127,.18);}
+.nav-compte:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+.nav-compte .nc-txt{display:none;}
+.nav-compte .nc-dot{display:none;position:absolute;top:-1px;right:-1px;width:11px;height:11px;border-radius:50%;background:#3FA66B;box-shadow:0 0 0 2px rgba(15,14,12,.35);}
+.nav-compte.is-in .nc-dot{display:block;}
+@media(min-width:760px){.nav-compte.is-in{width:auto;padding:0 16px 0 13px;}.nav-compte.is-in .nc-txt{display:inline;}.nav-compte.is-in .nc-dot{position:static;box-shadow:none;width:9px;height:9px;order:-1;}}
+@media(max-width:359px){.nav-compte{width:38px;height:38px;}}
+#menu .m-alt+.m-alt{margin-top:10px;}
+</style>
 </head>
 <body data-route="/confidentialite">
 <header id="nav">
@@ -1100,7 +1113,7 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
   </nav>
   <div class="nav-cta">
     <a class="btn nav-tel" href="tel:+33767579228">07 67 57 92 28</a>
-    <a class="btn btn-primary" href="/estimer/"><span>Estimer mon bien</span></a>
+    <a class="nav-compte" href="/mon-espace/" data-compte aria-label="Mon espace : se connecter" title="Mon espace : se connecter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M4.8 20c.9-3.6 3.7-5.6 7.2-5.6s6.300 2 7.200 5.600"/></svg><span class="nc-txt">Connecté</span><span class="nc-dot" aria-hidden="true"></span></a><a class="btn btn-primary" href="/estimer/"><span>Estimer mon bien</span></a>
     <button id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu">Menu</button>
   </div>
 </header>
@@ -1117,7 +1130,7 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
     <li><a href="/contact/">Contact <small>Appel, WhatsApp, e-mail</small></a></li>
   </ul>
   <a class="btn btn-primary btn-lg" href="/estimer/">Estimer mon bien <span class="arw">→</span></a>
-  <a class="m-alt" href="/estimation-immobiliere-dijon/">Estimation par Shawez</a>
+  <a class="m-alt" href="/estimation-immobiliere-dijon/">Estimation par Shawez</a><a class="m-alt" href="/mon-espace/" data-compte><span data-compte-txt>Mon espace</span></a>
   <div class="m-foot">
     <a href="tel:+33767579228">07 67 57 92 28</a>
     <a href="mailto:shawez@gravelin-immo.com">shawez@gravelin-immo.com</a>
@@ -1142,11 +1155,11 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
     <p>Votre demande part soit depuis votre appareil, par WhatsApp ou par e-mail, soit par l'envoi direct du formulaire : un relais hébergé chez Cloudflare la transmet alors aussitôt à Shawez par e-mail. Dans les deux cas, elle n'est pas enregistrée sur un serveur de ce site (sauf l'estimation en ligne et l'espace client, voir plus bas). Un brouillon est conservé dans votre navigateur le temps de votre visite (stockage de session), puis effacé.</p>
     
     <h2 id="espace-estimation">Estimation en ligne et espace client</h2>
-    <p><b>Ce qui est enregistré.</b> Quand vous faites une estimation sur <a class="link" href="/estimer/">/estimer/</a> ou créez votre espace, GRAVELIN IMMO enregistre : l'adresse du bien et ses coordonnées géographiques, vos réponses (type, surface, pièces, étage, époque, état, atouts, prix souhaité, délai de vente), la fourchette calculée, votre civilité, vos nom et prénom, votre e-mail, votre téléphone, la date de votre consentement et le site d'où vient la demande. Votre mot de passe n'est jamais enregistré en clair : seule une empreinte chiffrée (PBKDF2) est conservée. Un cookie de session strictement nécessaire (<code>se_session</code>, 30 jours, sécurisé, illisible par les scripts) vous garde connecté ; il ne sert à rien d'autre et ne demande pas de bandeau.</p>
+    <p><b>Ce qui est enregistré.</b> Quand vous faites une estimation sur <a class="link" href="/estimer/">/estimer/</a> ou créez votre espace, GRAVELIN IMMO enregistre : l'adresse du bien et ses coordonnées géographiques, vos réponses (type, surface, pièces, étage, époque, état, atouts, prix souhaité, délai de vente), la fourchette calculée, votre civilité, vos nom et prénom, votre e-mail, votre téléphone, la date de votre consentement et le site d'où vient la demande. Votre espace est créé avec votre e-mail, sans mot de passe : vous y revenez par un lien de connexion (valable 30 minutes, une seule fois). Si vous choisissez un mot de passe, il n'est jamais enregistré en clair : seule une empreinte chiffrée (PBKDF2) est conservée. Les photos et documents que vous déposez dans votre espace, et l'avis de valeur que Shawez y dépose, sont enregistrés avec votre dossier. Deux cookies strictement nécessaires vous gardent connecté pendant 30 jours au plus : <code>se_session</code> (sécurisé, illisible par les scripts) et <code>se_ok</code> (un simple témoin, sans donnée personnelle, qui affiche « connecté » sur le pictogramme de l'en-tête). Ils ne servent à rien d'autre et ne demandent pas de bandeau. Vos réponses en cours de saisie restent dans votre navigateur (stockage de session) jusqu'à la fermeture de l'onglet.</p>
     <p><b>Pourquoi.</b> Calculer votre estimation, vous permettre de la retrouver avec l'avancement de votre dossier, et permettre à Shawez et à l'agence de vous recontacter à ce sujet (mesures précontractuelles prises à votre demande, article 6.1.b du RGPD, et consentement que vous donnez en cochant la case, article 6.1.a). Aucune prospection pour d'autres sujets, aucune revente.</p>
-    <p><b>Qui y a accès.</b> Shawez Ali et les personnes de GRAVELIN IMMO habilitées à l'espace agence. Les données sont hébergées par Cloudflare (base de données D1, dans l'Union européenne). Les e-mails de notification à l'agence passent par le service e-mail de Cloudflare. La fourchette est calculée sur les ventes publiques DVF (Etalab, DGFiP) ; l'adresse saisie est complétée par la Base Adresse Nationale (api-adresse.data.gouv.fr, service public), qui reçoit seulement le texte tapé dans le champ adresse.</p>
+    <p><b>Qui y a accès.</b> Shawez Ali et les personnes de GRAVELIN IMMO habilitées à l'espace agence. Les données sont hébergées par Cloudflare (base de données D1, dans l'Union européenne). Les e-mails (alerte à l'agence, votre estimation, votre lien de connexion) passent par le service e-mail de Cloudflare ou par un service d'envoi d'e-mails agissant pour l'agence. Chaque demande est aussi reportée dans le tableau de suivi de l'agence (Google Sheets, compte professionnel de GRAVELIN IMMO), pour que vous soyez rappelé rapidement. La fourchette est calculée sur les ventes publiques DVF (Etalab, DGFiP) ; l'adresse saisie est complétée par la Base Adresse Nationale (api-adresse.data.gouv.fr, service public), qui reçoit seulement le texte tapé dans le champ adresse.</p>
     <p><b>Combien de temps.</b> Tant que votre espace existe, puis trois ans après notre dernier échange s'il n'y a pas eu de mandat ; pour un dossier client, la durée du contrat puis les délais légaux. Les sessions expirent après 30 jours.</p>
-    <p><b>Supprimer votre compte.</b> À tout moment depuis <a class="link" href="/mon-espace/">Mon espace</a> (« Supprimer mon espace ») : votre compte et toutes vos estimations sont effacés aussitôt et définitivement. Vous pouvez aussi le demander par e-mail ou par courrier (adresses ci-dessous), comme pour tous vos autres droits.</p>
+    <p><b>Supprimer votre compte.</b> À tout moment depuis <a class="link" href="/mon-espace/">Mon espace</a> (« Supprimer mon espace ») : votre compte, toutes vos estimations et vos fichiers sont effacés aussitôt et définitivement. Vous pouvez aussi le demander par e-mail ou par courrier (adresses ci-dessous), comme pour tous vos autres droits.</p>
     <p><b>La fourchette.</b> Elle est indicative et calculée automatiquement à partir des ventes comparables ; elle ne constitue ni un avis de valeur ni une décision : seule la visite de Shawez permet d'établir un prix.</p>
     <h2>Pourquoi, et sur quelle base</h2>
     <p>Pour étudier votre bien, établir et vous transmettre une estimation et répondre à votre demande : ce sont des mesures précontractuelles prises à votre demande (article 6.1.b du RGPD). Pour vous envoyer ensuite des conseils et informations sur le marché de Dijon : uniquement si vous avez coché la case facultative (consentement, article 6.1.a), que vous pouvez retirer à tout moment par le lien de désinscription ou par e-mail. La mesure d'audience repose sur l'intérêt légitime de Shawez à connaître la fréquentation de son site (article 6.1.f).</p>
@@ -1174,7 +1187,7 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
       </div>
       <div><p class="ft-h">Vendre</p><ul><li><a href="/estimer/">Estimer mon bien</a></li><li><a href="/estimation-immobiliere-dijon/">Estimation par Shawez</a></li><li><a href="/vendre-bien-immobilier-dijon/">Vendre à Dijon</a></li><li><a href="/vendre-commerce-dijon/">Commerces</a></li><li><a href="https://www.gravelin-immo.com/vente/1?utm_source=shawez-immo" data-sortie="biens">Voir les biens à vendre</a></li><li><a href="/honoraires/">Honoraires</a></li></ul></div>
       <div><p class="ft-h">Découvrir</p><ul><li><a href="/conseils-vendeurs/">Conseils aux vendeurs</a></li><li><a href="/simulateur-pret-immobilier-dijon/">Simulateur de prêt</a></li><li><a href="/videos-immobilier-dijon/">Vidéos</a></li><li><a href="/shawez-ali-agent-immobilier-dijon/">À propos</a></li><li><a href="/secteurs-dijon-nuits-saint-georges-beaune/">Territoire</a></li><li><a href="/avis/">Avis</a></li><li><a href="/podcast/">Podcast</a></li></ul></div>
-      <div><p class="ft-h">Pratique</p><ul><li><a href="/contact/">Contact</a></li><li><a href="/mentions-legales/">Mentions légales</a></li><li><a href="/politique-de-confidentialite/">Confidentialité</a></li><li><a href="/cookies/">Cookies</a></li><li><a href="https://www.instagram.com/shawez_immobilier" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.linkedin.com/in/shawez-ali" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://www.youtube.com/@gravelinimmo" target="_blank" rel="noopener">YouTube</a></li></ul></div>
+      <div><p class="ft-h">Pratique</p><ul><li><a href="/contact/">Contact</a></li><li><a href="/mon-espace/">Mon espace</a></li><li><a href="/mentions-legales/">Mentions légales</a></li><li><a href="/politique-de-confidentialite/">Confidentialité</a></li><li><a href="/cookies/">Cookies</a></li><li><a href="https://www.instagram.com/shawez_immobilier" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.linkedin.com/in/shawez-ali" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://www.youtube.com/@gravelinimmo" target="_blank" rel="noopener">YouTube</a></li></ul></div>
     </div>
     <div class="ft-bot">
       <span>© 2026 Shawez Ali · Agent commercial en immobilier, GRAVELIN IMMO</span>
@@ -1549,5 +1562,10 @@ updateTone();
 })();
 </script>
 <script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"33710f67a0c16d7cbb94d1b2ba10e7a8"})});</script>
+<script id="compte-js">
+/* Pictogramme « Mon espace » : état connecté d'après le témoin se_ok (posé par l'API à la connexion, retiré à la déconnexion) */
+window.EECompte=function(){var on=/(?:^|;\s*)se_ok=1/.test(document.cookie||'');[].forEach.call(document.querySelectorAll('[data-compte]'),function(a){a.classList.toggle('is-in',on);var t=on?'Mon espace : connecté':'Mon espace : se connecter';if(a.hasAttribute('aria-label')){a.setAttribute('aria-label',t);a.title=t;}var x=a.querySelector('[data-compte-txt]');if(x)x.textContent=on?'Mon espace · connecté':'Mon espace';});};
+window.EECompte();window.addEventListener('pageshow',window.EECompte);
+</script>
 </body>
 </html>
