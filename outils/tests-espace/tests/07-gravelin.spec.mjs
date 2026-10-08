@@ -19,6 +19,10 @@ test('module à la charte de l\'agence : parcours complet, résultat, espace, so
     const a = await new AxeBuilder({ page }).include('.ee-module').withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']).analyze();
     expect.soft(a.violations.map((v) => `${v.id} : ${v.nodes.slice(0, 2).map((x) => x.target.join(' ')).join(' | ')}`), `accessibilité de l'écran « ${nom} »`).toEqual([]);
     await page.screenshot({ path: `${dossier}/${String(++n).padStart(2, '0')}-${nom}.png`, fullPage: plein, animations: 'disabled' });
+    for (const bloc of ['#ee-form', '#ee-result', '#me-in', '#ad-in']) {
+      const el = page.locator(bloc);
+      if (await el.count() && await el.isVisible()) { await el.screenshot({ path: `${dossier}/bloc-${String(n).padStart(2, '0')}-${nom}.png`, animations: 'disabled' }); break; }
+    }
   };
   await page.goto(DEMO + 'demo-estimer.html');
   // l'habillage est bien celui de l'agence (papier, encre, cuivre), pas celui de shawez-immo.com

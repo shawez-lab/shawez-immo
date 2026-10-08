@@ -93,7 +93,7 @@ const ROUTES = {
 
 /* Version de l'API : les tests sur l'aperçu attendent de la voir avant de commencer (le site met une à deux minutes
    à se mettre à jour après une poussée). À changer à chaque évolution de l'API. */
-const VERSION = '2026-10-08.1';
+const VERSION = '2026-10-08.2';
 
 /* Clé du flux Google Sheet : on ne garde que son empreinte. Celle-ci est la clé de mise en service ; dès qu'un admin
    en génère une nouvelle (/admin/ → « Google Sheet »), c'est l'empreinte en base qui fait foi. */
@@ -121,6 +121,10 @@ async function sante({ env, request }) {
     if (r.ok) { const i = await r.json(); dvf = { ventes: i.ventes, derniere_vente: i.derniere_vente, annees: i.annees }; }
   } catch (e) { /* pas de données */ }
   const rep = { version: VERSION, base, dvf, email: mailPossible(env), email_clients: mailClients(env) };
+  // dernier envoi d'alerte à l'agence : parti ou non, et pourquoi (aucune adresse, aucune donnée de client)
+  if (base) {
+    try { const a = await (await db(env)).prepare("SELECT valeur FROM reglages WHERE cle = 'alerte'").first(); if (a) rep.derniere_alerte = JSON.parse(a.valeur); } catch (e) { /* rien */ }
+  }
   // Détail réservé au porteur de la clé (aucune donnée personnelle de client) : contrôle de mise en service.
   const cle = url.searchParams.get('cle');
   if (cle && base && (await cleValide(env, cle))) {
@@ -908,7 +912,7 @@ function fiche(rep) {
 
 /* Alerte immédiate à l'agence : fiche complète, fourchette, bouton appeler, lien vers la demande dans l'admin. */
 async function notifier(env, request, ref, rep, c, res, lieu, suspect) {
-  if (!mailPossible(env)) return;
+  if (!mailPossible(env)) { await noterAlerte(env, { quand: maintenant(), destinataires: destinatairesAlerte(env).length, partis: 0, voies: [], erreurs: ['aucun service d\'envoi relié au site'] }); return; }
   const nom = [c.civilite, c.prenom, c.nom].filter(Boolean).join(' ');
   const fourchette = res.fourchette ? `${euros(res.bas)} – ${euros(res.haut)} (${res.comparables} ventes, rayon ${rayonLibelle(res.rayon)})` : 'Pas de fourchette automatique : rappel promis sous 24 h';
   const lignes = [['Contact', nom], ['Téléphone', c.telephone], ['E-mail', c.email], ['Fourchette', fourchette], ...fiche(rep), ['Site', lieu === 'gravelin' ? 'gravelin-immo.com' : 'shawez-immo.com']];
@@ -922,9 +926,22 @@ ${lignes.map(([k, v]) => `<tr><td style="padding:7px 12px 7px 0;color:#6B655C;bo
 </table></td></tr>
 <tr><td style="padding:12px 24px 8px;font-size:13px;color:#6B655C;">Référence ${esc(ref)} · <a href="${esc(admin)}" style="color:#8A6614;">ouvrir la demande dans l'espace agence</a></td></tr>`, lieu);
   const text = `Nouvelle estimation ${ref}\n\n${lignes.map(([k, v]) => `${k} : ${v}`).join('\n')}\n\nAppeler : ${c.telephone}\nAdmin : ${admin}`;
+  const bilan = { quand: maintenant(), destinataires: 0, partis: 0, voies: [], erreurs: [] };
   for (const to of destinatairesAlerte(env)) {
-    await envoyer(env, { to, subject: `${suspect ? '[à vérifier] ' : ''}Estimation ${rep.commune || ''} — ${nom} — ${c.telephone}`, text, html, replyTo: c.email });
+    const detail = {};
+    const ok = await envoyer(env, { to, subject: `${suspect ? '[à vérifier] ' : ''}Estimation ${rep.commune || ''} — ${nom} — ${c.telephone}`, text, html, replyTo: c.email }, detail);
+    bilan.destinataires++;
+    if (ok) { bilan.partis++; if (!bilan.voies.includes(detail.voie)) bilan.voies.push(detail.voie); }
+    else bilan.erreurs.push(sansAdresses([detail.resend, detail.email, detail.mailer, detail.raison].filter(Boolean).join(' · ')).slice(0, 300));
   }
+  await noterAlerte(env, bilan);
+}
+
+const sansAdresses = (t) => String(t || '').replace(/[^\s<>"'(),;:]+@[^\s<>"'(),;:]+/g, '(adresse)');
+async function noterAlerte(env, bilan) {
+  try {
+    await (await db(env)).prepare("INSERT INTO reglages (cle, valeur) VALUES ('alerte', ?1) ON CONFLICT(cle) DO UPDATE SET valeur = ?1").bind(JSON.stringify(bilan)).run();
+  } catch (e) { console.log('bilan alerte', e && e.message); }
 }
 
 /* E-mail immédiat au client : sa fourchette, les ventes utilisées, la suite, le lien vers son espace. */
