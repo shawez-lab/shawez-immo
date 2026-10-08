@@ -1,0 +1,4 @@
+[136000,"RUE SAINT MARTIN","Nesle-et-Massoult",11]
+[130000,"GRANDE RUE","Nesle-et-Massoult",23]
+[90000,"IMP DU CHATEAU","Nesle-et-Massoult",13]
+[481950,"IMP DU CHATEAU","Nesle-et-Massoult",22]

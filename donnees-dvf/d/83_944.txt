@@ -1,0 +1,3 @@
+[32000,"RLE DES RIOTS","Saint-Martin-de-la-Mer",16]
+[40000,"RLE DES RIOTS","Saint-Martin-de-la-Mer",7]
+[62500,"RLE DES RIOTS","Saint-Martin-de-la-Mer",27]

@@ -164,10 +164,19 @@ export async function estimer(env, requestUrl, r) {
    la surface et la date, avec leur détail réel publié par DVF : mois de la vente, voie (sans numéro), commune,
    surface, pièces, prix signé, prix au m². Aucune valeur calculée ni arrondie : si le détail d'une vente manque,
    son prix reste vide. Rend aussi le marché (nombre de ventes, rayon, médiane) et « assez » (au moins 5 ventes). */
+/* Le détail d'une tuile : une vente par ligne de texte. On ne décode que les lignes demandées. */
 const details = new Map();
 async function detail(env, base, nom) {
-  if (!details.has(nom)) details.set(nom, (await lireJson(env, base, `/donnees-dvf/d/${nom}.json`)) || null);
+  if (!details.has(nom)) {
+    let lignes = null;
+    try { const r = await env.ASSETS.fetch(new URL(`/donnees-dvf/d/${nom}.txt`, base)); if (r.ok) lignes = (await r.text()).split('\n'); } catch (e) { /* détail absent */ }
+    details.set(nom, lignes);
+  }
   return details.get(nom);
+}
+function ligneDetail(lignes, i) {
+  if (!lignes || !lignes[i]) return null;
+  try { const l = JSON.parse(lignes[i]); return Array.isArray(l) ? l : null; } catch (e) { return null; }
 }
 
 const PETITS = new Set(['de', 'du', 'des', 'la', 'le', 'les', 'aux', 'au', 'en', 'sur', 'sous', 'et', 'a', 'l', 'd']);
@@ -210,8 +219,7 @@ export async function ventesComparables(env, requestUrl, r, { n = 12, candidats 
   const proches = comps.map((c) => ({ c, s: note(c) })).sort((a, b) => a.s - b.s).slice(0, candidats).map((x) => x.c);
   const liste = [];
   for (const c of proches) {
-    const d = await detail(env, base, c.nom);
-    const l = d && d[c.i];
+    const l = ligneDetail(await detail(env, base, c.nom), c.i);
     const mois = `${Math.floor(c.mois / 100)}-${String(c.mois % 100).padStart(2, '0')}`;
     const v = {
       mois, surface: c.surface, pieces: c.pieces || null, terrain: r.type === 'maison' ? c.terrain || null : null,

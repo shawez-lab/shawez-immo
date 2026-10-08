@@ -1,0 +1,2 @@
+[75000,"RUE DE L EGLISE","Baigneux-les-Juifs",26]
+[35000,"RUE DE LA LIBERTE","Ampilly-les-Bordes",31]
