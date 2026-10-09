@@ -1,0 +1,7 @@
+[41500,"RUE DE LA MARE","Semond",11]
+[19500,"RUE DE LA MARE","Semond",12]
+[145136,"RUE DE VILLAINES","Chemin-d'Aisey",27]
+[135000,"RUE DE L EGLISE","Aisey-sur-Seine",30]
+[230000,"RUE DE L EGLISE","Aisey-sur-Seine",8]
+[89600,"RTE DE DIJON (AISEY)","Aisey-sur-Seine",11]
+[65000,"RTE DE DIJON (AISEY)","Aisey-sur-Seine",13]

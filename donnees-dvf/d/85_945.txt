@@ -1,0 +1,7 @@
+[111000,"RUE DE LA PREE","Saulieu",13]
+[87380,"RUE DE LA PREE","Saulieu",29]
+[190000,"CHE DE BAIGNES","Saulieu",19]
+[20500,"RUE DE LA PREE","Saulieu",21]
+[114300,"RUE DE LA PREE","Saulieu",31]
+[198000,"RUE DES GRANGES","Saulieu",28]
+[72500,"GRANDE RUE","Villargoix",20]

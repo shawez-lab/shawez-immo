@@ -1,0 +1,6 @@
+[328500,"RUE DU PARC","Pichanges",1]
+[165000,"RUE DU CRAIS","Pichanges",25]
+[285000,"GRANDE RUE","Pichanges",13]
+[250000,"GRANDE RUE","Pichanges",12]
+[272400,"RUE DES PREAUX","Pichanges",5]
+[175000,"RUE DES PREAUX","Pichanges",25]

@@ -49,10 +49,13 @@ var EE=(function(){
     type_fichier:"Format non accepté. Envoyez une photo (JPEG, PNG, WebP, HEIC) ou un PDF.",
     pdf_attendu:"L'avis de valeur doit être un fichier PDF.",
     trop_de_fichiers:"Il y a déjà 30 fichiers sur cette estimation.",
-    stockage_plein:"L'espace de stockage est plein : envoyez ce fichier par e-mail à "+CONF.email+"."
+    stockage_plein:"L'espace de stockage est plein : envoyez ce fichier par e-mail à "+CONF.email+".",
+    visite_fixee:"Une visite est déjà fixée pour ce bien.",
+    visite_close:"Ce dossier a avancé : la visite se fixe par téléphone.",
+    avis_absent:"Créez d'abord le PDF de l'avis de valeur."
   };
   function message(d){return MSG[d&&d.error]||MSG.serveur;}
-  var CHAMPS={email:"L'adresse e-mail n'est pas valide.",telephone:"Le numéro de téléphone n'est pas valide.",prenom:"Indiquez votre prénom.",nom:"Indiquez votre nom.",mot_de_passe:"Le mot de passe doit compter 8 caractères au moins.",consentement:"Cochez la case pour continuer.",adresse:"L'adresse du bien est incomplète.",surface:"La surface n'est pas valide.",confirmation:"Écrivez SUPPRIMER pour confirmer."};
+  var CHAMPS={email:"L'adresse e-mail n'est pas valide.",telephone:"Le numéro de téléphone n'est pas valide.",prenom:"Indiquez votre prénom.",nom:"Indiquez votre nom.",mot_de_passe:"Le mot de passe doit compter 8 caractères au moins.",consentement:"Cochez la case pour continuer.",adresse:"L'adresse du bien est incomplète.",surface:"La surface n'est pas valide.",confirmation:"Écrivez SUPPRIMER pour confirmer.",creneaux:"Ce créneau n'est plus proposé : choisissez-en un autre.",debut:"La date de la visite n'est pas valide.",prix_bas:"Indiquez la fourchette de prix (basse et haute).",prix_haut:"La valeur haute doit dépasser la valeur basse.",rdv_url:"Collez le lien de votre page de réservation Google Agenda (https://calendar.app.google/…).",atouts:"8 lignes au plus, 240 caractères par ligne.",vigilance:"8 lignes au plus, 240 caractères par ligne.",visite_le:"Indiquez la date de la visite (aujourd'hui au plus tard).",texte:"Écrivez ou dictez le compte rendu (3 000 caractères au plus).",montant:"Indiquez le montant de l'offre, en euros.",recue_le:"La date de l'offre n'est pas valide.",conditions:"Les conditions sont trop longues (1 500 caractères au plus).",etapes:"Une date d'étape n'est pas valide.",nom_notaire:"Le nom du notaire est trop long.",coordonnees:"Les coordonnées sont trop longues (300 caractères au plus)."};
   function messageChamp(d){return (d&&d.error==='champs'&&CHAMPS[d.champ])||message(d);}
 
   function wa(txt){return 'https://wa.me/'+CONF.tel.replace(/\D/g,'')+'?text='+encodeURIComponent(txt);}
@@ -116,5 +119,97 @@ var EE=(function(){
   };
   function uuid(){ try{ if(window.crypto&&crypto.randomUUID)return crypto.randomUUID(); }catch(e){} return 'c'+Date.now().toString(36)+Math.random().toString(36).slice(2,12)+Math.random().toString(36).slice(2,12); }
 
-  return {CONF:CONF,$:$,$$:$$,esc:esc,euros:euros,date:date,jour:jour,mois:mois,taille:taille,rayon:rayon,api:api,message:message,messageChamp:messageChamp,resultat:resultat,voirMdp:voirMdp,err:err,emailOk:emailOk,telOk:telOk,connecte:connecte,pictogramme:pictogramme,portraits:portraits,mem:mem,uuid:uuid,TEL:CONF.tel,wa:wa};
+  /* ---------- Dates à l'heure de Paris (le vendeur peut être ailleurs : la visite, elle, est à Dijon) ---------- */
+  function fr(iso,o){ o=o||{}; o.timeZone='Europe/Paris'; try{return new Date(iso).toLocaleDateString('fr-FR',o);}catch(e){return String(iso);} }
+  function heure(iso){ try{ var p=new Intl.DateTimeFormat('fr-FR',{timeZone:'Europe/Paris',hour:'numeric',minute:'2-digit',hourCycle:'h23'}).formatToParts(new Date(iso)),h='',m=''; p.forEach(function(x){if(x.type==='hour')h=String(+x.value);if(x.type==='minute')m=x.value;}); return h+' h'+(m!=='00'?' '+m:''); }catch(e){return '';} }
+  function jourLong(j){ if(!j)return ''; try{return new Date(String(j).slice(0,10)+'T12:00:00Z').toLocaleDateString('fr-FR',{timeZone:'UTC',weekday:'long',day:'numeric',month:'long'});}catch(e){return String(j);} }
+  function quand(iso){ return fr(iso,{weekday:'long',day:'numeric',month:'long'})+' à '+heure(iso); }
+  function quandCourt(iso){ return fr(iso,{weekday:'short',day:'numeric',month:'short'}).replace(/\./g,'')+' '+heure(iso); }
+
+  /* ---------- Visite d'estimation : le vendeur propose jusqu'à trois créneaux, l'agence confirme ----------
+     racine : l'élément où dessiner ; o : { demande, visite, possible, rdvUrl, onChange(reponse) }.
+     Le même bloc sert après le résultat (/estimer/) et dans chaque dossier de /mon-espace/. */
+  function visite(racine,o){
+    var choisis=[], jours=null, jourOuvert=0, ouvert=false, v=o.visite||null;
+    function fixee(){ return v&&v.etat==='fixee'&&v.debut; }
+    function passee(){ return fixee()&&new Date(v.debut).getTime()<Date.now(); }
+    function dessiner(){
+      var h='<h3 class="ee-rdv-t">Visite d\'estimation</h3>';
+      if(fixee()){
+        h+='<p class="ee-rdv-ok" data-test="visite-fixee"><b>'+esc(quand(v.debut).replace(/^./,function(c){return c.toUpperCase();}))+'</b><span>'+(passee()?'Visite faite. ':'')+esc(CONF.conseiller)+' vient voir votre bien : comptez '+(v.duree||45)+' minutes. Gratuit et sans engagement.</span></p>';
+        if(!passee()){
+          h+='<p class="ee-rdv-prep">Si vous les avez sous la main, préparez : le titre de propriété, la dernière taxe foncière, les diagnostics, le montant des charges et la liste des travaux réalisés.</p>';
+          if(o.possible&&!ouvert)h+='<div class="ee-links"><button type="button" data-rdv-ouvrir>Demander un autre créneau</button><a href="tel:'+CONF.tel+'">Appeler '+esc(CONF.conseiller)+'</a></div>';
+        }
+      } else if(v&&v.etat==='demandee'&&!ouvert){
+        h+='<p class="ee-rdv-ok" data-test="visite-demandee"><b>Créneaux envoyés à '+esc(CONF.conseiller)+'</b><span>'+(v.creneaux||[]).map(function(c){return esc(quand(c));}).join('<br>')+'</span></p>'+
+          '<p class="ee-rdv-prep">'+esc(CONF.conseiller)+' confirme l\'un d\'eux dans l\'heure, entre 9 h et 19 h. Vous recevez la confirmation ici'+(o.email?' et par e-mail':'')+'.</p>'+
+          (o.possible?'<div class="ee-links"><button type="button" data-rdv-ouvrir>Changer mes créneaux</button></div>':'');
+      } else if(!o.possible){
+        racine.hidden=true; racine.innerHTML=''; return;
+      } else if(o.rdvUrl&&!ouvert){
+        h+='<p class="ee-rdv-prep">'+esc(CONF.conseiller)+' passe voir votre bien : 45 minutes, gratuit et sans engagement. Choisissez votre créneau directement dans son agenda.</p>'+
+          '<div class="ee-rdv-go"><a class="btn btn-primary" href="'+esc(o.rdvUrl)+'" target="_blank" rel="noopener" data-rdv-agenda>Choisir mon créneau <span class="arw">→</span></a></div>';
+      } else if(!ouvert){
+        h+='<p class="ee-rdv-prep">'+esc(CONF.conseiller)+' passe voir votre bien, sous 48 h si vous le souhaitez : 45 minutes, gratuit et sans engagement. C\'est la visite qui donne le prix juste.</p>'+
+          '<div class="ee-rdv-go"><button type="button" class="btn btn-primary" data-rdv-ouvrir>Choisir mon créneau <span class="arw">→</span></button></div>';
+      }
+      if(ouvert)h+=selecteur();
+      racine.hidden=false; racine.innerHTML=h;
+    }
+    function selecteur(){
+      if(!jours)return '<div class="ee-load" style="height:120px;" role="status" aria-label="Chargement des créneaux"></div>';
+      if(!jours.length)return '<p class="ee-err">Aucun créneau à proposer pour le moment. Appelez '+esc(CONF.conseiller)+' au <a href="tel:'+CONF.tel+'">'+CONF.telAffiche+'</a>.</p>';
+      var j=jours[jourOuvert]||jours[0];
+      return '<p class="ee-rdv-prep" id="'+idAide+'">Choisissez jusqu\'à 3 créneaux qui vous arrangent : '+esc(CONF.conseiller)+' confirme l\'un d\'eux dans l\'heure (entre 9 h et 19 h).</p>'+
+        '<div class="ee-days" role="group" aria-label="Jour">'+jours.map(function(x,k){
+          var n=choisis.filter(function(c){return x.heures.some(function(hh){return hh.debut===c;});}).length;
+          return '<button type="button" class="pill" data-rdv-jour="'+k+'" aria-pressed="'+(k===jourOuvert)+'"><b>'+esc(x.court)+'</b>'+(x.sous48h?'<small>sous 48 h</small>':'')+(n?'<i aria-label="'+n+' choisi'+(n>1?'s':'')+'">'+n+'</i>':'')+'</button>';
+        }).join('')+'</div>'+
+        '<div class="ee-hours" role="group" aria-label="Heure, '+esc(j.libelle)+'">'+j.heures.map(function(x){
+          var on=choisis.indexOf(x.debut)>=0;
+          return '<button type="button" class="ee-hour" data-rdv-h="'+esc(x.debut)+'" aria-pressed="'+on+'"'+(!on&&choisis.length>=3?' disabled':'')+'>'+esc(x.h)+'</button>';
+        }).join('')+'</div>'+
+        '<ul class="ee-sel" aria-label="Créneaux choisis">'+choisis.slice().sort().map(function(c){return '<li><span>'+esc(quand(c))+'</span><button type="button" data-rdv-retirer="'+esc(c)+'" aria-label="Retirer '+esc(quand(c))+'">Retirer</button></li>';}).join('')+'</ul>'+
+        '<p class="ee-err" role="alert" hidden></p>'+
+        '<div class="ee-nav"><button type="button" class="btn" data-rdv-fermer>Annuler</button><button type="button" class="btn btn-primary" data-rdv-envoyer'+(choisis.length?'':' disabled')+'>'+(choisis.length>1?'Envoyer mes '+choisis.length+' créneaux':choisis.length?'Envoyer ce créneau':'Choisissez un créneau')+' <span class="arw">→</span></button></div>';
+    }
+    var idAide='ee-rdv-aide-'+String(o.demande);
+    function ouvrir(){
+      ouvert=true; choisis=[]; dessiner();
+      if(jours)return;
+      api('/creneaux').then(function(d){ jours=(d&&d.jours)||[]; if(d&&d.rdv_url&&!o.rdvUrl)o.rdvUrl=d.rdv_url; dessiner(); });
+    }
+    racine.addEventListener('click',function(e){
+      var t=e.target.closest('button,a'); if(!t||!racine.contains(t))return;
+      if(t.hasAttribute('data-rdv-agenda')){ api('/visite',{body:{demande:o.demande,agenda:true}}); return; }
+      if(t.hasAttribute('data-rdv-ouvrir')){ ouvrir(); return; }
+      if(t.hasAttribute('data-rdv-fermer')){ ouvert=false; dessiner(); return; }
+      if(t.hasAttribute('data-rdv-jour')){ jourOuvert=+t.getAttribute('data-rdv-jour'); dessiner(); var b=racine.querySelector('[data-rdv-jour="'+jourOuvert+'"]'); if(b)b.focus({preventScroll:true}); return; }
+      if(t.hasAttribute('data-rdv-h')){ var c=t.getAttribute('data-rdv-h'), i=choisis.indexOf(c); if(i>=0)choisis.splice(i,1); else if(choisis.length<3)choisis.push(c); dessiner(); var b2=racine.querySelector('[data-rdv-h="'+c+'"]'); if(b2)b2.focus({preventScroll:true}); return; }
+      if(t.hasAttribute('data-rdv-retirer')){ var r=choisis.indexOf(t.getAttribute('data-rdv-retirer')); if(r>=0)choisis.splice(r,1); dessiner(); return; }
+      if(t.hasAttribute('data-rdv-envoyer')){
+        if(!choisis.length)return;
+        t.disabled=true;
+        api('/visite',{body:{demande:o.demande,creneaux:choisis,deplacer:!!fixee()}}).then(function(d){
+          if(d._status===201){ v=d.visite; ouvert=false; dessiner(); if(o.onChange)o.onChange(d); racine.scrollIntoView({block:'nearest',behavior:'smooth'}); return; }
+          t.disabled=false;
+          var m=racine.querySelector('.ee-err');
+          if(d.error==='champs'&&d.champ==='creneaux'){ jours=null; choisis=[]; ouvrir(); m=null; }
+          if(m){ m.textContent=d.error==='connexion'?'Votre session a expiré : ouvrez votre espace pour choisir votre créneau.':d.error==='visite_close'?'Ce dossier a avancé : appelez '+CONF.conseiller+' au '+CONF.telAffiche+' pour convenir d\'une date.':message(d); m.hidden=false; }
+        });
+      }
+    });
+    dessiner();
+    return {ouvrir:ouvrir};
+  }
+
+  /* Charge un script du site une seule fois (le fabricant de PDF de l'avis de valeur, par exemple). */
+  var scripts={};
+  function script(src){
+    if(!scripts[src])scripts[src]=new Promise(function(ok,ko){var s=document.createElement('script');s.src=src;s.onload=function(){ok();};s.onerror=function(){delete scripts[src];ko(new Error('script'));};document.head.appendChild(s);});
+    return scripts[src];
+  }
+
+  return {jourLong:jourLong,quand:quand,quandCourt:quandCourt,heure:heure,visite:visite,script:script,CONF:CONF,$:$,$$:$$,esc:esc,euros:euros,date:date,jour:jour,mois:mois,taille:taille,rayon:rayon,api:api,message:message,messageChamp:messageChamp,resultat:resultat,voirMdp:voirMdp,err:err,emailOk:emailOk,telOk:telOk,connecte:connecte,pictogramme:pictogramme,portraits:portraits,mem:mem,uuid:uuid,TEL:CONF.tel,wa:wa};
 })();

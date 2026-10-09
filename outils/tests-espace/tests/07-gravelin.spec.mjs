@@ -76,7 +76,7 @@ test('module à la charte de l\'agence : parcours complet, résultat, espace, so
   await connexionParLien(page, request, ADMIN);
   await page.goto(DEMO + 'demo-admin.html?q=' + corps.reference);
   await expect(page.locator('#ad-rows .ee-row')).toHaveCount(1);
-  await expect(page.locator('#ad-rows .ee-row summary')).toContainText('gravelin-immo.com');
+  await expect(page.locator('#ad-rows .ee-row > summary')).toContainText('gravelin-immo.com');
   await photo('admin', true);
 });
 

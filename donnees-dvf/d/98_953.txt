@@ -1,0 +1,4 @@
+[156000,"RUE DE SALIVES","Fraignot-et-Vesvrotte",22]
+[80000,"RUE DU BOURG","Fraignot-et-Vesvrotte",16]
+[30000,"RUE DES VELAIS","Beneuvre",26]
+[139500,"RUE COMBE AUX OISEAUX","Beneuvre",10]
