@@ -63,17 +63,22 @@ def carte(a, complet=False):
             '<a class="src" href="%s" target="_blank" rel="noopener">%s<span>Avis Google</span></a></div></article>'
             % (etoiles(a['note']), E(t), more, E(court(a['auteur'])), mois(a['date']), E(lien), G))
 
+def date_fr(d):
+    y, m, j = d.split('-')
+    return '%d %s %s' % (int(j), MOIS[int(m) - 1], y)
+
 def entete():
-    """Seule preuve sociale autorisée : la note de l'AGENCE Gravelin Immo, datée (avis.json → preuve_agence).
-    La note de la fiche Shawez n'est pas affichée tant qu'elle n'est pas vérifiée et datée."""
+    """Preuve sociale : d'abord la note de la fiche Google « Shawez Ali — Agent immobilier » (vérifiée et datée,
+    avis.json → fiche), puis celle de l'AGENCE Gravelin Immo (avis.json → preuve_agence), datée elle aussi."""
     A = D['preuve_agence']
-    y, m, j = A['releve_le'].split('-')
-    date = '%d %s %s' % (int(j), MOIS[int(m) - 1], y)
     return ('<div class="avis-score"><p class="avis-note"><span class="n">%s</span>'
             '<span class="stars" role="img" aria-label="%s sur 5">★★★★★<span class="off"></span></span></p>'
+            '<p class="avis-count"><strong>Ma fiche Google : %s/5 sur %d avis</strong> '
+            '(<a href="%s" target="_blank" rel="noopener">relevé du %s</a>)</p>'
             '<p class="avis-count">L\'agence %s est notée %s/5 sur %d avis Google '
             '(<a href="%s" target="_blank" rel="noopener">relevé du %s</a>)</p></div>'
-            % (fr(A['note']), fr(A['note']), E(A['nom']), fr(A['note']), A['nombre'], E(A['lien']), date))
+            % (fr(F['note']), fr(F['note']), fr(F['note']), F['nombre'], E(F['lien_avis']), date_fr(F['releve_le']),
+               E(A['nom']), fr(A['note']), A['nombre'], E(A['lien']), date_fr(A['releve_le'])))
 
 def boutons(page_avis=False):
     b = ('<a class="btn btn-primary" href="%s" target="_blank" rel="noopener">Voir tous les avis sur Google <span class="arw">→</span></a>'
@@ -180,4 +185,4 @@ if '<!-- avis:page -->' not in s:
 s = repl(s, 'page', bloc_page())
 s = with_css(s)
 open(p, 'w', encoding='utf-8').write(s)
-print('%d avis · preuve affichée : agence %s/5 sur %d avis' % (len(AVIS), fr(D['preuve_agence']['note']), D['preuve_agence']['nombre']))
+print('%d avis · fiche Shawez %s/5 sur %d avis · agence %s/5 sur %d avis' % (len(AVIS), fr(F['note']), F['nombre'], fr(D['preuve_agence']['note']), D['preuve_agence']['nombre']))
