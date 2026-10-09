@@ -1,0 +1,5 @@
+[188000,"RTE DE CHAMBOUX","Champeau-en-Morvan",10]
+[85000,"RTE DE CHAMBOUX","Champeau-en-Morvan",7]
+[25000,"IMP DU POMMIER ROLLAND","Champeau-en-Morvan",8]
+[75000,"RUE DES CHARBOUNIERS","Champeau-en-Morvan",26]
+[30000,"IMP DU CHARME","Champeau-en-Morvan",28]

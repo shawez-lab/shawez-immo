@@ -1,0 +1,4 @@
+[160000,"RUE PRINCIPALE","Châtillon-sur-Seine",14]
+[140000,"RUE PRINCIPALE","Châtillon-sur-Seine",18]
+[190000,"RUE PRINCIPALE","Châtillon-sur-Seine",8]
+[200000,"SECHE BOUTEILLE","Prusly-sur-Ource",17]

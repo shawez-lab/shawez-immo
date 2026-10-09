@@ -1,0 +1,7 @@
+[196059,"IMP DE LA FILATURE","Saffres",31]
+[42000,"IMP DU CHATEAU","Saffres",6]
+[76000,"RUE DU MOTET","Saffres",2]
+[77000,"RUE BASSE","Saffres",27]
+[17600,"RUE DE L'ECLUSE","Saffres",19]
+[20000,"RUE DE L'ECLUSE","Saffres",8]
+[83500,"LOTISSEMENT SAINT ANNE","Vitteaux",5]

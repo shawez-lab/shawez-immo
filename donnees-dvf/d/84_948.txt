@@ -1,0 +1,5 @@
+[242375,"RUE DU PAUTET - GENOUILLY","Dompierre-en-Morvan",21]
+[74200,"RUE DES MARRONNIERS","Dompierre-en-Morvan",22]
+[235000,"RTE D'EPOISSES","Thoste",19]
+[60000,"IMP DE LA BASSE COUR","Thoste",12]
+[35000,"RUE DE LA BASSE COUR","Thoste",29]

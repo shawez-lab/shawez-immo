@@ -1,7 +1,7 @@
 /* Le site tel qu'il tourne aujourd'hui (pas encore d'e-mail aux clients) : le résultat s'affiche quand même tout de
    suite, le mot de passe est proposé après, en option. Robots, champ leurre, limite de débit. */
 import { test, expect } from '@playwright/test';
-import { fausseBan, estimationComplete, parcours, coordonnees, afficherResultat, pictogramme, moi, api, emailTest, SITE_SANS_EMAIL } from './aides.mjs';
+import { fausseBan, estimationComplete, parcours, coordonnees, afficherResultat, pictogramme, moi, api, emailTest, SITE_SANS_EMAIL, connexionParMdp } from './aides.mjs';
 
 test.use({ baseURL: SITE_SANS_EMAIL });
 // ce serveur applique les vrais plafonds de débit : la série ne passe qu'une fois par lancement (sur iPhone 13)
@@ -16,6 +16,17 @@ test('sans e-mail aux clients : résultat immédiat, puis mot de passe en option
   expect(reponse.corps.resultat.fourchette).toBe(true);
   expect(reponse.corps.espace).toMatchObject({ connecte: true, nouveau: true, lien: 'indisponible' });
   await expect(page.locator('[data-test="fourchette"]')).toBeVisible();
+  // la visite d'estimation se choisit quand même tout de suite ; rien ne promet un e-mail qui ne partira pas
+  const rdv = page.locator('#ee-rdv');
+  await rdv.locator('[data-rdv-ouvrir]').click();
+  await rdv.locator('.ee-days .pill').nth(1).click();
+  await rdv.locator('.ee-hour').nth(3).click();
+  await rdv.locator('[data-rdv-envoyer]').click();
+  await expect(rdv.locator('[data-test="visite-demandee"]')).toBeVisible();
+  await expect(rdv).not.toContainText('par e-mail');
+  const dossier = (await moi(page)).demandes[0];
+  expect(dossier.visite.etat).toBe('demandee');
+  expect(dossier.suite).toContain('confirme votre créneau');
   // après le résultat, en option
   await expect(page.locator('#ee-mdp-form')).toBeVisible();
   await expect(page.locator('#ee-mdp-hint')).toContainText('Facultatif');
@@ -28,10 +39,8 @@ test('sans e-mail aux clients : résultat immédiat, puis mot de passe en option
   await page.goto('/');
   await pictogramme(page).click();
   // sans e-mail : le mot de passe d'abord
-  await expect(page.locator('#me-cnx-btn')).toHaveText('Me connecter');
-  await page.locator('#me-email').fill(c.email);
-  await page.locator('#me-mdp').fill('Rue-Bannelier-30');
-  await page.locator('#me-cnx-btn').click();
+  await expect(page.locator('#me-cnx-btn')).toContainText('Continuer');
+  await connexionParMdp(page, c.email, 'Rue-Bannelier-30');
   await expect(page.locator('#me-in')).toBeVisible();
   await expect(page.locator('#me-cards .ee-card')).toHaveCount(1);
   await expect(pictogramme(page)).toHaveClass(/is-in/);
@@ -42,13 +51,10 @@ test('sans e-mail : « recevoir un lien » et « mot de passe oublié » disent 
   await api(page, '/deconnexion', {});
   await page.goto('/mon-espace/');
   await page.locator('#me-email').fill(c.email);
-  await page.locator('#me-lien-btn').click();
+  await page.locator('#me-cnx-btn').click();
   await expect(page.locator('#me-cnx .ee-err')).toContainText('n\'est pas encore ouvert');
   await expect(page.locator('#me-cnx .ee-err')).toContainText('07 67 57 92 28');
-  // compte sans mot de passe : message qui explique, pas « incorrect »
-  await page.locator('#me-mdp').fill('quelquechose');
-  await page.locator('#me-cnx-btn').click();
-  await expect(page.locator('#me-cnx .ee-err')).toContainText('sans mot de passe');
+  await expect(page.locator('#me-envoye')).toBeHidden();             // on n'annonce pas un envoi qui n'a pas lieu
   await page.locator('#me-oubli-btn').click();
   await page.locator('#me-oubli [type=submit]').click();
   await expect(page.locator('#me-oubli .ee-err')).toContainText('07 67 57 92 28');
@@ -117,8 +123,9 @@ test('limite de débit : trop de tentatives de connexion → « réessayez dans 
   let dernier;
   for (let i = 0; i < 12; i++) dernier = await api(page, '/connexion', { email, mot_de_passe: 'mauvais-' + i });
   expect(dernier).toMatchObject({ _status: 429, error: 'trop_de_demandes' });
+  for (let i = 0; i < 10; i++) dernier = await api(page, '/acces', { email });
+  expect(dernier).toMatchObject({ _status: 429, error: 'trop_de_demandes' });
   await page.locator('#me-email').fill(email);
-  await page.locator('#me-mdp').fill('encore');
   await page.locator('#me-cnx-btn').click();
   await expect(page.locator('#me-cnx .ee-err')).toContainText('Trop d\'essais');
 });

@@ -393,7 +393,8 @@ def synchronise(etat):
         mentions = list(dict.fromkeys(c['mentions'] + f['mentions_fiche']))
         vus_st = {STATUTS.get(m_.lower().strip()) for m_ in mentions}
         statut = 'vendu' if 'vendu' in vus_st else 'sous compromis' if 'sous compromis' in vus_st else 'en vente'
-        nouveau = {'ref': ref, 'id': c['id'], 'chemin': c['chemin'],   # remplacé par sa forme neutre avant l'écriture 'type': typ, 'commune': c['commune'], 'cp': c['cp'],
+        # « chemin » est remplacé par sa forme neutre avant l'écriture
+        nouveau = {'ref': ref, 'id': c['id'], 'chemin': c['chemin'], 'type': typ, 'commune': c['commune'], 'cp': c['cp'],
                    'prix': c['prix'], 'surface': surf, 'compo_agence': c['compo'], 'pieces': int(pieces) if pieces else None,
                    'caracteristiques': tab, 'energie': f['energie'], 'dpe': None,
                    'description_expurgee': expurge(f['description']), 'mentions_agence': mentions}
@@ -612,6 +613,29 @@ def sitemap(etat):
     s = re.sub(r'  <url><loc>%s</loc>.*?</url>\n' % re.escape(loc), '', s)
     open(f, 'w', encoding='utf-8').write(s.replace('</urlset>', ligne + '</urlset>'))
 
+# ---------------------------------------------------------------- fiches incomplètes
+REQUIS = ('ref', 'id', 'type', 'commune', 'status', 'first_seen', 'photos')
+
+def manque(a):
+    return [k for k in REQUIS if a.get(k) in (None, '')]
+
+def ecarte_incompletes(etat):
+    """Une fiche incomplète (ex. KeyError 'type' du 9/10) ne bloque plus tout le passage :
+    elle est mise de côté (ni post, ni page), gardée dans annonces.json, et signalée dans de-claude/alerte-sync.md."""
+    mises_de_cote = {}
+    for ref, a in list(etat['annonces'].items()):
+        m = manque(a)
+        if m:
+            mises_de_cote[ref] = etat['annonces'].pop(ref)
+            print('ALERTE : annonce %s mise de côté (manque %s)' % (ref, ', '.join(m)))
+    if mises_de_cote:
+        os.makedirs(P('de-claude'), exist_ok=True)
+        with open(P('de-claude', 'alerte-sync.md'), 'w', encoding='utf-8') as o:
+            o.write('# Alerte : fiche(s) d\'annonce incomplète(s)\n\n%s — %d fiche(s) mise(s) de côté, les autres annonces sont à jour.\n\n%s\n'
+                    % (dt.datetime.now(PARIS).strftime('%d/%m/%Y %H:%M'), len(mises_de_cote),
+                       '\n'.join('- %s : manque %s' % (r, ', '.join(manque(a))) for r, a in mises_de_cote.items())))
+    return mises_de_cote
+
 def normalise(etat):
     """Corrections appliquées aussi aux annonces déjà connues (sans relire le site)."""
     for a in etat['annonces'].values():
@@ -628,9 +652,13 @@ if __name__ == '__main__':
         r = synchronise(etat)
         if r is False:
             sys.exit(0)   # alerte écrite, rien d'autre ne bouge
+    cote = ecarte_incompletes(etat)
     normalise(etat)
     file_posts(etat)
+    etat['annonces'].update(cote)   # gardées telles quelles dans annonces.json
     ecrit(etat)
+    for r in cote:
+        etat['annonces'].pop(r)
     md_posts(etat)
     page(etat)
     sitemap(etat)

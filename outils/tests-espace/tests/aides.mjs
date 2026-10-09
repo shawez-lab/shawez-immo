@@ -142,12 +142,12 @@ export async function estimationComplete(page, o = {}, c = {}) {
 
 /* ---------- boîte d'envoi locale ---------- */
 export async function viderBoite(request) { await request.delete(BOITE); }
-export async function courrier(request, filtre, { attente = 8000 } = {}) {
+export async function courrier(request, filtre, { attente = 8000, nombre = 1 } = {}) {
   const fin = Date.now() + attente;
   for (;;) {
     const tous = await (await request.get(BOITE)).json();
     const ok = tous.filter(filtre);
-    if (ok.length || Date.now() > fin) return ok;
+    if (ok.length >= nombre || Date.now() > fin) return ok;
     await new Promise((r) => setTimeout(r, 250));
   }
 }
@@ -159,14 +159,26 @@ export async function connexionParLien(page, request, email) {
   await viderBoite(request);
   await page.goto('/mon-espace/');
   await page.locator('#me-email').fill(email);
-  await page.locator('#me-lien-btn').click();
-  await expect(page.locator('#me-cnx .ee-ok')).toBeVisible();
+  await page.locator('#me-cnx-btn').click();                       // « Continuer » : sans mot de passe, le lien part
+  // avec un mot de passe, il est demandé : on choisit « Recevoir plutôt un lien par e-mail »
+  await expect(page.locator('#me-envoye, #me-mdp-f:not([hidden])').first()).toBeVisible();
+  if (await page.locator('#me-mdp').isVisible()) await page.locator('#me-lien-btn').click();
+  await expect(page.locator('#me-envoye')).toBeVisible();
   const [m] = await courrier(request, pour(email, /lien de connexion/i));
   expect(m, 'e-mail du lien de connexion').toBeTruthy();
   const lien = lienDans(m);
   await page.goto(lien.replace(/^https?:\/\/[^/]+/, ''));
   await expect(page.locator('#me-in')).toBeVisible();
   return lien;
+}
+
+/* Connexion par mot de passe, en deux temps : l'e-mail, « Continuer », puis le mot de passe. */
+export async function connexionParMdp(page, email, mdp) {
+  await page.locator('#me-email').fill(email);
+  await page.locator('#me-cnx-btn').click();
+  await expect(page.locator('#me-mdp')).toBeVisible();
+  await page.locator('#me-mdp').fill(mdp);
+  await page.locator('#me-cnx-btn').click();
 }
 
 /* Appels à l'API depuis la page elle-même (avec ses cookies, comme le fait le site). */
@@ -178,3 +190,11 @@ export const api = (page, chemin, corps) => page.evaluate(async ([c, b]) => {
 export const moi = (page) => api(page, '/moi');
 
 export const pictogramme = (page) => page.locator('header#nav a.nav-compte');
+
+/* Ouvre une session admin : l'agence demande son lien de connexion (son compte est créé à la première demande). */
+export async function sessionAdmin(page, request) {
+  await page.goto('/mon-espace/');
+  await api(page, '/deconnexion', {});
+  await connexionParLien(page, request, ADMIN);
+  expect((await moi(page)).compte.admin).toBe(true);
+}

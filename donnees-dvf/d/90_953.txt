@@ -1,0 +1,8 @@
+[50920,"RUE D AMONT","Villaines-en-Duesmois",27]
+[66000,"RUE DU CENTRE","Villaines-en-Duesmois",27]
+[55000,"RUE DE LA PORTE AU CURE","Villaines-en-Duesmois",20]
+[60000,"RUE DU CENTRE","Villaines-en-Duesmois",29]
+[85000,"RUE DU CENTRE","Villaines-en-Duesmois",29]
+[65000,"RUE DES DEUX FRERES","Villaines-en-Duesmois",7]
+[350000,"RUE DES DEUX FRERES","Villaines-en-Duesmois",26]
+[55000,"RUE DU FBG DU PUITS","Villaines-en-Duesmois",20]

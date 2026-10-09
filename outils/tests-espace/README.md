@@ -10,6 +10,7 @@ npm ci && npx playwright install chromium
 node serveur.mjs          # dans un terminal : le site ×2 et une fausse boîte d'envoi
 npx playwright test       # dans un autre : toute la série
 node lighthouse.mjs       # Lighthouse mobile sur /estimer/, médiane de 3 passages, seuil 90
+node avis-apercu.mjs avis.pdf   # l'avis de valeur PDF avec des données d'exemple, pour relire la mise en page
 ```
 
 `serveur.mjs` lance : le site avec e-mails aux clients (port 8788 ; les e-mails tombent dans la fausse boîte du port 8790),
@@ -25,6 +26,11 @@ La recherche d'adresses est remplacée par des adresses de test (`tests/aides.mj
 | `05-api` | origine des requêtes, validation, texte jamais exécuté, droits sur les fichiers |
 | `06-accessibilite` | règles WCAG A et AA (axe-core) sur chaque écran, libellés, parcours au clavier, focus visible |
 | `07-gravelin` | le même module à la charte de l'agence (`outils/espace-estimation-gravelin/`) |
+| `08-visite-statuts` | visite d'estimation : 3 créneaux proposés après le résultat, alerte à l'agence, confirmation d'un clic, e-mail de confirmation (quoi préparer, plan de l'agence), déplacement, rappel la veille à 18 h (une seule fois) ; les 10 statuts : frise du vendeur, prochaine action et retard, e-mail court à chaque changement, sorties sans e-mail, journal, Google Sheet ; droits et validation |
+| `09-avis-de-valeur` | avis de valeur : ventes DVF réelles (prix signés), choix des ventes citées, PDF de 6 à 10 pages fabriqué dans la page, brouillon invisible pour le vendeur, validation en un clic (statut, espace, e-mail, journal) ; moins de 5 ventes : pas de fourchette proposée, rien sans celle de l'agent |
+| `10-accessibilite-etape2` | règles WCAG A et AA sur les nouveaux écrans ; choix d'un créneau au clavier |
+| `11-apres-mandat` | après le mandat : comptes rendus de visite (brouillon, publié, corrigé, supprimé ; le dossier passe à « Visites en cours »), offres (le dossier passe à « Offre reçue », prochaine action chiffrée et datée, acceptée ou refusée), notaire (étapes, date de l'acte), documents (nature) ; ce que voit le vendeur ; droits ; **heures calmes** (rien ne part au vendeur entre 21 h et 8 h, tout part à 8 h, une seule fois) ; /admin/ ouvert par un lien reçu par e-mail ; règles WCAG A et AA ; captures `etape3-*` |
+| `12-promesses` | la mesure des 7 promesses : les règles sur un jeu de dossiers écrit à la main (chaque chiffre attendu est compté à la main) ; un vrai dossier suivi de l'estimation au mandat dans l'export CSV (tenue, en cours, ratée, avec l'heure du serveur de test avancée) ; la page `/admin/promesses/` (sept cartes, 7 et 30 jours, ce qu'il faut regarder, export), y compris nourrie par le jeu compté à la main (capture d'exemple `etape4-*-exemple`) ; le flux à clé pour le Google Sheet (sept lignes, aucun nom) ; droits ; règles WCAG A et AA ; captures `etape4-*` |
 | `90-captures` | captures de chaque étape et du résultat → `captures/` ; rien ne dépasse de l'écran |
 
 ## Sur le site en ligne

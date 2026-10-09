@@ -1,0 +1,4 @@
+[88000,"RUE DU MONT","Étalante",16]
+[235000,"RUE DE LA CHARME","Étalante",28]
+[110000,"RUE DE CONGE","Étalante",31]
+[199000,"RUE D'AIGNAY LE DUC","Étalante",31]

@@ -1,0 +1,6 @@
+[130000,"RTE DES VIGNES","Gomméville",11]
+[50000,"LOT EN LAVAUX","Gomméville",22]
+[80500,"RUE DE LA BROCHE","Gomméville",28]
+[22000,"RUE DU CARRON","Gomméville",9]
+[38000,"RUE DU CARRON","Gomméville",5]
+[44500,"RUE DU CARRON","Gomméville",18]

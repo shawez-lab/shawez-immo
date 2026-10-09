@@ -156,7 +156,7 @@ html[data-tone="dark"] #nav .brand .lg-ink{display:none;} html[data-tone="dark"]
 #nav .btn-primary span{color:var(--ground);} html[data-tone="dark"] #nav .btn-primary span{color:var(--night);}
 #burger{display:none;background:none;border:1px solid currentColor;color:inherit;border-radius:var(--r-pill);padding:0 14px;height:42px;cursor:pointer;font-size:.88rem;font-weight:600;}
 @media(max-width:1240px){.nav-links{display:none;} #burger{display:inline-flex;align-items:center;gap:8px;} .nav-cta .btn-primary{display:none;}}
-@media(max-width:480px){.brand small{display:none;} .nav-tel{display:none;}}
+.nav-tel{white-space:nowrap;flex-shrink:0;}@media(max-width:480px){.brand small{display:none;} .nav-tel{display:none;}}
 
 #menu{position:fixed;inset:0;z-index:150;background:var(--night);color:var(--night-ink);display:flex;flex-direction:column;padding:var(--s5) var(--gutter) var(--s7);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity var(--t-base) var(--ease),transform var(--t-base) var(--ease),visibility 0s linear var(--t-base);overflow:auto;}
 #menu.open{opacity:1;visibility:visible;transform:none;transition:opacity var(--t-base) var(--ease),transform var(--t-base) var(--ease);}
@@ -1344,6 +1344,186 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
   .ee-grid2 .ee-opt{padding-inline:14px;}
   .ee-grid2 .ee-opt::after{display:none;}
 }
+/* connexion en deux temps : e-mail, puis mot de passe ou lien envoyé */
+.ee-envoye{padding:16px 18px;border-radius:14px;background:rgba(47,122,79,.09);color:#215A39;font-size:.98rem;line-height:1.55;}
+.ee-envoye p{margin:0;}
+.ee-envoye b{color:inherit;word-break:break-word;}
+.ee-envoye-act{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin-top:14px!important;}
+.ee-envoye-act .btn{background:#fff;}
+.ee-envoye[hidden],.field[hidden],.ee-links [hidden],.ee-nav[hidden]{display:none;}
+/* ---------- v3 (système parfait) : frise des 10 étapes, visite d'estimation, avis de valeur ---------- */
+/* avancement du dossier : dix segments, l'étape en cours, la prochaine */
+.ee-suivi{display:flex;flex-direction:column;gap:10px;padding-top:14px;border-top:1px solid var(--line);}
+.ee-etape{margin:0;display:flex;flex-direction:column;gap:2px;}
+.ee-etape span{font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-text);}
+.ee-etape b{font-family:var(--font-display);font-weight:420;font-size:1.3rem;line-height:1.15;}
+.ee-bar{display:flex;gap:4px;}
+.ee-bar i{flex:1;height:5px;border-radius:99px;background:var(--stone-2);}
+.ee-bar i.fait{background:var(--accent);}
+.ee-bar i.encours{background:var(--ink);}
+.ee-suite{margin:0;padding:12px 14px;border-radius:12px;background:var(--ground);border:1px solid var(--line);font-size:.94rem;line-height:1.45;color:var(--ink-2);}
+.ee-suite b{color:var(--ink);}
+.ee-frise>summary{cursor:pointer;font-size:.9rem;font-weight:600;color:var(--ink-2);text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:4px;list-style:none;min-height:32px;display:inline-flex;align-items:center;}
+.ee-frise>summary::-webkit-details-marker{display:none;}
+.ee-frise ol{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;}
+.ee-frise li{position:relative;display:flex;justify-content:space-between;gap:12px;padding:9px 0 9px 28px;font-size:.92rem;color:var(--muted);border-bottom:1px solid var(--line);}
+.ee-frise li::before{content:"";position:absolute;left:4px;top:13px;width:12px;height:12px;border-radius:50%;border:1.5px solid var(--line-strong);background:var(--surface);}
+.ee-frise li.fait{color:var(--ink);}
+.ee-frise li.fait::before{background:var(--accent);border-color:var(--accent);}
+.ee-frise li.encours{color:var(--ink);font-weight:600;}
+.ee-frise li.encours::before{background:var(--ink);border-color:var(--ink);box-shadow:0 0 0 4px var(--accent-soft);}
+.ee-frise li small{font-size:.8rem;color:var(--muted);font-weight:400;white-space:nowrap;}
+/* visite d'estimation */
+.ee-rdv{display:flex;flex-direction:column;gap:12px;padding-top:14px;border-top:1px solid var(--line);}
+.ee-rdv[hidden]{display:none;}
+.ee-rdv-t{font-family:var(--font-text);font-weight:600;font-size:.92rem;margin:0;}
+.ee-rdv-ok{margin:0;display:flex;flex-direction:column;gap:4px;padding:14px 16px;border-radius:12px;background:rgba(47,122,79,.09);color:#215A39;font-size:.92rem;line-height:1.45;}
+.ee-rdv-ok b{font-family:var(--font-display);font-weight:420;font-size:1.2rem;line-height:1.2;color:#1B4B30;}
+.ee-rdv-prep{margin:0;font-size:.9rem;line-height:1.5;color:var(--ink-2);}
+.ee-rdv-go .btn{min-height:52px;}
+.ee-days{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 8px;padding-top:4px;}
+@media(min-width:760px){.ee-days{grid-template-columns:repeat(6,minmax(0,1fr));}}
+.ee-days .pill{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;min-height:56px;padding:6px 8px;color:var(--ink);border-color:var(--line-strong);background:var(--ground);white-space:nowrap;border-radius:12px;min-width:0;}
+.ee-days .pill b{font-weight:600;font-size:.92rem;}
+.ee-days .pill small{font-size:.66rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--accent-text);}
+.ee-days .pill[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink);}
+.ee-days .pill[aria-pressed="true"] small{color:var(--night-accent);}
+.ee-days .pill i{position:absolute;top:-7px;right:-5px;min-width:20px;height:20px;box-shadow:0 0 0 2px var(--surface);border-radius:99px;background:var(--accent);color:#0F0E0C;font-style:normal;font-size:.7rem;font-weight:700;display:grid;place-items:center;}
+.ee-hours{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+@media(min-width:760px){.ee-hours{grid-template-columns:repeat(5,1fr);}}
+.ee-hour{min-height:50px;border:1px solid var(--line-strong);border-radius:12px;background:var(--ground);color:var(--ink);font:inherit;font-weight:600;font-size:.98rem;font-variant-numeric:tabular-nums;cursor:pointer;transition:background .2s,color .2s,border-color .2s;}
+.ee-hour:hover{border-color:var(--ink);}
+.ee-hour[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink);}
+.ee-hour:disabled{opacity:.4;cursor:default;}
+.ee-hour:focus-visible,.ee-days .pill:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+.ee-sel{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;}
+.ee-sel:empty{display:none;}
+.ee-sel li{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:6px 6px 6px 14px;border:1px solid var(--line);border-radius:12px;background:var(--ground);font-size:.92rem;font-weight:600;}
+.ee-sel button{min-height:40px;padding:0 10px;border:0;background:none;font:inherit;font-size:.85rem;font-weight:600;color:var(--ink-2);text-decoration:underline;text-underline-offset:4px;cursor:pointer;}
+.ee-rdv .ee-links{margin-top:0;}
+.ee-apres.ee-rdv{border-top:1px solid var(--line);padding-top:clamp(18px,3vw,28px);}
+/* admin : prochaine action, blocs visite et avis de valeur, journal */
+.ee-row>summary .act{grid-column:1/-1;font-size:.86rem;font-weight:600;color:var(--ink-2);}
+.ee-row>summary .act.ee-late{color:#7E2C1F;}
+.ee-bloc{display:flex;flex-direction:column;gap:10px;padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--ground);}
+.ee-bloc>.lab{margin:0;font-weight:600;font-size:.92rem;}
+.ee-bloc .hint{font-size:.82rem;color:var(--muted);margin:0;}
+.ee-bloc .acts .btn{white-space:normal;text-align:center;}
+.ee-row input[type=datetime-local],.ee-row input[type=text],.ee-row input[type=number],.ee-row input[type=url],.ee-card input[type=url]{width:100%;min-height:48px;border:1px solid var(--line-strong);border-radius:12px;background:var(--surface);padding:10px 14px;font:inherit;font-size:.95rem;color:var(--ink);}
+.ee-bloc textarea{background:var(--surface);}
+.ee-check-l{display:flex;align-items:center;gap:10px;font-size:.9rem;color:var(--ink-2);min-height:32px;}
+.ee-check-l input{width:20px;height:20px;accent-color:var(--ink);flex:0 0 auto;}
+.ee-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.ee-strat{display:flex;flex-direction:column;gap:6px;padding-top:8px;border-top:1px solid var(--line);}
+.ee-strat textarea{min-height:132px;}
+.ee-avis-ed{display:flex;flex-direction:column;gap:12px;}
+.ee-avis-ed textarea{min-height:96px;}
+.ee-avis-ed .field{gap:6px;}
+.ee-note{margin:0;padding:10px 12px;border-radius:12px;background:var(--accent-soft);color:var(--ink);font-size:.88rem;line-height:1.45;}
+.ee-note.warn{background:rgba(162,59,42,.08);color:#7E2C1F;}
+.ee-journal>summary{cursor:pointer;font-size:.9rem;font-weight:600;color:var(--ink-2);min-height:32px;}
+.ee-journal ul{list-style:none;margin:8px 0 0;padding:0;border-top:1px solid var(--line);}
+.ee-journal li{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--line);font-size:.86rem;}
+.ee-journal li span:last-child{color:var(--muted);white-space:nowrap;}
+.ee-row>summary .st.mandat,.ee-row>summary .st.annonce,.ee-row>summary .st.visites,.ee-row>summary .st.offre,.ee-row>summary .st.compromis,.ee-row>summary .st.acte{background:rgba(47,122,79,.12);color:#215A39;}
+.ee-row>summary .st.pause{background:var(--stone);color:var(--muted);}
+.ee-fiche .ee-kv{margin:0;}
+@media(min-width:900px){.ee-row .in>.ee-top{grid-column:1/-1;}.ee-row .in>.ee-fiche{grid-column:1;grid-row:2;}.ee-row .in>.ee-col{grid-column:2;grid-row:2;}}
+.ee-ventes>summary{cursor:pointer;font-size:.9rem;color:var(--ink-2);min-height:32px;list-style:none;}
+.ee-ventes>summary::-webkit-details-marker{display:none;}
+.ee-ventes>summary u{font-weight:600;text-decoration-color:var(--accent);text-underline-offset:4px;}
+.ee-ventes ul{list-style:none;margin:8px 0 0;padding:0;border-top:1px solid var(--line);}
+.ee-ventes li{border-bottom:1px solid var(--line);}
+.ee-ventes label{display:flex;align-items:flex-start;gap:12px;padding:10px 0;cursor:pointer;}
+.ee-ventes input{width:20px;height:20px;margin-top:2px;accent-color:var(--ink);flex:0 0 auto;}
+.ee-ventes span{display:flex;flex-direction:column;gap:2px;min-width:0;}
+.ee-ventes b{font-weight:600;font-size:.92rem;}
+.ee-ventes small{font-size:.82rem;color:var(--muted);}
+.ee-ventes small i{font-style:normal;font-weight:600;color:#7E2C1F;}
+/* ---------- v4 (système parfait, étape 3) : comptes rendus de visite, offres, notaire, documents de la vente ---------- */
+/* vendeur : une partie par sujet, dans la carte du dossier */
+.ee-part{display:flex;flex-direction:column;gap:10px;padding-top:14px;border-top:1px solid var(--line);}
+.ee-part h4{font-family:var(--font-text);font-weight:600;font-size:.92rem;margin:0;display:flex;align-items:baseline;gap:8px;}
+.ee-part h4 small{font-weight:600;font-size:.74rem;color:var(--accent-text);}
+.ee-items{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;}
+.ee-items:empty{display:none;}
+.ee-items li{display:flex;flex-direction:column;gap:6px;padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--ground);min-width:0;}
+.ee-items .t{margin:0;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.ee-items .t b{font-weight:600;font-size:.96rem;}
+.ee-items .t b.prix{font-family:var(--font-display);font-weight:420;font-size:1.45rem;line-height:1.1;font-variant-numeric:tabular-nums;}
+.ee-items .txt{margin:0;font-size:.94rem;line-height:1.55;color:var(--ink-2);white-space:pre-line;overflow-wrap:anywhere;}
+.ee-items .meta{margin:0;font-size:.84rem;color:var(--muted);}
+.ee-items .ee-links{margin-top:2px;}
+.tag{flex:0 0 auto;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 9px;border-radius:99px;background:var(--stone);color:var(--ink-2);white-space:nowrap;}
+.tag.ok{background:rgba(47,122,79,.12);color:#215A39;}
+.tag.att{background:var(--accent-soft);color:var(--accent-text);}
+.ee-notaire{margin:0;display:flex;flex-direction:column;gap:2px;font-size:.92rem;color:var(--ink-2);}
+.ee-notaire b{font-family:var(--font-display);font-weight:420;font-size:1.15rem;color:var(--ink);}
+.ee-part .ee-frise ol{margin-top:0;border-top:1px solid var(--line);}
+.ee-part .ee-frise li span{min-width:0;}
+.ee-part .ee-frise>summary{margin-top:2px;}
+.ee-part details.ee-frise .ee-items{margin-top:8px;}
+/* agence : trois blocs repliables par dossier */
+.ee-suite{display:flex;flex-direction:column;gap:12px;}
+.ee-suite:empty{display:none;}
+.ee-plie>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:32px;}
+.ee-plie>summary::-webkit-details-marker{display:none;}
+.ee-plie>summary .lab{font-weight:600;font-size:.92rem;}
+.ee-plie>summary small{font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:10px;text-align:right;}
+.ee-plie>summary small::after{content:"";width:8px;height:8px;border:solid var(--ink-2);border-width:0 1.5px 1.5px 0;transform:translateY(-2px) rotate(45deg);transition:transform .2s;flex:0 0 auto;}
+.ee-plie[open]>summary small::after{transform:translateY(2px) rotate(-135deg);}
+.ee-plie>summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px;}
+.ee-plie-in{display:flex;flex-direction:column;gap:12px;padding-top:10px;}
+.ee-plie>summary .lab{flex:1 1 auto;}
+.ee-plie>summary small{flex:0 1 auto;}
+/* montant et date : l'un sous l'autre sur téléphone (un champ date ne se serre pas), côte à côte au-delà */
+.ee-plie .ee-2{align-items:end;grid-template-columns:minmax(0,1fr);}
+@media(min-width:560px){.ee-plie .ee-2{grid-template-columns:minmax(0,1fr) minmax(0,1fr);}}
+.ee-plie .ee-2 input{min-width:0;}
+.ee-plie .ee-items li{background:var(--surface);}
+.ee-part .ee-frise li:last-child{border-bottom:0;}
+.ee-saisie{display:flex;flex-direction:column;gap:10px;padding-top:12px;border-top:1px solid var(--line);}
+.ee-plie[data-edit] .ee-saisie{border-top-color:var(--ink);}
+.ee-plie .field{gap:6px;}
+.ee-plie textarea{min-height:120px;}
+.ee-row .ee-items select{background:var(--ground);}
+.ee-etapes{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border-top:1px solid var(--line);}
+.ee-etapes li{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;padding:10px 0;border-bottom:1px solid var(--line);}
+.ee-etapes .ee-check-l{align-items:flex-start;color:var(--ink);font-weight:600;line-height:1.35;}
+.ee-etapes .ee-check-l input{margin-top:1px;}
+@media(min-width:560px){.ee-etapes li{grid-template-columns:minmax(0,1fr) 170px;align-items:center;}}
+.ee-files .field{gap:6px;}
+/* ---------- v5 (système parfait, étape 4) : la mesure des 7 promesses (/admin/promesses/) ---------- */
+.ee-ad-liens{margin:-6px 0 18px;}
+.ee-row>summary .tr{grid-column:1/-1;font-size:.82rem;color:var(--muted);}
+.ee-row>summary .tr[hidden]{display:none;}
+.ee-pr-tete{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 14px;margin-bottom:18px;}
+.ee-pr-tete .ee-tabs{margin:0;}
+.ee-pr-liens{display:flex;flex-wrap:wrap;gap:8px;}
+.ee-pr-liens .btn{min-height:46px;}
+.ee-pr-stats{grid-template-columns:repeat(3,minmax(0,1fr));}
+.ee-stat.ko b{color:#7E2C1F;}
+.tag.ko{background:rgba(162,59,42,.1);color:#7E2C1F;}
+/* « en cours » : une pastille neutre (lisible sur le fond des cartes comme sur celui des lignes) */
+.ee-prom .tag.att{background:var(--stone);color:var(--ink-2);}
+#pr-alerte{margin-bottom:14px;}
+#pr-alerte[hidden]{display:none;}
+#pr-pied{margin-top:18px;}
+@media(min-width:900px){#pr-cartes{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;}}
+.ee-prom{gap:12px;min-width:0;}
+.ee-prom-t{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.ee-prom h2{font-family:var(--font-display);font-weight:420;font-size:1.45rem;line-height:1.15;margin:0;}
+.ee-prom-n{margin:0;display:flex;flex-wrap:wrap;gap:4px 18px;font-size:.95rem;color:var(--ink-2);}
+.ee-prom-n span{white-space:nowrap;}
+.ee-prom-n b{font-family:var(--font-display);font-weight:360;font-size:2rem;line-height:1;color:var(--ink);margin-right:2px;}
+.ee-prom-n .ko,.ee-prom-n .ko b{color:#7E2C1F;}
+.ee-prom-vide{margin:0;font-size:.95rem;color:var(--ink-2);}
+.ee-prom-liste>summary{cursor:pointer;font-size:.9rem;font-weight:600;color:var(--ink-2);text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:4px;list-style:none;min-height:32px;display:inline-flex;align-items:center;}
+.ee-prom-liste>summary::-webkit-details-marker{display:none;}
+.ee-prom-liste>summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px;}
+.ee-prom-liste .ee-items{margin-top:8px;}
+.ee-prom .ee-kv li span:last-child{overflow-wrap:normal;}
+
 </style>
 </head>
 <body data-route="/mon-espace">
@@ -1410,15 +1590,18 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
       <!-- connexion : lien reçu par e-mail, ou mot de passe pour ceux qui en ont choisi un -->
       <form class="form" id="me-cnx" novalidate>
         <div class="ee-step">
-          <div class="ee-head"><h2 class="ee-q">Ouvrir <em>mon espace.</em></h2><p class="ee-sub" id="me-cnx-sub">Votre espace a été créé avec votre e-mail, le jour de votre estimation.</p></div>
-          <div class="field"><label for="me-email">E-mail</label><input type="email" id="me-email" autocomplete="username" inputmode="email" autocapitalize="off" autocorrect="off" spellcheck="false"><span class="msg">Indiquez l'e-mail de votre estimation.</span></div>
-          <div class="field" id="me-mdp-f"><label for="me-mdp">Mot de passe <small id="me-mdp-opt">(si vous en avez choisi un)</small></label><div class="ee-pw"><input type="password" id="me-mdp" autocomplete="current-password"><button type="button" data-voir="me-mdp" aria-pressed="false">Afficher</button></div><span class="msg">Indiquez votre mot de passe, ou demandez un lien par e-mail.</span></div>
-          <p class="ee-err" role="alert" hidden></p><p class="ee-ok" role="status" hidden></p>
-          <div class="ee-nav ee-nav-col">
-            <button type="button" class="btn btn-primary btn-lg" id="me-lien-btn">Recevoir mon lien de connexion <span class="arw">→</span></button>
-            <button type="submit" class="btn btn-lg" id="me-cnx-btn">Me connecter avec mon mot de passe</button>
+          <div class="ee-head"><h2 class="ee-q">Ouvrir <em>mon espace.</em></h2><p class="ee-sub" id="me-cnx-sub">Indiquez l'e-mail donné le jour de votre estimation.</p></div>
+          <div class="field" id="me-email-f"><label for="me-email">Votre e-mail</label><input type="email" id="me-email" autocomplete="username" inputmode="email" autocapitalize="off" autocorrect="off" spellcheck="false"><span class="msg">Indiquez l'e-mail de votre estimation.</span></div>
+          <div class="field" id="me-mdp-f" hidden><label for="me-mdp">Mot de passe</label><div class="ee-pw"><input type="password" id="me-mdp" autocomplete="current-password"><button type="button" data-voir="me-mdp" aria-pressed="false">Afficher</button></div><span class="msg">Indiquez votre mot de passe.</span></div>
+          <div class="ee-envoye" id="me-envoye" role="status" hidden>
+            <p><b>C'est envoyé !</b> Ouvrez le mail reçu sur <b id="me-envoye-a"></b> et cliquez sur le lien pour entrer dans votre espace (valable 30 minutes). Pensez aux indésirables.</p>
+            <p class="ee-envoye-act"><button type="button" class="btn" id="me-renvoi">Renvoyer le lien</button><button type="button" class="ee-skip" id="me-autre">Utiliser une autre adresse</button></p>
           </div>
-          <div class="ee-links"><button type="button" id="me-oubli-btn">Mot de passe oublié ?</button><button type="button" data-tab="ins">Créer un espace sans estimation</button><a href="/estimer/" data-ee-lien="estimer">Faire une estimation</a></div>
+          <p class="ee-err" role="alert" hidden></p><p class="ee-ok" role="status" hidden></p>
+          <div class="ee-nav ee-nav-col" id="me-cnx-nav">
+            <button type="submit" class="btn btn-primary btn-lg" id="me-cnx-btn">Continuer <span class="arw">→</span></button>
+          </div>
+          <div class="ee-links"><button type="button" id="me-lien-btn" hidden>Recevoir plutôt un lien par e-mail</button><button type="button" id="me-oubli-btn">Mot de passe oublié ?</button><button type="button" data-tab="ins">Créer un espace sans estimation</button><a href="/estimer/" data-ee-lien="estimer">Faire une estimation</a></div>
         </div>
       </form>
 
@@ -1895,7 +2078,7 @@ window.EECompte();window.addEventListener('pageshow',window.EECompte);
    par la page, sinon valeurs de shawez-immo.com) et dans la feuille de thème. */
 var EE=(function(){
   'use strict';
-  var CONF={site:'',api:'/api/espace',estimer:'/estimer/',espace:'/mon-espace/',admin:'/admin/',
+  var CONF={site:'',api:'/api/espace',estimer:'/estimer/',espace:'/mon-espace/',admin:'/admin/',promesses:'/admin/promesses/',
     tel:'+33767579228',telAffiche:'07 67 57 92 28',conseiller:'Shawez',email:'shawez@gravelin-immo.com',
     confidentialite:'/politique-de-confidentialite/#espace-estimation',portrait:''};
   var ext=window.EE_CONF||{}; Object.keys(ext).forEach(function(k){CONF[k]=ext[k];});
@@ -1941,10 +2124,13 @@ var EE=(function(){
     type_fichier:"Format non accepté. Envoyez une photo (JPEG, PNG, WebP, HEIC) ou un PDF.",
     pdf_attendu:"L'avis de valeur doit être un fichier PDF.",
     trop_de_fichiers:"Il y a déjà 30 fichiers sur cette estimation.",
-    stockage_plein:"L'espace de stockage est plein : envoyez ce fichier par e-mail à "+CONF.email+"."
+    stockage_plein:"L'espace de stockage est plein : envoyez ce fichier par e-mail à "+CONF.email+".",
+    visite_fixee:"Une visite est déjà fixée pour ce bien.",
+    visite_close:"Ce dossier a avancé : la visite se fixe par téléphone.",
+    avis_absent:"Créez d'abord le PDF de l'avis de valeur."
   };
   function message(d){return MSG[d&&d.error]||MSG.serveur;}
-  var CHAMPS={email:"L'adresse e-mail n'est pas valide.",telephone:"Le numéro de téléphone n'est pas valide.",prenom:"Indiquez votre prénom.",nom:"Indiquez votre nom.",mot_de_passe:"Le mot de passe doit compter 8 caractères au moins.",consentement:"Cochez la case pour continuer.",adresse:"L'adresse du bien est incomplète.",surface:"La surface n'est pas valide.",confirmation:"Écrivez SUPPRIMER pour confirmer."};
+  var CHAMPS={email:"L'adresse e-mail n'est pas valide.",telephone:"Le numéro de téléphone n'est pas valide.",prenom:"Indiquez votre prénom.",nom:"Indiquez votre nom.",mot_de_passe:"Le mot de passe doit compter 8 caractères au moins.",consentement:"Cochez la case pour continuer.",adresse:"L'adresse du bien est incomplète.",surface:"La surface n'est pas valide.",confirmation:"Écrivez SUPPRIMER pour confirmer.",creneaux:"Ce créneau n'est plus proposé : choisissez-en un autre.",debut:"La date de la visite n'est pas valide.",prix_bas:"Indiquez la fourchette de prix (basse et haute).",prix_haut:"La valeur haute doit dépasser la valeur basse.",rdv_url:"Collez le lien de votre page de réservation Google Agenda (https://calendar.app.google/…).",atouts:"8 lignes au plus, 240 caractères par ligne.",vigilance:"8 lignes au plus, 240 caractères par ligne.",visite_le:"Indiquez la date de la visite (aujourd'hui au plus tard).",texte:"Écrivez ou dictez le compte rendu (3 000 caractères au plus).",montant:"Indiquez le montant de l'offre, en euros.",recue_le:"La date de l'offre n'est pas valide.",conditions:"Les conditions sont trop longues (1 500 caractères au plus).",etapes:"Une date d'étape n'est pas valide.",nom_notaire:"Le nom du notaire est trop long.",coordonnees:"Les coordonnées sont trop longues (300 caractères au plus)."};
   function messageChamp(d){return (d&&d.error==='champs'&&CHAMPS[d.champ])||message(d);}
 
   function wa(txt){return 'https://wa.me/'+CONF.tel.replace(/\D/g,'')+'?text='+encodeURIComponent(txt);}
@@ -1972,8 +2158,11 @@ var EE=(function(){
         (res&&res.donnees_du?'<p class="ee-warn"><span>Données des ventes réelles (DVF) à jour de '+mois(res.donnees_du)+'.</span></p>':'');
     }
     if(ref)h+='<ul class="ee-facts ee-ref"><li><span>Référence</span><span data-test="reference">'+esc(ref)+'</span></li></ul>';
+    /* « Prendre rendez-vous » : appel sur téléphone ; sur ordinateur (un lien tel: n'y fait rien), WhatsApp avec le message prêt. */
+    var ordi=!!(window.matchMedia&&window.matchMedia('(hover: hover) and (pointer: fine)').matches);
+    var rdv=ordi?wa('Bonjour '+CONF.conseiller+', je viens de faire une estimation'+(ref?' (réf. '+ref+')':'')+', je voudrais un rendez-vous.'):'tel:'+CONF.tel;
     h+='<div class="btn-row">'+
-      '<a class="btn btn-primary btn-lg" href="tel:'+CONF.tel+'">Prendre rendez-vous <span class="arw">→</span></a>'+
+      '<a class="btn btn-primary btn-lg" data-test="rdv" href="'+rdv+'"'+(ordi?' target="_blank" rel="noopener"':'')+'>Prendre rendez-vous <span class="arw">→</span></a>'+
       '<a class="btn btn-ghost" href="'+wa('Bonjour '+CONF.conseiller+', je viens de faire mon estimation en ligne'+(ref?' (réf. '+ref+')':'')+'. ')+'" target="_blank" rel="noopener">WhatsApp</a>'+
     '</div>';
     return h;
@@ -2005,10 +2194,103 @@ var EE=(function(){
   };
   function uuid(){ try{ if(window.crypto&&crypto.randomUUID)return crypto.randomUUID(); }catch(e){} return 'c'+Date.now().toString(36)+Math.random().toString(36).slice(2,12)+Math.random().toString(36).slice(2,12); }
 
-  return {CONF:CONF,$:$,$$:$$,esc:esc,euros:euros,date:date,jour:jour,mois:mois,taille:taille,rayon:rayon,api:api,message:message,messageChamp:messageChamp,resultat:resultat,voirMdp:voirMdp,err:err,emailOk:emailOk,telOk:telOk,connecte:connecte,pictogramme:pictogramme,portraits:portraits,mem:mem,uuid:uuid,TEL:CONF.tel,wa:wa};
+  /* ---------- Dates à l'heure de Paris (le vendeur peut être ailleurs : la visite, elle, est à Dijon) ---------- */
+  function fr(iso,o){ o=o||{}; o.timeZone='Europe/Paris'; try{return new Date(iso).toLocaleDateString('fr-FR',o);}catch(e){return String(iso);} }
+  function heure(iso){ try{ var p=new Intl.DateTimeFormat('fr-FR',{timeZone:'Europe/Paris',hour:'numeric',minute:'2-digit',hourCycle:'h23'}).formatToParts(new Date(iso)),h='',m=''; p.forEach(function(x){if(x.type==='hour')h=String(+x.value);if(x.type==='minute')m=x.value;}); return h+' h'+(m!=='00'?' '+m:''); }catch(e){return '';} }
+  function jourLong(j){ if(!j)return ''; try{return new Date(String(j).slice(0,10)+'T12:00:00Z').toLocaleDateString('fr-FR',{timeZone:'UTC',weekday:'long',day:'numeric',month:'long'});}catch(e){return String(j);} }
+  function quand(iso){ return fr(iso,{weekday:'long',day:'numeric',month:'long'})+' à '+heure(iso); }
+  function quandCourt(iso){ return fr(iso,{weekday:'short',day:'numeric',month:'short'}).replace(/\./g,'')+' '+heure(iso); }
+
+  /* ---------- Visite d'estimation : le vendeur propose jusqu'à trois créneaux, l'agence confirme ----------
+     racine : l'élément où dessiner ; o : { demande, visite, possible, rdvUrl, onChange(reponse) }.
+     Le même bloc sert après le résultat (/estimer/) et dans chaque dossier de /mon-espace/. */
+  function visite(racine,o){
+    var choisis=[], jours=null, jourOuvert=0, ouvert=false, v=o.visite||null;
+    function fixee(){ return v&&v.etat==='fixee'&&v.debut; }
+    function passee(){ return fixee()&&new Date(v.debut).getTime()<Date.now(); }
+    function dessiner(){
+      var h='<h3 class="ee-rdv-t">Visite d\'estimation</h3>';
+      if(fixee()){
+        h+='<p class="ee-rdv-ok" data-test="visite-fixee"><b>'+esc(quand(v.debut).replace(/^./,function(c){return c.toUpperCase();}))+'</b><span>'+(passee()?'Visite faite. ':'')+esc(CONF.conseiller)+' vient voir votre bien : comptez '+(v.duree||45)+' minutes. Gratuit et sans engagement.</span></p>';
+        if(!passee()){
+          h+='<p class="ee-rdv-prep">Si vous les avez sous la main, préparez : le titre de propriété, la dernière taxe foncière, les diagnostics, le montant des charges et la liste des travaux réalisés.</p>';
+          if(o.possible&&!ouvert)h+='<div class="ee-links"><button type="button" data-rdv-ouvrir>Demander un autre créneau</button><a href="tel:'+CONF.tel+'">Appeler '+esc(CONF.conseiller)+'</a></div>';
+        }
+      } else if(v&&v.etat==='demandee'&&!ouvert){
+        h+='<p class="ee-rdv-ok" data-test="visite-demandee"><b>Créneaux envoyés à '+esc(CONF.conseiller)+'</b><span>'+(v.creneaux||[]).map(function(c){return esc(quand(c));}).join('<br>')+'</span></p>'+
+          '<p class="ee-rdv-prep">'+esc(CONF.conseiller)+' confirme l\'un d\'eux dans l\'heure, entre 9 h et 19 h. Vous recevez la confirmation ici'+(o.email?' et par e-mail':'')+'.</p>'+
+          (o.possible?'<div class="ee-links"><button type="button" data-rdv-ouvrir>Changer mes créneaux</button></div>':'');
+      } else if(!o.possible){
+        racine.hidden=true; racine.innerHTML=''; return;
+      } else if(o.rdvUrl&&!ouvert){
+        h+='<p class="ee-rdv-prep">'+esc(CONF.conseiller)+' passe voir votre bien : 45 minutes, gratuit et sans engagement. Choisissez votre créneau directement dans son agenda.</p>'+
+          '<div class="ee-rdv-go"><a class="btn btn-primary" href="'+esc(o.rdvUrl)+'" target="_blank" rel="noopener" data-rdv-agenda>Choisir mon créneau <span class="arw">→</span></a></div>';
+      } else if(!ouvert){
+        h+='<p class="ee-rdv-prep">'+esc(CONF.conseiller)+' passe voir votre bien, sous 48 h si vous le souhaitez : 45 minutes, gratuit et sans engagement. C\'est la visite qui donne le prix juste.</p>'+
+          '<div class="ee-rdv-go"><button type="button" class="btn btn-primary" data-rdv-ouvrir>Choisir mon créneau <span class="arw">→</span></button></div>';
+      }
+      if(ouvert)h+=selecteur();
+      racine.hidden=false; racine.innerHTML=h;
+    }
+    function selecteur(){
+      if(!jours)return '<div class="ee-load" style="height:120px;" role="status" aria-label="Chargement des créneaux"></div>';
+      if(!jours.length)return '<p class="ee-err">Aucun créneau à proposer pour le moment. Appelez '+esc(CONF.conseiller)+' au <a href="tel:'+CONF.tel+'">'+CONF.telAffiche+'</a>.</p>';
+      var j=jours[jourOuvert]||jours[0];
+      return '<p class="ee-rdv-prep" id="'+idAide+'">Choisissez jusqu\'à 3 créneaux qui vous arrangent : '+esc(CONF.conseiller)+' confirme l\'un d\'eux dans l\'heure (entre 9 h et 19 h).</p>'+
+        '<div class="ee-days" role="group" aria-label="Jour">'+jours.map(function(x,k){
+          var n=choisis.filter(function(c){return x.heures.some(function(hh){return hh.debut===c;});}).length;
+          return '<button type="button" class="pill" data-rdv-jour="'+k+'" aria-pressed="'+(k===jourOuvert)+'"><b>'+esc(x.court)+'</b>'+(x.sous48h?'<small>sous 48 h</small>':'')+(n?'<i aria-label="'+n+' choisi'+(n>1?'s':'')+'">'+n+'</i>':'')+'</button>';
+        }).join('')+'</div>'+
+        '<div class="ee-hours" role="group" aria-label="Heure, '+esc(j.libelle)+'">'+j.heures.map(function(x){
+          var on=choisis.indexOf(x.debut)>=0;
+          return '<button type="button" class="ee-hour" data-rdv-h="'+esc(x.debut)+'" aria-pressed="'+on+'"'+(!on&&choisis.length>=3?' disabled':'')+'>'+esc(x.h)+'</button>';
+        }).join('')+'</div>'+
+        '<ul class="ee-sel" aria-label="Créneaux choisis">'+choisis.slice().sort().map(function(c){return '<li><span>'+esc(quand(c))+'</span><button type="button" data-rdv-retirer="'+esc(c)+'" aria-label="Retirer '+esc(quand(c))+'">Retirer</button></li>';}).join('')+'</ul>'+
+        '<p class="ee-err" role="alert" hidden></p>'+
+        '<div class="ee-nav"><button type="button" class="btn" data-rdv-fermer>Annuler</button><button type="button" class="btn btn-primary" data-rdv-envoyer'+(choisis.length?'':' disabled')+'>'+(choisis.length>1?'Envoyer mes '+choisis.length+' créneaux':choisis.length?'Envoyer ce créneau':'Choisissez un créneau')+' <span class="arw">→</span></button></div>';
+    }
+    var idAide='ee-rdv-aide-'+String(o.demande);
+    function ouvrir(){
+      ouvert=true; choisis=[]; dessiner();
+      if(jours)return;
+      api('/creneaux').then(function(d){ jours=(d&&d.jours)||[]; if(d&&d.rdv_url&&!o.rdvUrl)o.rdvUrl=d.rdv_url; dessiner(); });
+    }
+    racine.addEventListener('click',function(e){
+      var t=e.target.closest('button,a'); if(!t||!racine.contains(t))return;
+      if(t.hasAttribute('data-rdv-agenda')){ api('/visite',{body:{demande:o.demande,agenda:true}}); return; }
+      if(t.hasAttribute('data-rdv-ouvrir')){ ouvrir(); return; }
+      if(t.hasAttribute('data-rdv-fermer')){ ouvert=false; dessiner(); return; }
+      if(t.hasAttribute('data-rdv-jour')){ jourOuvert=+t.getAttribute('data-rdv-jour'); dessiner(); var b=racine.querySelector('[data-rdv-jour="'+jourOuvert+'"]'); if(b)b.focus({preventScroll:true}); return; }
+      if(t.hasAttribute('data-rdv-h')){ var c=t.getAttribute('data-rdv-h'), i=choisis.indexOf(c); if(i>=0)choisis.splice(i,1); else if(choisis.length<3)choisis.push(c); dessiner(); var b2=racine.querySelector('[data-rdv-h="'+c+'"]'); if(b2)b2.focus({preventScroll:true}); return; }
+      if(t.hasAttribute('data-rdv-retirer')){ var r=choisis.indexOf(t.getAttribute('data-rdv-retirer')); if(r>=0)choisis.splice(r,1); dessiner(); return; }
+      if(t.hasAttribute('data-rdv-envoyer')){
+        if(!choisis.length)return;
+        t.disabled=true;
+        api('/visite',{body:{demande:o.demande,creneaux:choisis,deplacer:!!fixee()}}).then(function(d){
+          if(d._status===201){ v=d.visite; ouvert=false; dessiner(); if(o.onChange)o.onChange(d); racine.scrollIntoView({block:'nearest',behavior:'smooth'}); return; }
+          t.disabled=false;
+          var m=racine.querySelector('.ee-err');
+          if(d.error==='champs'&&d.champ==='creneaux'){ jours=null; choisis=[]; ouvrir(); m=null; }
+          if(m){ m.textContent=d.error==='connexion'?'Votre session a expiré : ouvrez votre espace pour choisir votre créneau.':d.error==='visite_close'?'Ce dossier a avancé : appelez '+CONF.conseiller+' au '+CONF.telAffiche+' pour convenir d\'une date.':message(d); m.hidden=false; }
+        });
+      }
+    });
+    dessiner();
+    return {ouvrir:ouvrir};
+  }
+
+  /* Charge un script du site une seule fois (le fabricant de PDF de l'avis de valeur, par exemple). */
+  var scripts={};
+  function script(src){
+    if(!scripts[src])scripts[src]=new Promise(function(ok,ko){var s=document.createElement('script');s.src=src;s.onload=function(){ok();};s.onerror=function(){delete scripts[src];ko(new Error('script'));};document.head.appendChild(s);});
+    return scripts[src];
+  }
+
+  return {jourLong:jourLong,quand:quand,quandCourt:quandCourt,heure:heure,visite:visite,script:script,CONF:CONF,$:$,$$:$$,esc:esc,euros:euros,date:date,jour:jour,mois:mois,taille:taille,rayon:rayon,api:api,message:message,messageChamp:messageChamp,resultat:resultat,voirMdp:voirMdp,err:err,emailOk:emailOk,telOk:telOk,connecte:connecte,pictogramme:pictogramme,portraits:portraits,mem:mem,uuid:uuid,TEL:CONF.tel,wa:wa};
 })();
 
-/* /mon-espace/ : connexion (lien reçu par e-mail ou mot de passe), estimations, avancement, avis de valeur, photos et documents */
+/* /mon-espace/ : connexion (lien reçu par e-mail ou mot de passe), estimations, avancement, avis de valeur, photos et documents ;
+   après le mandat : offres, comptes rendus de visite, notaire, documents de la vente */
 (function(){
   'use strict';
   var $=EE.$, $$=EE.$$, err=EE.err, C=EE.CONF;
@@ -2031,28 +2313,68 @@ var EE=(function(){
   var aide='Demandez-le à '+EE.esc(C.conseiller)+' : <a href="tel:'+C.tel+'">'+C.telAffiche+'</a> (appel ou WhatsApp).';
 
   /* ---------- estimations ---------- */
-  var ETAPES=[['recue','Demande reçue'],['visite','Visite prévue'],['avis','Avis de valeur envoyé']];
+  var RDV_URL=null, DOSSIERS={};
+  /* Avancement : les dix étapes du dossier, celle en cours, et la prochaine (dite par l'agence). */
+  function suivi(d){
+    var p=d.parcours||[], n=p.length||10, k=0;
+    p.forEach(function(e,i){ if(e.etat==='encours'||e.etat==='fait')k=i; });
+    var enCours=p[k]||{libelle:d.statut_libelle}, sorti=d.statut==='pause'||d.statut==='close';
+    return '<div class="ee-suivi" data-test="suivi">'+
+      '<p class="ee-etape"><span>'+(sorti?EE.esc(d.statut_libelle):'Étape '+(k+1)+' sur '+n)+'</span><b data-test="etape">'+EE.esc(enCours.libelle||'')+'</b></p>'+
+      '<div class="ee-bar" role="img" aria-label="Étape '+(k+1)+' sur '+n+' : '+EE.esc(enCours.libelle||'')+'">'+p.map(function(e){return '<i class="'+e.etat+'"></i>';}).join('')+'</div>'+
+      (d.suite?'<p class="ee-suite" data-test="suite"><b>'+(d.statut==='acte'||sorti?'':'Prochaine étape : ')+'</b>'+EE.esc(d.suite)+'</p>':'')+
+      '<details class="ee-frise"><summary>Voir toutes les étapes</summary><ol>'+p.map(function(e){
+        return '<li class="'+e.etat+'"'+(e.etat==='encours'?' aria-current="step"':'')+'><span>'+EE.esc(e.libelle)+'</span>'+(e.etat!=='avenir'&&e.le?'<small>'+EE.jour(e.le)+'</small>':'')+'</li>';
+      }).join('')+'</ol></details>'+
+    '</div>';
+  }
   var TYPES={appartement:'Appartement',maison:'Maison',autre:'Bien'};
   function lienFichier(f){return C.api+'/fichier?id='+encodeURIComponent(f.id);}
   function fichier(f){
     var img=/^image\/(jpeg|png|webp)$/.test(f.type);
     return '<li data-fid="'+EE.esc(f.id)+'">'+
       '<a href="'+lienFichier(f)+'"'+(img?' target="_blank" rel="noopener"':' download="'+EE.esc(f.nom)+'"')+'>'+(img?'<img src="'+lienFichier(f)+'" alt="" loading="lazy" width="56" height="56">':'<i aria-hidden="true">'+(f.type==='application/pdf'?'PDF':'DOC')+'</i>')+
-      '<span><b>'+EE.esc(f.nom)+'</b><small>'+EE.taille(f.taille)+(f.depose_par==='agence'?' · déposé par '+EE.esc(C.conseiller):'')+'</small></span></a>'+
+      '<span><b>'+EE.esc(f.libelle||f.nom)+'</b><small>'+(f.libelle?EE.esc(f.nom)+' · ':'')+EE.taille(f.taille)+(f.depose_par==='agence'?' · déposé par '+EE.esc(C.conseiller)+(f.cree_le?' le '+EE.jour(f.cree_le):''):'')+'</small></span></a>'+
       (f.depose_par==='client'?'<button type="button" data-suppr="'+EE.esc(f.id)+'" aria-label="Retirer '+EE.esc(f.nom)+'">Retirer</button>':'')+'</li>';
   }
+  /* ---------- après le mandat : offres, comptes rendus de visite, notaire (affichés dès qu'il y a quelque chose) ---------- */
+  function partOffres(d){
+    var l=d.offres||[]; if(!l.length)return '';
+    return '<div class="ee-part" data-test="offres"><h4>'+(l.length>1?'Offres reçues':'Offre reçue')+'</h4><ul class="ee-items">'+l.map(function(o){
+      return '<li><p class="t"><b class="prix">'+EE.euros(o.montant)+'</b><span class="tag'+(o.statut==='acceptee'?' ok':o.statut==='etude'?' att':'')+'">'+EE.esc(o.statut_libelle)+'</span></p><p class="meta">Reçue le '+EE.jour(o.recue_le)+'</p>'+(o.conditions?'<p class="txt">'+EE.esc(o.conditions)+'</p>':'')+'</li>';
+    }).join('')+'</ul></div>';
+  }
+  function partComptesRendus(d){
+    var l=d.comptes_rendus||[]; if(!l.length)return '';
+    function un(c){ return '<li><p class="t"><b>Visite du '+EE.esc(EE.jourLong(c.visite_le))+'</b></p><p class="txt">'+EE.esc(c.texte)+'</p></li>'; }
+    return '<div class="ee-part" data-test="comptes-rendus"><h4>Comptes rendus de visite <small>'+l.length+'</small></h4><ul class="ee-items">'+l.slice(0,3).map(un).join('')+'</ul>'+
+      (l.length>3?'<details class="ee-frise"><summary>Voir les '+(l.length-3>1?(l.length-3)+' comptes rendus précédents':'le compte rendu précédent')+'</summary><ul class="ee-items">'+l.slice(3).map(un).join('')+'</ul></details>':'')+'</div>';
+  }
+  function partNotaire(d){
+    var n=d.notaire; if(!n)return '';
+    return '<div class="ee-part" data-test="notaire"><h4>Chez le notaire</h4>'+
+      (n.nom||n.coordonnees?'<p class="ee-notaire">'+(n.nom?'<b>'+EE.esc(n.nom)+'</b>':'')+(n.coordonnees?'<span>'+EE.esc(n.coordonnees)+'</span>':'')+'</p>':'')+
+      '<div class="ee-frise"><ol>'+(n.etapes||[]).map(function(e){
+        return '<li class="'+(e.fait?'fait':'avenir')+'"><span>'+EE.esc(e.libelle)+'</span>'+(e.le?'<small>'+(e.fait?'le ':'prévu le ')+EE.jour(e.le)+'</small>':e.fait?'<small>fait</small>':'')+'</li>';
+      }).join('')+'</ol></div></div>';
+  }
   function carte(d){
-    var rang={recue:0,appele:0,visite:1,avis:2,close:2}[d.statut]||0;
+    var rang=(d.parcours||[]).filter(function(e){return e.etat!=='avenir';}).length-1;
+    DOSSIERS[d.id]=d;
     var titre=(TYPES[d.type]||'Bien')+(d.surface?' · '+d.surface+' m²':'')+(d.pieces?' · '+d.pieces+' p.':'');
-    var avis=(d.fichiers||[]).filter(function(f){return f.role==='avis';}), autres=(d.fichiers||[]).filter(function(f){return f.role!=='avis';});
+    var avis=(d.fichiers||[]).filter(function(f){return f.role==='avis';}), autres=(d.fichiers||[]).filter(function(f){return f.role!=='avis'&&f.depose_par!=='agence';});
+    var docs=(d.fichiers||[]).filter(function(f){return f.role!=='avis'&&f.depose_par==='agence';});
     return '<article class="ee-card" data-id="'+d.id+'">'+
       '<div><h3>'+EE.esc(titre)+'</h3><p class="meta">'+EE.esc(d.adresse||d.commune||'')+'</p></div>'+
       (d.prix_bas?'<div><p class="fp">'+EE.euros(d.prix_bas)+' – '+EE.euros(d.prix_haut)+'</p><p class="meta">Environ '+EE.euros(d.prix_m2)+'/m² · '+d.comparables+' ventes comparables'+(d.rayon?' à moins de '+EE.rayon(d.rayon):'')+(d.donnees_du?' · données à jour de '+EE.mois(d.donnees_du):'')+' · indicatif, à confirmer par une visite</p></div>'
         :'<div><p class="fp fp-txt">Étude personnalisée</p><p class="meta">'+EE.esc(C.conseiller)+' étudie votre bien lui-même et vous rappelle.</p></div>')+
-      '<ol class="ee-tl" aria-label="Avancement">'+ETAPES.map(function(e,k){return '<li class="'+(k<=rang?'done':'')+'"'+(k===rang?' aria-current="step"':'')+'>'+e[1]+'</li>';}).join('')+'</ol>'+
+      suivi(d)+
+      '<div class="ee-rdv" data-rdv="'+d.id+'" hidden></div>'+
       (avis.length?'<div class="ee-avis">'+avis.map(function(f){return '<a class="btn btn-primary" href="'+lienFichier(f)+'" download="'+EE.esc(f.nom)+'">Télécharger mon avis de valeur (PDF) <span class="arw">↓</span></a>';}).join('')+'</div>'
-        :rang>=2&&d.statut!=='close'?'<p class="meta">Votre avis de valeur vous a été remis ; il sera aussi déposé ici.</p>':'')+
-      '<div class="ee-files"><p class="lab">Photos et documents</p>'+
+        :rang>=3&&d.statut!=='close'&&d.statut!=='pause'?'<p class="meta">Votre avis de valeur vous a été remis ; il sera aussi déposé ici.</p>':'')+
+      partOffres(d)+partComptesRendus(d)+partNotaire(d)+
+      (docs.length?'<div class="ee-part" data-test="documents"><h4>Documents de votre vente</h4><ul class="ee-flist">'+docs.map(fichier).join('')+'</ul></div>':'')+
+      '<div class="ee-files"><p class="lab">'+(docs.length?'Vos photos et documents':'Photos et documents')+'</p>'+
         '<ul class="ee-flist">'+autres.map(fichier).join('')+'</ul>'+
         '<label class="btn ee-add"><input type="file" multiple accept="image/jpeg,image/png,image/webp,image/heic,image/heif,application/pdf" data-ajout="'+d.id+'">Ajouter des photos ou des documents</label>'+
         '<p class="hint">Photos (JPEG, PNG, HEIC) ou PDF, 10 Mo au plus par fichier. Seuls '+EE.esc(C.conseiller)+' et l\'agence les voient.</p>'+
@@ -2068,10 +2390,7 @@ var EE=(function(){
     EE.pictogramme();
     if(!compte){
       out.hidden=false; inn.hidden=true;
-      // l'envoi de liens aux clients est ouvert : le lien d'abord ; sinon le mot de passe d'abord
-      var bl=$('#me-lien-btn'), bc=$('#me-cnx-btn');
-      if(lienPossible){ bl.className='btn btn-primary btn-lg'; bc.className='btn btn-lg'; }
-      else { bl.className='btn btn-lg'; bc.className='btn btn-primary btn-lg'; bc.parentNode.insertBefore(bc,bl); bl.firstChild.textContent='Recevoir un lien par e-mail '; bc.textContent='Me connecter'; $('#me-mdp-opt').textContent=''; $('#me-cnx-sub').textContent='Connectez-vous avec le mot de passe choisi après votre estimation.'; }
+      etape('email');
       if(qs.get('email')&&!$('#me-email').value)$('#me-email').value=qs.get('email');
       if(qs.get('reinit'))onglet('reinit'); else if(qs.get('oubli'))onglet('oubli'); else onglet('cnx');
       if(qs.get('verifie')==='0')flash('Ce lien de confirmation n\'est plus valable. Connectez-vous pour en recevoir un nouveau.');
@@ -2081,8 +2400,16 @@ var EE=(function(){
     out.hidden=true; inn.hidden=false;
     $('#me-titre').innerHTML=(c.prenom?'Bonjour '+EE.esc(c.prenom)+', <em>voici votre espace.</em>':'Bonjour, <em>voici votre espace.</em>');
     $('#me-lede').textContent=d.demandes.length?'Vos estimations et l\'avancement de chaque dossier.':'Vous n\'avez pas encore d\'estimation.';
+    RDV_URL=d.rdv_url||null; DOSSIERS={};
     $('#me-bonjour').textContent=d.demandes.length+' estimation'+(d.demandes.length>1?'s':'');
     $('#me-cards').innerHTML=d.demandes.length?d.demandes.map(carte).join(''):'<div class="ee-empty"><p style="margin:0;">Deux minutes suffisent pour connaître la fourchette de prix de votre bien.</p><a class="btn btn-primary" href="'+C.estimer+'">Estimer mon bien <span class="arw">→</span></a></div>';
+    // visite d'estimation : choisir, voir ou déplacer son créneau, dans chaque dossier
+    $$('#me-cards [data-rdv]').forEach(function(z){
+      var x=DOSSIERS[z.getAttribute('data-rdv')]; if(!x)return;
+      EE.visite(z,{demande:x.id,visite:x.visite,possible:!!x.visite_possible,rdvUrl:RDV_URL,email:lienPossible,onChange:function(r){
+        x.visite=r.visite; if(r.suite){x.suite=r.suite;var t=$('[data-test=suite]',z.closest('.ee-card'));if(t)t.innerHTML='<b>Prochaine étape : </b>'+EE.esc(r.suite);}
+      }});
+    });
     $('#me-infos').innerHTML=[['Nom',[c.civilite,c.prenom,c.nom].filter(Boolean).join(' ')],['E-mail',c.email+(c.verifie?' (confirmé)':'')],['Téléphone',c.telephone||'—'],['Mot de passe',c.mot_de_passe?'défini':'aucun (connexion par lien)'],['Espace créé le',EE.date(c.cree_le)]].map(function(l){return '<li><span>'+l[0]+'</span><span>'+EE.esc(l[1])+'</span></li>';}).join('');
     $('#me-admin').hidden=!c.admin;
     $('#me-mdp-btn').textContent=c.mot_de_passe?'Changer mon mot de passe':'Choisir un mot de passe';
@@ -2098,29 +2425,64 @@ var EE=(function(){
   }
   function charger(){ return EE.api('/moi').then(function(d){ if(d._status!==200){load.hidden=true;out.hidden=false;onglet('cnx');msg($('#me-cnx'),EE.message(d));return;} afficher(d); }); }
 
-  /* ---------- connexion par lien ---------- */
-  $('#me-lien-btn').addEventListener('click',function(){
-    var f=$('#me-cnx'), b=this, m=$('#me-email'); m.value=m.value.replace(/\s+/g,'');
+  /* ---------- connexion en deux temps : l'e-mail, puis le mot de passe (s'il y en a un) ou le lien envoyé ---------- */
+  var etapeCnx='email', emailCnx='';
+  var SOUS={email:'Indiquez l\'e-mail donné le jour de votre estimation.',mdp:'Votre espace est protégé par un mot de passe.',envoye:''};
+  function etape(t){
+    var f=$('#me-cnx'), b=$('#me-cnx-btn');
+    etapeCnx=t; msg(f,'');
+    $('#me-email-f').hidden=(t==='envoye');
+    $('#me-mdp-f').hidden=(t!=='mdp');
+    $('#me-envoye').hidden=(t!=='envoye');
+    $('#me-cnx-nav').hidden=(t==='envoye');
+    $('#me-lien-btn').hidden=(t!=='mdp');
+    $('#me-cnx-sub').textContent=SOUS[t];
+    $('#me-cnx-sub').hidden=!SOUS[t];
+    b.innerHTML=t==='mdp'?'Me connecter <span class="arw">→</span>':'Continuer <span class="arw">→</span>';
     err($('#me-mdp'),false);
-    if(!err(m,!EE.emailOk(m.value))){m.focus();return;}
-    msg(f,''); b.disabled=true;
-    EE.api('/lien',{body:{email:m.value,site:C.site||undefined}}).then(function(d){
-      b.disabled=false;
+    if(t==='mdp'){ $('#me-mdp').value=''; $('#me-mdp').focus({preventScroll:true}); }
+    if(t==='envoye'){ $('#me-envoye-a').textContent=emailCnx.toLowerCase(); }
+  }
+  function emailSaisi(){ var m=$('#me-email'); m.value=m.value.replace(/\s+/g,''); return err(m,!EE.emailOk(m.value))?m.value:null; }
+  var sansEnvoi='L\'envoi de liens par e-mail n\'est pas encore ouvert. Votre espace s\'ouvre avec un lien de connexion : '+aide;
+  function lien(b){
+    var f=$('#me-cnx');
+    if(!emailCnx){ emailCnx=emailSaisi(); if(!emailCnx){$('#me-email').focus();return;} }
+    msg(f,''); if(b)b.disabled=true;
+    EE.api('/lien',{body:{email:emailCnx,site:C.site||undefined}}).then(function(d){
+      if(b)b.disabled=false;
       if(d._status!==200){msg(f,EE.messageChamp(d));return;}
-      if(d.envoye)msg(f,'Si un espace existe avec cette adresse, un lien de connexion vient d\'y être envoyé. Il est valable 30 minutes et ne sert qu\'une fois. Pensez à regarder dans les indésirables.',true);
-      else msg(f,'L\'envoi de liens par e-mail n\'est pas encore ouvert. Connectez-vous avec votre mot de passe si vous en avez choisi un. Sinon, un lien de connexion suffit : '+aide);
+      if(!d.envoye){msg(f,sansEnvoi);return;}
+      var deja=etapeCnx==='envoye'; etape('envoye');
+      if(deja)msg(f,'Nouveau lien envoyé. Seul le dernier reçu fonctionne.',true);
     });
-  });
-  /* ---------- connexion par mot de passe ---------- */
+  }
+  $('#me-email').addEventListener('input',function(){ if(etapeCnx==='mdp'&&this.value.replace(/\s+/g,'').toLowerCase()!==emailCnx.toLowerCase())etape('email'); });
+  $('#me-lien-btn').addEventListener('click',function(){ emailCnx=emailSaisi()||''; if(!emailCnx){$('#me-email').focus();return;} lien(this); });
+  $('#me-renvoi').addEventListener('click',function(){ lien(this); });
+  $('#me-autre').addEventListener('click',function(){ emailCnx=''; etape('email'); var m=$('#me-email'); m.focus(); m.select(); });
   $('#me-cnx').addEventListener('submit',function(e){
-    e.preventDefault(); var f=this, ok=true, m=$('#me-email'); m.value=m.value.replace(/\s+/g,'');
-    ok=err(m,!EE.emailOk(m.value))&&ok; ok=err($('#me-mdp'),!$('#me-mdp').value)&&ok; if(!ok){(f.querySelector('.field.err input')||m).focus();return;}
-    msg(f,''); var b=$('#me-cnx-btn'); b.disabled=true;
-    EE.api('/connexion',{body:{email:m.value,mot_de_passe:$('#me-mdp').value}}).then(function(d){
+    e.preventDefault(); var f=this, b=$('#me-cnx-btn');
+    var adr=emailSaisi(); if(!adr){$('#me-email').focus();return;}
+    emailCnx=adr; msg(f,'');
+    if(etapeCnx!=='mdp'){
+      b.disabled=true;
+      EE.api('/acces',{body:{email:adr,site:C.site||undefined}}).then(function(d){
+        b.disabled=false;
+        if(d._status!==200){msg(f,EE.messageChamp(d));return;}
+        if(d.etape==='mot_de_passe'){etape('mdp');return;}
+        if(d.envoye){etape('envoye');return;}
+        msg(f,sansEnvoi);
+      });
+      return;
+    }
+    if(!err($('#me-mdp'),!$('#me-mdp').value)){$('#me-mdp').focus();return;}
+    b.disabled=true;
+    EE.api('/connexion',{body:{email:adr,mot_de_passe:$('#me-mdp').value}}).then(function(d){
       b.disabled=false;
       if(d._status===200){ $('#me-mdp').value=''; charger(); window.scrollTo({top:0}); return; }
-      if(d.error==='sans_mot_de_passe'){ msg(f,'Cet espace existe bien, mais sans mot de passe : il a été créé pendant votre estimation. '+(d.lien||lienPossible?'Cliquez sur « Recevoir mon lien de connexion ».':'Un lien de connexion suffit pour l\'ouvrir. '+aide)); return; }
-      if(d.error==='identifiants'){ msg(f,'E-mail ou mot de passe incorrect. Si vous n\'avez jamais choisi de mot de passe, '+(lienPossible?'demandez plutôt un lien de connexion.':'un lien de connexion suffit : '+aide)); return; }
+      if(d.error==='sans_mot_de_passe'){ msg(f,'Cet espace n\'a pas de mot de passe : il s\'ouvre avec un lien. Cliquez sur « Recevoir plutôt un lien par e-mail ».'); return; }
+      if(d.error==='identifiants'){ msg(f,'Mot de passe incorrect. Réessayez, ou recevez plutôt un lien par e-mail.'); return; }
       msg(f,EE.messageChamp(d));
     });
   });
@@ -2202,7 +2564,7 @@ var EE=(function(){
   }
   $('#me-cards').addEventListener('change',function(e){
     var input=e.target.closest('[data-ajout]'); if(!input||!input.files||!input.files.length)return;
-    var card=input.closest('.ee-card'), zone=$('.ee-files',card), liste=$('.ee-flist',card), id=input.getAttribute('data-ajout');
+    var card=input.closest('.ee-card'), zone=$('.ee-files',card), liste=$('.ee-flist',zone), id=input.getAttribute('data-ajout');
     var fichiers=Array.prototype.slice.call(input.files), n=0, erreurs=[], lab=input.parentNode;
     msg(zone,''); lab.classList.add('busy'); input.disabled=true;
     function suite(){
