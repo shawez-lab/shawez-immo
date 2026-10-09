@@ -293,3 +293,10 @@
   .ee-module .ee-grid2 .ee-opt{padding-inline:14px;}
   .ee-module .ee-grid2 .ee-opt::after{display:none;}
 }
+/* connexion en deux temps : e-mail, puis mot de passe ou lien envoyé */
+.ee-module .ee-envoye{padding:16px 18px;border-radius:14px;background:rgba(47,122,79,.09);color:var(--ee-ok,#215A39);font-size:.98rem;line-height:1.55;}
+.ee-module .ee-envoye p{margin:0;}
+.ee-module .ee-envoye b{color:inherit;word-break:break-word;}
+.ee-module .ee-envoye-act{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin-top:14px!important;}
+.ee-module .ee-envoye-act .btn{background:#fff;}
+.ee-module .ee-envoye[hidden],.ee-module .field[hidden],.ee-module .ee-links [hidden],.ee-module .ee-nav[hidden]{display:none;}

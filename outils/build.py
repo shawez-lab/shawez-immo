@@ -8,6 +8,8 @@
 2. Lien vers le flux dans le <head> de toutes les pages.
 3. Balise de mesure d'audience Metricool avant </body> de toutes les pages. Testée le 3 octobre 2026 :
    aucun cookie, aucun localStorage ni sessionStorage (journal : de-claude/metricool-test.md).
+   Pages privées (/admin/, /mon-espace/) : AUCUNE balise (le lien de connexion ?lien= ne doit jamais partir chez Metricool).
+   /estimer/ : balise chargée seulement si l'adresse n'a pas de paramètre (?adresse= = donnée personnelle).
 """
 import datetime as dt, glob, html, json, os, re, subprocess, sys
 from zoneinfo import ZoneInfo
@@ -21,6 +23,10 @@ RSS_LINK = '<link rel="alternate" type="application/rss+xml" href="/conseils/fee
 METRICOOL = ('<script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");'
              'c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,'
              'b.appendChild(c)}loadScript(function(){beTracker.t({hash:"33710f67a0c16d7cbb94d1b2ba10e7a8"})});</script>')
+
+PRIVEES = ('admin/', 'mon-espace/')
+SANS_PARAM = ('estimer/',)
+METRICOOL_SANS_PARAM = METRICOOL.replace('<script>', '<script>if(!location.search){', 1).replace('</script>', '}</script>', 1)
 
 def P(*a): return os.path.join(ROOT, *a)
 
@@ -112,16 +118,21 @@ def pages():
     return [f for f in subprocess.check_output(['git', 'ls-files', '*.html'], cwd=ROOT).decode().split()
             if not f.startswith(('de-claude/', 'cahier', 'outils/'))]
 
-def patch(s):
+def patch(s, f=''):
+    if f.startswith(PRIVEES):
+        s = s.replace(METRICOOL_SANS_PARAM + '\n', '').replace(METRICOOL + '\n', '').replace(METRICOOL_SANS_PARAM, '').replace(METRICOOL, '')
+    elif f.startswith(SANS_PARAM):
+        if METRICOOL_SANS_PARAM not in s:
+            s = s.replace(METRICOOL, METRICOOL_SANS_PARAM)
     if RSS_LINK not in s:
         if re.search(r'<link rel="canonical"[^>]*>\n', s):
             s = re.sub(r'(<link rel="canonical"[^>]*>\n)', lambda m: m.group(1) + RSS_LINK + '\n', s, count=1)
         else:
             s = s.replace('</head>', RSS_LINK + '\n</head>', 1)
-    if 'tracker.metricool.com/resources/be.js' not in s:
+    if 'tracker.metricool.com/resources/be.js' not in s and not f.startswith(PRIVEES):
         i = s.rfind('</body>')
         if i >= 0:      # un fragment sans </body> n'est pas une page : on n'y touche pas
-            s = s[:i] + METRICOOL + '\n' + s[i:]
+            s = s[:i] + (METRICOOL_SANS_PARAM if f.startswith(SANS_PARAM) else METRICOOL) + '\n' + s[i:]
     return s
 
 if __name__ == '__main__':
@@ -130,7 +141,7 @@ if __name__ == '__main__':
     if not os.path.exists(P(FEED)) or open(P(FEED), encoding='utf-8').read() != x:
         open(P(FEED), 'w', encoding='utf-8').write(x); print('ok', FEED)
     for f in pages():
-        s = open(P(f), encoding='utf-8').read(); n = patch(s)
+        s = open(P(f), encoding='utf-8').read(); n = patch(s, f)
         if n != s:
             open(P(f), 'w', encoding='utf-8').write(n); print('ok', f)
     # pictogramme « Mon espace » : toute nouvelle page qui a l'en-tête du site le reçoit (outils/espace.py)

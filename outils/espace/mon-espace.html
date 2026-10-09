@@ -14,15 +14,18 @@
       <!-- connexion : lien reçu par e-mail, ou mot de passe pour ceux qui en ont choisi un -->
       <form class="form" id="me-cnx" novalidate>
         <div class="ee-step">
-          <div class="ee-head"><h2 class="ee-q">Ouvrir <em>mon espace.</em></h2><p class="ee-sub" id="me-cnx-sub">Votre espace a été créé avec votre e-mail, le jour de votre estimation.</p></div>
-          <div class="field"><label for="me-email">E-mail</label><input type="email" id="me-email" autocomplete="username" inputmode="email" autocapitalize="off" autocorrect="off" spellcheck="false"><span class="msg">Indiquez l'e-mail de votre estimation.</span></div>
-          <div class="field" id="me-mdp-f"><label for="me-mdp">Mot de passe <small id="me-mdp-opt">(si vous en avez choisi un)</small></label><div class="ee-pw"><input type="password" id="me-mdp" autocomplete="current-password"><button type="button" data-voir="me-mdp" aria-pressed="false">Afficher</button></div><span class="msg">Indiquez votre mot de passe, ou demandez un lien par e-mail.</span></div>
-          <p class="ee-err" role="alert" hidden></p><p class="ee-ok" role="status" hidden></p>
-          <div class="ee-nav ee-nav-col">
-            <button type="button" class="btn btn-primary btn-lg" id="me-lien-btn">Recevoir mon lien de connexion <span class="arw">→</span></button>
-            <button type="submit" class="btn btn-lg" id="me-cnx-btn">Me connecter avec mon mot de passe</button>
+          <div class="ee-head"><h2 class="ee-q">Ouvrir <em>mon espace.</em></h2><p class="ee-sub" id="me-cnx-sub">Indiquez l'e-mail donné le jour de votre estimation.</p></div>
+          <div class="field" id="me-email-f"><label for="me-email">Votre e-mail</label><input type="email" id="me-email" autocomplete="username" inputmode="email" autocapitalize="off" autocorrect="off" spellcheck="false"><span class="msg">Indiquez l'e-mail de votre estimation.</span></div>
+          <div class="field" id="me-mdp-f" hidden><label for="me-mdp">Mot de passe</label><div class="ee-pw"><input type="password" id="me-mdp" autocomplete="current-password"><button type="button" data-voir="me-mdp" aria-pressed="false">Afficher</button></div><span class="msg">Indiquez votre mot de passe.</span></div>
+          <div class="ee-envoye" id="me-envoye" role="status" hidden>
+            <p><b>C'est envoyé !</b> Ouvrez le mail reçu sur <b id="me-envoye-a"></b> et cliquez sur le lien pour entrer dans votre espace (valable 30 minutes). Pensez aux indésirables.</p>
+            <p class="ee-envoye-act"><button type="button" class="btn" id="me-renvoi">Renvoyer le lien</button><button type="button" class="ee-skip" id="me-autre">Utiliser une autre adresse</button></p>
           </div>
-          <div class="ee-links"><button type="button" id="me-oubli-btn">Mot de passe oublié ?</button><button type="button" data-tab="ins">Créer un espace sans estimation</button><a href="/estimer/" data-ee-lien="estimer">Faire une estimation</a></div>
+          <p class="ee-err" role="alert" hidden></p><p class="ee-ok" role="status" hidden></p>
+          <div class="ee-nav ee-nav-col" id="me-cnx-nav">
+            <button type="submit" class="btn btn-primary btn-lg" id="me-cnx-btn">Continuer <span class="arw">→</span></button>
+          </div>
+          <div class="ee-links"><button type="button" id="me-lien-btn" hidden>Recevoir plutôt un lien par e-mail</button><button type="button" id="me-oubli-btn">Mot de passe oublié ?</button><button type="button" data-tab="ins">Créer un espace sans estimation</button><a href="/estimer/" data-ee-lien="estimer">Faire une estimation</a></div>
         </div>
       </form>
 

@@ -80,8 +80,11 @@ var EE=(function(){
         (res&&res.donnees_du?'<p class="ee-warn"><span>Données des ventes réelles (DVF) à jour de '+mois(res.donnees_du)+'.</span></p>':'');
     }
     if(ref)h+='<ul class="ee-facts ee-ref"><li><span>Référence</span><span data-test="reference">'+esc(ref)+'</span></li></ul>';
+    /* « Prendre rendez-vous » : appel sur téléphone ; sur ordinateur (un lien tel: n'y fait rien), WhatsApp avec le message prêt. */
+    var ordi=!!(window.matchMedia&&window.matchMedia('(hover: hover) and (pointer: fine)').matches);
+    var rdv=ordi?wa('Bonjour '+CONF.conseiller+', je viens de faire une estimation'+(ref?' (réf. '+ref+')':'')+', je voudrais un rendez-vous.'):'tel:'+CONF.tel;
     h+='<div class="btn-row">'+
-      '<a class="btn btn-primary btn-lg" href="tel:'+CONF.tel+'">Prendre rendez-vous <span class="arw">→</span></a>'+
+      '<a class="btn btn-primary btn-lg" data-test="rdv" href="'+rdv+'"'+(ordi?' target="_blank" rel="noopener"':'')+'>Prendre rendez-vous <span class="arw">→</span></a>'+
       '<a class="btn btn-ghost" href="'+wa('Bonjour '+CONF.conseiller+', je viens de faire mon estimation en ligne'+(ref?' (réf. '+ref+')':'')+'. ')+'" target="_blank" rel="noopener">WhatsApp</a>'+
     '</div>';
     return h;

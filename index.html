@@ -158,7 +158,7 @@ html[data-tone="dark"] #nav .brand .lg-ink{display:none;} html[data-tone="dark"]
 #nav .btn-primary span{color:var(--ground);} html[data-tone="dark"] #nav .btn-primary span{color:var(--night);}
 #burger{display:none;background:none;border:1px solid currentColor;color:inherit;border-radius:var(--r-pill);padding:0 14px;height:42px;cursor:pointer;font-size:.88rem;font-weight:600;}
 @media(max-width:1240px){.nav-links{display:none;} #burger{display:inline-flex;align-items:center;gap:8px;} .nav-cta .btn-primary{display:none;}}
-@media(max-width:480px){.brand small{display:none;} .nav-tel{display:none;}}
+.nav-tel{white-space:nowrap;flex-shrink:0;}@media(max-width:480px){.brand small{display:none;} .nav-tel{display:none;}}
 
 #menu{position:fixed;inset:0;z-index:150;background:var(--night);color:var(--night-ink);display:flex;flex-direction:column;padding:var(--s5) var(--gutter) var(--s7);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity var(--t-base) var(--ease),transform var(--t-base) var(--ease),visibility 0s linear var(--t-base);overflow:auto;}
 #menu.open{opacity:1;visibility:visible;transform:none;transition:opacity var(--t-base) var(--ease),transform var(--t-base) var(--ease);}
@@ -1067,35 +1067,6 @@ footer .lg-ivory,footer .gv-ivory{display:none;}
 @keyframes sortie-in{from{opacity:0;transform:scale(.92);}to{opacity:1;transform:none;}}
 @media(prefers-reduced-motion:reduce){#sortie,#sortie img{transition:none;animation:none;}}
 </style>
-<style id="avis-css">
-.avis-head{margin:8px 0 24px;}
-.avis-score{display:flex;flex-direction:column;gap:6px;}
-.avis-note{display:flex;align-items:center;gap:14px;margin:0;}
-.avis-note .n{font-family:var(--font-display);font-weight:340;font-size:40px;line-height:1;font-variation-settings:"opsz" 144;color:var(--ink,#0F0E0C);}
-.avis-count{margin:0;font-size:14px;color:#5E5850;}
-.stars{color:#B5891F;letter-spacing:2px;font-size:18px;line-height:1;white-space:nowrap;}
-.stars .off{color:rgba(15,14,12,.18);}
-.avis-row{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 2*20px)/3);gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:4px 2px 12px;margin-bottom:8px;}
-.avis-row::-webkit-scrollbar{display:none;}
-.avis-row:focus-visible{outline:2px solid #E3B341;outline-offset:4px;border-radius:20px;}
-.avis-card{scroll-snap-align:start;display:flex;flex-direction:column;gap:14px;padding:24px;border-radius:20px;background:#F3EFE6;border:1px solid rgba(15,14,12,.08);min-height:100%;}
-.avis-txt{margin:0;flex:1;font-size:15px;line-height:1.6;color:#2B2824;}
-.avis-txt .more{white-space:nowrap;color:#8A6614;}
-.avis-card .avis-meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;font-size:13px;color:#5E5850;}
-.avis-card .who{font-weight:600;color:#0F0E0C;}
-.avis-card .src{margin-left:auto;display:inline-flex;align-items:center;gap:6px;min-height:44px;color:#5E5850;text-decoration:none;}
-.avis-card .src:hover span{text-decoration:underline;}
-.avis-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;margin:28px 0;}
-.avis-vide{margin:0 0 20px;max-width:40em;}
-.avis-btns{margin-top:16px;}
-#home-avis .dots{margin:4px 0 12px;}
-@media(max-width:767px){
-  .avis-row{grid-auto-columns:82vw;gap:14px;margin-inline:calc(-1 * var(--gutter,20px));padding-inline:var(--gutter,20px);scroll-padding-inline:var(--gutter,20px);}
-  .avis-card{padding:22px 20px;}
-  .avis-list{grid-template-columns:1fr;}
-  .avis-btns .btn{width:100%;justify-content:center;}
-}
-</style>
 <style id="typo-v9">
 *{font-variation-settings:normal!important;}
 body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLegibility;}
@@ -1134,6 +1105,35 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 @media(min-width:760px){.nav-compte.is-in{width:auto;padding:0 16px 0 13px;}.nav-compte.is-in .nc-txt{display:inline;}.nav-compte.is-in .nc-dot{position:static;box-shadow:none;width:9px;height:9px;order:-1;}}
 @media(max-width:359px){.nav-compte{width:38px;height:38px;}}
 #menu .m-alt+.m-alt{margin-top:10px;}
+</style>
+<style id="avis-css">
+.avis-head{margin:8px 0 24px;}
+.avis-score{display:flex;flex-direction:column;gap:6px;}
+.avis-note{display:flex;align-items:center;gap:14px;margin:0;}
+.avis-note .n{font-family:var(--font-display);font-weight:340;font-size:40px;line-height:1;font-variation-settings:"opsz" 144;color:var(--ink,#0F0E0C);}
+.avis-count{margin:0;font-size:14px;color:#5E5850;}
+.stars{color:#B5891F;letter-spacing:2px;font-size:18px;line-height:1;white-space:nowrap;}
+.stars .off{color:rgba(15,14,12,.18);}
+.avis-row{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 2*20px)/3);gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:4px 2px 12px;margin-bottom:8px;}
+.avis-row::-webkit-scrollbar{display:none;}
+.avis-row:focus-visible{outline:2px solid #E3B341;outline-offset:4px;border-radius:20px;}
+.avis-card{scroll-snap-align:start;display:flex;flex-direction:column;gap:14px;padding:24px;border-radius:20px;background:#F3EFE6;border:1px solid rgba(15,14,12,.08);min-height:100%;}
+.avis-txt{margin:0;flex:1;font-size:15px;line-height:1.6;color:#2B2824;}
+.avis-txt .more{white-space:nowrap;color:#8A6614;}
+.avis-card .avis-meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;font-size:13px;color:#5E5850;}
+.avis-card .who{font-weight:600;color:#0F0E0C;}
+.avis-card .src{margin-left:auto;display:inline-flex;align-items:center;gap:6px;min-height:44px;color:#5E5850;text-decoration:none;}
+.avis-card .src:hover span{text-decoration:underline;}
+.avis-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;margin:28px 0;}
+.avis-vide{margin:0 0 20px;max-width:40em;}
+.avis-btns{margin-top:16px;}
+#home-avis .dots{margin:4px 0 12px;}
+@media(max-width:767px){
+  .avis-row{grid-auto-columns:82vw;gap:14px;margin-inline:calc(-1 * var(--gutter,20px));padding-inline:var(--gutter,20px);scroll-padding-inline:var(--gutter,20px);}
+  .avis-card{padding:22px 20px;}
+  .avis-list{grid-template-columns:1fr;}
+  .avis-btns .btn{width:100%;justify-content:center;}
+}
 </style>
 </head>
 <body data-route="/">
@@ -1404,7 +1404,7 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
     <div class="sec-head"><p class="label rv">Ce que les autres disent</p><h2 class="display d-l rv">Les avis Google, <em>tels quels.</em></h2></div>
     <!-- avis:accueil -->
     <div class="avis-head rv">
-    <div class="avis-score"><p class="avis-note"><span class="n">5,0</span><span class="stars" role="img" aria-label="5 étoiles sur 5">★★★★★<span class="off"></span></span></p><p class="avis-count">24 avis sur la fiche Google « Shawez Ali — Agent immobilier »</p></div>
+    <div class="avis-score"><p class="avis-note"><span class="n">4,8</span><span class="stars" role="img" aria-label="4,8 sur 5">★★★★★<span class="off"></span></span></p><p class="avis-count">L'agence Gravelin Immo est notée 4,8/5 sur 137 avis Google (<a href="https://www.google.com/maps/search/?api=1&amp;query=Gravelin%20Immo%2030%20rue%20Bannelier%20Dijon" target="_blank" rel="noopener">relevé du 8 octobre 2026</a>)</p></div>
     </div>
     <p class="avis-vide body">Les avis se lisent sur la fiche Google, tels que leurs auteurs les ont écrits.</p>
     <div class="btn-row avis-btns"><a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&amp;query=Shawez%20Ali%20%E2%80%94%20Agent%20immobilier&amp;query_place_id=ChIJqQpGAKPcg6gRg_CLthoGaP8" target="_blank" rel="noopener">Voir tous les avis sur Google <span class="arw">→</span></a><a class="btn" href="https://search.google.com/local/writereview?placeid=ChIJqQpGAKPcg6gRg_CLthoGaP8" target="_blank" rel="noopener">Laisser un avis</a><a class="btn-text" href="/avis/">Comment les avis sont affichés <span class="arw">→</span></a></div>

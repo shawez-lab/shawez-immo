@@ -156,7 +156,7 @@ html[data-tone="dark"] #nav .brand .lg-ink{display:none;} html[data-tone="dark"]
 #nav .btn-primary span{color:var(--ground);} html[data-tone="dark"] #nav .btn-primary span{color:var(--night);}
 #burger{display:none;background:none;border:1px solid currentColor;color:inherit;border-radius:var(--r-pill);padding:0 14px;height:42px;cursor:pointer;font-size:.88rem;font-weight:600;}
 @media(max-width:1240px){.nav-links{display:none;} #burger{display:inline-flex;align-items:center;gap:8px;} .nav-cta .btn-primary{display:none;}}
-@media(max-width:480px){.brand small{display:none;} .nav-tel{display:none;}}
+.nav-tel{white-space:nowrap;flex-shrink:0;}@media(max-width:480px){.brand small{display:none;} .nav-tel{display:none;}}
 
 #menu{position:fixed;inset:0;z-index:150;background:var(--night);color:var(--night-ink);display:flex;flex-direction:column;padding:var(--s5) var(--gutter) var(--s7);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity var(--t-base) var(--ease),transform var(--t-base) var(--ease),visibility 0s linear var(--t-base);overflow:auto;}
 #menu.open{opacity:1;visibility:visible;transform:none;transition:opacity var(--t-base) var(--ease),transform var(--t-base) var(--ease);}
@@ -1344,6 +1344,13 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
   .ee-grid2 .ee-opt{padding-inline:14px;}
   .ee-grid2 .ee-opt::after{display:none;}
 }
+/* connexion en deux temps : e-mail, puis mot de passe ou lien envoyé */
+.ee-envoye{padding:16px 18px;border-radius:14px;background:rgba(47,122,79,.09);color:#215A39;font-size:.98rem;line-height:1.55;}
+.ee-envoye p{margin:0;}
+.ee-envoye b{color:inherit;word-break:break-word;}
+.ee-envoye-act{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin-top:14px!important;}
+.ee-envoye-act .btn{background:#fff;}
+.ee-envoye[hidden],.field[hidden],.ee-links [hidden],.ee-nav[hidden]{display:none;}
 </style>
 </head>
 <body data-route="/admin">
@@ -1823,7 +1830,6 @@ updateTone();
   window.addEventListener('pageshow',function(e){ hide(); if(e.persisted){ var m=document.getElementById('menu'), x=document.getElementById('menu-close'); if(m&&x&&m.classList.contains('open'))x.click(); } });
 })();
 </script>
-<script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"33710f67a0c16d7cbb94d1b2ba10e7a8"})});</script>
 <script id="compte-js">
 /* Pictogramme « Mon espace » : état connecté d'après le témoin se_ok (posé par l'API à la connexion, retiré à la déconnexion) */
 window.EECompte=function(){var on=/(?:^|;\s*)se_ok=1/.test(document.cookie||'');[].forEach.call(document.querySelectorAll('[data-compte]'),function(a){a.classList.toggle('is-in',on);var t=on?'Mon espace : connecté':'Mon espace : se connecter';if(a.hasAttribute('aria-label')){a.setAttribute('aria-label',t);a.title=t;}var x=a.querySelector('[data-compte-txt]');if(x)x.textContent=on?'Mon espace · connecté':'Mon espace';});};
@@ -1912,8 +1918,11 @@ var EE=(function(){
         (res&&res.donnees_du?'<p class="ee-warn"><span>Données des ventes réelles (DVF) à jour de '+mois(res.donnees_du)+'.</span></p>':'');
     }
     if(ref)h+='<ul class="ee-facts ee-ref"><li><span>Référence</span><span data-test="reference">'+esc(ref)+'</span></li></ul>';
+    /* « Prendre rendez-vous » : appel sur téléphone ; sur ordinateur (un lien tel: n'y fait rien), WhatsApp avec le message prêt. */
+    var ordi=!!(window.matchMedia&&window.matchMedia('(hover: hover) and (pointer: fine)').matches);
+    var rdv=ordi?wa('Bonjour '+CONF.conseiller+', je viens de faire une estimation'+(ref?' (réf. '+ref+')':'')+', je voudrais un rendez-vous.'):'tel:'+CONF.tel;
     h+='<div class="btn-row">'+
-      '<a class="btn btn-primary btn-lg" href="tel:'+CONF.tel+'">Prendre rendez-vous <span class="arw">→</span></a>'+
+      '<a class="btn btn-primary btn-lg" data-test="rdv" href="'+rdv+'"'+(ordi?' target="_blank" rel="noopener"':'')+'>Prendre rendez-vous <span class="arw">→</span></a>'+
       '<a class="btn btn-ghost" href="'+wa('Bonjour '+CONF.conseiller+', je viens de faire mon estimation en ligne'+(ref?' (réf. '+ref+')':'')+'. ')+'" target="_blank" rel="noopener">WhatsApp</a>'+
     '</div>';
     return h;
