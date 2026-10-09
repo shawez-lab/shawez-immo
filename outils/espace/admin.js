@@ -63,7 +63,8 @@
       '<span class="st '+d.statut+'">'+EE.esc(STATUTS[d.statut]||d.statut)+'</span>'+
       (actionTxt(d)?'<span class="act'+(retard(d)?' ee-late':'')+'" data-test="action">→ '+EE.esc(actionTxt(d))+'</span>':'')+
       '<small>'+EE.date(d.cree_le)+' · '+EE.esc((d.type==='autre'?'Autre':d.type==='maison'?'Maison':'Appart.')+(d.surface?' '+d.surface+' m²':''))+' · '+(d.prix_bas?EE.euros(d.prix_bas)+' – '+EE.euros(d.prix_haut):'rappel')+' · '+EE.esc(LIB.site[d.site]||d.site||'')+
-        (d.rappel_le?' · rappeler avant le '+EE.jour(d.rappel_le):'')+(d.suspect?' · <span class="ee-late">robot possible</span>':'')+(d.test?' · essai':'')+'</small></summary>'+
+        (d.rappel_le?' · rappeler avant le '+EE.jour(d.rappel_le):'')+(d.suspect?' · <span class="ee-late">robot possible</span>':'')+(d.test?' · essai':'')+'</small>'+
+      '<span class="tr" data-test="trace"'+(d.trace?'':' hidden')+'>'+EE.esc(traceTxt(d.trace))+'</span></summary>'+
       '<div class="in">'+
         '<div class="acts ee-top"><a class="btn btn-primary" href="tel:'+EE.esc(tel)+'">Appeler '+EE.esc(c.telephone||'')+'</a><a class="btn" href="mailto:'+EE.esc(c.email)+'?subject='+encodeURIComponent('Votre estimation '+d.reference)+'">E-mail</a>'+(tel?'<a class="btn" href="https://wa.me/'+EE.esc(tel.replace(/^\+/,'').replace(/^0/,'33'))+'" target="_blank" rel="noopener">WhatsApp</a>':'')+'</div>'+
       '<div class="ee-col">'+
@@ -151,10 +152,11 @@
     var jr=$('[data-journal]',row); if(jr&&jr.open)journal(jr,x.id);
     stats();
   }
-  var TRACES={statut:'Statut',visite_demandee:'Créneaux proposés par le vendeur',visite_fixee:'Visite fixée',visite_annulee:'Visite annulée',visite_agenda:'Page de réservation ouverte par le vendeur',rappel_visite:'Rappel de visite',avis_prepare:'Avis de valeur : brouillon commencé',avis_envoye:'Avis de valeur envoyé',mail:'E-mail au vendeur',cr_publie:'Compte rendu de visite publié',cr_supprime:'Compte rendu de visite supprimé',offre_recue:'Offre reçue',offre_statut:'Offre',offre_supprimee:'Offre supprimée',notaire:'Notaire',document:'Document déposé'};
+  var TRACES={estimation:'Estimation faite en ligne',statut:'Statut',visite_demandee:'Créneaux proposés par le vendeur',visite_fixee:'Visite fixée',visite_annulee:'Visite annulée',visite_agenda:'Page de réservation ouverte par le vendeur',rappel_visite:'Rappel de visite',avis_prepare:'Avis de valeur : brouillon commencé',avis_envoye:'Avis de valeur envoyé',mail:'E-mail au vendeur',cr_publie:'Compte rendu de visite publié',cr_supprime:'Compte rendu de visite supprimé',offre_recue:'Offre reçue',offre_statut:'Offre',offre_supprimee:'Offre supprimée',notaire:'Notaire',document:'Document déposé'};
   function trace(e){
     var d=e.detail||{}, t=TRACES[e.type]||e.type;
     if(e.type==='statut')t='Statut : '+(STATUTS[e.vers]||e.vers)+(d.raison?' ('+d.raison+')':'');
+    else if(e.type==='estimation'&&d.duree)t='Estimation faite en ligne, en '+(d.duree<60000?Math.max(1,Math.round(d.duree/1000))+' s':Math.round(d.duree/60000)+' min');
     else if(e.type==='visite_fixee'&&d.debut)t='Visite fixée : '+EE.quandCourt(d.debut);
     else if(e.type==='visite_demandee'&&d.creneaux)t='Créneaux proposés : '+d.creneaux.map(EE.quandCourt).join(', ');
     else if(e.type==='mail')t=(d.envoye?'E-mail envoyé : ':'E-mail non envoyé : ')+(d.sujet||'')+(d.envoye?'':d.raison==='email_clients_ferme'?' (envoi aux vendeurs pas encore ouvert)':d.raison==='adresse_de_test'?' (adresse d\'essai)':d.raison==='heures_calmes'?' (gardé pour 8 h)':d.raison==='perime'?' (plus d\'actualité)':'');
@@ -167,6 +169,27 @@
     else if(e.type==='document')t='Document déposé : '+(d.libelle?d.libelle+' · ':'')+(d.nom||'');
     return '<li><span>'+EE.esc(t)+'</span><span>'+EE.esc(EE.quandCourt(e.cree_le))+'</span></li>';
   }
+  /* Dernière trace d'un dossier : ce qui s'y est passé en dernier, et quand. Relue après chaque action de l'agence. */
+  function traceTxt(t){ if(!t)return ''; var l=t.type==='statut'?'statut « '+(STATUTS[t.vers]||t.vers)+' »':(TRACES[t.type]||t.type); return 'Dernière trace : '+l.charAt(0).toLowerCase()+l.slice(1)+' · '+EE.quandCourt(t.le); }
+  function tracesRelire(){
+    $$('#ad-rows details.ee-row[open]').forEach(function(row){
+      var id=+row.getAttribute('data-id');
+      apiNu('/admin/journal?demande='+id).then(function(d){
+        if(d._status!==200||!d.journal||!d.journal.length)return;
+        var e=d.journal[0], x=demande(id), t={type:e.type,vers:e.vers,par:e.par,le:e.cree_le}, s=$('summary .tr',row);
+        if(x)x.trace=t; if(s){s.textContent=traceTxt(t);s.hidden=false;}
+      });
+    });
+  }
+  /* Un seul endroit pour ne jamais afficher une trace périmée : toute écriture réussie sur un dossier (statut, visite,
+     avis de valeur, compte rendu, offre, notaire, fichier) fait relire la trace des dossiers ouverts, un instant après. */
+  var apiNu=EE.api, relire=null;
+  EE.api=function(chemin,opts){
+    var p=apiNu(chemin,opts);
+    if(opts&&(opts.body!==undefined||opts.fichier)&&/^\/(admin\/(demande|visite|avis|compte-rendu|offre|notaire|fichier)|fichier\/supprimer)/.test(chemin))
+      p.then(function(d){ if(d&&d._status>=200&&d._status<300){clearTimeout(relire);relire=setTimeout(tracesRelire,700);} });
+    return p;
+  };
   function journal(det,id){ EE.api('/admin/journal?demande='+id).then(function(d){ $('ul',det).innerHTML=d._status===200?d.journal.map(trace).join(''):'<li><span>'+EE.esc(EE.message(d))+'</span><span></span></li>'; }); }
   $('#ad-rows').addEventListener('toggle',function(e){
     var det=e.target; if(!det||!det.hasAttribute||!det.open)return;
@@ -554,7 +577,7 @@
     EE.api('/admin/flux',{body:{}}).then(function(d){
       out.hidden=false; b.removeAttribute('data-ok'); b.textContent='Créer une nouvelle clé';
       if(d._status!==200){out.className='ee-err';out.textContent=EE.message(d);return;}
-      out.className='ee-ok'; out.innerHTML='Nouvelle clé créée. Collez cette formule dans la cellule A1 de l\'onglet « Site » (elle ne sera plus affichée) :<br><span style="word-break:break-all;" data-test="formule">'+EE.esc(d.formule)+'</span>';
+      out.className='ee-ok'; out.innerHTML='Nouvelle clé créée. Collez cette formule dans la cellule A1 de l\'onglet « Site » (elle ne sera plus affichée) :<br><span style="word-break:break-all;" data-test="formule">'+EE.esc(d.formule)+'</span>'+(d.formule_promesses?'<br><br>Et celle-ci dans la cellule A1 de l\'onglet « Promesses » :<br><span style="word-break:break-all;" data-test="formule-promesses">'+EE.esc(d.formule_promesses)+'</span>':'');
     });
   });
   $('#ad-rdv-save').addEventListener('click',function(){

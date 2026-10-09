@@ -2,7 +2,8 @@
 """Espace estimation : pages /estimer/, /mon-espace/, /admin/ et liens « Estimer mon bien ».
 
 Relançable. Depuis la racine du dépôt : python3 outils/espace.py
-- Les trois pages sont construites sur le gabarit de /estimation-immobiliere-dijon/ (en-tête, menu, pied de page,
+- /admin/promesses/ (la mesure des 7 promesses, étape 4 du système parfait) est construite de la même façon.
+- Les pages sont construites sur le gabarit de /estimation-immobiliere-dijon/ (en-tête, menu, pied de page,
   styles et scripts du site, à l'identique) ; seul le contenu de <main> change, avec le bloc de styles
   « espace-v1 » et le script de chaque page (sources dans outils/espace/).
 - Tous les boutons et liens « Estimer mon bien » qui menaient à l'outil de l'agence mènent à /estimer/
@@ -38,6 +39,14 @@ PAGES = {
     'admin': {
         'route': '/admin',
         'titre': 'Espace agence — Shawez Ali',
+        'description': 'Espace réservé à l\'agence.',
+        'robots': 'noindex,nofollow',
+    },
+    # la mesure des 7 promesses : une page de l'espace agence, rangée sous /admin/
+    'promesses': {
+        'route': '/admin/promesses',
+        'dossier': 'admin/promesses',
+        'titre': 'Les 7 promesses — Shawez Ali',
         'description': 'Espace réservé à l\'agence.',
         'robots': 'noindex,nofollow',
     },
@@ -257,7 +266,7 @@ body{{margin:0;background:#F6F3EC;color:#14161C;font-family:'Geist','Inter',-app
 <div data-espace-estimation="{page}"></div>
 </main>
 <footer class="g-pied">GRAVELIN IMMO — 30 rue Bannelier, 21000 Dijon. Page de démonstration du module d'estimation, à ne pas diffuser. <a href="/">Retour à shawez-immo.com</a></footer>
-<script>window.EE_CONF={{site:'gravelin',estimer:'demo-estimer.html',espace:'demo-mon-espace.html',admin:'demo-admin.html'}};</script>
+<script>window.EE_CONF={{site:'gravelin',estimer:'demo-estimer.html',espace:'demo-mon-espace.html',admin:'demo-admin.html',promesses:'demo-promesses.html'}};</script>
 <script src="espace-estimation.js"></script>
 </body>
 </html>
@@ -271,8 +280,8 @@ Fichiers fabriqués par `python3 outils/espace.py` : ne pas les modifier à la m
 ## Brancher le module en 10 lignes
 
 1. Copier dans le dépôt du site de l'agence : `espace-estimation.js`, `espace-estimation.css`, `theme-gravelin.css`, et le dossier `functions/` de ce dépôt (l'API).
-2. Créer trois pages `/estimer/`, `/mon-espace/` et `/admin/` avec l'en-tête et le pied de page du site.
-3. Dans chacune, à l'endroit du contenu : `<div data-espace-estimation="estimer"></div>` (ou `mon-espace`, ou `admin`).
+2. Créer quatre pages `/estimer/`, `/mon-espace/`, `/admin/` et `/admin/promesses/` avec l'en-tête et le pied de page du site.
+3. Dans chacune, à l'endroit du contenu : `<div data-espace-estimation="estimer"></div>` (ou `mon-espace`, `admin`, `promesses`).
 4. Dans le `<head>` : `<link rel="stylesheet" href="/espace-estimation.css">` puis `<link rel="stylesheet" href="/theme-gravelin.css">`.
 5. Avant `</body>` : `<script src="/espace-estimation.js"></script>` (réglages possibles juste avant, dans `window.EE_CONF`).
 6. Cloudflare Pages du site de l'agence → Settings → Bindings : base D1 `espace-estimation` sous le nom `DB` (la même que shawez-immo.com), service `shawez-mailer` sous le nom `MAILER`.
@@ -282,12 +291,12 @@ Fichiers fabriqués par `python3 outils/espace.py` : ne pas les modifier à la m
 10. Autoriser `https://api-adresse.data.gouv.fr` et `https://data.geopf.fr` dans `connect-src` si le site a une CSP ; `/mon-espace/` et `/admin/` en `noindex`.
 
 Pour changer l'habillage : seulement `theme-gravelin.css` (couleurs, polices, arrondis).
-Démonstration : `demo-estimer.html`, `demo-mon-espace.html`, `demo-admin.html` (dans ce dossier).
+Démonstration : `demo-estimer.html`, `demo-mon-espace.html`, `demo-admin.html`, `demo-promesses.html` (dans ce dossier).
 """
 
 
 def gravelin(css, commun):
-    """Un JS, un CSS de thème (et la feuille de structure), trois pages de démonstration, le mode d'emploi."""
+    """Un JS, un CSS de thème (et la feuille de structure), les pages de démonstration, le mode d'emploi."""
     base = lire(os.path.join(SRC, 'gravelin', 'base.css'))
     ecrire(os.path.join(GRAVELIN, 'espace-estimation.css'),
            "/* Espace estimation — structure du module (fabriqué par outils/espace.py : ne pas modifier ici).\n"
@@ -316,7 +325,7 @@ def gravelin(css, commun):
         js.append(f"  {'if' if i == 0 else 'else if'}(page==={js_chaine(nom)}){{\n{scripts[nom]}\n  }}")
     js += ["}", "if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',demarrer); else demarrer();", "})();", ""]
     ecrire(os.path.join(GRAVELIN, 'espace-estimation.js'), '\n'.join(js))
-    titres = {'estimer': 'Estimation en ligne', 'mon-espace': 'Mon espace', 'admin': 'Espace agence'}
+    titres = {'estimer': 'Estimation en ligne', 'mon-espace': 'Mon espace', 'admin': 'Espace agence', 'promesses': 'Les 7 promesses'}
     for nom in PAGES:
         ecrire(os.path.join(GRAVELIN, f'demo-{nom}.html'), DEMO.format(titre=titres[nom], page=nom))
     ecrire(os.path.join(GRAVELIN, 'LISEZ-MOI.md'), LISEZ_MOI)
@@ -327,7 +336,8 @@ def page(nom, conf, gabarit, css, commun):
     s = gabarit
     titre = html.escape(conf['titre'], quote=False)
     desc = html.escape(conf['description'])
-    url = f"https://shawez-immo.com/{nom}/"
+    dossier = conf.get('dossier', nom)
+    url = f"https://shawez-immo.com/{dossier}/"
     s = re.sub(r'<title>.*?</title>', f'<title>{titre}</title>', s, count=1, flags=re.S)
     s = re.sub(r'<meta name="description" content="[^"]*">', f'<meta name="description" content="{desc}">', s, count=1)
     s = re.sub(r'<meta name="robots" content="[^"]*">', f'<meta name="robots" content="{conf["robots"]}">', s, count=1)
@@ -349,7 +359,7 @@ def page(nom, conf, gabarit, css, commun):
     assert s.index('<script id="compte-js">') < s.index('<script id="espace-js">')
     # pas de données de la page estimation (FAQ, formulaire) : vérifications
     assert 'id="est-form"' not in s
-    ecrire(os.path.join(RACINE, nom, 'index.html'), s)
+    ecrire(os.path.join(RACINE, dossier, 'index.html'), s)
 
 
 def headers():
@@ -397,7 +407,7 @@ def main():
     commun = lire(os.path.join(SRC, 'commun.js'))
     for nom, conf in PAGES.items():
         page(nom, conf, gabarit, css, commun)
-        print(f'/{nom}/ construite.')
+        print(f"/{conf.get('dossier', nom)}/ construite.")
     gravelin(css, commun)
     headers()
     robots_sitemap()

@@ -18,6 +18,7 @@
     </div>
     <div class="ee-wide" id="ad-in" hidden>
       <div class="ee-stats" id="ad-stats"></div>
+      <div class="ee-links ee-ad-liens"><a href="/admin/promesses/" data-ee-lien="promesses">Les 7 promesses : tenues ou ratées <span aria-hidden="true">→</span></a></div>
       <div class="ee-tabs" role="group" aria-label="Vue"><button type="button" class="pill" data-vue="demandes" aria-pressed="true">Demandes</button><button type="button" class="pill" data-vue="comptes" aria-pressed="false">Comptes</button><button type="button" class="pill" data-vue="reglages" aria-pressed="false">Réglages</button></div>
       <div id="ad-demandes">
         <div class="ee-tools">
@@ -46,7 +47,8 @@
         <div class="ee-card">
           <h3>Demandes dans Google Sheets</h3>
           <p class="meta">L'onglet « Site » du tableau « Relance leads » se remplit tout seul : une formule relit les demandes environ toutes les heures. Colonnes : date, site, civilité, prénom, nom, téléphone, e-mail, adresse du bien, type, surface, fourchette, délai de vente, prix idéal, statut, prochaine action, notes, référence. Le statut, la date de rappel et les notes se changent ici, dans chaque demande.</p>
-          <p class="meta">Besoin d'une nouvelle clé (tableau partagé par erreur, par exemple) ? Le bouton en crée une et coupe l'ancienne : collez alors la nouvelle formule dans la cellule A1 de l'onglet « Site ».</p>
+          <p class="meta">Les 7 promesses se suivent dans le même tableau : dans un onglet « Promesses », collez en A1 la formule de l'onglet « Site » en remplaçant <b>site.csv</b> par <b>promesses.csv</b>. Sept lignes, aucun nom.</p>
+          <p class="meta">Besoin d'une nouvelle clé (tableau partagé par erreur, par exemple) ? Le bouton en crée une et coupe l'ancienne : collez alors les nouvelles formules dans la cellule A1 des onglets « Site » et « Promesses ».</p>
           <div class="acts"><button type="button" class="btn" id="ad-flux">Créer une nouvelle clé</button></div>
           <p class="ee-ok" id="ad-flux-out" role="status" hidden></p>
         </div>

@@ -3,7 +3,7 @@
    par la page, sinon valeurs de shawez-immo.com) et dans la feuille de thème. */
 var EE=(function(){
   'use strict';
-  var CONF={site:'',api:'/api/espace',estimer:'/estimer/',espace:'/mon-espace/',admin:'/admin/',
+  var CONF={site:'',api:'/api/espace',estimer:'/estimer/',espace:'/mon-espace/',admin:'/admin/',promesses:'/admin/promesses/',
     tel:'+33767579228',telAffiche:'07 67 57 92 28',conseiller:'Shawez',email:'shawez@gravelin-immo.com',
     confidentialite:'/politique-de-confidentialite/#espace-estimation',portrait:''};
   var ext=window.EE_CONF||{}; Object.keys(ext).forEach(function(k){CONF[k]=ext[k];});

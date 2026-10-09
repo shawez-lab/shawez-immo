@@ -18,6 +18,8 @@
      POST /api/espace/mot-de-passe/reinit   { jeton, mot_de_passe }
      GET  /api/espace/verifier?jeton=…      anciens liens de confirmation : renvoi vers /mon-espace/?lien=…
      GET  /api/espace/flux/site.csv?cle=…   demandes pour le Google Sheet (IMPORTDATA), protégé par une clé
+     GET  /api/espace/flux/promesses.csv?cle=…   les 7 promesses en chiffres (7 et 30 jours), sans aucun nom : pour un onglet
+                                            du Google Sheet et pour le contrôle du soir ; même clé
      GET  /api/espace/creneaux              créneaux de visite d'estimation proposables (lundi-samedi, 9 h-19 h, 45 min)
      GET  /api/espace/taches                tâches à heure fixe (rappel de visite la veille à 18 h, e-mails gardés la nuit
                                             et envoyés à 8 h) ; sans effet si rien n'est dû
@@ -52,6 +54,8 @@
      POST /api/espace/admin/compte/lien     { id, type: 'acces' | 'reinit' } : lien (24 h) à transmettre au client
      POST /api/espace/admin/flux            nouvelle clé pour le Google Sheet (affichée une seule fois)
      GET  /api/espace/admin/export.csv?quoi=demandes|comptes&site=…&statut=…
+     GET  /api/espace/admin/promesses       les 7 promesses faites au vendeur, sur 7 et 30 jours : tenue / ratée, délai médian
+     GET  /api/espace/admin/promesses.csv?jours=7|30   les mêmes mesures, une ligne par mesure
 */
 import {
   db, json, Erreur, corps, texte, entier, choix, email as lireEmail, telephone, motDePasse, verifierOrigine,
@@ -66,6 +70,7 @@ import {
 } from '../../_lib/suivi.js';
 import { envoyer, mailPossible, mailClients, peutEcrire, destinatairesAlerte, adresseDeTest, gabarit, paragraphe, bouton, esc } from '../../_lib/mail.js';
 import { deposer, lire as lireFichier, supprimerFichier, fichiersDe, supprimerFichiersDe, TAILLE_MAX } from '../../_lib/fichiers.js';
+import { mesurer, tableau, delaiFr, PROMESSES, PERIODES } from '../../_lib/promesses.js';
 
 export async function onRequest(context) {
   const { request, env, params } = context;
@@ -99,6 +104,7 @@ const ROUTES = {
   'POST /mot-de-passe/definir': definirMdp,
   'GET /verifier': verifier,
   'GET /flux/site.csv': flux,
+  'GET /flux/promesses.csv': fluxPromesses,
   'GET /moi': moi,
   'POST /verification': renvoyerVerification,
   'POST /compte/supprimer': supprimerCompte,
@@ -128,13 +134,15 @@ const ROUTES = {
   'POST /admin/compte-rendu': adminCompteRendu,
   'POST /admin/offre': adminOffre,
   'POST /admin/notaire': adminNotaire,
+  'GET /admin/promesses': adminPromesses,
+  'GET /admin/promesses.csv': adminPromessesCsv,
 };
 
 /* ------------------------------------------------------------------ */
 
 /* Version de l'API : les tests sur l'aperçu attendent de la voir avant de commencer (le site met une à deux minutes
    à se mettre à jour après une poussée). À changer à chaque évolution de l'API. */
-const VERSION = '2026-10-08.5';
+const VERSION = '2026-10-09.1';
 
 /* Clé du flux Google Sheet : on ne garde que son empreinte. Celle-ci est la clé de mise en service ; dès qu'un admin
    en génère une nouvelle (/admin/ → « Google Sheet »), c'est l'empreinte en base qui fait foi. */
@@ -379,6 +387,9 @@ async function estimation(ctx) {
     if (r) return r;
     throw e;
   }
+  // promesse n° 1 (la fourchette en 2 minutes) : la durée du parcours, telle que le navigateur l'a comptée, notée au
+  // journal avec la demande (une demande d'essai supprimée dans la seconde ne laisse ainsi rien derrière elle)
+  if (!suspect) await journal(base, demandeId, 'estimation', 'client', { duree: Math.round(Math.min(Number(d.duree) || 0, 2 * 3600000)), fourchette: !!res.fourchette }).catch((e) => console.log('journal estimation', e && e.message));
   if (nouveau) cookie = await ouvrirSession(env, compte.id);
 
   const ecrireAuClient = !suspect && peutEcrire(env, contact.email);
@@ -889,7 +900,8 @@ async function adminFlux({ request, env }) {
   const cle = jeton();
   await (await db(env)).prepare("INSERT INTO reglages (cle, valeur) VALUES ('flux', ?1) ON CONFLICT(cle) DO UPDATE SET valeur = ?1").bind(await sha256(cle)).run();
   const adresse = `${new URL(request.url).origin}/api/espace/flux/site.csv?cle=${cle}`;
-  return json(200, { adresse, formule: `=IMPORTDATA("${adresse}")` });
+  const promesses = adresse.replace('/flux/site.csv', '/flux/promesses.csv');
+  return json(200, { adresse, formule: `=IMPORTDATA("${adresse}")`, promesses, formule_promesses: `=IMPORTDATA("${promesses}")` });
 }
 
 const csvCase = (v, sep) => {
@@ -1786,4 +1798,86 @@ async function adminNotaire(ctx) {
   let mail = 'non';
   if ((faites.length || rdv) && d.prevenir !== false) mail = await annoncer(ctx, dem, mailNotaire(faites, rdv), 'notaire');
   return json(200, { notaire: notairePublic(n), mail });
+}
+
+/* =====================================================================================================
+   SYSTÈME PARFAIT — étape 4 : la mesure des 7 promesses (/admin/promesses/)
+   Tout se calcule sur ce que les dossiers et leur journal contiennent déjà ; rien n'est écrit ici.
+   Les règles sont dans _lib/promesses.js. Les essais (adresses de test, comptes de l'agence, robots probables)
+   ne comptent jamais.
+   ===================================================================================================== */
+
+async function mesuresPromesses(ctx) {
+  const { env } = ctx;
+  const now = horloge(ctx) || new Date();
+  const base = await db(env);
+  const tout = async (sql, ...a) => (await base.prepare(sql).bind(...a).all()).results;
+  // le journal des 90 derniers jours suffit à juger 30 jours (une visite d'il y a un mois répond à une demande plus ancienne)
+  const depuis = new Date(now.getTime() - 90 * 86400000).toISOString();
+  const donnees = {
+    demandes: await tout('SELECT id, reference, contact, commune, cree_le, statut, statut_le, suspect, prix_bas FROM demandes ORDER BY id DESC LIMIT 5000'),
+    evenements: await tout('SELECT id, demande_id, type, de, vers, detail, cree_le FROM evenements WHERE cree_le >= ?1 ORDER BY id LIMIT 50000', depuis),
+    visites: await tout('SELECT demande_id, etat, debut FROM visites ORDER BY id'),
+    comptes_rendus: await tout('SELECT demande_id, visite_le, publie_le FROM comptes_rendus WHERE visite_le >= ?1', depuis.slice(0, 10)),
+    fichiers: await tout("SELECT demande_id, role, libelle FROM fichiers WHERE role IN ('avis', 'document') AND depose_par = 'agence'"),
+    notaires: await tout('SELECT demande_id, nom FROM notaires'),
+  };
+  const agence = admins(env);
+  const essai = (d) => { const e = String(lireJson(d.contact).email || '').toLowerCase(); return adresseDeTest(e) || agence.includes(e); };
+  const dossiers = new Map(donnees.demandes.map((d) => {
+    const c = lireJson(d.contact);
+    return [d.id, { reference: d.reference, vendeur: [c.prenom, c.nom].filter(Boolean).join(' '), commune: d.commune || '' }];
+  }));
+  return { now, mesures: mesurer(donnees, now, essai), dossiers };
+}
+
+async function adminPromesses(ctx) {
+  await exigerAdmin(ctx.request, ctx.env);
+  const { now, mesures, dossiers } = await mesuresPromesses(ctx);
+  return json(200, {
+    calcule_le: now.toISOString(), periodes: PERIODES, email_clients: mailClients(ctx.env),
+    promesses: tableau(mesures, now).map((p) => ({
+      n: p.n, cle: p.cle, titre: p.titre, regle: p.regle, periodes: p.periodes,
+      // le délai d'un compte rendu est déjà dans son détail (« publié le lendemain »)
+      a_regarder: p.a_regarder.slice(0, 60).map((m) => ({ debut: m.debut, date: m.date, resultat: m.resultat, detail: m.detail, delai_txt: p.unite === 'j' ? '' : delaiFr(m.delai, p.unite), ...dossiers.get(m.demande) })),
+    })),
+  });
+}
+
+/* Les mêmes chiffres pour le Google Sheet (onglet « Promesses », =IMPORTDATA) et pour le contrôle du soir : sept lignes,
+   aucun nom, aucune adresse. Protégé par la clé du flux. */
+async function fluxPromesses(ctx) {
+  const { request, env } = ctx;
+  const url = new URL(request.url);
+  await limiter(env, 'flux:' + ip(request), 120, 3600);
+  if (!(await cleValide(env, url.searchParams.get('cle')))) throw new Erreur(403, 'interdit');
+  const { now, mesures } = await mesuresPromesses(ctx);
+  const quand = now.toLocaleString('fr-FR', { timeZone: 'Europe/Paris', day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }).replace(',', '');
+  const colonnes = (j) => [`tenues (${j} j)`, `ratées (${j} j)`, `en cours (${j} j)`, `délai médian (${j} j)`];
+  const lignes = [['n°', 'promesse', ...PERIODES.flatMap(colonnes), 'calculé le']];
+  for (const p of tableau(mesures, now)) lignes.push([p.n, p.titre, ...PERIODES.flatMap((j) => { const b = p.periodes[j]; return [b.tenue, b.ratee, b.en_cours, b.mediane_txt]; }), quand]);
+  return new Response(csv(lignes, ','), { headers: { 'Content-Type': 'text/csv; charset=utf-8', 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex, nofollow' } });
+}
+
+const RESULTATS_FR = { tenue: 'tenue', ratee: 'ratée', en_cours: 'en cours', hors: 'hors mesure' };
+const UNITES_FR = { min: 'minutes', h: 'heures', j: 'jours' };
+
+async function adminPromessesCsv(ctx) {
+  await exigerAdmin(ctx.request, ctx.env);
+  const jours = new URL(ctx.request.url).searchParams.get('jours') === '7' ? 7 : 30;
+  const { now, mesures, dossiers } = await mesuresPromesses(ctx);
+  const debut = now.getTime() - jours * 86400000;
+  const quand = (iso) => new Date(iso).toLocaleString('fr-FR', { timeZone: 'Europe/Paris', day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }).replace(',', '');
+  const lignes = [['n°', 'promesse', 'résultat', 'délai', 'unité', 'délai en clair', 'depuis le', 'référence', 'vendeur', 'commune', 'détail']];
+  for (const m of mesures.filter((x) => Date.parse(x.debut) >= debut).sort((a, b) => a.p - b.p || Date.parse(b.debut) - Date.parse(a.debut))) {
+    const p = PROMESSES[m.p - 1];
+    const d = dossiers.get(m.demande) || {};
+    lignes.push([m.p, p.titre, RESULTATS_FR[m.resultat], m.delai == null ? '' : String(m.delai).replace('.', ','), m.delai == null ? '' : UNITES_FR[p.unite] || '', delaiFr(m.delai, p.unite), m.date == null ? quand(m.debut) : jourFr(m.date), d.reference, d.vendeur, d.commune, m.detail]);
+  }
+  return new Response('\uFEFF' + csv(lignes, ';'), {
+    headers: {
+      'Content-Type': 'text/csv; charset=utf-8', 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex',
+      'Content-Disposition': `attachment; filename="promesses-${jours}-jours-${paris(now).date}.csv"`,
+    },
+  });
 }

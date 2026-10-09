@@ -377,6 +377,7 @@ test('une commune seule (sans numéro ni rue) : acceptée, avec une invitation �
 
 test('déjà connecté : pas de coordonnées à ressaisir, estimation ajoutée à l\'espace', async ({ page }) => {
   const { contact } = await estimationComplete(page);
+  await page.waitForTimeout(400);      // le site avale les clics pendant 300 ms après l'affichage du résultat (second clic d'un double clic)
   await page.locator('#ee-refaire').click();
   await parcours(page, { surPlace: true, type: 'maison', adresse: '10 rue des vergers quetigny', surface: '95', epoque: '1975-2000' });
   await expect(page.locator('#ee-logged')).toContainText('Claire Martin');

@@ -1493,6 +1493,37 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 .ee-etapes .ee-check-l input{margin-top:1px;}
 @media(min-width:560px){.ee-etapes li{grid-template-columns:minmax(0,1fr) 170px;align-items:center;}}
 .ee-files .field{gap:6px;}
+/* ---------- v5 (système parfait, étape 4) : la mesure des 7 promesses (/admin/promesses/) ---------- */
+.ee-ad-liens{margin:-6px 0 18px;}
+.ee-row>summary .tr{grid-column:1/-1;font-size:.82rem;color:var(--muted);}
+.ee-row>summary .tr[hidden]{display:none;}
+.ee-pr-tete{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 14px;margin-bottom:18px;}
+.ee-pr-tete .ee-tabs{margin:0;}
+.ee-pr-liens{display:flex;flex-wrap:wrap;gap:8px;}
+.ee-pr-liens .btn{min-height:46px;}
+.ee-pr-stats{grid-template-columns:repeat(3,minmax(0,1fr));}
+.ee-stat.ko b{color:#7E2C1F;}
+.tag.ko{background:rgba(162,59,42,.1);color:#7E2C1F;}
+/* « en cours » : une pastille neutre (lisible sur le fond des cartes comme sur celui des lignes) */
+.ee-prom .tag.att{background:var(--stone);color:var(--ink-2);}
+#pr-alerte{margin-bottom:14px;}
+#pr-alerte[hidden]{display:none;}
+#pr-pied{margin-top:18px;}
+@media(min-width:900px){#pr-cartes{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;}}
+.ee-prom{gap:12px;min-width:0;}
+.ee-prom-t{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.ee-prom h2{font-family:var(--font-display);font-weight:420;font-size:1.45rem;line-height:1.15;margin:0;}
+.ee-prom-n{margin:0;display:flex;flex-wrap:wrap;gap:4px 18px;font-size:.95rem;color:var(--ink-2);}
+.ee-prom-n span{white-space:nowrap;}
+.ee-prom-n b{font-family:var(--font-display);font-weight:360;font-size:2rem;line-height:1;color:var(--ink);margin-right:2px;}
+.ee-prom-n .ko,.ee-prom-n .ko b{color:#7E2C1F;}
+.ee-prom-vide{margin:0;font-size:.95rem;color:var(--ink-2);}
+.ee-prom-liste>summary{cursor:pointer;font-size:.9rem;font-weight:600;color:var(--ink-2);text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:4px;list-style:none;min-height:32px;display:inline-flex;align-items:center;}
+.ee-prom-liste>summary::-webkit-details-marker{display:none;}
+.ee-prom-liste>summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px;}
+.ee-prom-liste .ee-items{margin-top:8px;}
+.ee-prom .ee-kv li span:last-child{overflow-wrap:normal;}
+
 </style>
 </head>
 <body data-route="/mon-espace">
@@ -2047,7 +2078,7 @@ window.EECompte();window.addEventListener('pageshow',window.EECompte);
    par la page, sinon valeurs de shawez-immo.com) et dans la feuille de thème. */
 var EE=(function(){
   'use strict';
-  var CONF={site:'',api:'/api/espace',estimer:'/estimer/',espace:'/mon-espace/',admin:'/admin/',
+  var CONF={site:'',api:'/api/espace',estimer:'/estimer/',espace:'/mon-espace/',admin:'/admin/',promesses:'/admin/promesses/',
     tel:'+33767579228',telAffiche:'07 67 57 92 28',conseiller:'Shawez',email:'shawez@gravelin-immo.com',
     confidentialite:'/politique-de-confidentialite/#espace-estimation',portrait:''};
   var ext=window.EE_CONF||{}; Object.keys(ext).forEach(function(k){CONF[k]=ext[k];});
