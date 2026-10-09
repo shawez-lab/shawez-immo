@@ -1,0 +1,5 @@
+[133150,"GRANDE RUE","Darcey",30]
+[122000,"RUE DE PERTHUIS","Darcey",26]
+[76000,"RUE DE L EGLISE","Darcey",22]
+[150000,"RUE DE L OUCHE","Darcey",1]
+[221000,"RTE DE BAIGNEUX LES JUIS","La Villeneuve-les-Convers",29]

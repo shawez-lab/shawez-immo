@@ -1,0 +1,22 @@
+name: Tâches à heure fixe (rappels de visite, e-mails du matin)
+
+# Deux tâches, par un seul appel à /api/espace/taches :
+# - rappel de visite d'estimation au vendeur, la veille à 18 h (heure de Paris) ;
+# - e-mails au vendeur gardés pendant les heures calmes (21 h – 8 h), qui partent à 8 h.
+# Chaque heure de 8 h à 22 h, cette action appelle la route : elle envoie ce qui est dû, une seule fois chacun, et ne
+# fait rien d'autre (aucune donnée n'est rendue). Les horaires sont en UTC : 6 h 07 à 20 h 07 couvre 8 h à Paris été
+# comme hiver. Le site le fait aussi de lui-même au passage des visiteurs ; ceci est la garantie.
+on:
+  schedule:
+    - cron: '7 6-20 * * *'
+  workflow_dispatch: {}
+
+permissions: {}
+
+jobs:
+  taches:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Rappels de visite et e-mails dus
+        run: curl -sS -m 30 --retry 2 --retry-delay 20 https://shawez-immo.com/api/espace/taches

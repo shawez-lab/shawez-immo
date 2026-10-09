@@ -6,7 +6,15 @@
     "nombre": 24,
     "releve_le": "2026-09-27",
     "lien_avis": "https://www.google.com/maps/search/?api=1&query=Shawez%20Ali%20%E2%80%94%20Agent%20immobilier&query_place_id=ChIJqQpGAKPcg6gRg_CLthoGaP8",
-    "lien_depot": "https://search.google.com/local/writereview?placeid=ChIJqQpGAKPcg6gRg_CLthoGaP8"
+    "lien_depot": "https://search.google.com/local/writereview?placeid=ChIJqQpGAKPcg6gRg_CLthoGaP8",
+    "_note_interne": "Note et nombre de la fiche Shawez NON affichés tant qu'ils ne sont pas vérifiés et datés (ordre du Chef 10 M, 9/10). Seule preuve affichée : preuve_agence."
   },
-  "avis": []
+  "avis": [],
+  "preuve_agence": {
+    "nom": "Gravelin Immo",
+    "note": 4.8,
+    "nombre": 137,
+    "releve_le": "2026-10-08",
+    "lien": "https://www.google.com/maps/search/?api=1&query=Gravelin%20Immo%2030%20rue%20Bannelier%20Dijon"
+  }
 }

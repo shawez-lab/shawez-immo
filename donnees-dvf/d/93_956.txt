@@ -1,0 +1,5 @@
+[60000,"RTE DE LANGRES","Maisey-le-Duc",25]
+[88000,"RLE DES JARDINS","Maisey-le-Duc",22]
+[117500,"DERRIERE LA MAISON DIEU SU","Maisey-le-Duc",21]
+[162500,"RUE DE LA RUELLOTTE","Maisey-le-Duc",28]
+[85000,"RUE DE LA RUELLOTTE","Maisey-le-Duc",31]

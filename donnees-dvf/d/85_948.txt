@@ -1,0 +1,3 @@
+[155500,"RUE D AISY","Le Val-Larrey",14]
+[90000,"RUE DE BIERRE","Le Val-Larrey",17]
+[120000,"RUE DES PUITS","Montigny-Saint-Barthélemy",10]

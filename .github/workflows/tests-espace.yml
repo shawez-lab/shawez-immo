@@ -3,7 +3,7 @@ name: Tests de l'espace estimation (en ligne)
 # Parcours /estimer/ → résultat → accueil → pictogramme → /mon-espace/, sur le site en ligne, iPhone 13 et ordinateur,
 # avec la vraie recherche d'adresses et la vraie base ; contrôle de la fourchette sur 10 adresses ; Lighthouse mobile.
 # Les essais utilisent des e-mails en @test.invalid (aucun e-mail, aucune alerte, hors Google Sheet) et suppriment
-# leur compte à la fin. Branche espace-estimation → l'aperçu ; branche main → shawez-immo.com.
+# leur compte à la fin. Branches espace-estimation et systeme-parfait → leur aperçu ; branche main → shawez-immo.com.
 on:
   workflow_dispatch:
     inputs:
@@ -16,7 +16,7 @@ on:
         required: false
         default: 'non'
   push:
-    branches: [espace-estimation, main]
+    branches: [espace-estimation, systeme-parfait, main]
     paths:
       - 'functions/**'
       - 'outils/espace/**'
@@ -24,6 +24,7 @@ on:
       - 'estimer/**'
       - 'mon-espace/**'
       - 'admin/**'
+      - 'assets/avis/**'
       - '.github/workflows/tests-espace.yml'
 
 permissions:
@@ -35,19 +36,19 @@ concurrency:
 
 jobs:
   en-ligne:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 30
     defaults:
       run:
         working-directory: outils/tests-espace
     env:
       EE_APERCU: '1'
-      EE_BASE: ${{ inputs.base || (github.ref_name == 'main' && 'https://shawez-immo.com' || 'https://espace-estimation.shawez-immo.pages.dev') }}
+      EE_BASE: ${{ inputs.base || (github.ref_name == 'main' && 'https://shawez-immo.com' || format('https://{0}.shawez-immo.pages.dev', github.ref_name)) }}
       EE_ESSAI_ALERTE: ${{ inputs.essai_alerte == 'oui' && '1' || '' }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: '22'
 
@@ -78,7 +79,7 @@ jobs:
 
       - name: Captures et rapports
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: tests-espace
           path: |

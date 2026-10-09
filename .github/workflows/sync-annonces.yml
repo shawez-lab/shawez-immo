@@ -18,7 +18,7 @@ concurrency:
 
 jobs:
   sync:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 90
     steps:
       - name: Heure de Paris
@@ -28,12 +28,12 @@ jobs:
           echo "Heure à Paris : $h"
           if [ "${{ github.event_name }}" = "workflow_dispatch" ] || [ "$h" = "06" ]; then echo "go=1" >> "$GITHUB_OUTPUT"; else echo "go=0" >> "$GITHUB_OUTPUT"; fi
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         if: steps.heure.outputs.go == '1'
         with:
           ref: main
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         if: steps.heure.outputs.go == '1'
         with:
           python-version: '3.12'
@@ -64,4 +64,12 @@ jobs:
             git commit -m "Annonces : synchronisation du $(TZ=Europe/Paris date +%d/%m/%Y)"
             git pull --rebase origin main
             git push origin HEAD:main
+          fi
+
+      - name: Alerte si une fiche a été mise de côté ou si la lecture a échoué
+        if: steps.heure.outputs.go == '1'
+        run: |
+          if [ -f de-claude/alerte-sync.md ]; then
+            echo "::error::$(tr '\n' ' ' < de-claude/alerte-sync.md | cut -c1-300)"
+            exit 1   # passage en rouge = e-mail GitHub à Shawez ; les autres annonces sont déjà publiées
           fi

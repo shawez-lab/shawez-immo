@@ -2,7 +2,7 @@
    le pictogramme sur toutes les pages, le lien de connexion (30 min, usage unique), le mot de passe facultatif,
    la déconnexion, le mot de passe oublié. */
 import { test, expect } from '@playwright/test';
-import { fausseBan, estimationComplete, pictogramme, moi, api, emailTest, viderBoite, courrier, pour, lienDans, connexionParLien } from './aides.mjs';
+import { fausseBan, estimationComplete, pictogramme, moi, api, emailTest, viderBoite, courrier, pour, lienDans, connexionParLien, connexionParMdp } from './aides.mjs';
 
 const PAGES = ['/', '/estimer/', '/mon-espace/', '/vendre-bien-immobilier-dijon/', '/vendre-commerce-dijon/', '/conseils-vendeurs/', '/videos-immobilier-dijon/',
   '/simulateur-pret-immobilier-dijon/', '/shawez-ali-agent-immobilier-dijon/', '/estimation-immobiliere-dijon/', '/contact/', '/honoraires/', '/avis/',
@@ -44,8 +44,10 @@ test('LE BUG, suite : déconnecté, puis accueil → pictogramme → connexion p
   // mêmes identifiants (l'e-mail de l'estimation, tapé avec des majuscules et un espace) → lien reçu → connecté
   await viderBoite(request);
   await page.locator('#me-email').fill('  ' + contact.email.toUpperCase() + ' ');
-  await page.locator('#me-lien-btn').click();
-  await expect(page.locator('#me-cnx .ee-ok')).toContainText('un lien de connexion vient d\'y être envoyé');
+  await page.locator('#me-cnx-btn').click();                       // « Continuer » : pas de mot de passe → le lien part
+  await expect(page.locator('#me-envoye')).toContainText('C\'est envoyé');
+  await expect(page.locator('#me-envoye')).toContainText(contact.email);
+  await expect(page.locator('#me-mdp')).toBeHidden();
   const [m] = await courrier(request, pour(contact.email, /lien de connexion/i));
   expect(m).toBeTruthy();
   expect(m.text).toContain('30 minutes');
@@ -138,8 +140,8 @@ test('lien demandé pour une adresse inconnue : même réponse, aucun e-mail', a
   await page.goto('/mon-espace/');
   const inconnu = emailTest('inconnu');
   await page.locator('#me-email').fill(inconnu);
-  await page.locator('#me-lien-btn').click();
-  await expect(page.locator('#me-cnx .ee-ok')).toContainText('Si un espace existe');
+  await page.locator('#me-cnx-btn').click();
+  await expect(page.locator('#me-envoye')).toContainText('C\'est envoyé');   // même message qu'avec un espace
   expect(await courrier(request, pour(inconnu), { attente: 1500 })).toHaveLength(0);
 });
 
@@ -193,9 +195,7 @@ test('mot de passe facultatif, choisi après le résultat ; connexion par le pic
   await api(page, '/deconnexion', {});
   await page.goto('/');
   await pictogramme(page).click();
-  await page.locator('#me-email').fill(contact.email);
-  await page.locator('#me-mdp').fill('Bannelier-2026');
-  await page.locator('#me-cnx-btn').click();
+  await connexionParMdp(page, contact.email, 'Bannelier-2026');
   await expect(page.locator('#me-in')).toBeVisible();
   await expect(page.locator('#me-cards .ee-card')).toHaveCount(1);
 });
@@ -210,15 +210,40 @@ test('mot de passe : majuscules dans l\'e-mail et espace en fin de mot de passe 
   expect((await api(page, '/connexion', { email: contact.email, mot_de_passe: ' Bannelier-2026  ' }))._status).toBe(200);
 });
 
-test('compte sans mot de passe : la connexion par mot de passe l\'explique au lieu de dire « incorrect »', async ({ page }) => {
+test('compte sans mot de passe : « Continuer » envoie le lien sans demander de mot de passe ; « Renvoyer » en renvoie un', async ({ page, request }) => {
   const { contact } = await estimationComplete(page);
   await api(page, '/deconnexion', {});
+  await viderBoite(request);
   await page.goto('/mon-espace/');
   await page.locator('#me-email').fill(contact.email);
-  await page.locator('#me-mdp').fill('nimportequoi');
   await page.locator('#me-cnx-btn').click();
-  await expect(page.locator('#me-cnx .ee-err')).toContainText('sans mot de passe');
-  await expect(page.locator('#me-cnx .ee-err')).toContainText('Recevoir mon lien de connexion');
+  await expect(page.locator('#me-envoye')).toBeVisible();
+  await expect(page.locator('#me-mdp')).toBeHidden();
+  await page.locator('#me-renvoi').click();
+  await expect(page.locator('#me-cnx .ee-ok')).toContainText('Nouveau lien envoyé');
+  expect(await courrier(request, pour(contact.email, /lien de connexion/i), { nombre: 2 })).toHaveLength(2);
+  // l'API dit toujours pourquoi un mot de passe ne marche pas
+  expect((await api(page, '/connexion', { email: contact.email, mot_de_passe: 'nimportequoi' })).error).toBe('sans_mot_de_passe');
+});
+
+test('compte avec mot de passe : « Continuer » demande le mot de passe, rien n\'est envoyé ; « Recevoir plutôt un lien » marche', async ({ page, request }) => {
+  const { contact } = await estimationComplete(page);
+  expect((await api(page, '/mot-de-passe/definir', { mot_de_passe: 'Bannelier-2026' }))._status).toBe(200);
+  await api(page, '/deconnexion', {});
+  await viderBoite(request);
+  await page.goto('/mon-espace/');
+  await page.locator('#me-email').fill(contact.email);
+  await page.locator('#me-cnx-btn').click();
+  await expect(page.locator('#me-mdp')).toBeVisible();
+  await expect(page.locator('#me-cnx-btn')).toContainText('Me connecter');
+  expect(await courrier(request, pour(contact.email), { attente: 1500 })).toHaveLength(0);
+  await page.locator('#me-mdp').fill('mauvais-mot');
+  await page.locator('#me-cnx-btn').click();
+  await expect(page.locator('#me-cnx .ee-err')).toContainText('Mot de passe incorrect');
+  await page.locator('#me-lien-btn').click();
+  await expect(page.locator('#me-envoye')).toBeVisible();
+  const [m] = await courrier(request, pour(contact.email, /lien de connexion/i));
+  expect(m).toBeTruthy();
 });
 
 test('déconnexion : session fermée, pictogramme éteint, espace refermé', async ({ page }) => {

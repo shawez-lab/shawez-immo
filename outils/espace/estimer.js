@@ -246,7 +246,7 @@
     EE.api('/estimation',{body:corps,delai:45000}).then(function(d){
       envoi=false; bouton(true);
       if(d._status===200||d._status===201){
-        var etat={resultat:d.resultat,reference:d.reference,adresse:R.adresse,espace:d.espace||{},email:compte?compte.email:mail.value.trim(),mdp:false};
+        var etat={resultat:d.resultat,reference:d.reference,adresse:R.adresse,espace:d.espace||{},email:compte?compte.email:mail.value.trim(),mdp:false,demande:d.demande_id||null,visite:null};
         memoriser(etat);
         montrer(etat,true);
         try{ if(window.beTracker)window.beTracker.t({hash:'33710f67a0c16d7cbb94d1b2ba10e7a8'}); }catch(x){}
@@ -268,8 +268,17 @@
     $('#ee-res-box').innerHTML=EE.resultat(etat.resultat,etat.reference,etat.adresse);
     var res=$('#ee-result'); res.hidden=false;
     apres(etat);
+    rdv(etat);
     EE.pictogramme();
     if(defiler){ window.scrollTo({top:res.getBoundingClientRect().top+window.scrollY-90,behavior:'smooth'}); res.focus({preventScroll:true}); }
+  }
+  /* La visite d'estimation, proposée dès le résultat (si l'espace est ouvert : sinon elle se choisit dans l'espace). */
+  function rdv(etat){
+    var z=$('#ee-rdv'); z.hidden=true;
+    if(!etat.demande||!(etat.espace||{}).connecte)return;
+    EE.visite(z,{demande:etat.demande,visite:etat.visite||null,possible:true,email:(etat.espace||{}).lien==='envoye',onChange:function(r){
+      etat.visite=r.visite; var m=EE.mem.lire(CLE_MEM); if(m&&m.fini){m.fini.visite=r.visite;EE.mem.ecrire(CLE_MEM,m);}
+    }});
   }
   function apres(etat){
     var e=etat.espace||{}, box=$('#ee-apres'), titre=$('#ee-apres-titre'), txt=$('#ee-apres-txt'), f=$('#ee-mdp-form'), lien=$('#ee-apres-espace');
@@ -278,7 +287,7 @@
     if(e.connecte){
       titre.innerHTML='Retrouvez-la <em>quand vous voulez.</em>';
       if(e.nouveau){
-        txt.innerHTML='Votre espace est créé avec '+mail+' : cette estimation y est rangée, avec l\'avancement de votre dossier.'+(e.lien==='envoye'?' Un e-mail vient de partir avec votre estimation et un lien pour y revenir.':'');
+        txt.innerHTML='Votre espace est créé avec '+mail+' : cette estimation y est rangée, avec l\'avancement de votre dossier.'+(e.lien==='envoye'?' Un e-mail vient de partir avec votre estimation et un lien pour y revenir.':' Gardez cette page ou choisissez un mot de passe pour revenir.');
         if(!etat.mdp&&!e.mot_de_passe){
           f.hidden=false;
           $('#ee-mdp-hint').textContent=e.lien==='envoye'?'8 caractères au moins. Facultatif : le lien reçu par e-mail suffit.':'8 caractères au moins. Facultatif, mais utile pour retrouver votre estimation depuis un autre appareil.';
