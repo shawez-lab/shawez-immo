@@ -1493,6 +1493,37 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 .ee-etapes .ee-check-l input{margin-top:1px;}
 @media(min-width:560px){.ee-etapes li{grid-template-columns:minmax(0,1fr) 170px;align-items:center;}}
 .ee-files .field{gap:6px;}
+/* ---------- v5 (système parfait, étape 4) : la mesure des 7 promesses (/admin/promesses/) ---------- */
+.ee-ad-liens{margin:-6px 0 18px;}
+.ee-row>summary .tr{grid-column:1/-1;font-size:.82rem;color:var(--muted);}
+.ee-row>summary .tr[hidden]{display:none;}
+.ee-pr-tete{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 14px;margin-bottom:18px;}
+.ee-pr-tete .ee-tabs{margin:0;}
+.ee-pr-liens{display:flex;flex-wrap:wrap;gap:8px;}
+.ee-pr-liens .btn{min-height:46px;}
+.ee-pr-stats{grid-template-columns:repeat(3,minmax(0,1fr));}
+.ee-stat.ko b{color:#7E2C1F;}
+.tag.ko{background:rgba(162,59,42,.1);color:#7E2C1F;}
+/* « en cours » : une pastille neutre (lisible sur le fond des cartes comme sur celui des lignes) */
+.ee-prom .tag.att{background:var(--stone);color:var(--ink-2);}
+#pr-alerte{margin-bottom:14px;}
+#pr-alerte[hidden]{display:none;}
+#pr-pied{margin-top:18px;}
+@media(min-width:900px){#pr-cartes{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;}}
+.ee-prom{gap:12px;min-width:0;}
+.ee-prom-t{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.ee-prom h2{font-family:var(--font-display);font-weight:420;font-size:1.45rem;line-height:1.15;margin:0;}
+.ee-prom-n{margin:0;display:flex;flex-wrap:wrap;gap:4px 18px;font-size:.95rem;color:var(--ink-2);}
+.ee-prom-n span{white-space:nowrap;}
+.ee-prom-n b{font-family:var(--font-display);font-weight:360;font-size:2rem;line-height:1;color:var(--ink);margin-right:2px;}
+.ee-prom-n .ko,.ee-prom-n .ko b{color:#7E2C1F;}
+.ee-prom-vide{margin:0;font-size:.95rem;color:var(--ink-2);}
+.ee-prom-liste>summary{cursor:pointer;font-size:.9rem;font-weight:600;color:var(--ink-2);text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:4px;list-style:none;min-height:32px;display:inline-flex;align-items:center;}
+.ee-prom-liste>summary::-webkit-details-marker{display:none;}
+.ee-prom-liste>summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px;}
+.ee-prom-liste .ee-items{margin-top:8px;}
+.ee-prom .ee-kv li span:last-child{overflow-wrap:normal;}
+
 </style>
 </head>
 <body data-route="/admin">
@@ -1563,6 +1594,7 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
     </div>
     <div class="ee-wide" id="ad-in" hidden>
       <div class="ee-stats" id="ad-stats"></div>
+      <div class="ee-links ee-ad-liens"><a href="/admin/promesses/" data-ee-lien="promesses">Les 7 promesses : tenues ou ratées <span aria-hidden="true">→</span></a></div>
       <div class="ee-tabs" role="group" aria-label="Vue"><button type="button" class="pill" data-vue="demandes" aria-pressed="true">Demandes</button><button type="button" class="pill" data-vue="comptes" aria-pressed="false">Comptes</button><button type="button" class="pill" data-vue="reglages" aria-pressed="false">Réglages</button></div>
       <div id="ad-demandes">
         <div class="ee-tools">
@@ -1591,7 +1623,8 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
         <div class="ee-card">
           <h3>Demandes dans Google Sheets</h3>
           <p class="meta">L'onglet « Site » du tableau « Relance leads » se remplit tout seul : une formule relit les demandes environ toutes les heures. Colonnes : date, site, civilité, prénom, nom, téléphone, e-mail, adresse du bien, type, surface, fourchette, délai de vente, prix idéal, statut, prochaine action, notes, référence. Le statut, la date de rappel et les notes se changent ici, dans chaque demande.</p>
-          <p class="meta">Besoin d'une nouvelle clé (tableau partagé par erreur, par exemple) ? Le bouton en crée une et coupe l'ancienne : collez alors la nouvelle formule dans la cellule A1 de l'onglet « Site ».</p>
+          <p class="meta">Les 7 promesses se suivent dans le même tableau : dans un onglet « Promesses », collez en A1 la formule de l'onglet « Site » en remplaçant <b>site.csv</b> par <b>promesses.csv</b>. Sept lignes, aucun nom.</p>
+          <p class="meta">Besoin d'une nouvelle clé (tableau partagé par erreur, par exemple) ? Le bouton en crée une et coupe l'ancienne : collez alors les nouvelles formules dans la cellule A1 des onglets « Site » et « Promesses ».</p>
           <div class="acts"><button type="button" class="btn" id="ad-flux">Créer une nouvelle clé</button></div>
           <p class="ee-ok" id="ad-flux-out" role="status" hidden></p>
         </div>
@@ -1998,7 +2031,7 @@ window.EECompte();window.addEventListener('pageshow',window.EECompte);
    par la page, sinon valeurs de shawez-immo.com) et dans la feuille de thème. */
 var EE=(function(){
   'use strict';
-  var CONF={site:'',api:'/api/espace',estimer:'/estimer/',espace:'/mon-espace/',admin:'/admin/',
+  var CONF={site:'',api:'/api/espace',estimer:'/estimer/',espace:'/mon-espace/',admin:'/admin/',promesses:'/admin/promesses/',
     tel:'+33767579228',telAffiche:'07 67 57 92 28',conseiller:'Shawez',email:'shawez@gravelin-immo.com',
     confidentialite:'/politique-de-confidentialite/#espace-estimation',portrait:''};
   var ext=window.EE_CONF||{}; Object.keys(ext).forEach(function(k){CONF[k]=ext[k];});
@@ -2274,7 +2307,8 @@ var EE=(function(){
       '<span class="st '+d.statut+'">'+EE.esc(STATUTS[d.statut]||d.statut)+'</span>'+
       (actionTxt(d)?'<span class="act'+(retard(d)?' ee-late':'')+'" data-test="action">→ '+EE.esc(actionTxt(d))+'</span>':'')+
       '<small>'+EE.date(d.cree_le)+' · '+EE.esc((d.type==='autre'?'Autre':d.type==='maison'?'Maison':'Appart.')+(d.surface?' '+d.surface+' m²':''))+' · '+(d.prix_bas?EE.euros(d.prix_bas)+' – '+EE.euros(d.prix_haut):'rappel')+' · '+EE.esc(LIB.site[d.site]||d.site||'')+
-        (d.rappel_le?' · rappeler avant le '+EE.jour(d.rappel_le):'')+(d.suspect?' · <span class="ee-late">robot possible</span>':'')+(d.test?' · essai':'')+'</small></summary>'+
+        (d.rappel_le?' · rappeler avant le '+EE.jour(d.rappel_le):'')+(d.suspect?' · <span class="ee-late">robot possible</span>':'')+(d.test?' · essai':'')+'</small>'+
+      '<span class="tr" data-test="trace"'+(d.trace?'':' hidden')+'>'+EE.esc(traceTxt(d.trace))+'</span></summary>'+
       '<div class="in">'+
         '<div class="acts ee-top"><a class="btn btn-primary" href="tel:'+EE.esc(tel)+'">Appeler '+EE.esc(c.telephone||'')+'</a><a class="btn" href="mailto:'+EE.esc(c.email)+'?subject='+encodeURIComponent('Votre estimation '+d.reference)+'">E-mail</a>'+(tel?'<a class="btn" href="https://wa.me/'+EE.esc(tel.replace(/^\+/,'').replace(/^0/,'33'))+'" target="_blank" rel="noopener">WhatsApp</a>':'')+'</div>'+
       '<div class="ee-col">'+
@@ -2362,10 +2396,11 @@ var EE=(function(){
     var jr=$('[data-journal]',row); if(jr&&jr.open)journal(jr,x.id);
     stats();
   }
-  var TRACES={statut:'Statut',visite_demandee:'Créneaux proposés par le vendeur',visite_fixee:'Visite fixée',visite_annulee:'Visite annulée',visite_agenda:'Page de réservation ouverte par le vendeur',rappel_visite:'Rappel de visite',avis_prepare:'Avis de valeur : brouillon commencé',avis_envoye:'Avis de valeur envoyé',mail:'E-mail au vendeur',cr_publie:'Compte rendu de visite publié',cr_supprime:'Compte rendu de visite supprimé',offre_recue:'Offre reçue',offre_statut:'Offre',offre_supprimee:'Offre supprimée',notaire:'Notaire',document:'Document déposé'};
+  var TRACES={estimation:'Estimation faite en ligne',statut:'Statut',visite_demandee:'Créneaux proposés par le vendeur',visite_fixee:'Visite fixée',visite_annulee:'Visite annulée',visite_agenda:'Page de réservation ouverte par le vendeur',rappel_visite:'Rappel de visite',avis_prepare:'Avis de valeur : brouillon commencé',avis_envoye:'Avis de valeur envoyé',mail:'E-mail au vendeur',cr_publie:'Compte rendu de visite publié',cr_supprime:'Compte rendu de visite supprimé',offre_recue:'Offre reçue',offre_statut:'Offre',offre_supprimee:'Offre supprimée',notaire:'Notaire',document:'Document déposé'};
   function trace(e){
     var d=e.detail||{}, t=TRACES[e.type]||e.type;
     if(e.type==='statut')t='Statut : '+(STATUTS[e.vers]||e.vers)+(d.raison?' ('+d.raison+')':'');
+    else if(e.type==='estimation'&&d.duree)t='Estimation faite en ligne, en '+(d.duree<60000?Math.max(1,Math.round(d.duree/1000))+' s':Math.round(d.duree/60000)+' min');
     else if(e.type==='visite_fixee'&&d.debut)t='Visite fixée : '+EE.quandCourt(d.debut);
     else if(e.type==='visite_demandee'&&d.creneaux)t='Créneaux proposés : '+d.creneaux.map(EE.quandCourt).join(', ');
     else if(e.type==='mail')t=(d.envoye?'E-mail envoyé : ':'E-mail non envoyé : ')+(d.sujet||'')+(d.envoye?'':d.raison==='email_clients_ferme'?' (envoi aux vendeurs pas encore ouvert)':d.raison==='adresse_de_test'?' (adresse d\'essai)':d.raison==='heures_calmes'?' (gardé pour 8 h)':d.raison==='perime'?' (plus d\'actualité)':'');
@@ -2378,6 +2413,27 @@ var EE=(function(){
     else if(e.type==='document')t='Document déposé : '+(d.libelle?d.libelle+' · ':'')+(d.nom||'');
     return '<li><span>'+EE.esc(t)+'</span><span>'+EE.esc(EE.quandCourt(e.cree_le))+'</span></li>';
   }
+  /* Dernière trace d'un dossier : ce qui s'y est passé en dernier, et quand. Relue après chaque action de l'agence. */
+  function traceTxt(t){ if(!t)return ''; var l=t.type==='statut'?'statut « '+(STATUTS[t.vers]||t.vers)+' »':(TRACES[t.type]||t.type); return 'Dernière trace : '+l.charAt(0).toLowerCase()+l.slice(1)+' · '+EE.quandCourt(t.le); }
+  function tracesRelire(){
+    $$('#ad-rows details.ee-row[open]').forEach(function(row){
+      var id=+row.getAttribute('data-id');
+      apiNu('/admin/journal?demande='+id).then(function(d){
+        if(d._status!==200||!d.journal||!d.journal.length)return;
+        var e=d.journal[0], x=demande(id), t={type:e.type,vers:e.vers,par:e.par,le:e.cree_le}, s=$('summary .tr',row);
+        if(x)x.trace=t; if(s){s.textContent=traceTxt(t);s.hidden=false;}
+      });
+    });
+  }
+  /* Un seul endroit pour ne jamais afficher une trace périmée : toute écriture réussie sur un dossier (statut, visite,
+     avis de valeur, compte rendu, offre, notaire, fichier) fait relire la trace des dossiers ouverts, un instant après. */
+  var apiNu=EE.api, relire=null;
+  EE.api=function(chemin,opts){
+    var p=apiNu(chemin,opts);
+    if(opts&&(opts.body!==undefined||opts.fichier)&&/^\/(admin\/(demande|visite|avis|compte-rendu|offre|notaire|fichier)|fichier\/supprimer)/.test(chemin))
+      p.then(function(d){ if(d&&d._status>=200&&d._status<300){clearTimeout(relire);relire=setTimeout(tracesRelire,700);} });
+    return p;
+  };
   function journal(det,id){ EE.api('/admin/journal?demande='+id).then(function(d){ $('ul',det).innerHTML=d._status===200?d.journal.map(trace).join(''):'<li><span>'+EE.esc(EE.message(d))+'</span><span></span></li>'; }); }
   $('#ad-rows').addEventListener('toggle',function(e){
     var det=e.target; if(!det||!det.hasAttribute||!det.open)return;
@@ -2765,7 +2821,7 @@ var EE=(function(){
     EE.api('/admin/flux',{body:{}}).then(function(d){
       out.hidden=false; b.removeAttribute('data-ok'); b.textContent='Créer une nouvelle clé';
       if(d._status!==200){out.className='ee-err';out.textContent=EE.message(d);return;}
-      out.className='ee-ok'; out.innerHTML='Nouvelle clé créée. Collez cette formule dans la cellule A1 de l\'onglet « Site » (elle ne sera plus affichée) :<br><span style="word-break:break-all;" data-test="formule">'+EE.esc(d.formule)+'</span>';
+      out.className='ee-ok'; out.innerHTML='Nouvelle clé créée. Collez cette formule dans la cellule A1 de l\'onglet « Site » (elle ne sera plus affichée) :<br><span style="word-break:break-all;" data-test="formule">'+EE.esc(d.formule)+'</span>'+(d.formule_promesses?'<br><br>Et celle-ci dans la cellule A1 de l\'onglet « Promesses » :<br><span style="word-break:break-all;" data-test="formule-promesses">'+EE.esc(d.formule_promesses)+'</span>':'');
     });
   });
   $('#ad-rdv-save').addEventListener('click',function(){

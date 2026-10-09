@@ -128,6 +128,29 @@ test('étape 3 : espace du vendeur prêt pour la suite, admin fermé, connexion 
   await page.screenshot({ path: `captures/apercu-${test.info().project.name}-admin-connexion.png` });
 });
 
+test('étape 4 : la mesure des 7 promesses est en place et fermée à qui n\'est pas l\'agence', async ({ page, request }) => {
+  // sans connexion : rien ne sort, la page renvoie vers l'espace agence
+  expect((await request.get('/api/espace/admin/promesses')).status()).toBe(401);
+  expect((await request.get('/api/espace/admin/promesses.csv?jours=30')).status()).toBe(401);
+  expect((await request.get('/api/espace/flux/promesses.csv?cle=' + 'x'.repeat(43))).status()).toBe(403);
+  const erreurs = [];
+  page.on('pageerror', (e) => erreurs.push(e.message));
+  await page.goto('/admin/promesses/');
+  await expect(page.locator('h1')).toHaveText('Les 7 promesses.');
+  await expect(page.locator('#pr-no')).toBeVisible();
+  await expect(page.locator('#pr-no a')).toHaveAttribute('href', '/admin/');
+  await expect(page.locator('#pr-cartes .ee-prom')).toHaveCount(0);
+  expect(erreurs, 'aucune erreur de script sur la page').toEqual([]);
+  expect((await request.get('/admin/promesses/')).headers()['x-robots-tag'] || '').toContain('noindex');
+  // un vendeur connecté : refusé lui aussi
+  await estimationComplete(page, { adresse: '30 rue Bannelier Dijon' }, { prenom: 'Essai', nom: 'Automatique' });
+  expect((await api(page, '/admin/promesses'))._status).toBe(403);
+  expect(await page.evaluate(async () => (await fetch('/api/espace/admin/promesses.csv')).status)).toBe(403);
+  await supprimer(page);
+  await page.goto('/admin/promesses/');
+  await page.screenshot({ path: `captures/apercu-${test.info().project.name}-promesses-fermee.png` });
+});
+
 test('le pictogramme est sur toutes les pages', async ({ page }) => {
   for (const p of ['/', '/estimer/', '/mon-espace/', '/vendre-bien-immobilier-dijon/', '/conseils-vendeurs/', '/contact/', '/honoraires/', '/avis/', '/biens-a-vendre-dijon/', '/simulateur-pret-immobilier-dijon/', '/mentions-legales/']) {
     await page.goto(p, { waitUntil: 'domcontentloaded' });

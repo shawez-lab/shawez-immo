@@ -68,6 +68,15 @@ Cible : `cahier-des-charges/systeme-parfait-vendeur-v1.md` (projet Claude). Bran
 - **Base** : tables `evenements`, `visites`, `avis` et colonnes `demandes.raison`, `demandes.statut_le`, ajoutées à côté des autres sans rien modifier (version notée à part, réglage `schema_sp`). **L'aperçu et le site en ligne partagent la même base** : un dossier modifié dans l'aperçu est le vrai dossier.
 - **Tests** : `08-visite-statuts`, `09-avis-de-valeur`, `10-accessibilite-etape2` (locaux), et « étape 2 » dans `apercu.spec.mjs` (en ligne, côté vendeur).
 
+### Système parfait, étape 4 : la mesure des 7 promesses
+
+- **Page `/admin/promesses/`** (réservée à l'agence, construite par `outils/espace.py` : sources `outils/espace/promesses.html` et `.js`) : les 7 promesses faites au vendeur, sur 7 et 30 jours — tenue, ratée, en cours, hors mesure, « tenue N fois sur M », délai médian, et la liste des dossiers à regarder. On y arrive depuis `/admin/`.
+- **Les règles** sont écrites une seule fois, dans `functions/_lib/promesses.js` (`PROMESSES`, `mesurer`, `tableau`) : aucune lecture ni écriture de la base dans ce fichier, on lui passe les dossiers et leur journal. Rien n'est stocké : tout se recalcule à chaque affichage sur les 90 derniers jours du journal. Les essais (adresses `@test.invalid`, adresses de l'agence, robots probables) ne comptent jamais.
+- **Ce qui est mesuré** : 1) durée du parcours `/estimer/` (événement `estimation` du journal, écrit à l'arrivée de la demande) ; 2) délai avant le passage à « Appelé » (échéance `echeanceAppel`) ; 3) demande de visite → visite (48 h, ou créneau proposé par le vendeur) ; 4) visite → avis de valeur (24 h) ; 5) contenu de l'espace selon le statut (avis, mandat, compromis, notaire) ; 6) compte rendu publié le jour de la visite ; 7) e-mail parti à chaque changement de statut.
+- **Routes** : `GET /api/espace/admin/promesses` (JSON), `GET /api/espace/admin/promesses.csv?jours=7|30` (une ligne par mesure), `GET /api/espace/flux/promesses.csv?cle=…` (sept lignes, aucun nom : pour un onglet « Promesses » du Google Sheet, même clé que `flux/site.csv`, et pour le contrôle du soir).
+- **Dernière trace** : la liste de `/admin/` affiche sous chaque dossier ce qui s'y est passé en dernier ; elle est relue après chaque action (`tracesRelire` dans `outils/espace/admin.js`).
+- **Tests** : `12-promesses` (les règles sur un jeu de dossiers écrit à la main, chiffres attendus comptés à la main ; un vrai dossier suivi dans l'export ; la page ; le flux ; les droits ; WCAG) et « étape 4 » dans `apercu.spec.mjs`.
+
 ## Avis Google
 
 Source unique : **`avis.json`**, à la racine. Le script `outils/avis.py` en tire :
