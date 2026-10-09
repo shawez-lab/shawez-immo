@@ -36,6 +36,7 @@ var ONGLET_ESSAIS = 'Déclencheur (essais)';    // les faux leads de test vont i
 var LIBELLE_TRAITE = 'Déclencheur/traité';
 var LIBELLE_ENVOIS = '✉ Suivi envois';
 var SUJET_TEST = '[TEST-DECLENCHEUR]';
+var FENETRE_MS = 24 * 3600 * 1000;   // ne traite que les mails des dernières 24 h
 
 // Recherche Gmail (limitée à 1 jour pour les quotas)
 var REQUETE = 'newer_than:1d {' +
@@ -57,6 +58,14 @@ function tick() {
 
 function essai() {
   Logger.log('=== MODE ESSAI : rien ne sera envoyé ni créé ===');
+  passage_(true, true);
+}
+
+// Contrôle de lecture sur 30 jours (lecture seule, rien n'est envoyé ni créé)
+function essaiLarge() {
+  REQUETE = REQUETE.replace('newer_than:1d', 'newer_than:30d');
+  FENETRE_MS = 30 * 24 * 3600 * 1000;
+  Logger.log('=== ESSAI LARGE 30 JOURS : rien ne sera envoyé ni créé ===');
   passage_(true, true);
 }
 
@@ -106,7 +115,7 @@ function passage_(essaiMode, toutRelire) {
     var last = t.getLastMessageDate().getTime();
     if (!toutRelire && curseurs[t.getId()] === last) return;   // fil inchangé : on ne relit pas
     t.getMessages().forEach(function (m) {
-      if (Date.now() - m.getDate().getTime() > 24 * 3600 * 1000) return;
+      if (Date.now() - m.getDate().getTime() > FENETRE_MS) return;
       if (!toutRelire && vus[m.getId()]) return;
       aTraiter.push({ thread: t, msg: m });
     });
@@ -278,7 +287,7 @@ function lireHektor_(c) {
   if (prenom && nom && nom.toLowerCase().indexOf(prenom.split(' ')[0].toLowerCase()) === 0) nomComplet = titre_(nom);
   else if (prenom) nomComplet = titre_(prenom.split(' ')[0]) + ' ' + titre_(nom || '');
   var villeH = (c.match(/Annonce[^\n]*\n\s*([A-ZÀ-Ý][^\n]{1,40})\n/) || [])[1];
-  return { nom: nomComplet, tel: champ_(c, 'Téléphone'), email: champ_(c, 'Email'), ville: villeH || '', type: annonce.split('–')[1] ? annonce.split('–')[1].trim() : annonce, ref: ref, message: msg ? msg.trim() : '' };
+  return { nom: nomComplet, tel: champ_(c, 'Téléphone'), email: champ_(c, 'Email'), ville: (villeH || '').replace(/\s*\(\d+\)\s*$/, ''), type: annonce.split('–')[1] ? annonce.split('–')[1].trim() : annonce, ref: ref, message: msg ? msg.trim() : '' };
 }
 
 // ============================ RÈGLES ============================
