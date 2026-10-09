@@ -1,0 +1,24 @@
+# Worker « lead-redacteur » (Lead éclair). Séparé du site : aucune route sur shawez-immo.com.
+# Déploiement (quand Shawez a donné son accord) : npx wrangler@4 deploy --config outils/lead-redacteur/wrangler.toml
+# puis : npx wrangler@4 secret put LEAD_KEY --config outils/lead-redacteur/wrangler.toml
+name = "lead-redacteur"
+main = "index.js"
+compatibility_date = "2025-09-01"
+workers_dev = true          # adresse https://lead-redacteur.<sous-domaine>.workers.dev, protégée par LEAD_KEY
+preview_urls = false
+
+[ai]
+binding = "AI"              # Workers AI, offre Workers Free : 10 000 neurones/jour, refus (pas de facture) au-delà
+
+[[d1_databases]]
+binding = "DB"
+database_name = "espace-estimation"
+database_id = "f2650d3e-5a22-4532-873b-c1c69fab920f"   # seule table créée : lead_redacteur_jour (compteur)
+
+[vars]
+DVF_BASE = "https://shawez-immo.com/donnees-dvf"
+PLAFOND_NEURONES = "7000"   # marge sous les 10 000 gratuits
+PLAFOND_APPELS = "200"
+
+[observability]
+enabled = true
