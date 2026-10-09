@@ -1,0 +1,5 @@
+[91000,"RUE DE LA COTE HAUTE","Lamargelle",5]
+[45000,"RUE DU LAVOIR","Lamargelle",30]
+[155000,"RUE DU MOULIN D'EN HAUT","Lamargelle",22]
+[167000,"RUE DES TISSERANDS","Lamargelle",27]
+[94000,"RUE DU PIGEONNIER","Lamargelle",20]

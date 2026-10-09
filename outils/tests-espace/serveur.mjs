@@ -46,7 +46,7 @@ function site(port, nom, variables) {
   return p;
 }
 const enfants = [
-  site(8788, 'avec-email', { RESEND_API_KEY: 'local', RESEND_API_URL: 'http://127.0.0.1:8790/emails', LIMITE_FACTEUR: '200', ADMIN_EMAILS: 'shawez@gravelin-immo.com', NOTIFY_EMAILS: 'shawez@gravelin-immo.com', PBKDF2_ITER: '10000' }),
+  site(8788, 'avec-email', { RESEND_API_KEY: 'local', RESEND_API_URL: 'http://127.0.0.1:8790/emails', LIMITE_FACTEUR: '200', ADMIN_EMAILS: 'shawez@gravelin-immo.com', NOTIFY_EMAILS: 'shawez@gravelin-immo.com', PBKDF2_ITER: '10000', HORLOGE_TEST: '1' }),
   site(8789, 'sans-email', { PBKDF2_ITER: '10000' }),
 ];
 const stop = () => { enfants.forEach((e) => e.kill('SIGTERM')); process.exit(0); };

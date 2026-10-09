@@ -1,0 +1,6 @@
+[100000,"RUE LAMBERT","Benoisey",25]
+[116000,"RUE DE CREUSILLE","Benoisey",21]
+[73500,"RUE LAMBERT","Benoisey",7]
+[137000,"RUE HAUTE","Courcelles-lès-Montbard",7]
+[145000,"RTE DE BENOISEY","Courcelles-lès-Montbard",28]
+[35500,"PL DE LA FONTAINE","Courcelles-lès-Montbard",15]
