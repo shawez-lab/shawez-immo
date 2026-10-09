@@ -2,10 +2,25 @@
    demandes notées « gravelin ». */
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
+import { readFileSync, existsSync } from 'node:fs';
+import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { fausseBan, coordonnees, afficherResultat, etape, attendreEtape, suivant, choisirAdresse, moi, emailTest, connexionParLien, ADMIN, api } from './aides.mjs';
 
 const DEMO = '/outils/espace-estimation-gravelin/';
-test.beforeEach(async ({ page }) => { await fausseBan(page); });
+/* Depuis le Lot 1, /outils/ n'est plus servi par le site (fichiers internes en 404) : le module de l'agence est à copier
+   sur son site, pas à visiter ici. Le test sert donc les fichiers du dépôt à la même adresse ; l'API reste celle du site. */
+const MODULE = fileURLToPath(new URL('../../espace-estimation-gravelin/', import.meta.url));
+const TYPES = { html: 'text/html; charset=utf-8', js: 'text/javascript; charset=utf-8', css: 'text/css; charset=utf-8', md: 'text/plain; charset=utf-8' };
+test.beforeEach(async ({ page }) => {
+  await fausseBan(page);
+  await page.route('**' + DEMO + '**', (route) => {
+    const nom = new URL(route.request().url()).pathname.slice(DEMO.length).split('/').pop() || 'demo-estimer.html';
+    const f = join(MODULE, nom);
+    if (!existsSync(f)) return route.fulfill({ status: 404, body: '' });
+    return route.fulfill({ status: 200, contentType: TYPES[nom.split('.').pop()] || 'application/octet-stream', body: readFileSync(f) });
+  });
+});
 
 test('module à la charte de l\'agence : parcours complet, résultat, espace, source « gravelin »', async ({ page, request }, info) => {
   test.setTimeout(150000);
