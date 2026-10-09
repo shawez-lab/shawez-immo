@@ -58,10 +58,7 @@
     EE.pictogramme();
     if(!compte){
       out.hidden=false; inn.hidden=true;
-      // l'envoi de liens aux clients est ouvert : le lien d'abord ; sinon le mot de passe d'abord
-      var bl=$('#me-lien-btn'), bc=$('#me-cnx-btn');
-      if(lienPossible){ bl.className='btn btn-primary btn-lg'; bc.className='btn btn-lg'; }
-      else { bl.className='btn btn-lg'; bc.className='btn btn-primary btn-lg'; bc.parentNode.insertBefore(bc,bl); bl.firstChild.textContent='Recevoir un lien par e-mail '; bc.textContent='Me connecter'; $('#me-mdp-opt').textContent=''; $('#me-cnx-sub').textContent='Connectez-vous avec le mot de passe choisi après votre estimation.'; }
+      etape('email');
       if(qs.get('email')&&!$('#me-email').value)$('#me-email').value=qs.get('email');
       if(qs.get('reinit'))onglet('reinit'); else if(qs.get('oubli'))onglet('oubli'); else onglet('cnx');
       if(qs.get('verifie')==='0')flash('Ce lien de confirmation n\'est plus valable. Connectez-vous pour en recevoir un nouveau.');
@@ -88,29 +85,64 @@
   }
   function charger(){ return EE.api('/moi').then(function(d){ if(d._status!==200){load.hidden=true;out.hidden=false;onglet('cnx');msg($('#me-cnx'),EE.message(d));return;} afficher(d); }); }
 
-  /* ---------- connexion par lien ---------- */
-  $('#me-lien-btn').addEventListener('click',function(){
-    var f=$('#me-cnx'), b=this, m=$('#me-email'); m.value=m.value.replace(/\s+/g,'');
+  /* ---------- connexion en deux temps : l'e-mail, puis le mot de passe (s'il y en a un) ou le lien envoyé ---------- */
+  var etapeCnx='email', emailCnx='';
+  var SOUS={email:'Indiquez l\'e-mail donné le jour de votre estimation.',mdp:'Votre espace est protégé par un mot de passe.',envoye:''};
+  function etape(t){
+    var f=$('#me-cnx'), b=$('#me-cnx-btn');
+    etapeCnx=t; msg(f,'');
+    $('#me-email-f').hidden=(t==='envoye');
+    $('#me-mdp-f').hidden=(t!=='mdp');
+    $('#me-envoye').hidden=(t!=='envoye');
+    $('#me-cnx-nav').hidden=(t==='envoye');
+    $('#me-lien-btn').hidden=(t!=='mdp');
+    $('#me-cnx-sub').textContent=SOUS[t];
+    $('#me-cnx-sub').hidden=!SOUS[t];
+    b.innerHTML=t==='mdp'?'Me connecter <span class="arw">→</span>':'Continuer <span class="arw">→</span>';
     err($('#me-mdp'),false);
-    if(!err(m,!EE.emailOk(m.value))){m.focus();return;}
-    msg(f,''); b.disabled=true;
-    EE.api('/lien',{body:{email:m.value,site:C.site||undefined}}).then(function(d){
-      b.disabled=false;
+    if(t==='mdp'){ $('#me-mdp').value=''; $('#me-mdp').focus({preventScroll:true}); }
+    if(t==='envoye'){ $('#me-envoye-a').textContent=emailCnx.toLowerCase(); }
+  }
+  function emailSaisi(){ var m=$('#me-email'); m.value=m.value.replace(/\s+/g,''); return err(m,!EE.emailOk(m.value))?m.value:null; }
+  var sansEnvoi='L\'envoi de liens par e-mail n\'est pas encore ouvert. Votre espace s\'ouvre avec un lien de connexion : '+aide;
+  function lien(b){
+    var f=$('#me-cnx');
+    if(!emailCnx){ emailCnx=emailSaisi(); if(!emailCnx){$('#me-email').focus();return;} }
+    msg(f,''); if(b)b.disabled=true;
+    EE.api('/lien',{body:{email:emailCnx,site:C.site||undefined}}).then(function(d){
+      if(b)b.disabled=false;
       if(d._status!==200){msg(f,EE.messageChamp(d));return;}
-      if(d.envoye)msg(f,'Si un espace existe avec cette adresse, un lien de connexion vient d\'y être envoyé. Il est valable 30 minutes et ne sert qu\'une fois. Pensez à regarder dans les indésirables.',true);
-      else msg(f,'L\'envoi de liens par e-mail n\'est pas encore ouvert. Connectez-vous avec votre mot de passe si vous en avez choisi un. Sinon, un lien de connexion suffit : '+aide);
+      if(!d.envoye){msg(f,sansEnvoi);return;}
+      var deja=etapeCnx==='envoye'; etape('envoye');
+      if(deja)msg(f,'Nouveau lien envoyé. Seul le dernier reçu fonctionne.',true);
     });
-  });
-  /* ---------- connexion par mot de passe ---------- */
+  }
+  $('#me-email').addEventListener('input',function(){ if(etapeCnx==='mdp'&&this.value.replace(/\s+/g,'').toLowerCase()!==emailCnx.toLowerCase())etape('email'); });
+  $('#me-lien-btn').addEventListener('click',function(){ emailCnx=emailSaisi()||''; if(!emailCnx){$('#me-email').focus();return;} lien(this); });
+  $('#me-renvoi').addEventListener('click',function(){ lien(this); });
+  $('#me-autre').addEventListener('click',function(){ emailCnx=''; etape('email'); var m=$('#me-email'); m.focus(); m.select(); });
   $('#me-cnx').addEventListener('submit',function(e){
-    e.preventDefault(); var f=this, ok=true, m=$('#me-email'); m.value=m.value.replace(/\s+/g,'');
-    ok=err(m,!EE.emailOk(m.value))&&ok; ok=err($('#me-mdp'),!$('#me-mdp').value)&&ok; if(!ok){(f.querySelector('.field.err input')||m).focus();return;}
-    msg(f,''); var b=$('#me-cnx-btn'); b.disabled=true;
-    EE.api('/connexion',{body:{email:m.value,mot_de_passe:$('#me-mdp').value}}).then(function(d){
+    e.preventDefault(); var f=this, b=$('#me-cnx-btn');
+    var adr=emailSaisi(); if(!adr){$('#me-email').focus();return;}
+    emailCnx=adr; msg(f,'');
+    if(etapeCnx!=='mdp'){
+      b.disabled=true;
+      EE.api('/acces',{body:{email:adr,site:C.site||undefined}}).then(function(d){
+        b.disabled=false;
+        if(d._status!==200){msg(f,EE.messageChamp(d));return;}
+        if(d.etape==='mot_de_passe'){etape('mdp');return;}
+        if(d.envoye){etape('envoye');return;}
+        msg(f,sansEnvoi);
+      });
+      return;
+    }
+    if(!err($('#me-mdp'),!$('#me-mdp').value)){$('#me-mdp').focus();return;}
+    b.disabled=true;
+    EE.api('/connexion',{body:{email:adr,mot_de_passe:$('#me-mdp').value}}).then(function(d){
       b.disabled=false;
       if(d._status===200){ $('#me-mdp').value=''; charger(); window.scrollTo({top:0}); return; }
-      if(d.error==='sans_mot_de_passe'){ msg(f,'Cet espace existe bien, mais sans mot de passe : il a été créé pendant votre estimation. '+(d.lien||lienPossible?'Cliquez sur « Recevoir mon lien de connexion ».':'Un lien de connexion suffit pour l\'ouvrir. '+aide)); return; }
-      if(d.error==='identifiants'){ msg(f,'E-mail ou mot de passe incorrect. Si vous n\'avez jamais choisi de mot de passe, '+(lienPossible?'demandez plutôt un lien de connexion.':'un lien de connexion suffit : '+aide)); return; }
+      if(d.error==='sans_mot_de_passe'){ msg(f,'Cet espace n\'a pas de mot de passe : il s\'ouvre avec un lien. Cliquez sur « Recevoir plutôt un lien par e-mail ».'); return; }
+      if(d.error==='identifiants'){ msg(f,'Mot de passe incorrect. Réessayez, ou recevez plutôt un lien par e-mail.'); return; }
       msg(f,EE.messageChamp(d));
     });
   });

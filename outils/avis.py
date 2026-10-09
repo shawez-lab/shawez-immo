@@ -64,10 +64,16 @@ def carte(a, complet=False):
             % (etoiles(a['note']), E(t), more, E(court(a['auteur'])), mois(a['date']), E(lien), G))
 
 def entete():
-    n = F['nombre']
-    return ('<div class="avis-score"><p class="avis-note"><span class="n">%s</span>%s</p>'
-            '<p class="avis-count">%d avis sur la fiche Google « %s »</p></div>'
-            % (fr(F['note']), etoiles(round(F['note'])), n, E(F['nom'])))
+    """Seule preuve sociale autorisée : la note de l'AGENCE Gravelin Immo, datée (avis.json → preuve_agence).
+    La note de la fiche Shawez n'est pas affichée tant qu'elle n'est pas vérifiée et datée."""
+    A = D['preuve_agence']
+    y, m, j = A['releve_le'].split('-')
+    date = '%d %s %s' % (int(j), MOIS[int(m) - 1], y)
+    return ('<div class="avis-score"><p class="avis-note"><span class="n">%s</span>'
+            '<span class="stars" role="img" aria-label="%s sur 5">★★★★★<span class="off"></span></span></p>'
+            '<p class="avis-count">L\'agence %s est notée %s/5 sur %d avis Google '
+            '(<a href="%s" target="_blank" rel="noopener">relevé du %s</a>)</p></div>'
+            % (fr(A['note']), fr(A['note']), E(A['nom']), fr(A['note']), A['nombre'], E(A['lien']), date))
 
 def boutons(page_avis=False):
     b = ('<a class="btn btn-primary" href="%s" target="_blank" rel="noopener">Voir tous les avis sur Google <span class="arw">→</span></a>'
@@ -174,4 +180,4 @@ if '<!-- avis:page -->' not in s:
 s = repl(s, 'page', bloc_page())
 s = with_css(s)
 open(p, 'w', encoding='utf-8').write(s)
-print('%d avis · note %s · %d sur la fiche' % (len(AVIS), fr(F['note']), F['nombre']))
+print('%d avis · preuve affichée : agence %s/5 sur %d avis' % (len(AVIS), fr(D['preuve_agence']['note']), D['preuve_agence']['nombre']))
