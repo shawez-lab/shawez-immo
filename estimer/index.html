@@ -1563,7 +1563,7 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
     <!-- RÉSULTAT : affiché tout de suite, rien ne le retarde -->
     <div class="ee-wrap" id="ee-result" hidden tabindex="-1" aria-live="polite">
       <div class="ee-res tone-dark" data-tone="dark" id="ee-res-box"></div>
-      <div class="ee-who" style="margin-top:14px;"><img data-ee-portrait alt="" width="52" height="52" loading="lazy" hidden><p><b><span data-ee-txt="conseiller">Shawez</span> a reçu votre demande.</b> Il vous appelle pour en parler et, si vous le souhaitez, fixer une visite gratuite : c'est elle qui donne le prix juste. Ensuite, il vous remet un avis de valeur détaillé.</p></div>
+      <div class="ee-who" style="margin-top:14px;"><img data-ee-portrait alt="" width="52" height="52" loading="lazy" hidden><p><b><span data-ee-txt="conseiller">Shawez</span> a reçu votre demande.</b> Il vous appelle pour en parler et, si vous le souhaitez, fixer une visite offerte : c'est elle qui donne le prix juste. Ensuite, il vous remet un avis de valeur détaillé.</p></div>
 
       <!-- après le résultat seulement : retrouver son estimation -->
       <div class="ee-apres" id="ee-apres" hidden>
@@ -1966,7 +1966,7 @@ updateTone();
   window.addEventListener('pageshow',function(e){ hide(); if(e.persisted){ var m=document.getElementById('menu'), x=document.getElementById('menu-close'); if(m&&x&&m.classList.contains('open'))x.click(); } });
 })();
 </script>
-<script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"33710f67a0c16d7cbb94d1b2ba10e7a8"})});</script>
+<script>if(!location.search){function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"33710f67a0c16d7cbb94d1b2ba10e7a8"})});}</script>
 <script id="compte-js">
 /* Pictogramme « Mon espace » : état connecté d'après le témoin se_ok (posé par l'API à la connexion, retiré à la déconnexion) */
 window.EECompte=function(){var on=/(?:^|;\s*)se_ok=1/.test(document.cookie||'');[].forEach.call(document.querySelectorAll('[data-compte]'),function(a){a.classList.toggle('is-in',on);var t=on?'Mon espace : connecté':'Mon espace : se connecter';if(a.hasAttribute('aria-label')){a.setAttribute('aria-label',t);a.title=t;}var x=a.querySelector('[data-compte-txt]');if(x)x.textContent=on?'Mon espace · connecté':'Mon espace';});};
