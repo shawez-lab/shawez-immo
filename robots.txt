@@ -9,3 +9,4 @@ Disallow: /mon-espace/
 Disallow: /donnees-dvf/
 Disallow: /api/
 Sitemap: https://shawez-immo.com/sitemap.xml
+Sitemap: https://shawez-immo.com/biens/sitemap.xml
