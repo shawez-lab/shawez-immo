@@ -1523,7 +1523,22 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 .ee-prom-liste>summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px;}
 .ee-prom-liste .ee-items{margin-top:8px;}
 .ee-prom .ee-kv li span:last-child{overflow-wrap:normal;}
-
+/* admin : ouvrir un dossier à la main, espace du vendeur (lien à lui envoyer) */
+.ee-tools #ad-nv-btn{order:-1;flex:1 1 100%;}
+@media(min-width:760px){.ee-tools #ad-nv-btn{order:0;flex:0 0 auto;}}
+.ee-nv{margin-bottom:14px;}
+.ee-nv[hidden]{display:none;}
+.ee-nv .ee-2{grid-template-columns:minmax(0,1fr);gap:14px;}
+@media(min-width:560px){.ee-nv .ee-2{grid-template-columns:minmax(0,1fr) minmax(0,1fr);}}
+.ee-nv .field input,.ee-nv .field select,.ee-nv .field textarea{min-width:0;background:var(--ground);}
+.ee-nv .field textarea{min-height:88px;}
+.ee-nv .field .hint[hidden]{display:none;}
+.ee-nv .acts .btn{flex:1 1 auto;}
+.ee-row input[type=email]{width:100%;min-height:48px;border:1px solid var(--line-strong);border-radius:12px;background:var(--surface);padding:10px 14px;font:inherit;font-size:.95rem;color:var(--ink);}
+.ee-esp-out{display:flex;flex-direction:column;gap:10px;}
+.ee-esp-out[hidden]{display:none;}
+.ee-esp-out .acts .btn{flex:1 1 auto;}
+.ee-esp-lien{word-break:break-all;user-select:all;-webkit-user-select:all;}
 </style>
 </head>
 <body data-route="/admin/promesses">
@@ -1984,6 +1999,7 @@ updateTone();
   window.addEventListener('pageshow',function(e){ hide(); if(e.persisted){ var m=document.getElementById('menu'), x=document.getElementById('menu-close'); if(m&&x&&m.classList.contains('open'))x.click(); } });
 })();
 </script>
+<script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"33710f67a0c16d7cbb94d1b2ba10e7a8"})});</script>
 <script id="compte-js">
 /* Pictogramme « Mon espace » : état connecté d'après le témoin se_ok (posé par l'API à la connexion, retiré à la déconnexion) */
 window.EECompte=function(){var on=/(?:^|;\s*)se_ok=1/.test(document.cookie||'');[].forEach.call(document.querySelectorAll('[data-compte]'),function(a){a.classList.toggle('is-in',on);var t=on?'Mon espace : connecté':'Mon espace : se connecter';if(a.hasAttribute('aria-label')){a.setAttribute('aria-label',t);a.title=t;}var x=a.querySelector('[data-compte-txt]');if(x)x.textContent=on?'Mon espace · connecté':'Mon espace';});};
