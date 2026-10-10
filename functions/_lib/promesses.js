@@ -78,7 +78,10 @@ export function mesurer(donnees, maintenant = new Date(), exclure = () => false)
 
     /* 1. La fourchette en 2 minutes : la durée du parcours est notée à l'arrivée de la demande. */
     const est = j.find((e) => e.type === 'estimation');
-    if (d.prix_bas == null) noter(1, d, cree, 'hors', null, 'Pas de fourchette automatique (trop peu de ventes comparables) : rappel promis');
+    // dossier ouvert à la main par l'agence (vendeur venu par téléphone, mandat déjà signé) : pas de parcours en ligne
+    const ouverture = j.find((e) => e.type === 'ouverture');
+    if (ouverture) noter(1, d, cree, 'hors', null, 'Dossier ouvert par l\'agence (pas d\'estimation en ligne)');
+    else if (d.prix_bas == null) noter(1, d, cree, 'hors', null, 'Pas de fourchette automatique (trop peu de ventes comparables) : rappel promis');
     else if (!est || !(est.d.duree > 0)) noter(1, d, cree, 'hors', null, 'Durée non relevée (demande d\'avant la mesure)');
     else noter(1, d, cree, est.d.duree <= 2 * MIN ? 'tenue' : 'ratee', arrondi(est.d.duree / MIN, 1), est.d.duree <= 2 * MIN ? '' : 'Parcours de plus de 2 minutes');
 
@@ -86,7 +89,9 @@ export function mesurer(donnees, maintenant = new Date(), exclure = () => false)
     const limite = echeanceAppel(d.cree_le).getTime();
     const depart = limite - 15 * MIN;
     const contact = j.find((e) => (e.type === 'statut' && e.de === 'recue') || e.type === 'visite_fixee');
-    if (contact) noter(2, d, cree, contact.t <= limite ? 'tenue' : 'ratee', arrondi(Math.max(0, contact.t - depart) / MIN), contact.t <= limite ? '' : 'Appelé après le quart d\'heure');
+    // ouvert par l'agence après le premier contact : l'appel a déjà eu lieu, rien à mesurer
+    if (ouverture && ouverture.d.statut && ouverture.d.statut !== 'recue') noter(2, d, cree, 'hors', null, 'Dossier ouvert par l\'agence après le premier contact');
+    else if (contact) noter(2, d, cree, contact.t <= limite ? 'tenue' : 'ratee', arrondi(Math.max(0, contact.t - depart) / MIN), contact.t <= limite ? '' : 'Appelé après le quart d\'heure');
     else if (d.statut !== 'recue') noter(2, d, cree, 'hors', null, 'Appel non daté (statut changé avant la mesure)');
     else if (now > limite) noter(2, d, cree, 'ratee', null, 'Pas encore appelé');
     else noter(2, d, cree, 'en_cours', null, 'À appeler');

@@ -53,10 +53,15 @@
      POST /api/espace/admin/compte-rendu    { demande, id?, visite_le, texte, publie, prevenir? } ; { id, supprimer: true }
      POST /api/espace/admin/offre           { demande, id?, montant, recue_le, conditions, statut, prevenir? } ; { id, supprimer: true }
      POST /api/espace/admin/notaire         { demande, nom, coordonnees, etapes: { cle: { fait, le } }, prevenir? }
+     POST /api/espace/admin/dossier         { contact: { civilite?, prenom, nom, telephone, email? }, bien: { type, adresse, … },
+                                            statut?, notes?, prevenir?, cle? } : l'agence ouvre un dossier à la main (vendeur
+                                            venu par téléphone, recommandation, mandat déjà signé) ; avec un e-mail, le vendeur
+                                            a son espace tout de suite
+     POST /api/espace/admin/dossier/espace  { demande, email?, prevenir? } : ouvre l'espace d'un vendeur dont le dossier n'en a pas
      POST /api/espace/admin/demande/supprimer { id }
      POST /api/espace/admin/fichier?demande=…&role=avis|document   dépôt de l'avis de valeur (PDF) ou d'un document
      POST /api/espace/admin/compte/supprimer { id }
-     POST /api/espace/admin/compte/lien     { id, type: 'acces' | 'reinit' } : lien (24 h) à transmettre au client
+     POST /api/espace/admin/compte/lien     { id, type: 'acces' | 'reinit', jours?: 7 } : lien (24 h, ou 7 jours) à transmettre au client
      POST /api/espace/admin/flux            nouvelle clé pour le Google Sheet (affichée une seule fois)
      GET  /api/espace/admin/export.csv?quoi=demandes|comptes&site=…&statut=…
      GET  /api/espace/admin/promesses       les 7 promesses faites au vendeur, sur 7 et 30 jours : tenue / ratée, délai médian
@@ -70,7 +75,7 @@ import {
 import { estimer, ventesComparables } from '../../_lib/estimation.js';
 import {
   paris, deParis, quandFr, quandCourt, creneaux, creneauValide, prochaineAction, lireCreneaux, frise, suiteVendeur,
-  mailStatut, mailVisite, lienAgenda, heureFr, AGENCE, DUREE_VISITE,
+  mailStatut, mailVisite, mailOuverture, lienAgenda, heureFr, AGENCE, DUREE_VISITE,
   OFFRES, ETAPES_NOTAIRE, DOCUMENTS, mailCompteRendu, mailOffre, mailNotaire, heuresCalmes, eurosFr,
 } from '../../_lib/suivi.js';
 import { envoyer, mailPossible, mailClients, peutEcrire, destinatairesAlerte, adresseDeTest, gabarit, paragraphe, bouton, esc } from '../../_lib/mail.js';
@@ -121,6 +126,8 @@ const ROUTES = {
   'GET /admin/comptes': adminComptes,
   'POST /admin/demande': adminDemande,
   'POST /admin/demande/supprimer': adminSupprimerDemande,
+  'POST /admin/dossier': adminDossier,
+  'POST /admin/dossier/espace': adminDossierEspace,
   'POST /admin/fichier': adminFichier,
   'POST /admin/compte/supprimer': adminSupprimerCompte,
   'POST /admin/compte/lien': adminLien,
@@ -149,7 +156,7 @@ const ROUTES = {
 
 /* Version de l'API : les tests sur l'aperçu attendent de la voir avant de commencer (le site met une à deux minutes
    à se mettre à jour après une poussée). À changer à chaque évolution de l'API. */
-const VERSION = '2026-10-09.1';
+const VERSION = '2026-10-10.1';
 
 /* Clé du flux Google Sheet : on ne garde que son empreinte. Celle-ci est la clé de mise en service ; dès qu'un admin
    en génère une nouvelle (/admin/ → « Google Sheet »), c'est l'empreinte en base qui fait foi. */
@@ -664,6 +671,8 @@ function demandePublique(d, statuts = STATUTS_CLIENT) {
   return {
     id: d.id, reference: d.reference, cree_le: d.cree_le, type: d.type, adresse: d.adresse, commune: d.commune,
     surface: rep.surface ?? null, pieces: rep.pieces ?? null,
+    // « agence » : dossier ouvert à la main par l'agence (pas d'estimation en ligne à montrer)
+    origine: rep.origine === 'agence' ? 'agence' : '',
     prix_bas: d.prix_bas, prix_haut: d.prix_haut, prix_m2: d.prix_m2, comparables: d.comparables, rayon: d.rayon, donnees_du: d.donnees_du,
     statut: d.statut, statut_libelle: statuts[d.statut] || d.statut, maj_le: d.maj_le,
   };
@@ -800,7 +809,7 @@ async function adminDemandes({ request, env }) {
   await exigerAdmin(request, env);
   const base = await db(env);
   const r = await base.prepare(
-    `SELECT d.*, c.email AS compte_email FROM demandes d LEFT JOIN comptes c ON c.id = d.compte_id ORDER BY d.cree_le DESC LIMIT 2000`
+    `SELECT d.*, c.email AS compte_email, c.derniere_connexion AS compte_vu FROM demandes d LEFT JOIN comptes c ON c.id = d.compte_id ORDER BY d.cree_le DESC LIMIT 2000`
   ).all();
   const ids = r.results.map((d) => d.id);
   const fichiers = await fichiersDe(env, ids);
@@ -817,14 +826,37 @@ async function adminDemandes({ request, env }) {
     rdv_url: await reglage(base, 'rdv_url'),
     agenda_relie: !!(await reglage(base, 'agenda_ics')),
     statuts_offre: OFFRES, documents: DOCUMENTS, aujourdhui: paris(new Date()).date,
-    demandes: r.results.map((d) => ({
-      ...vueAgence(d, visites.get(d.id), offres.get(d.id)),
-      test: adresseDeTest(lireJson(d.contact).email),
-      contact: lireJson(d.contact), reponses: lireJson(d.reponses), compte_email: d.compte_email,
-      trace: traces.get(d.id) || null,
-      avis: avis.get(d.id) ? { prepare_le: avis.get(d.id).prepare_le, valide_le: avis.get(d.id).valide_le } : null,
-      fichiers: fichiers.filter((f) => f.demande_id === d.id).map(fichierPublic),
+    demandes: r.results.map((d) => ligneAgence(d, {
+      visite: visites.get(d.id), offres: offres.get(d.id), trace: traces.get(d.id), avis: avis.get(d.id),
+      fichiers: fichiers.filter((f) => f.demande_id === d.id),
     })),
+  });
+}
+
+/* Une ligne de la liste de l'agence : le dossier, son vendeur, son espace (compte, dernière visite du vendeur). */
+function ligneAgence(d, { visite, offres, trace, avis, fichiers = [] } = {}) {
+  return {
+    ...vueAgence(d, visite, offres),
+    test: adresseDeTest(lireJson(d.contact).email),
+    contact: lireJson(d.contact), reponses: lireJson(d.reponses), compte_email: d.compte_email || null,
+    compte_id: d.compte_id || null, compte_vu: d.compte_vu || null,
+    trace: trace || null,
+    avis: avis ? { prepare_le: avis.prepare_le, valide_le: avis.valide_le } : null,
+    fichiers: fichiers.map(fichierPublic),
+  };
+}
+
+/* La même ligne pour un seul dossier, relue en base (après une ouverture de dossier ou d'espace). */
+async function ligneDossier(env, id) {
+  const base = await db(env);
+  const d = await base.prepare('SELECT d.*, c.email AS compte_email, c.derniere_connexion AS compte_vu FROM demandes d LEFT JOIN comptes c ON c.id = d.compte_id WHERE d.id = ?1').bind(id).first();
+  if (!d) throw new Erreur(404, 'introuvable');
+  const e = await base.prepare('SELECT type, vers, par, cree_le FROM evenements WHERE demande_id = ?1 ORDER BY id DESC LIMIT 1').bind(id).first();
+  return ligneAgence(d, {
+    visite: (await visitesDe(base, [id])).get(id), offres: (await etatOffres(base, id)).get(id),
+    trace: e ? { type: e.type, vers: e.vers, par: e.par, le: e.cree_le } : null,
+    avis: await base.prepare('SELECT prepare_le, valide_le FROM avis WHERE demande_id = ?1').bind(id).first(),
+    fichiers: await fichiersDe(env, [id]),
   });
 }
 
@@ -872,6 +904,124 @@ async function adminDemande(ctx) {
   return json(200, { demande: vueAgence(r, (await visitesDe(base, [id])).get(id), (await etatOffres(base, id)).get(id)), mail });
 }
 
+/* ---------------------- Dossier ouvert par l'agence ----------------------
+   Tous les vendeurs ne passent pas par l'estimation en ligne : un appel, une recommandation, un mandat déjà signé.
+   L'agence ouvre alors le dossier elle-même, au statut où il en est ; avec un e-mail, le vendeur a son espace tout de
+   suite (un lien à lui transmettre, ou un e-mail quand l'envoi aux vendeurs est ouvert). Jamais de fourchette ici :
+   elle se décide à la visite, dans l'avis de valeur. */
+
+/* Le compte du vendeur : celui qui existe déjà avec cet e-mail, sinon un nouveau, sans mot de passe (il s'ouvre par
+   un lien). Compte existant dont l'adresse n'a jamais été prouvée : le dossier n'y apparaît qu'au premier lien ouvert
+   (n'importe qui a pu créer un compte avec l'e-mail d'un autre). */
+async function compteVendeur(base, contact, lieu) {
+  let c = await base.prepare('SELECT * FROM comptes WHERE email = ?1').bind(contact.email).first();
+  if (c) return { compte: c, enAttente: c.verifie ? 0 : 1 };
+  try {
+    c = await base.prepare(
+      `INSERT INTO comptes (email, mdp, civilite, prenom, nom, telephone, source, cree_le) VALUES (?1, '', ?2, ?3, ?4, ?5, ?6, ?7) RETURNING *`
+    ).bind(contact.email, contact.civilite || '', contact.prenom || '', contact.nom || '', contact.telephone || '', lieu, maintenant()).first();
+    return { compte: c, enAttente: 0 };
+  } catch (e) {
+    c = await base.prepare('SELECT * FROM comptes WHERE email = ?1').bind(contact.email).first();   // créé à l'instant par une autre requête
+    if (!c) throw e;
+    return { compte: c, enAttente: c.verifie ? 0 : 1 };
+  }
+}
+
+/* L'e-mail du vendeur n'est jamais une adresse de l'agence : le dossier irait dans l'espace de l'agence, et le lien
+   « de son espace » envoyé au vendeur ouvrirait l'espace agence. */
+function pasAgence(env, e) {
+  if (e && admins(env).includes(e)) throw new Erreur(400, 'champs', { champ: 'email_agence' });
+}
+
+async function adminDossier(ctx) {
+  const { request, env } = ctx;
+  await exigerAdmin(request, env);
+  const d = await corps(request, 12000);
+  const c = d.contact && typeof d.contact === 'object' ? d.contact : {};
+  const b = d.bien && typeof d.bien === 'object' ? d.bien : {};
+  const contact = {
+    civilite: choix(c.civilite, ['M.', 'Mme'], { nom: 'civilite' }),
+    prenom: texte(c.prenom, 80, { nom: 'prenom' }),
+    nom: texte(c.nom, 80, { nom: 'nom' }),
+    email: c.email ? lireEmail(c.email) : '',
+    telephone: c.telephone ? telephone(c.telephone) : '',
+  };
+  if (!contact.prenom && !contact.nom) throw new Erreur(400, 'champs', { champ: 'nom_vendeur' });
+  if (!contact.telephone && !contact.email) throw new Erreur(400, 'champs', { champ: 'telephone' });
+  pasAgence(env, contact.email);
+  const type = choix(b.type, ['appartement', 'maison', 'autre'], { requis: true, nom: 'type' });
+  const rep = {
+    type,
+    ...(type === 'autre' ? { autre_type: choix(b.autre_type, ['commerce', 'murs', 'immeuble', 'terrain', 'autre'], { nom: 'autre_type' }) || 'autre' } : {}),
+    adresse: texte(b.adresse, 200, { requis: true, nom: 'adresse' }),
+    code_postal: texte(b.code_postal, 5, { nom: 'code_postal' }),
+    commune: texte(b.commune, 100, { nom: 'commune' }),
+    citycode: texte(b.citycode, 5, { nom: 'citycode' }),
+    lat: b.lat == null || b.lat === '' ? null : Number(b.lat),
+    lon: b.lon == null || b.lon === '' ? null : Number(b.lon),
+    surface: entier(b.surface, 1, 100000, { nom: 'surface' }),
+    pieces: entier(b.pieces, 1, 30, { nom: 'pieces' }),
+    origine: 'agence',
+  };
+  if (rep.code_postal && !/^\d{5}$/.test(rep.code_postal)) throw new Erreur(400, 'champs', { champ: 'code_postal' });
+  if (rep.lat != null && !(rep.lat > 41 && rep.lat < 52)) throw new Erreur(400, 'champs', { champ: 'adresse' });
+  if (rep.lon != null && !(rep.lon > -6 && rep.lon < 10)) throw new Erreur(400, 'champs', { champ: 'adresse' });
+  const statut = choix(d.statut, PARCOURS, { nom: 'statut' }) || 'appele';
+  const notes = texte(d.notes, 5000, { nom: 'notes' });
+  const cle = typeof d.cle === 'string' && /^[A-Za-z0-9-]{16,64}$/.test(d.cle) ? 'ag-' + d.cle : null;
+  const base = await db(env);
+
+  // double clic, réseau lent : la même clé rend le même dossier
+  const deja = cle && (await base.prepare('SELECT id FROM demandes WHERE cle = ?1').bind(cle).first());
+  if (deja) return json(200, { demande: await ligneDossier(env, deja.id), mail: 'non', rejoue: true });
+
+  const lieu = site(request, env, d);
+  const { compte, enAttente } = contact.email ? await compteVendeur(base, contact, lieu) : { compte: null, enAttente: 0 };
+  const t = maintenant();
+  let dem;
+  try {
+    dem = await base.prepare(
+      `INSERT INTO demandes (reference, compte_id, source, type, adresse, code_postal, commune, lat, lon, reponses, contact,
+         statut, statut_le, notes, cree_le, en_attente, cle, suspect, resultat)
+       VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, ?17, 0, ?18) RETURNING *`
+    ).bind(reference(), compte ? compte.id : null, lieu, type, rep.adresse, rep.code_postal, rep.commune, rep.lat, rep.lon,
+      JSON.stringify(rep), JSON.stringify(contact), statut, statut === 'recue' ? null : t, notes, t, enAttente, cle,
+      JSON.stringify({ fourchette: false, raison: 'agence' })).first();
+  } catch (e) {
+    const autre = cle && (await base.prepare('SELECT id FROM demandes WHERE cle = ?1').bind(cle).first());   // deux envois en même temps
+    if (autre) return json(200, { demande: await ligneDossier(env, autre.id), mail: 'non', rejoue: true });
+    throw e;
+  }
+  await journal(base, dem.id, 'ouverture', 'agence', { statut, espace: !!compte });
+  // l'espace existe : le vendeur l'apprend par e-mail quand l'envoi est ouvert ; sinon l'agence lui transmet le lien
+  let mail = 'non';
+  if (compte && d.prevenir !== false) mail = await annoncer(ctx, dem, mailOuverture(), 'ouverture');
+  return json(201, { demande: await ligneDossier(env, dem.id), mail });
+}
+
+/* Un dossier sans espace (demande de rappel, dossier ouvert sans e-mail) : l'e-mail du vendeur suffit à l'ouvrir. */
+async function adminDossierEspace(ctx) {
+  const { request, env } = ctx;
+  const d = await corps(request, 2000);
+  const dem = await demandeAdmin(request, env, d.demande);
+  if (dem.compte_id) throw new Erreur(409, 'espace_existe');
+  const contact = lireJson(dem.contact);
+  const e = d.email ? lireEmail(d.email) : contact.email ? lireEmail(contact.email) : '';
+  if (!e) throw new Erreur(400, 'champs', { champ: 'email' });
+  pasAgence(env, e);
+  contact.email = e;
+  const base = await db(env);
+  const { compte, enAttente } = await compteVendeur(base, contact, siteDe(dem.source));
+  const r = await base.prepare('UPDATE demandes SET compte_id = ?1, en_attente = ?2, contact = ?3, maj_le = ?4 WHERE id = ?5 AND compte_id IS NULL RETURNING *')
+    .bind(compte.id, enAttente, JSON.stringify(contact), maintenant(), dem.id).first();
+  if (!r) throw new Erreur(409, 'espace_existe');
+  await journal(base, dem.id, 'espace_ouvert', 'agence', null);
+  let mail = 'non';
+  if (d.prevenir !== false) mail = await annoncer(ctx, r, mailOuverture(), 'ouverture');
+  return json(200, { demande: await ligneDossier(env, dem.id), mail });
+}
+
 async function adminSupprimerDemande({ request, env }) {
   await exigerAdmin(request, env);
   const d = await corps(request, 500);
@@ -891,16 +1041,27 @@ async function adminSupprimerCompte({ request, env }) {
   return json(200, { ok: true });
 }
 
-/* Lien à transmettre au client (WhatsApp, SMS, e-mail) : connexion directe, ou choix d'un nouveau mot de passe. 24 h. */
+/* Lien à transmettre au client (WhatsApp, SMS, e-mail) : connexion directe, ou choix d'un nouveau mot de passe. 24 h ;
+   7 jours pour le lien d'un dossier (jours: 7), comme les liens des e-mails de suivi : le vendeur ne lit pas toujours
+   son téléphone dans la journée. */
 async function adminLien({ request, env }) {
   await exigerAdmin(request, env);
   const d = await corps(request, 500);
   const id = entier(d.id, 1, 1e12, { requis: true, nom: 'id' });
   const type = d.type === 'reinit' ? 'reinit' : 'acces';
-  const c = await (await db(env)).prepare('SELECT id FROM comptes WHERE id = ?1').bind(id).first();
+  const c = await (await db(env)).prepare('SELECT id, email FROM comptes WHERE id = ?1').bind(id).first();
   if (!c) throw new Erreur(404, 'introuvable');
-  const t = await nouveauJeton(env, id, type, 24 * 3600);
-  return json(200, { type, lien: `${new URL(request.url).origin}/mon-espace/?${type === 'reinit' ? 'reinit' : 'lien'}=${t}` });
+  // jamais de lien « à transmettre » vers un compte de l'agence : il ouvrirait l'espace agence à qui le reçoit
+  if (admins(env).includes(String(c.email).toLowerCase())) throw new Erreur(400, 'compte_agence');
+  const jours = type === 'acces' && Number(d.jours) === 7 ? 7 : 1;
+  const t = await nouveauJeton(env, id, type, jours * 24 * 3600, { garder: jours === 7 });
+  // préparé depuis un dossier : noté à son journal (« dernière trace »)
+  if (d.demande != null) {
+    const base = await db(env);
+    const dem = await base.prepare('SELECT id FROM demandes WHERE id = ?1 AND compte_id = ?2').bind(entier(d.demande, 1, 1e12, { nom: 'demande' }), id).first();
+    if (dem) await journal(base, dem.id, 'lien_espace', 'agence', { jours });
+  }
+  return json(200, { type, jours, lien: `${new URL(request.url).origin}/mon-espace/?${type === 'reinit' ? 'reinit' : 'lien'}=${t}` });
 }
 
 async function adminFlux({ request, env }) {
@@ -1003,7 +1164,7 @@ async function flux({ request, env }) {
     lignes.push([
       quand, siteDe(d.source), c.civilite || '', c.prenom || '', c.nom || '', telephoneLisible(c.telephone), c.email || '', d.adresse || '',
       typeLibelle(q), q.surface ? `${q.surface} m²` : '',
-      d.prix_bas ? `${euros(d.prix_bas)} – ${euros(d.prix_haut)}` : 'pas de fourchette (rappel)',
+      d.prix_bas ? `${euros(d.prix_bas)} – ${euros(d.prix_haut)}` : q.origine === 'agence' ? 'dossier ouvert par l\'agence' : 'pas de fourchette (rappel)',
       LIBELLES.delai[q.delai] || '', q.prix_ideal ? euros(q.prix_ideal) : '',
       STATUTS_SHEET[d.statut] || d.statut, actionSheet(d, visites.get(d.id), offres.get(d.id)),
       [d.suspect ? 'Robot possible : à vérifier.' : '', d.raison ? `Raison : ${d.raison}.` : '', d.notes || ''].filter(Boolean).join(' '), d.reference,
@@ -1679,7 +1840,10 @@ async function adminAvisValider(ctx) {
 async function adminJournal({ request, env }) {
   const dem = await demandeAdmin(request, env, new URL(request.url).searchParams.get('demande'));
   const r = await (await db(env)).prepare('SELECT id, type, de, vers, detail, par, cree_le FROM evenements WHERE demande_id = ?1 ORDER BY id DESC LIMIT 200').bind(dem.id).all();
-  return json(200, { journal: [...r.results.map((e) => ({ ...e, detail: e.detail ? lireJson(e.detail) : null })), { id: 0, type: 'statut', de: null, vers: 'recue', detail: null, par: 'client', cree_le: dem.cree_le }] });
+  const lignes = r.results.map((e) => ({ ...e, detail: e.detail ? lireJson(e.detail) : null }));
+  // une demande faite en ligne commence par « Estimation reçue » ; un dossier ouvert par l'agence, par son ouverture
+  if (!lignes.some((e) => e.type === 'ouverture')) lignes.push({ id: 0, type: 'statut', de: null, vers: 'recue', detail: null, par: 'client', cree_le: dem.cree_le });
+  return json(200, { journal: lignes });
 }
 
 /* Réglages de l'agence. rdv_url : la page de réservation Google Agenda (« Planning de rendez-vous »), si elle existe ;

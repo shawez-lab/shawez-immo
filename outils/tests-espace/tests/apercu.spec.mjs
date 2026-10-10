@@ -151,6 +151,26 @@ test('étape 4 : la mesure des 7 promesses est en place et fermée à qui n\'est
   await page.screenshot({ path: `captures/apercu-${test.info().project.name}-promesses-fermee.png` });
 });
 
+/* Dossier ouvert à la main par l'agence : sur la vraie base, on vérifie seulement que la porte est fermée à qui n'est
+   pas l'agence et que /admin/ se charge sans erreur (le formulaire, le lien et l'espace du vendeur : série locale). */
+test('dossier ouvert par l\'agence : fermé sans connexion et à un vendeur', async ({ page }) => {
+  const corps = { contact: { prenom: 'Essai', nom: 'Automatique', telephone: '0600000000' }, bien: { type: 'maison', adresse: '30 rue Bannelier Dijon' } };
+  const erreurs = [];
+  page.on('pageerror', (e) => erreurs.push(e.message));
+  await page.goto('/admin/');
+  await expect(page.locator('#ad-lien')).toBeVisible();
+  await expect(page.locator('#ad-nv-btn')).toBeHidden();                    // le bouton n'apparaît qu'une fois l'agence connectée
+  expect(erreurs, 'aucune erreur de script sur /admin/').toEqual([]);
+  expect((await api(page, '/admin/dossier', corps))._status).toBe(401);
+  expect((await api(page, '/admin/dossier/espace', { demande: 1, email: 'essai@test.invalid' }))._status).toBe(401);
+  await estimationComplete(page, { adresse: '30 rue Bannelier Dijon' }, { prenom: 'Essai', nom: 'Automatique' });
+  expect((await api(page, '/admin/dossier', corps))._status).toBe(403);
+  expect((await api(page, '/admin/dossier/espace', { demande: 1, email: 'essai@test.invalid' }))._status).toBe(403);
+  // une estimation faite en ligne n'est pas « un dossier ouvert par l'agence »
+  expect((await moi(page)).demandes[0].origine).toBe('');
+  await supprimer(page);
+});
+
 test('le pictogramme est sur toutes les pages', async ({ page }) => {
   for (const p of ['/', '/estimer/', '/mon-espace/', '/vendre-bien-immobilier-dijon/', '/conseils-vendeurs/', '/contact/', '/honoraires/', '/avis/', '/biens-a-vendre-dijon/', '/simulateur-pret-immobilier-dijon/', '/mentions-legales/']) {
     await page.goto(p, { waitUntil: 'domcontentloaded' });

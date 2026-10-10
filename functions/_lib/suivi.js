@@ -304,6 +304,19 @@ export function mailNotaire(faites = [], rdvLe = '') {
   };
 }
 
+/* Dossier ouvert par l'agence (vendeur venu par téléphone, recommandation, mandat déjà signé) : le vendeur apprend
+   que son espace existe, et à quoi il sert. */
+export function mailOuverture() {
+  return {
+    sujet: 'Votre espace est ouvert', titre: 'Votre espace est ouvert',
+    paragraphes: [
+      'Comme convenu, je vous ai ouvert votre espace. Vous y suivez votre dossier étape par étape : la visite, l\'avis de valeur, vos documents, les visites et les offres.',
+      'Un seul endroit, et moi comme seul interlocuteur. Une question ? Appelez-moi au 07 67 57 92 28.',
+    ],
+    bouton: 'Ouvrir mon espace',
+  };
+}
+
 /* Heures calmes : aucun e-mail au vendeur entre 21 h et 8 h (heure de Paris). Ce qui se décide le soir part à 8 h. */
 export function heuresCalmes(d = new Date()) { const p = paris(d); return p.h >= 21 || p.h < 8; }
 

@@ -1523,7 +1523,22 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 .ee-prom-liste>summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px;}
 .ee-prom-liste .ee-items{margin-top:8px;}
 .ee-prom .ee-kv li span:last-child{overflow-wrap:normal;}
-
+/* admin : ouvrir un dossier à la main, espace du vendeur (lien à lui envoyer) */
+.ee-tools #ad-nv-btn{order:-1;flex:1 1 100%;}
+@media(min-width:760px){.ee-tools #ad-nv-btn{order:0;flex:0 0 auto;}}
+.ee-nv{margin-bottom:14px;}
+.ee-nv[hidden]{display:none;}
+.ee-nv .ee-2{grid-template-columns:minmax(0,1fr);gap:14px;}
+@media(min-width:560px){.ee-nv .ee-2{grid-template-columns:minmax(0,1fr) minmax(0,1fr);}}
+.ee-nv .field input,.ee-nv .field select,.ee-nv .field textarea{min-width:0;background:var(--ground);}
+.ee-nv .field textarea{min-height:88px;}
+.ee-nv .field .hint[hidden]{display:none;}
+.ee-nv .acts .btn{flex:1 1 auto;}
+.ee-row input[type=email]{width:100%;min-height:48px;border:1px solid var(--line-strong);border-radius:12px;background:var(--surface);padding:10px 14px;font:inherit;font-size:.95rem;color:var(--ink);}
+.ee-esp-out{display:flex;flex-direction:column;gap:10px;}
+.ee-esp-out[hidden]{display:none;}
+.ee-esp-out .acts .btn{flex:1 1 auto;}
+.ee-esp-lien{word-break:break-all;user-select:all;-webkit-user-select:all;}
 </style>
 </head>
 <body data-route="/mon-espace">
@@ -2066,6 +2081,7 @@ updateTone();
   window.addEventListener('pageshow',function(e){ hide(); if(e.persisted){ var m=document.getElementById('menu'), x=document.getElementById('menu-close'); if(m&&x&&m.classList.contains('open'))x.click(); } });
 })();
 </script>
+<script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"33710f67a0c16d7cbb94d1b2ba10e7a8"})});</script>
 <script id="compte-js">
 /* Pictogramme « Mon espace » : état connecté d'après le témoin se_ok (posé par l'API à la connexion, retiré à la déconnexion) */
 window.EECompte=function(){var on=/(?:^|;\s*)se_ok=1/.test(document.cookie||'');[].forEach.call(document.querySelectorAll('[data-compte]'),function(a){a.classList.toggle('is-in',on);var t=on?'Mon espace : connecté':'Mon espace : se connecter';if(a.hasAttribute('aria-label')){a.setAttribute('aria-label',t);a.title=t;}var x=a.querySelector('[data-compte-txt]');if(x)x.textContent=on?'Mon espace · connecté':'Mon espace';});};
@@ -2366,11 +2382,12 @@ var EE=(function(){
     return '<article class="ee-card" data-id="'+d.id+'">'+
       '<div><h3>'+EE.esc(titre)+'</h3><p class="meta">'+EE.esc(d.adresse||d.commune||'')+'</p></div>'+
       (d.prix_bas?'<div><p class="fp">'+EE.euros(d.prix_bas)+' – '+EE.euros(d.prix_haut)+'</p><p class="meta">Environ '+EE.euros(d.prix_m2)+'/m² · '+d.comparables+' ventes comparables'+(d.rayon?' à moins de '+EE.rayon(d.rayon):'')+(d.donnees_du?' · données à jour de '+EE.mois(d.donnees_du):'')+' · indicatif, à confirmer par une visite</p></div>'
+        :d.origine==='agence'?'<div data-test="dossier-agence"><p class="fp fp-txt">Votre dossier</p><p class="meta">'+EE.esc(C.conseiller)+' le suit avec vous, étape par étape. Tout ce qui concerne votre vente arrive ici.</p></div>'
         :'<div><p class="fp fp-txt">Étude personnalisée</p><p class="meta">'+EE.esc(C.conseiller)+' étudie votre bien lui-même et vous rappelle.</p></div>')+
       suivi(d)+
       '<div class="ee-rdv" data-rdv="'+d.id+'" hidden></div>'+
       (avis.length?'<div class="ee-avis">'+avis.map(function(f){return '<a class="btn btn-primary" href="'+lienFichier(f)+'" download="'+EE.esc(f.nom)+'">Télécharger mon avis de valeur (PDF) <span class="arw">↓</span></a>';}).join('')+'</div>'
-        :rang>=3&&d.statut!=='close'&&d.statut!=='pause'?'<p class="meta">Votre avis de valeur vous a été remis ; il sera aussi déposé ici.</p>':'')+
+        :rang>=3&&d.statut!=='close'&&d.statut!=='pause'&&d.origine!=='agence'?'<p class="meta">Votre avis de valeur vous a été remis ; il sera aussi déposé ici.</p>':'')+
       partOffres(d)+partComptesRendus(d)+partNotaire(d)+
       (docs.length?'<div class="ee-part" data-test="documents"><h4>Documents de votre vente</h4><ul class="ee-flist">'+docs.map(fichier).join('')+'</ul></div>':'')+
       '<div class="ee-files"><p class="lab">'+(docs.length?'Vos photos et documents':'Photos et documents')+'</p>'+
@@ -2398,9 +2415,11 @@ var EE=(function(){
     var c=compte;
     out.hidden=true; inn.hidden=false;
     $('#me-titre').innerHTML=(c.prenom?'Bonjour '+EE.esc(c.prenom)+', <em>voici votre espace.</em>':'Bonjour, <em>voici votre espace.</em>');
-    $('#me-lede').textContent=d.demandes.length?'Vos estimations et l\'avancement de chaque dossier.':'Vous n\'avez pas encore d\'estimation.';
+    // un dossier ouvert par l'agence (sans estimation en ligne) : on parle de « dossiers »
+    var dossiers=d.demandes.some(function(x){return x.origine==='agence';});
+    $('#me-lede').textContent=d.demandes.length?(dossiers?'Votre dossier, étape par étape.':'Vos estimations et l\'avancement de chaque dossier.'):'Vous n\'avez pas encore d\'estimation.';
     RDV_URL=d.rdv_url||null; DOSSIERS={};
-    $('#me-bonjour').textContent=d.demandes.length+' estimation'+(d.demandes.length>1?'s':'');
+    $('#me-bonjour').textContent=d.demandes.length+(dossiers?' dossier':' estimation')+(d.demandes.length>1?'s':'');
     $('#me-cards').innerHTML=d.demandes.length?d.demandes.map(carte).join(''):'<div class="ee-empty"><p style="margin:0;">Deux minutes suffisent pour connaître la fourchette de prix de votre bien.</p><a class="btn btn-primary" href="'+C.estimer+'">Estimer mon bien <span class="arw">→</span></a></div>';
     // visite d'estimation : choisir, voir ou déplacer son créneau, dans chaque dossier
     $$('#me-cards [data-rdv]').forEach(function(z){
