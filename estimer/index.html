@@ -1539,8 +1539,20 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 .ee-esp-out[hidden]{display:none;}
 .ee-esp-out .acts .btn{flex:1 1 auto;}
 .ee-esp-lien{word-break:break-all;user-select:all;-webkit-user-select:all;}
+/* à dire au vendeur : la nouvelle que l'e-mail n'a pas pu annoncer, et le message déjà écrit */
+.ee-row>summary .dire{grid-column:1/-1;font-size:.86rem;font-weight:700;color:#7E2C1F;}
+.ee-row>summary .dire[hidden],.ee-dire[hidden]{display:none;}
+.ee-dire{border-color:rgba(162,59,42,.35);}
+.ee-dire.fait{border-color:var(--line);}
+.ee-dire .acts .btn{flex:1 1 auto;}
+.ee-dire .ee-links{margin-top:0;}
+.ee-dire-txt{white-space:pre-line;overflow-wrap:anywhere;min-width:0;padding:10px 12px;border-radius:12px;background:var(--surface);border:1px solid var(--line);color:var(--ink-2)!important;font-size:.88rem!important;line-height:1.5;user-select:all;-webkit-user-select:all;}
+/* corriger un dossier : le formulaire s'ouvre dans la ligne, sous le dossier, sur toute la largeur */
+.ee-row .in>.ee-nv{grid-column:1/-1;margin:0;}
+.ee-fiche .ee-links{margin-top:12px;}
+.ee-fiche .ee-ok{margin-top:10px;}
+.ee-nv input[readonly]{color:var(--muted);}
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://shawez-immo.com/estimer/#page", "url": "https://shawez-immo.com/estimer/", "name": "Estimation en ligne à Dijon et en Côte-d'Or — Shawez Ali", "description": "Estimez votre appartement ou votre maison en deux minutes : une fourchette calculée sur les ventes réelles (DVF) autour de chez vous, puis l'avis de Shawez.", "inLanguage": "fr-FR", "isPartOf": {"@id": "https://shawez-immo.com/#site"}, "about": {"@id": "https://shawez-immo.com/#agent"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://shawez-immo.com/"}, {"@type": "ListItem", "position": 2, "name": "Estimer mon bien", "item": "https://shawez-immo.com/estimer/"}]}, {"@type": "Service", "@id": "https://shawez-immo.com/estimer/#service", "name": "Estimation immobilière en ligne", "serviceType": "Estimation immobilière", "provider": {"@type": "RealEstateAgent", "@id": "https://shawez-immo.com/#agent", "name": "Shawez Ali — Agent immobilier", "telephone": "+33767579228", "address": {"@type": "PostalAddress", "streetAddress": "30 rue Bannelier", "postalCode": "21000", "addressLocality": "Dijon", "addressCountry": "FR"}}, "areaServed": {"@type": "AdministrativeArea", "name": "Côte-d'Or"}, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR", "description": "Estimation offerte et sans engagement"}}]}</script>
 </head>
 <body data-route="/estimer">
 <header id="nav">
@@ -2158,7 +2170,7 @@ updateTone();
   window.addEventListener('pageshow',function(e){ hide(); if(e.persisted){ var m=document.getElementById('menu'), x=document.getElementById('menu-close'); if(m&&x&&m.classList.contains('open'))x.click(); } });
 })();
 </script>
-<script>if(!location.search){function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"33710f67a0c16d7cbb94d1b2ba10e7a8"})});}</script>
+<script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"33710f67a0c16d7cbb94d1b2ba10e7a8"})});</script>
 <script id="compte-js">
 /* Pictogramme « Mon espace » : état connecté d'après le témoin se_ok (posé par l'API à la connexion, retiré à la déconnexion) */
 window.EECompte=function(){var on=/(?:^|;\s*)se_ok=1/.test(document.cookie||'');[].forEach.call(document.querySelectorAll('[data-compte]'),function(a){a.classList.toggle('is-in',on);var t=on?'Mon espace : connecté':'Mon espace : se connecter';if(a.hasAttribute('aria-label')){a.setAttribute('aria-label',t);a.title=t;}var x=a.querySelector('[data-compte-txt]');if(x)x.textContent=on?'Mon espace · connecté':'Mon espace';});};

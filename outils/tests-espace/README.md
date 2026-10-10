@@ -14,7 +14,8 @@ node avis-apercu.mjs avis.pdf   # l'avis de valeur PDF avec des données d'exemp
 ```
 
 `serveur.mjs` lance : le site avec e-mails aux clients (port 8788 ; les e-mails tombent dans la fausse boîte du port 8790),
-et le site comme en production aujourd'hui, sans e-mail aux clients et avec les vrais plafonds de débit (port 8789).
+le site sans aucun e-mail et avec les vrais plafonds de débit (port 8789), et le site comme en production aujourd'hui :
+l'agence reçoit ses e-mails, les vendeurs aucun (`CLIENT_MAIL = 0`, port 8791).
 La recherche d'adresses est remplacée par des adresses de test (`tests/aides.mjs`).
 
 | Fichier | Ce qu'il vérifie |
@@ -34,6 +35,7 @@ La recherche d'adresses est remplacée par des adresses de test (`tests/aides.mj
 | `13-rdv-express` | rendez-vous en 2 clics sans estimation (accueil, /contact/, /merci/) : « Prendre rendez-vous » en haut de l'accueil, créneau libre (clic 1), confirmation (clic 2), erreurs de saisie, alerte à l'agence, demande et visite dans /admin/, créneau retiré pour les autres (demandé ou fixé), créneau pris entre-temps, dimanche refusé ; agenda Google iCal (moments pris, marge de trajet, répétitions, annulations) ; réglage réservé à l'agence ; WCAG A et AA ; rien ne dépasse de l'écran ; captures `rdv-*` |
 | `90-captures` | captures de chaque étape et du résultat → `captures/` ; rien ne dépasse de l'écran |
 | `14-dossier-agence` | dossier ouvert à la main par l'agence (vendeur venu par téléphone, recommandation, mandat déjà signé) : le formulaire de /admin/, les 10 statuts de départ, jamais de fourchette ; l'espace du vendeur ouvert avec son e-mail, le lien à lui envoyer par WhatsApp, SMS ou e-mail (message déjà écrit, 7 jours, une seule ouverture), l'e-mail « Votre espace est ouvert » (jamais entre 21 h et 8 h) ; dossier sans espace puis ouvert ; espace déjà existant (adresse jamais prouvée : le dossier attend le lien, un intrus ne le voit jamais) ; promesses 1 et 2 hors mesure ; Google Sheet ; droits, validation, double envoi ; règles WCAG A et AA ; captures `dossier-*` |
+| `15-prevenir-corriger` | **promesse 7 quand l'e-mail ne peut pas partir** (envoi aux vendeurs fermé, vendeur sans espace) : la nouvelle reste « à dire » dans le dossier, le message est déjà écrit (les mots de l'e-mail, le lien de son espace s'il en a un, jamais un espace qu'il n'a pas, jamais de montant), WhatsApp, SMS ou e-mail s'ouvrent avec ; le dossier note « prévenu » (« Ce n'est pas parti » le retire) et la promesse 7 est tenue, « déclaré par l'agence » ; seule la dernière étape reste à dire, la visite déplacée ou annulée suit ; **dossier corrigé après coup** : nom, téléphone, e-mail (espace jamais ouvert : le dossier passe à la bonne adresse ; déjà ouvert : refusé), adresse, type et surface (figés quand une fourchette en ligne a été calculée dessus), journal ; droits et validation ; règles WCAG A et AA ; captures `prevenir-*` |
 
 ## Sur le site en ligne
 

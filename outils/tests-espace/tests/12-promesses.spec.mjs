@@ -190,12 +190,12 @@ test.describe('les règles des 7 promesses', () => {
     // 7. prévenu à chaque étape
     expect(une(m, 7, 1)).toEqual([{ resultat: 'tenue', delai: 0, detail: '' }, { resultat: 'tenue', delai: 0, detail: '' }]);
     expect(une(m, 7, 2)).toEqual([
-      { resultat: 'ratee', delai: null, detail: 'Pas d\'e-mail : e-mails aux vendeurs pas encore ouverts' },
-      { resultat: 'ratee', delai: null, detail: 'Pas d\'e-mail : e-mails aux vendeurs pas encore ouverts' },
+      { resultat: 'ratee', delai: null, detail: 'Pas prévenu : e-mails aux vendeurs pas encore ouverts' },
+      { resultat: 'ratee', delai: null, detail: 'Pas prévenu : e-mails aux vendeurs pas encore ouverts' },
     ]);
-    expect(une(m, 7, 7)[0]).toEqual({ resultat: 'ratee', delai: null, detail: 'Pas d\'e-mail (case décochée)' });
+    expect(une(m, 7, 7)[0]).toEqual({ resultat: 'ratee', delai: null, detail: 'Pas prévenu (case décochée)' });
     expect(une(m, 7, 14)[1]).toEqual({ resultat: 'tenue', delai: 637, detail: '' });                 // 21 h 30 → 8 h 07
-    expect(une(m, 7, 15)[1]).toEqual({ resultat: 'ratee', delai: null, detail: 'Pas d\'e-mail : e-mail gardé pour 8 h, jamais parti' });
+    expect(une(m, 7, 15)[1]).toEqual({ resultat: 'ratee', delai: null, detail: 'Pas prévenu : e-mail gardé pour 8 h, jamais parti' });
     // le même, vu à 6 h du matin : l'e-mail est gardé pour 8 h, la promesse court encore
     expect(une(mesurer(jeu(), new Date('2026-10-09T04:00:00Z'), essai), 7, 15)[1]).toEqual({ resultat: 'en_cours', delai: null, detail: 'E-mail gardé pour 8 h' });
   });
@@ -338,7 +338,7 @@ test('les 7 promesses mesurées sur un vrai dossier, de l\'estimation au mandat'
   // (le dépôt de l'avis sans e-mail, deux lignes plus haut, compte lui aussi comme un changement non annoncé)
   m = await mesures(page, c.ref, { heure: dans(0.01) });
   expect(m.de(5)).toEqual([{ n: 5, resultat: 'ratée', delai: '', clair: '', detail: 'Il manque dans son espace : mandat' }]);
-  expect(m.de(7).filter((x) => x.resultat === 'ratée').map((x) => x.detail)).toEqual(['Pas d\'e-mail (case décochée)', 'Pas d\'e-mail (case décochée)']);
+  expect(m.de(7).filter((x) => x.resultat === 'ratée').map((x) => x.detail)).toEqual(['Pas prévenu (case décochée)', 'Pas prévenu (case décochée)']);
   expect(m.de(7).filter((x) => x.resultat === 'tenue').length).toBe(2);
   expect(await deposer(page, c.id, 'document', 'mandat')).toBe(201);
   expect((await mesures(page, c.ref)).de(5)[0].resultat).toBe('tenue');

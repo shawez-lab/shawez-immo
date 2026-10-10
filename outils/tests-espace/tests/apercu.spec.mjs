@@ -163,9 +163,13 @@ test('dossier ouvert par l\'agence : fermé sans connexion et à un vendeur', as
   expect(erreurs, 'aucune erreur de script sur /admin/').toEqual([]);
   expect((await api(page, '/admin/dossier', corps))._status).toBe(401);
   expect((await api(page, '/admin/dossier/espace', { demande: 1, email: 'essai@test.invalid' }))._status).toBe(401);
+  // corriger un dossier, lire le message « à dire au vendeur », déclarer « prévenu » : l'agence seulement
+  const reserve = [['/admin/dossier/modifier', { demande: 1, contact: corps.contact }], ['/admin/dire', { demande: 1 }], ['/admin/prevenu', { demande: 1, motifs: ['statut:mandat'], voie: 'sms' }]];
+  for (const [chemin, c] of reserve) expect((await api(page, chemin, c))._status, chemin + ' sans connexion').toBe(401);
   await estimationComplete(page, { adresse: '30 rue Bannelier Dijon' }, { prenom: 'Essai', nom: 'Automatique' });
   expect((await api(page, '/admin/dossier', corps))._status).toBe(403);
   expect((await api(page, '/admin/dossier/espace', { demande: 1, email: 'essai@test.invalid' }))._status).toBe(403);
+  for (const [chemin, c] of reserve) expect((await api(page, chemin, c))._status, chemin + ' pour un vendeur').toBe(403);
   // une estimation faite en ligne n'est pas « un dossier ouvert par l'agence »
   expect((await moi(page)).demandes[0].origine).toBe('');
   await supprimer(page);

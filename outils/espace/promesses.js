@@ -49,7 +49,7 @@
     $('#pr-stats').innerHTML=[[tenues,tenues>1?'Tenues':'Tenue','tenues'],[ratees,ratees>1?'Ratées':'Ratée','ratees'],[reste,'En attente','reste']].map(function(x){return '<div class="ee-stat'+(x[2]==='ratees'&&x[0]?' ko':'')+'" data-test="'+x[2]+'"><b>'+x[0]+'</b><span>'+x[1]+'</span></div>';}).join('');
     $('#pr-cartes').innerHTML=l.map(carte).join('');
     var al=$('#pr-alerte');
-    if(!T.email_clients){ al.hidden=false; al.innerHTML='<b>La promesse 7 ne peut pas être tenue aujourd\'hui :</b> les e-mails aux vendeurs ne sont pas encore ouverts. Chaque changement de statut compte donc comme raté.'; } else al.hidden=true;
+    if(!T.email_clients){ al.hidden=false; al.innerHTML='<b>La promesse 7 se tient à la main pour l\'instant :</b> les e-mails aux vendeurs ne sont pas encore ouverts. À chaque étape, le message est déjà écrit dans le dossier : envoyez-le par WhatsApp ou SMS, il compte comme prévenu.'; } else al.hidden=true;
     $('#pr-pied').textContent='Calculé le '+EE.quand(T.calcule_le)+', sur ce qui est noté dans les dossiers. Les essais ne comptent pas.';
     $('#pr-export').href=C.api+'/admin/promesses.csv?jours='+JOURS;
     $$('[data-jours]').forEach(function(b){b.setAttribute('aria-pressed',String(+b.getAttribute('data-jours')===JOURS));});
