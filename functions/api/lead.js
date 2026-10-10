@@ -72,7 +72,7 @@ async function recevoir(ctx) {
   const base = await db(env);
   const ref = reference();
   const t = maintenant();
-  const notes = 'Formulaire « être rappelé » (page Estimation) : pas de fourchette automatique, rappel sous 24 h.';
+  const notes = 'Formulaire « être rappelé » (page Estimation) : pas de fourchette automatique, rappel au plus vite.';
   await base.prepare(
     `INSERT INTO demandes (reference, compte_id, source, type, adresse, code_postal, commune, reponses, contact, cree_le, suspect, notes)
      VALUES (?1, NULL, ?2, ?3, '', '', ?4, ?5, ?6, ?7, ?8, ?9)`
@@ -90,7 +90,7 @@ async function alerter(env, request, ref, rep, c) {
     ['Contact', nom], ['Téléphone', c.telephone || '(non donné)'], ['E-mail', c.email],
     ['Bien', [typeLib, rep.commune, rep.surface ? rep.surface + ' m²' : '', rep.pieces_libelle].filter(Boolean).join(' · ')],
     ['Projet', rep.delai_libelle], ['Déjà en agence', rep.deja_en_agence ? 'oui (second avis)' : 'non'],
-    ['Rappel souhaité', rep.creneau], ['Message', rep.message], ['Fourchette', 'aucune (formulaire « être rappelé ») : rappel promis sous 24 h'],
+    ['Rappel souhaité', rep.creneau], ['Message', rep.message], ['Fourchette', 'aucune (formulaire « être rappelé ») : rappel promis au plus vite'],
   ].filter(([, v]) => v);
   const admin = new URL('/admin/?q=' + encodeURIComponent(ref), request.url).toString();
   const boutons = (c.telephone ? bouton('tel:' + c.telephone.replace(/[^\d+]/g, ''), 'Appeler ' + c.prenom, true) : '')

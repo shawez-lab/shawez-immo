@@ -181,12 +181,12 @@ export function mailStatut(statut, { bien = 'votre bien', visiteEnCours = false 
     // le vendeur a déjà proposé ses créneaux (ou la visite est fixée) : on ne lui redemande pas de choisir
     case 'appele': if (visiteEnCours) return {
       sujet: 'Suite à notre échange', titre: 'La suite : la visite',
-      paragraphes: [`Merci pour notre échange. La prochaine étape, c'est la visite de ${bien} : 45 minutes, gratuites et sans engagement.`, 'Vous retrouvez la date et l\'avancement de votre dossier dans votre espace.'],
+      paragraphes: [`Merci pour notre échange. La prochaine étape, c'est la visite de ${bien} : 45 minutes, offertes et sans engagement.`, 'Vous retrouvez la date et l\'avancement de votre dossier dans votre espace.'],
       bouton: 'Ouvrir mon espace',
     };
     return {
       sujet: 'Suite à notre échange : votre visite d\'estimation', titre: 'La suite : la visite',
-      paragraphes: [`Merci pour notre échange. La prochaine étape, c'est la visite de ${bien} : comptez 45 minutes, c'est gratuit et sans engagement.`, 'Choisissez le moment qui vous arrange, je confirme dans l\'heure.'],
+      paragraphes: [`Merci pour notre échange. La prochaine étape, c'est la visite de ${bien} : comptez 45 minutes, c'est offert et sans engagement.`, 'Choisissez le moment qui vous arrange, je confirme dans l\'heure.'],
       bouton: 'Choisir mon créneau',
     };
     case 'avis': return {
@@ -239,7 +239,7 @@ export function mailVisite(genre, { debut, adresse, deplacee = false }) {
   return {
     sujet: `${deplacee ? 'Nouvelle date de visite' : 'Visite d\'estimation confirmée'} : ${quand}`, titre: deplacee ? 'Votre visite est déplacée' : 'Votre visite est confirmée',
     paragraphes: [
-      `C'est noté : je viens voir votre bien ${quand}${ou}. Comptez 45 minutes ; c'est gratuit et sans engagement.`,
+      `C'est noté : je viens voir votre bien ${quand}${ou}. Comptez 45 minutes ; c'est offert et sans engagement.`,
       A_PREPARER,
       `Un empêchement ? Appelez-moi au 07 67 57 92 28. L'agence : ${AGENCE.nom}, ${AGENCE.adresse}.`,
     ],

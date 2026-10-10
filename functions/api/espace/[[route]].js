@@ -20,7 +20,11 @@
      GET  /api/espace/flux/site.csv?cle=…   demandes pour le Google Sheet (IMPORTDATA), protégé par une clé
      GET  /api/espace/flux/promesses.csv?cle=…   les 7 promesses en chiffres (7 et 30 jours), sans aucun nom : pour un onglet
                                             du Google Sheet et pour le contrôle du soir ; même clé
-     GET  /api/espace/creneaux              créneaux de visite d'estimation proposables (lundi-samedi, 9 h-19 h, 45 min)
+     GET  /api/espace/creneaux              créneaux de visite d'estimation proposables (lundi-samedi, 9 h-19 h, 45 min),
+                                            sans les moments déjà pris (visites fixées, agenda Google si relié : _lib/agenda.js)
+     POST /api/espace/rdv                   rendez-vous en 2 clics sans estimation (accueil, contact, /merci/) :
+                                            { creneau, prenom, telephone, adresse, email?, consentement: true } → demande
+                                            « Nouvelle » + visite demandée sur ce créneau + alerte à l'agence
      GET  /api/espace/taches                tâches à heure fixe (rappel de visite la veille à 18 h, e-mails gardés la nuit
                                             et envoyés à 8 h) ; sans effet si rien n'est dû
    Client connecté
@@ -43,7 +47,8 @@
      POST /api/espace/admin/avis/brouillon?demande=…   dépôt du PDF brouillon (corps = le PDF ; invisible pour le vendeur)
      POST /api/espace/admin/avis/valider    { demande, prevenir? } : le brouillon devient l'avis de valeur du vendeur
      GET  /api/espace/admin/journal?demande=…   tout ce qui s'est passé sur un dossier
-     POST /api/espace/admin/reglages        { rdv_url } : page de réservation Google Agenda (facultatif)
+     POST /api/espace/admin/reglages        { rdv_url } : page de réservation Google Agenda (facultatif) ;
+                                            { agenda_ics } : adresse secrète iCal de l'agenda Google (lecture des moments pris)
      GET  /api/espace/admin/suite?demande=… après le mandat : comptes rendus de visite, offres, notaire d'un dossier
      POST /api/espace/admin/compte-rendu    { demande, id?, visite_le, texte, publie, prevenir? } ; { id, supprimer: true }
      POST /api/espace/admin/offre           { demande, id?, montant, recue_le, conditions, statut, prevenir? } ; { id, supprimer: true }
@@ -71,6 +76,7 @@ import {
 import { envoyer, mailPossible, mailClients, peutEcrire, destinatairesAlerte, adresseDeTest, gabarit, paragraphe, bouton, esc } from '../../_lib/mail.js';
 import { deposer, lire as lireFichier, supprimerFichier, fichiersDe, supprimerFichiersDe, TAILLE_MAX } from '../../_lib/fichiers.js';
 import { mesurer, tableau, delaiFr, PROMESSES, PERIODES } from '../../_lib/promesses.js';
+import { agendaOccupe, retirerOccupes, adresseIcsValide } from '../../_lib/agenda.js';
 
 export async function onRequest(context) {
   const { request, env, params } = context;
@@ -121,6 +127,7 @@ const ROUTES = {
   'POST /admin/flux': adminFlux,
   'GET /admin/export.csv': adminExport,
   'GET /creneaux': creneauxDispo,
+  'POST /rdv': rdvExpress,
   'GET /taches': taches,
   'POST /visite': visiteDemander,
   'POST /admin/visite': adminVisite,
@@ -808,6 +815,7 @@ async function adminDemandes({ request, env }) {
     taille_max: TAILLE_MAX,
     email_clients: mailClients(env),
     rdv_url: await reglage(base, 'rdv_url'),
+    agenda_relie: !!(await reglage(base, 'agenda_ics')),
     statuts_offre: OFFRES, documents: DOCUMENTS, aujourdhui: paris(new Date()).date,
     demandes: r.results.map((d) => ({
       ...vueAgence(d, visites.get(d.id), offres.get(d.id)),
@@ -1035,7 +1043,7 @@ function fiche(rep) {
 async function notifier(env, request, ref, rep, c, res, lieu, suspect) {
   if (!mailPossible(env)) { await noterAlerte(env, { quand: maintenant(), destinataires: destinatairesAlerte(env).length, partis: 0, voies: [], erreurs: ['aucun service d\'envoi relié au site'] }); return; }
   const nom = [c.civilite, c.prenom, c.nom].filter(Boolean).join(' ');
-  const fourchette = res.fourchette ? `${euros(res.bas)} – ${euros(res.haut)} (${res.comparables} ventes, rayon ${rayonLibelle(res.rayon)})` : 'Pas de fourchette automatique : rappel promis sous 24 h';
+  const fourchette = res.fourchette ? `${euros(res.bas)} – ${euros(res.haut)} (${res.comparables} ventes, rayon ${rayonLibelle(res.rayon)})` : 'Pas de fourchette automatique : rappel promis au plus vite';
   const lignes = [['Contact', nom], ['Téléphone', c.telephone], ['E-mail', c.email], ['Fourchette', fourchette], ...fiche(rep), ['Site', lieu === 'gravelin' ? 'gravelin-immo.com' : 'shawez-immo.com']];
   if (suspect) lignes.unshift(['À vérifier', 'Robot possible (formulaire rempli trop vite ou champ caché rempli)']);
   const tel = 'tel:' + c.telephone.replace(/[^\d+]/g, '');
@@ -1080,10 +1088,10 @@ async function mailResultat(env, request, compte, ref, rep, c, res, lieu) {
       + paragraphe(`Soit environ ${esc(euros(res.prix_m2))}/m². Elle s'appuie sur ${esc(base)}.<br><br><b>C'est une fourchette indicative, à confirmer par une visite</b> : le calcul ne voit ni la lumière, ni la vue, ni les finitions.`);
   } else {
     sujet = 'Votre demande d\'estimation est bien arrivée';
-    intro = `J'ai bien reçu votre demande pour ${bien}, ${rep.adresse}.\nIl n'y a pas assez de ventes comparables pour vous donner une fourchette automatique fiable : je l'étudie moi-même et je vous rappelle sous 24 h.`;
-    introHtml = paragraphe(`Bonjour ${esc(c.prenom)},<br>j'ai bien reçu votre demande pour ${bien}, ${esc(rep.adresse)}.<br>Il n'y a pas assez de ventes comparables pour vous donner une fourchette automatique fiable : je l'étudie moi-même et <b>je vous rappelle sous 24 h</b>.`);
+    intro = `J'ai bien reçu votre demande pour ${bien}, ${rep.adresse}.\nIl n'y a pas assez de ventes comparables pour vous donner une fourchette automatique fiable : je l'étudie moi-même et je vous rappelle au plus vite.`;
+    introHtml = paragraphe(`Bonjour ${esc(c.prenom)},<br>j'ai bien reçu votre demande pour ${bien}, ${esc(rep.adresse)}.<br>Il n'y a pas assez de ventes comparables pour vous donner une fourchette automatique fiable : je l'étudie moi-même et <b>je vous rappelle au plus vite</b>.`);
   }
-  const suite = 'La suite : je vous appelle pour en parler. Si vous le souhaitez, je passe voir le bien (c\'est gratuit et sans engagement), puis je vous remets un avis de valeur détaillé, par écrit.';
+  const suite = 'La suite : je vous appelle pour en parler. Si vous le souhaitez, je passe voir le bien (c\'est offert et sans engagement), puis je vous remets un avis de valeur détaillé, par écrit.';
   return envoyer(env, {
     to: c.email,
     subject: sujet,
@@ -1285,9 +1293,90 @@ async function courriersDus(ctx, now = new Date()) {
 
 async function creneauxDispo({ request, env }) {
   await limiter(env, 'cre:' + ip(request), 240, 3600);
-  let rdv = null;
-  try { rdv = await reglage(await db(env), 'rdv_url'); } catch (e) { /* base absente : les créneaux restent proposables */ }
-  return json(200, { duree: DUREE_VISITE, jours: creneaux(new Date(), 6), rdv_url: rdv });
+  let rdv = null, base = null;
+  try { base = await db(env); rdv = await reglage(base, 'rdv_url'); } catch (e) { /* base absente : les créneaux restent proposables */ }
+  const { jours, agenda } = await creneauxLibres(base, new Date());
+  return json(200, { duree: DUREE_VISITE, jours, rdv_url: rdv, agenda }, { 'Cache-Control': 'no-store' });
+}
+
+/* Créneaux proposables moins les moments pris : visites déjà fixées, et agenda Google s'il est relié.
+   agenda : 'relie' (lu à l'instant), 'illisible' (relié mais pas lu : on le dit à l'agence), 'non' (pas relié). */
+async function creneauxLibres(base, now) {
+  // on calcule 12 jours, puis on garde les 6 premiers qui ont encore un créneau libre
+  const jours = creneaux(now, 12);
+  let agenda = 'non';
+  if (!base) return { jours: jours.slice(0, 6), agenda };
+  const de = now.getTime(), a = de + 22 * 86400000;
+  const occupe = [];
+  try {
+    const r = await base.prepare("SELECT debut, duree FROM visites WHERE etat = 'fixee' AND debut >= ?1").bind(new Date(de - 3 * 3600000).toISOString()).all();
+    for (const v of r.results || []) occupe.push([Date.parse(v.debut), Date.parse(v.debut) + (v.duree || DUREE_VISITE) * 60000]);
+    // un rendez-vous pris en 2 clics (un seul créneau demandé, pas encore confirmé) bloque déjà son créneau
+    const q = await base.prepare("SELECT creneaux, duree FROM visites WHERE etat = 'demandee' AND demandee_le >= ?1").bind(new Date(de - 21 * 86400000).toISOString()).all();
+    for (const v of q.results || []) {
+      const l = lireCreneaux(v);
+      if (l.length === 1) occupe.push([Date.parse(l[0]), Date.parse(l[0]) + (v.duree || DUREE_VISITE) * 60000]);
+    }
+  } catch (e) { /* tables du système parfait pas encore créées */ }
+  const ics = await reglage(base, 'agenda_ics');
+  if (ics) {
+    const g = await agendaOccupe(ics, de, a);
+    if (g) { occupe.push(...g); agenda = 'relie'; } else agenda = 'illisible';
+  }
+  return { jours: retirerOccupes(jours, occupe, DUREE_VISITE).slice(0, 6), agenda };
+}
+
+/* ---------------------- Rendez-vous en 2 clics (sans estimation) ----------------------
+   Le visiteur choisit un créneau libre (1er clic), donne prénom, téléphone et adresse du bien, confirme (2e clic).
+   La demande arrive dans /admin/ comme les autres (statut « Nouvelle », visite demandée sur ce créneau, à confirmer
+   d'un clic), avec l'alerte à l'agence. Essais : prénom « TEST… » ou e-mail en @test.invalid → aucune alerte. */
+const REF = () => `R-${new Date().toISOString().slice(0, 10).replace(/-/g, '')}-${crypto.randomUUID().replace(/-/g, '').slice(0, 6).toUpperCase()}`;
+const essai = (contact) => adresseDeTest(contact.email) || /^test\b/i.test(contact.prenom || '');
+
+async function rdvExpress(ctx) {
+  const { request, env } = ctx;
+  const d = await corps(request, 4000);
+  await limiter(env, 'rdv:' + ip(request), 8, 3600);
+  const robot = antiRobot(d);
+  if (d.consentement !== true) throw new Erreur(400, 'champs', { champ: 'consentement' });
+  const contact = {
+    civilite: '',
+    prenom: texte(d.prenom, 80, { requis: true, nom: 'prenom' }),
+    nom: texte(d.nom, 80, { nom: 'nom' }),
+    email: d.email ? lireEmail(d.email) : '',
+    telephone: telephone(d.telephone),
+  };
+  const adresse = texte(d.adresse, 200, { requis: true, nom: 'adresse' });
+  if (adresse.length < 3) throw new Erreur(400, 'champs', { champ: 'adresse' });
+  const message = texte(d.message, 500, { nom: 'message' });
+  const base = await db(env);
+  const now = new Date();
+  const creneau = typeof d.creneau === 'string' ? d.creneau : '';
+  // le créneau doit être encore libre (un autre visiteur, ou l'agenda, a pu le prendre depuis l'affichage)
+  const { jours } = await creneauxLibres(base, now);
+  if (!creneauValide(creneau, now) || !jours.some((j) => j.heures.some((h) => h.debut === creneau))) throw new Erreur(409, 'creneau_pris');
+
+  const cle = typeof d.cle === 'string' && /^[A-Za-z0-9-]{16,64}$/.test(d.cle) ? d.cle : null;
+  if (cle) {
+    const deja = await base.prepare('SELECT reference FROM demandes WHERE cle = ?1').bind(cle).first();
+    if (deja) return json(200, { reference: deja.reference, creneau, rejoue: true });
+  }
+  const lieu = site(request, env, d);
+  const ref = REF();
+  const t = maintenant();
+  const rep = { type: 'autre', autre_type: 'rdv', formulaire: d.depuis && /^[a-z0-9-]{1,30}$/.test(d.depuis) ? 'rdv-' + d.depuis : 'rdv', creneau, message };
+  const notes = 'Rendez-vous pris en ligne (2 clics), sans estimation : confirmer le créneau et appeler.';
+  const dem = await base.prepare(
+    `INSERT INTO demandes (reference, compte_id, source, type, adresse, code_postal, commune, reponses, contact, cree_le, suspect, notes, cle)
+     VALUES (?1, NULL, ?2, 'autre', ?3, '', '', ?4, ?5, ?6, ?7, ?8, ?9) RETURNING *`
+  ).bind(ref, lieu, adresse, JSON.stringify(rep), JSON.stringify(contact), t, robot ? 1 : 0, notes, cle).first();
+  await base.prepare("INSERT INTO visites (demande_id, etat, creneaux, duree, message, demandee_le, cree_le) VALUES (?1, 'demandee', ?2, ?3, ?4, ?5, ?5)")
+    .bind(dem.id, JSON.stringify([creneau]), DUREE_VISITE, message, t).run();
+  await journal(base, dem.id, 'rdv_en_ligne', 'client', { creneau, depuis: rep.formulaire }).catch(() => {});
+  await journal(base, dem.id, 'visite_demandee', 'client', { creneaux: [creneau], deplacee: false }).catch(() => {});
+
+  if (!robot && !essai(contact)) ctx.waitUntil(alerteVisite(env, request, dem, contact, [creneau], message, false).catch((e) => console.log('alerte rdv', e && e.message)));
+  return json(201, { reference: ref, creneau, quand: quandFr(creneau) });
 }
 
 /* Le vendeur propose jusqu'à trois créneaux : l'agence est prévenue et confirme. */
@@ -1599,6 +1688,13 @@ async function adminReglages({ request, env }) {
   await exigerAdmin(request, env);
   const d = await corps(request, 2000);
   const base = await db(env);
+  if (d.agenda_ics != null) {
+    const u = texte(d.agenda_ics, 600, { nom: 'agenda_ics' });
+    if (u) {
+      if (!adresseIcsValide(u)) throw new Erreur(400, 'champs', { champ: 'agenda_ics' });
+      await base.prepare("INSERT INTO reglages (cle, valeur) VALUES ('agenda_ics', ?1) ON CONFLICT(cle) DO UPDATE SET valeur = ?1").bind(u).run();
+    } else await base.prepare("DELETE FROM reglages WHERE cle = 'agenda_ics'").run();
+  }
   if (d.rdv_url != null) {
     const u = texte(d.rdv_url, 400, { nom: 'rdv_url' });
     if (u) {
@@ -1608,7 +1704,7 @@ async function adminReglages({ request, env }) {
       await base.prepare("INSERT INTO reglages (cle, valeur) VALUES ('rdv_url', ?1) ON CONFLICT(cle) DO UPDATE SET valeur = ?1").bind(u).run();
     } else await base.prepare("DELETE FROM reglages WHERE cle = 'rdv_url'").run();
   }
-  return json(200, { rdv_url: await reglage(base, 'rdv_url') });
+  return json(200, { rdv_url: await reglage(base, 'rdv_url'), agenda: (await creneauxLibres(base, new Date())).agenda });
 }
 
 /* =====================================================================================================

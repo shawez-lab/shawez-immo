@@ -1202,13 +1202,16 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
         <p class="hero-tag fade">Vendez au bon prix, avec quelqu'un qui répond.</p>
         <div class="btn-row fade">
           <a class="btn btn-primary btn-lg" href="/estimer/">Estimer mon bien <span class="arw">→</span></a>
-          <a class="btn btn-lg" href="https://www.gravelin-immo.com/vente/1?utm_source=shawez-immo" data-sortie="biens">Voir les biens à vendre</a>
+          <a class="btn btn-lg" href="#rdv" data-scroll="rdv">Prendre rendez-vous</a>
         </div>
-        <p class="hero-assure fade"><i></i>Estimation offerte · Réponse personnelle dans la journée</p>
+        <p class="hero-assure fade"><i></i>Estimation offerte · Shawez vous rappelle au plus vite</p>
       </div>
     </div>
     <span class="scroll-cue" aria-hidden="true"></span>
   </div>
+
+  <!-- RENDEZ-VOUS EN 2 CLICS (créneaux libres : assets/rdv.js, /api/espace/creneaux et /api/espace/rdv) -->
+  <div class="sec shell sec-m" id="rdv" style="scroll-margin-top:80px;padding-block:clamp(40px,6vw,80px);"><div data-rdv data-depuis="accueil"></div></div>
 
   <!-- 3.1 BIENS D'EXCEPTION -->
   <div id="biens" class="tone-dark" data-tone="dark">
@@ -1835,5 +1838,6 @@ updateTone();
 window.EECompte=function(){var on=/(?:^|;\s*)se_ok=1/.test(document.cookie||'');[].forEach.call(document.querySelectorAll('[data-compte]'),function(a){a.classList.toggle('is-in',on);var t=on?'Mon espace : connecté':'Mon espace : se connecter';if(a.hasAttribute('aria-label')){a.setAttribute('aria-label',t);a.title=t;}var x=a.querySelector('[data-compte-txt]');if(x)x.textContent=on?'Mon espace · connecté':'Mon espace';});};
 window.EECompte();window.addEventListener('pageshow',window.EECompte);
 </script>
+<script src="/assets/rdv.js?v=1" defer></script>
 </body>
 </html>

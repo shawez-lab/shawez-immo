@@ -159,13 +159,13 @@ test('le pictogramme est sur toutes les pages', async ({ page }) => {
   }
 });
 
-test('commerce : pas de fourchette, rappel sous 24 h', async ({ page }, info) => {
+test('commerce : pas de fourchette, rappel au plus vite', async ({ page }, info) => {
   test.skip(info.project.name !== 'iphone13', 'une seule fois');
   await parcours(page, { type: 'autre', autre: 'commerce', surface: '', adresse: '30 rue Bannelier Dijon' });
   await coordonnees(page, { prenom: 'Essai', nom: 'Commerce' });
   const { corps } = await afficherResultat(page);
   expect(corps.resultat.fourchette).toBe(false);
-  await expect(page.locator('[data-test="rappel"]')).toContainText('sous 24 h');
+  await expect(page.locator('[data-test="rappel"]')).toContainText('au plus vite');
   await supprimer(page);
 });
 
