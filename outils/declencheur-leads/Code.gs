@@ -165,6 +165,7 @@ function traiterLead_(lead, thread, m, essaiMode) {
     Logger.log('   Alerte : « ' + titre + ' » à ' + fmt_(debut, 'EEEE dd/MM HH:mm'));
     Logger.log('   Mail au lead : ' + (decisionMail.ok ? 'OUI → ' + lead.email + ' (créneaux : ' + creneaux.map(texteCreneau_).join(' / ') + ')' : 'NON (' + decisionMail.raison + ')'));
     Logger.log('   Sheet : ' + (lead.test ? ONGLET_ESSAIS : (lead.acheteur ? 'Suivi acquéreurs' : 'Suivi vendeurs')));
+    if (decisionMail.ok) { var apercu = composerMail_(lead, creneaux, false); Logger.log('   Texte (Bible ' + (apercu.variante || 'secours') + ') :\nObjet : ' + apercu.sujet + '\n' + apercu.texte); }
     return;
   }
 
@@ -251,7 +252,8 @@ function lireSite_(c) {
   return {
     nom: champ_(c, 'Contact') || champ_(c, 'Nom'), tel: champ_(c, 'Téléphone'), email: champ_(c, 'E-mail'),
     type: champ_(c, 'Type'), surface: champ_(c, 'Surface'), delai: champ_(c, 'Délai'),
-    ville: villeDepuisAdresse_(champ_(c, 'Adresse')) || champ_(c, 'Ville'), adresse: champ_(c, 'Adresse')
+    ville: villeDepuisAdresse_(champ_(c, 'Adresse')) || champ_(c, 'Ville'), adresse: champ_(c, 'Adresse'),
+    pieces: champ_(c, 'Pièces'), fourchette: champ_(c, 'Fourchette'), reference: (c.match(/Nouvelle estimation\s+(E-[0-9A-Z-]+)/) || [])[1] || ''
   };
 }
 
@@ -265,7 +267,9 @@ function lireSeLoger_(c) {
   var type = (t.match(/\d{5}\s+(Appartement|Maison|Terrain|Local|Immeuble|Parking|Commerce)/i) || [])[1];
   var ref = (t.match(/Ref\. de l'annonce\s*:\s*(\S+)/i) || [])[1];
   var msg = (c.match(/projet\s*\n([\s\S]{5,600}?)\n\s*mailto:/i) || [])[1];
-  return { nom: nom, email: mails[0], tel: tel, ville: ville[1] ? titre_(ville[1]) : '', type: type, ref: ref, message: msg ? msg.trim() : '' };
+  var pieces = (t.match(/(\d+)\s*pi[èe]ces?/i) || [])[1];
+  var surface = (t.match(/(\d+(?:[.,]\d+)?)\s*m²/) || [])[1];
+  return { nom: nom, email: mails[0], tel: tel, ville: ville[1] ? titre_(ville[1]) : '', type: type, ref: ref, message: msg ? msg.trim() : '', pieces: pieces || '', surface: surface ? String(Math.round(parseFloat(surface.replace(',', '.')))) : '' };
 }
 
 function lireBienici_(c) {
@@ -350,7 +354,67 @@ function alerteExiste_(lead, debut) {
 
 // ============================ TEXTES ============================
 
-function composerMail_(lead, creneaux) {
+// Le texte vient de la « Bible des messages leads » (Sheet lu à chaque passage, voir Bible.gs).
+// Si la Bible est illisible ou si son contrôle automatique trouve un problème : texte de secours ci-dessous.
+function composerMail_(lead, creneaux, avancer) {
+  try {
+    var bible = bibleLire_();
+    if (bible) {
+      var bl = leadPourBible_(lead, creneaux);
+      var rang = bibleRang_(bl.cas, 'mail', avancer !== false);
+      var o = bibleRendre_(bible, bl, 'mail', rang);
+      if (o && !o.alertes.length) return { sujet: o.objet, texte: o.texte, variante: o.variante };
+      Logger.log('Bible : ' + (o ? o.variante + ' refusée (' + o.alertes.join(', ') + ')' : 'aucune variante') + ' → texte de secours');
+    }
+  } catch (e) { Logger.log('Bible illisible (' + e + ') → texte de secours'); }
+  return composerMailSecours_(lead, creneaux);
+}
+
+function leadPourBible_(lead, creneaux) {
+  var nom = (lead.nom || '').replace(/^(M\.|Mme|Madame|Monsieur|Mlle)\s+/i, '').trim();
+  var mots = nom.split(/\s+/).filter(Boolean);
+  var cas;
+  if (lead.acheteur) cas = '4-acheteur-seloger';
+  else if (lead.sourceCourte === 'Mandat Machine') cas = '1-mandat-machine';
+  else if (/rappel/i.test(lead.fourchette || '')) cas = '3-site-rappel';
+  else cas = '2-site-estimation';
+  var fo = (lead.fourchette || '').match(/\((\d+)\s+ventes/);
+  var rue = (lead.adresse || '').replace(/\s*\d{5}.*$/, '').replace(/^\s*\d+\s*(bis|ter)?\s*,?\s*/i, '').trim();
+  return {
+    cas: cas,
+    prenom: lead.nomInverse || mots.length > 3 ? '' : (mots.length ? mots[0] : ''),
+    nom: lead.nomInverse ? nom : '',
+    type: lead.type || '', surface: chiffres_(lead.surface || '').slice(0, 4), ville: lead.ville || '',
+    rue: rue ? rue.charAt(0).toLowerCase() + rue.slice(1) : '', reference: lead.reference || '',
+    nb_ventes: fo ? fo[1] : '', delai: lead.delai || '', message: lead.message && !/^(Lead vendeur|Demande d'estimation)$/.test(lead.message) ? lead.message : '',
+    pieces: chiffres_(lead.pieces || '').slice(0, 2), ref_annonce: lead.ref || '',
+    portail: lead.acheteur ? String(lead.sourceCourte || '').replace(/\s*\(Hektor\)/i, '') : '',
+    creneaux: (creneaux || []).map(texteCreneau_), dispo_verifiee: false, appel_rate: false
+  };
+}
+
+// Essai de la Bible : les 5 derniers vrais leads (30 jours) → texte affiché dans le journal. RIEN n'est envoyé ni créé.
+function essaiBible() {
+  REQUETE = REQUETE.replace('newer_than:1d', 'newer_than:30d');
+  Logger.log('=== ESSAI BIBLE : 5 derniers vrais leads, rien ne sera envoyé ni créé ===');
+  var bible = bibleLire_();
+  var vus = 0;
+  GmailApp.search(REQUETE, 0, 50).forEach(function (t) {
+    t.getMessages().reverse().forEach(function (m) {
+      if (vus >= 5) return;
+      var lead = analyser_(m);
+      if (!lead || lead.ignorer || lead.test) return;
+      vus++;
+      var bl = leadPourBible_(lead, deuxCreneaux_(new Date()));
+      var canal = lead.email ? 'mail' : 'whatsapp';
+      var o = bibleRendre_(bible, bl, canal, vus);
+      Logger.log('----- Lead ' + vus + ' : ' + lead.source + ' | ' + lead.nom + ' | ' + lead.ville + ' | canal ' + canal);
+      Logger.log(o ? ('Variante ' + o.variante + ' · ' + o.mots + ' mots · contrôles : ' + (o.alertes.join(', ') || 'OK') + (o.objet ? '\nObjet : ' + o.objet : '') + '\n' + o.texte) : 'aucune variante');
+    });
+  });
+}
+
+function composerMailSecours_(lead, creneaux) {
   var salut = salutation_(lead);
   var bien = lead.type ? bienTexte_(lead.type) : 'votre bien';
   var ville = lead.ville ? ' à ' + lead.ville : '';
