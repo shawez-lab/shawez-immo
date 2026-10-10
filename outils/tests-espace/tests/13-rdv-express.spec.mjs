@@ -50,6 +50,8 @@ test('accueil : « Prendre rendez-vous » mène au bloc, 2 clics, la demande arr
   await expect(heure).toHaveAttribute('aria-pressed', 'true');
   await expect(bloc.locator('.rdvx-form')).toBeVisible();
   await expect(bloc.locator('input[name="prenom"]')).toBeFocused();
+  // sur téléphone, la barre du bas s'efface pour ne pas cacher « Confirmer »
+  if (info.project.name === 'iphone13') await expect(page.locator('html')).toHaveClass(/rdvx-actif/);
 
   // erreurs de saisie : rien ne part
   await bloc.locator('[data-test="rdv-confirmer"]').click();

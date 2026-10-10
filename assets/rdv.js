@@ -9,8 +9,8 @@
   var WA = 'https://wa.me/33767579228?text=' + encodeURIComponent('Bonjour Shawez, je souhaite un rendez-vous pour estimer mon bien.');
   var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
   function fr(iso, o) { o.timeZone = 'Europe/Paris'; try { return new Date(iso).toLocaleString('fr-FR', o); } catch (e) { return iso; } }
-  function heure(iso) { var h = fr(iso, { hour: 'numeric', minute: '2-digit', hourCycle: 'h23' }).split(':'); return (+h[0]) + ' h' + (h[1] && h[1] !== '00' ? ' ' + h[1] : ''); }
-  function quand(iso) { var j = fr(iso, { weekday: 'long', day: 'numeric', month: 'long' }); return j + ' à ' + heure(iso); }
+  function heure(iso) { var h = fr(iso, { hour: 'numeric', minute: '2-digit', hourCycle: 'h23' }).split(':'); return (+h[0]) + '\u00a0h' + (h[1] && h[1] !== '00' ? '\u00a0' + h[1] : ''); }
+  function quand(iso) { var j = fr(iso, { weekday: 'long', day: 'numeric', month: 'long' }); return j + ' à\u00a0' + heure(iso); }
   function uuid() { try { if (crypto.randomUUID) return crypto.randomUUID(); } catch (e) {} return 'r' + Date.now().toString(36) + Math.random().toString(36).slice(2, 14) + Math.random().toString(36).slice(2, 10); }
   function api(chemin, corps) {
     var o = { method: corps ? 'POST' : 'GET', headers: { Accept: 'application/json' }, credentials: 'same-origin' };
@@ -46,6 +46,7 @@
     '.rdvx-ok{margin-top:16px;padding:16px 18px;border-radius:14px;background:var(--accent-soft,rgba(181,137,31,.13));}' +
     '.rdvx-ok b{display:block;font-size:1.15rem;}.rdvx-ok span{display:block;margin-top:6px;color:var(--muted,#6B655C);}' +
     '.rdvx-load{height:112px;margin-top:18px;border-radius:14px;background:var(--stone,#ECE8E0);opacity:.6;}' +
+    '.rdvx-actif #stickybar{transform:translateY(160%)!important;pointer-events:none;}' +
     '.rdvx-hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden;}';
 
   function style() {
@@ -128,7 +129,7 @@
       api('/rdv', { creneau: choisi, prenom: champs.prenom.trim(), telephone: champs.telephone.trim(), adresse: champs.adresse.trim(), consentement: true,
         ee_hp: (racine.querySelector('[name="ee_hp"]') || {}).value || '', duree: Date.now() - t0, cle: cle, depuis: depuis }).then(function (d) {
         envoi = false;
-        if (d._status === 201 || d._status === 200) { fini = { quand: d.quand || quand(choisi), reference: d.reference }; dessiner(true); return; }
+        if (d._status === 201 || d._status === 200) { fini = { quand: quand(choisi), reference: d.reference }; dessiner(true); return; }
         if (d.error === 'creneau_pris') { erreur = 'Ce créneau vient d\'être pris : choisissez-en un autre.'; choisi = null; jours = null; dessiner(); charger(); return; }
         if (d.error === 'champs') erreur = { prenom: 'Indiquez votre prénom.', telephone: 'Le numéro de téléphone n\'est pas valide.', adresse: 'Indiquez l\'adresse du bien.' }[d.champ] || 'Vérifiez le formulaire.';
         else if (d._status === 429) erreur = 'Trop d\'essais d\'un coup. Appelez Shawez au ' + TEL_AFF + '.';
@@ -136,6 +137,11 @@
         dessiner();
       });
     });
+    // sur téléphone, la barre « Estimer / Appeler » du bas d'écran s'efface tant que le formulaire est à l'écran (elle cachait « Confirmer »)
+    var visible = false;
+    function barre() { document.documentElement.classList.toggle('rdvx-actif', visible && !!racine.querySelector('.rdvx-form')); }
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { visible = es[0].isIntersecting; barre(); }, { threshold: 0.05 }).observe(racine);
+    var dessinerBase = dessiner; dessiner = function (f) { dessinerBase(f); barre(); };
     racine.classList.add('rdvx'); racine.setAttribute('aria-labelledby', id + '-t');
     dessiner();
     if ('IntersectionObserver' in window) {
