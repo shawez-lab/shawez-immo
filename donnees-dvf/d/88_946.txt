@@ -1,0 +1,8 @@
+[21000,"RUE AVAU","Thorey-sous-Charny",18]
+[130000,"RUE DE VILLENEUVE","Thorey-sous-Charny",7]
+[120000,"RUE DU PATIS","Thorey-sous-Charny",11]
+[30000,"RUE DE VILLENEUVE","Thorey-sous-Charny",21]
+[18000,"RUE DES VIGNES","Noidan",22]
+[11000,"RUE SAINT HUBERT","Noidan",1]
+[140000,"RUE DE LA LOUERE","Noidan",12]
+[30000,"RUE DE L EGLISE","Noidan",23]

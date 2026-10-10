@@ -1,0 +1,8 @@
+[42000,"VC TRECHE DU CHAIGNAIS","Saint-Seine-en-Bâche",29]
+[183000,"RTE DU JURA","Saint-Seine-en-Bâche",19]
+[258000,"RUE DES MESANGES","Saint-Seine-en-Bâche",5]
+[134000,"CHEM DU PERE CETRE","Saint-Seine-en-Bâche",8]
+[315000,"RUE DU CHATEAU D EAU","Flagey-lès-Auxonne",3]
+[169000,"RUE DU BIEF DU MOULIN","Flagey-lès-Auxonne",13]
+[230000,"RUE GRANDE RUE","Flagey-lès-Auxonne",24]
+[265900,"IMP DES LOCHERES","Flagey-lès-Auxonne",8]

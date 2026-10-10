@@ -27,7 +27,7 @@
    "energie": null,
    "first_seen": "2026-09-28",
    "id": "498",
-   "last_seen": "2026-09-29",
+   "last_seen": "2026-10-10",
    "lien_complet": false,
    "mentions_agence": [
     "Sous-compromis"
@@ -73,7 +73,7 @@
     "terrain_arbore": "OUI",
     "terrain_piscinable": "OUI",
     "terrasse": "OUI",
-    "type_chauffage": "TRAD_TYPE_CHAUFF_CHAUDIERE"
+    "type_chauffage": "Chaudière"
    },
    "chemin": "/vente/1-dijon/maison/t5/512-bien/",
    "commune": "Dijon",
@@ -84,7 +84,7 @@
    "energie": "entre 2 500 € et 3 440 €",
    "first_seen": "2026-09-28",
    "id": "512",
-   "last_seen": "2026-09-29",
+   "last_seen": "2026-10-10",
    "lien_complet": false,
    "mentions_agence": [
     "Sous-offre"
@@ -149,7 +149,7 @@
    "energie": null,
    "first_seen": "2026-09-28",
    "id": "528",
-   "last_seen": "2026-09-29",
+   "last_seen": "2026-10-10",
    "lien_complet": false,
    "mentions_agence": [
     "Nouveauté"
@@ -206,7 +206,7 @@
    "energie": null,
    "first_seen": "2026-09-28",
    "id": "547",
-   "last_seen": "2026-09-29",
+   "last_seen": "2026-10-10",
    "lien_complet": false,
    "mentions_agence": [
     "Prix en baisse"
@@ -280,7 +280,7 @@
    "energie": "entre 1 300 € et 1 810 €",
    "first_seen": "2026-09-28",
    "id": "554",
-   "last_seen": "2026-09-29",
+   "last_seen": "2026-10-10",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité",
@@ -368,7 +368,7 @@
    "energie": "entre 860 € et 1 210 €",
    "first_seen": "2026-09-28",
    "id": "563",
-   "last_seen": "2026-09-29",
+   "last_seen": "2026-10-10",
    "lien_complet": false,
    "mentions_agence": [
     "Coup de coeur"
@@ -435,7 +435,7 @@
    "energie": "entre 530 € et 718 €",
    "first_seen": "2026-09-28",
    "id": "579",
-   "last_seen": "2026-09-29",
+   "last_seen": "2026-10-10",
    "lien_complet": false,
    "mentions_agence": [],
    "photos": {
@@ -486,7 +486,7 @@
    "energie": null,
    "first_seen": "2026-09-28",
    "id": "590",
-   "last_seen": "2026-09-29",
+   "last_seen": "2026-10-10",
    "lien_complet": false,
    "mentions_agence": [],
    "photos": {
@@ -526,7 +526,7 @@
     "surf_carrez": "520 m²",
     "surfterrn": "1,59 ha",
     "terrasse": "OUI",
-    "type_chauffage": "TRAD_TYPE_CHAUFF_CHAUDIERE",
+    "type_chauffage": "Chaudière",
     "type_cuisine": "Equipée",
     "visiophone": "NON",
     "vue": "dégagée"
@@ -540,7 +540,7 @@
    "energie": null,
    "first_seen": "2026-09-28",
    "id": "602",
-   "last_seen": "2026-09-29",
+   "last_seen": "2026-10-10",
    "lien_complet": false,
    "mentions_agence": [
     "Coup de coeur"
@@ -609,7 +609,7 @@
    "energie": "entre 740 € et 1 040 €",
    "first_seen": "2026-09-28",
    "id": "607",
-   "last_seen": "2026-09-29",
+   "last_seen": "2026-10-10",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité",
@@ -675,7 +675,7 @@
     "prix_vente": "120 000 €",
     "surf_carrez": "45,20 m²",
     "terrasse": "NON",
-    "type_chauffage": "TRAD_TYPE_CHAUFF_CHAUDIERE",
+    "type_chauffage": "Chaudière",
     "type_cuisine": "Equipée"
    },
    "chemin": "/vente/1-dijon/appartement/t2/620-bien/",
@@ -687,7 +687,7 @@
    "energie": "entre 950 € et 1 330 €",
    "first_seen": "2026-09-28",
    "id": "620",
-   "last_seen": "2026-09-29",
+   "last_seen": "2026-10-10",
    "lien_complet": false,
    "mentions_agence": [],
    "photos": {
@@ -785,8 +785,8 @@
    "pieces": 3,
    "prix": 127800.0,
    "ref": "450",
-   "status": "en vente",
-   "status_changed": "2026-09-28",
+   "status": "retirée",
+   "status_changed": "2026-10-10",
    "surface": 58.23,
    "type": "Appartement"
   },
@@ -850,8 +850,8 @@
    "pieces": 3,
    "prix": 229000.0,
    "ref": "452",
-   "status": "en vente",
-   "status_changed": "2026-09-28",
+   "status": "retirée",
+   "status_changed": "2026-10-10",
    "surface": 60.0,
    "type": "Appartement"
   },
@@ -880,7 +880,7 @@
    "energie": null,
    "first_seen": "2026-09-28",
    "id": "650",
-   "last_seen": "2026-09-29",
+   "last_seen": "2026-10-10",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité",
@@ -978,8 +978,8 @@
    "pieces": 4,
    "prix": 249600.0,
    "ref": "455",
-   "status": "en vente",
-   "status_changed": "2026-09-28",
+   "status": "retirée",
+   "status_changed": "2026-10-10",
    "surface": 97.2,
    "type": "Appartement"
   },
@@ -1027,8 +1027,8 @@
    "pieces": 2,
    "prix": 147160.0,
    "ref": "460",
-   "status": "en vente",
-   "status_changed": "2026-09-28",
+   "status": "retirée",
+   "status_changed": "2026-10-10",
    "surface": 45.35,
    "type": "Appartement"
   },
@@ -1061,7 +1061,7 @@
    "energie": "entre 480 € et 710 €",
    "first_seen": "2026-09-28",
    "id": "666",
-   "last_seen": "2026-09-29",
+   "last_seen": "2026-10-10",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité",
@@ -1125,7 +1125,7 @@
    "energie": "entre 460 € et 690 €",
    "first_seen": "2026-09-28",
    "id": "668",
-   "last_seen": "2026-09-29",
+   "last_seen": "2026-10-10",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité"
@@ -1191,7 +1191,7 @@
    "energie": "entre 460 € et 690 €",
    "first_seen": "2026-09-28",
    "id": "670",
-   "last_seen": "2026-09-29",
+   "last_seen": "2026-10-10",
    "lien_complet": false,
    "mentions_agence": [
     "Sous-offre",
@@ -1275,8 +1275,8 @@
    "pieces": 2,
    "prix": 129900.0,
    "ref": "464",
-   "status": "en vente",
-   "status_changed": "2026-09-28",
+   "status": "retirée",
+   "status_changed": "2026-10-10",
    "surface": 41.64,
    "type": "Appartement"
   },
@@ -1328,8 +1328,8 @@
    "pieces": 2,
    "prix": 90500.0,
    "ref": "467",
-   "status": "en vente",
-   "status_changed": "2026-09-28",
+   "status": "retirée",
+   "status_changed": "2026-10-10",
    "surface": 44.57,
    "type": "Appartement"
   },
@@ -1370,8 +1370,8 @@
    "pieces": 1,
    "prix": 85000.0,
    "ref": "471",
-   "status": "en vente",
-   "status_changed": "2026-09-28",
+   "status": "retirée",
+   "status_changed": "2026-10-10",
    "surface": 26.5,
    "type": "Appartement"
   },
@@ -1405,7 +1405,7 @@
    "energie": null,
    "first_seen": "2026-09-28",
    "id": "693",
-   "last_seen": "2026-09-29",
+   "last_seen": "2026-10-10",
    "lien_complet": false,
    "mentions_agence": [
     "Accord",
@@ -1474,7 +1474,7 @@
    "energie": "entre 190 € et 300 €",
    "first_seen": "2026-09-28",
    "id": "659",
-   "last_seen": "2026-09-29",
+   "last_seen": "2026-10-10",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité"
@@ -1535,7 +1535,7 @@
    "energie": null,
    "first_seen": "2026-09-28",
    "id": "687",
-   "last_seen": "2026-09-29",
+   "last_seen": "2026-10-10",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité",
@@ -1649,8 +1649,8 @@
    "pieces": 2,
    "prix": 149500.0,
    "ref": "486",
-   "status": "en vente",
-   "status_changed": "2026-09-28",
+   "status": "retirée",
+   "status_changed": "2026-10-10",
    "surface": 37.0,
    "type": "Appartement"
   },
@@ -1670,7 +1670,7 @@
     "surf_carrez": "125,50 m²",
     "surfterrn": "552 m²",
     "terrasse": "OUI",
-    "type_chauffage": "TRAD_TYPE_CHAUFF_CHAUDIERE"
+    "type_chauffage": "Chaudière"
    },
    "chemin": "/vente/1-dijon/propriete/t6/702-bien/",
    "commune": "Dijon",
@@ -1681,7 +1681,7 @@
    "energie": "entre 1 640 € et 2 290 €",
    "first_seen": "2026-09-28",
    "id": "702",
-   "last_seen": "2026-09-29",
+   "last_seen": "2026-10-10",
    "lien_complet": false,
    "mentions_agence": [
     "Coup de coeur"
@@ -1769,7 +1769,7 @@
    "energie": null,
    "first_seen": "2026-09-28",
    "id": "636",
-   "last_seen": "2026-09-29",
+   "last_seen": "2026-10-10",
    "lien_complet": false,
    "mentions_agence": [],
    "photos": {
@@ -1864,7 +1864,7 @@
    "energie": null,
    "first_seen": "2026-09-28",
    "id": "730",
-   "last_seen": "2026-09-29",
+   "last_seen": "2026-10-10",
    "lien_complet": false,
    "mentions_agence": [
     "Coup de coeur"
@@ -1963,7 +1963,7 @@
    "energie": "entre 921 € et 1 247 €",
    "first_seen": "2026-09-28",
    "id": "731",
-   "last_seen": "2026-09-29",
+   "last_seen": "2026-10-10",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité",
@@ -2050,7 +2050,7 @@
    "energie": "entre 3 180 € et 4 360 €",
    "first_seen": "2026-09-28",
    "id": "593",
-   "last_seen": "2026-09-29",
+   "last_seen": "2026-10-10",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité",
@@ -2133,8 +2133,8 @@
    "pieces": 2,
    "prix": 189000.0,
    "ref": "505",
-   "status": "en vente",
-   "status_changed": "2026-09-28",
+   "status": "retirée",
+   "status_changed": "2026-10-10",
    "surface": 50.44,
    "type": "Appartement"
   },
@@ -2168,9 +2168,10 @@
    "energie": "entre 3 630 € et 4 950 €",
    "first_seen": "2026-09-28",
    "id": "708",
-   "last_seen": "2026-09-29",
+   "last_seen": "2026-10-10",
    "lien_complet": false,
    "mentions_agence": [
+    "Sous-offre",
     "Exclusivité",
     "Nouveauté"
    ],
@@ -2219,7 +2220,7 @@
     "copropriete": "OUI",
     "copropriete_lot": "10",
     "copropriete_nb_lot": "14",
-    "copropriete_quote_part": "1 317 €",
+    "copropriete_quote_part": "1 275 €",
     "cp": "21000",
     "format_chauffage": "Individuel",
     "honoraires_vendeur": "",
@@ -2228,21 +2229,21 @@
     "nbetage": "1",
     "nbpiecees": "2",
     "nbse": "1",
-    "prix_vente": "115 000 €",
+    "prix_vente": "109 000 €",
     "surf_carrez": "44,30 m²",
     "terrasse": "NON",
-    "type_chauffage": "TRAD_TYPE_CHAUFF_CHAUDIERE"
+    "type_chauffage": "Chaudière"
    },
    "chemin": "/vente/1-dijon/appartement/t2/718-bien/",
    "commune": "Dijon",
    "compo_agence": "2 pièces - 44,30 m²",
    "cp": "21000",
-   "description_expurgee": "Appartement de type 2 situé entre la [adresse retirée] et de la [adresse retirée] au premier étage d'une copropriété ancienne composé d'une entrée sur séjour de 15m², une grande chambre de 20m² avec parquet, une cuisine et une salle d'eau avec douche et WC. Un rafraîchissement global est à prévoir. Charme de l'ancien, deux belles cheminées en bon état, double vitrage PVC. Volets roulants. Chauffage individuel au gaz, chaudière d'environ 10 ans. Une grande cave voutée de plus de 15m² complète ce bien. Pour toutes demandes de renseignements ou de visites, veuillez contacter Clément PATOUILLET, agent commercial au O 6 / 23 / 63 / 72 / 96. Les risques auxquels ce bien est exposé : www.georisques.gouv.fr",
+   "description_expurgee": "Appartement de type 2 de 47,70m² au sol, 44,30m² carrez situé entre la [adresse retirée] et de la [adresse retirée] au premier étage d'une copropriété ancienne composé d'une entrée sur séjour de 15m², une grande chambre de 20m² avec parquet, une cuisine et une salle d'eau avec douche et WC. Un rafraîchissement global est à prévoir. Charme de l'ancien, deux belles cheminées en bon état, double vitrage PVC. Volets roulants. Chauffage individuel au gaz, chaudière d'environ 10 ans. Une grande cave voutée de plus de 15m² complète ce bien. Pour toutes demandes de renseignements ou de visites, veuillez contacter Clément PATOUILLET, agent commercial au O 6 / 23 / 63 / 72 / 96. Les risques auxquels ce bien est exposé : www.georisques.gouv.fr",
    "dpe": null,
    "energie": "entre 1 000 € et 1 390 €",
    "first_seen": "2026-09-28",
    "id": "718",
-   "last_seen": "2026-09-29",
+   "last_seen": "2026-10-10",
    "lien_complet": false,
    "mentions_agence": [],
    "photos": {
@@ -2274,7 +2275,8 @@
     }
    },
    "pieces": 2,
-   "prix": 115000.0,
+   "prix": 109000.0,
+   "prix_precedent": 115000.0,
    "ref": "507",
    "status": "en vente",
    "status_changed": "2026-09-28",
@@ -2312,7 +2314,7 @@
    "energie": "entre 2 690 € et 3 680 €",
    "first_seen": "2026-09-28",
    "id": "745",
-   "last_seen": "2026-09-29",
+   "last_seen": "2026-10-10",
    "lien_complet": false,
    "mentions_agence": [],
    "photos": {
@@ -2389,7 +2391,7 @@
    "energie": "entre 850 € et 1 190 €",
    "first_seen": "2026-09-28",
    "id": "751",
-   "last_seen": "2026-09-29",
+   "last_seen": "2026-10-10",
    "lien_complet": false,
    "mentions_agence": [
     "Coup de coeur"
@@ -2464,6 +2466,181 @@
    "surface": 141.0,
    "type": "Propriété"
   },
+  "510": {
+   "caracteristiques": {
+    "balcon": "NON",
+    "cave": "OUI",
+    "copropriete": "OUI",
+    "copropriete_lot": "2",
+    "copropriete_nb_lot": "15",
+    "copropriete_plan_sauvegarde": "NON",
+    "copropriete_quote_part": "1 820 €",
+    "copropriete_statut_syndicat": "pas de procédure en cours",
+    "cp": "21000",
+    "cuisine": "Américaine",
+    "exposition": "Nord-Sud",
+    "format_chauffage": "Individuel",
+    "interphone": "OUI",
+    "mode_chauffage": "Electrique",
+    "nbchambres": "1",
+    "nbniveaux": "1",
+    "nbpiecees": "3",
+    "nbse": "1",
+    "prix_honoraires_inclus": "149 000 €",
+    "surf_carrez": "49,08 m²",
+    "terrasse": "NON",
+    "type_chauffage": "Convecteur",
+    "type_cuisine": "SEMI-EQUIPEE",
+    "vue": "cour et rue"
+   },
+   "chemin": "/vente/1-dijon/appartement/t3/763-bien/",
+   "commune": "Dijon",
+   "compo_agence": "3 pièces - 49,08 m²",
+   "cp": "21000",
+   "description_expurgee": "Au premier étage d'une petite copropriété [adresse retirée], joli T2 bis traversant de 49m2 composé d'une grande entrée pouvant faire office de bureau/dressing, chambre séparée, cuisine semi-ouverte sur pièce de vie, salle d'eau avec wc. Idéal premier achat ou investissement locatif. Certaines photos présentent un aménagement virtuel, à titre illustratif, pour vous aider à vous projeter dans les lieux. 2.16.1.2",
+   "dpe": null,
+   "energie": "entre 770 € et 1 060 €",
+   "first_seen": "2026-10-10",
+   "id": "763",
+   "last_seen": "2026-10-10",
+   "mentions_agence": [
+    "Accord"
+   ],
+   "photos": {
+    "fichiers": [
+     "1.jpg",
+     "2.jpg",
+     "3.jpg",
+     "4.jpg",
+     "5.jpg",
+     "6.jpg",
+     "7.jpg",
+     "8.jpg",
+     "9.jpg",
+     "10.jpg",
+     "11.jpg",
+     "12.jpg",
+     "13.jpg",
+     "14.jpg"
+    ],
+    "sources": {
+     "1/7a4f32a25100a1978a7d2930a7381955/photo_26987dac5ebd435c653682826ea56cc9.jpg": "4.jpg",
+     "1/7a4f32a25100a1978a7d2930a7381955/photo_34e4e5a2f99fe882044220e8b7f7c398.jpg": "8.jpg",
+     "1/7a4f32a25100a1978a7d2930a7381955/photo_3a86469f116bb92f7c7f393685901c33.jpg": "11.jpg",
+     "1/7a4f32a25100a1978a7d2930a7381955/photo_4c74769848ea9bff7a1194ee4f653877.jpg": "7.jpg",
+     "1/7a4f32a25100a1978a7d2930a7381955/photo_52be2ccc62f852fd98cd29d4ee7efdfe.png": "9.jpg",
+     "1/7a4f32a25100a1978a7d2930a7381955/photo_5e529f548971da083d84283675cbadb9.jpg": "12.jpg",
+     "1/7a4f32a25100a1978a7d2930a7381955/photo_7fe404fa1287587b982daa1e6b175232.jpg": "10.jpg",
+     "1/7a4f32a25100a1978a7d2930a7381955/photo_a1aee961ae7be4d5fa70610bef5a5d74.png": "3.jpg",
+     "1/7a4f32a25100a1978a7d2930a7381955/photo_b5746cbd29905a57feaeb0c2e457efb1.png": "5.jpg",
+     "1/7a4f32a25100a1978a7d2930a7381955/photo_b6cba25a20e80a9d84b4f8bd951c9baf.jpg": "2.jpg",
+     "1/7a4f32a25100a1978a7d2930a7381955/photo_c4d3d945cd63ec8e4546798186d4bde1.jpg": "14.jpg",
+     "1/7a4f32a25100a1978a7d2930a7381955/photo_c5398a7254ef83b9294f51e44ac7f3cd.png": "1.jpg",
+     "1/7a4f32a25100a1978a7d2930a7381955/photo_ce0b56f83bc75d689fcdb983b8a53488.jpg": "6.jpg",
+     "1/7a4f32a25100a1978a7d2930a7381955/photo_e72762bbf0734299cca340a01641f502.jpg": "13.jpg"
+    }
+   },
+   "pieces": 3,
+   "prix": 149000.0,
+   "ref": "510",
+   "status": "en vente",
+   "status_changed": "2026-10-10",
+   "surface": 49.08,
+   "type": "Appartement"
+  },
+  "512": {
+   "caracteristiques": {
+    "copropriete": "OUI",
+    "copropriete_lot": "23",
+    "copropriete_nb_lot": "108",
+    "cp": "21300",
+    "format_chauffage": "Collectif",
+    "mode_chauffage": "Gaz",
+    "nb_garage": "1",
+    "nbchambres": "3",
+    "nbetage": "1",
+    "nbniveaux": "1",
+    "nbpiecees": "4",
+    "nbsdb": "1",
+    "prix_honoraires_inclus": "229 000 €",
+    "surf_carrez": "93,17 m²",
+    "terrasse": "OUI",
+    "type_chauffage": "Autre",
+    "type_cuisine": "Equipée"
+   },
+   "chemin": "/vente/86-chenove/appartement/t4/759-bien/",
+   "commune": "Chenôve",
+   "compo_agence": "4 pièces - 93,17 m²",
+   "cp": "21300",
+   "description_expurgee": "Découvrez cet appartement de 4 pièces d'une surface de 93,17 m², idéalement situé au 3ème étage avec ascenseur de la [adresse retirée] à Chenôve . L'appartement offre un bel espace de vie comprenant : Une entrée accueillante . Un salon-séjour lumineux s'ouvrant sur une première terrasse, parfait pour profiter des beaux jours . Une cuisine séparée, entièrement équipée et aménagée, donnant sur une seconde terrasse . Trois chambres confortables . Une salle de bains et un WC indépendant . Un cellier pratique pour le rangement . Le plus : Un garage est inclus dans le prix de vente ! L'appartement bénéficie d'un chauffage collectif au gaz . 2.16.1.2",
+   "dpe": null,
+   "energie": null,
+   "first_seen": "2026-10-10",
+   "id": "759",
+   "last_seen": "2026-10-10",
+   "mentions_agence": [],
+   "photos": {
+    "fichiers": [
+     "1.jpg",
+     "2.jpg",
+     "3.jpg",
+     "4.jpg",
+     "5.jpg",
+     "6.jpg",
+     "7.jpg",
+     "8.jpg",
+     "9.jpg",
+     "10.jpg",
+     "11.jpg",
+     "12.jpg",
+     "13.jpg",
+     "14.jpg",
+     "15.jpg",
+     "16.jpg",
+     "17.jpg",
+     "18.jpg",
+     "19.jpg",
+     "20.jpg",
+     "21.jpg",
+     "22.jpg",
+     "23.jpg",
+     "24.jpg"
+    ],
+    "sources": {
+     "1/cfd055a002e9311402c24f5ad8cb569f/photo_17774e9f15af3b49d9a4e37205d3341f.jpg": "15.jpg",
+     "1/cfd055a002e9311402c24f5ad8cb569f/photo_182062df47f2502ea71078437ac111ab.jpg": "16.jpg",
+     "1/cfd055a002e9311402c24f5ad8cb569f/photo_224c9298661ed5dfc9e0fa3ac4cdd09a.jpg": "3.jpg",
+     "1/cfd055a002e9311402c24f5ad8cb569f/photo_25ee2daf6a33befb6525b40fef52d6de.jpg": "9.jpg",
+     "1/cfd055a002e9311402c24f5ad8cb569f/photo_263c2a4b5a3ccb6666f9f8e6b646540b.jpg": "17.jpg",
+     "1/cfd055a002e9311402c24f5ad8cb569f/photo_2f1002c1c6b03c12082e32cf11351988.jpg": "20.jpg",
+     "1/cfd055a002e9311402c24f5ad8cb569f/photo_2fc3d7aa49c11d565b7441f92b3c6b98.jpg": "13.jpg",
+     "1/cfd055a002e9311402c24f5ad8cb569f/photo_3db009e7af64b36350d54c8e95a41fb9.jpg": "6.jpg",
+     "1/cfd055a002e9311402c24f5ad8cb569f/photo_44556d7e6889d16e3cb621c27217d4cf.jpg": "4.jpg",
+     "1/cfd055a002e9311402c24f5ad8cb569f/photo_46aafc8409dde5f94051dcd15689d3cf.jpg": "18.jpg",
+     "1/cfd055a002e9311402c24f5ad8cb569f/photo_59af30ad6db5303dabdc88b1be82623f.jpg": "1.jpg",
+     "1/cfd055a002e9311402c24f5ad8cb569f/photo_66509a3c8dbb08d8c4b7f7f60b79562d.png": "24.jpg",
+     "1/cfd055a002e9311402c24f5ad8cb569f/photo_6cfec064b439b4875eb91dceca9b22b7.jpg": "2.jpg",
+     "1/cfd055a002e9311402c24f5ad8cb569f/photo_723e1dcabee83a8ec61515083cfdb7f5.png": "22.jpg",
+     "1/cfd055a002e9311402c24f5ad8cb569f/photo_7a5d2ad555f6b1f33f2b05e53adbd827.jpg": "19.jpg",
+     "1/cfd055a002e9311402c24f5ad8cb569f/photo_80d814851f92bd91461b6b9658311f9f.jpg": "12.jpg",
+     "1/cfd055a002e9311402c24f5ad8cb569f/photo_9a694b32f66bb5ab4c7ea965189b58a5.jpg": "11.jpg",
+     "1/cfd055a002e9311402c24f5ad8cb569f/photo_aea3fa7887eed68c23c152829816621d.jpg": "5.jpg",
+     "1/cfd055a002e9311402c24f5ad8cb569f/photo_b8ce7ba32cf4a1507b181fd802d1b1c4.jpg": "14.jpg",
+     "1/cfd055a002e9311402c24f5ad8cb569f/photo_b9011f352fcf57024e5b59f7895a37e6.jpg": "10.jpg",
+     "1/cfd055a002e9311402c24f5ad8cb569f/photo_d23d1c68004946a3dc07092f640a27a1.png": "21.jpg",
+     "1/cfd055a002e9311402c24f5ad8cb569f/photo_d2f67f243adc9160b38340b76db3d7a9.jpg": "7.jpg",
+     "1/cfd055a002e9311402c24f5ad8cb569f/photo_d4e106998768a947849b643f4eadacd8.jpg": "8.jpg",
+     "1/cfd055a002e9311402c24f5ad8cb569f/photo_d97d014b5d8061b5cd9e33433d14b900.png": "23.jpg"
+    }
+   },
+   "pieces": 4,
+   "prix": 229000.0,
+   "ref": "512",
+   "status": "en vente",
+   "status_changed": "2026-10-10",
+   "surface": 93.17,
+   "type": "Appartement"
+  },
   "513": {
    "caracteristiques": {
     "cave": "NON",
@@ -2494,7 +2671,7 @@
    "energie": "entre 440 € et 650 €",
    "first_seen": "2026-09-28",
    "id": "754",
-   "last_seen": "2026-09-29",
+   "last_seen": "2026-10-10",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité",
@@ -2553,7 +2730,7 @@
    "energie": null,
    "first_seen": "2026-09-28",
    "id": "71",
-   "last_seen": "2026-09-29",
+   "last_seen": "2026-10-10",
    "lien_complet": false,
    "mentions_agence": [],
    "photos": {
@@ -2607,7 +2784,7 @@
    "energie": "entre 1 880 € et 2 570 €",
    "first_seen": "2026-09-28",
    "id": "454",
-   "last_seen": "2026-09-29",
+   "last_seen": "2026-10-10",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité",
@@ -2669,7 +2846,7 @@
     "surfterrn": "352 m²",
     "terrain_arbore": "OUI",
     "terrasse": "OUI",
-    "type_chauffage": "TRAD_TYPE_CHAUFF_CHAUDIERE",
+    "type_chauffage": "Chaudière",
     "type_cuisine": "Equipée",
     "vue": "rue et cour"
    },
@@ -2682,7 +2859,7 @@
    "energie": "entre 2 330 € et 3 180 €",
    "first_seen": "2026-09-28",
    "id": "672",
-   "last_seen": "2026-09-29",
+   "last_seen": "2026-10-10",
    "lien_complet": false,
    "mentions_agence": [
     "Prix en baisse"
@@ -2774,7 +2951,7 @@
    "energie": "entre 1 300 € et 1 810 €",
    "first_seen": "2026-09-28",
    "id": "739",
-   "last_seen": "2026-09-29",
+   "last_seen": "2026-10-10",
    "lien_complet": false,
    "mentions_agence": [
     "Coup de coeur"
@@ -2820,7 +2997,7 @@
    "type": "Duplex"
   }
  },
- "maj": "2026-09-29",
+ "maj": "2026-10-10",
  "posts": [
   {
    "action": "publier",
@@ -2951,6 +3128,62 @@
   {
    "action": "publier",
    "cle": "publier",
+   "date": "2026-10-10",
+   "lien": "https://www.gravelin-immo.com/vente/1-dijon/appartement/t3/763-bien/?utm_source=shawez-immo",
+   "photos": [
+    "https://shawez-immo.com/annonces/510/1.jpg",
+    "https://shawez-immo.com/annonces/510/2.jpg",
+    "https://shawez-immo.com/annonces/510/3.jpg"
+   ],
+   "ref": "510",
+   "texte": "Appartement de 3 pièces, 49,08 m², à Dijon.\n\nPrix : 149 000 €, honoraires inclus.\n\n• Cave\n• 1 chambre\n\nDépenses annuelles d'énergie estimées entre 770 € et 1 060 € (usage standard).\n\nRéférence 510, GRAVELIN IMMO. Visites et informations : Shawez Ali, 07 67 57 92 28.",
+   "titre": "Appartement 3 pièces, 49 m² à Dijon"
+  },
+  {
+   "action": "publier",
+   "cle": "publier",
+   "date": "2026-10-10",
+   "lien": "https://www.gravelin-immo.com/vente/86-chenove/appartement/t4/759-bien/?utm_source=shawez-immo",
+   "photos": [
+    "https://shawez-immo.com/annonces/512/1.jpg",
+    "https://shawez-immo.com/annonces/512/2.jpg",
+    "https://shawez-immo.com/annonces/512/3.jpg"
+   ],
+   "ref": "512",
+   "texte": "Appartement de 4 pièces, 93,17 m², à Chenôve.\n\nPrix : 229 000 €, honoraires inclus.\n\n• Terrasse\n• Garage\n• 3 chambres\n\nRéférence 512, GRAVELIN IMMO. Visites et informations : Shawez Ali, 07 67 57 92 28.",
+   "titre": "Appartement 4 pièces, 93 m² à Chenôve"
+  },
+  {
+   "action": "mettre à jour",
+   "cle": "retiree",
+   "date": "2026-10-10",
+   "lien": "https://www.gravelin-immo.com/vente/1-dijon/appartement/t2/744-bien/?utm_source=shawez-immo",
+   "photos": [
+    "https://shawez-immo.com/annonces/505/1.jpg",
+    "https://shawez-immo.com/annonces/505/2.jpg",
+    "https://shawez-immo.com/annonces/505/3.jpg"
+   ],
+   "ref": "505",
+   "texte": "N'est plus disponible",
+   "titre": "Appartement 2 pièces, 50 m² à Dijon"
+  },
+  {
+   "action": "mettre à jour",
+   "cle": "prix-109000",
+   "date": "2026-10-10",
+   "lien": "https://www.gravelin-immo.com/vente/1-dijon/appartement/t2/718-bien/?utm_source=shawez-immo",
+   "photos": [
+    "https://shawez-immo.com/annonces/507/1.jpg",
+    "https://shawez-immo.com/annonces/507/2.jpg",
+    "https://shawez-immo.com/annonces/507/3.jpg"
+   ],
+   "ref": "507",
+   "texte": "Appartement de 2 pièces, 44,3 m², à Dijon.\n\nPrix : 109 000 €, honoraires inclus.\n\n• Cave\n• 1 chambre\n• 1er étage\n\nDépenses annuelles d'énergie estimées entre 1 000 € et 1 390 € (usage standard).\n\nRéférence 507, GRAVELIN IMMO. Visites et informations : Shawez Ali, 07 67 57 92 28.",
+   "titre": "Appartement 2 pièces, 44 m² à Dijon"
+  },
+  {
+   "action": "publier",
+   "cle": "publier",
    "date": "2026-10-12",
    "lien": "https://www.gravelin-immo.com/vente/1-dijon/propriete/t6/702-bien/?utm_source=shawez-immo",
    "photos": [
@@ -2961,20 +3194,6 @@
    "ref": "493",
    "texte": "Propriété de 6 pièces, 125,5 m², à Dijon.\n\nPrix : 425 000 €, honoraires inclus.\n\n• Terrain de 552 m²\n• Terrasse\n• Garage\n\nDépenses annuelles d'énergie estimées entre 1 640 € et 2 290 € (usage standard).\n\nRéférence 493, GRAVELIN IMMO. Visites et informations : Shawez Ali, 07 67 57 92 28.",
    "titre": "Propriété 6 pièces, 126 m² à Dijon"
-  },
-  {
-   "action": "publier",
-   "cle": "publier",
-   "date": "2026-10-13",
-   "lien": "https://www.gravelin-immo.com/vente/1-dijon/appartement/t2/695-bien/?utm_source=shawez-immo",
-   "photos": [
-    "https://shawez-immo.com/annonces/486/1.jpg",
-    "https://shawez-immo.com/annonces/486/2.jpg",
-    "https://shawez-immo.com/annonces/486/3.jpg"
-   ],
-   "ref": "486",
-   "texte": "Appartement de 2 pièces, 37 m², à Dijon.\n\nPrix : 149 500 €, honoraires inclus.\n\n• Cave\n• 1 chambre\n• Cuisine équipée\n\nDépenses annuelles d'énergie estimées entre 706 € et 956 € (usage standard).\n\nRéférence 486, GRAVELIN IMMO. Visites et informations : Shawez Ali, 07 67 57 92 28.",
-   "titre": "Appartement 2 pièces, 37 m² à Dijon"
   },
   {
    "action": "publier",
@@ -3003,20 +3222,6 @@
    "ref": "483",
    "texte": "Loft de 1 pièce, 42 m², à Dijon.\n\nPrix : 178 500 €, honoraires inclus.\n\nRéférence 483, GRAVELIN IMMO. Visites et informations : Shawez Ali, 07 67 57 92 28.",
    "titre": "Loft 1 pièce, 42 m² à Dijon"
-  },
-  {
-   "action": "publier",
-   "cle": "publier",
-   "date": "2026-10-16",
-   "lien": "https://www.gravelin-immo.com/vente/1-dijon/appartement/t1/675-bien/?utm_source=shawez-immo",
-   "photos": [
-    "https://shawez-immo.com/annonces/471/1.jpg",
-    "https://shawez-immo.com/annonces/471/2.jpg",
-    ""
-   ],
-   "ref": "471",
-   "texte": "Appartement de 1 pièce, 26,5 m², à Dijon.\n\nPrix : 85 000 €, honoraires inclus.\n\n• 1er étage\n\nRéférence 471, GRAVELIN IMMO. Visites et informations : Shawez Ali, 07 67 57 92 28.",
-   "titre": "Appartement 1 pièce, 26 m² à Dijon"
   },
   {
    "action": "publier",
@@ -3077,48 +3282,6 @@
   {
    "action": "publier",
    "cle": "publier",
-   "date": "2026-10-23",
-   "lien": "https://www.gravelin-immo.com/vente/1-dijon/appartement/t2/665-bien/?utm_source=shawez-immo",
-   "photos": [
-    "https://shawez-immo.com/annonces/467/1.jpg",
-    "https://shawez-immo.com/annonces/467/2.jpg",
-    "https://shawez-immo.com/annonces/467/3.jpg"
-   ],
-   "ref": "467",
-   "texte": "Appartement de 2 pièces, 44,57 m², à Dijon.\n\nPrix : 90 500 €, honoraires inclus.\n\n• 1 chambre\n• 1er étage\n\nDépenses annuelles d'énergie estimées entre 1 250 € et 1 730 € (usage standard).\n\nRéférence 467, GRAVELIN IMMO. Visites et informations : Shawez Ali, 07 67 57 92 28.",
-   "titre": "Appartement 2 pièces, 45 m² à Dijon"
-  },
-  {
-   "action": "publier",
-   "cle": "publier",
-   "date": "2026-10-26",
-   "lien": "https://www.gravelin-immo.com/vente/1-dijon/appartement/t2/661-bien/?utm_source=shawez-immo",
-   "photos": [
-    "https://shawez-immo.com/annonces/464/1.jpg",
-    "https://shawez-immo.com/annonces/464/2.jpg",
-    "https://shawez-immo.com/annonces/464/3.jpg"
-   ],
-   "ref": "464",
-   "texte": "Appartement de 2 pièces, 41,64 m², à Dijon.\n\nPrix : 129 900 €, honoraires inclus.\n\n• 1 chambre\n\nDépenses annuelles d'énergie estimées entre 1 060 € et 1 480 € (usage standard).\n\nRéférence 464, GRAVELIN IMMO. Visites et informations : Shawez Ali, 07 67 57 92 28.",
-   "titre": "Appartement 2 pièces, 42 m² à Dijon"
-  },
-  {
-   "action": "publier",
-   "cle": "publier",
-   "date": "2026-10-27",
-   "lien": "https://www.gravelin-immo.com/vente/1-dijon/appartement/t2/660-bien/?utm_source=shawez-immo",
-   "photos": [
-    "https://shawez-immo.com/annonces/460/1.jpg",
-    "https://shawez-immo.com/annonces/460/2.jpg",
-    "https://shawez-immo.com/annonces/460/3.jpg"
-   ],
-   "ref": "460",
-   "texte": "Appartement de 2 pièces, 45,35 m², à Dijon.\n\nPrix : 147 160 €, honoraires inclus.\n\n• 1 chambre\n\nDépenses annuelles d'énergie estimées entre 944 € et 1 278 € (usage standard).\n\nRéférence 460, GRAVELIN IMMO. Visites et informations : Shawez Ali, 07 67 57 92 28.",
-   "titre": "Appartement 2 pièces, 45 m² à Dijon"
-  },
-  {
-   "action": "publier",
-   "cle": "publier",
    "date": "2026-10-28",
    "lien": "https://www.gravelin-immo.com/vente/1-dijon/appartement/t2/659-bien/?utm_source=shawez-immo",
    "photos": [
@@ -3143,48 +3306,6 @@
    "ref": "452IMMEUBLE",
    "texte": "Immeuble de 222 m², à Dijon.\n\nPrix : 645 000 €, honoraires inclus.\n\n• Cave\n\nRéférence 452IMMEUBLE, GRAVELIN IMMO. Visites et informations : Shawez Ali, 07 67 57 92 28.",
    "titre": "Immeuble 222 m² à Dijon"
-  },
-  {
-   "action": "publier",
-   "cle": "publier",
-   "date": "2026-10-30",
-   "lien": "https://www.gravelin-immo.com/vente/1-dijon/appartement/t4/648-bien/?utm_source=shawez-immo",
-   "photos": [
-    "https://shawez-immo.com/annonces/455/1.jpg",
-    "https://shawez-immo.com/annonces/455/2.jpg",
-    "https://shawez-immo.com/annonces/455/3.jpg"
-   ],
-   "ref": "455",
-   "texte": "Appartement de 4 pièces, 97,2 m², à Dijon.\n\nPrix : 249 600 €, honoraires inclus.\n\n• Garage\n• 3 chambres\n• 2 salles de bains ou d'eau\n\nDépenses annuelles d'énergie estimées entre 1 170 € et 1 630 € (usage standard).\n\nRéférence 455, GRAVELIN IMMO. Visites et informations : Shawez Ali, 07 67 57 92 28.",
-   "titre": "Appartement 4 pièces, 97 m² à Dijon"
-  },
-  {
-   "action": "publier",
-   "cle": "publier",
-   "date": "2026-11-02",
-   "lien": "https://www.gravelin-immo.com/vente/1-dijon/appartement/t3/646-bien/?utm_source=shawez-immo",
-   "photos": [
-    "https://shawez-immo.com/annonces/452/1.jpg",
-    "https://shawez-immo.com/annonces/452/2.jpg",
-    "https://shawez-immo.com/annonces/452/3.jpg"
-   ],
-   "ref": "452",
-   "texte": "Appartement de 3 pièces, 60 m², à Dijon.\n\nPrix : 229 000 €, honoraires inclus.\n\n• 2 chambres\n• 2e étage\n\nRéférence 452, GRAVELIN IMMO. Visites et informations : Shawez Ali, 07 67 57 92 28.",
-   "titre": "Appartement 3 pièces, 60 m² à Dijon"
-  },
-  {
-   "action": "publier",
-   "cle": "publier",
-   "date": "2026-11-03",
-   "lien": "https://www.gravelin-immo.com/vente/1-dijon/appartement/t3/643-bien/?utm_source=shawez-immo",
-   "photos": [
-    "https://shawez-immo.com/annonces/450/1.jpg",
-    "https://shawez-immo.com/annonces/450/2.jpg",
-    "https://shawez-immo.com/annonces/450/3.jpg"
-   ],
-   "ref": "450",
-   "texte": "Appartement de 3 pièces, 58,23 m², à Dijon.\n\nPrix : 127 800 €, honoraires inclus.\n\n• 2 chambres\n• 2 salles de bains ou d'eau\n\nDépenses annuelles d'énergie estimées entre 1 680 € et 2 310 € (usage standard).\n\nRéférence 450, GRAVELIN IMMO. Visites et informations : Shawez Ali, 07 67 57 92 28.",
-   "titre": "Appartement 3 pièces, 58 m² à Dijon"
   },
   {
    "action": "publier",
