@@ -2,7 +2,8 @@
 import { expect } from '@playwright/test';
 
 export const SITE = 'http://127.0.0.1:8788';        // e-mails aux clients ouverts (fausse boîte d'envoi)
-export const SITE_SANS_EMAIL = 'http://127.0.0.1:8789'; // comme en production aujourd'hui
+export const SITE_SANS_EMAIL = 'http://127.0.0.1:8789'; // aucun e-mail du tout
+export const SITE_VENDEURS_FERMES = 'http://127.0.0.1:8791'; // comme en production aujourd'hui : l'agence reçoit ses e-mails, les vendeurs aucun
 export const BOITE = 'http://127.0.0.1:8790/boite';
 export const ADMIN = 'shawez@gravelin-immo.com';
 

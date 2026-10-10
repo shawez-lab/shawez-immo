@@ -1,6 +1,6 @@
 /* Suivi d'un dossier : heure de Paris, créneaux de visite, prochaine action de l'agence, prochaine étape dite au vendeur,
    textes des e-mails de changement de statut. Rien ici ne lit ni n'écrit la base. */
-import { PARCOURS, STATUTS_CLIENT } from './base.js';
+import { PARCOURS, STATUTS, STATUTS_CLIENT } from './base.js';
 
 /* ---------- Heure de Paris (les Workers tournent en UTC) ---------- */
 const FMT = new Intl.DateTimeFormat('en-GB', {
@@ -172,7 +172,10 @@ export function suiteVendeur(d, visite, conseiller = 'Shawez', offres = {}) {
 
 /* ---------- E-mails au vendeur : un message court à chaque changement de statut, signé Shawez Ali ----------
    Rend { sujet, titre, paragraphes: [texte…], bouton: [libellé] } ; null quand le statut ne s'annonce pas par e-mail
-   (« Pas maintenant », « Perdu », retour à « Estimation reçue »). */
+   (« Pas maintenant », « Perdu », retour à « Estimation reçue »).
+   Le même texte sert au message que l'agence envoie elle-même (WhatsApp, SMS) quand l'e-mail ne peut pas partir :
+   voir messageVendeur. « direct » : les paragraphes pour un vendeur qui n'a pas d'espace (on ne lui parle pas d'un
+   espace qu'il n'a pas) ; « lien » : ce qu'on écrit devant le lien de son espace (défaut : « Votre espace »). */
 export const AGENCE = { nom: 'GRAVELIN IMMO', adresse: '30 rue Bannelier, 21000 Dijon', plan: 'https://www.google.com/maps/search/?api=1&query=GRAVELIN+IMMO+30+rue+Bannelier+21000+Dijon' };
 const A_PREPARER = 'Si vous les avez sous la main, préparez : le titre de propriété, la dernière taxe foncière, les diagnostics, le montant des charges et la liste des travaux réalisés.';
 
@@ -182,21 +185,25 @@ export function mailStatut(statut, { bien = 'votre bien', visiteEnCours = false 
     case 'appele': if (visiteEnCours) return {
       sujet: 'Suite à notre échange', titre: 'La suite : la visite',
       paragraphes: [`Merci pour notre échange. La prochaine étape, c'est la visite de ${bien} : 45 minutes, offertes et sans engagement.`, 'Vous retrouvez la date et l\'avancement de votre dossier dans votre espace.'],
+      direct: [`Merci pour notre échange. La prochaine étape, c'est la visite de ${bien} : 45 minutes, offertes et sans engagement.`],
       bouton: 'Ouvrir mon espace',
     };
     return {
       sujet: 'Suite à notre échange : votre visite d\'estimation', titre: 'La suite : la visite',
       paragraphes: [`Merci pour notre échange. La prochaine étape, c'est la visite de ${bien} : comptez 45 minutes, c'est offert et sans engagement.`, 'Choisissez le moment qui vous arrange, je confirme dans l\'heure.'],
-      bouton: 'Choisir mon créneau',
+      direct: [`Merci pour notre échange. La prochaine étape, c'est la visite de ${bien} : comptez 45 minutes, c'est offert et sans engagement.`, 'Dites-moi le moment qui vous arrange.'],
+      bouton: 'Choisir mon créneau', lien: 'Pour choisir votre créneau',
     };
     case 'avis': return {
       sujet: 'Votre avis de valeur est prêt', titre: 'Votre avis de valeur est prêt',
       paragraphes: ['Votre avis de valeur est dans votre espace : la fourchette de prix, les ventes réelles du quartier sur lesquelles elle s\'appuie et la stratégie que je vous propose.', 'Je vous appelle pour en parler.'],
-      bouton: 'Lire mon avis de valeur',
+      direct: ['Votre avis de valeur est prêt : la fourchette de prix, les ventes réelles du quartier sur lesquelles elle s\'appuie et la stratégie que je vous propose.', 'Je vous appelle pour en parler.'],
+      bouton: 'Lire mon avis de valeur', lien: 'Votre avis de valeur',
     };
     case 'mandat': return {
       sujet: 'Le mandat est signé : la suite', titre: 'Le mandat est signé',
       paragraphes: ['Merci de votre confiance. La suite : les photos, puis la mise en ligne de l\'annonce.', 'Vous suivez chaque étape dans votre espace.'],
+      direct: ['Merci de votre confiance. La suite : les photos, puis la mise en ligne de l\'annonce.'],
       bouton: 'Ouvrir mon espace',
     };
     case 'annonce': return {
@@ -207,6 +214,7 @@ export function mailStatut(statut, { bien = 'votre bien', visiteEnCours = false 
     case 'visites': return {
       sujet: 'Les visites commencent', titre: 'Les visites commencent',
       paragraphes: ['Les visites commencent. Après chacune, vous trouvez mon compte rendu le soir même dans votre espace.'],
+      direct: ['Les visites commencent. Après chacune, je vous fais mon compte rendu le soir même.'],
       bouton: 'Ouvrir mon espace',
     };
     case 'offre': return {
@@ -268,14 +276,18 @@ export const DOCUMENTS = { mandat: 'Mandat', diagnostics: 'Diagnostics', titre: 
 
 const jourDeVisite = (jour) => jourLong(jour + 'T12:00:00Z');      // « vendredi 9 octobre », pour une date AAAA-MM-JJ
 
-export function mailCompteRendu(visiteLe, aujourdhui) {
+export function mailCompteRendu(visiteLe, aujourdhui, texte = '') {
   const quand = visiteLe === aujourdhui ? 'd\'aujourd\'hui' : `du ${jourDeVisite(visiteLe)}`;
+  const court = String(texte || '').trim();
   return {
     sujet: `Compte rendu de la visite ${quand}`, titre: 'Compte rendu de visite',
     paragraphes: [`Le compte rendu de la visite ${quand} est dans votre espace.`, 'Une question ? Appelez-moi au 07 67 57 92 28.'],
-    bouton: 'Lire le compte rendu',
+    // sans espace : le compte rendu lui-même, quand il tient dans un message ; sinon de vive voix
+    direct: court && court.length <= COMPTE_RENDU_COURT ? [`Compte rendu de la visite ${quand} :`, court] : [`Je vous appelle pour vous faire le compte rendu de la visite ${quand}.`],
+    bouton: 'Lire le compte rendu', lien: 'Le compte rendu',
   };
 }
+const COMPTE_RENDU_COURT = 700;
 
 /* Une offre qui ne change pas le statut du dossier (il est déjà à « Offre reçue », ou pas encore sous mandat). */
 export function mailOffre(bien = 'votre bien', premiere = false) {
@@ -283,6 +295,7 @@ export function mailOffre(bien = 'votre bien', premiere = false) {
   return {
     sujet: titre, titre,
     paragraphes: [`${premiere ? 'Une offre' : 'Une nouvelle offre'} vient d'arriver pour ${bien}. Le détail est dans votre espace.`, 'Je vous appelle pour vous la présenter : c\'est vous qui décidez.'],
+    direct: [`${premiere ? 'Une offre' : 'Une nouvelle offre'} vient d'arriver pour ${bien}.`, 'Je vous appelle pour vous la présenter : c\'est vous qui décidez.'],
     bouton: 'Voir l\'offre',
   };
 }
@@ -292,14 +305,15 @@ export function mailOffre(bien = 'votre bien', premiere = false) {
 export function mailNotaire(faites = [], rdvLe = '') {
   const min = (e) => e.charAt(0).toLowerCase() + e.slice(1);
   const jourActe = rdvLe ? dateFr(rdvLe + 'T12:00:00Z', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }) : '';
+  const nouvelles = [
+    faites.length ? `${faites.length === 1 ? 'Une étape de plus est passée' : 'De nouvelles étapes sont passées'} chez le notaire : ${faites.map(min).join(' ; ')}.` : null,
+    rdvLe ? `La signature de l'acte est prévue le ${jourActe}.` : null,
+  ].filter(Boolean);
   return {
     sujet: rdvLe ? `Signature de l'acte prévue le ${jourActe}` : faites.length === 1 ? `Chez le notaire : ${min(faites[0])}` : 'Du nouveau chez le notaire',
     titre: 'Du nouveau chez le notaire',
-    paragraphes: [
-      faites.length ? `${faites.length === 1 ? 'Une étape de plus est passée' : 'De nouvelles étapes sont passées'} chez le notaire : ${faites.map(min).join(' ; ')}.` : null,
-      rdvLe ? `La signature de l'acte est prévue le ${jourActe}.` : null,
-      'Vous suivez la suite dans votre espace. Je reste votre interlocuteur jusqu\'à la signature.',
-    ].filter(Boolean),
+    paragraphes: [...nouvelles, 'Vous suivez la suite dans votre espace. Je reste votre interlocuteur jusqu\'à la signature.'],
+    direct: [...nouvelles, 'Je reste votre interlocuteur jusqu\'à la signature.'],
     bouton: 'Ouvrir mon espace',
   };
 }
@@ -315,6 +329,26 @@ export function mailOuverture() {
     ],
     bouton: 'Ouvrir mon espace',
   };
+}
+
+/* ---------- Le message que l'agence envoie elle-même (WhatsApp, SMS) ----------
+   Quand l'e-mail ne peut pas partir (envoi aux vendeurs fermé, vendeur sans espace), la nouvelle reste « à dire » :
+   l'agence l'envoie d'un geste depuis le dossier, avec les mêmes mots que l'e-mail.
+   nouvelles : [{ dire: [paragraphes], direct?: [paragraphes sans espace], lien?: libellé }] de la plus ancienne à la
+   plus récente ; lien : l'adresse qui ouvre l'espace du vendeur (absente s'il n'en a pas). */
+export function messageVendeur(nouvelles, { prenom = '', conseiller = 'Shawez Ali', lien = '' } = {}) {
+  const lignes = [];
+  for (const n of nouvelles || []) for (const p of (lien ? n.dire : n.direct || n.dire) || []) if (p && !lignes.includes(p)) lignes.push(p);
+  const derniere = (nouvelles || [])[(nouvelles || []).length - 1] || {};
+  return [`Bonjour${prenom ? ' ' + prenom : ''}, c'est ${conseiller}.`, ...lignes, lien ? `${derniere.lien || 'Votre espace'} : ${lien}` : null].filter(Boolean).join('\n');
+}
+
+/* Ce qui s'annonce au vendeur, dit en deux mots à l'agence (« À dire au vendeur : Mandat signé »). */
+export function libelleNouvelle(motif) {
+  const m = String(motif || '');
+  if (m === 'statut:appele') return 'Suite de votre appel : la visite';
+  if (m.startsWith('statut:')) return STATUTS[m.slice(7)] || 'Nouvelle étape';
+  return { visite_fixee: 'Visite confirmée', avis_envoye: 'Avis de valeur prêt', compte_rendu: 'Compte rendu de visite', offre: 'Offre reçue', notaire: 'Du nouveau chez le notaire' }[m] || 'Du nouveau';
 }
 
 /* Heures calmes : aucun e-mail au vendeur entre 21 h et 8 h (heure de Paris). Ce qui se décide le soir part à 8 h. */

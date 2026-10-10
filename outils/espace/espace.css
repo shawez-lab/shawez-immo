@@ -433,3 +433,16 @@
 .ee-esp-out[hidden]{display:none;}
 .ee-esp-out .acts .btn{flex:1 1 auto;}
 .ee-esp-lien{word-break:break-all;user-select:all;-webkit-user-select:all;}
+/* à dire au vendeur : la nouvelle que l'e-mail n'a pas pu annoncer, et le message déjà écrit */
+.ee-row>summary .dire{grid-column:1/-1;font-size:.86rem;font-weight:700;color:#7E2C1F;}
+.ee-row>summary .dire[hidden],.ee-dire[hidden]{display:none;}
+.ee-dire{border-color:rgba(162,59,42,.35);}
+.ee-dire.fait{border-color:var(--line);}
+.ee-dire .acts .btn{flex:1 1 auto;}
+.ee-dire .ee-links{margin-top:0;}
+.ee-dire-txt{white-space:pre-line;overflow-wrap:anywhere;min-width:0;padding:10px 12px;border-radius:12px;background:var(--surface);border:1px solid var(--line);color:var(--ink-2)!important;font-size:.88rem!important;line-height:1.5;user-select:all;-webkit-user-select:all;}
+/* corriger un dossier : le formulaire s'ouvre dans la ligne, sous le dossier, sur toute la largeur */
+.ee-row .in>.ee-nv{grid-column:1/-1;margin:0;}
+.ee-fiche .ee-links{margin-top:12px;}
+.ee-fiche .ee-ok{margin-top:10px;}
+.ee-nv input[readonly]{color:var(--muted);}

@@ -1539,6 +1539,19 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 .ee-esp-out[hidden]{display:none;}
 .ee-esp-out .acts .btn{flex:1 1 auto;}
 .ee-esp-lien{word-break:break-all;user-select:all;-webkit-user-select:all;}
+/* à dire au vendeur : la nouvelle que l'e-mail n'a pas pu annoncer, et le message déjà écrit */
+.ee-row>summary .dire{grid-column:1/-1;font-size:.86rem;font-weight:700;color:#7E2C1F;}
+.ee-row>summary .dire[hidden],.ee-dire[hidden]{display:none;}
+.ee-dire{border-color:rgba(162,59,42,.35);}
+.ee-dire.fait{border-color:var(--line);}
+.ee-dire .acts .btn{flex:1 1 auto;}
+.ee-dire .ee-links{margin-top:0;}
+.ee-dire-txt{white-space:pre-line;overflow-wrap:anywhere;min-width:0;padding:10px 12px;border-radius:12px;background:var(--surface);border:1px solid var(--line);color:var(--ink-2)!important;font-size:.88rem!important;line-height:1.5;user-select:all;-webkit-user-select:all;}
+/* corriger un dossier : le formulaire s'ouvre dans la ligne, sous le dossier, sur toute la largeur */
+.ee-row .in>.ee-nv{grid-column:1/-1;margin:0;}
+.ee-fiche .ee-links{margin-top:12px;}
+.ee-fiche .ee-ok{margin-top:10px;}
+.ee-nv input[readonly]{color:var(--muted);}
 </style>
 </head>
 <body data-route="/admin">
@@ -2041,6 +2054,7 @@ updateTone();
   window.addEventListener('pageshow',function(e){ hide(); if(e.persisted){ var m=document.getElementById('menu'), x=document.getElementById('menu-close'); if(m&&x&&m.classList.contains('open'))x.click(); } });
 })();
 </script>
+<script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"33710f67a0c16d7cbb94d1b2ba10e7a8"})});</script>
 <script id="compte-js">
 /* Pictogramme « Mon espace » : état connecté d'après le témoin se_ok (posé par l'API à la connexion, retiré à la déconnexion) */
 window.EECompte=function(){var on=/(?:^|;\s*)se_ok=1/.test(document.cookie||'');[].forEach.call(document.querySelectorAll('[data-compte]'),function(a){a.classList.toggle('is-in',on);var t=on?'Mon espace : connecté':'Mon espace : se connecter';if(a.hasAttribute('aria-label')){a.setAttribute('aria-label',t);a.title=t;}var x=a.querySelector('[data-compte-txt]');if(x)x.textContent=on?'Mon espace · connecté':'Mon espace';});};
@@ -2265,7 +2279,9 @@ var EE=(function(){
 
 /* /admin/ : toutes les demandes des deux sites et tous les comptes ; statut, rappel, notes, fichiers, export CSV ;
    visite d'estimation, avis de valeur ; après le mandat : comptes rendus de visite, offres, documents, notaire ;
-   dossier ouvert à la main par l'agence, espace du vendeur (lien à lui envoyer par WhatsApp, SMS ou e-mail) */
+   dossier ouvert à la main par l'agence, espace du vendeur (lien à lui envoyer par WhatsApp, SMS ou e-mail) ;
+   « à dire au vendeur » : quand l'e-mail ne peut pas partir, le message déjà écrit, à envoyer d'un geste ;
+   dossier corrigé après coup (nom, téléphone, e-mail, adresse, surface) */
 (function(){
   'use strict';
   var $=EE.$, $$=EE.$$, C=EE.CONF;
@@ -2291,6 +2307,8 @@ var EE=(function(){
     a('Prix idéal',r.prix_ideal?EE.euros(r.prix_ideal):''); a('Délai',LIB.delai[r.delai]); a('Message',r.message);
     return L;
   }
+  /* e-mails aux vendeurs fermés : la case ne promet pas un e-mail, elle prépare le message à envoyer soi-même */
+  var SANS_MAIL='Préparer le message pour le prévenir (WhatsApp ou SMS)';
   function lienFichier(f){return C.api+'/fichier?id='+encodeURIComponent(f.id);}
   function fichier(f){
     return '<li data-fid="'+EE.esc(f.id)+'"><a href="'+lienFichier(f)+'" target="_blank" rel="noopener"><i aria-hidden="true">'+(f.role==='avis'?'AVIS':f.type==='application/pdf'?'PDF':'IMG')+'</i><span><b>'+EE.esc(f.nom)+'</b><small>'+EE.taille(f.taille)+' · '+(f.role==='avis'?'avis de valeur, visible par le vendeur':f.role==='brouillon'?'brouillon, invisible pour le vendeur':f.depose_par==='client'?'déposé par le client':(f.libelle?EE.esc(f.libelle)+' · ':'')+'déposé par l\'agence, visible par le vendeur')+' · '+EE.jour(f.cree_le)+'</small></span></a><button type="button" data-fsuppr="'+EE.esc(f.id)+'" aria-label="Retirer '+EE.esc(f.nom)+'">Retirer</button></li>';
@@ -2309,7 +2327,7 @@ var EE=(function(){
         '<div class="acts">'+(v.creneaux||[]).map(function(c){return '<button type="button" class="btn btn-primary" data-vfix="'+EE.esc(c)+'">Confirmer '+EE.esc(EE.quandCourt(c))+'</button>';}).join('')+'</div>';
     } else h+='<p class="hint">Aucune visite fixée. Le vendeur peut proposer ses créneaux depuis son espace ; vous pouvez aussi fixer la date convenue au téléphone.</p>';
     h+='<div class="field"><label for="ad-vd-'+d.id+'">'+(v&&v.etat==='fixee'?'Déplacer au':'Autre date (heure de Paris)')+'</label><input type="datetime-local" id="ad-vd-'+d.id+'" data-vdate step="900"></div>'+
-      '<label class="ee-check-l"><input type="checkbox" data-vprevenir'+(MAIL_CLIENTS?' checked':' disabled')+'>'+(MAIL_CLIENTS?'Envoyer la confirmation au vendeur par e-mail':'E-mails aux vendeurs pas encore ouverts : prévenez-le par téléphone')+'</label>'+
+      '<label class="ee-check-l"><input type="checkbox" data-vprevenir checked>'+(MAIL_CLIENTS?'Envoyer la confirmation au vendeur par e-mail':SANS_MAIL)+'</label>'+
       '<div class="acts"><button type="button" class="btn" data-vfixdate>Fixer la visite</button></div>'+
       '<p class="ee-err" role="alert" hidden></p><p class="ee-ok" role="status" hidden></p></div>';
     return h;
@@ -2328,16 +2346,18 @@ var EE=(function(){
     return '<details class="ee-row" data-id="'+d.id+'"><summary><b>'+EE.esc(nom||c.email)+' · '+EE.esc(d.commune||'')+'</b>'+
       '<span class="st '+d.statut+'">'+EE.esc(STATUTS[d.statut]||d.statut)+'</span>'+
       (actionTxt(d)?'<span class="act'+(retard(d)?' ee-late':'')+'" data-test="action">→ '+EE.esc(actionTxt(d))+'</span>':'')+
+      '<span class="dire" data-test="a-dire"'+(d.a_dire?'':' hidden')+'>'+EE.esc(direChip(d))+'</span>'+
       '<small>'+EE.date(d.cree_le)+' · '+EE.esc((d.type==='autre'?'Autre':d.type==='maison'?'Maison':'Appart.')+(d.surface?' '+d.surface+' m²':''))+' · '+(d.prix_bas?EE.euros(d.prix_bas)+' – '+EE.euros(d.prix_haut):origineAgence(d)?'ouvert par l\'agence':'rappel')+' · '+EE.esc(LIB.site[d.site]||d.site||'')+
         (d.rappel_le?' · rappeler avant le '+EE.jour(d.rappel_le):'')+(d.suspect?' · <span class="ee-late">robot possible</span>':'')+(d.test?' · essai':'')+'</small>'+
       '<span class="tr" data-test="trace"'+(d.trace?'':' hidden')+'>'+EE.esc(traceTxt(d.trace))+'</span></summary>'+
       '<div class="in">'+
         '<div class="acts ee-top">'+(tel?'<a class="btn btn-primary" href="tel:'+EE.esc(tel)+'">Appeler '+EE.esc(c.telephone||'')+'</a>':'')+(c.email?'<a class="btn" href="mailto:'+EE.esc(c.email)+'?subject='+encodeURIComponent((origineAgence(d)?'Votre dossier ':'Votre estimation ')+d.reference)+'">E-mail</a>':'')+(tel?'<a class="btn" href="https://wa.me/'+EE.esc(tel.replace(/^\+/,'').replace(/^0/,'33'))+'" target="_blank" rel="noopener">WhatsApp</a>':'')+'</div>'+
       '<div class="ee-col">'+
+        blocDire(d)+
         blocEspace(d)+
         blocVisite(d)+
         '<div class="field"><label for="ad-st-'+d.id+'">Statut</label><select id="ad-st-'+d.id+'" data-f="statut">'+opts+'</select></div>'+
-        '<label class="ee-check-l" data-prevenir-l><input type="checkbox" data-f="prevenir"'+(MAIL_CLIENTS?' checked':' disabled')+'>'+(MAIL_CLIENTS?'Annoncer le changement de statut au vendeur par e-mail':'E-mails aux vendeurs pas encore ouverts : rien ne part')+'</label>'+
+        '<label class="ee-check-l" data-prevenir-l><input type="checkbox" data-f="prevenir" checked>'+(MAIL_CLIENTS?'Annoncer le changement de statut au vendeur par e-mail':SANS_MAIL)+'</label>'+
         '<div class="field" data-raison-f'+(d.statut==='pause'||d.statut==='close'?'':' hidden')+'><label for="ad-ra-'+d.id+'">Raison (pas maintenant, perdu)</label><input type="text" id="ad-ra-'+d.id+'" data-f="raison" maxlength="300" value="'+EE.esc(d.raison||'')+'"></div>'+
         '<div class="field"><label for="ad-rp-'+d.id+'">Rappeler avant le</label><input type="date" id="ad-rp-'+d.id+'" data-f="rappel_le" value="'+EE.esc(d.rappel_le||'')+'"></div>'+
         '<div class="field"><label for="ad-no-'+d.id+'">Notes (visibles par l\'agence seulement)</label><textarea id="ad-no-'+d.id+'" data-f="notes" maxlength="5000">'+EE.esc(d.notes||'')+'</textarea></div>'+
@@ -2351,7 +2371,8 @@ var EE=(function(){
         '<details class="ee-journal" data-journal><summary>Journal du dossier</summary><ul></ul></details>'+
         '<div class="ee-links">'+(d.suspect?'<button type="button" data-humain>Ce n\'est pas un robot</button>':'')+'<button type="button" class="ee-danger" data-dsuppr>Supprimer cette demande</button></div>'+
       '</div>'+
-        '<div class="ee-fiche"><ul class="ee-kv">'+[['Référence',d.reference],['Site',LIB.site[d.site]||d.site],['E-mail',c.email],['Fourchette',d.prix_bas?EE.euros(d.prix_bas)+' – '+EE.euros(d.prix_haut)+' ('+EE.euros(d.prix_m2)+'/m², '+d.comparables+' ventes'+(d.rayon?' à moins de '+EE.rayon(d.rayon):'')+')':'Pas de fourchette : rappel promis au plus vite']].concat(fiche(d.reponses||{})).concat(d.en_attente?[['Espace client','en attente de confirmation de l\'e-mail']]:[]).map(function(l){return '<li><span>'+EE.esc(l[0])+'</span><span>'+EE.esc(l[1])+'</span></li>';}).join('')+'</ul>'+'</div>'+
+        '<div class="ee-fiche"><ul class="ee-kv">'+[['Référence',d.reference],['Site',LIB.site[d.site]||d.site],['E-mail',c.email],['Fourchette',d.prix_bas?EE.euros(d.prix_bas)+' – '+EE.euros(d.prix_haut)+' ('+EE.euros(d.prix_m2)+'/m², '+d.comparables+' ventes'+(d.rayon?' à moins de '+EE.rayon(d.rayon):'')+')':'Pas de fourchette : rappel promis au plus vite']].concat(fiche(d.reponses||{})).concat(d.en_attente?[['Espace client','en attente de confirmation de l\'e-mail']]:[]).map(function(l){return '<li><span>'+EE.esc(l[0])+'</span><span>'+EE.esc(l[1])+'</span></li>';}).join('')+'</ul>'+
+          '<div class="ee-links"><button type="button" data-dmodif aria-expanded="false">Corriger ce dossier</button></div><p class="ee-ok" data-modif-ok role="status" hidden></p></div>'+
       '</div></details>';
   }
   function filtres(){ return {q:$('#ad-q').value.trim().toLowerCase(),s:$('#ad-statut').value,site:$('#ad-site').value}; }
@@ -2402,14 +2423,15 @@ var EE=(function(){
   $$('[data-vue]').forEach(function(b){b.addEventListener('click',function(){var v=b.getAttribute('data-vue');['demandes','comptes','reglages'].forEach(function(k){$('#ad-'+k).hidden=v!==k;});$$('[data-vue]').forEach(function(x){x.setAttribute('aria-pressed',String(x===b));});});});
 
   /* ce qu'il est advenu de l'e-mail au vendeur, en fin de message */
-  function mailTxt(m){ return m==='envoye'?' · e-mail envoyé au vendeur.':m==='differe'?' · e-mail au vendeur prévu à 8 h (rien ne part entre 21 h et 8 h).':MAIL_CLIENTS?'.':' · prévenez-le par téléphone (e-mails pas encore ouverts).'; }
+  function mailTxt(m,n){ return m==='envoye'?' · e-mail envoyé au vendeur.':m==='differe'?' · e-mail au vendeur prévu à 8 h (rien ne part entre 21 h et 8 h).':n&&n.a_dire?' · le message pour le vendeur est prêt, en haut du dossier.':'.'; }
   function note(row,t,ko){var s=$('.saved',row);s.hidden=false;s.style.color=ko?'#7E2C1F':'';s.textContent=t;if(!ko)setTimeout(function(){s.hidden=true;},2500);}
   function zoneMsg(zone,txt,ok){var e=$(ok?'.ee-ok':'.ee-err',zone),a=$(ok?'.ee-err':'.ee-ok',zone);a.hidden=true;e.textContent=txt||'';e.hidden=!txt;}
   function demande(id){return D.filter(function(k){return k.id===id;})[0];}
   /* après une action : la ligne reflète le dossier tel que le serveur le rend (statut, prochaine action, visite) */
   function maj(row,x,n){
     if(!x||!n)return;
-    ['statut','statut_libelle','notes','rappel_le','raison','action','visite','suspect','statut_le'].forEach(function(k){ if(n[k]!==undefined)x[k]=n[k]; });
+    var direAvant=direCle(x);
+    ['statut','statut_libelle','notes','rappel_le','raison','action','visite','suspect','statut_le','a_dire'].forEach(function(k){ if(n[k]!==undefined)x[k]=n[k]; });
     var st=$('summary .st',row); st.className='st '+x.statut; st.textContent=STATUTS[x.statut]||x.statut;
     $('[data-f=statut]',row).value=x.statut;
     var act=$('summary .act',row), txt=actionTxt(x);
@@ -2418,9 +2440,11 @@ var EE=(function(){
     $('[data-raison-f]',row).hidden=!(x.statut==='pause'||x.statut==='close');
     var bv=$('[data-bloc=visite]',row); if(bv)bv.outerHTML=blocVisite(x);
     var jr=$('[data-journal]',row); if(jr&&jr.open)journal(jr,x.id);
+    // une nouvelle que l'e-mail n'a pas pu annoncer : le message se prépare tout seul et se montre
+    if(direCle(x)!==direAvant){ if(DIRE[x.id]&&!DIRE[x.id].fait)delete DIRE[x.id]; direRendre(row,x); if(x.a_dire)direPreparer(row,x,true); }
     stats();
   }
-  var TRACES={ouverture:'Dossier ouvert par l\'agence',espace_ouvert:'Espace du vendeur ouvert',lien_espace:'Lien de son espace préparé pour le vendeur',estimation:'Estimation faite en ligne',statut:'Statut',visite_demandee:'Créneaux proposés par le vendeur',visite_fixee:'Visite fixée',visite_annulee:'Visite annulée',visite_agenda:'Page de réservation ouverte par le vendeur',rappel_visite:'Rappel de visite',avis_prepare:'Avis de valeur : brouillon commencé',avis_envoye:'Avis de valeur envoyé',mail:'E-mail au vendeur',cr_publie:'Compte rendu de visite publié',cr_supprime:'Compte rendu de visite supprimé',offre_recue:'Offre reçue',offre_statut:'Offre',offre_supprimee:'Offre supprimée',notaire:'Notaire',document:'Document déposé'};
+  var TRACES={prevenu:'Vendeur prévenu par l\'agence',dossier_modifie:'Dossier corrigé',ouverture:'Dossier ouvert par l\'agence',espace_ouvert:'Espace du vendeur ouvert',lien_espace:'Lien de son espace préparé pour le vendeur',estimation:'Estimation faite en ligne',statut:'Statut',visite_demandee:'Créneaux proposés par le vendeur',visite_fixee:'Visite fixée',visite_annulee:'Visite annulée',visite_agenda:'Page de réservation ouverte par le vendeur',rappel_visite:'Rappel de visite',avis_prepare:'Avis de valeur : brouillon commencé',avis_envoye:'Avis de valeur envoyé',mail:'E-mail au vendeur',cr_publie:'Compte rendu de visite publié',cr_supprime:'Compte rendu de visite supprimé',offre_recue:'Offre reçue',offre_statut:'Offre',offre_supprimee:'Offre supprimée',notaire:'Notaire',document:'Document déposé'};
   function trace(e){
     var d=e.detail||{}, t=TRACES[e.type]||e.type;
     if(e.type==='statut')t='Statut : '+(STATUTS[e.vers]||e.vers)+(d.raison?' ('+d.raison+')':'');
@@ -2435,6 +2459,8 @@ var EE=(function(){
     else if(e.type==='offre_supprimee')t='Offre supprimée : '+EE.euros(d.montant);
     else if(e.type==='notaire')t='Notaire'+(d.nom?' : '+d.nom:'')+((d.faites||[]).length?' · '+d.faites.join(', '):'')+(d.rdv?' · acte prévu le '+EE.jour(d.rdv):'');
     else if(e.type==='document')t='Document déposé : '+(d.libelle?d.libelle+' · ':'')+(d.nom||'');
+    else if(e.type==='prevenu')t='Vendeur prévenu '+(VOIES[d.voie]||'par l\'agence');
+    else if(e.type==='dossier_modifie')t='Dossier corrigé'+((d.champs||[]).length?' : '+d.champs.join(', '):'');
     return '<li><span>'+EE.esc(t)+'</span><span>'+EE.esc(EE.quandCourt(e.cree_le))+'</span></li>';
   }
   /* Dernière trace d'un dossier : ce qui s'y est passé en dernier, et quand. Relue après chaque action de l'agence. */
@@ -2454,7 +2480,7 @@ var EE=(function(){
   var apiNu=EE.api, relire=null;
   EE.api=function(chemin,opts){
     var p=apiNu(chemin,opts);
-    if(opts&&(opts.body!==undefined||opts.fichier)&&/^\/(admin\/(demande|visite|avis|compte-rendu|offre|notaire|fichier|dossier|compte\/lien)|fichier\/supprimer)/.test(chemin))
+    if(opts&&(opts.body!==undefined||opts.fichier)&&/^\/(admin\/(demande|visite|avis|compte-rendu|offre|notaire|fichier|dossier|compte\/lien|prevenu)|fichier\/supprimer)/.test(chemin))
       p.then(function(d){ if(d&&d._status>=200&&d._status<300){clearTimeout(relire);relire=setTimeout(tracesRelire,700);} });
     return p;
   };
@@ -2499,7 +2525,7 @@ var EE=(function(){
       '<div class="acts"><button type="button" class="btn btn-primary" data-avis-pdf>Enregistrer et créer le PDF</button>'+
         '<a class="btn" data-avis-lien target="_blank" rel="noopener"'+(d.avis&&d.avis.fichier?' href="'+lienFichier(d.avis.fichier)+'"':' hidden')+'>Ouvrir le PDF</a>'+
         '<button type="button" class="btn" data-avis-valider'+(d.avis&&d.avis.fichier&&d.avis.fichier.role==='brouillon'?'':' hidden')+'>Valider et envoyer au vendeur</button></div>'+
-      '<label class="ee-check-l"><input type="checkbox" data-avis-prevenir'+(MAIL_CLIENTS?' checked':' disabled')+'>'+(MAIL_CLIENTS?'Prévenir le vendeur par e-mail à la validation':'E-mails aux vendeurs pas encore ouverts : prévenez-le par téléphone')+'</label>';
+      '<label class="ee-check-l"><input type="checkbox" data-avis-prevenir checked>'+(MAIL_CLIENTS?'Prévenir le vendeur par e-mail à la validation':SANS_MAIL)+'</label>';
     compteVentes(ed);
   }
   function compteVentes(ed){
@@ -2558,12 +2584,12 @@ var EE=(function(){
       maj(row,x,d.demande);
       b.hidden=true;
       $('[data-avis-etat]',row).textContent='Envoyé au vendeur le '+EE.jour(new Date().toISOString())+'.';
-      zoneMsg(ed,'Avis de valeur déposé dans l\'espace du vendeur'+(d.mail==='envoye'?' · e-mail envoyé.':mailTxt(d.mail)),true);
+      zoneMsg(ed,'Avis de valeur déposé dans l\'espace du vendeur'+(d.mail==='envoye'?' · e-mail envoyé.':mailTxt(d.mail,d.demande)),true);
     });
   }
 
   /* ---------- après le mandat : comptes rendus de visite, offres, notaire (chargés à l'ouverture du dossier) ---------- */
-  function prevenirCase(attr,txt){ return '<label class="ee-check-l"><input type="checkbox" '+attr+(MAIL_CLIENTS?' checked':' disabled')+'>'+(MAIL_CLIENTS?txt:'E-mails aux vendeurs pas encore ouverts : prévenez-le par téléphone')+'</label>'; }
+  function prevenirCase(attr,txt){ return '<label class="ee-check-l"><input type="checkbox" '+attr+' checked>'+(MAIL_CLIENTS?txt:SANS_MAIL)+'</label>'; }
   function tete(titre,compte){ return '<summary><span class="lab">'+titre+'</span><small>'+EE.esc(compte)+'</small></summary><div class="ee-plie-in">'; }
   function pluriel(n,un,des){ return n+' '+(n>1?des:un); }
   function blocCr(id,s,ouvert){
@@ -2654,7 +2680,7 @@ var EE=(function(){
         t.disabled=false;
         if(d._status>=300){zoneMsg(zone,EE.messageChamp(d));return;}
         s.comptes_rendus=ranger(s.comptes_rendus.filter(function(k){return k.id!==d.compte_rendu.id;}).concat([d.compte_rendu]),'visite_le');
-        suiteApres(row,id,'cr',d,!d.compte_rendu.publie?'Brouillon enregistré : le vendeur ne le voit pas encore.':ce&&d.mail==='non'?'Compte rendu modifié.':'Compte rendu publié dans l\'espace du vendeur'+mailTxt(d.mail));
+        suiteApres(row,id,'cr',d,!d.compte_rendu.publie?'Brouillon enregistré : le vendeur ne le voit pas encore.':ce&&d.mail==='non'?'Compte rendu modifié.':'Compte rendu publié dans l\'espace du vendeur'+mailTxt(d.mail,d.demande));
       });
       return true;
     }
@@ -2664,7 +2690,7 @@ var EE=(function(){
         t.disabled=false;
         if(d._status!==200){zoneMsg(zone,EE.messageChamp(d));return;}
         s.comptes_rendus=s.comptes_rendus.map(function(k){return k.id===d.compte_rendu.id?d.compte_rendu:k;});
-        suiteApres(row,id,'cr',d,'Compte rendu publié dans l\'espace du vendeur'+mailTxt(d.mail));
+        suiteApres(row,id,'cr',d,'Compte rendu publié dans l\'espace du vendeur'+mailTxt(d.mail,d.demande));
       });
       return true;
     }
@@ -2695,7 +2721,7 @@ var EE=(function(){
         t.disabled=false;
         if(d._status>=300){zoneMsg(zone,EE.messageChamp(d));return;}
         s.offres=ranger(s.offres.filter(function(k){return k.id!==d.offre.id;}).concat([d.offre]),'recue_le');
-        suiteApres(row,id,'offres',d,oe?'Offre modifiée.':'Offre enregistrée : le vendeur la voit dans son espace'+mailTxt(d.mail));
+        suiteApres(row,id,'offres',d,oe?'Offre modifiée.':'Offre enregistrée : le vendeur la voit dans son espace'+mailTxt(d.mail,d.demande));
       });
       return true;
     }
@@ -2722,8 +2748,8 @@ var EE=(function(){
       EE.api('/admin/notaire',{body:{demande:id,nom:$('[data-nt-f=nom]',zone).value,coordonnees:$('[data-nt-f=coordonnees]',zone).value,etapes:etapes,prevenir:$('[data-nt-f=prevenir]',zone).checked}}).then(function(d){
         t.disabled=false;
         if(d._status!==200){zoneMsg(zone,EE.messageChamp(d));return;}
-        s.notaire=d.notaire; suiteRendre(row,id);
-        zoneMsg($('[data-bloc=notaire]',row),'Enregistré : le vendeur le voit dans son espace'+(d.mail==='non'?'.':mailTxt(d.mail)),true);
+        s.notaire=d.notaire; suiteRendre(row,id); maj(row,demande(id),d.demande);
+        zoneMsg($('[data-bloc=notaire]',row),'Enregistré : le vendeur le voit dans son espace'+(d.mail==='non'?'.':mailTxt(d.mail,d.demande)),true);
       });
       return true;
     }
@@ -2745,7 +2771,9 @@ var EE=(function(){
   $('#ad-rows').addEventListener('click',function(e){
     var row=e.target.closest('.ee-row'); if(!row)return; var id=+row.getAttribute('data-id'), x=demande(id);
     if(suiteClic(e,row,id))return;
+    if(direClic(e,row,id,x))return;
     if(espaceClic(e,row,id,x))return;
+    var dm=e.target.closest('[data-dmodif]'); if(dm&&x){ nvOuvrir(x,row); return; }
     var b=e.target.closest('[data-save]');
     if(b){
       var corps={id:id,statut:$('[data-f=statut]',row).value,notes:$('[data-f=notes]',row).value,rappel_le:$('[data-f=rappel_le]',row).value,raison:$('[data-f=raison]',row).value,prevenir:$('[data-f=prevenir]',row).checked};
@@ -2754,7 +2782,7 @@ var EE=(function(){
         b.disabled=false;
         if(d._status!==200){note(row,EE.messageChamp(d),true);return;}
         maj(row,x,d.demande);
-        note(row,d.mail==='envoye'?'Enregistré · e-mail envoyé au vendeur':d.mail==='differe'?'Enregistré · e-mail au vendeur prévu à 8 h':'Enregistré');
+        note(row,d.mail==='envoye'?'Enregistré · e-mail envoyé au vendeur':d.mail==='differe'?'Enregistré · e-mail au vendeur prévu à 8 h':d.mail==='indisponible'&&d.demande.a_dire?'Enregistré · message pour le vendeur prêt, en haut du dossier':'Enregistré');
       });
       return;
     }
@@ -2772,7 +2800,7 @@ var EE=(function(){
         vf.disabled=false;
         if(d._status!==200){zoneMsg(zone,EE.messageChamp(d));return;}
         maj(row,x,d.demande);
-        zoneMsg($('[data-bloc=visite]',row),corpsV.annuler?'Visite annulée.':'Visite fixée'+(d.mail==='envoye'?' · confirmation envoyée au vendeur par e-mail.':mailTxt(d.mail)),true);
+        zoneMsg($('[data-bloc=visite]',row),corpsV.annuler?'Visite annulée.':'Visite fixée'+(d.mail==='envoye'?' · confirmation envoyée au vendeur par e-mail.':mailTxt(d.mail,d.demande)),true);
       });
       return;
     }
@@ -2869,6 +2897,76 @@ var EE=(function(){
       out.className='ee-ok'; out.textContent=d.rdv_url?'Enregistré : les vendeurs choisissent leur créneau dans votre agenda.':'Enregistré : les vendeurs proposent jusqu\'à 3 créneaux, vous confirmez.';
     });
   });
+  /* ---------- à dire au vendeur : la nouvelle que l'e-mail n'a pas pu annoncer, à envoyer d'un geste ----------
+     E-mails aux vendeurs fermés, ou vendeur sans espace : le serveur garde la nouvelle « à dire » et écrit le message
+     (les mots de l'e-mail, le lien de son espace s'il en a un). WhatsApp, SMS ou e-mail s'ouvrent avec le message ;
+     le dossier note alors que le vendeur est prévenu (« Ce n'est pas parti » le retire). */
+  var DIRE={}, VOIES={whatsapp:'par WhatsApp',sms:'par SMS',email:'par e-mail',telephone:'de vive voix'};
+  function direCle(x){ return x&&x.a_dire?x.a_dire.motifs.join()+'|'+x.a_dire.depuis:''; }
+  function direChip(d){ return d.a_dire?'À prévenir : '+d.a_dire.quoi.join(', '):''; }
+  function direPret(d,m){
+    var c=d.contact||{}, wa=String(c.telephone||'').replace(/\D/g,'').replace(/^0(?=\d{9}$)/,'33'), tel=String(c.telephone||'').replace(/[^\d+]/g,''), mail=d.compte_email||c.email||'';
+    return '<p class="hint">Le message est écrit. Relisez-le, puis envoyez.</p>'+
+      '<div class="acts">'+(wa?'<a class="btn btn-primary" data-dire-voie="whatsapp" data-test="dire-wa" href="https://wa.me/'+EE.esc(wa)+'?text='+encodeURIComponent(m.texte)+'" target="_blank" rel="noopener">WhatsApp</a>':'')+
+      (tel?'<a class="btn" data-dire-voie="sms" data-test="dire-sms" href="sms:'+EE.esc(tel)+'?&body='+encodeURIComponent(m.texte)+'">SMS</a>':'')+
+      (mail?'<a class="btn" data-dire-voie="email" data-test="dire-mail" href="mailto:'+EE.esc(mail)+'?subject='+encodeURIComponent(m.sujet)+'&body='+encodeURIComponent(m.texte)+'">E-mail</a>':'')+
+      '<button type="button" class="btn" data-dire-copier>Copier le message</button></div>'+
+      '<p class="hint ee-dire-txt" data-test="dire-texte">'+EE.esc(m.texte)+'</p>'+
+      '<div class="ee-links"><button type="button" data-dire-voie="telephone">Je l\'ai prévenu de vive voix</button></div>';
+  }
+  function blocDire(d){
+    var a=d.a_dire, m=DIRE[d.id], h='<div class="ee-bloc ee-dire'+(a?'':' fait')+'" data-bloc="dire"'+(a||(m&&m.fait)?'':' hidden')+'><p class="lab">À dire au vendeur</p>';
+    if(m&&m.fait)h+='<p class="ee-note" data-test="dire-fait">Noté : vendeur prévenu '+VOIES[m.fait.voie]+' ('+EE.esc(m.fait.quoi)+').</p><div class="ee-links"><button type="button" data-dire-annuler="'+m.fait.evenement+'">Ce n\'est pas parti</button></div>';
+    if(a){
+      h+='<p class="ee-note warn" data-test="dire-quoi"><b>'+EE.esc(a.quoi.join(' · '))+'</b> · depuis '+EE.esc(EE.quandCourt(a.depuis))+'. Le vendeur ne le sait pas encore.</p>';
+      h+=m&&m.texte&&m.motifs.join()===a.motifs.join()?direPret(d,m):'<div class="acts"><button type="button" class="btn btn-primary" data-dire-preparer>Préparer le message</button></div>';
+    }
+    return h+'<p class="ee-err" role="alert" hidden></p><p class="ee-ok" role="status" hidden></p></div>';
+  }
+  function direRendre(row,x){
+    var b=$('[data-bloc=dire]',row); if(b)b.outerHTML=blocDire(x);
+    var c=$('summary .dire',row); if(c){c.textContent=direChip(x);c.hidden=!x.a_dire;}
+  }
+  function direPreparer(row,x,voir){
+    return EE.api('/admin/dire',{body:{demande:x.id}}).then(function(d){
+      var zone=$('[data-bloc=dire]',row); if(!zone)return;
+      if(d._status!==200){zoneMsg(zone,EE.message(d));return;}
+      x.a_dire=d.demande.a_dire; if(d.message)DIRE[x.id]=d.message; else if(DIRE[x.id]&&!DIRE[x.id].fait)delete DIRE[x.id];
+      direRendre(row,x);
+      zone=$('[data-bloc=dire]',row);
+      if(voir&&zone&&!zone.hidden&&zone.scrollIntoView)zone.scrollIntoView({block:'center',behavior:'smooth'});
+    });
+  }
+  function direClic(e,row,id,x){
+    var t=e.target.closest('[data-dire-preparer],[data-dire-voie],[data-dire-copier],[data-dire-annuler]'); if(!t||!x)return false;
+    var zone=$('[data-bloc=dire]',row), m=DIRE[id];
+    if(t.hasAttribute('data-dire-preparer')){ t.disabled=true; direPreparer(row,x,false); return true; }
+    if(t.hasAttribute('data-dire-copier')){
+      var fait=function(){t.textContent='Message copié';}, rate=function(){t.textContent='Copie impossible : sélectionnez le texte ci-dessous';};
+      if(m&&m.texte&&navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(m.texte).then(fait,rate); else rate();
+      return true;
+    }
+    if(t.hasAttribute('data-dire-annuler')){
+      t.disabled=true;
+      EE.api('/admin/prevenu',{body:{demande:id,annuler:+t.getAttribute('data-dire-annuler')}}).then(function(d){
+        t.disabled=false;
+        if(d._status!==200){zoneMsg(zone,EE.message(d));return;}
+        if(m&&m.avant)DIRE[id]=m.avant; else delete DIRE[id];
+        x.a_dire=d.demande.a_dire; direRendre(row,x);
+      });
+      return true;
+    }
+    // WhatsApp, SMS, e-mail : le lien s'ouvre de lui-même avec le message ; on note que le vendeur est prévenu
+    if(!m||!m.motifs)return true;
+    var voie=t.getAttribute('data-dire-voie');
+    EE.api('/admin/prevenu',{body:{demande:id,motifs:m.motifs,voie:voie}}).then(function(d){
+      if(d._status!==200){ if(d.error!=='rien_a_dire')zoneMsg($('[data-bloc=dire]',row),EE.message(d)); return; }
+      DIRE[id]={fait:{evenement:d.evenement,voie:voie,quoi:m.quoi.join(', ')},avant:m};
+      x.a_dire=d.demande.a_dire; direRendre(row,x);
+    });
+    return true;
+  }
+
   /* ---------- espace du vendeur : le lien à lui envoyer, ou l'espace à ouvrir quand le dossier n'en a pas ---------- */
   function origineAgence(d){ return !!(d&&d.reponses&&d.reponses.origine==='agence'); }
   /* (la fiche d'un dossier ouvert par l'agence ne promet pas de rappel : la fourchette se décide à la visite) */
@@ -2932,32 +3030,46 @@ var EE=(function(){
     return true;
   }
 
-  /* ---------- ouvrir un dossier à la main : un vendeur venu par téléphone, une recommandation, un mandat déjà signé ---------- */
-  var NV={lat:null}, nvCle=EE.uuid(), nvItems=[], nvSel=-1, nvTmr=null, nvSeq=0;
+  /* ---------- ouvrir un dossier à la main : un vendeur venu par téléphone, une recommandation, un mandat déjà signé ----------
+     Le même formulaire sert à corriger un dossier après coup (NVX = le dossier) : le vendeur toujours ; le bien tant
+     que le site n'a pas calculé de fourchette à partir de lui. */
+  var NV={lat:null}, NVX=null, nvTouche=false, nvCle=EE.uuid(), nvItems=[], nvSel=-1, nvTmr=null, nvSeq=0;
+  function bienFige(x){ return x.prix_bas!=null; }
+  /* l'e-mail d'un espace que le vendeur a déjà ouvert ne se corrige plus ici */
+  function emailFige(x){ return !!(x.compte_id&&x.compte_vu); }
   var NV_SOURCES=['https://api-adresse.data.gouv.fr/search/','https://data.geopf.fr/geocodage/search'];
+  var NV_ERR={espace_utilise:'Le vendeur a déjà ouvert son espace avec cet e-mail : il ne se change plus ici.',bien_fige:'L\'adresse et la surface viennent de son estimation en ligne : elles ne se changent pas ici.'};
   var NV_MSG={nom_vendeur:'Indiquez son prénom ou son nom.',telephone:'Indiquez son téléphone (ou son e-mail).',email:'Cette adresse e-mail n\'est pas valide.',adresse:'Indiquez l\'adresse du bien.',surface:'La surface n\'est pas valide.',code_postal:'Choisissez l\'adresse dans la liste.',email_agence:'C\'est une adresse de l\'agence : indiquez l\'e-mail du vendeur, ou laissez vide.'};
   $('#ad-demandes .ee-tools').insertAdjacentHTML('beforeend','<button type="button" class="btn btn-primary" id="ad-nv-btn" aria-expanded="false">Ouvrir un dossier</button>');
-  function nvForm(){
+  function nvForm(x){
     var opts=Object.keys(STATUTS).filter(function(k){return k!=='pause'&&k!=='close';}).map(function(k){return '<option value="'+k+'"'+(k==='appele'?' selected':'')+'>'+EE.esc(STATUTS[k])+'</option>';}).join('');
+    var c=(x&&x.contact)||{}, r=(x&&x.reponses)||{}, v=function(t){return EE.esc(t==null?'':t);};
+    var fige=!!x&&bienFige(x), mailFige=!!x&&emailFige(x), type=x?(x.type==='autre'?'autre:'+(r.autre_type||'autre'):x.type):'appartement';
+    var types=[['appartement','Appartement'],['maison','Maison'],['autre:commerce','Fonds de commerce'],['autre:murs','Murs commerciaux'],['autre:immeuble','Immeuble'],['autre:terrain','Terrain'],['autre:autre','Autre']];
     return '<form class="ee-card ee-nv" id="ad-nv" novalidate>'+
-      '<h3>Ouvrir un dossier</h3>'+
-      '<p class="meta">Pour un vendeur qui n\'est pas passé par l\'estimation en ligne : un appel, une recommandation, un mandat déjà signé. Avec son e-mail, il a son espace tout de suite.</p>'+
-      '<div class="ee-2"><div class="field"><label for="nv-prenom">Prénom</label><input type="text" id="nv-prenom" autocomplete="off" maxlength="80"></div>'+
-      '<div class="field"><label for="nv-nom">Nom</label><input type="text" id="nv-nom" autocomplete="off" maxlength="80"><span class="msg">Indiquez son prénom ou son nom.</span></div></div>'+
-      '<div class="ee-2"><div class="field"><label for="nv-tel">Téléphone</label><input type="tel" id="nv-tel" inputmode="tel" autocomplete="off"><span class="msg">Indiquez son téléphone (ou son e-mail).</span></div>'+
-      '<div class="field"><label for="nv-email">E-mail <small>(pour son espace)</small></label><input type="email" id="nv-email" inputmode="email" autocapitalize="off" autocorrect="off" spellcheck="false" autocomplete="off"><span class="msg">Cette adresse e-mail n\'est pas valide.</span></div></div>'+
-      '<div class="field"><label for="nv-adresse">Adresse du bien</label><input type="text" id="nv-adresse" role="combobox" aria-expanded="false" aria-controls="nv-sugg" aria-autocomplete="list" autocomplete="off" placeholder="30 rue Bannelier, Dijon" maxlength="200"><span class="msg">Indiquez l\'adresse du bien.</span>'+
-        '<ul class="ee-sugg" id="nv-sugg" role="listbox" aria-label="Adresses proposées" hidden></ul><span class="hint" id="nv-picked" hidden></span></div>'+
-      '<div class="ee-2"><div class="field"><label for="nv-type">Type de bien</label><select id="nv-type"><option value="appartement">Appartement</option><option value="maison">Maison</option><option value="autre:commerce">Fonds de commerce</option><option value="autre:murs">Murs commerciaux</option><option value="autre:immeuble">Immeuble</option><option value="autre:terrain">Terrain</option><option value="autre:autre">Autre</option></select></div>'+
-      '<div class="field"><label for="nv-surface">Surface en m² <small>(si vous l\'avez)</small></label><input type="number" id="nv-surface" inputmode="numeric" min="1" max="100000"><span class="msg">La surface n\'est pas valide.</span></div></div>'+
-      '<div class="field"><label for="nv-statut">Où en est ce dossier</label><select id="nv-statut">'+opts+'</select></div>'+
+      '<h3>'+(x?'Corriger ce dossier':'Ouvrir un dossier')+'</h3>'+
+      '<p class="meta">'+(x?(fige?'Son nom, son téléphone, son e-mail. L\'adresse et la surface viennent de son estimation en ligne : elles ne se changent pas ici.':'Une faute dans le nom, un numéro qui change, une surface apprise à la visite : corrigez, puis enregistrez.'):'Pour un vendeur qui n\'est pas passé par l\'estimation en ligne : un appel, une recommandation, un mandat déjà signé. Avec son e-mail, il a son espace tout de suite.')+'</p>'+
+      '<div class="ee-2"><div class="field"><label for="nv-prenom">Prénom</label><input type="text" id="nv-prenom" autocomplete="off" maxlength="80" value="'+v(c.prenom)+'"></div>'+
+      '<div class="field"><label for="nv-nom">Nom</label><input type="text" id="nv-nom" autocomplete="off" maxlength="80" value="'+v(c.nom)+'"><span class="msg">Indiquez son prénom ou son nom.</span></div></div>'+
+      '<div class="ee-2"><div class="field"><label for="nv-tel">Téléphone</label><input type="tel" id="nv-tel" inputmode="tel" autocomplete="off" value="'+v(c.telephone)+'"><span class="msg">Indiquez son téléphone (ou son e-mail).</span></div>'+
+      '<div class="field"><label for="nv-email">E-mail <small>('+(x&&x.compte_id?'celui de son espace':'pour son espace')+')</small></label><input type="email" id="nv-email" inputmode="email" autocapitalize="off" autocorrect="off" spellcheck="false" autocomplete="off" value="'+v(x?(x.compte_email||c.email):'')+'"'+(mailFige?' readonly aria-describedby="nv-email-fige"':'')+'><span class="msg">Cette adresse e-mail n\'est pas valide.</span>'+
+        (mailFige?'<span class="hint" id="nv-email-fige">Il a déjà ouvert son espace avec cet e-mail : il ne se change plus ici.</span>':'')+'</div></div>'+
+      (fige?'':'<div class="field"><label for="nv-adresse">Adresse du bien</label><input type="text" id="nv-adresse" role="combobox" aria-expanded="false" aria-controls="nv-sugg" aria-autocomplete="list" autocomplete="off" placeholder="30 rue Bannelier, Dijon" maxlength="200" value="'+v(x&&x.adresse)+'"><span class="msg">Indiquez l\'adresse du bien.</span>'+
+        '<ul class="ee-sugg" id="nv-sugg" role="listbox" aria-label="Adresses proposées" hidden></ul><span class="hint" id="nv-picked"'+(x&&r.lat!=null?'>Adresse retenue : '+v(x.adresse):' hidden>')+'</span></div>'+
+      '<div class="ee-2"><div class="field"><label for="nv-type">Type de bien</label><select id="nv-type">'+types.map(function(t){return '<option value="'+t[0]+'"'+(t[0]===type?' selected':'')+'>'+t[1]+'</option>';}).join('')+'</select></div>'+
+      '<div class="field"><label for="nv-surface">Surface en m² <small>(si vous l\'avez)</small></label><input type="number" id="nv-surface" inputmode="numeric" min="1" max="100000" value="'+v(x&&x.surface)+'"><span class="msg">La surface n\'est pas valide.</span></div></div>')+
+      (x?'':'<div class="field"><label for="nv-statut">Où en est ce dossier</label><select id="nv-statut">'+opts+'</select></div>'+
       '<div class="field"><label for="nv-notes">Notes <small>(visibles par l\'agence seulement)</small></label><textarea id="nv-notes" maxlength="5000"></textarea></div>'+
-      '<label class="ee-check-l"><input type="checkbox" id="nv-prevenir"'+(MAIL_CLIENTS?' checked':' disabled')+'>'+(MAIL_CLIENTS?'Lui envoyer le lien de son espace par e-mail':'E-mails aux vendeurs pas encore ouverts : vous lui enverrez son lien par WhatsApp, en un geste')+'</label>'+
+      '<label class="ee-check-l"><input type="checkbox" id="nv-prevenir"'+(MAIL_CLIENTS?' checked':' disabled')+'>'+(MAIL_CLIENTS?'Lui envoyer le lien de son espace par e-mail':'E-mails aux vendeurs pas encore ouverts : vous lui enverrez son lien par WhatsApp, en un geste')+'</label>')+
       '<p class="ee-err" role="alert" hidden></p><p class="ee-ok" role="status" hidden></p>'+
-      '<div class="acts"><button type="submit" class="btn btn-primary" id="nv-ok">Ouvrir le dossier</button><button type="button" class="btn" id="nv-annuler">Annuler</button></div>'+
+      '<div class="acts"><button type="submit" class="btn btn-primary" id="nv-ok">'+(x?'Enregistrer les corrections':'Ouvrir le dossier')+'</button><button type="button" class="btn" id="nv-annuler">Annuler</button></div>'+
     '</form>';
   }
-  function nvFermer(){ var f=$('#ad-nv'); if(f)f.parentNode.removeChild(f); NV={lat:null}; nvItems=[]; $('#ad-nv-btn').setAttribute('aria-expanded','false'); }
+  function nvFermer(){
+    var f=$('#ad-nv'); if(f)f.parentNode.removeChild(f);
+    NV={lat:null}; NVX=null; nvTouche=false; nvItems=[]; $('#ad-nv-btn').setAttribute('aria-expanded','false');
+    $$('#ad-rows [data-dmodif]').forEach(function(b){b.setAttribute('aria-expanded','false');});
+  }
   function nvListe(){
     var inp=$('#nv-adresse'), ul=$('#nv-sugg'); nvSel=-1; inp.removeAttribute('aria-activedescendant');
     if(!nvItems.length){ul.hidden=true;inp.setAttribute('aria-expanded','false');return;}
@@ -2972,28 +3084,37 @@ var EE=(function(){
   }
   function nvChoisir(it){
     var inp=$('#nv-adresse'), pk=$('#nv-picked');
-    NV={adresse:it.label,code_postal:it.postcode||'',commune:it.city||'',citycode:it.citycode||'',lat:it.lat,lon:it.lon};
+    NV={adresse:it.label,code_postal:it.postcode||'',commune:it.city||'',citycode:it.citycode||'',lat:it.lat,lon:it.lon}; nvTouche=true;
     inp.value=it.label; nvItems=[]; nvListe(); EE.err(inp,false);
     pk.textContent='Adresse retenue : '+it.label; pk.hidden=false;
   }
-  function nvOuvrir(){
-    if($('#ad-nv')){ nvFermer(); return; }
-    $('#ad-demandes .ee-tools').insertAdjacentHTML('afterend',nvForm());
-    $('#ad-nv-btn').setAttribute('aria-expanded','true');
+  /* x : le dossier à corriger (le formulaire s'ouvre alors dans sa ligne, au bas du dossier) ; sans x : nouveau dossier */
+  function nvOuvrir(x,row){
+    var deja=$('#ad-nv'), meme=deja&&(x?NVX&&NVX.id===x.id:!NVX);
+    if(deja){ nvFermer(); if(meme)return; }
+    if(x){
+      $('.in',row).insertAdjacentHTML('beforeend',nvForm(x)); NVX=x; $('[data-dmodif]',row).setAttribute('aria-expanded','true');
+      var r=x.reponses||{}; if(r.lat!=null)NV={adresse:x.adresse||'',code_postal:r.code_postal||'',commune:r.commune||x.commune||'',citycode:r.citycode||'',lat:r.lat,lon:r.lon};
+    } else {
+      $('#ad-demandes .ee-tools').insertAdjacentHTML('afterend',nvForm());
+      $('#ad-nv-btn').setAttribute('aria-expanded','true');
+    }
     var f=$('#ad-nv'), inp=$('#nv-adresse'), ul=$('#nv-sugg');
-    inp.addEventListener('input',function(){
-      NV={lat:null}; $('#nv-picked').hidden=true; clearTimeout(nvTmr); var q=inp.value.trim();
-      if(q.length<3){nvItems=[];nvListe();return;}
-      nvTmr=setTimeout(function(){nvChercher(q);},180);
-    });
-    inp.addEventListener('keydown',function(e){
-      if(ul.hidden)return;
-      if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();nvSel=(nvSel+(e.key==='ArrowDown'?1:-1)+nvItems.length)%nvItems.length;$$('li',ul).forEach(function(li,k){li.setAttribute('aria-selected',String(k===nvSel));});inp.setAttribute('aria-activedescendant','nv-o'+nvSel);}
-      else if(e.key==='Enter'&&(nvSel>=0||nvItems.length===1)){e.preventDefault();nvChoisir(nvItems[nvSel>=0?nvSel:0]);}
-      else if(e.key==='Escape'){nvItems=[];nvListe();}
-    });
-    ul.addEventListener('mousedown',function(e){e.preventDefault();});
-    ul.addEventListener('click',function(e){var li=e.target.closest('li');if(li)nvChoisir(nvItems[+li.getAttribute('data-k')]);});
+    if(inp){
+      inp.addEventListener('input',function(){
+        NV={lat:null}; nvTouche=true; $('#nv-picked').hidden=true; clearTimeout(nvTmr); var q=inp.value.trim();
+        if(q.length<3){nvItems=[];nvListe();return;}
+        nvTmr=setTimeout(function(){nvChercher(q);},180);
+      });
+      inp.addEventListener('keydown',function(e){
+        if(ul.hidden)return;
+        if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();nvSel=(nvSel+(e.key==='ArrowDown'?1:-1)+nvItems.length)%nvItems.length;$$('li',ul).forEach(function(li,k){li.setAttribute('aria-selected',String(k===nvSel));});inp.setAttribute('aria-activedescendant','nv-o'+nvSel);}
+        else if(e.key==='Enter'&&(nvSel>=0||nvItems.length===1)){e.preventDefault();nvChoisir(nvItems[nvSel>=0?nvSel:0]);}
+        else if(e.key==='Escape'){nvItems=[];nvListe();}
+      });
+      ul.addEventListener('mousedown',function(e){e.preventDefault();});
+      ul.addEventListener('click',function(e){var li=e.target.closest('li');if(li)nvChoisir(nvItems[+li.getAttribute('data-k')]);});
+    }
     f.addEventListener('input',function(e){ if(e.target.closest('.field.err'))EE.err(e.target,false); });
     $('#nv-annuler').addEventListener('click',nvFermer);
     f.addEventListener('submit',nvEnvoyer);
@@ -3001,18 +3122,42 @@ var EE=(function(){
   }
   function nvEnvoyer(e){
     e.preventDefault();
-    var f=$('#ad-nv'), ok=true, v=function(k){return $('#nv-'+k).value.trim();};
+    var f=$('#ad-nv'), ok=true, v=function(k){var z=$('#nv-'+k);return z?z.value.trim():'';}, x=NVX, avecBien=!!$('#nv-adresse');
     $('#nv-email').value=$('#nv-email').value.replace(/\s+/g,'');
     ok=EE.err($('#nv-nom'),!v('prenom')&&!v('nom'))&&ok;
     ok=EE.err($('#nv-tel'),v('tel')?!EE.telOk(v('tel')):!v('email'))&&ok;
     ok=EE.err($('#nv-email'),!!v('email')&&!EE.emailOk(v('email')))&&ok;
-    ok=EE.err($('#nv-adresse'),v('adresse').length<3)&&ok;
-    ok=EE.err($('#nv-surface'),!!v('surface')&&!(+v('surface')>=1&&+v('surface')<=100000))&&ok;
+    if(avecBien){
+      ok=EE.err($('#nv-adresse'),v('adresse').length<3)&&ok;
+      ok=EE.err($('#nv-surface'),!!v('surface')&&!(+v('surface')>=1&&+v('surface')<=100000))&&ok;
+    }
     if(!ok){var k=f.querySelector('.field.err input');if(k)k.focus();return;}
-    var type=$('#nv-type').value.split(':'), choisie=NV.lat!=null;
-    // adresse non choisie dans la liste : gardée telle qu'écrite (sans repère, pas de ventes comparables automatiques)
-    var bien={type:type[0],autre_type:type[1]||undefined,adresse:choisie?NV.adresse:v('adresse'),code_postal:choisie?NV.code_postal:'',commune:choisie?NV.commune:'',citycode:choisie?NV.citycode:'',lat:choisie?NV.lat:null,lon:choisie?NV.lon:null,surface:v('surface')||null};
+    var bien=null;
+    if(avecBien){
+      var type=$('#nv-type').value.split(':'), choisie=NV.lat!=null, r=(x&&x.reponses)||{};
+      // adresse non choisie dans la liste : gardée telle qu'écrite (sans repère, pas de ventes comparables automatiques) ;
+      // adresse d'un dossier qu'on corrige sans y toucher : gardée comme elle était
+      bien=x&&!nvTouche?{adresse:x.adresse||v('adresse'),code_postal:r.code_postal||'',commune:r.commune||x.commune||'',citycode:r.citycode||'',lat:r.lat==null?null:r.lat,lon:r.lon==null?null:r.lon}
+        :{adresse:choisie?NV.adresse:v('adresse'),code_postal:choisie?NV.code_postal:'',commune:choisie?NV.commune:'',citycode:choisie?NV.citycode:'',lat:choisie?NV.lat:null,lon:choisie?NV.lon:null};
+      bien.type=type[0]; bien.autre_type=type[1]||undefined; bien.surface=v('surface')||null;
+    }
     var b=$('#nv-ok'); b.disabled=true; zoneMsg(f,'');
+    if(x){
+      var contact={prenom:v('prenom'),nom:v('nom'),telephone:v('tel')}; if(!emailFige(x))contact.email=v('email');
+      var corps={demande:x.id,contact:contact}; if(bien)corps.bien=bien;
+      EE.api('/admin/dossier/modifier',{body:corps}).then(function(d){
+        b.disabled=false;
+        if(d._status!==200){zoneMsg(f,NV_ERR[d.error]||(d.error==='champs'&&NV_MSG[d.champ])||EE.messageChamp(d));return;}
+        var n=d.demande, i=D.map(function(q){return q.id;}).indexOf(n.id); if(i>=0)D[i]=n;
+        nvFermer(); stats(); filtrer();
+        var row=$('#ad-rows details[data-id="'+n.id+'"]'); if(!row)return;
+        row.open=true;
+        var okp=$('[data-modif-ok]',row), ch=d.champs||[];
+        okp.textContent=ch.length?'Dossier corrigé : '+ch.join(', ')+'.'+(ch.indexOf('e-mail')>=0&&n.compte_id?' Son espace est à sa nouvelle adresse : envoyez-lui son lien.':''):'Rien n\'a changé.';
+        okp.hidden=false;
+      });
+      return;
+    }
     EE.api('/admin/dossier',{body:{contact:{prenom:v('prenom'),nom:v('nom'),telephone:v('tel'),email:v('email')},bien:bien,statut:$('#nv-statut').value,notes:$('#nv-notes').value,prevenir:$('#nv-prevenir').checked,cle:nvCle,site:C.site||undefined}}).then(function(d){
       b.disabled=false;
       if(d._status!==201&&d._status!==200){zoneMsg(f,(d.error==='champs'&&NV_MSG[d.champ])||EE.messageChamp(d));return;}
@@ -3027,7 +3172,7 @@ var EE=(function(){
       row.scrollIntoView({block:'start',behavior:'smooth'});
     });
   }
-  $('#ad-nv-btn').addEventListener('click',nvOuvrir);
+  $('#ad-nv-btn').addEventListener('click',function(){nvOuvrir();});
 
   /* connexion sans mot de passe : l'agence demande son lien ici, il rouvre cette page (c'est aussi l'entrée des agents) */
   $('#ad-lien').addEventListener('submit',function(e){

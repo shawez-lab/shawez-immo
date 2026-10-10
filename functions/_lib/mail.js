@@ -19,8 +19,10 @@ export function mailPossible(env) {
   return !!(env.RESEND_API_KEY || env.EMAIL || env.MAILER);
 }
 
-/* Peut-on écrire aux clients (toute adresse) ? */
+/* Peut-on écrire aux clients (toute adresse) ? CLIENT_MAIL = 0 ferme l'envoi aux clients même avec un service ouvert
+   (les alertes et les liens de connexion de l'agence continuent d'arriver). */
 export function mailClients(env) {
+  if (String(env.CLIENT_MAIL || '') === '0') return false;
   return !!env.RESEND_API_KEY || (!!(env.EMAIL || env.MAILER) && String(env.CLIENT_MAIL || '') === '1');
 }
 

@@ -4,7 +4,9 @@
    - http://127.0.0.1:8790  fausse boîte d'envoi : reçoit les e-mails à la place du service d'envoi
                             (GET /boite : la liste, DELETE /boite : vider)
    - http://127.0.0.1:8788  le site, e-mails aux clients ouverts (lien de connexion…), plafonds de débit relevés
-   - http://127.0.0.1:8789  le site comme en production aujourd'hui : pas d'e-mail aux clients, plafonds réels
+   - http://127.0.0.1:8789  le site sans aucun e-mail (ni aux clients ni à l'agence), plafonds réels
+   - http://127.0.0.1:8791  le site comme en production aujourd'hui : l'agence reçoit ses e-mails (alertes, lien de
+                            connexion à /admin/), les vendeurs aucun (CLIENT_MAIL = 0) ; plafonds de débit relevés
 
    Lancer :  node serveur.mjs   (depuis outils/tests-espace/, après « npm install »)
    Variables : EE_ETAT=<dossier> pour garder les bases locales entre deux lancements (défaut : dossier temporaire). */
@@ -48,6 +50,7 @@ function site(port, nom, variables) {
 const enfants = [
   site(8788, 'avec-email', { RESEND_API_KEY: 'local', RESEND_API_URL: 'http://127.0.0.1:8790/emails', LIMITE_FACTEUR: '200', ADMIN_EMAILS: 'shawez@gravelin-immo.com', NOTIFY_EMAILS: 'shawez@gravelin-immo.com', PBKDF2_ITER: '10000', HORLOGE_TEST: '1' }),
   site(8789, 'sans-email', { PBKDF2_ITER: '10000' }),
+  site(8791, 'vendeurs-fermes', { RESEND_API_KEY: 'local', RESEND_API_URL: 'http://127.0.0.1:8790/emails', CLIENT_MAIL: '0', LIMITE_FACTEUR: '200', ADMIN_EMAILS: 'shawez@gravelin-immo.com', NOTIFY_EMAILS: 'shawez@gravelin-immo.com', PBKDF2_ITER: '10000', HORLOGE_TEST: '1' }),
 ];
 const stop = () => { enfants.forEach((e) => e.kill('SIGTERM')); process.exit(0); };
 process.on('SIGINT', stop); process.on('SIGTERM', stop);

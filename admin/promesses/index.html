@@ -1539,6 +1539,19 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 .ee-esp-out[hidden]{display:none;}
 .ee-esp-out .acts .btn{flex:1 1 auto;}
 .ee-esp-lien{word-break:break-all;user-select:all;-webkit-user-select:all;}
+/* à dire au vendeur : la nouvelle que l'e-mail n'a pas pu annoncer, et le message déjà écrit */
+.ee-row>summary .dire{grid-column:1/-1;font-size:.86rem;font-weight:700;color:#7E2C1F;}
+.ee-row>summary .dire[hidden],.ee-dire[hidden]{display:none;}
+.ee-dire{border-color:rgba(162,59,42,.35);}
+.ee-dire.fait{border-color:var(--line);}
+.ee-dire .acts .btn{flex:1 1 auto;}
+.ee-dire .ee-links{margin-top:0;}
+.ee-dire-txt{white-space:pre-line;overflow-wrap:anywhere;min-width:0;padding:10px 12px;border-radius:12px;background:var(--surface);border:1px solid var(--line);color:var(--ink-2)!important;font-size:.88rem!important;line-height:1.5;user-select:all;-webkit-user-select:all;}
+/* corriger un dossier : le formulaire s'ouvre dans la ligne, sous le dossier, sur toute la largeur */
+.ee-row .in>.ee-nv{grid-column:1/-1;margin:0;}
+.ee-fiche .ee-links{margin-top:12px;}
+.ee-fiche .ee-ok{margin-top:10px;}
+.ee-nv input[readonly]{color:var(--muted);}
 </style>
 </head>
 <body data-route="/admin/promesses">
@@ -1999,6 +2012,7 @@ updateTone();
   window.addEventListener('pageshow',function(e){ hide(); if(e.persisted){ var m=document.getElementById('menu'), x=document.getElementById('menu-close'); if(m&&x&&m.classList.contains('open'))x.click(); } });
 })();
 </script>
+<script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"33710f67a0c16d7cbb94d1b2ba10e7a8"})});</script>
 <script id="compte-js">
 /* Pictogramme « Mon espace » : état connecté d'après le témoin se_ok (posé par l'API à la connexion, retiré à la déconnexion) */
 window.EECompte=function(){var on=/(?:^|;\s*)se_ok=1/.test(document.cookie||'');[].forEach.call(document.querySelectorAll('[data-compte]'),function(a){a.classList.toggle('is-in',on);var t=on?'Mon espace : connecté':'Mon espace : se connecter';if(a.hasAttribute('aria-label')){a.setAttribute('aria-label',t);a.title=t;}var x=a.querySelector('[data-compte-txt]');if(x)x.textContent=on?'Mon espace · connecté':'Mon espace';});};
@@ -2272,7 +2286,7 @@ var EE=(function(){
     $('#pr-stats').innerHTML=[[tenues,tenues>1?'Tenues':'Tenue','tenues'],[ratees,ratees>1?'Ratées':'Ratée','ratees'],[reste,'En attente','reste']].map(function(x){return '<div class="ee-stat'+(x[2]==='ratees'&&x[0]?' ko':'')+'" data-test="'+x[2]+'"><b>'+x[0]+'</b><span>'+x[1]+'</span></div>';}).join('');
     $('#pr-cartes').innerHTML=l.map(carte).join('');
     var al=$('#pr-alerte');
-    if(!T.email_clients){ al.hidden=false; al.innerHTML='<b>La promesse 7 ne peut pas être tenue aujourd\'hui :</b> les e-mails aux vendeurs ne sont pas encore ouverts. Chaque changement de statut compte donc comme raté.'; } else al.hidden=true;
+    if(!T.email_clients){ al.hidden=false; al.innerHTML='<b>La promesse 7 se tient à la main pour l\'instant :</b> les e-mails aux vendeurs ne sont pas encore ouverts. À chaque étape, le message est déjà écrit dans le dossier : envoyez-le par WhatsApp ou SMS, il compte comme prévenu.'; } else al.hidden=true;
     $('#pr-pied').textContent='Calculé le '+EE.quand(T.calcule_le)+', sur ce qui est noté dans les dossiers. Les essais ne comptent pas.';
     $('#pr-export').href=C.api+'/admin/promesses.csv?jours='+JOURS;
     $$('[data-jours]').forEach(function(b){b.setAttribute('aria-pressed',String(+b.getAttribute('data-jours')===JOURS));});

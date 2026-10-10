@@ -58,6 +58,12 @@
                                             venu par téléphone, recommandation, mandat déjà signé) ; avec un e-mail, le vendeur
                                             a son espace tout de suite
      POST /api/espace/admin/dossier/espace  { demande, email?, prevenir? } : ouvre l'espace d'un vendeur dont le dossier n'en a pas
+     POST /api/espace/admin/dossier/modifier { demande, contact?: { civilite?, prenom, nom, telephone, email? }, bien?: { type, adresse, … } } :
+                                            corrige un dossier après coup (le bien seulement s'il n'a pas de fourchette en ligne)
+     POST /api/espace/admin/dire            { demande } : le message prêt à envoyer au vendeur (WhatsApp, SMS) pour les nouvelles
+                                            que l'e-mail n'a pas pu lui annoncer, avec le lien de son espace s'il en a un
+     POST /api/espace/admin/prevenu         { demande, motifs: […], voie: 'whatsapp' | 'sms' | 'email' | 'telephone' } : l'agence
+                                            déclare avoir prévenu le vendeur ; { demande, annuler: <id> } : ce n'était pas parti
      POST /api/espace/admin/demande/supprimer { id }
      POST /api/espace/admin/fichier?demande=…&role=avis|document   dépôt de l'avis de valeur (PDF) ou d'un document
      POST /api/espace/admin/compte/supprimer { id }
@@ -75,7 +81,7 @@ import {
 import { estimer, ventesComparables } from '../../_lib/estimation.js';
 import {
   paris, deParis, quandFr, quandCourt, creneaux, creneauValide, prochaineAction, lireCreneaux, frise, suiteVendeur,
-  mailStatut, mailVisite, mailOuverture, lienAgenda, heureFr, AGENCE, DUREE_VISITE,
+  mailStatut, mailVisite, mailOuverture, lienAgenda, heureFr, AGENCE, DUREE_VISITE, messageVendeur, libelleNouvelle,
   OFFRES, ETAPES_NOTAIRE, DOCUMENTS, mailCompteRendu, mailOffre, mailNotaire, heuresCalmes, eurosFr,
 } from '../../_lib/suivi.js';
 import { envoyer, mailPossible, mailClients, peutEcrire, destinatairesAlerte, adresseDeTest, gabarit, paragraphe, bouton, esc } from '../../_lib/mail.js';
@@ -128,6 +134,9 @@ const ROUTES = {
   'POST /admin/demande/supprimer': adminSupprimerDemande,
   'POST /admin/dossier': adminDossier,
   'POST /admin/dossier/espace': adminDossierEspace,
+  'POST /admin/dossier/modifier': adminDossierModifier,
+  'POST /admin/dire': adminDire,
+  'POST /admin/prevenu': adminPrevenu,
   'POST /admin/fichier': adminFichier,
   'POST /admin/compte/supprimer': adminSupprimerCompte,
   'POST /admin/compte/lien': adminLien,
@@ -156,7 +165,7 @@ const ROUTES = {
 
 /* Version de l'API : les tests sur l'aperçu attendent de la voir avant de commencer (le site met une à deux minutes
    à se mettre à jour après une poussée). À changer à chaque évolution de l'API. */
-const VERSION = '2026-10-10.1';
+const VERSION = '2026-10-10.2';
 
 /* Clé du flux Google Sheet : on ne garde que son empreinte. Celle-ci est la clé de mise en service ; dès qu'un admin
    en génère une nouvelle (/admin/ → « Google Sheet »), c'est l'empreinte en base qui fait foi. */
@@ -817,6 +826,7 @@ async function adminDemandes({ request, env }) {
   const traces = await dernieresTraces(base);
   const offres = await etatOffres(base);
   const avis = new Map((await base.prepare('SELECT demande_id, fichier_id, prepare_le, valide_le FROM avis').all()).results.map((a) => [a.demande_id, a]));
+  const dires = await nouvellesADire(base, r.results);
   return json(200, {
     statuts: STATUTS,
     parcours: PARCOURS,
@@ -827,16 +837,16 @@ async function adminDemandes({ request, env }) {
     agenda_relie: !!(await reglage(base, 'agenda_ics')),
     statuts_offre: OFFRES, documents: DOCUMENTS, aujourdhui: paris(new Date()).date,
     demandes: r.results.map((d) => ligneAgence(d, {
-      visite: visites.get(d.id), offres: offres.get(d.id), trace: traces.get(d.id), avis: avis.get(d.id),
+      visite: visites.get(d.id), offres: offres.get(d.id), trace: traces.get(d.id), avis: avis.get(d.id), dire: dires.get(d.id),
       fichiers: fichiers.filter((f) => f.demande_id === d.id),
     })),
   });
 }
 
 /* Une ligne de la liste de l'agence : le dossier, son vendeur, son espace (compte, dernière visite du vendeur). */
-function ligneAgence(d, { visite, offres, trace, avis, fichiers = [] } = {}) {
+function ligneAgence(d, { visite, offres, trace, avis, dire, fichiers = [] } = {}) {
   return {
-    ...vueAgence(d, visite, offres),
+    ...vueAgence(d, visite, offres, dire),
     test: adresseDeTest(lireJson(d.contact).email),
     contact: lireJson(d.contact), reponses: lireJson(d.reponses), compte_email: d.compte_email || null,
     compte_id: d.compte_id || null, compte_vu: d.compte_vu || null,
@@ -854,6 +864,7 @@ async function ligneDossier(env, id) {
   const e = await base.prepare('SELECT type, vers, par, cree_le FROM evenements WHERE demande_id = ?1 ORDER BY id DESC LIMIT 1').bind(id).first();
   return ligneAgence(d, {
     visite: (await visitesDe(base, [id])).get(id), offres: (await etatOffres(base, id)).get(id),
+    dire: (await nouvellesADire(base, [d])).get(id),
     trace: e ? { type: e.type, vers: e.vers, par: e.par, le: e.cree_le } : null,
     avis: await base.prepare('SELECT prepare_le, valide_le FROM avis WHERE demande_id = ?1').bind(id).first(),
     fichiers: await fichiersDe(env, [id]),
@@ -901,7 +912,7 @@ async function adminDemande(ctx) {
     r = await changerStatut(ctx, r, statut, { prevenir: d.prevenir !== false, raison: r.raison || undefined });
     mail = r._mail;
   }
-  return json(200, { demande: vueAgence(r, (await visitesDe(base, [id])).get(id), (await etatOffres(base, id)).get(id)), mail });
+  return json(200, { demande: await vueDossier(base, r), mail });
 }
 
 /* ---------------------- Dossier ouvert par l'agence ----------------------
@@ -1020,6 +1031,110 @@ async function adminDossierEspace(ctx) {
   let mail = 'non';
   if (d.prevenir !== false) mail = await annoncer(ctx, r, mailOuverture(), 'ouverture');
   return json(200, { demande: await ligneDossier(env, dem.id), mail });
+}
+
+/* Corriger un dossier après coup : une faute dans le nom, un numéro qui change, une surface apprise à la visite.
+   - Le vendeur : nom, téléphone, e-mail. L'e-mail d'un dossier qui a un espace est celui de cet espace : il ne se
+     corrige ici que si le vendeur ne l'a encore jamais ouvert (faute de frappe à l'ouverture du dossier) ; le dossier
+     passe alors dans l'espace de la bonne adresse et l'espace ouvert par erreur est retiré.
+   - Le bien : adresse, type, surface — sauf quand le site a calculé une fourchette à partir d'eux (estimation en
+     ligne) : elle ne voudrait plus rien dire.
+   Chaque correction est notée au journal (ce qui a changé, jamais les anciennes valeurs). */
+async function adminDossierModifier(ctx) {
+  const { request, env } = ctx;
+  const d = await corps(request, 12000);
+  const dem = await demandeAdmin(request, env, d.demande);
+  const base = await db(env);
+  const contact = lireJson(dem.contact);
+  const rep = lireJson(dem.reponses);
+  const champs = [];
+  const sets = [];
+  const vals = [];
+  const ops = [];
+  let compte = dem.compte_id ? await base.prepare('SELECT * FROM comptes WHERE id = ?1').bind(dem.compte_id).first() : null;
+  // l'espace n'a encore servi à personne : ni ouvert, ni mot de passe, ni adresse prouvée, et ce seul dossier dedans
+  const jamaisServi = async (c) => !c.derniere_connexion && !c.mdp && !c.verifie
+    && (await base.prepare('SELECT COUNT(*) AS n FROM demandes WHERE compte_id = ?1').bind(c.id).first()).n <= 1
+    && !(await base.prepare('SELECT COUNT(*) AS n FROM sessions WHERE compte_id = ?1').bind(c.id).first()).n;
+  let ancienCompte = null;
+
+  if (d.contact != null) {
+    const c = d.contact && typeof d.contact === 'object' ? d.contact : {};
+    const emailAvant = String((compte && compte.email) || contact.email || '').toLowerCase();
+    const n = {
+      civilite: c.civilite !== undefined ? choix(c.civilite, ['M.', 'Mme'], { nom: 'civilite' }) : contact.civilite || '',
+      prenom: texte(c.prenom, 80, { nom: 'prenom' }),
+      nom: texte(c.nom, 80, { nom: 'nom' }),
+      telephone: c.telephone ? telephone(c.telephone) : '',
+      email: c.email !== undefined ? (c.email ? lireEmail(c.email) : '') : emailAvant,
+    };
+    if (!n.prenom && !n.nom) throw new Erreur(400, 'champs', { champ: 'nom_vendeur' });
+    if (!n.telephone && !n.email) throw new Erreur(400, 'champs', { champ: 'telephone' });
+    if (n.email !== emailAvant) {
+      pasAgence(env, n.email);
+      if (compte) {
+        if (!n.email) throw new Erreur(400, 'champs', { champ: 'email' });           // un espace a toujours son e-mail
+        if (!(await jamaisServi(compte))) throw new Erreur(409, 'espace_utilise');
+        ancienCompte = compte;
+        const v = await compteVendeur(base, n, siteDe(dem.source));
+        compte = v.compte;
+        sets.push('compte_id = ?', 'en_attente = ?'); vals.push(compte.id, v.enAttente);
+      }
+      champs.push('e-mail');
+    }
+    if ((n.prenom || '') !== (contact.prenom || '') || (n.nom || '') !== (contact.nom || '') || (n.civilite || '') !== (contact.civilite || '')) champs.push('nom');
+    if ((n.telephone || '') !== (contact.telephone || '')) champs.push('téléphone');
+    // e-mail inchangé : celui du dossier reste tel qu'il est (il peut différer de celui de l'espace)
+    sets.push('contact = ?'); vals.push(JSON.stringify({ ...contact, ...n, email: n.email !== emailAvant ? n.email : contact.email || '' }));
+    // l'espace porte les mêmes nom et téléphone tant que le vendeur ne l'a pas ouvert lui-même
+    if (compte && !ancienCompte && (await jamaisServi(compte))) {
+      ops.push(base.prepare('UPDATE comptes SET civilite = ?1, prenom = ?2, nom = ?3, telephone = ?4 WHERE id = ?5').bind(n.civilite || '', n.prenom || '', n.nom || '', n.telephone || '', compte.id));
+    }
+  }
+
+  if (d.bien != null) {
+    // la fourchette en ligne a été calculée sur cette adresse et cette surface
+    if (dem.prix_bas != null) throw new Erreur(409, 'bien_fige');
+    const b = d.bien && typeof d.bien === 'object' ? d.bien : {};
+    const type = choix(b.type, ['appartement', 'maison', 'autre'], { requis: true, nom: 'type' });
+    const n = {
+      type,
+      autre_type: type === 'autre' ? choix(b.autre_type, ['commerce', 'murs', 'immeuble', 'terrain', 'autre'], { nom: 'autre_type' }) || 'autre' : undefined,
+      adresse: texte(b.adresse, 200, { requis: true, nom: 'adresse' }),
+      code_postal: texte(b.code_postal, 5, { nom: 'code_postal' }),
+      commune: texte(b.commune, 100, { nom: 'commune' }),
+      citycode: texte(b.citycode, 5, { nom: 'citycode' }),
+      lat: b.lat == null || b.lat === '' ? null : Number(b.lat),
+      lon: b.lon == null || b.lon === '' ? null : Number(b.lon),
+      surface: entier(b.surface, 1, 100000, { nom: 'surface' }),
+    };
+    if (n.code_postal && !/^\d{5}$/.test(n.code_postal)) throw new Erreur(400, 'champs', { champ: 'code_postal' });
+    if (n.lat != null && !(n.lat > 41 && n.lat < 52)) throw new Erreur(400, 'champs', { champ: 'adresse' });
+    if (n.lon != null && !(n.lon > -6 && n.lon < 10)) throw new Erreur(400, 'champs', { champ: 'adresse' });
+    if (n.adresse !== (dem.adresse || '') || (n.lat ?? null) !== (dem.lat ?? null) || (n.lon ?? null) !== (dem.lon ?? null)) champs.push('adresse');
+    if (n.type !== dem.type || (n.autre_type || '') !== (rep.autre_type || '')) champs.push('type de bien');
+    if ((n.surface ?? null) !== (rep.surface ?? null)) champs.push('surface');
+    const suite = { ...rep, ...n };
+    if (type !== 'autre') delete suite.autre_type;
+    sets.push('type = ?', 'adresse = ?', 'code_postal = ?', 'commune = ?', 'lat = ?', 'lon = ?', 'reponses = ?');
+    vals.push(type, n.adresse, n.code_postal, n.commune, n.lat, n.lon, JSON.stringify(suite));
+  }
+
+  if (d.contact == null && d.bien == null) throw new Erreur(400, 'champs');
+  if (!champs.length) return json(200, { demande: await ligneDossier(env, dem.id), champs });
+  sets.push('maj_le = ?'); vals.push(maintenant(), dem.id);
+  await base.prepare(`UPDATE demandes SET ${sets.join(', ')} WHERE id = ?`).bind(...vals).run();
+  if (ops.length) await base.batch(ops);
+  // l'espace ouvert par erreur (jamais servi, plus aucun dossier dedans) est retiré avec ses liens
+  if (ancienCompte && !(await base.prepare('SELECT COUNT(*) AS n FROM demandes WHERE compte_id = ?1').bind(ancienCompte.id).first()).n) {
+    await base.batch([
+      base.prepare('DELETE FROM sessions WHERE compte_id = ?1').bind(ancienCompte.id),
+      base.prepare('DELETE FROM jetons WHERE compte_id = ?1').bind(ancienCompte.id),
+      base.prepare('DELETE FROM comptes WHERE id = ?1').bind(ancienCompte.id),
+    ]);
+  }
+  await journal(base, dem.id, 'dossier_modifie', 'agence', { champs });
+  return json(200, { demande: await ligneDossier(env, dem.id), champs });
 }
 
 async function adminSupprimerDemande({ request, env }) {
@@ -1339,13 +1454,15 @@ function suiviVendeur(d, visite, dates = {}, offres = {}) {
 }
 
 /* Ce que l'agence voit d'une demande. */
-function vueAgence(d, visite, offres = {}) {
+function vueAgence(d, visite, offres = {}, dire = null) {
   const v = visitePublique(visite);
   const c = lireJson(d.contact);
   return {
     ...demandePublique(d, STATUTS), site: siteDe(d.source), notes: d.notes, rappel_le: d.rappel_le || '', raison: d.raison || '',
     suspect: !!d.suspect, en_attente: !!d.en_attente, statut_le: d.statut_le || null,
     action: prochaineAction(d, visite, new Date(), offres),
+    // ce que le vendeur ne sait pas encore (l'e-mail n'a pas pu partir) : à lui dire par WhatsApp ou SMS, depuis le dossier
+    a_dire: dire && dire.length ? { quoi: dire.map((n) => libelleNouvelle(n.motif)), motifs: dire.map((n) => n.motif), depuis: dire[0].le } : null,
     visite: v && { ...v, agenda: v.debut ? lienAgenda({
       debut: v.debut, duree: v.duree, titre: `Visite d'estimation avec ${[c.civilite, c.prenom, c.nom].filter(Boolean).join(' ')}`.trim(),
       lieu: d.adresse || '', details: `${c.telephone || ''} · ${c.email || ''} · réf. ${d.reference}`,
@@ -1384,7 +1501,13 @@ async function annoncer(ctx, demande, contenu, motif, controle = null) {
   const compte = demande.compte_id ? await base.prepare('SELECT * FROM comptes WHERE id = ?1').bind(demande.compte_id).first() : null;
   const possible = !!compte && !demande.suspect && peutEcrire(env, compte.email);
   if (!possible) {
-    await journal(base, demande.id, 'mail', 'systeme', { motif, sujet: contenu.sujet, envoye: false, raison: !compte ? 'sans_compte' : demande.suspect ? 'suspect' : adresseDeTest(compte.email) ? 'adresse_de_test' : 'email_clients_ferme' });
+    const raison = !compte ? 'sans_compte' : demande.suspect ? 'suspect' : adresseDeTest(compte.email) ? 'adresse_de_test' : 'email_clients_ferme';
+    const detail = { motif, sujet: contenu.sujet, envoye: false, raison };
+    // l'e-mail ne peut pas partir : la nouvelle reste « à dire » par l'agence (WhatsApp, SMS), avec les mêmes mots
+    if (['sans_compte', 'email_clients_ferme'].includes(raison) && !demande.suspect && seDit(motif) && !adresseDeTest(lireJson(demande.contact).email)) {
+      Object.assign(detail, { dire: contenu.paragraphes }, contenu.direct ? { direct: contenu.direct } : {}, contenu.lien ? { lien: contenu.lien } : {}, controle && controle.visite ? { visite: controle.visite } : {});
+    }
+    await journal(base, demande.id, 'mail', 'systeme', detail);
     return 'indisponible';
   }
   const origine = new URL(request.url).origin;
@@ -1396,6 +1519,99 @@ async function annoncer(ctx, demande, contenu, motif, controle = null) {
   }
   ctx.waitUntil(expedier(env, demande, compte, contenu, motif, origine).catch((e) => console.log('annonce', e && e.message)));
   return 'envoye';
+}
+
+/* ---------------------- À dire au vendeur (promesse 7, quand l'e-mail ne peut pas partir) ----------------------
+   Tant que l'envoi d'e-mails aux vendeurs est fermé, ou pour un vendeur sans espace, chaque nouvelle qui aurait dû
+   partir par e-mail reste « à dire » : le dossier la montre, avec le message déjà écrit (les mêmes mots) ; l'agence
+   l'envoie d'un geste par WhatsApp ou SMS et le dossier note qu'il est prévenu. Rien n'est envoyé par le site. */
+
+/* Ce qui se dit ainsi : les changements de statut et ce qui en tient lieu. Pas le rappel de la veille (trop tard le
+   lendemain), ni l'ouverture de l'espace (le dossier a déjà son bouton « Lui envoyer le lien de son espace »). */
+const seDit = (motif) => String(motif).startsWith('statut:') || ['visite_fixee', 'avis_envoye', 'compte_rendu', 'offre', 'notaire'].includes(motif);
+const familleDe = (motif) => (String(motif).startsWith('statut:') ? 'statut' : String(motif));
+const DIRE_JOURS = 7;      // au-delà, ce n'est plus une nouvelle
+
+/* Les nouvelles encore à dire, par dossier : Map id → [{ motif, sujet, le, dire, direct?, lien?, visite? }], de la plus
+   ancienne à la plus récente. Une nouvelle n'est plus à dire dès que l'agence a déclaré avoir prévenu le vendeur, que
+   l'e-mail est parti, que le dossier a encore changé de statut ou que la visite a bougé.
+   dems : lignes de demandes (id, statut). */
+async function nouvellesADire(base, dems, now = new Date()) {
+  const m = new Map();
+  if (!dems.length) return m;
+  const depuis = new Date(now.getTime() - DIRE_JOURS * 86400000).toISOString();
+  const ids = dems.map((d) => d.id);
+  const q = ids.length <= 90
+    ? base.prepare(`SELECT id, demande_id, type, detail, cree_le FROM evenements WHERE type IN ('mail', 'prevenu') AND cree_le >= ?1 AND demande_id IN (${ids.map((_, i) => `?${i + 2}`).join(',')}) ORDER BY id`).bind(depuis, ...ids)
+    : base.prepare("SELECT id, demande_id, type, detail, cree_le FROM evenements WHERE type IN ('mail', 'prevenu') AND cree_le >= ?1 ORDER BY id").bind(depuis);
+  const attente = new Map();
+  for (const e of (await q.all()).results) {
+    const d = lireJson(e.detail);
+    if (!attente.has(e.demande_id)) attente.set(e.demande_id, new Map());
+    const a = attente.get(e.demande_id);
+    if (e.type === 'prevenu') { for (const x of Array.isArray(d.motifs) ? d.motifs : []) a.delete(familleDe(x)); continue; }
+    if (!d.motif) continue;
+    if (Array.isArray(d.dire)) a.set(familleDe(d.motif), { motif: d.motif, sujet: d.sujet || '', le: e.cree_le, dire: d.dire, direct: d.direct, lien: d.lien, visite: d.visite });
+    else if (d.envoye === true) a.delete(familleDe(d.motif));
+  }
+  const visites = [...attente.values()].some((a) => a.has('visite_fixee')) ? await visitesDe(base, ids) : new Map();
+  for (const dem of dems) {
+    const a = attente.get(dem.id);
+    if (!a || !a.size || SORTIES.includes(dem.statut)) continue;
+    const l = [...a.values()].filter((n) => {
+      if (n.motif.startsWith('statut:')) return n.motif === 'statut:' + dem.statut;
+      if (n.motif === 'visite_fixee') { const v = visites.get(dem.id); return !!v && v.etat === 'fixee' && v.debut === n.visite && Date.parse(v.debut) > now.getTime(); }
+      return true;
+    }).sort((x, y) => (x.le < y.le ? -1 : x.le > y.le ? 1 : 0));
+    if (l.length) m.set(dem.id, l);
+  }
+  return m;
+}
+
+/* Le message prêt à envoyer. Le vendeur a un espace : le message finit par le lien qui l'ouvre (7 jours, une seule
+   ouverture, comme dans les e-mails de suivi). Jamais de lien vers un compte de l'agence. */
+async function adminDire(ctx) {
+  const { request, env } = ctx;
+  const d = await corps(request, 500);
+  const dem = await demandeAdmin(request, env, d.demande);
+  const base = await db(env);
+  const l = (await nouvellesADire(base, [dem])).get(dem.id) || [];
+  if (!l.length) return json(200, { message: null, demande: await vueDossier(base, dem) });
+  const compte = dem.compte_id ? await base.prepare('SELECT id, email FROM comptes WHERE id = ?1').bind(dem.compte_id).first() : null;
+  const espace = !!compte && !admins(env).includes(String(compte.email).toLowerCase());
+  const lien = espace ? `${new URL(request.url).origin}/mon-espace/?lien=${await nouveauJeton(env, compte.id, 'suivi', 7 * 24 * 3600, { garder: true })}` : '';
+  return json(200, {
+    message: {
+      texte: messageVendeur(l, { prenom: lireJson(dem.contact).prenom || '', lien }), sujet: l[l.length - 1].sujet || 'Votre dossier',
+      motifs: l.map((n) => n.motif), quoi: l.map((n) => libelleNouvelle(n.motif)), depuis: l[0].le, espace,
+    },
+    demande: await vueDossier(base, dem),
+  });
+}
+
+/* L'agence déclare avoir prévenu le vendeur (elle a ouvert le message dans WhatsApp, l'a envoyé par SMS ou par son
+   e-mail, ou l'a dit de vive voix) : noté au journal, compté dans la promesse 7 comme « déclaré par l'agence ».
+   { annuler: <id> } retire une déclaration de moins de 24 heures : le message n'était pas parti. */
+const VOIES = ['whatsapp', 'sms', 'email', 'telephone'];
+async function adminPrevenu(ctx) {
+  const { request, env } = ctx;
+  const d = await corps(request, 1500);
+  const dem = await demandeAdmin(request, env, d.demande);
+  const base = await db(env);
+  if (d.annuler != null) {
+    const id = entier(d.annuler, 1, 1e12, { requis: true, nom: 'annuler' });
+    const r = await base.prepare("DELETE FROM evenements WHERE id = ?1 AND demande_id = ?2 AND type = 'prevenu' AND cree_le >= ?3 RETURNING id")
+      .bind(id, dem.id, new Date(Date.now() - 86400000).toISOString()).first();
+    if (!r) throw new Erreur(404, 'introuvable');
+    return json(200, { demande: await vueDossier(base, dem) });
+  }
+  const voie = choix(d.voie, VOIES, { requis: true, nom: 'voie' });
+  const attendus = ((await nouvellesADire(base, [dem])).get(dem.id) || []).map((n) => n.motif);
+  const motifs = (Array.isArray(d.motifs) ? d.motifs : []).filter((x) => typeof x === 'string' && attendus.includes(x));
+  if (!motifs.length) throw new Erreur(409, 'rien_a_dire');
+  const e = await base.prepare("INSERT INTO evenements (demande_id, type, de, vers, detail, par, cree_le) VALUES (?1, 'prevenu', NULL, NULL, ?2, 'agence', ?3) RETURNING id")
+    .bind(dem.id, JSON.stringify({ motifs, voie }), maintenant()).first();
+  return json(200, { evenement: e.id, voie, demande: await vueDossier(base, dem) });
 }
 
 async function expedier(env, demande, compte, contenu, motif, origine) {
@@ -1615,7 +1831,7 @@ async function adminVisite(ctx) {
     if (!ancienne || ancienne.etat === 'annulee') throw new Erreur(404, 'introuvable');
     await base.prepare("UPDATE visites SET etat = 'annulee', maj_le = ?1 WHERE id = ?2").bind(t, ancienne.id).run();
     await journal(base, id, 'visite_annulee', 'agence', ancienne.debut ? { debut: ancienne.debut } : null);
-    return json(200, { demande: vueAgence(dem, null, (await etatOffres(base, id)).get(id)), mail: 'non' });
+    return json(200, { demande: await vueDossier(base, dem), mail: 'non' });
   }
 
   let debut = null;
@@ -1640,7 +1856,7 @@ async function adminVisite(ctx) {
   if (avant(dem.statut, 'visite')) dem = await changerStatut(ctx, dem, 'visite', { prevenir: false });
   let mail = 'non';
   if (d.prevenir !== false && debut.getTime() > maintenantMs) mail = await annoncer(ctx, dem, mailVisite('confirmation', { debut: iso, adresse: dem.adresse, deplacee }), 'visite_fixee', { visite: iso });
-  return json(200, { demande: vueAgence(dem, v, (await etatOffres(base, id)).get(id)), mail });
+  return json(200, { demande: await vueDossier(base, dem), mail });
 }
 
 /* ---------------------- Tâches à heure fixe ----------------------
@@ -1834,7 +2050,7 @@ async function adminAvisValider(ctx) {
   let mail = 'non';
   if (avant(dem.statut, 'avis')) { dem = await changerStatut(ctx, dem, 'avis', { prevenir: d.prevenir !== false }); mail = dem._mail; }
   else if (d.prevenir !== false) mail = await annoncer(ctx, dem, mailStatut('avis', {}), 'avis_envoye');
-  return json(200, { demande: vueAgence(dem, visite, (await etatOffres(base, dem.id)).get(dem.id)), fichier: fichierPublic({ ...f, role: 'avis', cree_le: t }), mail });
+  return json(200, { demande: await vueDossier(base, dem), fichier: fichierPublic({ ...f, role: 'avis', cree_le: t }), mail });
 }
 
 async function adminJournal({ request, env }) {
@@ -1932,7 +2148,7 @@ function suiteVendeurPublique(s) {
 }
 
 async function vueDossier(base, dem) {
-  return vueAgence(dem, (await visitesDe(base, [dem.id])).get(dem.id), (await etatOffres(base, dem.id)).get(dem.id));
+  return vueAgence(dem, (await visitesDe(base, [dem.id])).get(dem.id), (await etatOffres(base, dem.id)).get(dem.id), (await nouvellesADire(base, [dem])).get(dem.id));
 }
 
 async function adminSuite({ request, env }) {
@@ -1986,7 +2202,7 @@ async function adminCompteRendu(ctx) {
     await journal(base, dem.id, 'cr_publie', 'agence', { cr: cr.id, visite_le: visiteLe, soir_meme: visiteLe === aujourdhui });
     if (dem.statut === 'annonce') dem = await changerStatut(ctx, dem, 'visites', { prevenir: false });
     // gardé pour le matin (heures calmes), l'e-mail ne dit pas « aujourd'hui »
-    if (d.prevenir !== false) mail = await annoncer(ctx, dem, mailCompteRendu(visiteLe, calme(ctx) ? '' : aujourdhui), 'compte_rendu');
+    if (d.prevenir !== false) mail = await annoncer(ctx, dem, mailCompteRendu(visiteLe, calme(ctx) ? '' : aujourdhui, txt), 'compte_rendu');
   }
   return json(nouveau ? 201 : 200, { compte_rendu: crPublic(cr), demande: await vueDossier(base, dem), mail });
 }
@@ -2057,7 +2273,7 @@ async function adminNotaire(ctx) {
   if (change) await journal(base, dem.id, 'notaire', 'agence', { nom, faites, rdv: rdv || null });
   let mail = 'non';
   if ((faites.length || rdv) && d.prevenir !== false) mail = await annoncer(ctx, dem, mailNotaire(faites, rdv), 'notaire');
-  return json(200, { notaire: notairePublic(n), mail });
+  return json(200, { notaire: notairePublic(n), demande: await vueDossier(base, dem), mail });
 }
 
 /* =====================================================================================================

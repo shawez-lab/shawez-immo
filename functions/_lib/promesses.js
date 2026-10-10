@@ -27,7 +27,7 @@ export const PROMESSES = [
   { n: 6, cle: 'compte_rendu', titre: 'Compte rendu le soir même', unite: 'j',
     regle: 'Tenue : le compte rendu d\'une visite est publié le jour même. Mesuré sur les visites saisies dans les dossiers.' },
   { n: 7, cle: 'nouvelles', titre: 'Prévenu à chaque étape', unite: 'min',
-    regle: 'Tenue : à chaque changement de statut, un e-mail part au vendeur (au plus tard à 8 h si le changement a lieu le soir).' },
+    regle: 'Tenue : à chaque changement de statut, le vendeur est prévenu. Un e-mail part (au plus tard à 8 h si le changement a lieu le soir) ; sinon l\'agence lui envoie le message déjà écrit, par WhatsApp ou SMS, dans les 13 heures.' },
 ];
 
 const MIN = 60000, HEURE = 3600000, JOUR = 86400000;
@@ -43,6 +43,7 @@ const ANNONCES = {
   offre: ['statut:offre', 'offre'], compromis: ['statut:compromis'], acte: ['statut:acte'],
 };
 const ATTENTE_MAIL = 13 * HEURE;      // un changement fait à 21 h s'annonce à 8 h : onze heures, plus le passage de la tâche du matin
+const VOIES = { whatsapp: 'par WhatsApp', sms: 'par SMS', email: 'par e-mail', telephone: 'de vive voix' };
 const RAISONS_MAIL = {
   email_clients_ferme: 'e-mails aux vendeurs pas encore ouverts', sans_compte: 'vendeur sans espace', suspect: 'demande à vérifier',
   perime: 'e-mail devenu sans objet', heures_calmes: 'e-mail gardé pour 8 h, jamais parti',
@@ -152,11 +153,19 @@ export function mesurer(donnees, maintenant = new Date(), exclure = () => false)
       const mails = j.filter((m) => m.type === 'mail' && ANNONCES[e.vers].includes(m.d.motif) && m.t >= e.t - MIN && m.t <= e.t + ATTENTE_MAIL);
       const parti = mails.find((m) => m.d.envoye === true);
       if (parti) { noter(7, d, e.t, 'tenue', arrondi(Math.max(0, parti.t - e.t) / MIN), ''); continue; }
+      // pas d'e-mail possible : l'agence a envoyé elle-même le message (WhatsApp, SMS) et l'a déclaré dans le dossier
+      const prevenu = j.find((m) => m.type === 'prevenu' && m.t >= e.t - MIN && (m.d.motifs || []).some((x) => ANNONCES[e.vers].includes(x)));
+      if (prevenu) {
+        const aTemps = prevenu.t <= e.t + ATTENTE_MAIL;
+        noter(7, d, e.t, aTemps ? 'tenue' : 'ratee', arrondi(Math.max(0, prevenu.t - e.t) / MIN), `Prévenu ${VOIES[prevenu.d.voie] || 'par l\'agence'}${aTemps ? '' : ', trop tard'} (déclaré par l'agence)`);
+        continue;
+      }
+      if (mails.some((m) => Array.isArray(m.d.dire)) && now - e.t <= ATTENTE_MAIL) { noter(7, d, e.t, 'en_cours', null, 'Message à envoyer au vendeur (WhatsApp ou SMS) : il est prêt dans le dossier'); continue; }
       const garde = mails.find((m) => m.d.raison === 'heures_calmes');
       if (garde && now - e.t <= ATTENTE_MAIL) { noter(7, d, e.t, 'en_cours', null, 'E-mail gardé pour 8 h'); continue; }
       if (!mails.length && now - e.t < 2 * MIN) { noter(7, d, e.t, 'en_cours', null, 'E-mail en cours d\'envoi'); continue; }
       const refus = mails.find((m) => m.d.raison && m.d.raison !== 'heures_calmes') || garde;
-      noter(7, d, e.t, 'ratee', null, refus ? `Pas d'e-mail : ${RAISONS_MAIL[refus.d.raison] || 'envoi refusé'}` : mails.length ? 'L\'e-mail n\'est pas parti' : 'Pas d\'e-mail (case décochée)');
+      noter(7, d, e.t, 'ratee', null, refus ? `Pas prévenu : ${RAISONS_MAIL[refus.d.raison] || 'envoi refusé'}${Array.isArray(refus.d.dire) ? ', message jamais envoyé' : ''}` : mails.length ? 'L\'e-mail n\'est pas parti' : 'Pas prévenu (case décochée)');
     }
   }
   return mesures;
