@@ -46,3 +46,18 @@ Chaque passage de `outils/sync_annonces.py` ajoute ici les changements constaté
 - Nouvelle annonce 5430963 : Terrain à Bligny-sur-Ouche, 70 500 €.
 - Nouvelle annonce 464 : Appartement à Dijon, 129 900 €.
 - Annonce 476 : visible dans la liste de l'agence mais sa fiche ne s'ouvre pas (lien renvoyé vers l'accueil) ; non reprise.
+
+## 2026-10-10
+
+- Nouvelle annonce 510 : Appartement à Dijon, 149 000 €.
+- Nouvelle annonce 512 : Appartement à Chenôve, 229 000 €.
+- Annonce 507 : prix 115 000 € → 109 000 €.
+- Annonce 450 : absente des pages de l'agence et fiche hors ligne, sans mention → « retirée ».
+- Annonce 452 : absente des pages de l'agence et fiche hors ligne, sans mention → « retirée ».
+- Annonce 455 : absente des pages de l'agence et fiche hors ligne, sans mention → « retirée ».
+- Annonce 460 : absente des pages de l'agence et fiche hors ligne, sans mention → « retirée ».
+- Annonce 464 : absente des pages de l'agence et fiche hors ligne, sans mention → « retirée ».
+- Annonce 467 : absente des pages de l'agence et fiche hors ligne, sans mention → « retirée ».
+- Annonce 471 : absente des pages de l'agence et fiche hors ligne, sans mention → « retirée ».
+- Annonce 486 : absente des pages de l'agence et fiche hors ligne, sans mention → « retirée ».
+- Annonce 505 : absente des pages de l'agence et fiche hors ligne, sans mention → « retirée ».
