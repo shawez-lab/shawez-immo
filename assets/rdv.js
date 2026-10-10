@@ -94,7 +94,9 @@
           '<p class="rdvx-note">Shawez vous appelle pour confirmer. Vos coordonnées servent seulement à ce rendez-vous : <a href="/politique-de-confidentialite/">confidentialité</a>.</p>' +
           '</form>';
       } else if (erreur) h += '<p class="rdvx-err" role="alert" style="margin-top:12px;">' + esc(erreur) + '</p>';
+      var ancien = racine.querySelector('.rdvx-days'), gauche = ancien ? ancien.scrollLeft : 0;
       racine.innerHTML = h;
+      var bande = racine.querySelector('.rdvx-days'); if (bande && gauche) bande.scrollLeft = gauche;   // la bande des jours reste où le visiteur l'a laissée
       if (focus) { var f = racine.querySelector(focus); if (f) f.focus({ preventScroll: focus.indexOf('-p') < 0 }); }
     }
     function charger() {
