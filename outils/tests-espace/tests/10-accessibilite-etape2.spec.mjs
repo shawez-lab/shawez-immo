@@ -3,7 +3,7 @@
    Et le choix d'un créneau entièrement au clavier. */
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
-import { fausseBan, estimationComplete, api, sessionAdmin, SITE } from './aides.mjs';
+import { fausseBan, estimationComplete, api, sessionAdmin, SITE, jourLibre } from './aides.mjs';
 
 async function axe(page, nom) {
   await page.waitForTimeout(400);       // les couleurs changent en fondu
@@ -28,7 +28,7 @@ test('créneaux de visite, frise du vendeur et dossier de l\'agence : règles WC
   await rdv.locator('[data-rdv-ouvrir]').click();
   await expect(rdv.locator('.ee-hour').first()).toBeVisible();
   await axe(pc, 'créneaux, rien de choisi');
-  await rdv.locator('.ee-days .pill').nth(1).click();
+  await jourLibre(rdv, 5);
   for (const n of [0, 2, 4]) await rdv.locator('.ee-hour').nth(n).click();
   await axe(pc, 'créneaux, trois choisis');
   await rdv.locator('[data-rdv-envoyer]').click();
@@ -81,11 +81,13 @@ test('choisir son créneau au clavier seulement', async ({ page }, info) => {
   await rdv.locator('[data-rdv-ouvrir]').focus();
   await page.keyboard.press('Enter');
   await expect(rdv.locator('.ee-hour').first()).toBeVisible();
-  // jour suivant, puis deux heures : tout à la tabulation et à la barre d'espace
-  await rdv.locator('.ee-days .pill').nth(1).focus();
+  // un autre jour, puis deux heures : tout à la tabulation et à la barre d'espace
+  const k = await jourLibre(rdv, 4);
+  await rdv.locator('.ee-days .pill').nth(0).click();
+  await rdv.locator('.ee-days .pill').nth(k).focus();
   await page.keyboard.press('Enter');
-  await expect(rdv.locator('.ee-days .pill').nth(1)).toHaveAttribute('aria-pressed', 'true');
-  await expect(rdv.locator('.ee-days .pill').nth(1)).toBeFocused();       // le focus reste où il était
+  await expect(rdv.locator('.ee-days .pill').nth(k)).toHaveAttribute('aria-pressed', 'true');
+  await expect(rdv.locator('.ee-days .pill').nth(k)).toBeFocused();       // le focus reste où il était
   await rdv.locator('.ee-hour').nth(1).focus();
   await page.keyboard.press('Space');
   await expect(rdv.locator('.ee-hour').nth(1)).toHaveAttribute('aria-pressed', 'true');

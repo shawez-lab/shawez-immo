@@ -3,11 +3,11 @@
     "nom": "Shawez Ali — Agent immobilier",
     "place_id": "ChIJqQpGAKPcg6gRg_CLthoGaP8",
     "note": 5.0,
-    "nombre": 24,
-    "releve_le": "2026-09-27",
+    "nombre": 27,
+    "releve_le": "2026-10-09",
     "lien_avis": "https://www.google.com/maps/search/?api=1&query=Shawez%20Ali%20%E2%80%94%20Agent%20immobilier&query_place_id=ChIJqQpGAKPcg6gRg_CLthoGaP8",
     "lien_depot": "https://search.google.com/local/writereview?placeid=ChIJqQpGAKPcg6gRg_CLthoGaP8",
-    "_note_interne": "Note et nombre de la fiche Shawez NON affichés tant qu'ils ne sont pas vérifiés et datés (ordre du Chef 10 M, 9/10). Seule preuve affichée : preuve_agence."
+    "_note_interne": "Note et nombre vérifiés par le Chef 10 M sur Google le 9/10/2026 au soir (5,0/5, 27 avis), à la demande de Shawez. Affichés en premier ; l'agence en second. Remettre à jour la date à chaque relevé."
   },
   "avis": [],
   "preuve_agence": {

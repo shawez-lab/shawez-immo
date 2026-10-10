@@ -1153,14 +1153,15 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
       <a class="cway" href="https://wa.me/33767579228?text=Bonjour%20Shawez%2C" target="_blank" rel="noopener"><b>WhatsApp</b><span>Écrivez-moi, je réponds</span></a>
       <a class="cway" href="mailto:shawez@gravelin-immo.com"><b>E-mail</b><span>shawez@gravelin-immo.com</span></a>
     </div>
+    <div id="rdv" data-rdv data-depuis="contact" style="margin:0;scroll-margin-top:80px;"></div>
     <p class="body rv" style="margin:0;">Pour une estimation : <a class="link" href="/estimer/">estimation en ligne</a> ou <a class="link" href="/estimation-immobiliere-dijon/">estimation par Shawez</a>.</p>
     <ul class="kv rv" style="max-width:720px;">
       <li><span>E-mail</span><span><a class="link" href="mailto:shawez@gravelin-immo.com">shawez@gravelin-immo.com</a></span></li>
       <li><span>Agence</span><span>GRAVELIN IMMO — 30 rue Bannelier, 21000 Dijon — <a class="link" href="tel:+33345343531">03 45 34 35 31</a> — <a class="link" href="https://www.gravelin-immo.com/?utm_source=shawez-immo" data-sortie="agence">gravelin-immo.com</a></span></li>
       <li><span>Horaires</span><span>Du lundi au vendredi, 9 h–19 h.</span></li>
       <li><span>Biens à vendre</span><span><a class="link" href="https://www.gravelin-immo.com/vente/1?utm_source=shawez-immo" data-sortie="biens">Catalogue de l'agence</a></span></li>
-      <li><span>Rappel</span><span>Dans la journée, du lundi au vendredi, 9 h–19 h.</span></li>
-      <li><span>Instagram</span><span><a class="link ext" href="https://www.instagram.com/shawez_immo" target="_blank" rel="noopener">@shawez_immobilier</a></span></li>
+      <li><span>Rappel</span><span>Je vous rappelle moi-même, au plus vite.</span></li>
+      <li><span>Instagram</span><span><a class="link ext" href="https://www.instagram.com/shawez_immo" target="_blank" rel="noopener">@shawez_immo</a></span></li>
       <li><span>YouTube</span><span><a class="link ext" href="https://www.youtube.com/@gravelinimmo" target="_blank" rel="noopener">Chaîne GRAVELIN IMMO</a></span></li>
       <li><span>LinkedIn</span><span><a class="link ext" href="https://www.linkedin.com/in/shawez-ali" target="_blank" rel="noopener">Shawez Ali</a></span></li>
     </ul>
@@ -1560,5 +1561,6 @@ updateTone();
 window.EECompte=function(){var on=/(?:^|;\s*)se_ok=1/.test(document.cookie||'');[].forEach.call(document.querySelectorAll('[data-compte]'),function(a){a.classList.toggle('is-in',on);var t=on?'Mon espace : connecté':'Mon espace : se connecter';if(a.hasAttribute('aria-label')){a.setAttribute('aria-label',t);a.title=t;}var x=a.querySelector('[data-compte-txt]');if(x)x.textContent=on?'Mon espace · connecté':'Mon espace';});};
 window.EECompte();window.addEventListener('pageshow',window.EECompte);
 </script>
+<script src="/assets/rdv.js?v=3" defer></script>
 </body>
 </html>

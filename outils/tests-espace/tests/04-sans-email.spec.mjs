@@ -1,7 +1,7 @@
 /* Le site tel qu'il tourne aujourd'hui (pas encore d'e-mail aux clients) : le résultat s'affiche quand même tout de
    suite, le mot de passe est proposé après, en option. Robots, champ leurre, limite de débit. */
 import { test, expect } from '@playwright/test';
-import { fausseBan, estimationComplete, parcours, coordonnees, afficherResultat, pictogramme, moi, api, emailTest, SITE_SANS_EMAIL, connexionParMdp } from './aides.mjs';
+import { fausseBan, estimationComplete, parcours, coordonnees, afficherResultat, pictogramme, moi, api, emailTest, SITE_SANS_EMAIL, connexionParMdp, jourLibre } from './aides.mjs';
 
 test.use({ baseURL: SITE_SANS_EMAIL });
 // ce serveur applique les vrais plafonds de débit : la série ne passe qu'une fois par lancement (sur iPhone 13)
@@ -19,7 +19,7 @@ test('sans e-mail aux clients : résultat immédiat, puis mot de passe en option
   // la visite d'estimation se choisit quand même tout de suite ; rien ne promet un e-mail qui ne partira pas
   const rdv = page.locator('#ee-rdv');
   await rdv.locator('[data-rdv-ouvrir]').click();
-  await rdv.locator('.ee-days .pill').nth(1).click();
+  await jourLibre(rdv, 4);
   await rdv.locator('.ee-hour').nth(3).click();
   await rdv.locator('[data-rdv-envoyer]').click();
   await expect(rdv.locator('[data-test="visite-demandee"]')).toBeVisible();

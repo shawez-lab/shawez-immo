@@ -1523,7 +1523,22 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 .ee-prom-liste>summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px;}
 .ee-prom-liste .ee-items{margin-top:8px;}
 .ee-prom .ee-kv li span:last-child{overflow-wrap:normal;}
-
+/* admin : ouvrir un dossier à la main, espace du vendeur (lien à lui envoyer) */
+.ee-tools #ad-nv-btn{order:-1;flex:1 1 100%;}
+@media(min-width:760px){.ee-tools #ad-nv-btn{order:0;flex:0 0 auto;}}
+.ee-nv{margin-bottom:14px;}
+.ee-nv[hidden]{display:none;}
+.ee-nv .ee-2{grid-template-columns:minmax(0,1fr);gap:14px;}
+@media(min-width:560px){.ee-nv .ee-2{grid-template-columns:minmax(0,1fr) minmax(0,1fr);}}
+.ee-nv .field input,.ee-nv .field select,.ee-nv .field textarea{min-width:0;background:var(--ground);}
+.ee-nv .field textarea{min-height:88px;}
+.ee-nv .field .hint[hidden]{display:none;}
+.ee-nv .acts .btn{flex:1 1 auto;}
+.ee-row input[type=email]{width:100%;min-height:48px;border:1px solid var(--line-strong);border-radius:12px;background:var(--surface);padding:10px 14px;font:inherit;font-size:.95rem;color:var(--ink);}
+.ee-esp-out{display:flex;flex-direction:column;gap:10px;}
+.ee-esp-out[hidden]{display:none;}
+.ee-esp-out .acts .btn{flex:1 1 auto;}
+.ee-esp-lien{word-break:break-all;user-select:all;-webkit-user-select:all;}
 </style>
 </head>
 <body data-route="/admin/promesses">
@@ -2047,7 +2062,7 @@ var EE=(function(){
     avis_absent:"Créez d'abord le PDF de l'avis de valeur."
   };
   function message(d){return MSG[d&&d.error]||MSG.serveur;}
-  var CHAMPS={email:"L'adresse e-mail n'est pas valide.",telephone:"Le numéro de téléphone n'est pas valide.",prenom:"Indiquez votre prénom.",nom:"Indiquez votre nom.",mot_de_passe:"Le mot de passe doit compter 8 caractères au moins.",consentement:"Cochez la case pour continuer.",adresse:"L'adresse du bien est incomplète.",surface:"La surface n'est pas valide.",confirmation:"Écrivez SUPPRIMER pour confirmer.",creneaux:"Ce créneau n'est plus proposé : choisissez-en un autre.",debut:"La date de la visite n'est pas valide.",prix_bas:"Indiquez la fourchette de prix (basse et haute).",prix_haut:"La valeur haute doit dépasser la valeur basse.",rdv_url:"Collez le lien de votre page de réservation Google Agenda (https://calendar.app.google/…).",atouts:"8 lignes au plus, 240 caractères par ligne.",vigilance:"8 lignes au plus, 240 caractères par ligne.",visite_le:"Indiquez la date de la visite (aujourd'hui au plus tard).",texte:"Écrivez ou dictez le compte rendu (3 000 caractères au plus).",montant:"Indiquez le montant de l'offre, en euros.",recue_le:"La date de l'offre n'est pas valide.",conditions:"Les conditions sont trop longues (1 500 caractères au plus).",etapes:"Une date d'étape n'est pas valide.",nom_notaire:"Le nom du notaire est trop long.",coordonnees:"Les coordonnées sont trop longues (300 caractères au plus)."};
+  var CHAMPS={email:"L'adresse e-mail n'est pas valide.",telephone:"Le numéro de téléphone n'est pas valide.",prenom:"Indiquez votre prénom.",nom:"Indiquez votre nom.",mot_de_passe:"Le mot de passe doit compter 8 caractères au moins.",consentement:"Cochez la case pour continuer.",adresse:"L'adresse du bien est incomplète.",surface:"La surface n'est pas valide.",confirmation:"Écrivez SUPPRIMER pour confirmer.",creneaux:"Ce créneau n'est plus proposé : choisissez-en un autre.",debut:"La date de la visite n'est pas valide.",prix_bas:"Indiquez la fourchette de prix (basse et haute).",prix_haut:"La valeur haute doit dépasser la valeur basse.",agenda_ics:"Collez l'« Adresse secrète au format iCal » de Google Agenda (https://calendar.google.com/calendar/ical/…/basic.ics).",rdv_url:"Collez le lien de votre page de réservation Google Agenda (https://calendar.app.google/…).",atouts:"8 lignes au plus, 240 caractères par ligne.",vigilance:"8 lignes au plus, 240 caractères par ligne.",visite_le:"Indiquez la date de la visite (aujourd'hui au plus tard).",texte:"Écrivez ou dictez le compte rendu (3 000 caractères au plus).",montant:"Indiquez le montant de l'offre, en euros.",recue_le:"La date de l'offre n'est pas valide.",conditions:"Les conditions sont trop longues (1 500 caractères au plus).",etapes:"Une date d'étape n'est pas valide.",nom_notaire:"Le nom du notaire est trop long.",coordonnees:"Les coordonnées sont trop longues (300 caractères au plus)."};
   function messageChamp(d){return (d&&d.error==='champs'&&CHAMPS[d.champ])||message(d);}
 
   function wa(txt){return 'https://wa.me/'+CONF.tel.replace(/\D/g,'')+'?text='+encodeURIComponent(txt);}
@@ -2070,7 +2085,7 @@ var EE=(function(){
     } else {
       var r=res&&res.raison;
       h+='<p class="label">Votre demande est enregistrée</p>'+
-        '<p class="ee-price ee-price-txt" data-test="rappel">Je vous rappelle <em>sous 24 h.</em></p>'+
+        '<p class="ee-price ee-price-txt" data-test="rappel">Je vous rappelle <em>au plus vite.</em></p>'+
         '<p class="ee-m2">'+(r==='peu_de_ventes'?"Il y a eu trop peu de ventes comparables près de chez vous"+(res.comparables!=null?' ('+res.comparables+' seulement)':'')+" pour donner une fourchette fiable. Pas de prix au hasard : "+CONF.conseiller+" l'étudie lui-même.":r==='type'?"Pour ce type de bien, l'estimation se fait sur pièces : "+CONF.conseiller+" l'étudie lui-même.":r==='hors_zone'?"Ce secteur est hors de la Côte-d'Or : "+CONF.conseiller+" vous dit ce qu'il peut faire pour vous.":CONF.conseiller+" étudie votre bien lui-même et vous donne une première fourchette au téléphone.")+'</p>'+
         (res&&res.donnees_du?'<p class="ee-warn"><span>Données des ventes réelles (DVF) à jour de '+mois(res.donnees_du)+'.</span></p>':'');
     }
@@ -2128,7 +2143,7 @@ var EE=(function(){
     function dessiner(){
       var h='<h3 class="ee-rdv-t">Visite d\'estimation</h3>';
       if(fixee()){
-        h+='<p class="ee-rdv-ok" data-test="visite-fixee"><b>'+esc(quand(v.debut).replace(/^./,function(c){return c.toUpperCase();}))+'</b><span>'+(passee()?'Visite faite. ':'')+esc(CONF.conseiller)+' vient voir votre bien : comptez '+(v.duree||45)+' minutes. Gratuit et sans engagement.</span></p>';
+        h+='<p class="ee-rdv-ok" data-test="visite-fixee"><b>'+esc(quand(v.debut).replace(/^./,function(c){return c.toUpperCase();}))+'</b><span>'+(passee()?'Visite faite. ':'')+esc(CONF.conseiller)+' vient voir votre bien : comptez '+(v.duree||45)+' minutes. Offert et sans engagement.</span></p>';
         if(!passee()){
           h+='<p class="ee-rdv-prep">Si vous les avez sous la main, préparez : le titre de propriété, la dernière taxe foncière, les diagnostics, le montant des charges et la liste des travaux réalisés.</p>';
           if(o.possible&&!ouvert)h+='<div class="ee-links"><button type="button" data-rdv-ouvrir>Demander un autre créneau</button><a href="tel:'+CONF.tel+'">Appeler '+esc(CONF.conseiller)+'</a></div>';
@@ -2140,10 +2155,10 @@ var EE=(function(){
       } else if(!o.possible){
         racine.hidden=true; racine.innerHTML=''; return;
       } else if(o.rdvUrl&&!ouvert){
-        h+='<p class="ee-rdv-prep">'+esc(CONF.conseiller)+' passe voir votre bien : 45 minutes, gratuit et sans engagement. Choisissez votre créneau directement dans son agenda.</p>'+
+        h+='<p class="ee-rdv-prep">'+esc(CONF.conseiller)+' passe voir votre bien : 45 minutes, offert et sans engagement. Choisissez votre créneau directement dans son agenda.</p>'+
           '<div class="ee-rdv-go"><a class="btn btn-primary" href="'+esc(o.rdvUrl)+'" target="_blank" rel="noopener" data-rdv-agenda>Choisir mon créneau <span class="arw">→</span></a></div>';
       } else if(!ouvert){
-        h+='<p class="ee-rdv-prep">'+esc(CONF.conseiller)+' passe voir votre bien, sous 48 h si vous le souhaitez : 45 minutes, gratuit et sans engagement. C\'est la visite qui donne le prix juste.</p>'+
+        h+='<p class="ee-rdv-prep">'+esc(CONF.conseiller)+' passe voir votre bien, sous 48 h si vous le souhaitez : 45 minutes, offert et sans engagement. C\'est la visite qui donne le prix juste.</p>'+
           '<div class="ee-rdv-go"><button type="button" class="btn btn-primary" data-rdv-ouvrir>Choisir mon créneau <span class="arw">→</span></button></div>';
       }
       if(ouvert)h+=selecteur();

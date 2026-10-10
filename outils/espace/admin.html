@@ -44,6 +44,13 @@
           <div class="acts"><button type="button" class="btn" id="ad-rdv-save">Enregistrer</button></div>
           <p class="ee-ok" id="ad-rdv-out" role="status" hidden></p>
         </div>
+        <div class="ee-card" style="margin-bottom:14px;">
+          <h3>Votre agenda Google : les créneaux pris ne sont plus proposés</h3>
+          <p class="meta" id="ad-ics-etat">Les rendez-vous pris sur le site (accueil, contact, après une estimation) évitent déjà les visites fixées ici. Pour qu'ils évitent aussi tout votre agenda Google : Google Agenda sur ordinateur → ⚙ Paramètres → votre agenda → « Intégrer l'agenda » → copiez « Adresse secrète au format iCal » et collez-la ici. Lecture seule : le site n'écrit rien dans votre agenda. Cette adresse est secrète : ne la donnez à personne d'autre.</p>
+          <div class="field"><label for="ad-ics">Adresse secrète au format iCal <small>(facultatif)</small></label><input type="url" id="ad-ics" inputmode="url" placeholder="https://calendar.google.com/calendar/ical/…/basic.ics" autocapitalize="off" autocorrect="off" spellcheck="false" autocomplete="off"></div>
+          <div class="acts"><button type="button" class="btn" id="ad-ics-save">Enregistrer</button><button type="button" class="btn" id="ad-ics-off">Délier l'agenda</button></div>
+          <p class="ee-ok" id="ad-ics-out" role="status" hidden></p>
+        </div>
         <div class="ee-card">
           <h3>Demandes dans Google Sheets</h3>
           <p class="meta">L'onglet « Site » du tableau « Relance leads » se remplit tout seul : une formule relit les demandes environ toutes les heures. Colonnes : date, site, civilité, prénom, nom, téléphone, e-mail, adresse du bien, type, surface, fourchette, délai de vente, prix idéal, statut, prochaine action, notes, référence. Le statut, la date de rappel et les notes se changent ici, dans chaque demande.</p>

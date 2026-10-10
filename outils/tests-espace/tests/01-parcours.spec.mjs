@@ -75,13 +75,13 @@ test('maison : terrain et niveaux demandés, fourchette affichée', async ({ pag
   await expect(page.locator('[data-test="fourchette"]')).toBeVisible();
 });
 
-test('commerce / murs : pas de fourchette automatique, « je vous rappelle sous 24 h »', async ({ page }) => {
+test('commerce / murs : pas de fourchette automatique, « je vous rappelle au plus vite »', async ({ page }) => {
   await parcours(page, { type: 'autre', autre: 'commerce', surface: '' });
   await expect(etape(page, 'contact')).toBeVisible();
   await coordonnees(page);
   const { corps } = await afficherResultat(page);
   expect(corps.resultat).toMatchObject({ fourchette: false, raison: 'type' });
-  await expect(page.locator('[data-test="rappel"]')).toContainText('Je vous rappelle sous 24 h');
+  await expect(page.locator('[data-test="rappel"]')).toContainText('Je vous rappelle au plus vite');
   await expect(page.locator('[data-test="fourchette"]')).toHaveCount(0);
   // même sans fourchette, l'espace est créé
   expect((await moi(page)).demandes).toHaveLength(1);
@@ -99,12 +99,12 @@ test('murs commerciaux : 4 étapes annoncées', async ({ page }) => {
   await expect(page.locator('#ee-message')).toBeVisible();
 });
 
-test('moins de 5 ventes comparables : pas de fourchette, rappel sous 24 h', async ({ page }) => {
+test('moins de 5 ventes comparables : pas de fourchette, rappel au plus vite', async ({ page }) => {
   const { reponse } = await estimationComplete(page, { adresse: '8 rue du marché saulieu', surface: '68' });
   expect(reponse.corps.resultat.fourchette).toBe(false);
   expect(reponse.corps.resultat.raison).toBe('peu_de_ventes');
   expect(reponse.corps.resultat.comparables).toBeLessThan(5);
-  await expect(page.locator('[data-test="rappel"]')).toContainText('sous 24 h');
+  await expect(page.locator('[data-test="rappel"]')).toContainText('au plus vite');
   await expect(page.locator('#ee-res-box')).toContainText('trop peu de ventes comparables');
 });
 

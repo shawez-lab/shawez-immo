@@ -1523,7 +1523,22 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 .ee-prom-liste>summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px;}
 .ee-prom-liste .ee-items{margin-top:8px;}
 .ee-prom .ee-kv li span:last-child{overflow-wrap:normal;}
-
+/* admin : ouvrir un dossier à la main, espace du vendeur (lien à lui envoyer) */
+.ee-tools #ad-nv-btn{order:-1;flex:1 1 100%;}
+@media(min-width:760px){.ee-tools #ad-nv-btn{order:0;flex:0 0 auto;}}
+.ee-nv{margin-bottom:14px;}
+.ee-nv[hidden]{display:none;}
+.ee-nv .ee-2{grid-template-columns:minmax(0,1fr);gap:14px;}
+@media(min-width:560px){.ee-nv .ee-2{grid-template-columns:minmax(0,1fr) minmax(0,1fr);}}
+.ee-nv .field input,.ee-nv .field select,.ee-nv .field textarea{min-width:0;background:var(--ground);}
+.ee-nv .field textarea{min-height:88px;}
+.ee-nv .field .hint[hidden]{display:none;}
+.ee-nv .acts .btn{flex:1 1 auto;}
+.ee-row input[type=email]{width:100%;min-height:48px;border:1px solid var(--line-strong);border-radius:12px;background:var(--surface);padding:10px 14px;font:inherit;font-size:.95rem;color:var(--ink);}
+.ee-esp-out{display:flex;flex-direction:column;gap:10px;}
+.ee-esp-out[hidden]{display:none;}
+.ee-esp-out .acts .btn{flex:1 1 auto;}
+.ee-esp-lien{word-break:break-all;user-select:all;-webkit-user-select:all;}
 </style>
 </head>
 <body data-route="/admin">
@@ -1619,6 +1634,13 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
           <div class="field"><label for="ad-rdv-url">Lien de la page de réservation Google Agenda <small>(facultatif)</small></label><input type="url" id="ad-rdv-url" inputmode="url" placeholder="https://calendar.app.google/…" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
           <div class="acts"><button type="button" class="btn" id="ad-rdv-save">Enregistrer</button></div>
           <p class="ee-ok" id="ad-rdv-out" role="status" hidden></p>
+        </div>
+        <div class="ee-card" style="margin-bottom:14px;">
+          <h3>Votre agenda Google : les créneaux pris ne sont plus proposés</h3>
+          <p class="meta" id="ad-ics-etat">Les rendez-vous pris sur le site (accueil, contact, après une estimation) évitent déjà les visites fixées ici. Pour qu'ils évitent aussi tout votre agenda Google : Google Agenda sur ordinateur → ⚙ Paramètres → votre agenda → « Intégrer l'agenda » → copiez « Adresse secrète au format iCal » et collez-la ici. Lecture seule : le site n'écrit rien dans votre agenda. Cette adresse est secrète : ne la donnez à personne d'autre.</p>
+          <div class="field"><label for="ad-ics">Adresse secrète au format iCal <small>(facultatif)</small></label><input type="url" id="ad-ics" inputmode="url" placeholder="https://calendar.google.com/calendar/ical/…/basic.ics" autocapitalize="off" autocorrect="off" spellcheck="false" autocomplete="off"></div>
+          <div class="acts"><button type="button" class="btn" id="ad-ics-save">Enregistrer</button><button type="button" class="btn" id="ad-ics-off">Délier l'agenda</button></div>
+          <p class="ee-ok" id="ad-ics-out" role="status" hidden></p>
         </div>
         <div class="ee-card">
           <h3>Demandes dans Google Sheets</h3>
@@ -2082,7 +2104,7 @@ var EE=(function(){
     avis_absent:"Créez d'abord le PDF de l'avis de valeur."
   };
   function message(d){return MSG[d&&d.error]||MSG.serveur;}
-  var CHAMPS={email:"L'adresse e-mail n'est pas valide.",telephone:"Le numéro de téléphone n'est pas valide.",prenom:"Indiquez votre prénom.",nom:"Indiquez votre nom.",mot_de_passe:"Le mot de passe doit compter 8 caractères au moins.",consentement:"Cochez la case pour continuer.",adresse:"L'adresse du bien est incomplète.",surface:"La surface n'est pas valide.",confirmation:"Écrivez SUPPRIMER pour confirmer.",creneaux:"Ce créneau n'est plus proposé : choisissez-en un autre.",debut:"La date de la visite n'est pas valide.",prix_bas:"Indiquez la fourchette de prix (basse et haute).",prix_haut:"La valeur haute doit dépasser la valeur basse.",rdv_url:"Collez le lien de votre page de réservation Google Agenda (https://calendar.app.google/…).",atouts:"8 lignes au plus, 240 caractères par ligne.",vigilance:"8 lignes au plus, 240 caractères par ligne.",visite_le:"Indiquez la date de la visite (aujourd'hui au plus tard).",texte:"Écrivez ou dictez le compte rendu (3 000 caractères au plus).",montant:"Indiquez le montant de l'offre, en euros.",recue_le:"La date de l'offre n'est pas valide.",conditions:"Les conditions sont trop longues (1 500 caractères au plus).",etapes:"Une date d'étape n'est pas valide.",nom_notaire:"Le nom du notaire est trop long.",coordonnees:"Les coordonnées sont trop longues (300 caractères au plus)."};
+  var CHAMPS={email:"L'adresse e-mail n'est pas valide.",telephone:"Le numéro de téléphone n'est pas valide.",prenom:"Indiquez votre prénom.",nom:"Indiquez votre nom.",mot_de_passe:"Le mot de passe doit compter 8 caractères au moins.",consentement:"Cochez la case pour continuer.",adresse:"L'adresse du bien est incomplète.",surface:"La surface n'est pas valide.",confirmation:"Écrivez SUPPRIMER pour confirmer.",creneaux:"Ce créneau n'est plus proposé : choisissez-en un autre.",debut:"La date de la visite n'est pas valide.",prix_bas:"Indiquez la fourchette de prix (basse et haute).",prix_haut:"La valeur haute doit dépasser la valeur basse.",agenda_ics:"Collez l'« Adresse secrète au format iCal » de Google Agenda (https://calendar.google.com/calendar/ical/…/basic.ics).",rdv_url:"Collez le lien de votre page de réservation Google Agenda (https://calendar.app.google/…).",atouts:"8 lignes au plus, 240 caractères par ligne.",vigilance:"8 lignes au plus, 240 caractères par ligne.",visite_le:"Indiquez la date de la visite (aujourd'hui au plus tard).",texte:"Écrivez ou dictez le compte rendu (3 000 caractères au plus).",montant:"Indiquez le montant de l'offre, en euros.",recue_le:"La date de l'offre n'est pas valide.",conditions:"Les conditions sont trop longues (1 500 caractères au plus).",etapes:"Une date d'étape n'est pas valide.",nom_notaire:"Le nom du notaire est trop long.",coordonnees:"Les coordonnées sont trop longues (300 caractères au plus)."};
   function messageChamp(d){return (d&&d.error==='champs'&&CHAMPS[d.champ])||message(d);}
 
   function wa(txt){return 'https://wa.me/'+CONF.tel.replace(/\D/g,'')+'?text='+encodeURIComponent(txt);}
@@ -2105,7 +2127,7 @@ var EE=(function(){
     } else {
       var r=res&&res.raison;
       h+='<p class="label">Votre demande est enregistrée</p>'+
-        '<p class="ee-price ee-price-txt" data-test="rappel">Je vous rappelle <em>sous 24 h.</em></p>'+
+        '<p class="ee-price ee-price-txt" data-test="rappel">Je vous rappelle <em>au plus vite.</em></p>'+
         '<p class="ee-m2">'+(r==='peu_de_ventes'?"Il y a eu trop peu de ventes comparables près de chez vous"+(res.comparables!=null?' ('+res.comparables+' seulement)':'')+" pour donner une fourchette fiable. Pas de prix au hasard : "+CONF.conseiller+" l'étudie lui-même.":r==='type'?"Pour ce type de bien, l'estimation se fait sur pièces : "+CONF.conseiller+" l'étudie lui-même.":r==='hors_zone'?"Ce secteur est hors de la Côte-d'Or : "+CONF.conseiller+" vous dit ce qu'il peut faire pour vous.":CONF.conseiller+" étudie votre bien lui-même et vous donne une première fourchette au téléphone.")+'</p>'+
         (res&&res.donnees_du?'<p class="ee-warn"><span>Données des ventes réelles (DVF) à jour de '+mois(res.donnees_du)+'.</span></p>':'');
     }
@@ -2163,7 +2185,7 @@ var EE=(function(){
     function dessiner(){
       var h='<h3 class="ee-rdv-t">Visite d\'estimation</h3>';
       if(fixee()){
-        h+='<p class="ee-rdv-ok" data-test="visite-fixee"><b>'+esc(quand(v.debut).replace(/^./,function(c){return c.toUpperCase();}))+'</b><span>'+(passee()?'Visite faite. ':'')+esc(CONF.conseiller)+' vient voir votre bien : comptez '+(v.duree||45)+' minutes. Gratuit et sans engagement.</span></p>';
+        h+='<p class="ee-rdv-ok" data-test="visite-fixee"><b>'+esc(quand(v.debut).replace(/^./,function(c){return c.toUpperCase();}))+'</b><span>'+(passee()?'Visite faite. ':'')+esc(CONF.conseiller)+' vient voir votre bien : comptez '+(v.duree||45)+' minutes. Offert et sans engagement.</span></p>';
         if(!passee()){
           h+='<p class="ee-rdv-prep">Si vous les avez sous la main, préparez : le titre de propriété, la dernière taxe foncière, les diagnostics, le montant des charges et la liste des travaux réalisés.</p>';
           if(o.possible&&!ouvert)h+='<div class="ee-links"><button type="button" data-rdv-ouvrir>Demander un autre créneau</button><a href="tel:'+CONF.tel+'">Appeler '+esc(CONF.conseiller)+'</a></div>';
@@ -2175,10 +2197,10 @@ var EE=(function(){
       } else if(!o.possible){
         racine.hidden=true; racine.innerHTML=''; return;
       } else if(o.rdvUrl&&!ouvert){
-        h+='<p class="ee-rdv-prep">'+esc(CONF.conseiller)+' passe voir votre bien : 45 minutes, gratuit et sans engagement. Choisissez votre créneau directement dans son agenda.</p>'+
+        h+='<p class="ee-rdv-prep">'+esc(CONF.conseiller)+' passe voir votre bien : 45 minutes, offert et sans engagement. Choisissez votre créneau directement dans son agenda.</p>'+
           '<div class="ee-rdv-go"><a class="btn btn-primary" href="'+esc(o.rdvUrl)+'" target="_blank" rel="noopener" data-rdv-agenda>Choisir mon créneau <span class="arw">→</span></a></div>';
       } else if(!ouvert){
-        h+='<p class="ee-rdv-prep">'+esc(CONF.conseiller)+' passe voir votre bien, sous 48 h si vous le souhaitez : 45 minutes, gratuit et sans engagement. C\'est la visite qui donne le prix juste.</p>'+
+        h+='<p class="ee-rdv-prep">'+esc(CONF.conseiller)+' passe voir votre bien, sous 48 h si vous le souhaitez : 45 minutes, offert et sans engagement. C\'est la visite qui donne le prix juste.</p>'+
           '<div class="ee-rdv-go"><button type="button" class="btn btn-primary" data-rdv-ouvrir>Choisir mon créneau <span class="arw">→</span></button></div>';
       }
       if(ouvert)h+=selecteur();
@@ -2242,7 +2264,8 @@ var EE=(function(){
 })();
 
 /* /admin/ : toutes les demandes des deux sites et tous les comptes ; statut, rappel, notes, fichiers, export CSV ;
-   visite d'estimation, avis de valeur ; après le mandat : comptes rendus de visite, offres, documents, notaire */
+   visite d'estimation, avis de valeur ; après le mandat : comptes rendus de visite, offres, documents, notaire ;
+   dossier ouvert à la main par l'agence, espace du vendeur (lien à lui envoyer par WhatsApp, SMS ou e-mail) */
 (function(){
   'use strict';
   var $=EE.$, $$=EE.$$, C=EE.CONF;
@@ -2305,12 +2328,13 @@ var EE=(function(){
     return '<details class="ee-row" data-id="'+d.id+'"><summary><b>'+EE.esc(nom||c.email)+' · '+EE.esc(d.commune||'')+'</b>'+
       '<span class="st '+d.statut+'">'+EE.esc(STATUTS[d.statut]||d.statut)+'</span>'+
       (actionTxt(d)?'<span class="act'+(retard(d)?' ee-late':'')+'" data-test="action">→ '+EE.esc(actionTxt(d))+'</span>':'')+
-      '<small>'+EE.date(d.cree_le)+' · '+EE.esc((d.type==='autre'?'Autre':d.type==='maison'?'Maison':'Appart.')+(d.surface?' '+d.surface+' m²':''))+' · '+(d.prix_bas?EE.euros(d.prix_bas)+' – '+EE.euros(d.prix_haut):'rappel')+' · '+EE.esc(LIB.site[d.site]||d.site||'')+
+      '<small>'+EE.date(d.cree_le)+' · '+EE.esc((d.type==='autre'?'Autre':d.type==='maison'?'Maison':'Appart.')+(d.surface?' '+d.surface+' m²':''))+' · '+(d.prix_bas?EE.euros(d.prix_bas)+' – '+EE.euros(d.prix_haut):origineAgence(d)?'ouvert par l\'agence':'rappel')+' · '+EE.esc(LIB.site[d.site]||d.site||'')+
         (d.rappel_le?' · rappeler avant le '+EE.jour(d.rappel_le):'')+(d.suspect?' · <span class="ee-late">robot possible</span>':'')+(d.test?' · essai':'')+'</small>'+
       '<span class="tr" data-test="trace"'+(d.trace?'':' hidden')+'>'+EE.esc(traceTxt(d.trace))+'</span></summary>'+
       '<div class="in">'+
-        '<div class="acts ee-top"><a class="btn btn-primary" href="tel:'+EE.esc(tel)+'">Appeler '+EE.esc(c.telephone||'')+'</a><a class="btn" href="mailto:'+EE.esc(c.email)+'?subject='+encodeURIComponent('Votre estimation '+d.reference)+'">E-mail</a>'+(tel?'<a class="btn" href="https://wa.me/'+EE.esc(tel.replace(/^\+/,'').replace(/^0/,'33'))+'" target="_blank" rel="noopener">WhatsApp</a>':'')+'</div>'+
+        '<div class="acts ee-top">'+(tel?'<a class="btn btn-primary" href="tel:'+EE.esc(tel)+'">Appeler '+EE.esc(c.telephone||'')+'</a>':'')+(c.email?'<a class="btn" href="mailto:'+EE.esc(c.email)+'?subject='+encodeURIComponent((origineAgence(d)?'Votre dossier ':'Votre estimation ')+d.reference)+'">E-mail</a>':'')+(tel?'<a class="btn" href="https://wa.me/'+EE.esc(tel.replace(/^\+/,'').replace(/^0/,'33'))+'" target="_blank" rel="noopener">WhatsApp</a>':'')+'</div>'+
       '<div class="ee-col">'+
+        blocEspace(d)+
         blocVisite(d)+
         '<div class="field"><label for="ad-st-'+d.id+'">Statut</label><select id="ad-st-'+d.id+'" data-f="statut">'+opts+'</select></div>'+
         '<label class="ee-check-l" data-prevenir-l><input type="checkbox" data-f="prevenir"'+(MAIL_CLIENTS?' checked':' disabled')+'>'+(MAIL_CLIENTS?'Annoncer le changement de statut au vendeur par e-mail':'E-mails aux vendeurs pas encore ouverts : rien ne part')+'</label>'+
@@ -2327,7 +2351,7 @@ var EE=(function(){
         '<details class="ee-journal" data-journal><summary>Journal du dossier</summary><ul></ul></details>'+
         '<div class="ee-links">'+(d.suspect?'<button type="button" data-humain>Ce n\'est pas un robot</button>':'')+'<button type="button" class="ee-danger" data-dsuppr>Supprimer cette demande</button></div>'+
       '</div>'+
-        '<div class="ee-fiche"><ul class="ee-kv">'+[['Référence',d.reference],['Site',LIB.site[d.site]||d.site],['E-mail',c.email],['Fourchette',d.prix_bas?EE.euros(d.prix_bas)+' – '+EE.euros(d.prix_haut)+' ('+EE.euros(d.prix_m2)+'/m², '+d.comparables+' ventes'+(d.rayon?' à moins de '+EE.rayon(d.rayon):'')+')':'Pas de fourchette : rappel promis sous 24 h']].concat(fiche(d.reponses||{})).concat(d.en_attente?[['Espace client','en attente de confirmation de l\'e-mail']]:[]).map(function(l){return '<li><span>'+EE.esc(l[0])+'</span><span>'+EE.esc(l[1])+'</span></li>';}).join('')+'</ul>'+'</div>'+
+        '<div class="ee-fiche"><ul class="ee-kv">'+[['Référence',d.reference],['Site',LIB.site[d.site]||d.site],['E-mail',c.email],['Fourchette',d.prix_bas?EE.euros(d.prix_bas)+' – '+EE.euros(d.prix_haut)+' ('+EE.euros(d.prix_m2)+'/m², '+d.comparables+' ventes'+(d.rayon?' à moins de '+EE.rayon(d.rayon):'')+')':'Pas de fourchette : rappel promis au plus vite']].concat(fiche(d.reponses||{})).concat(d.en_attente?[['Espace client','en attente de confirmation de l\'e-mail']]:[]).map(function(l){return '<li><span>'+EE.esc(l[0])+'</span><span>'+EE.esc(l[1])+'</span></li>';}).join('')+'</ul>'+'</div>'+
       '</div></details>';
   }
   function filtres(){ return {q:$('#ad-q').value.trim().toLowerCase(),s:$('#ad-statut').value,site:$('#ad-site').value}; }
@@ -2337,7 +2361,7 @@ var EE=(function(){
     var l=D.filter(function(d){ if(f.s&&d.statut!==f.s)return false; if(f.site&&d.site!==f.site)return false; if(!f.q)return true; var c=d.contact||{}; return [c.prenom,c.nom,c.email,c.telephone,String(c.telephone||'').replace(/\D/g,''),d.commune,d.adresse,d.reference,d.site].join(' ').toLowerCase().indexOf(f.q)>=0; });
     // les actions en retard en haut (la plus ancienne d'abord), puis le reste, du plus récent au plus ancien
     l=l.slice().sort(function(a,b){ var ra=retard(a), rb=retard(b); if(ra!==rb)return ra?-1:1; if(ra)return String(a.action.echeance)<String(b.action.echeance)?-1:1; return String(a.cree_le)<String(b.cree_le)?1:-1; });
-    $('#ad-rows').innerHTML=l.length?l.map(ligne).join(''):'<div class="ee-empty">Aucune demande.</div>';
+    $('#ad-rows').innerHTML=l.length?l.map(ligneDossier).join(''):'<div class="ee-empty">Aucune demande.</div>';
     ouvertes.forEach(function(id){var x=$('#ad-rows details[data-id="'+id+'"]');if(x)x.open=true;});
     if(l.length===1)$('#ad-rows details').open=true;
     $('#ad-export').href=C.api+'/admin/export.csv?quoi=demandes'+(f.site?'&site='+f.site:'')+(f.s?'&statut='+f.s:'');
@@ -2368,6 +2392,7 @@ var EE=(function(){
       STATUTS=r[0].statuts; D=r[0].demandes; Cp=r[1].comptes||[]; if(r[0].taille_max)TAILLE_MAX=r[0].taille_max; MAIL_CLIENTS=!!r[0].email_clients;
       OFFRES=r[0].statuts_offre||{}; DOCS=r[0].documents||{}; AUJ=r[0].aujourdhui||new Date().toISOString().slice(0,10); SUITE={};
       var ru=$('#ad-rdv-url'); if(ru&&document.activeElement!==ru)ru.value=r[0].rdv_url||'';
+      var ie=$('#ad-ics-out'); if(ie&&ie.hidden&&r[0].agenda_relie){ie.hidden=false;ie.className='ee-ok';ie.textContent='Agenda Google relié : les moments pris dans votre agenda ne sont pas proposés aux vendeurs.';}
       var s=$('#ad-statut'), v=s.value;
       s.innerHTML='<option value="">Tous les statuts</option>'+Object.keys(STATUTS).map(function(k){return '<option value="'+k+'">'+EE.esc(STATUTS[k])+'</option>';}).join(''); s.value=v;
       $('#ad-in').hidden=false; stats(); filtrer(); comptes();
@@ -2395,7 +2420,7 @@ var EE=(function(){
     var jr=$('[data-journal]',row); if(jr&&jr.open)journal(jr,x.id);
     stats();
   }
-  var TRACES={estimation:'Estimation faite en ligne',statut:'Statut',visite_demandee:'Créneaux proposés par le vendeur',visite_fixee:'Visite fixée',visite_annulee:'Visite annulée',visite_agenda:'Page de réservation ouverte par le vendeur',rappel_visite:'Rappel de visite',avis_prepare:'Avis de valeur : brouillon commencé',avis_envoye:'Avis de valeur envoyé',mail:'E-mail au vendeur',cr_publie:'Compte rendu de visite publié',cr_supprime:'Compte rendu de visite supprimé',offre_recue:'Offre reçue',offre_statut:'Offre',offre_supprimee:'Offre supprimée',notaire:'Notaire',document:'Document déposé'};
+  var TRACES={ouverture:'Dossier ouvert par l\'agence',espace_ouvert:'Espace du vendeur ouvert',lien_espace:'Lien de son espace préparé pour le vendeur',estimation:'Estimation faite en ligne',statut:'Statut',visite_demandee:'Créneaux proposés par le vendeur',visite_fixee:'Visite fixée',visite_annulee:'Visite annulée',visite_agenda:'Page de réservation ouverte par le vendeur',rappel_visite:'Rappel de visite',avis_prepare:'Avis de valeur : brouillon commencé',avis_envoye:'Avis de valeur envoyé',mail:'E-mail au vendeur',cr_publie:'Compte rendu de visite publié',cr_supprime:'Compte rendu de visite supprimé',offre_recue:'Offre reçue',offre_statut:'Offre',offre_supprimee:'Offre supprimée',notaire:'Notaire',document:'Document déposé'};
   function trace(e){
     var d=e.detail||{}, t=TRACES[e.type]||e.type;
     if(e.type==='statut')t='Statut : '+(STATUTS[e.vers]||e.vers)+(d.raison?' ('+d.raison+')':'');
@@ -2429,7 +2454,7 @@ var EE=(function(){
   var apiNu=EE.api, relire=null;
   EE.api=function(chemin,opts){
     var p=apiNu(chemin,opts);
-    if(opts&&(opts.body!==undefined||opts.fichier)&&/^\/(admin\/(demande|visite|avis|compte-rendu|offre|notaire|fichier)|fichier\/supprimer)/.test(chemin))
+    if(opts&&(opts.body!==undefined||opts.fichier)&&/^\/(admin\/(demande|visite|avis|compte-rendu|offre|notaire|fichier|dossier|compte\/lien)|fichier\/supprimer)/.test(chemin))
       p.then(function(d){ if(d&&d._status>=200&&d._status<300){clearTimeout(relire);relire=setTimeout(tracesRelire,700);} });
     return p;
   };
@@ -2720,6 +2745,7 @@ var EE=(function(){
   $('#ad-rows').addEventListener('click',function(e){
     var row=e.target.closest('.ee-row'); if(!row)return; var id=+row.getAttribute('data-id'), x=demande(id);
     if(suiteClic(e,row,id))return;
+    if(espaceClic(e,row,id,x))return;
     var b=e.target.closest('[data-save]');
     if(b){
       var corps={id:id,statut:$('[data-f=statut]',row).value,notes:$('[data-f=notes]',row).value,rappel_le:$('[data-f=rappel_le]',row).value,raison:$('[data-f=raison]',row).value,prevenir:$('[data-f=prevenir]',row).checked};
@@ -2801,7 +2827,7 @@ var EE=(function(){
       var row=l.closest('.ee-row'), id=+row.getAttribute('data-cid'), out=$('[data-lien-out]',row), c=Cp.filter(function(x){return x.id===id;})[0]||{}, type=l.getAttribute('data-lien');
       EE.api('/admin/compte/lien',{body:{id:id,type:type}}).then(function(d){
         out.hidden=false;
-        if(d._status!==200){out.className='ee-err';out.textContent=EE.message(d);return;}
+        if(d._status!==200){out.className='ee-err';out.textContent=d.error==='compte_agence'?'C\'est un compte de l\'agence : il s\'ouvre depuis /admin/, avec le lien reçu par e-mail.':EE.message(d);return;}
         var txt='Bonjour '+(c.prenom||'')+', voici le lien pour '+(type==='reinit'?'choisir un nouveau mot de passe pour votre espace':'ouvrir votre espace et retrouver votre estimation')+' (valable 24 h, une seule fois) : '+d.lien;
         out.className='ee-ok';
         out.innerHTML=(type==='reinit'?'Lien « nouveau mot de passe »':'Lien de connexion')+', valable 24 h, à transmettre au client :<br><span style="word-break:break-all;" data-test="lien">'+EE.esc(d.lien)+'</span><br>'+
@@ -2823,6 +2849,18 @@ var EE=(function(){
       out.className='ee-ok'; out.innerHTML='Nouvelle clé créée. Collez cette formule dans la cellule A1 de l\'onglet « Site » (elle ne sera plus affichée) :<br><span style="word-break:break-all;" data-test="formule">'+EE.esc(d.formule)+'</span>'+(d.formule_promesses?'<br><br>Et celle-ci dans la cellule A1 de l\'onglet « Promesses » :<br><span style="word-break:break-all;" data-test="formule-promesses">'+EE.esc(d.formule_promesses)+'</span>':'');
     });
   });
+  function agendaIcs(valeur){
+    var out=$('#ad-ics-out');
+    EE.api('/admin/reglages',{body:{agenda_ics:valeur}}).then(function(d){
+      out.hidden=false;
+      if(d._status!==200){out.className='ee-err';out.textContent=EE.messageChamp(d);return;}
+      $('#ad-ics').value='';
+      out.className=d.agenda==='illisible'?'ee-err':'ee-ok';
+      out.textContent=d.agenda==='relie'?'Agenda Google relié et lu : les moments pris dans votre agenda ne sont plus proposés aux vendeurs.':d.agenda==='illisible'?'Adresse enregistrée, mais l\'agenda n\'a pas pu être lu. Vérifiez que vous avez copié l\'« Adresse secrète au format iCal » (et pas l\'adresse publique).':'Agenda délié : seuls les rendez-vous fixés ici sont évités.';
+    });
+  }
+  $('#ad-ics-save').addEventListener('click',function(){ var v=$('#ad-ics').value.trim(); if(!v){$('#ad-ics').focus();return;} agendaIcs(v); });
+  $('#ad-ics-off').addEventListener('click',function(){ agendaIcs(''); });
   $('#ad-rdv-save').addEventListener('click',function(){
     var out=$('#ad-rdv-out');
     EE.api('/admin/reglages',{body:{rdv_url:$('#ad-rdv-url').value.trim()}}).then(function(d){
@@ -2831,6 +2869,166 @@ var EE=(function(){
       out.className='ee-ok'; out.textContent=d.rdv_url?'Enregistré : les vendeurs choisissent leur créneau dans votre agenda.':'Enregistré : les vendeurs proposent jusqu\'à 3 créneaux, vous confirmez.';
     });
   });
+  /* ---------- espace du vendeur : le lien à lui envoyer, ou l'espace à ouvrir quand le dossier n'en a pas ---------- */
+  function origineAgence(d){ return !!(d&&d.reponses&&d.reponses.origine==='agence'); }
+  /* (la fiche d'un dossier ouvert par l'agence ne promet pas de rappel : la fourchette se décide à la visite) */
+  function ligneDossier(d){ var h=ligne(d); return origineAgence(d)?h.replace(/Pas de fourchette : [^<]*/,'À établir à la visite (dossier ouvert par l\'agence)'):h; }
+  var MOI=C.conseiller==='Shawez'?'Shawez Ali':C.conseiller;
+  function texteLien(prenom,lien,jours){
+    return 'Bonjour'+(prenom?' '+prenom:'')+', c\'est '+MOI+'. Voici le lien de votre espace : vous y suivez votre dossier étape par étape (visite, documents, offres). Il est valable '+(jours===7?'7 jours':'24 h')+'. Une fois dedans, choisissez un mot de passe pour y revenir quand vous voulez.\n'+lien;
+  }
+  function blocEspace(d){
+    var c=d.contact||{}, h='<div class="ee-bloc" data-bloc="espace"><p class="lab">Espace du vendeur</p>';
+    if(d.compte_id){
+      h+='<p class="hint" data-test="espace-etat">'+EE.esc(d.compte_email||c.email||'')+' · '+(d.en_attente?'le dossier y apparaîtra dès qu\'il aura ouvert son lien':d.compte_vu?'ouvert pour la dernière fois le '+EE.jour(d.compte_vu):'pas encore ouvert')+'</p>'+
+        '<div class="acts"><button type="button" class="btn'+(d.compte_vu&&!d.en_attente?'':' btn-primary')+'" data-esp-lien>Lui envoyer le lien de son espace</button></div>'+
+        '<div class="ee-esp-out" data-esp-out hidden></div>';
+    } else {
+      h+='<p class="hint">Ce vendeur n\'a pas encore d\'espace. Son e-mail suffit pour l\'ouvrir : il y suivra son dossier.</p>'+
+        '<div class="field"><label for="ad-ee-'+d.id+'">E-mail du vendeur</label><input type="email" id="ad-ee-'+d.id+'" data-esp-email inputmode="email" autocapitalize="off" autocorrect="off" spellcheck="false" autocomplete="off" value="'+EE.esc(c.email||'')+'"></div>'+
+        '<div class="acts"><button type="button" class="btn" data-esp-ouvrir>Ouvrir son espace</button></div>';
+    }
+    return h+'<p class="ee-err" role="alert" hidden></p><p class="ee-ok" role="status" hidden></p></div>';
+  }
+  function espaceMaj(row,x,n){
+    ['compte_id','compte_email','compte_vu','contact','en_attente','trace'].forEach(function(k){ if(n[k]!==undefined)x[k]=n[k]; });
+    var b=$('[data-bloc=espace]',row); if(b)b.outerHTML=blocEspace(x);
+  }
+  function espaceClic(e,row,id,x){
+    var t=e.target.closest('[data-esp-lien],[data-esp-ouvrir],[data-esp-copier]'); if(!t||!x)return false;
+    var zone=$('[data-bloc=espace]',row), c=x.contact||{};
+    if(t.hasAttribute('data-esp-copier')){
+      var lien=t.getAttribute('data-esp-copier'), fait=function(){t.textContent='Lien copié';};
+      if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(lien).then(fait,function(){t.textContent='Copie impossible : sélectionnez le lien ci-dessous';});
+      else t.textContent='Sélectionnez le lien ci-dessous';
+      return true;
+    }
+    if(t.hasAttribute('data-esp-ouvrir')){
+      var m=$('[data-esp-email]',zone); m.value=m.value.replace(/\s+/g,'');
+      if(!EE.emailOk(m.value)){zoneMsg(zone,'Indiquez l\'e-mail du vendeur : c\'est lui qui ouvre son espace.');m.focus();return true;}
+      t.disabled=true;
+      EE.api('/admin/dossier/espace',{body:{demande:id,email:m.value,prevenir:MAIL_CLIENTS}}).then(function(d){
+        t.disabled=false;
+        if(d._status!==200){zoneMsg(zone,d.error==='espace_existe'?'Ce dossier a déjà un espace : rechargez la page.':(d.error==='champs'&&NV_MSG[d.champ])||EE.messageChamp(d));return;}
+        espaceMaj(row,x,d.demande);
+        zoneMsg($('[data-bloc=espace]',row),'Espace ouvert'+(d.mail==='envoye'?' · le lien part par e-mail.':d.mail==='differe'?' · e-mail prévu à 8 h (rien ne part entre 21 h et 8 h).':'. Envoyez-lui son lien ci-dessus.'),true);
+      });
+      return true;
+    }
+    t.disabled=true;
+    EE.api('/admin/compte/lien',{body:{id:x.compte_id,type:'acces',jours:7,demande:id}}).then(function(d){
+      t.disabled=false;
+      if(d._status!==200){zoneMsg(zone,d.error==='compte_agence'?'Ce dossier est rangé dans un compte de l\'agence : pas de lien à envoyer.':EE.message(d));return;}
+      var out=$('[data-esp-out]',zone), txt=texteLien(c.prenom,d.lien,d.jours), wa=String(c.telephone||'').replace(/\D/g,'').replace(/^0(?=\d{9}$)/,'33'), tel=String(c.telephone||'').replace(/[^\d+]/g,''), mail=x.compte_email||c.email||'';
+      zoneMsg(zone,'');
+      out.hidden=false;
+      out.innerHTML='<p class="ee-note">Lien prêt, valable '+(d.jours===7?'7 jours':'24 h')+'. Le message est déjà écrit : il ne reste qu\'à l\'envoyer.</p>'+
+        '<div class="acts">'+(wa?'<a class="btn btn-primary" data-test="esp-wa" href="https://wa.me/'+EE.esc(wa)+'?text='+encodeURIComponent(txt)+'" target="_blank" rel="noopener">WhatsApp</a>':'')+
+        (tel?'<a class="btn" data-test="esp-sms" href="sms:'+EE.esc(tel)+'?&body='+encodeURIComponent(txt)+'">SMS</a>':'')+
+        (mail?'<a class="btn" data-test="esp-mail" href="mailto:'+EE.esc(mail)+'?subject='+encodeURIComponent('Votre espace')+'&body='+encodeURIComponent(txt)+'">E-mail</a>':'')+
+        '<button type="button" class="btn" data-esp-copier="'+EE.esc(d.lien)+'">Copier le lien</button></div>'+
+        '<p class="hint ee-esp-lien" data-test="esp-lien">'+EE.esc(d.lien)+'</p>';
+    });
+    return true;
+  }
+
+  /* ---------- ouvrir un dossier à la main : un vendeur venu par téléphone, une recommandation, un mandat déjà signé ---------- */
+  var NV={lat:null}, nvCle=EE.uuid(), nvItems=[], nvSel=-1, nvTmr=null, nvSeq=0;
+  var NV_SOURCES=['https://api-adresse.data.gouv.fr/search/','https://data.geopf.fr/geocodage/search'];
+  var NV_MSG={nom_vendeur:'Indiquez son prénom ou son nom.',telephone:'Indiquez son téléphone (ou son e-mail).',email:'Cette adresse e-mail n\'est pas valide.',adresse:'Indiquez l\'adresse du bien.',surface:'La surface n\'est pas valide.',code_postal:'Choisissez l\'adresse dans la liste.',email_agence:'C\'est une adresse de l\'agence : indiquez l\'e-mail du vendeur, ou laissez vide.'};
+  $('#ad-demandes .ee-tools').insertAdjacentHTML('beforeend','<button type="button" class="btn btn-primary" id="ad-nv-btn" aria-expanded="false">Ouvrir un dossier</button>');
+  function nvForm(){
+    var opts=Object.keys(STATUTS).filter(function(k){return k!=='pause'&&k!=='close';}).map(function(k){return '<option value="'+k+'"'+(k==='appele'?' selected':'')+'>'+EE.esc(STATUTS[k])+'</option>';}).join('');
+    return '<form class="ee-card ee-nv" id="ad-nv" novalidate>'+
+      '<h3>Ouvrir un dossier</h3>'+
+      '<p class="meta">Pour un vendeur qui n\'est pas passé par l\'estimation en ligne : un appel, une recommandation, un mandat déjà signé. Avec son e-mail, il a son espace tout de suite.</p>'+
+      '<div class="ee-2"><div class="field"><label for="nv-prenom">Prénom</label><input type="text" id="nv-prenom" autocomplete="off" maxlength="80"></div>'+
+      '<div class="field"><label for="nv-nom">Nom</label><input type="text" id="nv-nom" autocomplete="off" maxlength="80"><span class="msg">Indiquez son prénom ou son nom.</span></div></div>'+
+      '<div class="ee-2"><div class="field"><label for="nv-tel">Téléphone</label><input type="tel" id="nv-tel" inputmode="tel" autocomplete="off"><span class="msg">Indiquez son téléphone (ou son e-mail).</span></div>'+
+      '<div class="field"><label for="nv-email">E-mail <small>(pour son espace)</small></label><input type="email" id="nv-email" inputmode="email" autocapitalize="off" autocorrect="off" spellcheck="false" autocomplete="off"><span class="msg">Cette adresse e-mail n\'est pas valide.</span></div></div>'+
+      '<div class="field"><label for="nv-adresse">Adresse du bien</label><input type="text" id="nv-adresse" role="combobox" aria-expanded="false" aria-controls="nv-sugg" aria-autocomplete="list" autocomplete="off" placeholder="30 rue Bannelier, Dijon" maxlength="200"><span class="msg">Indiquez l\'adresse du bien.</span>'+
+        '<ul class="ee-sugg" id="nv-sugg" role="listbox" aria-label="Adresses proposées" hidden></ul><span class="hint" id="nv-picked" hidden></span></div>'+
+      '<div class="ee-2"><div class="field"><label for="nv-type">Type de bien</label><select id="nv-type"><option value="appartement">Appartement</option><option value="maison">Maison</option><option value="autre:commerce">Fonds de commerce</option><option value="autre:murs">Murs commerciaux</option><option value="autre:immeuble">Immeuble</option><option value="autre:terrain">Terrain</option><option value="autre:autre">Autre</option></select></div>'+
+      '<div class="field"><label for="nv-surface">Surface en m² <small>(si vous l\'avez)</small></label><input type="number" id="nv-surface" inputmode="numeric" min="1" max="100000"><span class="msg">La surface n\'est pas valide.</span></div></div>'+
+      '<div class="field"><label for="nv-statut">Où en est ce dossier</label><select id="nv-statut">'+opts+'</select></div>'+
+      '<div class="field"><label for="nv-notes">Notes <small>(visibles par l\'agence seulement)</small></label><textarea id="nv-notes" maxlength="5000"></textarea></div>'+
+      '<label class="ee-check-l"><input type="checkbox" id="nv-prevenir"'+(MAIL_CLIENTS?' checked':' disabled')+'>'+(MAIL_CLIENTS?'Lui envoyer le lien de son espace par e-mail':'E-mails aux vendeurs pas encore ouverts : vous lui enverrez son lien par WhatsApp, en un geste')+'</label>'+
+      '<p class="ee-err" role="alert" hidden></p><p class="ee-ok" role="status" hidden></p>'+
+      '<div class="acts"><button type="submit" class="btn btn-primary" id="nv-ok">Ouvrir le dossier</button><button type="button" class="btn" id="nv-annuler">Annuler</button></div>'+
+    '</form>';
+  }
+  function nvFermer(){ var f=$('#ad-nv'); if(f)f.parentNode.removeChild(f); NV={lat:null}; nvItems=[]; $('#ad-nv-btn').setAttribute('aria-expanded','false'); }
+  function nvListe(){
+    var inp=$('#nv-adresse'), ul=$('#nv-sugg'); nvSel=-1; inp.removeAttribute('aria-activedescendant');
+    if(!nvItems.length){ul.hidden=true;inp.setAttribute('aria-expanded','false');return;}
+    ul.innerHTML=nvItems.map(function(it,k){return '<li role="option" id="nv-o'+k+'" aria-selected="false" data-k="'+k+'"><b>'+EE.esc(it.name)+'</b><span>'+EE.esc((it.postcode||'')+' '+(it.city||''))+'</span></li>';}).join('');
+    ul.hidden=false; inp.setAttribute('aria-expanded','true');
+  }
+  function nvChercher(q){
+    var n=++nvSeq, qs='?q='+encodeURIComponent(q)+'&limit=5&autocomplete=1&lat=47.32&lon=5.04';
+    function essai(k){ return fetch(NV_SOURCES[k]+qs).then(function(r){if(!r.ok)throw 0;return r.json();}).catch(function(){ if(k+1<NV_SOURCES.length)return essai(k+1); throw 0; }); }
+    essai(0).then(function(d){ if(n!==nvSeq||!$('#ad-nv'))return; nvItems=(d.features||[]).map(function(f){var p=f.properties;return {label:p.label,name:p.name,city:p.city,postcode:p.postcode,citycode:p.citycode,lon:f.geometry.coordinates[0],lat:f.geometry.coordinates[1]};}); nvListe(); })
+      .catch(function(){ if(n!==nvSeq||!$('#ad-nv'))return; nvItems=[]; nvListe(); });
+  }
+  function nvChoisir(it){
+    var inp=$('#nv-adresse'), pk=$('#nv-picked');
+    NV={adresse:it.label,code_postal:it.postcode||'',commune:it.city||'',citycode:it.citycode||'',lat:it.lat,lon:it.lon};
+    inp.value=it.label; nvItems=[]; nvListe(); EE.err(inp,false);
+    pk.textContent='Adresse retenue : '+it.label; pk.hidden=false;
+  }
+  function nvOuvrir(){
+    if($('#ad-nv')){ nvFermer(); return; }
+    $('#ad-demandes .ee-tools').insertAdjacentHTML('afterend',nvForm());
+    $('#ad-nv-btn').setAttribute('aria-expanded','true');
+    var f=$('#ad-nv'), inp=$('#nv-adresse'), ul=$('#nv-sugg');
+    inp.addEventListener('input',function(){
+      NV={lat:null}; $('#nv-picked').hidden=true; clearTimeout(nvTmr); var q=inp.value.trim();
+      if(q.length<3){nvItems=[];nvListe();return;}
+      nvTmr=setTimeout(function(){nvChercher(q);},180);
+    });
+    inp.addEventListener('keydown',function(e){
+      if(ul.hidden)return;
+      if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();nvSel=(nvSel+(e.key==='ArrowDown'?1:-1)+nvItems.length)%nvItems.length;$$('li',ul).forEach(function(li,k){li.setAttribute('aria-selected',String(k===nvSel));});inp.setAttribute('aria-activedescendant','nv-o'+nvSel);}
+      else if(e.key==='Enter'&&(nvSel>=0||nvItems.length===1)){e.preventDefault();nvChoisir(nvItems[nvSel>=0?nvSel:0]);}
+      else if(e.key==='Escape'){nvItems=[];nvListe();}
+    });
+    ul.addEventListener('mousedown',function(e){e.preventDefault();});
+    ul.addEventListener('click',function(e){var li=e.target.closest('li');if(li)nvChoisir(nvItems[+li.getAttribute('data-k')]);});
+    f.addEventListener('input',function(e){ if(e.target.closest('.field.err'))EE.err(e.target,false); });
+    $('#nv-annuler').addEventListener('click',nvFermer);
+    f.addEventListener('submit',nvEnvoyer);
+    $('#nv-prenom').focus({preventScroll:true}); f.scrollIntoView({block:'nearest',behavior:'smooth'});
+  }
+  function nvEnvoyer(e){
+    e.preventDefault();
+    var f=$('#ad-nv'), ok=true, v=function(k){return $('#nv-'+k).value.trim();};
+    $('#nv-email').value=$('#nv-email').value.replace(/\s+/g,'');
+    ok=EE.err($('#nv-nom'),!v('prenom')&&!v('nom'))&&ok;
+    ok=EE.err($('#nv-tel'),v('tel')?!EE.telOk(v('tel')):!v('email'))&&ok;
+    ok=EE.err($('#nv-email'),!!v('email')&&!EE.emailOk(v('email')))&&ok;
+    ok=EE.err($('#nv-adresse'),v('adresse').length<3)&&ok;
+    ok=EE.err($('#nv-surface'),!!v('surface')&&!(+v('surface')>=1&&+v('surface')<=100000))&&ok;
+    if(!ok){var k=f.querySelector('.field.err input');if(k)k.focus();return;}
+    var type=$('#nv-type').value.split(':'), choisie=NV.lat!=null;
+    // adresse non choisie dans la liste : gardée telle qu'écrite (sans repère, pas de ventes comparables automatiques)
+    var bien={type:type[0],autre_type:type[1]||undefined,adresse:choisie?NV.adresse:v('adresse'),code_postal:choisie?NV.code_postal:'',commune:choisie?NV.commune:'',citycode:choisie?NV.citycode:'',lat:choisie?NV.lat:null,lon:choisie?NV.lon:null,surface:v('surface')||null};
+    var b=$('#nv-ok'); b.disabled=true; zoneMsg(f,'');
+    EE.api('/admin/dossier',{body:{contact:{prenom:v('prenom'),nom:v('nom'),telephone:v('tel'),email:v('email')},bien:bien,statut:$('#nv-statut').value,notes:$('#nv-notes').value,prevenir:$('#nv-prevenir').checked,cle:nvCle,site:C.site||undefined}}).then(function(d){
+      b.disabled=false;
+      if(d._status!==201&&d._status!==200){zoneMsg(f,(d.error==='champs'&&NV_MSG[d.champ])||EE.messageChamp(d));return;}
+      var n=d.demande; nvCle=EE.uuid(); nvFermer();
+      D=D.filter(function(k){return k.id!==n.id;}); D.unshift(n);
+      // le nouveau dossier, seul à l'écran et ouvert : la suite se fait dedans (son lien, la visite, les documents)
+      $('#ad-q').value=n.reference; $('#ad-statut').value=''; $('#ad-site').value='';
+      stats(); filtrer();
+      var row=$('#ad-rows details[data-id="'+n.id+'"]'); if(!row)return;
+      row.open=true;
+      zoneMsg($('[data-bloc=espace]',row),'Dossier ouvert'+(d.mail==='envoye'?' · le lien de son espace part par e-mail.':d.mail==='differe'?' · e-mail au vendeur prévu à 8 h (rien ne part entre 21 h et 8 h).':n.compte_id?'. Envoyez-lui le lien de son espace.':'. Ajoutez son e-mail pour lui ouvrir son espace.'),true);
+      row.scrollIntoView({block:'start',behavior:'smooth'});
+    });
+  }
+  $('#ad-nv-btn').addEventListener('click',nvOuvrir);
+
   /* connexion sans mot de passe : l'agence demande son lien ici, il rouvre cette page (c'est aussi l'entrée des agents) */
   $('#ad-lien').addEventListener('submit',function(e){
     e.preventDefault(); var f=this, m=$('#ad-email'), b=$('#ad-lien-btn'); m.value=m.value.replace(/\s+/g,'');
