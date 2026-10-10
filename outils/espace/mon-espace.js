@@ -76,11 +76,12 @@
     return '<article class="ee-card" data-id="'+d.id+'">'+
       '<div><h3>'+EE.esc(titre)+'</h3><p class="meta">'+EE.esc(d.adresse||d.commune||'')+'</p></div>'+
       (d.prix_bas?'<div><p class="fp">'+EE.euros(d.prix_bas)+' – '+EE.euros(d.prix_haut)+'</p><p class="meta">Environ '+EE.euros(d.prix_m2)+'/m² · '+d.comparables+' ventes comparables'+(d.rayon?' à moins de '+EE.rayon(d.rayon):'')+(d.donnees_du?' · données à jour de '+EE.mois(d.donnees_du):'')+' · indicatif, à confirmer par une visite</p></div>'
+        :d.origine==='agence'?'<div data-test="dossier-agence"><p class="fp fp-txt">Votre dossier</p><p class="meta">'+EE.esc(C.conseiller)+' le suit avec vous, étape par étape. Tout ce qui concerne votre vente arrive ici.</p></div>'
         :'<div><p class="fp fp-txt">Étude personnalisée</p><p class="meta">'+EE.esc(C.conseiller)+' étudie votre bien lui-même et vous rappelle.</p></div>')+
       suivi(d)+
       '<div class="ee-rdv" data-rdv="'+d.id+'" hidden></div>'+
       (avis.length?'<div class="ee-avis">'+avis.map(function(f){return '<a class="btn btn-primary" href="'+lienFichier(f)+'" download="'+EE.esc(f.nom)+'">Télécharger mon avis de valeur (PDF) <span class="arw">↓</span></a>';}).join('')+'</div>'
-        :rang>=3&&d.statut!=='close'&&d.statut!=='pause'?'<p class="meta">Votre avis de valeur vous a été remis ; il sera aussi déposé ici.</p>':'')+
+        :rang>=3&&d.statut!=='close'&&d.statut!=='pause'&&d.origine!=='agence'?'<p class="meta">Votre avis de valeur vous a été remis ; il sera aussi déposé ici.</p>':'')+
       partOffres(d)+partComptesRendus(d)+partNotaire(d)+
       (docs.length?'<div class="ee-part" data-test="documents"><h4>Documents de votre vente</h4><ul class="ee-flist">'+docs.map(fichier).join('')+'</ul></div>':'')+
       '<div class="ee-files"><p class="lab">'+(docs.length?'Vos photos et documents':'Photos et documents')+'</p>'+
@@ -108,9 +109,11 @@
     var c=compte;
     out.hidden=true; inn.hidden=false;
     $('#me-titre').innerHTML=(c.prenom?'Bonjour '+EE.esc(c.prenom)+', <em>voici votre espace.</em>':'Bonjour, <em>voici votre espace.</em>');
-    $('#me-lede').textContent=d.demandes.length?'Vos estimations et l\'avancement de chaque dossier.':'Vous n\'avez pas encore d\'estimation.';
+    // un dossier ouvert par l'agence (sans estimation en ligne) : on parle de « dossiers »
+    var dossiers=d.demandes.some(function(x){return x.origine==='agence';});
+    $('#me-lede').textContent=d.demandes.length?(dossiers?'Votre dossier, étape par étape.':'Vos estimations et l\'avancement de chaque dossier.'):'Vous n\'avez pas encore d\'estimation.';
     RDV_URL=d.rdv_url||null; DOSSIERS={};
-    $('#me-bonjour').textContent=d.demandes.length+' estimation'+(d.demandes.length>1?'s':'');
+    $('#me-bonjour').textContent=d.demandes.length+(dossiers?' dossier':' estimation')+(d.demandes.length>1?'s':'');
     $('#me-cards').innerHTML=d.demandes.length?d.demandes.map(carte).join(''):'<div class="ee-empty"><p style="margin:0;">Deux minutes suffisent pour connaître la fourchette de prix de votre bien.</p><a class="btn btn-primary" href="'+C.estimer+'">Estimer mon bien <span class="arw">→</span></a></div>';
     // visite d'estimation : choisir, voir ou déplacer son créneau, dans chaque dossier
     $$('#me-cards [data-rdv]').forEach(function(z){
