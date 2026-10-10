@@ -125,7 +125,7 @@ window.EECompte=function(){var on=/(?:^|;\\s*)se_ok=1/.test(document.cookie||'')
 window.EECompte();window.addEventListener('pageshow',window.EECompte);
 """
 CTA = '<a class="btn btn-primary" href="/estimer/"><span>Estimer mon bien</span></a>'
-MENU = '<a class="m-alt" href="/estimation-immobiliere-dijon/">Estimation par Shawez</a>'
+MENU = '<a class="m-alt" href="/estimation-immobiliere-dijon/">Estimation chez vous, offerte</a>'
 MENU_ESPACE = '<a class="m-alt" href="/mon-espace/" data-compte><span data-compte-txt>Mon espace</span></a>'
 PIED = '<li><a href="/contact/">Contact</a></li>'
 PIED_ESPACE = '<li><a href="/mon-espace/">Mon espace</a></li>'
