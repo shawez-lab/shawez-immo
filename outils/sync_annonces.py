@@ -568,7 +568,7 @@ def page(etat):
     s = re.sub(r'<main id="main">.*?</main>', lambda m: main, s, flags=re.S)
     s = re.sub(r'<style id="avis-css">.*?</style>\n?', '', s, flags=re.S)
     s = re.sub(r'<style id="annonces-css">.*?</style>\n?|<script id="annonces-js">.*?</script>\n?', '', s, flags=re.S)
-    t = 'Biens à vendre à Dijon et alentours — GRAVELIN IMMO, avec Shawez Ali'
+    t = 'Biens à vendre à Dijon et alentours | Shawez Ali'
     d = 'Les biens à vendre de l\'agence GRAVELIN IMMO à Dijon et alentours : maisons, appartements, propriétés. Mis à jour chaque jour.'
     s = re.sub(r'<title>.*?</title>', '<title>%s</title>' % t, s, 1)
     for k in ('og:title', 'twitter:title'):
