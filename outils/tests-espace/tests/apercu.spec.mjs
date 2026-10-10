@@ -2,7 +2,7 @@
    et la fourchette sur 10 adresses réelles (tableau écrit dans le journal). Chaque essai supprime son compte. */
 import { test, expect } from '@playwright/test';
 import { writeFileSync, mkdirSync } from 'node:fs';
-import { fausseBan, parcours, coordonnees, afficherResultat, estimationComplete, pictogramme, moi, api, emailTest } from './aides.mjs';
+import { fausseBan, parcours, coordonnees, afficherResultat, estimationComplete, pictogramme, moi, api, emailTest, jourLibre } from './aides.mjs';
 
 const BASE = process.env.EE_BASE || 'https://espace-estimation.shawez-immo.pages.dev';
 const hote = new RegExp(BASE.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '/$');
@@ -68,7 +68,7 @@ test('étape 2 : créneaux de visite après le résultat, frise des 10 étapes d
   await expect(rdv).toBeVisible();
   await rdv.locator('[data-rdv-ouvrir]').click();
   await expect(rdv.locator('.ee-days .pill')).toHaveCount(6);
-  await rdv.locator('.ee-days .pill').nth(1).click();
+  await jourLibre(rdv, 5);
   await rdv.locator('.ee-hour').nth(1).click();
   await rdv.locator('.ee-hour').nth(4).click();
   await page.screenshot({ path: `captures/apercu-${test.info().project.name}-visite-choix.png`, fullPage: true });
