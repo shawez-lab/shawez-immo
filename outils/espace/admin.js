@@ -84,7 +84,7 @@
         '<details class="ee-journal" data-journal><summary>Journal du dossier</summary><ul></ul></details>'+
         '<div class="ee-links">'+(d.suspect?'<button type="button" data-humain>Ce n\'est pas un robot</button>':'')+'<button type="button" class="ee-danger" data-dsuppr>Supprimer cette demande</button></div>'+
       '</div>'+
-        '<div class="ee-fiche"><ul class="ee-kv">'+[['Référence',d.reference],['Site',LIB.site[d.site]||d.site],['E-mail',c.email],['Fourchette',d.prix_bas?EE.euros(d.prix_bas)+' – '+EE.euros(d.prix_haut)+' ('+EE.euros(d.prix_m2)+'/m², '+d.comparables+' ventes'+(d.rayon?' à moins de '+EE.rayon(d.rayon):'')+')':'Pas de fourchette : rappel promis sous 24 h']].concat(fiche(d.reponses||{})).concat(d.en_attente?[['Espace client','en attente de confirmation de l\'e-mail']]:[]).map(function(l){return '<li><span>'+EE.esc(l[0])+'</span><span>'+EE.esc(l[1])+'</span></li>';}).join('')+'</ul>'+'</div>'+
+        '<div class="ee-fiche"><ul class="ee-kv">'+[['Référence',d.reference],['Site',LIB.site[d.site]||d.site],['E-mail',c.email],['Fourchette',d.prix_bas?EE.euros(d.prix_bas)+' – '+EE.euros(d.prix_haut)+' ('+EE.euros(d.prix_m2)+'/m², '+d.comparables+' ventes'+(d.rayon?' à moins de '+EE.rayon(d.rayon):'')+')':'Pas de fourchette : rappel promis au plus vite']].concat(fiche(d.reponses||{})).concat(d.en_attente?[['Espace client','en attente de confirmation de l\'e-mail']]:[]).map(function(l){return '<li><span>'+EE.esc(l[0])+'</span><span>'+EE.esc(l[1])+'</span></li>';}).join('')+'</ul>'+'</div>'+
       '</div></details>';
   }
   function filtres(){ return {q:$('#ad-q').value.trim().toLowerCase(),s:$('#ad-statut').value,site:$('#ad-site').value}; }
@@ -125,6 +125,7 @@
       STATUTS=r[0].statuts; D=r[0].demandes; Cp=r[1].comptes||[]; if(r[0].taille_max)TAILLE_MAX=r[0].taille_max; MAIL_CLIENTS=!!r[0].email_clients;
       OFFRES=r[0].statuts_offre||{}; DOCS=r[0].documents||{}; AUJ=r[0].aujourdhui||new Date().toISOString().slice(0,10); SUITE={};
       var ru=$('#ad-rdv-url'); if(ru&&document.activeElement!==ru)ru.value=r[0].rdv_url||'';
+      var ie=$('#ad-ics-out'); if(ie&&ie.hidden&&r[0].agenda_relie){ie.hidden=false;ie.className='ee-ok';ie.textContent='Agenda Google relié : les moments pris dans votre agenda ne sont pas proposés aux vendeurs.';}
       var s=$('#ad-statut'), v=s.value;
       s.innerHTML='<option value="">Tous les statuts</option>'+Object.keys(STATUTS).map(function(k){return '<option value="'+k+'">'+EE.esc(STATUTS[k])+'</option>';}).join(''); s.value=v;
       $('#ad-in').hidden=false; stats(); filtrer(); comptes();
@@ -580,6 +581,18 @@
       out.className='ee-ok'; out.innerHTML='Nouvelle clé créée. Collez cette formule dans la cellule A1 de l\'onglet « Site » (elle ne sera plus affichée) :<br><span style="word-break:break-all;" data-test="formule">'+EE.esc(d.formule)+'</span>'+(d.formule_promesses?'<br><br>Et celle-ci dans la cellule A1 de l\'onglet « Promesses » :<br><span style="word-break:break-all;" data-test="formule-promesses">'+EE.esc(d.formule_promesses)+'</span>':'');
     });
   });
+  function agendaIcs(valeur){
+    var out=$('#ad-ics-out');
+    EE.api('/admin/reglages',{body:{agenda_ics:valeur}}).then(function(d){
+      out.hidden=false;
+      if(d._status!==200){out.className='ee-err';out.textContent=EE.messageChamp(d);return;}
+      $('#ad-ics').value='';
+      out.className=d.agenda==='illisible'?'ee-err':'ee-ok';
+      out.textContent=d.agenda==='relie'?'Agenda Google relié et lu : les moments pris dans votre agenda ne sont plus proposés aux vendeurs.':d.agenda==='illisible'?'Adresse enregistrée, mais l\'agenda n\'a pas pu être lu. Vérifiez que vous avez copié l\'« Adresse secrète au format iCal » (et pas l\'adresse publique).':'Agenda délié : seuls les rendez-vous fixés ici sont évités.';
+    });
+  }
+  $('#ad-ics-save').addEventListener('click',function(){ var v=$('#ad-ics').value.trim(); if(!v){$('#ad-ics').focus();return;} agendaIcs(v); });
+  $('#ad-ics-off').addEventListener('click',function(){ agendaIcs(''); });
   $('#ad-rdv-save').addEventListener('click',function(){
     var out=$('#ad-rdv-out');
     EE.api('/admin/reglages',{body:{rdv_url:$('#ad-rdv-url').value.trim()}}).then(function(d){
