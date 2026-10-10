@@ -1,0 +1,5 @@
+[245500,"RUE DU FOURNEAU","Vernois-lès-Vesvres",27]
+[198500,"RUE GRANDE RUE","Vernois-lès-Vesvres",9]
+[90000,"GRANDE RUE","Vernois-lès-Vesvres",23]
+[165000,"GRANDE RUE","Vernois-lès-Vesvres",15]
+[105000,"COMBE GRANCEY","Vernois-lès-Vesvres",30]

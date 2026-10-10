@@ -1,0 +1,7 @@
+[224000,"RUE DE LUX","Véronnes",21]
+[91000,"RUE DE LUX","Véronnes",19]
+[170000,"RUE DE BEZE","Véronnes",6]
+[319500,"RUE DE BEZE","Véronnes",22]
+[73500,"RUE DE BEZE","Véronnes",22]
+[260000,"RUE ENTRE DEUX VILLES","Véronnes",16]
+[185000,"RUE DE TILCHATEL","Véronnes",28]

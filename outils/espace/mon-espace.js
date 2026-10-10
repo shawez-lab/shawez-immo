@@ -1,4 +1,5 @@
-/* /mon-espace/ : connexion (lien reçu par e-mail ou mot de passe), estimations, avancement, avis de valeur, photos et documents */
+/* /mon-espace/ : connexion (lien reçu par e-mail ou mot de passe), estimations, avancement, avis de valeur, photos et documents ;
+   après le mandat : offres, comptes rendus de visite, notaire, documents de la vente */
 (function(){
   'use strict';
   var $=EE.$, $$=EE.$$, err=EE.err, C=EE.CONF;
@@ -21,28 +22,68 @@
   var aide='Demandez-le à '+EE.esc(C.conseiller)+' : <a href="tel:'+C.tel+'">'+C.telAffiche+'</a> (appel ou WhatsApp).';
 
   /* ---------- estimations ---------- */
-  var ETAPES=[['recue','Demande reçue'],['visite','Visite prévue'],['avis','Avis de valeur envoyé']];
+  var RDV_URL=null, DOSSIERS={};
+  /* Avancement : les dix étapes du dossier, celle en cours, et la prochaine (dite par l'agence). */
+  function suivi(d){
+    var p=d.parcours||[], n=p.length||10, k=0;
+    p.forEach(function(e,i){ if(e.etat==='encours'||e.etat==='fait')k=i; });
+    var enCours=p[k]||{libelle:d.statut_libelle}, sorti=d.statut==='pause'||d.statut==='close';
+    return '<div class="ee-suivi" data-test="suivi">'+
+      '<p class="ee-etape"><span>'+(sorti?EE.esc(d.statut_libelle):'Étape '+(k+1)+' sur '+n)+'</span><b data-test="etape">'+EE.esc(enCours.libelle||'')+'</b></p>'+
+      '<div class="ee-bar" role="img" aria-label="Étape '+(k+1)+' sur '+n+' : '+EE.esc(enCours.libelle||'')+'">'+p.map(function(e){return '<i class="'+e.etat+'"></i>';}).join('')+'</div>'+
+      (d.suite?'<p class="ee-suite" data-test="suite"><b>'+(d.statut==='acte'||sorti?'':'Prochaine étape : ')+'</b>'+EE.esc(d.suite)+'</p>':'')+
+      '<details class="ee-frise"><summary>Voir toutes les étapes</summary><ol>'+p.map(function(e){
+        return '<li class="'+e.etat+'"'+(e.etat==='encours'?' aria-current="step"':'')+'><span>'+EE.esc(e.libelle)+'</span>'+(e.etat!=='avenir'&&e.le?'<small>'+EE.jour(e.le)+'</small>':'')+'</li>';
+      }).join('')+'</ol></details>'+
+    '</div>';
+  }
   var TYPES={appartement:'Appartement',maison:'Maison',autre:'Bien'};
   function lienFichier(f){return C.api+'/fichier?id='+encodeURIComponent(f.id);}
   function fichier(f){
     var img=/^image\/(jpeg|png|webp)$/.test(f.type);
     return '<li data-fid="'+EE.esc(f.id)+'">'+
       '<a href="'+lienFichier(f)+'"'+(img?' target="_blank" rel="noopener"':' download="'+EE.esc(f.nom)+'"')+'>'+(img?'<img src="'+lienFichier(f)+'" alt="" loading="lazy" width="56" height="56">':'<i aria-hidden="true">'+(f.type==='application/pdf'?'PDF':'DOC')+'</i>')+
-      '<span><b>'+EE.esc(f.nom)+'</b><small>'+EE.taille(f.taille)+(f.depose_par==='agence'?' · déposé par '+EE.esc(C.conseiller):'')+'</small></span></a>'+
+      '<span><b>'+EE.esc(f.libelle||f.nom)+'</b><small>'+(f.libelle?EE.esc(f.nom)+' · ':'')+EE.taille(f.taille)+(f.depose_par==='agence'?' · déposé par '+EE.esc(C.conseiller)+(f.cree_le?' le '+EE.jour(f.cree_le):''):'')+'</small></span></a>'+
       (f.depose_par==='client'?'<button type="button" data-suppr="'+EE.esc(f.id)+'" aria-label="Retirer '+EE.esc(f.nom)+'">Retirer</button>':'')+'</li>';
   }
+  /* ---------- après le mandat : offres, comptes rendus de visite, notaire (affichés dès qu'il y a quelque chose) ---------- */
+  function partOffres(d){
+    var l=d.offres||[]; if(!l.length)return '';
+    return '<div class="ee-part" data-test="offres"><h4>'+(l.length>1?'Offres reçues':'Offre reçue')+'</h4><ul class="ee-items">'+l.map(function(o){
+      return '<li><p class="t"><b class="prix">'+EE.euros(o.montant)+'</b><span class="tag'+(o.statut==='acceptee'?' ok':o.statut==='etude'?' att':'')+'">'+EE.esc(o.statut_libelle)+'</span></p><p class="meta">Reçue le '+EE.jour(o.recue_le)+'</p>'+(o.conditions?'<p class="txt">'+EE.esc(o.conditions)+'</p>':'')+'</li>';
+    }).join('')+'</ul></div>';
+  }
+  function partComptesRendus(d){
+    var l=d.comptes_rendus||[]; if(!l.length)return '';
+    function un(c){ return '<li><p class="t"><b>Visite du '+EE.esc(EE.jourLong(c.visite_le))+'</b></p><p class="txt">'+EE.esc(c.texte)+'</p></li>'; }
+    return '<div class="ee-part" data-test="comptes-rendus"><h4>Comptes rendus de visite <small>'+l.length+'</small></h4><ul class="ee-items">'+l.slice(0,3).map(un).join('')+'</ul>'+
+      (l.length>3?'<details class="ee-frise"><summary>Voir les '+(l.length-3>1?(l.length-3)+' comptes rendus précédents':'le compte rendu précédent')+'</summary><ul class="ee-items">'+l.slice(3).map(un).join('')+'</ul></details>':'')+'</div>';
+  }
+  function partNotaire(d){
+    var n=d.notaire; if(!n)return '';
+    return '<div class="ee-part" data-test="notaire"><h4>Chez le notaire</h4>'+
+      (n.nom||n.coordonnees?'<p class="ee-notaire">'+(n.nom?'<b>'+EE.esc(n.nom)+'</b>':'')+(n.coordonnees?'<span>'+EE.esc(n.coordonnees)+'</span>':'')+'</p>':'')+
+      '<div class="ee-frise"><ol>'+(n.etapes||[]).map(function(e){
+        return '<li class="'+(e.fait?'fait':'avenir')+'"><span>'+EE.esc(e.libelle)+'</span>'+(e.le?'<small>'+(e.fait?'le ':'prévu le ')+EE.jour(e.le)+'</small>':e.fait?'<small>fait</small>':'')+'</li>';
+      }).join('')+'</ol></div></div>';
+  }
   function carte(d){
-    var rang={recue:0,appele:0,visite:1,avis:2,close:2}[d.statut]||0;
+    var rang=(d.parcours||[]).filter(function(e){return e.etat!=='avenir';}).length-1;
+    DOSSIERS[d.id]=d;
     var titre=(TYPES[d.type]||'Bien')+(d.surface?' · '+d.surface+' m²':'')+(d.pieces?' · '+d.pieces+' p.':'');
-    var avis=(d.fichiers||[]).filter(function(f){return f.role==='avis';}), autres=(d.fichiers||[]).filter(function(f){return f.role!=='avis';});
+    var avis=(d.fichiers||[]).filter(function(f){return f.role==='avis';}), autres=(d.fichiers||[]).filter(function(f){return f.role!=='avis'&&f.depose_par!=='agence';});
+    var docs=(d.fichiers||[]).filter(function(f){return f.role!=='avis'&&f.depose_par==='agence';});
     return '<article class="ee-card" data-id="'+d.id+'">'+
       '<div><h3>'+EE.esc(titre)+'</h3><p class="meta">'+EE.esc(d.adresse||d.commune||'')+'</p></div>'+
       (d.prix_bas?'<div><p class="fp">'+EE.euros(d.prix_bas)+' – '+EE.euros(d.prix_haut)+'</p><p class="meta">Environ '+EE.euros(d.prix_m2)+'/m² · '+d.comparables+' ventes comparables'+(d.rayon?' à moins de '+EE.rayon(d.rayon):'')+(d.donnees_du?' · données à jour de '+EE.mois(d.donnees_du):'')+' · indicatif, à confirmer par une visite</p></div>'
         :'<div><p class="fp fp-txt">Étude personnalisée</p><p class="meta">'+EE.esc(C.conseiller)+' étudie votre bien lui-même et vous rappelle.</p></div>')+
-      '<ol class="ee-tl" aria-label="Avancement">'+ETAPES.map(function(e,k){return '<li class="'+(k<=rang?'done':'')+'"'+(k===rang?' aria-current="step"':'')+'>'+e[1]+'</li>';}).join('')+'</ol>'+
+      suivi(d)+
+      '<div class="ee-rdv" data-rdv="'+d.id+'" hidden></div>'+
       (avis.length?'<div class="ee-avis">'+avis.map(function(f){return '<a class="btn btn-primary" href="'+lienFichier(f)+'" download="'+EE.esc(f.nom)+'">Télécharger mon avis de valeur (PDF) <span class="arw">↓</span></a>';}).join('')+'</div>'
-        :rang>=2&&d.statut!=='close'?'<p class="meta">Votre avis de valeur vous a été remis ; il sera aussi déposé ici.</p>':'')+
-      '<div class="ee-files"><p class="lab">Photos et documents</p>'+
+        :rang>=3&&d.statut!=='close'&&d.statut!=='pause'?'<p class="meta">Votre avis de valeur vous a été remis ; il sera aussi déposé ici.</p>':'')+
+      partOffres(d)+partComptesRendus(d)+partNotaire(d)+
+      (docs.length?'<div class="ee-part" data-test="documents"><h4>Documents de votre vente</h4><ul class="ee-flist">'+docs.map(fichier).join('')+'</ul></div>':'')+
+      '<div class="ee-files"><p class="lab">'+(docs.length?'Vos photos et documents':'Photos et documents')+'</p>'+
         '<ul class="ee-flist">'+autres.map(fichier).join('')+'</ul>'+
         '<label class="btn ee-add"><input type="file" multiple accept="image/jpeg,image/png,image/webp,image/heic,image/heif,application/pdf" data-ajout="'+d.id+'">Ajouter des photos ou des documents</label>'+
         '<p class="hint">Photos (JPEG, PNG, HEIC) ou PDF, 10 Mo au plus par fichier. Seuls '+EE.esc(C.conseiller)+' et l\'agence les voient.</p>'+
@@ -68,8 +109,16 @@
     out.hidden=true; inn.hidden=false;
     $('#me-titre').innerHTML=(c.prenom?'Bonjour '+EE.esc(c.prenom)+', <em>voici votre espace.</em>':'Bonjour, <em>voici votre espace.</em>');
     $('#me-lede').textContent=d.demandes.length?'Vos estimations et l\'avancement de chaque dossier.':'Vous n\'avez pas encore d\'estimation.';
+    RDV_URL=d.rdv_url||null; DOSSIERS={};
     $('#me-bonjour').textContent=d.demandes.length+' estimation'+(d.demandes.length>1?'s':'');
     $('#me-cards').innerHTML=d.demandes.length?d.demandes.map(carte).join(''):'<div class="ee-empty"><p style="margin:0;">Deux minutes suffisent pour connaître la fourchette de prix de votre bien.</p><a class="btn btn-primary" href="'+C.estimer+'">Estimer mon bien <span class="arw">→</span></a></div>';
+    // visite d'estimation : choisir, voir ou déplacer son créneau, dans chaque dossier
+    $$('#me-cards [data-rdv]').forEach(function(z){
+      var x=DOSSIERS[z.getAttribute('data-rdv')]; if(!x)return;
+      EE.visite(z,{demande:x.id,visite:x.visite,possible:!!x.visite_possible,rdvUrl:RDV_URL,email:lienPossible,onChange:function(r){
+        x.visite=r.visite; if(r.suite){x.suite=r.suite;var t=$('[data-test=suite]',z.closest('.ee-card'));if(t)t.innerHTML='<b>Prochaine étape : </b>'+EE.esc(r.suite);}
+      }});
+    });
     $('#me-infos').innerHTML=[['Nom',[c.civilite,c.prenom,c.nom].filter(Boolean).join(' ')],['E-mail',c.email+(c.verifie?' (confirmé)':'')],['Téléphone',c.telephone||'—'],['Mot de passe',c.mot_de_passe?'défini':'aucun (connexion par lien)'],['Espace créé le',EE.date(c.cree_le)]].map(function(l){return '<li><span>'+l[0]+'</span><span>'+EE.esc(l[1])+'</span></li>';}).join('');
     $('#me-admin').hidden=!c.admin;
     $('#me-mdp-btn').textContent=c.mot_de_passe?'Changer mon mot de passe':'Choisir un mot de passe';
@@ -224,7 +273,7 @@
   }
   $('#me-cards').addEventListener('change',function(e){
     var input=e.target.closest('[data-ajout]'); if(!input||!input.files||!input.files.length)return;
-    var card=input.closest('.ee-card'), zone=$('.ee-files',card), liste=$('.ee-flist',card), id=input.getAttribute('data-ajout');
+    var card=input.closest('.ee-card'), zone=$('.ee-files',card), liste=$('.ee-flist',zone), id=input.getAttribute('data-ajout');
     var fichiers=Array.prototype.slice.call(input.files), n=0, erreurs=[], lab=input.parentNode;
     msg(zone,''); lab.classList.add('busy'); input.disabled=true;
     function suite(){

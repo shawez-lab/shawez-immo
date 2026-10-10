@@ -1,0 +1,4 @@
+[90000,"RUE DE LA CHAUME","Roilly",12]
+[25000,"RUE FOCARD","Le Val-Larrey",19]
+[170000,"RUE DU RENAUDOT","Le Val-Larrey",30]
+[60000,"RUE DE L EGLISE","Le Val-Larrey",17]

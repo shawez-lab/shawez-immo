@@ -1,0 +1,23 @@
+<section class="route ee" data-route="/admin/promesses" id="r-promesses">
+  <div class="page-head shell">
+    <p class="label">Espace agence</p>
+    <h1 class="display d-xl" style="margin-top:14px;">Les 7 <em>promesses.</em></h1>
+    <p class="lede">Ce que vous promettez à chaque vendeur : tenu ou raté, sur 7 et 30 jours.</p>
+  </div>
+  <div class="shell">
+    <div class="ee-wrap" id="pr-load" role="status" aria-label="Chargement"><div class="ee-load"></div></div>
+    <div class="ee-wrap" id="pr-no" hidden>
+      <div class="ee-empty"><p id="pr-no-txt">Cette page est réservée à l'agence. Ouvrez d'abord l'espace agence, puis revenez ici.</p><a class="btn btn-primary" href="/admin/" data-ee-lien="admin">Ouvrir l'espace agence <span class="arw">→</span></a></div>
+    </div>
+    <div class="ee-wide" id="pr-in" hidden>
+      <div class="ee-pr-tete">
+        <div class="ee-tabs" role="group" aria-label="Période"><button type="button" class="pill" data-jours="7" aria-pressed="true">7 jours</button><button type="button" class="pill" data-jours="30" aria-pressed="false">30 jours</button></div>
+        <div class="ee-pr-liens"><a class="btn" id="pr-export" href="/api/espace/admin/promesses.csv?jours=7" download>Export CSV</a><a class="btn" href="/admin/" data-ee-lien="admin">Dossiers vendeurs</a></div>
+      </div>
+      <div class="ee-stats ee-pr-stats" id="pr-stats" aria-live="polite"></div>
+      <p class="ee-note warn" id="pr-alerte" hidden></p>
+      <div class="ee-cards" id="pr-cartes"></div>
+      <p class="ee-fine" id="pr-pied"></p>
+    </div>
+  </div>
+</section>

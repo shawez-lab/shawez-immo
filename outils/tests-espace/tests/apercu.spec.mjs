@@ -54,6 +54,103 @@ test('LE BUG : estimation → accueil → pictogramme → connecté ; puis mot d
   expect(r._status).toBe(200);
 });
 
+/* Étape 2 du système parfait, côté vendeur, sur la vraie base : créneaux de visite proposés après le résultat, frise des
+   10 étapes dans l'espace. L'adresse d'essai (@test.invalid) ne déclenche aucune alerte ; le compte est supprimé à la fin
+   (son journal et sa demande de visite partent avec lui). L'admin et le PDF sont vérifiés par la série locale. */
+test('étape 2 : créneaux de visite après le résultat, frise des 10 étapes dans l\'espace', async ({ page, request }) => {
+  const cr = await (await request.get('/api/espace/creneaux')).json();
+  expect(cr.duree).toBe(45);
+  expect(cr.jours.length).toBe(6);
+  expect(await (await request.get('/api/espace/taches')).json()).toMatchObject({ ok: true });
+  const { reponse } = await estimationComplete(page, { adresse: '30 rue Bannelier Dijon' }, { prenom: 'Essai', nom: 'Automatique' });
+  expect(reponse.corps.demande_id).toBeGreaterThan(0);
+  const rdv = page.locator('#ee-rdv');
+  await expect(rdv).toBeVisible();
+  await rdv.locator('[data-rdv-ouvrir]').click();
+  await expect(rdv.locator('.ee-days .pill')).toHaveCount(6);
+  await rdv.locator('.ee-days .pill').nth(1).click();
+  await rdv.locator('.ee-hour').nth(1).click();
+  await rdv.locator('.ee-hour').nth(4).click();
+  await page.screenshot({ path: `captures/apercu-${test.info().project.name}-visite-choix.png`, fullPage: true });
+  await rdv.locator('[data-rdv-envoyer]').click();
+  await expect(rdv.locator('[data-test="visite-demandee"]')).toBeVisible();
+  await page.goto('/mon-espace/');
+  const carte = page.locator('#me-cards .ee-card').first();
+  await expect(carte.locator('.ee-etape span')).toHaveText('Étape 1 sur 10');
+  await expect(carte.locator('.ee-bar i')).toHaveCount(10);
+  await expect(carte.locator('[data-test="visite-demandee"]')).toBeVisible();
+  await expect(carte.locator('[data-test="suite"]')).toContainText('confirme votre créneau');
+  await page.screenshot({ path: `captures/apercu-${test.info().project.name}-espace-frise.png`, fullPage: true });
+  const d = (await moi(page)).demandes[0];
+  expect(d.visite).toMatchObject({ etat: 'demandee', duree: 45 });
+  expect(d.visite.creneaux.length).toBe(2);
+  expect(d.parcours.map((e) => e.libelle)).toEqual(['Estimation reçue', 'Premier appel', 'Visite d\'estimation', 'Avis de valeur', 'Mandat signé', 'Annonce en ligne', 'Visites', 'Offre reçue', 'Compromis signé', 'Acte signé']);
+  // l'admin reste fermé à un vendeur
+  for (const [chemin, corps] of [['/admin/visite', { demande: d.id, debut: d.visite.creneaux[0] }], ['/admin/demande', { id: d.id, statut: 'acte' }], ['/admin/avis/valider', { demande: d.id }]]) {
+    expect((await api(page, chemin, corps))._status, chemin).toBe(403);
+  }
+  expect((await api(page, '/admin/avis?demande=' + d.id))._status).toBe(403);
+  // le fabricant de PDF et ses fichiers sont bien servis par le site
+  for (const f of ['avis-pdf.js', 'pdf-lib.min.js', 'fontkit.umd.min.js', 'familjen-400.woff', 'schibsted-600.woff', 'logo-gravelin-ink.png']) {
+    expect((await request.get('/assets/avis/' + f)).status(), f).toBe(200);
+  }
+  const detail = await request.get('/donnees-dvf/d/100_946.txt');
+  expect(detail.status()).toBe(200);
+  expect(JSON.parse((await detail.text()).split('\n')[0]).length).toBe(4);
+  await supprimer(page);
+});
+
+/* Étape 3 du système parfait, sur la vraie base, côté vendeur : son espace sait afficher offres, comptes rendus et
+   notaire (vides pour un dossier neuf), les nouvelles routes de l'agence lui sont fermées, /admin/ propose la connexion
+   par lien, la tâche horaire rend aussi les e-mails du matin. La saisie par l'agence est vérifiée par la série locale. */
+test('étape 3 : espace du vendeur prêt pour la suite, admin fermé, connexion de l\'agence par lien', async ({ page, request }) => {
+  expect(await (await request.get('/api/espace/taches')).json()).toMatchObject({ ok: true, courriers: expect.any(Number) });
+  const { reponse } = await estimationComplete(page, { adresse: '30 rue Bannelier Dijon' }, { prenom: 'Essai', nom: 'Automatique' });
+  const id = reponse.corps.demande_id;
+  expect(id).toBeGreaterThan(0);
+  const d = (await moi(page)).demandes[0];
+  expect(d).toMatchObject({ comptes_rendus: [], offres: [], notaire: null });
+  await page.goto('/mon-espace/');
+  const carte = page.locator('#me-cards .ee-card').first();
+  await expect(carte).toBeVisible();
+  // rien à montrer tant que rien n'est saisi
+  await expect(carte.locator('.ee-part')).toHaveCount(0);
+  await expect(carte.locator('.ee-files .lab')).toHaveText('Photos et documents');
+  for (const [chemin, corps] of [['/admin/compte-rendu', { demande: id, visite_le: '2026-10-01', texte: 'x', publie: true }], ['/admin/offre', { demande: id, montant: 200000 }], ['/admin/notaire', { demande: id, nom: 'x' }]]) {
+    expect((await api(page, chemin, corps))._status, chemin).toBe(403);
+  }
+  expect((await api(page, '/admin/suite?demande=' + id))._status).toBe(403);
+  await supprimer(page);
+  // sans connexion : /admin/ propose le lien de connexion (aucun envoi ici)
+  await page.goto('/admin/');
+  await expect(page.locator('#ad-lien')).toBeVisible();
+  await expect(page.locator('#ad-lien-btn')).toContainText('Recevoir mon lien de connexion');
+  await page.screenshot({ path: `captures/apercu-${test.info().project.name}-admin-connexion.png` });
+});
+
+test('étape 4 : la mesure des 7 promesses est en place et fermée à qui n\'est pas l\'agence', async ({ page, request }) => {
+  // sans connexion : rien ne sort, la page renvoie vers l'espace agence
+  expect((await request.get('/api/espace/admin/promesses')).status()).toBe(401);
+  expect((await request.get('/api/espace/admin/promesses.csv?jours=30')).status()).toBe(401);
+  expect((await request.get('/api/espace/flux/promesses.csv?cle=' + 'x'.repeat(43))).status()).toBe(403);
+  const erreurs = [];
+  page.on('pageerror', (e) => erreurs.push(e.message));
+  await page.goto('/admin/promesses/');
+  await expect(page.locator('h1')).toHaveText('Les 7 promesses.');
+  await expect(page.locator('#pr-no')).toBeVisible();
+  await expect(page.locator('#pr-no a')).toHaveAttribute('href', '/admin/');
+  await expect(page.locator('#pr-cartes .ee-prom')).toHaveCount(0);
+  expect(erreurs, 'aucune erreur de script sur la page').toEqual([]);
+  expect((await request.get('/admin/promesses/')).headers()['x-robots-tag'] || '').toContain('noindex');
+  // un vendeur connecté : refusé lui aussi
+  await estimationComplete(page, { adresse: '30 rue Bannelier Dijon' }, { prenom: 'Essai', nom: 'Automatique' });
+  expect((await api(page, '/admin/promesses'))._status).toBe(403);
+  expect(await page.evaluate(async () => (await fetch('/api/espace/admin/promesses.csv')).status)).toBe(403);
+  await supprimer(page);
+  await page.goto('/admin/promesses/');
+  await page.screenshot({ path: `captures/apercu-${test.info().project.name}-promesses-fermee.png` });
+});
+
 test('le pictogramme est sur toutes les pages', async ({ page }) => {
   for (const p of ['/', '/estimer/', '/mon-espace/', '/vendre-bien-immobilier-dijon/', '/conseils-vendeurs/', '/contact/', '/honoraires/', '/avis/', '/biens-a-vendre-dijon/', '/simulateur-pret-immobilier-dijon/', '/mentions-legales/']) {
     await page.goto(p, { waitUntil: 'domcontentloaded' });
