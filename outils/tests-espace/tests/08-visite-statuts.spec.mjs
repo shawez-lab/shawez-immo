@@ -48,7 +48,7 @@ test('visite : le vendeur choisit 3 créneaux après le résultat, l\'agence con
   expect(await pc.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBeLessThanOrEqual(1);
   await rdv.locator('[data-rdv-envoyer]').click();
   await expect(rdv.locator('[data-test="visite-demandee"]')).toBeVisible();
-  await expect(rdv).toContainText('confirme l\'un d\'eux dans l\'heure');
+  await expect(rdv).toContainText('confirme l\'un d\'eux au plus vite');
   await capture(pc, info, 'visite-2-envoyee');
   // un rechargement ne perd rien
   await pc.reload();

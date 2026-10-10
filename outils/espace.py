@@ -26,8 +26,8 @@ AGENCE = 'https://www.gravelin-immo.com/estimation?expand=estimation_rapide_grou
 PAGES = {
     'estimer': {
         'route': '/estimer',
-        'titre': 'Estimation en ligne à Dijon et en Côte-d\'Or — Shawez Ali',
-        'description': "Estimez votre appartement ou votre maison en deux minutes : une fourchette calculée sur les ventes réelles (DVF) autour de chez vous, puis l'avis de Shawez.",
+        'titre': 'Estimation immobilière offerte à Dijon, en 2 minutes',
+        'description': 'Le prix de votre appartement ou de votre maison à Dijon en 2 minutes, calculé sur les ventes signées autour de chez vous. Offert, sans engagement.',
         'robots': 'index,follow,max-image-preview:large',
     },
     'mon-espace': {
@@ -125,7 +125,7 @@ window.EECompte=function(){var on=/(?:^|;\\s*)se_ok=1/.test(document.cookie||'')
 window.EECompte();window.addEventListener('pageshow',window.EECompte);
 """
 CTA = '<a class="btn btn-primary" href="/estimer/"><span>Estimer mon bien</span></a>'
-MENU = '<a class="m-alt" href="/estimation-immobiliere-dijon/">Estimation par Shawez</a>'
+MENU = '<a class="m-alt" href="/estimation-immobiliere-dijon/">Estimation chez vous, offerte</a>'
 MENU_ESPACE = '<a class="m-alt" href="/mon-espace/" data-compte><span data-compte-txt>Mon espace</span></a>'
 PIED = '<li><a href="/contact/">Contact</a></li>'
 PIED_ESPACE = '<li><a href="/mon-espace/">Mon espace</a></li>'

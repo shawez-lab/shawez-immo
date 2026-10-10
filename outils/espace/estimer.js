@@ -20,7 +20,7 @@
     $('#ee-new').hidden=true;
     var w=$('#ee-logged'); w.hidden=false;
     $('p',w).innerHTML='Connecté en tant que <b>'+EE.esc(((compte.prenom||'')+' '+(compte.nom||'')).trim()||compte.email)+'</b>. L\'estimation sera ajoutée à votre espace.';
-    $('#ee-contact-sub').textContent='Vérifiez votre numéro : '+EE.CONF.conseiller+' vous appelle pour en parler.';
+    $('#ee-contact-sub').textContent='Vérifiez votre numéro : '+EE.CONF.conseiller+' vous rappelle au plus vite pour en parler.';
     if(compte.telephone&&!$('#ee-tel').value)$('#ee-tel').value=compte.telephone;
   }
   EE.api('/moi').then(function(d){ if(d&&d.compte){compte=d.compte;appliquerCompte();} EE.pictogramme(); });
@@ -221,7 +221,7 @@
     return o;
   }
   var envoi=false;
-  function bouton(actif){ var b=$('#ee-submit'); b.disabled=!actif; b.setAttribute('aria-busy',String(!actif)); $('#ee-submit-txt').textContent=actif?'Afficher mon estimation':'Calcul en cours…'; }
+  function bouton(actif){ var b=$('#ee-submit'); b.disabled=!actif; b.setAttribute('aria-busy',String(!actif)); $('#ee-submit-txt').textContent=actif?'Connaître le prix de mon bien':'Calcul en cours…'; }
   form.addEventListener('submit',function(e){
     e.preventDefault(); if(envoi)return;
     if(cur!=='contact'){suivant();return;}
