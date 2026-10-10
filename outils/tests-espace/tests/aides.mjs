@@ -198,3 +198,18 @@ export async function sessionAdmin(page, request) {
   await connexionParLien(page, request, ADMIN);
   expect((await moi(page)).compte.admin).toBe(true);
 }
+
+/* Créneaux de visite : le premier jour (à partir de « depuis ») qui a encore au moins « min » heures libres.
+   Les visites fixées et les rendez-vous en 2 clics retirent leurs créneaux (marge de trajet comprise) : au fil de la
+   série, les premiers jours se remplissent dans la base locale. Le jour trouvé reste sélectionné. */
+export async function jourLibre(rdv, min = 6, depuis = 1) {
+  const pills = rdv.locator('.ee-days .pill');
+  await expect(pills.first()).toBeVisible();
+  const n = await pills.count();
+  for (let k = depuis; k < n; k++) {
+    await pills.nth(k).click();
+    await expect(pills.nth(k)).toHaveAttribute('aria-pressed', 'true');
+    if ((await rdv.locator('.ee-hour').count()) >= min) return k;
+  }
+  throw new Error(`aucun jour avec ${min} créneaux libres`);
+}

@@ -2,7 +2,7 @@
    l'agence, e-mails, rappel de la veille), les 10 statuts (frise du vendeur, prochaine action de l'agence, journal,
    e-mail à chaque changement), et les droits sur ces nouvelles routes. */
 import { test, expect } from '@playwright/test';
-import { fausseBan, estimationComplete, moi, api, viderBoite, courrier, pour, lienDans, sessionAdmin, SITE } from './aides.mjs';
+import { fausseBan, estimationComplete, moi, api, viderBoite, courrier, pour, lienDans, sessionAdmin, SITE, jourLibre } from './aides.mjs';
 
 test.beforeEach(async ({ page }) => { await fausseBan(page); });
 
@@ -36,10 +36,10 @@ test('visite : le vendeur choisit 3 créneaux après le résultat, l\'agence con
   // le bouton d'envoi attend un choix
   await expect(rdv.locator('[data-rdv-envoyer]')).toBeDisabled();
   // trois créneaux sur deux jours ; le quatrième est refusé
-  await rdv.locator('.ee-days .pill').nth(1).click();
+  const k = await jourLibre(rdv);
   await rdv.locator('.ee-hour').nth(1).click();
   await rdv.locator('.ee-hour').nth(5).click();
-  await rdv.locator('.ee-days .pill').nth(2).click();
+  await jourLibre(rdv, 1, k + 1);
   await rdv.locator('.ee-hour').nth(0).click();
   await expect(rdv.locator('.ee-sel li')).toHaveCount(3);
   await expect(rdv.locator('.ee-hour:not([aria-pressed="true"])').first()).toBeDisabled();
@@ -105,7 +105,7 @@ test('visite : le vendeur choisit 3 créneaux après le résultat, l\'agence con
   // 6. le vendeur demande un autre créneau : l'agence est prévenue, le dossier reste « Visite prévue »
   await viderBoite(request);
   await carte.locator('[data-rdv-ouvrir]').click();
-  await carte.locator('.ee-days .pill').nth(3).click();
+  await jourLibre(carte, 3, 3);
   await carte.locator('.ee-hour').nth(2).click();
   await carte.locator('[data-rdv-envoyer]').click();
   await expect(carte.locator('[data-test="visite-demandee"]')).toBeVisible();

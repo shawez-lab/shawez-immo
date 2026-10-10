@@ -2,7 +2,7 @@
    de l'agence (prochaine action, visite, statut), l'avis de valeur en saisie. → captures/etape2-<appareil>-*.png */
 import { test, expect } from '@playwright/test';
 import { mkdirSync } from 'node:fs';
-import { fausseBan, estimationComplete, api, sessionAdmin, SITE } from './aides.mjs';
+import { fausseBan, estimationComplete, api, sessionAdmin, SITE, jourLibre } from './aides.mjs';
 
 test.beforeEach(async ({ page }) => { await fausseBan(page); mkdirSync('captures', { recursive: true }); });
 
@@ -28,15 +28,15 @@ test('captures de l\'étape 2', async ({ page, request, browser }, info) => {
   // 1. les créneaux, juste après le résultat
   const rdv = pc.locator('#ee-rdv');
   await rdv.locator('[data-rdv-ouvrir]').click();
-  await rdv.locator('.ee-days .pill').nth(1).click();
+  const k = await jourLibre(rdv);
   await rdv.locator('.ee-hour').nth(1).click();
   await rdv.locator('.ee-hour').nth(5).click();
-  await rdv.locator('.ee-days .pill').nth(2).click();
+  await jourLibre(rdv, 1, k + 1);
   await rdv.locator('.ee-hour').nth(0).click();
   await bloc(pc, '#ee-rdv', '1-creneaux', info);
   await pc.reload();
   await pc.locator('#ee-rdv [data-rdv-ouvrir]').click();
-  await pc.locator('#ee-rdv .ee-days .pill').nth(1).click();
+  await jourLibre(pc.locator('#ee-rdv'));
   await pc.locator('#ee-rdv .ee-hour').nth(1).click();
   await pc.locator('#ee-rdv .ee-hour').nth(5).click();
   await pc.locator('#ee-rdv [data-rdv-envoyer]').click();

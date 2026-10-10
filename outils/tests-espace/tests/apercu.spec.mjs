@@ -2,7 +2,7 @@
    et la fourchette sur 10 adresses réelles (tableau écrit dans le journal). Chaque essai supprime son compte. */
 import { test, expect } from '@playwright/test';
 import { writeFileSync, mkdirSync } from 'node:fs';
-import { fausseBan, parcours, coordonnees, afficherResultat, estimationComplete, pictogramme, moi, api, emailTest } from './aides.mjs';
+import { fausseBan, parcours, coordonnees, afficherResultat, estimationComplete, pictogramme, moi, api, emailTest, jourLibre } from './aides.mjs';
 
 const BASE = process.env.EE_BASE || 'https://espace-estimation.shawez-immo.pages.dev';
 const hote = new RegExp(BASE.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '/$');
@@ -68,7 +68,7 @@ test('étape 2 : créneaux de visite après le résultat, frise des 10 étapes d
   await expect(rdv).toBeVisible();
   await rdv.locator('[data-rdv-ouvrir]').click();
   await expect(rdv.locator('.ee-days .pill')).toHaveCount(6);
-  await rdv.locator('.ee-days .pill').nth(1).click();
+  await jourLibre(rdv, 5);
   await rdv.locator('.ee-hour').nth(1).click();
   await rdv.locator('.ee-hour').nth(4).click();
   await page.screenshot({ path: `captures/apercu-${test.info().project.name}-visite-choix.png`, fullPage: true });
@@ -151,6 +151,26 @@ test('étape 4 : la mesure des 7 promesses est en place et fermée à qui n\'est
   await page.screenshot({ path: `captures/apercu-${test.info().project.name}-promesses-fermee.png` });
 });
 
+/* Dossier ouvert à la main par l'agence : sur la vraie base, on vérifie seulement que la porte est fermée à qui n'est
+   pas l'agence et que /admin/ se charge sans erreur (le formulaire, le lien et l'espace du vendeur : série locale). */
+test('dossier ouvert par l\'agence : fermé sans connexion et à un vendeur', async ({ page }) => {
+  const corps = { contact: { prenom: 'Essai', nom: 'Automatique', telephone: '0600000000' }, bien: { type: 'maison', adresse: '30 rue Bannelier Dijon' } };
+  const erreurs = [];
+  page.on('pageerror', (e) => erreurs.push(e.message));
+  await page.goto('/admin/');
+  await expect(page.locator('#ad-lien')).toBeVisible();
+  await expect(page.locator('#ad-nv-btn')).toBeHidden();                    // le bouton n'apparaît qu'une fois l'agence connectée
+  expect(erreurs, 'aucune erreur de script sur /admin/').toEqual([]);
+  expect((await api(page, '/admin/dossier', corps))._status).toBe(401);
+  expect((await api(page, '/admin/dossier/espace', { demande: 1, email: 'essai@test.invalid' }))._status).toBe(401);
+  await estimationComplete(page, { adresse: '30 rue Bannelier Dijon' }, { prenom: 'Essai', nom: 'Automatique' });
+  expect((await api(page, '/admin/dossier', corps))._status).toBe(403);
+  expect((await api(page, '/admin/dossier/espace', { demande: 1, email: 'essai@test.invalid' }))._status).toBe(403);
+  // une estimation faite en ligne n'est pas « un dossier ouvert par l'agence »
+  expect((await moi(page)).demandes[0].origine).toBe('');
+  await supprimer(page);
+});
+
 test('le pictogramme est sur toutes les pages', async ({ page }) => {
   for (const p of ['/', '/estimer/', '/mon-espace/', '/vendre-bien-immobilier-dijon/', '/conseils-vendeurs/', '/contact/', '/honoraires/', '/avis/', '/biens-a-vendre-dijon/', '/simulateur-pret-immobilier-dijon/', '/mentions-legales/']) {
     await page.goto(p, { waitUntil: 'domcontentloaded' });
@@ -159,13 +179,13 @@ test('le pictogramme est sur toutes les pages', async ({ page }) => {
   }
 });
 
-test('commerce : pas de fourchette, rappel sous 24 h', async ({ page }, info) => {
+test('commerce : pas de fourchette, rappel au plus vite', async ({ page }, info) => {
   test.skip(info.project.name !== 'iphone13', 'une seule fois');
   await parcours(page, { type: 'autre', autre: 'commerce', surface: '', adresse: '30 rue Bannelier Dijon' });
   await coordonnees(page, { prenom: 'Essai', nom: 'Commerce' });
   const { corps } = await afficherResultat(page);
   expect(corps.resultat.fourchette).toBe(false);
-  await expect(page.locator('[data-test="rappel"]')).toContainText('sous 24 h');
+  await expect(page.locator('[data-test="rappel"]')).toContainText('au plus vite');
   await supprimer(page);
 });
 
