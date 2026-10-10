@@ -28,7 +28,7 @@ test('accueil : « Prendre rendez-vous » mène au bloc, 2 clics, la demande arr
   // le 2e bouton du haut de page n'envoie plus chez l'agence : il mène au rendez-vous
   const hero = page.locator('#hero .btn-row');
   await expect(hero.locator('a')).toHaveCount(2);
-  await expect(hero.locator('a').first()).toHaveText(/Estimer mon bien/);
+  await expect(hero.locator('a').first()).toHaveText(/Connaître le prix de mon bien/);
   await expect(hero.locator('a[href*="gravelin-immo.com"]')).toHaveCount(0);
   await expect(page.locator('#hero')).not.toContainText('dans la journée');
   await hero.getByRole('link', { name: 'Prendre rendez-vous' }).click();
