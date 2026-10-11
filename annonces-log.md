@@ -61,3 +61,7 @@ Chaque passage de `outils/sync_annonces.py` ajoute ici les changements constaté
 - Annonce 471 : absente des pages de l'agence et fiche hors ligne, sans mention → « retirée ».
 - Annonce 486 : absente des pages de l'agence et fiche hors ligne, sans mention → « retirée ».
 - Annonce 505 : absente des pages de l'agence et fiche hors ligne, sans mention → « retirée ».
+
+## 2026-10-11
+
+- Annonce 504 : absente des pages de l'agence et fiche hors ligne, sans mention → « retirée ».
