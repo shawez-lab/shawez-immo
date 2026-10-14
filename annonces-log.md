@@ -69,3 +69,8 @@ Chaque passage de `outils/sync_annonces.py` ajoute ici les changements constaté
 ## 2026-10-13
 
 - Annonce 501 : prix 149 000 € → 139 000 €.
+
+## 2026-10-14
+
+- Nouvelle annonce 520 : Appartement à Chevigny-Saint-Sauveur, 200 000 €.
+- Annonce 412 : absente des pages de l'agence et fiche hors ligne, sans mention → « retirée ».
