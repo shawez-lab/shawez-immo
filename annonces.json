@@ -27,7 +27,7 @@
    "energie": null,
    "first_seen": "2026-09-28",
    "id": "498",
-   "last_seen": "2026-10-13",
+   "last_seen": "2026-10-14",
    "lien_complet": false,
    "mentions_agence": [
     "Sous-compromis"
@@ -84,7 +84,7 @@
    "energie": "entre 2 500 € et 3 440 €",
    "first_seen": "2026-09-28",
    "id": "512",
-   "last_seen": "2026-10-13",
+   "last_seen": "2026-10-14",
    "lien_complet": false,
    "mentions_agence": [
     "Sous-offre"
@@ -149,7 +149,7 @@
    "energie": null,
    "first_seen": "2026-09-28",
    "id": "528",
-   "last_seen": "2026-10-13",
+   "last_seen": "2026-10-14",
    "lien_complet": false,
    "mentions_agence": [
     "Nouveauté"
@@ -238,8 +238,8 @@
    "pieces": 5,
    "prix": 350000.0,
    "ref": "412",
-   "status": "en vente",
-   "status_changed": "2026-09-28",
+   "status": "retirée",
+   "status_changed": "2026-10-14",
    "surface": 138.4,
    "type": "Appartement"
   },
@@ -280,7 +280,7 @@
    "energie": "entre 1 300 € et 1 810 €",
    "first_seen": "2026-09-28",
    "id": "554",
-   "last_seen": "2026-10-13",
+   "last_seen": "2026-10-14",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité",
@@ -368,7 +368,7 @@
    "energie": "entre 860 € et 1 210 €",
    "first_seen": "2026-09-28",
    "id": "563",
-   "last_seen": "2026-10-13",
+   "last_seen": "2026-10-14",
    "lien_complet": false,
    "mentions_agence": [
     "Coup de coeur"
@@ -435,7 +435,7 @@
    "energie": "entre 530 € et 718 €",
    "first_seen": "2026-09-28",
    "id": "579",
-   "last_seen": "2026-10-13",
+   "last_seen": "2026-10-14",
    "lien_complet": false,
    "mentions_agence": [],
    "photos": {
@@ -486,7 +486,7 @@
    "energie": null,
    "first_seen": "2026-09-28",
    "id": "590",
-   "last_seen": "2026-10-13",
+   "last_seen": "2026-10-14",
    "lien_complet": false,
    "mentions_agence": [],
    "photos": {
@@ -540,7 +540,7 @@
    "energie": null,
    "first_seen": "2026-09-28",
    "id": "602",
-   "last_seen": "2026-10-13",
+   "last_seen": "2026-10-14",
    "lien_complet": false,
    "mentions_agence": [
     "Coup de coeur"
@@ -609,7 +609,7 @@
    "energie": "entre 740 € et 1 040 €",
    "first_seen": "2026-09-28",
    "id": "607",
-   "last_seen": "2026-10-13",
+   "last_seen": "2026-10-14",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité",
@@ -687,7 +687,7 @@
    "energie": "entre 950 € et 1 330 €",
    "first_seen": "2026-09-28",
    "id": "620",
-   "last_seen": "2026-10-13",
+   "last_seen": "2026-10-14",
    "lien_complet": false,
    "mentions_agence": [],
    "photos": {
@@ -880,7 +880,7 @@
    "energie": null,
    "first_seen": "2026-09-28",
    "id": "650",
-   "last_seen": "2026-10-13",
+   "last_seen": "2026-10-14",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité",
@@ -1061,7 +1061,7 @@
    "energie": "entre 480 € et 710 €",
    "first_seen": "2026-09-28",
    "id": "666",
-   "last_seen": "2026-10-13",
+   "last_seen": "2026-10-14",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité",
@@ -1125,7 +1125,7 @@
    "energie": "entre 460 € et 690 €",
    "first_seen": "2026-09-28",
    "id": "668",
-   "last_seen": "2026-10-13",
+   "last_seen": "2026-10-14",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité"
@@ -1191,7 +1191,7 @@
    "energie": "entre 460 € et 690 €",
    "first_seen": "2026-09-28",
    "id": "670",
-   "last_seen": "2026-10-13",
+   "last_seen": "2026-10-14",
    "lien_complet": false,
    "mentions_agence": [
     "Sous-offre",
@@ -1405,7 +1405,7 @@
    "energie": null,
    "first_seen": "2026-09-28",
    "id": "693",
-   "last_seen": "2026-10-13",
+   "last_seen": "2026-10-14",
    "lien_complet": false,
    "mentions_agence": [
     "Accord",
@@ -1474,7 +1474,7 @@
    "energie": "entre 190 € et 300 €",
    "first_seen": "2026-09-28",
    "id": "659",
-   "last_seen": "2026-10-13",
+   "last_seen": "2026-10-14",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité"
@@ -1535,7 +1535,7 @@
    "energie": null,
    "first_seen": "2026-09-28",
    "id": "687",
-   "last_seen": "2026-10-13",
+   "last_seen": "2026-10-14",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité",
@@ -1681,7 +1681,7 @@
    "energie": "entre 1 640 € et 2 290 €",
    "first_seen": "2026-09-28",
    "id": "702",
-   "last_seen": "2026-10-13",
+   "last_seen": "2026-10-14",
    "lien_complet": false,
    "mentions_agence": [
     "Coup de coeur"
@@ -1769,7 +1769,7 @@
    "energie": null,
    "first_seen": "2026-09-28",
    "id": "636",
-   "last_seen": "2026-10-13",
+   "last_seen": "2026-10-14",
    "lien_complet": false,
    "mentions_agence": [],
    "photos": {
@@ -1864,7 +1864,7 @@
    "energie": null,
    "first_seen": "2026-09-28",
    "id": "730",
-   "last_seen": "2026-10-13",
+   "last_seen": "2026-10-14",
    "lien_complet": false,
    "mentions_agence": [
     "Coup de coeur"
@@ -1949,7 +1949,7 @@
     "nbniveaux": "1",
     "nbpiecees": "3",
     "nbsdb": "1",
-    "prix_honoraires_inclus": "149 000 €",
+    "prix_honoraires_inclus": "139 000 €",
     "surf_carrez": "53,62 m²",
     "terrasse": "NON",
     "type_cuisine": "Equipée"
@@ -1963,7 +1963,7 @@
    "energie": "entre 921 € et 1 247 €",
    "first_seen": "2026-09-28",
    "id": "731",
-   "last_seen": "2026-10-13",
+   "last_seen": "2026-10-14",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité",
@@ -2169,7 +2169,7 @@
    "energie": "entre 3 630 € et 4 950 €",
    "first_seen": "2026-09-28",
    "id": "708",
-   "last_seen": "2026-10-13",
+   "last_seen": "2026-10-14",
    "lien_complet": false,
    "mentions_agence": [
     "Sous-offre",
@@ -2244,7 +2244,7 @@
    "energie": "entre 1 000 € et 1 390 €",
    "first_seen": "2026-09-28",
    "id": "718",
-   "last_seen": "2026-10-13",
+   "last_seen": "2026-10-14",
    "lien_complet": false,
    "mentions_agence": [],
    "photos": {
@@ -2315,7 +2315,7 @@
    "energie": "entre 2 690 € et 3 680 €",
    "first_seen": "2026-09-28",
    "id": "745",
-   "last_seen": "2026-10-13",
+   "last_seen": "2026-10-14",
    "lien_complet": false,
    "mentions_agence": [],
    "photos": {
@@ -2392,7 +2392,7 @@
    "energie": "entre 850 € et 1 190 €",
    "first_seen": "2026-09-28",
    "id": "751",
-   "last_seen": "2026-10-13",
+   "last_seen": "2026-10-14",
    "lien_complet": false,
    "mentions_agence": [
     "Coup de coeur"
@@ -2503,7 +2503,7 @@
    "energie": "entre 770 € et 1 060 €",
    "first_seen": "2026-10-10",
    "id": "763",
-   "last_seen": "2026-10-13",
+   "last_seen": "2026-10-14",
    "lien_complet": false,
    "mentions_agence": [
     "Accord"
@@ -2579,7 +2579,7 @@
    "energie": null,
    "first_seen": "2026-10-10",
    "id": "759",
-   "last_seen": "2026-10-13",
+   "last_seen": "2026-10-14",
    "lien_complet": false,
    "mentions_agence": [],
    "photos": {
@@ -2674,7 +2674,7 @@
    "energie": "entre 440 € et 650 €",
    "first_seen": "2026-09-28",
    "id": "754",
-   "last_seen": "2026-10-13",
+   "last_seen": "2026-10-14",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité",
@@ -2712,6 +2712,95 @@
    "surface": 23.2,
    "type": "Studio"
   },
+  "520": {
+   "caracteristiques": {
+    "balcon": "NON",
+    "cave": "NON",
+    "copropriete": "OUI",
+    "copropriete_lot": "Lot 104 pour l'appartement et Lot 450 pour le garage",
+    "copropriete_nb_lot": "189",
+    "copropriete_plan_sauvegarde": "NON",
+    "copropriete_quote_part": "1 580,62 €",
+    "copropriete_statut_syndicat": "pas de procédure en cours",
+    "cp": "21800",
+    "cuisine": "Américaine",
+    "exposition": "Ouest",
+    "format_chauffage": "Collectif",
+    "interphone": "OUI",
+    "mode_chauffage": "Gaz",
+    "nb_garage": "1",
+    "nbchambres": "2",
+    "nbniveaux": "1",
+    "nbpiecees": "3",
+    "nbsdb": "1",
+    "prix_honoraires_inclus": "200 000 €",
+    "surf_carrez": "61,49 m²",
+    "terrasse": "OUI",
+    "type_chauffage": "Radiateur",
+    "type_cuisine": "Equipée",
+    "visiophone": "OUI"
+   },
+   "chemin": "/vente/310-chevigny-st-sauveur/appartement/t3/765-bien/",
+   "commune": "Chevigny-Saint-Sauveur",
+   "compo_agence": "3 pièces - 61,49 m²",
+   "cp": "21800",
+   "description_expurgee": "Découvrez ce bel appartement T3 de 61,49 m² idéalement situé au rez-de-chaussée d'une résidence récente (2013) et sécurisée à Chevigny-Saint-Sauveur. Le bien se compose d'une agréable pièce de vie lumineuse de plus de 25 m² avec cuisine ouverte, prolongée par une terrasse et un jardin privatif orienté Ouest, parfait pour profiter des beaux jours. Côté nuit, vous trouverez deux chambres confortables avec rangements, une salle de bains et un WC séparé . Un grand garage individuel fermé en sous-sol (normes PMR) complète ce bien. Copropriété récente, calme et bien entretenue, proche de toutes les commodités. Chauffage collectif au gaz, fenêtres double vitrage avec volets roulants électriques. A visiter sans tarder ! 2.16.1.2",
+   "dpe": null,
+   "energie": null,
+   "first_seen": "2026-10-14",
+   "id": "765",
+   "last_seen": "2026-10-14",
+   "mentions_agence": [],
+   "photos": {
+    "fichiers": [
+     "1.jpg",
+     "2.jpg",
+     "3.jpg",
+     "4.jpg",
+     "5.jpg",
+     "6.jpg",
+     "7.jpg",
+     "8.jpg",
+     "9.jpg",
+     "10.jpg",
+     "11.jpg",
+     "12.jpg",
+     "13.jpg",
+     "14.jpg",
+     "15.jpg",
+     "16.jpg",
+     "17.jpg",
+     "18.jpg"
+    ],
+    "sources": {
+     "1/8aa35705e92a012f6c24d57ceed8999d/photo_0e802d666f93b2b9ae0dc28b38175168.jpg": "3.jpg",
+     "1/8aa35705e92a012f6c24d57ceed8999d/photo_46b2f67f7518ffa80dce59f60297a89b.jpg": "5.jpg",
+     "1/8aa35705e92a012f6c24d57ceed8999d/photo_49d0c81aa82b8e649f133c6473cbb638.jpg": "4.jpg",
+     "1/8aa35705e92a012f6c24d57ceed8999d/photo_4b3a0050c566d3012f7c280ed2449998.jpg": "9.jpg",
+     "1/8aa35705e92a012f6c24d57ceed8999d/photo_4b56cb6756f7306886ba45fbd794ad2b.jpg": "8.jpg",
+     "1/8aa35705e92a012f6c24d57ceed8999d/photo_5beab5ee4d2fbba4ed845bc6b8f86887.jpg": "17.jpg",
+     "1/8aa35705e92a012f6c24d57ceed8999d/photo_66b5c1f075bb6842ac03aeac7b0e966d.jpg": "15.jpg",
+     "1/8aa35705e92a012f6c24d57ceed8999d/photo_6ec3b40475cf21914a5e59c11b2a5c1e.jpg": "10.jpg",
+     "1/8aa35705e92a012f6c24d57ceed8999d/photo_7e0deb41a6148d1b2644e1a02564f4c0.jpg": "13.jpg",
+     "1/8aa35705e92a012f6c24d57ceed8999d/photo_7e727a2a530d1ffa5e553bfc6e5e7fce.jpg": "1.jpg",
+     "1/8aa35705e92a012f6c24d57ceed8999d/photo_81ab516932b09c118764ce44773a7041.jpg": "7.jpg",
+     "1/8aa35705e92a012f6c24d57ceed8999d/photo_836522f569310c663b96f9565a1ccec3.jpg": "14.jpg",
+     "1/8aa35705e92a012f6c24d57ceed8999d/photo_93b3b892027fd0b7096d6525879e0763.jpg": "11.jpg",
+     "1/8aa35705e92a012f6c24d57ceed8999d/photo_da5776fc48db9146681390abc6943645.jpg": "18.jpg",
+     "1/8aa35705e92a012f6c24d57ceed8999d/photo_e38ccf14816767138d4fa519a50cc572.jpg": "6.jpg",
+     "1/8aa35705e92a012f6c24d57ceed8999d/photo_ea129944bafae51eb5d0efc03ab91e9a.jpg": "2.jpg",
+     "1/8aa35705e92a012f6c24d57ceed8999d/photo_f1a802fbc1d4e28a7832c43d9db1f33f.jpg": "12.jpg",
+     "1/8aa35705e92a012f6c24d57ceed8999d/photo_fd2a54d9669c8c6d98989dd3defe22c1.jpg": "16.jpg"
+    }
+   },
+   "pieces": 3,
+   "prix": 200000.0,
+   "ref": "520",
+   "status": "en vente",
+   "status_changed": "2026-10-14",
+   "surface": 61.49,
+   "type": "Appartement"
+  },
   "5430963": {
    "caracteristiques": {
     "cp": "21360",
@@ -2733,7 +2822,7 @@
    "energie": null,
    "first_seen": "2026-09-28",
    "id": "71",
-   "last_seen": "2026-10-13",
+   "last_seen": "2026-10-14",
    "lien_complet": false,
    "mentions_agence": [],
    "photos": {
@@ -2787,7 +2876,7 @@
    "energie": "entre 1 880 € et 2 570 €",
    "first_seen": "2026-09-28",
    "id": "454",
-   "last_seen": "2026-10-13",
+   "last_seen": "2026-10-14",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité",
@@ -2862,7 +2951,7 @@
    "energie": "entre 2 330 € et 3 180 €",
    "first_seen": "2026-09-28",
    "id": "672",
-   "last_seen": "2026-10-13",
+   "last_seen": "2026-10-14",
    "lien_complet": false,
    "mentions_agence": [
     "Prix en baisse"
@@ -2954,7 +3043,7 @@
    "energie": "entre 1 300 € et 1 810 €",
    "first_seen": "2026-09-28",
    "id": "739",
-   "last_seen": "2026-10-13",
+   "last_seen": "2026-10-14",
    "lien_complet": false,
    "mentions_agence": [
     "Coup de coeur"
@@ -3000,7 +3089,7 @@
    "type": "Duplex"
   }
  },
- "maj": "2026-10-13",
+ "maj": "2026-10-14",
  "posts": [
   {
    "action": "publier",
@@ -3229,6 +3318,20 @@
   {
    "action": "publier",
    "cle": "publier",
+   "date": "2026-10-14",
+   "lien": "https://www.gravelin-immo.com/vente/310-chevigny-st-sauveur/appartement/t3/765-bien/?utm_source=shawez-immo",
+   "photos": [
+    "https://shawez-immo.com/annonces/520/1.jpg",
+    "https://shawez-immo.com/annonces/520/2.jpg",
+    "https://shawez-immo.com/annonces/520/3.jpg"
+   ],
+   "ref": "520",
+   "texte": "Appartement de 3 pièces, 61,49 m², à Chevigny-Saint-Sauveur.\n\nPrix : 200 000 €, honoraires inclus.\n\n• Terrasse\n• Garage\n• 2 chambres\n\nRéférence 520, GRAVELIN IMMO. Visites et informations : Shawez Ali, 07 67 57 92 28.",
+   "titre": "Appartement 3 pièces, 61 m² à Chevigny-Saint-Sauveur"
+  },
+  {
+   "action": "publier",
+   "cle": "publier",
    "date": "2026-10-15",
    "lien": "https://www.gravelin-immo.com/vente/1-dijon/loft/t1/687-bien/?utm_source=shawez-immo",
    "photos": [
@@ -3435,20 +3538,6 @@
    "ref": "415",
    "texte": "Duplex de 3 pièces, 92,93 m², à Dijon.\n\nPrix : 220 000 €, honoraires inclus.\n\n• Cave\n• 2 chambres\n• Cuisine équipée\n\nDépenses annuelles d'énergie estimées entre 1 300 € et 1 810 € (usage standard).\n\nRéférence 415, GRAVELIN IMMO. Visites et informations : Shawez Ali, 07 67 57 92 28.",
    "titre": "Duplex 3 pièces, 93 m² à Dijon"
-  },
-  {
-   "action": "publier",
-   "cle": "publier",
-   "date": "2026-11-18",
-   "lien": "https://www.gravelin-immo.com/vente/1-dijon/appartement/t5/547-bien/?utm_source=shawez-immo",
-   "photos": [
-    "https://shawez-immo.com/annonces/412/1.jpg",
-    "https://shawez-immo.com/annonces/412/2.jpg",
-    "https://shawez-immo.com/annonces/412/3.jpg"
-   ],
-   "ref": "412",
-   "texte": "Appartement de 5 pièces, 138,4 m², à Dijon.\n\nPrix : 350 000 €, honoraires inclus.\n\n• Balcon\n• Cave\n• 3 chambres\n\nRéférence 412, GRAVELIN IMMO. Visites et informations : Shawez Ali, 07 67 57 92 28.",
-   "titre": "Appartement 5 pièces, 138 m² à Dijon"
   },
   {
    "action": "publier",
