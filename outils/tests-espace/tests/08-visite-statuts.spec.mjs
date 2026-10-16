@@ -31,8 +31,8 @@ test('visite : le vendeur choisit 3 créneaux après le résultat, l\'agence con
   await rdv.locator('[data-rdv-ouvrir]').click();
   await expect(rdv.locator('.ee-days .pill').first()).toBeVisible();
   expect(await rdv.locator('.ee-days .pill').count()).toBe(6);
-  // du lundi au samedi seulement
-  for (const t of await rdv.locator('.ee-days .pill b').allTextContents()) expect(t).not.toMatch(/^dim/);
+  // du lundi au vendredi seulement (Règles du Boss du 10/10/2026 : jamais le samedi)
+  for (const t of await rdv.locator('.ee-days .pill b').allTextContents()) expect(t).not.toMatch(/^(sam|dim)/);
   // le bouton d'envoi attend un choix
   await expect(rdv.locator('[data-rdv-envoyer]')).toBeDisabled();
   // trois créneaux sur deux jours ; le quatrième est refusé

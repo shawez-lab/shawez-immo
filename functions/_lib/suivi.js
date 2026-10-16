@@ -36,10 +36,12 @@ export const quandFr = (d) => `${jourLong(d)} à ${heureFr(d)}`;
 export const quandCourt = (d) => `${jourCourt(d)} ${heureFr(d)}`;
 
 /* ---------- Créneaux de visite d'estimation ----------
-   Du lundi au samedi, de 9 h à 19 h, 45 minutes : un début par heure, de 9 h à 18 h. Le vendeur en propose jusqu'à trois,
-   l'agence confirme. Un créneau commence au plus tôt deux heures après la demande. */
+   Du lundi au vendredi, de 9 h à 12 h et de 14 h à 19 h (Règles du Boss du 10/10/2026 : jamais le samedi, jamais entre
+   12 h et 14 h), 45 minutes : un début par heure. Le vendeur en propose jusqu'à trois, l'agence confirme. Un créneau
+   commence au plus tôt deux heures après la demande. */
 export const DUREE_VISITE = 45;
-export const HEURES_VISITE = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
+export const HEURES_VISITE = [9, 10, 11, 14, 15, 16, 17, 18];
+const JOUR_OUVRE = (jour) => jour >= 1 && jour <= 5;                      // lundi à vendredi
 const AVANCE_MS = 2 * 3600000;
 const HORIZON_JOURS = 21;
 
@@ -49,7 +51,7 @@ export function creneaux(maintenant = new Date(), nJours = 6) {
   for (let k = 0; jours.length < nJours && k < HORIZON_JOURS; k++) {
     const midi = deParis(p0.a, p0.m, p0.j + k, 12);          // Date.UTC normalise un jour au-delà de la fin du mois
     const p = paris(midi);
-    if (p.jour === 0) continue;                                // pas le dimanche
+    if (!JOUR_OUVRE(p.jour)) continue;                         // ni samedi ni dimanche
     const heures = [];
     for (const h of HEURES_VISITE) {
       const debut = deParis(p.a, p.m, p.j, h);
@@ -62,7 +64,7 @@ export function creneaux(maintenant = new Date(), nJours = 6) {
   return jours;
 }
 
-/* Un créneau proposé par le vendeur est-il recevable ? (heure pleine de 9 h à 18 h, du lundi au samedi, à venir) */
+/* Un créneau proposé par le vendeur est-il recevable ? (heure pleine de 9 h à 11 h ou de 14 h à 18 h, du lundi au vendredi, à venir) */
 export function creneauValide(iso, maintenant = new Date()) {
   if (typeof iso !== 'string' || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{3})?Z$/.test(iso)) return false;
   const d = new Date(iso);
@@ -70,7 +72,7 @@ export function creneauValide(iso, maintenant = new Date()) {
   const dans = d.getTime() - maintenant.getTime();
   if (dans < AVANCE_MS - 45 * 60000 || dans > (HORIZON_JOURS + 1) * 86400000) return false;   // tolérance : la liste a pu être affichée un moment avant
   const p = paris(d);
-  return p.jour !== 0 && p.min === 0 && d.getUTCSeconds() === 0 && HEURES_VISITE.includes(p.h);
+  return JOUR_OUVRE(p.jour) && p.min === 0 && d.getUTCSeconds() === 0 && HEURES_VISITE.includes(p.h);
 }
 
 /* ---------- Promesse n° 2 : l'appel dans le quart d'heure (9 h–19 h), sinon le lendemain à 9 h ---------- */
@@ -124,9 +126,90 @@ export function prochaineAction(d, visite, maintenant = new Date(), plus = {}) {
       return r('Présenter l\'offre au vendeur');
     }
     case 'compromis': return r('Suivre le dossier chez le notaire jusqu\'à l\'acte');
-    case 'pause': return r(d.rappel_le ? 'Relancer' : 'Choisir une date de relance');
+    case 'pause': return r(d.rappel_le ? `Relancer (pas maintenant${d.raison ? ' : ' + d.raison : ''})` : 'Choisir une date de relance');
     default: return { texte: '', echeance: null, retard: false, rdv: false };
   }
+}
+
+/* ---------- « Pas maintenant » : la relance douce, 3 mois plus tard (Règles du Boss, 10/10/2026) ----------
+   Quand l'agence met un dossier en pause sans choisir de date, la relance est posée d'office trois mois plus tard
+   (jour ouvré : un samedi ou un dimanche glisse au lundi). Le jour venu, « Relancer » passe en retard, donc en tête. */
+export const RELANCE_MOIS = 3;
+export function dateRelance(depuis = new Date(), mois = RELANCE_MOIS) {
+  const p = paris(depuis);
+  let d = deParis(p.a, p.m + mois, p.j, 12);                   // Date.UTC normalise le mois au-delà de décembre
+  const q = paris(d);
+  if (q.j !== p.j) d = deParis(q.a, q.m, 0, 12);                // 31 → le dernier jour du mois visé
+  const jour = paris(d).jour;
+  if (jour === 6) d = new Date(d.getTime() + 2 * 86400000);
+  else if (jour === 0) d = new Date(d.getTime() + 86400000);
+  return paris(d).date;
+}
+
+/* ---------- « À faire aujourd'hui » : trois lignes pour l'agence, calculées sur les dossiers de /admin/ ----------
+   Chaque dossier va dans un seul groupe, le premier qui le concerne :
+   - relancer : « Pas maintenant » dont la date de relance est arrivée ;
+   - appeler  : la prochaine action est un appel (nouveau vendeur, visite à confirmer, avis de valeur à présenter,
+                offre à présenter) et son échéance est passée ou tombe aujourd'hui (ou n'a pas d'échéance) ;
+   - prevenir : une nouvelle attend d'être dite au vendeur (l'e-mail n'a pas pu partir) ;
+   - retard   : toute autre action en retard (visite à fixer, avis de valeur à envoyer…).
+   « fait » : les dossiers qui ont bougé depuis hier (dernière trace), pour le point du matin.
+   Les essais (adresses de test), les dossiers clos et les ventes signées n'y sont jamais. */
+const APPEL = /^(Appeler|Confirmer|Présenter)/;
+export function aFaireAujourdhui(dossiers, maintenant = new Date()) {
+  const p = paris(maintenant);
+  const finJournee = deParis(p.a, p.m, p.j, 23, 59).getTime();
+  const hier = deParis(p.a, p.m, p.j - 1, 0, 0).getTime();
+  const out = { date: p.date, relancer: [], appeler: [], prevenir: [], retard: [], fait: [] };
+  for (const d of dossiers) {
+    if (d.test || d.statut === 'close' || d.statut === 'acte') continue;
+    const a = d.action || {};
+    const echeance = a.echeance ? Date.parse(a.echeance) : null;
+    const ligne = (pourquoi) => ({ id: d.id, reference: d.reference, statut: d.statut, vendeur: nomVendeur(d), commune: d.commune || '', telephone: (d.contact && d.contact.telephone) || '', pourquoi, echeance: a.echeance || null, retard: !!a.retard });
+    if (d.statut === 'pause') {
+      if (d.rappel_le && d.rappel_le <= p.date) out.relancer.push(ligne(`Pas maintenant${d.raison ? ' : ' + d.raison : ''} · relance prévue le ${d.rappel_le.slice(8, 10)}/${d.rappel_le.slice(5, 7)}`));
+    } else if (APPEL.test(a.texte || '') && !a.rdv && (echeance == null || echeance <= finJournee)) out.appeler.push(ligne(a.texte));
+    else if (d.a_dire && d.a_dire.quoi && d.a_dire.quoi.length) out.prevenir.push(ligne(`À prévenir : ${d.a_dire.quoi.join(', ')}`));
+    else if (a.retard) out.retard.push(ligne(a.texte));
+    if (d.trace && d.trace.le && Date.parse(d.trace.le) >= hier) out.fait.push({ id: d.id, reference: d.reference, vendeur: nomVendeur(d), quoi: traceLibelle(d.trace), le: d.trace.le });
+  }
+  const parEcheance = (x, y) => String(x.echeance || '9') < String(y.echeance || '9') ? -1 : 1;
+  out.relancer.sort((x, y) => (x.reference < y.reference ? -1 : 1));
+  out.appeler.sort(parEcheance); out.retard.sort(parEcheance);
+  out.fait.sort((x, y) => (x.le < y.le ? 1 : -1));
+  return out;
+}
+
+export function nomVendeur(d) {
+  const c = d.contact || {};
+  return [c.civilite, c.prenom, c.nom].filter(Boolean).join(' ') || c.email || d.reference;
+}
+
+/* La dernière trace d'un dossier, en clair (même vocabulaire que la liste de /admin/). */
+export function traceLibelle(t) {
+  if (!t) return '';
+  if (t.type === 'statut') return `statut « ${STATUTS[t.vers] || t.vers || ''} »`;
+  const l = TRACES[t.type] || t.type;
+  return l.charAt(0).toLowerCase() + l.slice(1);
+}
+export const TRACES = {
+  prevenu: 'Vendeur prévenu par l\'agence', dossier_modifie: 'Dossier corrigé', ouverture: 'Dossier ouvert par l\'agence', espace_ouvert: 'Espace du vendeur ouvert',
+  lien_espace: 'Lien de son espace préparé pour le vendeur', estimation: 'Estimation faite en ligne', rdv_en_ligne: 'Rendez-vous pris en ligne', statut: 'Statut',
+  visite_demandee: 'Créneaux proposés par le vendeur', visite_fixee: 'Visite fixée', visite_annulee: 'Visite annulée', visite_agenda: 'Page de réservation ouverte par le vendeur',
+  rappel_visite: 'Rappel de visite', avis_prepare: 'Avis de valeur : brouillon commencé', avis_envoye: 'Avis de valeur envoyé', mail: 'E-mail au vendeur',
+  cr_publie: 'Compte rendu de visite publié', cr_supprime: 'Compte rendu de visite supprimé', offre_recue: 'Offre reçue', offre_statut: 'Offre', offre_supprimee: 'Offre supprimée',
+  notaire: 'Notaire', document: 'Document déposé',
+};
+
+/* Les trois lignes, en texte : pour l'agent du matin (flux à clé) et pour un message court. */
+export function aFaireTexte(j) {
+  const n = (l) => l.map((x) => `${x.vendeur} (${[x.commune, x.telephone].filter(Boolean).join(', ')}) · ${x.pourquoi}`).join(' ; ');
+  const lignes = [];
+  lignes.push(`Qui appeler (${j.appeler.length + j.relancer.length}) : ${[n(j.appeler), n(j.relancer)].filter(Boolean).join(' ; ') || 'personne'}.`);
+  lignes.push(`Qui prévenir (${j.prevenir.length}) : ${n(j.prevenir) || 'personne'}.`);
+  lignes.push(`En retard (${j.retard.length}) : ${n(j.retard) || 'rien'}.`);
+  lignes.push(`Fait depuis hier (${j.fait.length}) : ${j.fait.map((x) => `${x.vendeur} · ${x.quoi} · ${quandCourt(x.le)}`).join(' ; ') || 'rien'}.`);
+  return lignes;
 }
 
 export function lireCreneaux(v) {

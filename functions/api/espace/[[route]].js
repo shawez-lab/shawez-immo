@@ -20,7 +20,10 @@
      GET  /api/espace/flux/site.csv?cle=…   demandes pour le Google Sheet (IMPORTDATA), protégé par une clé
      GET  /api/espace/flux/promesses.csv?cle=…   les 7 promesses en chiffres (7 et 30 jours), sans aucun nom : pour un onglet
                                             du Google Sheet et pour le contrôle du soir ; même clé
-     GET  /api/espace/creneaux              créneaux de visite d'estimation proposables (lundi-samedi, 9 h-19 h, 45 min),
+     GET  /api/espace/flux/aujourdhui.csv?cle=…  « à faire aujourd'hui » : qui appeler, qui prévenir, ce qui est en retard, ce qui a
+                                            été fait depuis hier (une ligne par dossier) ; &format=texte : les quatre lignes en
+                                            clair, pour l'agent du matin ; même clé
+     GET  /api/espace/creneaux              créneaux de visite d'estimation proposables (lundi-vendredi, 9 h-12 h et 14 h-19 h, 45 min),
                                             sans les moments déjà pris (visites fixées, agenda Google si relié : _lib/agenda.js)
      POST /api/espace/rdv                   rendez-vous en 2 clics sans estimation (accueil, contact, /merci/) :
                                             { creneau, prenom, telephone, adresse, email?, consentement: true } → demande
@@ -37,10 +40,12 @@
      GET  /api/espace/fichier?id=…          téléchargement (le client pour ses demandes, l'agence pour toutes)
      POST /api/espace/fichier/supprimer     { id }
    Admin (e-mail dans ADMIN_EMAILS et vérifié)
-     GET  /api/espace/admin/demandes
+     GET  /api/espace/admin/demandes        tous les dossiers, et « aujourdhui » : à faire aujourd'hui (qui appeler, qui prévenir,
+                                            ce qui est en retard, ce qui a été fait depuis hier)
      GET  /api/espace/admin/comptes
      POST /api/espace/admin/demande         { id, statut?, notes?, rappel_le?, raison?, prevenir? } ; un changement de statut
                                             est noté au journal et annoncé au vendeur par e-mail (sauf prevenir: false)
+                                            « Pas maintenant » sans date : la relance est posée d'office 3 mois plus tard
      POST /api/espace/admin/visite          { demande, debut | debut_local, prevenir? } fixe la visite ; { demande, annuler: true }
      GET  /api/espace/admin/avis?demande=…  avis de valeur : brouillon, ventes comparables réelles (DVF), valeurs proposées
      POST /api/espace/admin/avis            { demande, contenu } enregistre le brouillon (notes, atouts, vigilance, fourchette, stratégie)
@@ -82,7 +87,7 @@ import { estimer, ventesComparables } from '../../_lib/estimation.js';
 import {
   paris, deParis, quandFr, quandCourt, creneaux, creneauValide, prochaineAction, lireCreneaux, frise, suiteVendeur,
   mailStatut, mailVisite, mailOuverture, lienAgenda, heureFr, AGENCE, DUREE_VISITE, messageVendeur, libelleNouvelle,
-  OFFRES, ETAPES_NOTAIRE, DOCUMENTS, mailCompteRendu, mailOffre, mailNotaire, heuresCalmes, eurosFr,
+  OFFRES, ETAPES_NOTAIRE, DOCUMENTS, mailCompteRendu, mailOffre, mailNotaire, heuresCalmes, eurosFr, dateRelance, aFaireAujourdhui, aFaireTexte, RELANCE_MOIS, jourLong,
 } from '../../_lib/suivi.js';
 import { envoyer, mailPossible, mailClients, peutEcrire, destinatairesAlerte, adresseDeTest, gabarit, paragraphe, bouton, esc } from '../../_lib/mail.js';
 import { deposer, lire as lireFichier, supprimerFichier, fichiersDe, supprimerFichiersDe, TAILLE_MAX } from '../../_lib/fichiers.js';
@@ -122,6 +127,7 @@ const ROUTES = {
   'GET /verifier': verifier,
   'GET /flux/site.csv': flux,
   'GET /flux/promesses.csv': fluxPromesses,
+  'GET /flux/aujourdhui.csv': fluxAujourdhui,
   'GET /moi': moi,
   'POST /verification': renvoyerVerification,
   'POST /compte/supprimer': supprimerCompte,
@@ -165,7 +171,7 @@ const ROUTES = {
 
 /* Version de l'API : les tests sur l'aperçu attendent de la voir avant de commencer (le site met une à deux minutes
    à se mettre à jour après une poussée). À changer à chaque évolution de l'API. */
-const VERSION = '2026-10-10.2';
+const VERSION = '2026-10-16.1';
 
 /* Clé du flux Google Sheet : on ne garde que son empreinte. Celle-ci est la clé de mise en service ; dès qu'un admin
    en génère une nouvelle (/admin/ → « Google Sheet »), c'est l'empreinte en base qui fait foi. */
@@ -814,9 +820,29 @@ async function exigerAdmin(request, env) {
 
 const lireJson = (s) => { try { return JSON.parse(s || '{}'); } catch (e) { return {}; } };
 
-async function adminDemandes({ request, env }) {
+async function adminDemandes(ctx) {
+  const { request, env } = ctx;
   await exigerAdmin(request, env);
   const base = await db(env);
+  const now = horloge(ctx) || new Date();
+  const demandes = await lignesAgence(env, base, now);
+  return json(200, {
+    statuts: STATUTS,
+    parcours: PARCOURS,
+    stockage: env.FICHIERS ? 'r2' : 'd1',
+    taille_max: TAILLE_MAX,
+    email_clients: mailClients(env),
+    rdv_url: await reglage(base, 'rdv_url'),
+    agenda_relie: !!(await reglage(base, 'agenda_ics')),
+    statuts_offre: OFFRES, documents: DOCUMENTS, aujourdhui: paris(now).date,
+    relance_mois: RELANCE_MOIS,
+    a_faire: aFaireAujourdhui(demandes, now),
+    demandes,
+  });
+}
+
+/* Toutes les lignes de la liste de l'agence (la même chose que ce que /admin/ affiche). */
+async function lignesAgence(env, base, now = new Date()) {
   const r = await base.prepare(
     `SELECT d.*, c.email AS compte_email, c.derniere_connexion AS compte_vu FROM demandes d LEFT JOIN comptes c ON c.id = d.compte_id ORDER BY d.cree_le DESC LIMIT 2000`
   ).all();
@@ -827,26 +853,34 @@ async function adminDemandes({ request, env }) {
   const offres = await etatOffres(base);
   const avis = new Map((await base.prepare('SELECT demande_id, fichier_id, prepare_le, valide_le FROM avis').all()).results.map((a) => [a.demande_id, a]));
   const dires = await nouvellesADire(base, r.results);
-  return json(200, {
-    statuts: STATUTS,
-    parcours: PARCOURS,
-    stockage: env.FICHIERS ? 'r2' : 'd1',
-    taille_max: TAILLE_MAX,
-    email_clients: mailClients(env),
-    rdv_url: await reglage(base, 'rdv_url'),
-    agenda_relie: !!(await reglage(base, 'agenda_ics')),
-    statuts_offre: OFFRES, documents: DOCUMENTS, aujourdhui: paris(new Date()).date,
-    demandes: r.results.map((d) => ligneAgence(d, {
-      visite: visites.get(d.id), offres: offres.get(d.id), trace: traces.get(d.id), avis: avis.get(d.id), dire: dires.get(d.id),
-      fichiers: fichiers.filter((f) => f.demande_id === d.id),
-    })),
-  });
+  return r.results.map((d) => ligneAgence(d, {
+    visite: visites.get(d.id), offres: offres.get(d.id), trace: traces.get(d.id), avis: avis.get(d.id), dire: dires.get(d.id),
+    fichiers: fichiers.filter((f) => f.demande_id === d.id), now,
+  }));
+}
+
+/* « À faire aujourd'hui », pour l'agent du matin (même clé que l'onglet « Site »). */
+async function fluxAujourdhui(ctx) {
+  const { request, env } = ctx;
+  const url = new URL(request.url);
+  await limiter(env, 'flux:' + ip(request), 120, 3600);
+  if (!(await cleValide(env, url.searchParams.get('cle')))) throw new Erreur(403, 'interdit');
+  const now = horloge(ctx) || new Date();
+  const j = aFaireAujourdhui(await lignesAgence(env, await db(env), now), now);
+  const entetes = { 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex, nofollow' };
+  if (url.searchParams.get('format') === 'texte') {
+    return new Response(`Aujourd'hui, ${jourLong(now)}\n` + aFaireTexte(j).join('\n') + '\n', { headers: { ...entetes, 'Content-Type': 'text/plain; charset=utf-8' } });
+  }
+  const lignes = [['groupe', 'référence', 'vendeur', 'commune', 'téléphone', 'statut', 'pourquoi', 'échéance']];
+  for (const g of ['appeler', 'relancer', 'prevenir', 'retard']) for (const x of j[g]) lignes.push([g, x.reference, x.vendeur, x.commune, telephoneLisible(x.telephone), STATUTS[x.statut] || x.statut, x.pourquoi, x.echeance ? echeanceFr(x.echeance) : '']);
+  for (const x of j.fait) lignes.push(['fait', x.reference, x.vendeur, '', '', '', x.quoi, echeanceFr(x.le)]);
+  return new Response(csv(lignes, ','), { headers: { ...entetes, 'Content-Type': 'text/csv; charset=utf-8' } });
 }
 
 /* Une ligne de la liste de l'agence : le dossier, son vendeur, son espace (compte, dernière visite du vendeur). */
-function ligneAgence(d, { visite, offres, trace, avis, dire, fichiers = [] } = {}) {
+function ligneAgence(d, { visite, offres, trace, avis, dire, fichiers = [], now = new Date() } = {}) {
   return {
-    ...vueAgence(d, visite, offres, dire),
+    ...vueAgence(d, visite, offres, dire, now),
     test: adresseDeTest(lireJson(d.contact).email),
     contact: lireJson(d.contact), reponses: lireJson(d.reponses), compte_email: d.compte_email || null,
     compte_id: d.compte_id || null, compte_vu: d.compte_vu || null,
@@ -901,6 +935,12 @@ async function adminDemande(ctx) {
   const base = await db(env);
   let r = await base.prepare('SELECT * FROM demandes WHERE id = ?1').bind(id).first();
   if (!r) throw new Erreur(404, 'introuvable');
+  // « Pas maintenant » sans date de relance : la relance douce, trois mois plus tard (jamais un dossier sans suite)
+  if (statut === 'pause' && r.statut !== 'pause' && !(d.rappel_le && texte(d.rappel_le, 10)) && !(d.rappel_le == null && r.rappel_le)) {
+    const j = dateRelance(horloge(ctx) || new Date());
+    const i = sets.indexOf('rappel_le = ?');
+    if (i >= 0) vals[i] = j; else { sets.push('rappel_le = ?'); vals.push(j); }
+  }
   if (sets.length) {
     sets.push('maj_le = ?');
     vals.push(maintenant(), id);
@@ -1454,13 +1494,13 @@ function suiviVendeur(d, visite, dates = {}, offres = {}) {
 }
 
 /* Ce que l'agence voit d'une demande. */
-function vueAgence(d, visite, offres = {}, dire = null) {
+function vueAgence(d, visite, offres = {}, dire = null, now = new Date()) {
   const v = visitePublique(visite);
   const c = lireJson(d.contact);
   return {
     ...demandePublique(d, STATUTS), site: siteDe(d.source), notes: d.notes, rappel_le: d.rappel_le || '', raison: d.raison || '',
     suspect: !!d.suspect, en_attente: !!d.en_attente, statut_le: d.statut_le || null,
-    action: prochaineAction(d, visite, new Date(), offres),
+    action: prochaineAction(d, visite, now, offres),
     // ce que le vendeur ne sait pas encore (l'e-mail n'a pas pu partir) : à lui dire par WhatsApp ou SMS, depuis le dossier
     a_dire: dire && dire.length ? { quoi: dire.map((n) => libelleNouvelle(n.motif)), motifs: dire.map((n) => n.motif), depuis: dire[0].le } : null,
     visite: v && { ...v, agenda: v.debut ? lienAgenda({

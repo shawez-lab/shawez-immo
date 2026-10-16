@@ -145,6 +145,28 @@
 .ee-stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
 .ee-stat b{display:block;font-family:var(--font-display);font-weight:360;font-size:1.9rem;line-height:1;font-variant-numeric:tabular-nums;}
 .ee-stat span{font-size:.8rem;color:var(--muted);font-weight:600;}
+/* « Aujourd'hui » : qui appeler, qui prévenir, ce qui est en retard, ce qui a été fait depuis hier */
+.ee-jour{margin-bottom:18px;gap:10px;padding:clamp(16px,2.6vw,22px);}
+.ee-jour-t{font-family:var(--font-display);font-weight:420;font-size:1.25rem;line-height:1.15;margin:0;}
+.ee-jour-l{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;}
+.ee-jour-l li{display:grid;grid-template-columns:minmax(0,1fr);gap:2px 14px;padding:8px 0;border-top:1px solid var(--line);font-size:.92rem;line-height:1.45;}
+@media(min-width:760px){.ee-jour-l li{grid-template-columns:150px minmax(0,1fr);}}
+.ee-jour-k{font-weight:600;white-space:nowrap;}
+.ee-jour-k b{display:inline-block;min-width:1.6em;margin-left:6px;padding:0 7px;border-radius:999px;background:var(--line);font-weight:600;font-variant-numeric:tabular-nums;text-align:center;}
+.ee-jour-on .ee-jour-k b{background:var(--ink);color:var(--surface);}
+.ee-jour-on[data-jour="retard"] .ee-jour-k b{background:#7E2C1F;}
+.ee-jour-v{overflow-wrap:anywhere;}
+.ee-jour-v a{color:var(--ink);text-decoration:none;}
+.ee-jour-v a b{font-weight:600;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;}
+.ee-jour-v a span{color:var(--muted);}
+.ee-jour-v em{font-style:normal;color:var(--muted);}
+.ee-jour-v i{font-style:normal;color:var(--muted);}
+.ee-jour-rien{color:var(--muted);}
+.ee-jour-fait{margin:0;padding-top:8px;border-top:1px solid var(--line);font-size:.86rem;color:var(--muted);line-height:1.5;overflow-wrap:anywhere;}
+.ee-jour-fait b{color:var(--ink);}
+.ee-jour-fait a{color:var(--ink);font-weight:600;}
+.field .hint[data-relance-aide]{display:block;margin-top:6px;font-size:.84rem;color:var(--muted);}
+.field .hint[data-relance-aide][hidden]{display:none;}
 .ee-tools{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;align-items:center;}
 .ee-tools input,.ee-tools select{min-height:46px;border:1px solid var(--line-strong);border-radius:999px;background:var(--surface);padding:0 16px;font:inherit;font-size:.95rem;color:var(--ink);}
 .ee-tools input{flex:1 1 220px;}

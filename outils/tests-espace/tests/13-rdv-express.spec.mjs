@@ -37,10 +37,10 @@ test('accueil : « Prendre rendez-vous » mène au bloc, 2 clics, la demande arr
   await expect(bloc.locator('.rdvx-day').first()).toBeVisible();
   await capture(page, info, 'rdv-1-creneaux');
 
-  // du lundi au samedi, 6 jours
+  // du lundi au vendredi, 6 jours ouvrés
   const jours = await bloc.locator('.rdvx-day').allTextContents();
   expect(jours.length).toBe(6);
-  for (const j of jours) expect(j).not.toMatch(/^dim/i);
+  for (const j of jours) expect(j).not.toMatch(/^(sam|dim)/i);
 
   // clic 1 : le 2e jour, la 1re heure
   await bloc.locator('.rdvx-day').nth(1).click();
@@ -166,14 +166,14 @@ test('agenda Google (iCal) : les moments pris, la marge de trajet, les répétit
   const now = new Date('2026-10-11T18:00:00Z');
   const occ = occupations(lireEvenements(ics), now.getTime(), now.getTime() + 10 * 86400000);
   const j = Object.fromEntries(retirerOccupes(creneaux(now, 4), occ, 45).map((x) => [x.date, x.heures.map((h) => h.h)]));
-  // lundi 12 : réunion 9 h–10 h (répétée) et photos 11 h–12 h → 9 h à 12 h retirés (marge de 30 min)
-  expect(j['2026-10-12']).toEqual(['13 h', '14 h', '15 h', '16 h', '17 h', '18 h']);
-  // mardi 13 : 14 h–15 h (heure UTC dans le fichier) → 13 h, 14 h, 15 h retirés
-  expect(j['2026-10-13']).toEqual(['9 h', '10 h', '11 h', '12 h', '16 h', '17 h', '18 h']);
-  // mercredi 14 : journée « disponible » et répétition annulée ce jour-là → tout reste
-  expect(j['2026-10-14'].length).toBe(10);
+  // lundi 12 : réunion 9 h–10 h (répétée) et photos 11 h–12 h → 9 h à 11 h retirés (marge de 30 min) ; 12 h et 13 h jamais proposés
+  expect(j['2026-10-12']).toEqual(['14 h', '15 h', '16 h', '17 h', '18 h']);
+  // mardi 13 : 14 h–15 h (heure UTC dans le fichier) → 14 h, 15 h retirés (13 h n'est jamais proposé)
+  expect(j['2026-10-13']).toEqual(['9 h', '10 h', '11 h', '16 h', '17 h', '18 h']);
+  // mercredi 14 : journée « disponible » et répétition annulée ce jour-là → tout reste (8 créneaux : 9-12 h et 14-19 h)
+  expect(j['2026-10-14'].length).toBe(8);
   // jeudi 15 : événement annulé → tout reste
-  expect(j['2026-10-15'].length).toBe(10);
+  expect(j['2026-10-15'].length).toBe(8);
   expect(adresseIcsValide('https://calendar.google.com/calendar/ical/shawez%40gravelin-immo.com/private-0123abcd/basic.ics')).toBe(true);
   expect(adresseIcsValide('https://calendar.google.com/calendar/embed?src=x')).toBe(false);
   expect(adresseIcsValide('http://calendar.google.com/calendar/ical/a/b/basic.ics')).toBe(false);

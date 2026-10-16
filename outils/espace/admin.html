@@ -2,7 +2,7 @@
   <div class="page-head shell">
     <p class="label">Espace agence</p>
     <h1 class="display d-xl" style="margin-top:14px;">Dossiers <em>vendeurs.</em></h1>
-    <p class="lede" id="ad-lede">Chaque dossier, son statut et sa prochaine action. Les actions en retard sont en haut.</p>
+    <p class="lede" id="ad-lede">Chaque dossier, son statut et sa prochaine action. Les actions en retard sont en haut ; « Aujourd'hui » dit qui appeler, qui prévenir et ce qui attend.</p>
   </div>
   <div class="shell">
     <div class="ee-wrap" id="ad-load" role="status" aria-label="Chargement"><div class="ee-load"></div></div>
@@ -18,6 +18,7 @@
     </div>
     <div class="ee-wide" id="ad-in" hidden>
       <div class="ee-stats" id="ad-stats"></div>
+      <section class="ee-card ee-jour" id="ad-jour" aria-labelledby="ad-jour-t" data-test="aujourdhui"><h2 class="ee-jour-t" id="ad-jour-t">Aujourd'hui</h2><ul class="ee-jour-l" id="ad-jour-l"></ul><p class="ee-jour-fait" id="ad-jour-fait"></p></section>
       <div class="ee-links ee-ad-liens"><a href="/admin/promesses/" data-ee-lien="promesses">Les 7 promesses : tenues ou ratées <span aria-hidden="true">→</span></a></div>
       <div class="ee-tabs" role="group" aria-label="Vue"><button type="button" class="pill" data-vue="demandes" aria-pressed="true">Demandes</button><button type="button" class="pill" data-vue="comptes" aria-pressed="false">Comptes</button><button type="button" class="pill" data-vue="reglages" aria-pressed="false">Réglages</button></div>
       <div id="ad-demandes">
@@ -39,7 +40,7 @@
       <div id="ad-reglages" hidden>
         <div class="ee-card" style="margin-bottom:14px;">
           <h3>Visites d'estimation</h3>
-          <p class="meta">Aujourd'hui, le vendeur propose jusqu'à 3 créneaux (du lundi au samedi, 9 h – 19 h, 45 minutes) et vous confirmez d'un clic dans son dossier. Si vous créez une page de réservation dans Google Agenda (« Planning de rendez-vous »), collez son lien ici : le vendeur choisira directement dans votre agenda.</p>
+          <p class="meta">Aujourd'hui, le vendeur propose jusqu'à 3 créneaux (du lundi au vendredi, 9 h – 12 h et 14 h – 19 h, 45 minutes) et vous confirmez d'un clic dans son dossier. Si vous créez une page de réservation dans Google Agenda (« Planning de rendez-vous »), collez son lien ici : le vendeur choisira directement dans votre agenda.</p>
           <div class="field"><label for="ad-rdv-url">Lien de la page de réservation Google Agenda <small>(facultatif)</small></label><input type="url" id="ad-rdv-url" inputmode="url" placeholder="https://calendar.app.google/…" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
           <div class="acts"><button type="button" class="btn" id="ad-rdv-save">Enregistrer</button></div>
           <p class="ee-ok" id="ad-rdv-out" role="status" hidden></p>
@@ -54,6 +55,7 @@
         <div class="ee-card">
           <h3>Demandes dans Google Sheets</h3>
           <p class="meta">L'onglet « Site » du tableau « Relance leads » se remplit tout seul : une formule relit les demandes environ toutes les heures. Colonnes : date, site, civilité, prénom, nom, téléphone, e-mail, adresse du bien, type, surface, fourchette, délai de vente, prix idéal, statut, prochaine action, notes, référence. Le statut, la date de rappel et les notes se changent ici, dans chaque demande.</p>
+          <p class="meta">« Aujourd'hui » (qui appeler, qui prévenir, ce qui est en retard, ce qui a été fait depuis hier) se lit aussi avec la même clé : remplacez <b>site.csv</b> par <b>aujourdhui.csv</b> (une ligne par dossier), ou <b>aujourdhui.csv?format=texte&amp;cle=…</b> pour les quatre lignes en clair, comme au point du matin.</p>
           <p class="meta">Les 7 promesses se suivent dans le même tableau : dans un onglet « Promesses », collez en A1 la formule de l'onglet « Site » en remplaçant <b>site.csv</b> par <b>promesses.csv</b>. Sept lignes, aucun nom.</p>
           <p class="meta">Besoin d'une nouvelle clé (tableau partagé par erreur, par exemple) ? Le bouton en crée une et coupe l'ancienne : collez alors les nouvelles formules dans la cellule A1 des onglets « Site » et « Promesses ».</p>
           <div class="acts"><button type="button" class="btn" id="ad-flux">Créer une nouvelle clé</button></div>
