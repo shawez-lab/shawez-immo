@@ -1197,6 +1197,16 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 #stickybar.sb3 .btn:focus-visible{outline:2px solid #E3B341;outline-offset:2px;}
 @media(min-width:768px) and (max-width:900px){footer{padding-bottom:110px;}}
 </style>
+<style id="v3-a11y">
+.hero-pause{position:absolute;z-index:3;right:var(--gutter,20px);top:calc(var(--nav-h,64px) + env(safe-area-inset-top,0px) + 12px);width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.45);background:rgba(15,14,12,.55);color:#fff;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0;}
+.hero-pause[hidden]{display:none;}
+.hero-pause:hover{background:rgba(15,14,12,.8);}
+.hero-pause:focus-visible{outline:2px solid #E3B341;outline-offset:3px;}
+.hero-pause svg{fill:currentColor;}
+.hero-pause .ic-play{display:none;}
+.hero-pause[aria-pressed="true"] .ic-play{display:inline;}
+.hero-pause[aria-pressed="true"] .ic-pause{display:none;}
+</style>
 <style id="v3-entete">
 /* Vague 3 — action 24 : sur téléphone, « Estimer » + téléphone dans l'en-tête dès le premier écran ; action 30 : lien d'évitement */
 .skip{position:absolute;left:12px;top:-60px;z-index:300;padding:12px 18px;border-radius:999px;background:#0F0E0C;color:#F3EFE6;font-weight:600;text-decoration:none;transition:top .2s;}
@@ -1278,6 +1288,7 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
       <video id="hero-video" class="hv hv-main" autoplay muted playsinline loop preload="auto" poster="/hero-poster.webp?v=5" data-poster-m="/hero-poster.webp?v=5" data-poster-d="/film-equipe-bg-poster.webp?v=5" width="720" height="1280"><source data-for="m" data-src="/hero.mp4?v=5" data-src-lent="/hero-720.mp4" type="video/mp4"><source data-for="d" data-src="/film-equipe-bg.mp4?v=hd2" type="video/mp4"></video>
     </div>
     <div class="hero-veil" aria-hidden="true"></div>
+    <button type="button" class="hero-pause" id="hero-pause" aria-pressed="false" aria-label="Mettre la vidéo en pause" hidden><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path class="ic-pause" d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/><path class="ic-play" d="M8 5.5v13l10.5-6.5z"/></svg></button>
     <div class="hero-in">
       <div class="hero-txt">
         <p class="label fade hero-kicker">Dijon · Côte de Nuits · Beaune</p>
@@ -1706,6 +1717,9 @@ $$('[data-reels-prev],[data-reels-next]').forEach(function(b){ b.addEventListene
 /* hero : lecture automatique (iPhone : muted posé en JS, relances) */
 var heroV=$('#hero-video');
 var heroSides=[];
+/* bouton pause de la vidéo d'accueil (accessibilité : toute vidéo qui bouge plus de 5 s peut être arrêtée) */
+var heroStop=false, heroBtn=$('#hero-pause');
+if(heroBtn&&heroV&&AUTOPLAY){ heroBtn.hidden=false; heroBtn.addEventListener('click',function(){ heroStop=!heroStop; heroBtn.setAttribute('aria-pressed',String(heroStop)); heroBtn.setAttribute('aria-label',heroStop?'Relancer la vidéo':'Mettre la vidéo en pause'); if(heroStop){ heroV.pause(); } else { ensurePlay(heroV); } }); }
 /* deux <source> : la bonne est choisie par matchMedia (l'attribut media sur <source> est mal suivi) */
 var heroMQ=matchMedia('(min-width:900px)');
 function heroPick(){ if(!heroV)return; var want=heroMQ.matches?'d':'m'; if(heroV.getAttribute('data-kind')===want)return;
@@ -1720,7 +1734,7 @@ if(heroMQ.addEventListener){heroMQ.addEventListener('change',function(){heroPick
 if(heroV&&!AUTOPLAY){ heroV.removeAttribute('autoplay'); heroV.pause(); }
 function kickVideos(){
   if(!AUTOPLAY||document.hidden)return;
-  if(current==='/'){ if(heroV)ensurePlay(heroV); heroSides.forEach(function(v){ if(v.getAttribute('src'))playMuted(v); }); }
+  if(current==='/'&&!heroStop){ if(heroV)ensurePlay(heroV); heroSides.forEach(function(v){ if(v.getAttribute('src'))playMuted(v); }); }
   $$('.reel').forEach(function(fig){ if(fig.dataset.vis==='1'&&!fig.closest('[hidden]')){ var v=$('video',fig); if(v&&v.paused)ensurePlay(v); } });
 }
 kickVideos();
