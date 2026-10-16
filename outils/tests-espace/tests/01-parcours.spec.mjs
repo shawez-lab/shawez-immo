@@ -286,7 +286,7 @@ test('double clic sur « Étape suivante » : aucune étape sautée', async ({ p
   await attendreEtape(page, 'projet');
 });
 
-test('double clic sur « Afficher mon estimation » : une seule demande', async ({ page }) => {
+test('double clic sur « Connaître le prix de mon bien » : une seule demande', async ({ page }) => {
   await parcours(page);
   await coordonnees(page);
   await assezLent(page);
