@@ -6,7 +6,7 @@
 (function(){
   'use strict';
   var $=EE.$, $$=EE.$$, C=EE.CONF;
-  var D=[], Cp=[], STATUTS={}, TAILLE_MAX=10*1024*1024, MAIL_CLIENTS=false, AVIS={}, SUITE={}, OFFRES={}, DOCS={}, AUJ='';
+  var D=[], Cp=[], STATUTS={}, TAILLE_MAX=10*1024*1024, MAIL_CLIENTS=false, AVIS={}, SUITE={}, OFFRES={}, DOCS={}, AUJ='', RELANCE_MOIS=3;
   $$('[data-ee-lien]').forEach(function(a){var k=a.getAttribute('data-ee-lien');if(C[k])a.href=C[k];});
   $('#ad-export').href=C.api+'/admin/export.csv?quoi=demandes'; $('#ad-export-c').href=C.api+'/admin/export.csv?quoi=comptes';
   var LIB={
@@ -80,7 +80,7 @@
         '<div class="field"><label for="ad-st-'+d.id+'">Statut</label><select id="ad-st-'+d.id+'" data-f="statut">'+opts+'</select></div>'+
         '<label class="ee-check-l" data-prevenir-l><input type="checkbox" data-f="prevenir" checked>'+(MAIL_CLIENTS?'Annoncer le changement de statut au vendeur par e-mail':SANS_MAIL)+'</label>'+
         '<div class="field" data-raison-f'+(d.statut==='pause'||d.statut==='close'?'':' hidden')+'><label for="ad-ra-'+d.id+'">Raison (pas maintenant, perdu)</label><input type="text" id="ad-ra-'+d.id+'" data-f="raison" maxlength="300" value="'+EE.esc(d.raison||'')+'"></div>'+
-        '<div class="field"><label for="ad-rp-'+d.id+'">Rappeler avant le</label><input type="date" id="ad-rp-'+d.id+'" data-f="rappel_le" value="'+EE.esc(d.rappel_le||'')+'"></div>'+
+        '<div class="field"><label for="ad-rp-'+d.id+'">Rappeler avant le</label><input type="date" id="ad-rp-'+d.id+'" data-f="rappel_le" value="'+EE.esc(d.rappel_le||'')+'"><span class="hint" data-relance-aide hidden></span></div>'+
         '<div class="field"><label for="ad-no-'+d.id+'">Notes (visibles par l\'agence seulement)</label><textarea id="ad-no-'+d.id+'" data-f="notes" maxlength="5000">'+EE.esc(d.notes||'')+'</textarea></div>'+
         '<div class="acts"><button type="button" class="btn btn-primary" data-save>Enregistrer</button><span class="saved" role="status" hidden>Enregistré</span></div>'+
         blocAvis(d)+
@@ -132,12 +132,12 @@
         return;
       }
       STATUTS=r[0].statuts; D=r[0].demandes; Cp=r[1].comptes||[]; if(r[0].taille_max)TAILLE_MAX=r[0].taille_max; MAIL_CLIENTS=!!r[0].email_clients;
-      OFFRES=r[0].statuts_offre||{}; DOCS=r[0].documents||{}; AUJ=r[0].aujourdhui||new Date().toISOString().slice(0,10); SUITE={};
+      OFFRES=r[0].statuts_offre||{}; DOCS=r[0].documents||{}; AUJ=r[0].aujourdhui||new Date().toISOString().slice(0,10); RELANCE_MOIS=r[0].relance_mois||3; SUITE={};
       var ru=$('#ad-rdv-url'); if(ru&&document.activeElement!==ru)ru.value=r[0].rdv_url||'';
       var ie=$('#ad-ics-out'); if(ie&&ie.hidden&&r[0].agenda_relie){ie.hidden=false;ie.className='ee-ok';ie.textContent='Agenda Google relié : les moments pris dans votre agenda ne sont pas proposés aux vendeurs.';}
       var s=$('#ad-statut'), v=s.value;
       s.innerHTML='<option value="">Tous les statuts</option>'+Object.keys(STATUTS).map(function(k){return '<option value="'+k+'">'+EE.esc(STATUTS[k])+'</option>';}).join(''); s.value=v;
-      $('#ad-in').hidden=false; stats(); filtrer(); comptes();
+      $('#ad-in').hidden=false; stats(); jour(); filtrer(); comptes();
     });
   }
   $('#ad-q').addEventListener('input',filtrer); $('#ad-statut').addEventListener('change',filtrer); $('#ad-site').addEventListener('change',filtrer); $('#ad-qc').addEventListener('input',comptes);
@@ -163,7 +163,7 @@
     var jr=$('[data-journal]',row); if(jr&&jr.open)journal(jr,x.id);
     // une nouvelle que l'e-mail n'a pas pu annoncer : le message se prépare tout seul et se montre
     if(direCle(x)!==direAvant){ if(DIRE[x.id]&&!DIRE[x.id].fait)delete DIRE[x.id]; direRendre(row,x); if(x.a_dire)direPreparer(row,x,true); }
-    stats();
+    stats(); jour();
   }
   var TRACES={prevenu:'Vendeur prévenu par l\'agence',dossier_modifie:'Dossier corrigé',ouverture:'Dossier ouvert par l\'agence',espace_ouvert:'Espace du vendeur ouvert',lien_espace:'Lien de son espace préparé pour le vendeur',estimation:'Estimation faite en ligne',statut:'Statut',visite_demandee:'Créneaux proposés par le vendeur',visite_fixee:'Visite fixée',visite_annulee:'Visite annulée',visite_agenda:'Page de réservation ouverte par le vendeur',rappel_visite:'Rappel de visite',avis_prepare:'Avis de valeur : brouillon commencé',avis_envoye:'Avis de valeur envoyé',mail:'E-mail au vendeur',cr_publie:'Compte rendu de visite publié',cr_supprime:'Compte rendu de visite supprimé',offre_recue:'Offre reçue',offre_statut:'Offre',offre_supprimee:'Offre supprimée',notaire:'Notaire',document:'Document déposé'};
   function trace(e){
@@ -211,7 +211,62 @@
     if(det.hasAttribute('data-journal'))journal(det,+det.closest('.ee-row').getAttribute('data-id'));
     else if(det.classList.contains('ee-row'))suiteCharger(det,+det.getAttribute('data-id'));
   },true);
-  $('#ad-rows').addEventListener('change',function(e){ var s=e.target.closest('[data-f=statut]'); if(!s)return; var row=s.closest('.ee-row'); $('[data-raison-f]',row).hidden=!(s.value==='pause'||s.value==='close'); });
+  $('#ad-rows').addEventListener('change',function(e){
+    var s=e.target.closest('[data-f=statut]'); if(!s)return; var row=s.closest('.ee-row');
+    $('[data-raison-f]',row).hidden=!(s.value==='pause'||s.value==='close');
+    // « Pas maintenant » : la relance douce est posée d'office trois mois plus tard (le serveur fait pareil si la date reste vide)
+    var rp=$('[data-f=rappel_le]',row), aide=$('[data-relance-aide]',row);
+    if(s.value==='pause'&&rp&&!rp.value){ rp.value=dateRelance(); if(aide){aide.hidden=false;aide.textContent='Relance posée dans '+RELANCE_MOIS+' mois, le '+EE.jour(rp.value)+' : changez la date si vous voulez.';} }
+    else if(aide)aide.hidden=true;
+  });
+  /* trois mois plus tard, un jour ouvré (comme le serveur : dateRelance dans functions/_lib/suivi.js) */
+  function dateRelance(){
+    var a=AUJ.split('-').map(Number), d=new Date(Date.UTC(a[0],a[1]-1+RELANCE_MOIS,a[2],12));
+    if(d.getUTCDate()!==a[2])d=new Date(Date.UTC(d.getUTCFullYear(),d.getUTCMonth(),0,12));
+    if(d.getUTCDay()===6)d.setUTCDate(d.getUTCDate()+2); else if(d.getUTCDay()===0)d.setUTCDate(d.getUTCDate()+1);
+    return d.toISOString().slice(0,10);
+  }
+  /* ---------- « Aujourd'hui » : qui appeler, qui prévenir, ce qui est en retard, ce qui a été fait depuis hier ----------
+     Les mêmes règles que le serveur (aFaireAujourdhui dans functions/_lib/suivi.js, servi à l'agent du matin par le flux
+     à clé) : chaque dossier va dans un seul groupe, le premier qui le concerne. */
+  function aFaire(){
+    // heure locale du navigateur (celui de l'agence, à Dijon) ; le serveur fait foi pour le flux
+    var finMs=new Date(AUJ+'T23:59:59').getTime(), hier=new Date(AUJ+'T00:00:00').getTime()-86400000, out={relancer:[],appeler:[],prevenir:[],retard:[],fait:[]};
+    D.forEach(function(d){
+      if(d.test||d.statut==='close'||d.statut==='acte')return;
+      var a=d.action||{}, e=a.echeance?Date.parse(a.echeance):null;
+      var l=function(p){return {d:d,pourquoi:p,echeance:a.echeance||''};};
+      if(d.statut==='pause'){ if(d.rappel_le&&d.rappel_le<=AUJ)out.relancer.push(l('Pas maintenant'+(d.raison?' : '+d.raison:'')+' · relance prévue le '+EE.jour(d.rappel_le))); }
+      else if(/^(Appeler|Confirmer|Présenter)/.test(a.texte||'')&&!a.rdv&&(e==null||e<=finMs))out.appeler.push(l(a.texte));
+      else if(d.a_dire&&d.a_dire.quoi&&d.a_dire.quoi.length)out.prevenir.push(l('À prévenir : '+d.a_dire.quoi.join(', ')));
+      else if(a.retard)out.retard.push(l(a.texte));
+      if(d.trace&&d.trace.le&&Date.parse(d.trace.le)>=hier)out.fait.push({d:d,quoi:traceTxt(d.trace).replace(/^Dernière trace : /,'')});
+    });
+    var tri=function(x,y){return (x.echeance||'9')<(y.echeance||'9')?-1:1;};
+    out.appeler.sort(tri); out.retard.sort(tri); out.fait.sort(function(x,y){return x.d.trace.le<y.d.trace.le?1:-1;});
+    return out;
+  }
+  function nomDe(d){ var c=d.contact||{}; return [c.civilite,c.prenom,c.nom].filter(Boolean).join(' ')||c.email||d.reference; }
+  function jour(){
+    var el=$('#ad-jour'); if(!el)return;
+    var j=aFaire();
+    var MAX=12;
+    var liens=function(l){ return l.length?l.slice(0,MAX).map(function(x){ return '<a href="?q='+encodeURIComponent(x.d.reference)+'" data-jour-ref="'+EE.esc(x.d.reference)+'"><b>'+EE.esc(nomDe(x.d))+'</b>'+(x.d.commune?' <span>('+EE.esc(x.d.commune)+')</span>':'')+'</a> <em>· '+EE.esc(x.pourquoi)+(x.echeance?' · '+(x.d.action&&x.d.action.retard?'depuis ':'avant ')+EE.esc(EE.quandCourt(x.echeance)):'')+'</em>'; }).join('<i aria-hidden="true"> ; </i>')+(l.length>MAX?'<i> ; et '+(l.length-MAX)+' autres (dans la liste ci-dessous)</i>':''):''; };
+    var appeler=j.appeler.concat(j.relancer);
+    $('#ad-jour-l').innerHTML=[
+      ['appeler','Qui appeler',appeler,'personne'],
+      ['prevenir','Qui prévenir',j.prevenir,'personne'],
+      ['retard','En retard',j.retard,'rien']
+    ].map(function(g){ return '<li data-jour="'+g[0]+'"'+(g[2].length?' class="ee-jour-on"':'')+'><span class="ee-jour-k">'+g[1]+' <b>'+g[2].length+'</b></span><span class="ee-jour-v">'+(liens(g[2])||'<em class="ee-jour-rien">'+g[3]+'</em>')+'</span></li>'; }).join('');
+    $('#ad-jour-fait').innerHTML='Fait depuis hier <b>'+j.fait.length+'</b> : '+(j.fait.length?j.fait.slice(0,8).map(function(x){return '<a href="?q='+encodeURIComponent(x.d.reference)+'" data-jour-ref="'+EE.esc(x.d.reference)+'">'+EE.esc(nomDe(x.d))+'</a> · '+EE.esc(x.quoi);}).join(' ; ')+(j.fait.length>8?' ; …':''):'rien');
+  }
+  // un nom dans « Aujourd'hui » ouvre le dossier (recherche par référence), sans recharger la page
+  $('#ad-jour').addEventListener('click',function(e){
+    var a=e.target.closest('[data-jour-ref]'); if(!a)return; e.preventDefault();
+    $$('[data-vue]').forEach(function(x){ if(x.getAttribute('data-vue')==='demandes')x.click(); });
+    $('#ad-statut').value=''; $('#ad-site').value=''; $('#ad-q').value=a.getAttribute('data-jour-ref'); filtrer();
+    var row=$('#ad-rows details.ee-row'); if(row){row.open=true;row.scrollIntoView({behavior:'smooth',block:'start'});}
+  });
 
   /* ---------- avis de valeur : brouillon, PDF fabriqué dans le navigateur, validation en un clic ---------- */
   function lignesTxt(l){return (l||[]).join('\n');}
