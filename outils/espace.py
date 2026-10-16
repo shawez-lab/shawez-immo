@@ -124,7 +124,8 @@ PICTO_JS = """/* Pictogramme « Mon espace » : état connecté d'après le tém
 window.EECompte=function(){var on=/(?:^|;\\s*)se_ok=1/.test(document.cookie||'');[].forEach.call(document.querySelectorAll('[data-compte]'),function(a){a.classList.toggle('is-in',on);var t=on?'Mon espace : connecté':'Mon espace : se connecter';if(a.hasAttribute('aria-label')){a.setAttribute('aria-label',t);a.title=t;}var x=a.querySelector('[data-compte-txt]');if(x)x.textContent=on?'Mon espace · connecté':'Mon espace';});};
 window.EECompte();window.addEventListener('pageshow',window.EECompte);
 """
-CTA = '<a class="btn btn-primary" href="/estimer/"><span>Estimer mon bien</span></a>'
+CTA = ('<a class="btn btn-primary" href="/estimer/" aria-label="Estimer mon bien"><span class="cta-long">Estimer mon bien</span>'
+       '<span class="cta-court">Estimer</span></a>')   # vague 3 : « Estimer » court sur téléphone (style v3-entete)
 MENU = '<a class="m-alt" href="/estimation-immobiliere-dijon/">Estimation chez vous, offerte</a>'
 MENU_ESPACE = '<a class="m-alt" href="/mon-espace/" data-compte><span data-compte-txt>Mon espace</span></a>'
 PIED = '<li><a href="/contact/">Contact</a></li>'
@@ -359,7 +360,13 @@ def page(nom, conf, gabarit, css, commun):
     assert s.index('<script id="compte-js">') < s.index('<script id="espace-js">')
     # pas de données de la page estimation (FAQ, formulaire) : vérifications
     assert 'id="est-form"' not in s
-    ecrire(os.path.join(RACINE, dossier, 'index.html'), s)
+    # les données structurées propres à la page (JSON-LD de /estimer/, posé par outils/seo/) sont gardées d'une construction à l'autre
+    cible = os.path.join(RACINE, dossier, 'index.html')
+    if os.path.exists(cible):
+        ld = re.findall(r'<script type="application/ld\+json">.*?</script>\n?', lire(cible), flags=re.S)
+        if ld:
+            s = s.replace('</head>', ''.join(ld) + '</head>', 1)
+    ecrire(cible, s)
 
 
 def headers():
