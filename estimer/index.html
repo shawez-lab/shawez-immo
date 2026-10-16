@@ -1616,6 +1616,15 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
     <p class="label">Estimation offerte · 2 minutes</p>
     <h1 class="display d-xl" style="margin-top:14px;">Combien vaut votre bien <em>aujourd'hui ?</em></h1>
     <p class="lede">6 questions, 2 minutes : votre fourchette de prix s'affiche tout de suite, calculée sur les ventes signées autour de chez vous. Ensuite, si vous le voulez, une estimation précise chez vous, offerte et sans engagement.</p>
+    <!-- avis:estimer-haut --><style id="avis-estimer-css">
+.ee-conf{display:flex;align-items:center;gap:12px;margin:18px 0 0;max-width:40em;}
+.ee-conf-img{width:48px;height:48px;border-radius:50%;object-fit:cover;flex:none;border:2px solid #fff;box-shadow:0 1px 4px rgba(15,14,12,.18);}
+.ee-conf p{margin:0;font-size:14px;line-height:1.45;color:#4A453E;}
+.ee-conf b{color:#0F0E0C;font-weight:600;}
+.ee-conf .stars{font-size:14px;letter-spacing:1px;color:#8A6614;}
+.ee-conf a{color:inherit;text-decoration:underline;text-underline-offset:2px;}
+.ee-conf-form{margin:0 0 20px;padding:12px 14px;border-radius:14px;background:#F3EFE6;border:1px solid rgba(15,14,12,.08);}
+</style><div class="ee-conf"><img class="ee-conf-img" src="/assets/shawez-ali-visage-144.webp" alt="Shawez Ali" width="48" height="48" decoding="async"><p><b>Shawez Ali</b>, agent immobilier à Dijon (Gravelin Immo)<br><span class="stars" aria-hidden="true">★★★★★</span> <b>5,0/5</b> sur 27 avis Google <a href="https://www.google.com/maps/search/?api=1&amp;query=Shawez%20Ali%20%E2%80%94%20Agent%20immobilier&amp;query_place_id=ChIJqQpGAKPcg6gRg_CLthoGaP8" target="_blank" rel="noopener">(relevé du 9 octobre 2026)</a></p></div><!-- /avis:estimer-haut -->
   </div>
   <div class="shell">
     <form class="form ee-wrap" id="ee-form" novalidate autocomplete="on">
@@ -1753,6 +1762,7 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
       <!-- COORDONNÉES : un seul écran, pas de mot de passe -->
       <div class="ee-step" data-s="contact" tabindex="-1" hidden>
         <div class="ee-head"><p class="label">C'est prêt</p><h2 class="ee-q">Votre estimation est <em>prête.</em></h2><p class="ee-sub" id="ee-contact-sub">Plus qu'une étape : dites-nous qui vous êtes, votre estimation s'affiche aussitôt.</p></div>
+        <!-- avis:estimer-form --><div class="ee-conf ee-conf-form"><img class="ee-conf-img" src="/assets/shawez-ali-visage-144.webp" alt="Shawez Ali" width="48" height="48" loading="lazy" decoding="async"><p><b>C'est Shawez qui vous rappelle, personne d'autre.</b> Sa fiche Google : 5,0/5 sur 27 avis (relevé du 9 octobre 2026). L'agence Gravelin Immo : 4,8/5 sur 137 avis (relevé du 8 octobre 2026).</p></div><!-- /avis:estimer-form -->
         <div id="ee-logged" class="ee-who" hidden><img data-ee-portrait alt="" width="52" height="52" loading="lazy" hidden><p></p></div>
         <div id="ee-new">
           <div class="field"><span class="lab" id="ee-civ-lab">Civilité</span><div class="ee-civ" role="group" aria-labelledby="ee-civ-lab"><button type="button" class="pill" data-civ="Mme">Madame</button><button type="button" class="pill" data-civ="M.">Monsieur</button></div></div>

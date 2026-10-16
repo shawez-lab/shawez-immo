@@ -366,6 +366,12 @@ def page(nom, conf, gabarit, css, commun):
         ld = re.findall(r'<script type="application/ld\+json">.*?</script>\n?', lire(cible), flags=re.S)
         if ld:
             s = s.replace('</head>', ''.join(ld) + '</head>', 1)
+        # blocs de preuve sociale (photo + note Google datée), posés par outils/avis.py depuis avis.json : gardés aussi
+        avant = lire(cible)
+        for tag in re.findall(r'<!-- avis:([\w-]+) -->', s):
+            m = re.search(r'<!-- avis:%s -->.*?<!-- /avis:%s -->' % (re.escape(tag), re.escape(tag)), avant, flags=re.S)
+            if m:
+                s = re.sub(r'<!-- avis:%s -->.*?<!-- /avis:%s -->' % (re.escape(tag), re.escape(tag)), lambda _: m.group(0), s, count=1, flags=re.S)
     ecrire(cible, s)
 
 
