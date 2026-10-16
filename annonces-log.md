@@ -74,3 +74,7 @@ Chaque passage de `outils/sync_annonces.py` ajoute ici les changements constaté
 
 - Nouvelle annonce 520 : Appartement à Chevigny-Saint-Sauveur, 200 000 €.
 - Annonce 412 : absente des pages de l'agence et fiche hors ligne, sans mention → « retirée ».
+
+## 2026-10-16
+
+- Annonce 493 : absente des pages de l'agence et fiche hors ligne, sans mention → « retirée ».
