@@ -78,7 +78,9 @@ TYPES = {'appartement': 'Appartement', 'duplex': 'Duplex', 'maison': 'Maison', '
          'terrain': 'Terrain', 'terrain-a-batir': 'Terrain à bâtir', 'loft': 'Loft', 'chateau': 'Château', 'studio': 'Studio',
          'viager-maison': 'Viager', 'local-commercial': 'Local commercial', 'commerce': 'Commerce', 'bureau': 'Bureau',
          'parking': 'Parking', 'garage': 'Garage'}
-STATUTS = {'vendu': 'vendu', 'vendue': 'vendu', 'sous-compromis': 'sous compromis', 'sous compromis': 'sous compromis', 'compromis': 'sous compromis'}
+STATUTS = {'vendu': 'vendu', 'vendue': 'vendu', 'sous-compromis': 'sous compromis', 'sous compromis': 'sous compromis', 'compromis': 'sous compromis',
+           'sous-offre': 'sous offre', 'sous offre': 'sous offre', 'offre acceptée': 'sous offre', 'offre acceptee': 'sous offre'}
+ACTIFS = ('en vente', 'sous compromis', 'sous offre')
 
 def nombre(s):
     s = (s or '').replace('\xa0', ' ').replace(' ', '').replace(',', '.')
@@ -365,7 +367,7 @@ def synchronise(etat):
                 break
             for x in c:
                 vues.setdefault(x['ref'], x)
-    actifs = [a for a in etat['annonces'].values() if a['status'] in ('en vente', 'sous compromis')]
+    actifs = [a for a in etat['annonces'].values() if a['status'] in ACTIFS]
     if not vues:
         alerte('0 annonce trouvée sur les pages de vente.')
         return False
@@ -392,7 +394,7 @@ def synchronise(etat):
         surf = nombre(m_s.group(1)) if m_s else nombre(tab.get('surf_hab') or tab.get('surfhab') or tab.get('surf_carrez') or (tab.get('surfterrn') if seg[2].startswith('terrain') else None))
         mentions = list(dict.fromkeys(c['mentions'] + f['mentions_fiche']))
         vus_st = {STATUTS.get(m_.lower().strip()) for m_ in mentions}
-        statut = 'vendu' if 'vendu' in vus_st else 'sous compromis' if 'sous compromis' in vus_st else 'en vente'
+        statut = 'vendu' if 'vendu' in vus_st else 'sous compromis' if 'sous compromis' in vus_st else 'sous offre' if 'sous offre' in vus_st else 'en vente'
         # « chemin » est remplacé par sa forme neutre avant l'écriture
         nouveau = {'ref': ref, 'id': c['id'], 'chemin': c['chemin'], 'type': typ, 'commune': c['commune'], 'cp': c['cp'],
                    'prix': c['prix'], 'surface': surf, 'compo_agence': c['compo'], 'pieces': int(pieces) if pieces else None,
@@ -418,7 +420,7 @@ def synchronise(etat):
             a['prix_precedent'] = ancien_prix
             log.append('Annonce %s : prix %s € → %s €.' % (ref, fr_nombre(ancien_prix), fr_nombre(c['prix'])))
     for ref, a in etat['annonces'].items():
-        if ref not in vues and a['status'] in ('en vente', 'sous compromis'):
+        if ref not in vues and a['status'] in ACTIFS:
             # absente de la liste : on vérifie la fiche avant de conclure (la liste de l'agence n'est pas stable)
             en_ligne = False
             try:
@@ -449,7 +451,7 @@ def file_posts(etat):
         if not a['photos']['fichiers']:
             continue
         pub = [p for p in posts if p['ref'] == a['ref'] and p['action'] == 'publier']
-        if not pub and a['status'] == 'en vente':   # pas de nouveau post pour un bien déjà sous compromis
+        if not pub and a['status'] == 'en vente':   # pas de nouveau post pour un bien déjà sous offre ou sous compromis
             d = next(jours) if stock else max(AUJ, dt.date.fromisoformat(a['first_seen']))
             posts.append({'date': d.isoformat(), 'action': 'publier', 'ref': a['ref'], 'cle': 'publier', 'titre': titre(a), 'texte': texte_post(a),
                           'photos': [photo_url(a, i) for i in range(3)], 'lien': lien_agence(a)})
@@ -464,6 +466,8 @@ def file_posts(etat):
             cle, texte = 'retiree', TXT_RETIRE
         elif a['status'] == 'sous compromis':
             cle, texte = 'compromis', 'Sous compromis — ' + texte_post(a)
+        elif a['status'] == 'sous offre':
+            continue   # sous offre : pastille sur le site, mais aucun post Google (décision de Shawez, 17/10/2026)
         elif a.get('prix_precedent') and a.get('prix'):
             cle, texte = 'prix-%d' % a['prix'], texte_post(a)
         if not cle or (a['ref'], cle) in connus:
@@ -495,7 +499,7 @@ def md_posts(etat):
     open(P('de-claude', 'annonces-google.md'), 'w', encoding='utf-8').write('\n'.join(out) + '\n')
 
 # ---------------------------------------------------------------- page du site
-PASTILLE = {'en vente': ('', ''), 'sous compromis': ('Sous compromis', 'st-compromis'), 'vendu': ('Vendu', 'st-vendu')}
+PASTILLE = {'en vente': ('', ''), 'sous offre': ('Sous offre', 'st-compromis'), 'sous compromis': ('Sous compromis', 'st-compromis'), 'vendu': ('Vendu', 'st-vendu')}
 
 def carte_html(a):
     lab, cls = PASTILLE[a['status']]
@@ -548,7 +552,7 @@ JS = """<script id="annonces-js">
 def page(etat):
     tous = sorted(etat['annonces'].values(), key=lambda a: (a['first_seen'], int(a['id'])), reverse=True)   # plus récentes d'abord
     limite = (AUJ - dt.timedelta(days=JOURS_VENDU)).isoformat()
-    grille = [a for a in tous if a['photos']['fichiers'] and (a['status'] in ('en vente', 'sous compromis') or (a['status'] == 'vendu' and a['status_changed'] >= limite))]
+    grille = [a for a in tous if a['photos']['fichiers'] and (a['status'] in ACTIFS or (a['status'] == 'vendu' and a['status_changed'] >= limite))]
     vendus = [a for a in tous if a['photos']['fichiers'] and a['status'] == 'vendu' and a['status_changed'] < limite]
     types = sorted({a['type'] for a in grille}); communes = sorted({a['commune'] for a in grille})
     opt = lambda vs: ''.join('<option>%s</option>' % html.escape(v) for v in vs)
@@ -662,5 +666,5 @@ if __name__ == '__main__':
     md_posts(etat)
     page(etat)
     sitemap(etat)
-    n = sum(1 for a in etat['annonces'].values() if a['status'] in ('en vente', 'sous compromis'))
+    n = sum(1 for a in etat['annonces'].values() if a['status'] in ACTIFS)
     print('%d annonces actives · %d au total · %d lignes de posts' % (n, len(etat['annonces']), len(etat['posts'])))
