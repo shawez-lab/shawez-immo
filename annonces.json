@@ -126,8 +126,8 @@
    "pieces": 5,
    "prix": 259000.0,
    "ref": "394",
-   "status": "en vente",
-   "status_changed": "2026-09-28",
+   "status": "sous offre",
+   "status_changed": "2026-10-17",
    "surface": 95.0,
    "type": "Maison"
   },
@@ -1220,8 +1220,8 @@
    "pieces": 3,
    "prix": 392000.0,
    "ref": "463",
-   "status": "en vente",
-   "status_changed": "2026-09-28",
+   "status": "sous offre",
+   "status_changed": "2026-10-17",
    "surface": 60.0,
    "type": "Immeuble"
   },
@@ -2209,8 +2209,8 @@
    "pieces": 5,
    "prix": 220000.0,
    "ref": "506",
-   "status": "en vente",
-   "status_changed": "2026-09-28",
+   "status": "sous offre",
+   "status_changed": "2026-10-17",
    "surface": 84.0,
    "type": "Maison"
   },
@@ -3087,8 +3087,8 @@
    "pieces": 3,
    "prix": 220000.0,
    "ref": "PREF",
-   "status": "en vente",
-   "status_changed": "2026-09-28",
+   "status": "sous offre",
+   "status_changed": "2026-10-17",
    "surface": 92.93,
    "type": "Duplex"
   }
