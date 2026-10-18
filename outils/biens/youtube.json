@@ -1,0 +1,4 @@
+{
+ "_lisezmoi": "Vidéo YouTube de chaque bien (chaîne de Shawez, vidéos « non répertoriées »). Clé = référence du bien (celle de la fiche : /biens/<réf>-…/), valeur = identifiant YouTube (11 caractères) ou lien complet. Prioritaire sur tout le reste : la fiche affiche alors le lecteur YouTube (youtube-nocookie, démarre seul sans le son, en boucle). Relancer python3 outils/biens/build_biens.py (ou attendre la mise à jour de 6 h).",
+ "videos": {}
+}

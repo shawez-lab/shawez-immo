@@ -188,3 +188,17 @@ Règles : aucun chiffre qui ne vienne de l'annonce. Donnée absente = la fiche l
   5. Visite virtuelle : ajouter `"visite_virtuelle": {"url": "https://my.matterport.com/show/?m=…"}` dans `medias.json` (domaines autorisés dans `_headers`, bloc `/biens/*` : Matterport, Nodalview, Kuula).
   6. `python3 outils/biens/build_biens.py`, vérifier la fiche, pousser sur `main`.
 - Rien n'est jamais supprimé ni déplacé dans le Drive.
+
+### Vidéo de la fiche : YouTube, puis Instagram, puis fichier (19/10/2026)
+
+Décision de Shawez : la vidéo de chaque fiche vient de YouTube (vidéos « non répertoriées » de sa chaîne), intégrée et lue dans la page. Ordre suivi par le générateur (`integration()` dans `build_biens.py`) :
+
+1. **YouTube** : `outils/biens/youtube.json` → `{"videos": {"<réf>": "<identifiant ou lien YouTube>"}}` (rempli par Shawez ou ChatGPT ; fusionné à chaque construction, prioritaire), ou champ `youtube` du bien dans `medias.json`. Lecteur `youtube-nocookie.com/embed/<id>?autoplay=1&mute=1&playsinline=1&loop=1&playlist=<id>&rel=0` : démarre seul, sans le son, en boucle.
+2. **Instagram** : champ `instagram` du bien dans `medias.json` (liste de Reels, le premier est affiché) → lecteur officiel `instagram.com/reel/<id>/embed/` (lecture au premier toucher, dans la page). Seulement des rattachements certains (registre `videos-biens.json`, légende du Reel). Un Reel écarté est noté dans `instagram_ecarte` avec la raison (ancien prix incrusté, personne, image fabriquée…) : il ne doit pas être mis en tête de fiche tel quel.
+3. **Fichier hébergé** (`video`, encodé par `video.py`) : seulement s'il n'y a ni YouTube ni Reel utilisable.
+
+Le lecteur intégré est chargé après l'affichage de la page (photos et texte d'abord). Le site n'a pas de bandeau cookies ; YouTube passe par le domaine sans cookies. Domaines autorisés dans `_headers` (bloc `/biens/*`). Une même vidéo pour deux références : `video_de` (ex. `PREF` → `415`) vaut aussi pour YouTube et Instagram.
+
+### Biens hors Hektor : `outils/biens/manuels.json`
+
+Un bien dont le mandat est signé mais qui n'est pas encore dans `annonces.json` (ex. réf. 519, T4 des Bourroches) se décrit dans `outils/biens/manuels.json`, au format d'une annonce. Champs propres : `mandat` (numéro, date de signature, id du PDF dans le Drive ; **sans date de signature, l'entrée n'est pas publiée**), `secteur` (le quartier, jamais l'adresse), `atouts` (liste). Photos : `sync_photos.py <ref> --drive <dossier> …` (photos du Drive dans l'ordre des noms ; écarter portraits et documents avant). Dès que la même référence arrive dans `annonces.json`, l'annonce Hektor remplace l'entrée manuelle (même adresse de fiche). La référence affichée est le numéro de mandat, jamais un nom de rue ou de vendeur.
