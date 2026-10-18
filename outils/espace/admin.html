@@ -13,12 +13,17 @@
           <div class="field"><label for="ad-email">E-mail de l'agence</label><input type="email" id="ad-email" autocomplete="username" inputmode="email" autocapitalize="off" autocorrect="off" spellcheck="false"><span class="msg">Indiquez votre adresse e-mail.</span></div>
           <p class="ee-err" role="alert" hidden></p><p class="ee-ok" role="status" hidden></p>
           <div class="ee-nav ee-nav-col"><button type="submit" class="btn btn-primary btn-lg" id="ad-lien-btn">Recevoir mon lien de connexion <span class="arw">→</span></button><a class="btn btn-lg" href="/mon-espace/" data-ee-lien="espace">Me connecter avec un mot de passe</a></div>
+          <div class="ee-links" id="ad-no-compte" hidden><button type="button" id="ad-no-sortir">Me déconnecter et changer de compte</button></div>
         </div>
       </form>
     </div>
     <div class="ee-wide" id="ad-in" hidden>
-      <div class="ee-stats" id="ad-stats"></div>
-      <div class="ee-links ee-ad-liens"><a href="/admin/promesses/" data-ee-lien="promesses">Les 7 promesses : tenues ou ratées <span aria-hidden="true">→</span></a></div>
+      <div class="ee-ad-barre">
+        <p class="ee-ad-maj" id="ad-maj" role="status"></p>
+        <div class="ee-links"><button type="button" id="ad-actualiser">Actualiser</button><a href="/admin/promesses/" data-ee-lien="promesses">Les 7 promesses</a><a href="/mon-espace/" data-ee-lien="espace">Mon espace</a><button type="button" id="ad-sortir">Me déconnecter</button></div>
+      </div>
+      <p class="ee-err" id="ad-err" role="alert" hidden></p>
+      <div class="ee-stats" id="ad-stats" role="group" aria-label="Vues rapides : un clic filtre la liste"></div>
       <div class="ee-tabs" role="group" aria-label="Vue"><button type="button" class="pill" data-vue="demandes" aria-pressed="true">Demandes</button><button type="button" class="pill" data-vue="comptes" aria-pressed="false">Comptes</button><button type="button" class="pill" data-vue="reglages" aria-pressed="false">Réglages</button></div>
       <div id="ad-demandes">
         <div class="ee-tools">
@@ -27,7 +32,12 @@
           <select id="ad-statut" aria-label="Statut"><option value="">Tous les statuts</option></select>
           <a class="btn" id="ad-export" href="/api/espace/admin/export.csv?quoi=demandes" download>Export CSV</a>
         </div>
+        <div class="ee-tools ee-tools-2">
+          <label class="ee-check-l"><input type="checkbox" id="ad-essais">Masquer les essais</label>
+          <p class="ee-nb" id="ad-nb" role="status" aria-live="polite"></p>
+        </div>
         <div class="ee-rows" id="ad-rows"></div>
+        <div class="ee-plus"><button type="button" class="btn" id="ad-plus" hidden>Afficher plus de dossiers</button></div>
       </div>
       <div id="ad-comptes" hidden>
         <div class="ee-tools">
@@ -58,6 +68,12 @@
           <p class="meta">Besoin d'une nouvelle clé (tableau partagé par erreur, par exemple) ? Le bouton en crée une et coupe l'ancienne : collez alors les nouvelles formules dans la cellule A1 des onglets « Site » et « Promesses ».</p>
           <div class="acts"><button type="button" class="btn" id="ad-flux">Créer une nouvelle clé</button></div>
           <p class="ee-ok" id="ad-flux-out" role="status" hidden></p>
+        </div>
+        <div class="ee-card" style="margin-top:14px;">
+          <h3>Journal de l'agence</h3>
+          <p class="meta">Qui a exporté les données, supprimé un dossier ou un compte, fabriqué un lien de connexion ou changé un réglage, et quand. Utile pour le RGPD : chaque accès aux données est tracé.</p>
+          <div class="acts"><button type="button" class="btn" id="ad-ja-btn">Afficher le journal</button></div>
+          <div id="ad-ja" hidden></div>
         </div>
       </div>
     </div>
