@@ -3,7 +3,9 @@
    Appelé par le script Gmail (Apps Script) du compte shawez@gravelin-immo.com, jamais par le public.
    Auth : en-tête X-Boss-Token = env.MANYCHAT_TOKEN (même secret que /api/manychat-dm).
 
-   POST JSON : { id (Message-ID Gmail), de (adresse), nom_expediteur, objet, corps (texte brut), recu (ISO), source? }
+   POST JSON : { id (Message-ID Gmail du MESSAGE, pas du fil), de (adresse du prospect : Reply-To ou adresse extraite, jamais
+   la notification de la plateforme), nom_expediteur, objet, corps (texte brut), recu (ISO), source?, essai? (true = rien journalisé) }
+   Reprise : un message en « attente », ou dont l'analyse a échoué / a buté sur le plafond, est retraité au passage suivant.
    Réponse : {
      categorie : acheteur | vendeur | info | professionnel | spam,
      serieux : true/false, raison, nom, prenom, telephone, email, bien_ref, question,
@@ -173,13 +175,17 @@ export async function onRequest({ request, env }) {
         objet: propre(c.objet, 300), corps: propre(c.corps, 8000), recu: propre(c.recu, 40), source: propre(c.source, 60),
       };
       if (!mail.id || !mail.corps) return json(400, { error: 'champs' });
+      // Essai : analyse complète mais rien n'est journalisé (l'id réel n'est pas « consommé »)
+      if (c.essai === true) test = true;
     } else return json(405, { error: 'methode' });
 
     const base = await journal(env).catch(e => { console.log('lead-tri journal', e.message); return null; });
     const { jour } = heureParis();
     if (base && !test) {
-      const deja = await base.prepare('SELECT decision FROM leads_tri WHERE id = ?1').bind(mail.id).first();
-      if (deja) return json(200, { decision: 'rien', raison_decision: 'doublon', categorie: null, reponse: null });
+      // Un message déjà traité n'est pas repris, SAUF s'il attendait un créneau ou si l'analyse avait échoué
+      const deja = await base.prepare('SELECT decision, raison FROM leads_tri WHERE id = ?1').bind(mail.id).first();
+      const aReprendre = deja && (deja.decision === 'attente' || ['analyse_impossible', 'plafond'].includes(deja.raison));
+      if (deja && !aReprendre) return json(200, { decision: 'rien', raison_decision: 'doublon', decision_initiale: deja.decision, categorie: null, reponse: null });
     }
 
     // Règle 9 avant tout appel
@@ -195,6 +201,8 @@ export async function onRequest({ request, env }) {
       depense = (r && r.c) || 0;
     }
     if (depense >= PLAFOND_JOUR_USD) {
+      if (base && !test) await base.prepare('INSERT OR REPLACE INTO leads_tri (id, recu, de, decision, raison, origine, cout, jour, cree) VALUES (?1,?2,?3,?4,?5,?6,0,?7,?8)')
+        .bind(mail.id, mail.recu, mail.de, 'brouillon', 'plafond', 'plafond', jour, new Date().toISOString()).run().catch(() => {});
       return json(200, { decision: 'brouillon', raison_decision: 'plafond', categorie: null, reponse: null,
         notification: `Nouveau mail de ${mail.nom_expediteur || mail.de} : « ${mail.objet} » (plafond du jour atteint, à traiter à la main)` });
     }
@@ -223,7 +231,7 @@ export async function onRequest({ request, env }) {
     }
 
     if (base && !test) {
-      await base.prepare(`INSERT OR IGNORE INTO leads_tri VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11,?12,?13,?14,?15)`)
+      await base.prepare(`INSERT OR REPLACE INTO leads_tri VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11,?12,?13,?14,?15)`)
         .bind(mail.id, mail.recu, mail.de, res ? res.categorie || '' : '', res && res.serieux ? 1 : 0, ref, res ? propre(res.telephone, 30) : '',
           decision, raisonDecision, origine, usage ? usage.input_tokens || 0 : 0, usage ? usage.output_tokens || 0 : 0, cout, jour, new Date().toISOString())
         .run().catch(e => console.log('lead-tri insert', e.message));

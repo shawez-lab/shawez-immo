@@ -140,6 +140,13 @@ async function rediger(env, prenom, commentaire, bien) {
 }
 
 // Lignes vides supprimées, espaces nettoyés : le DM fait au plus 4 lignes non vides
+function creneauOuvert(d = new Date()) {
+  const p = Object.fromEntries(new Intl.DateTimeFormat('fr-FR', { timeZone: 'Europe/Paris', weekday: 'short', hour: '2-digit', hour12: false })
+    .formatToParts(d).map(x => [x.type, x.value]));
+  const h = Number(p.hour);
+  return !/^dim/i.test(p.weekday) && h >= 8 && h < 20;
+}
+
 function normaliser(t) {
   return String(t || '').replace(/\r/g, '').split('\n').map(l => l.trim()).filter(Boolean).join('\n');
 }
@@ -233,6 +240,15 @@ export async function onRequest({ request, env }) {
     // 1. Filtres : règle 9, mode test, doublons
     if (JAMAIS.includes(compte)) return sansMessage('regle9');
     if (env.DM_MODE !== 'live' && !COMPTES_TEST.includes(compte)) return sansMessage('mode_test', { compte });
+    // Règle de Shawez : rien n'est envoyé à un client la nuit (20 h-8 h) ni le dimanche. Le commentaire est journalisé
+    // (origine « hors_creneau ») pour que l'agent « Rattrapage commentaires » réponde au prochain créneau.
+    if (!COMPTES_TEST.includes(compte) && !creneauOuvert()) {
+      const b = await journal(env).catch(() => null);
+      if (b) await b.prepare('INSERT OR IGNORE INTO dm_instagram VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11)')
+        .bind(evenement || `hc-${Date.now()}`, contact, compte, idReel(post), '', jourParis(), 'hors_creneau', 0, 0, 0, new Date().toISOString())
+        .run().catch(() => {});
+      return sansMessage('hors_creneau', { compte });
+    }
     if (!evenement) {
       const brut = new TextEncoder().encode(`${contact}|${idReel(post)}|${commentaire}`);
       evenement = [...new Uint8Array(await crypto.subtle.digest('SHA-256', brut))].slice(0, 12).map(b => b.toString(16).padStart(2, '0')).join('');
