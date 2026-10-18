@@ -1,0 +1,8 @@
+{
+  "_lisezmoi": "Registre vidéo → bien pour /api/manychat-dm. Clé = identifiant du Reel Instagram (instagram.com/reel/<id>). « ref » = référence dans annonces.json ; « manuel » = bien sans annonce publique (jamais d'adresse exacte ni de nom de vendeur ici, ce fichier est public).",
+  "videos": {
+    "test-chevigny": { "ref": "520" },
+    "Dej6eibNLq9": { "manuel": { "ref": "blondel-t4", "type": "Appartement T4 - 68 m²", "commune": "Dijon, quartier des Bourroches (à 10 min du centre)", "prix": "139 000 €", "pieces": "4", "surface": "68 m²", "exterieur": "2 balcons", "atouts": "2e étage, lumineux, deux balcons" } },
+    "Del8q6GtmLp": { "manuel": { "ref": "blondel-t4", "type": "Appartement T4 - 68 m²", "commune": "Dijon, quartier des Bourroches (à 10 min du centre)", "prix": "139 000 €", "pieces": "4", "surface": "68 m²", "exterieur": "2 balcons", "atouts": "2e étage, lumineux, deux balcons" } }
+  }
+}
