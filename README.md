@@ -77,6 +77,15 @@ Cible : `cahier-des-charges/systeme-parfait-vendeur-v1.md` (projet Claude). Bran
 - **Dernière trace** : la liste de `/admin/` affiche sous chaque dossier ce qui s'y est passé en dernier ; elle est relue après chaque action (`tracesRelire` dans `outils/espace/admin.js`).
 - **Tests** : `12-promesses` (les règles sur un jeu de dossiers écrit à la main, chiffres attendus comptés à la main ; un vrai dossier suivi dans l'export ; la page ; le flux ; les droits ; WCAG) et « étape 4 » dans `apercu.spec.mjs`.
 
+### Audit du 18/10/2026 : sécurité et confort de /admin/ et /mon-espace/
+
+État détaillé : `outils/admin-audit-etat.md`.
+
+- **Sessions glissantes** : un vendeur reste connecté tant qu'il revient (30 jours sans visite) ; l'agence, 7 jours sans visite. Session expirée pendant le travail : la page le dit et propose de se reconnecter. « Me déconnecter de tous mes appareils » dans l'espace.
+- **Pages privées** (`functions/admin/_middleware.js`, `functions/mon-espace/_middleware.js`, règles dans `functions/_lib/pages-privees.js`) : politique de sécurité à nonce tiré à chaque affichage, aucun service tiers (la mesure d'audience est retirée), jamais en cache ni dans un cadre. `/functions/…` (code de l'API, schéma) n'est jamais servi.
+- **RGPD** : « Télécharger mes données » dans l'espace (`GET /api/espace/moi/export`) ; journal de l'agence (exports, suppressions, liens fabriqués, réglages) dans `/admin/` → Réglages, actif après la migration `functions/migrations/2026-10-18-admin.sql` (à appliquer à la main, ajouts seulement).
+- **Tableau de bord** : vues rapides cliquables (retards, visites à confirmer, nouvelles, à rappeler), recherche, filtres gardés dans l'onglet, « Masquer les essais », pages de 40 dossiers, Actualiser, Me déconnecter, alerte avant de perdre des notes non enregistrées, confirmations qui se désarment au bout de 8 secondes.
+
 ## Avis Google
 
 Source unique : **`avis.json`**, à la racine. Le script `outils/avis.py` en tire :
