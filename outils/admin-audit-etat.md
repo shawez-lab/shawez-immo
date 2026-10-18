@@ -65,4 +65,6 @@ dépasse de l'écran sur téléphone.
 
 - `cd outils/tests-espace && npm run test:node` : 21 tests node (authentification, sessions, droits, pages privées, RGPD,
   migration) — tous passent. Lancés aussi par GitHub Actions sur chaque demande de fusion (job `node-local`).
-- La série Playwright existante (`npx playwright test`, après `node serveur.mjs`) : voir le résultat dans la PR.
+- La série Playwright existante (`npx playwright test`, après `node serveur.mjs`) : ordinateur 93 réussis, iPhone 13
+  96 réussis, aucun échec (les tests ignorés le sont aussi sur `main`). Un test visait l'ancien emplacement du lien
+  « Les 7 promesses » : mis à jour. PR : https://github.com/shawez-lab/shawez-immo/pull/9
