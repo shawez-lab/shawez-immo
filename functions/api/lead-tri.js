@@ -26,6 +26,7 @@ const MODELE = 'claude-sonnet-5-5';
 const PLAFOND_JOUR_USD = 0.5;
 const PRIX_ENTREE = 2 / 1e6, PRIX_SORTIE = 10 / 1e6;
 const SIGNATURE = 'Shawez Ali — agent immobilier, Gravelin Immo, Dijon — 07 67 57 92 28';
+const NON_PROUVES = /\b(rare|unique|exceptionnel(le)?|id[ée]al(e)?|incroyable)\b/i;
 const INTERDITS = /\b(mandataire|gratuit|gratuite|gratuitement|ia|robot|automatique|automatiquement|claude|chatgpt|intelligence artificielle)\b/i;
 
 // Règle 9 : personnes à ne jamais contacter (noms et adresses connues), et dossiers de Marion.
@@ -107,7 +108,11 @@ null seulement pour professionnel et spam) :
   et je vous dis ») : une réponse utile maintenant, puis la question de rendez-vous. Si une information manque, dis
   simplement qu'on en parlera au téléphone ou sur place.
 - Reprends la question exacte de la personne et réponds-y avec les seules données de la liste des biens (prix tel qu'affiché).
-- Une seule question à la fin pour obtenir un rendez-vous : visite (acheteur) ou estimation sur place offerte (vendeur),
+- Si le bien demandé est absent de la liste (ref_citee hors liste : vendu, sous offre ou retiré), ne propose ni visite
+  ni document de ce bien : remercie, dis qu'il n'est plus disponible à la visite pour le moment, et propose de parler
+  de sa recherche pour lui présenter des biens qui y correspondent.
+- Aucun qualificatif non prouvé par les données (« rare », « unique », « exceptionnel », « idéal »).
+- UNE seule question en tout, à la fin, pour obtenir un rendez-vous : visite (acheteur) ou estimation sur place offerte (vendeur),
   en proposant d'appeler ou de passer, sans donner d'heure précise.
 - Vendeur : jamais de prix ni de fourchette. Jamais l'adresse exacte d'un bien. Jamais de nom d'un autre client.
 - Interdits : « mandataire », « gratuit », « IA », « robot », « automatique », « Claude ». Dis « agent immobilier », « offert ».
@@ -146,6 +151,8 @@ function controle(rep, bienPrix) {
   if (!rep || !rep.corps) return null;
   const t = `${rep.objet || ''}\n${rep.corps}`;
   if (INTERDITS.test(t)) return 'vocabulaire';
+  if (NON_PROUVES.test(t)) return 'qualificatif';
+  if ((rep.corps.match(/\?/g) || []).length > 1) return 'questions';
   if (/je reviens vers vous|je vais me procurer|je vais vérifier|je vous recontacte très vite/i.test(t)) return 'promesse';
   if (/\b\d{1,3}\s?,?\s?(bis|ter)?\s*(rue|avenue|bd|boulevard|place|impasse|allée|chemin|route)\b/i.test(t.replace('30 rue Bannelier', ''))) return 'adresse';
   const chiffres = v => String(v || '').replace(/\D/g, '');
@@ -165,6 +172,8 @@ async function journal(env) {
   await env.DB.prepare('CREATE TABLE IF NOT EXISTS leads_reponses (id TEXT PRIMARY KEY, resultat TEXT, cree TEXT)').run();
   // Coûts des essais, comptés à part (jamais mélangés au journal des vrais leads)
   await env.DB.prepare('CREATE TABLE IF NOT EXISTS leads_essais (jour TEXT, cout REAL, cree TEXT)').run();
+  // Journal des coûts en ajout seul (plafond du jour, alerte mensuelle) : jamais modifié ni remplacé
+  await env.DB.prepare('CREATE TABLE IF NOT EXISTS leads_couts (jour TEXT, id TEXT, cout REAL, essai INTEGER, cree TEXT)').run();
   return env.DB;
 }
 
@@ -190,7 +199,9 @@ export async function onRequest({ request, env }) {
         const id = propre(c.id, 200), applique = propre(c.applique, 30);
         if (!id || !applique) return json(400, { error: 'champs' });
         const b = await journal(env);
-        const r = await b.prepare('UPDATE leads_tri SET raison = ?2 WHERE id = ?1').bind(id, `applique:${applique}`).run();
+        // « attente » n'est qu'un libellé provisoire : le message reste repris au prochain créneau
+        const raison = applique === 'attente' ? 'attente_libellee' : `applique:${applique}`;
+        const r = await b.prepare('UPDATE leads_tri SET raison = ?2 WHERE id = ?1').bind(id, raison).run();
         return json(200, { ok: true, modifie: (r.meta && r.meta.changes) || 0 });
       }
       mail = {
@@ -233,11 +244,12 @@ export async function onRequest({ request, env }) {
 
     let depense = 0;
     if (base) {
-      const r = await base.prepare('SELECT (SELECT COALESCE(SUM(cout), 0) FROM leads_tri WHERE jour = ?1) + (SELECT COALESCE(SUM(cout), 0) FROM leads_essais WHERE jour = ?1) AS c').bind(jour).first();
+      const r = await base.prepare('SELECT COALESCE(SUM(cout), 0) AS c FROM leads_couts WHERE jour = ?1').bind(jour).first();
       depense = (r && r.c) || 0;
     }
     if (depense >= PLAFOND_JOUR_USD) {
-      if (base && !test) await base.prepare('INSERT OR REPLACE INTO leads_tri (id, recu, de, decision, raison, origine, cout, jour, cree) VALUES (?1,?2,?3,?4,?5,?6,0,?7,?8)')
+      if (base && !test) await base.prepare(`INSERT INTO leads_tri (id, recu, de, decision, raison, origine, cout, jour, cree) VALUES (?1,?2,?3,?4,?5,?6,0,?7,?8)
+          ON CONFLICT(id) DO UPDATE SET decision = excluded.decision, raison = excluded.raison`)
         .bind(mail.id, mail.recu, mail.de, 'brouillon', 'plafond', 'plafond', jour, new Date().toISOString()).run().catch(() => {});
       return json(200, { decision: 'brouillon', raison_decision: 'plafond', categorie: null, reponse: null,
         notification: `Nouveau mail de ${mail.nom_expediteur || mail.de} : « ${mail.objet} » (plafond du jour atteint, à traiter à la main)` });
@@ -272,6 +284,9 @@ export async function onRequest({ request, env }) {
       else { decision = 'envoyer'; raisonDecision = 'ok'; }
     }
 
+    if (base && cout) {
+      await base.prepare('INSERT INTO leads_couts VALUES (?1, ?2, ?3, ?4, ?5)').bind(jour, mail.id, cout, test ? 1 : 0, new Date().toISOString()).run().catch(() => {});
+    }
     if (base && test && cout) {
       await base.prepare('INSERT INTO leads_essais VALUES (?1, ?2, ?3)').bind(jour, cout, new Date().toISOString()).run().catch(() => {});
     }
