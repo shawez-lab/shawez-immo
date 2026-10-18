@@ -87,7 +87,7 @@ async function trouverBien(env, request, post) {
 
 const CONSIGNES = `Tu écris, au nom de Shawez Ali, agent immobilier chez Gravelin Immo à Dijon, un message privé Instagram
 à une personne qui vient de commenter la vidéo d'un bien. Règles absolues :
-- 4 lignes maximum, tutoiement, ton chaleureux et naturel, 1 ou 2 emojis maximum, signé implicitement par Shawez (pas de signature).
+- 4 lignes maximum et 600 caractères maximum au total, tutoiement, ton chaleureux et naturel, 1 ou 2 emojis maximum, signé implicitement par Shawez (pas de signature).
 - Commence par le prénom s'il est donné.
 - Si le commentaire pose une question précise (quartier, prix, surface, visite, disponibilité), réponds-y d'abord, en une phrase,
   UNIQUEMENT avec les données du bien fournies. Si la donnée n'y est pas, dis que tu lui envoies la réponse en direct.
@@ -108,7 +108,7 @@ async function rediger(env, prenom, commentaire, bien) {
     headers: { 'x-api-key': env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
     body: JSON.stringify({
       model: env.CLAUDE_MODELE_DM || MODELE,
-      max_tokens: 300,
+      max_tokens: 1024,
       system: CONSIGNES,
       messages: [{ role: 'user', content: `Prénom : ${prenom || '(inconnu)'}\nCommentaire : ${commentaire || '(vide)'}\n\nDonnées du bien :\n${donnees}` }],
     }),
@@ -116,8 +116,17 @@ async function rediger(env, prenom, commentaire, bien) {
   if (!r.ok) throw new Error(`api ${r.status} ${(await r.text()).slice(0, 200)}`);
   const d = await r.json();
   const texte = (d.content || []).filter(b => b.type === 'text').map(b => b.text).join('').trim();
-  if (!texte) throw new Error('reponse vide');
-  return { texte, usage: d.usage || null };
+  const info = {
+    stop_reason: d.stop_reason || null,
+    blocs: (d.content || []).map(b => `${b.type}:${(b.text || b.thinking || '').length}`),
+  };
+  if (!texte) {
+    // On garde l'usage : des jetons ont pu être facturés même sans texte
+    const e = new Error(`reponse vide (${info.stop_reason}; ${info.blocs.join(',')})`);
+    e.usage = d.usage || null; e.info = info;
+    throw e;
+  }
+  return { texte, usage: d.usage || null, info };
 }
 
 function secours(prenom, bien) {
@@ -138,7 +147,7 @@ function controle(texte, bien) {
   const prix = chiffres(bien && bien.prix);
   const montants = (texte.match(/\d[\d\s.\u202f]*\s?(€|euros|k€)/gi) || []).map(chiffres);
   for (const m of montants) if (!prix || (m !== prix && m + '000' !== prix)) return 'montant';
-  if (texte.length > 900) return 'longueur';
+  if (texte.length > 640) return 'longueur';
   return null;
 }
 
@@ -162,9 +171,9 @@ function blocManyChat(texte, bien) {
   ];
   return {
     version: 'v2',
-    content: { type: 'instagram', messages: [{ type: 'text', text: texte.slice(0, 900), buttons: boutons }] },
+    content: { type: 'instagram', messages: [{ type: 'text', text: texte.slice(0, 640), buttons: boutons }] },
     // Champs à plat, pour un mappage en champs personnalisés si on préfère un bloc ManyChat classique :
-    message: texte.slice(0, 900),
+    message: texte.slice(0, 640),
     fiche_url: boutons[0].url,
     bien_ref: bien ? bien.ref || '' : '',
   };
@@ -180,10 +189,14 @@ export async function onRequest({ request, env }) {
       if (u.searchParams.get('diag')) {
         // Diagnostic : un appel minimal à l'API, renvoie le statut et l'erreur éventuelle (jamais la clé)
         try {
-          const { texte, usage } = await rediger(env, 'Test', 'Bonjour', null);
-          return json(200, { ok: true, modele: env.CLAUDE_MODELE_DM || MODELE, extrait: texte.slice(0, 80), usage });
+          const pd = u.searchParams.get('post');
+          const bd = pd ? await trouverBien(env, request, pd) : null;
+          const { texte, usage, info } = await rediger(env, 'Test', u.searchParams.get('c') || 'Bonjour', bd);
+          return json(200, { ok: true, modele: env.CLAUDE_MODELE_DM || MODELE, bien: bd ? bd.ref : null, info, usage,
+            longueur: texte.length, lignes: texte.split('\n').length, controle: controle(texte, bd), texte });
         } catch (e) {
-          return json(200, { ok: false, modele: env.CLAUDE_MODELE_DM || MODELE, erreur: String(e.message || '').replace(/sk-[\w-]+/g, '***').slice(0, 300) });
+          return json(200, { ok: false, modele: env.CLAUDE_MODELE_DM || MODELE, info: e.info || null, usage: e.usage || null,
+            erreur: String(e.message || '').replace(/sk-[\w-]+/g, '***').slice(0, 300) });
         }
       }
       if (!u.searchParams.get('test')) return json(200, { ready: !!env.ANTHROPIC_API_KEY, mode: env.DM_MODE === 'live' ? 'live' : 'test' });
@@ -232,6 +245,7 @@ export async function onRequest({ request, env }) {
         if (refus) { console.log('manychat-dm refus', refus, texte); texte = secours(prenom, bien); origine = `secours_${refus}`; }
       } catch (e) {
         console.log('manychat-dm claude', e.message);
+        if (e.usage) usage = e.usage;
         texte = secours(prenom, bien);
         // Raison courte (statut + type d'erreur Anthropic), jamais la clé : visible dans dm_instagram.origine
         origine = ('secours_api:' + String(e.message || '').replace(/sk-[\w-]+/g, '***').replace(/\s+/g, ' ')).slice(0, 160);
