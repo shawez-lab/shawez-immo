@@ -19,7 +19,7 @@ Règles (textes publics) : jamais d'adresse ni de nom ; aucun chiffre qui ne vie
 import datetime as dt, glob, html, json, os, re, sys, urllib.parse
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from commun import P, SITE, ACTIFS, slug, chemin_fiche, charge_annonces, charge_medias, enregistre_tailles
+from commun import P, SITE, ACTIFS, slug, chemin_fiche, charge_annonces, charge_manuels, charge_medias, charge_youtube, enregistre_tailles
 
 JOURS_VENDU = 60
 TEL, TEL_AFF, WA = '+33767579228', '07 67 57 92 28', '33767579228'
@@ -66,7 +66,15 @@ def titre(a):
     return '%s%s à %s' % (a['type'], (' ' + ', '.join(bits)) if bits else '', a['commune'])
 
 
+def lieu(a):
+    """Commune (code postal) et, pour un bien saisi à la main, le quartier : jamais l'adresse."""
+    s = '%s (%s)' % (a['commune'], a['cp']) if a.get('cp') else a['commune']
+    return s + (', %s' % a['secteur'] if a.get('secteur') else '')
+
+
 def atouts(a):
+    if a.get('atouts'):
+        return list(a['atouts'])
     t, out = carac(a), []
     val = lambda k: nombre(t.get(k, ''))
     terrain = a['type'] in TERRAINS
@@ -334,6 +342,11 @@ CSS_FICHE = CSS_COMMUN + """
 .bf-stage.no-v{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);grid-template-rows:repeat(2,minmax(0,1fr));height:min(70vh,660px);}
 .bf-video{grid-row:1/3;position:relative;background:#0F0E0C;overflow:hidden;}
 .bf-video video{width:100%;height:100%;object-fit:cover;display:block;}
+.bf-emb{min-height:420px;}
+.bf-emb iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;background:#0F0E0C;}
+.bf-emb-ig iframe{background:#fff;}
+.bf-stage.has-ig{grid-template-columns:minmax(340px,.95fr) minmax(0,1.25fr) minmax(0,.8fr);height:min(88vh,820px);}
+.bf-emb .bf-vlab{display:none;}
 .bf-vctl{position:absolute;right:12px;bottom:12px;display:flex;gap:8px;z-index:2;}
 .bf-vctl button{width:44px;height:44px;border-radius:50%;border:0;background:rgba(15,14,12,.66);color:#F3EFE6;display:grid;place-items:center;cursor:pointer;backdrop-filter:blur(6px);}
 .bf-vctl button:focus-visible,.bf-shot:focus-visible,.bf-all:focus-visible{outline:3px solid #E3B341;outline-offset:2px;}
@@ -423,6 +436,8 @@ CSS_FICHE = CSS_COMMUN + """
  .bf-stage{border-radius:0;}
  .bf-stage.has-v{grid-template-columns:1fr;grid-template-rows:auto;height:auto;}
  .bf-stage.has-v .bf-video{grid-row:auto;height:min(78svh,calc(100vw*16/9));}
+ .bf-stage.has-ig{grid-template-columns:1fr;height:auto;}
+ .bf-stage.has-ig .bf-emb{height:calc(100vw*16/9 + 150px);max-height:none;}
  .bf-stage.no-v{display:block;height:auto;}
  .bf-stage .bf-shot:not(.main){display:none;}
  .bf-stage.has-v .bf-shot.main{display:none;}
@@ -492,6 +507,10 @@ if(v){
   if(bp)bp.addEventListener('click',function(){ if(v.paused){ delete v.dataset.pause; essai(); bp.setAttribute('aria-pressed','false'); bp.setAttribute('aria-label','Mettre la vidéo en pause'); bp.innerHTML=bp.dataset.pause; } else { v.dataset.pause='1'; v.pause(); bp.setAttribute('aria-pressed','true'); bp.setAttribute('aria-label','Lire la vidéo'); bp.innerHTML=bp.dataset.play; } });
   if(bs)bs.addEventListener('click',function(){ v.muted=!v.muted; bs.setAttribute('aria-pressed',String(!v.muted)); bs.setAttribute('aria-label',v.muted?'Activer le son':'Couper le son'); bs.innerHTML=v.muted?bs.dataset.off:bs.dataset.on; if(!v.muted)essai(); });
 }
+/* ---- vidéo intégrée (YouTube ou Instagram) : chargée une fois la page affichée, pour garder la page rapide ---- */
+var em=$('#bf-emb');
+if(em){ var charge=function(){ if(em.dataset.go)return; em.dataset.go='1'; em.src=em.getAttribute('data-src'); };
+  if(D.readyState==='complete'){ setTimeout(charge,50); } else { window.addEventListener('load',function(){ setTimeout(charge,50); }); setTimeout(charge,3500); } }
 /* ---- galerie plein écran : glisser au doigt, flèches, clavier ---- */
 var lb=$('#bf-lb'), trk=lb&&$('.trk',lb), cnt=lb&&$('.cnt',lb), last=null, n=0;
 function idx(){ return trk?Math.round(trk.scrollLeft/Math.max(1,trk.clientWidth)):0; }
@@ -631,6 +650,37 @@ def sources_video(vref, video):
     return out
 
 
+def integration(ref, medias):
+    """Vidéo intégrée du bien : YouTube d'abord (lecture automatique sans le son), sinon le Reel Instagram.
+    Champs de medias.json : « youtube » (identifiant, ou fichier outils/biens/youtube.json) et « instagram » (liste de Reels,
+    le premier est affiché). Renvoie ('youtube', id), ('instagram', code) ou None (la vidéo hébergée sert alors de secours)."""
+    m = medias.get(ref) or {}
+    for x in (m, medias.get(m.get('video_de')) or {}):
+        if x.get('youtube'):
+            return 'youtube', x['youtube']
+        if x.get('instagram'):
+            return 'instagram', x['instagram'][0]
+    return None
+
+
+def a_video(ref, medias):
+    m = medias.get(ref) or {}
+    return bool(m.get('video') or m.get('video_de') or integration(ref, medias))
+
+
+def bloc_integration(emb, t):
+    if emb[0] == 'youtube':
+        i = urllib.parse.quote(emb[1])
+        src = 'https://www.youtube-nocookie.com/embed/%s?autoplay=1&mute=1&playsinline=1&loop=1&playlist=%s&rel=0&modestbranding=1' % (i, i)
+        allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen'
+    else:
+        src = 'https://www.instagram.com/reel/%s/embed/' % urllib.parse.quote(emb[1])
+        allow = 'autoplay; encrypted-media; picture-in-picture; clipboard-write; fullscreen'
+    return ('<div class="bf-video bf-emb bf-emb-%s"><span class="bf-vlab bi-vid">%sVisite en vidéo</span>'
+            '<iframe id="bf-emb" data-src="%s" title="Vidéo du bien : %s" allow="%s" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>'
+            % ('yt' if emb[0] == 'youtube' else 'ig', ICO['cam'], E(src), E(t), allow))
+
+
 def carte(a, ph, medias, eager=False):
     n, t = ph[0]
     st = statut(a)
@@ -638,7 +688,7 @@ def carte(a, ph, medias, eager=False):
     tags = ''
     if st:
         tags += '<span class="bi-st %s">%s</span>' % (cls, E(st))
-    if (medias.get(a['ref']) or {}).get('video') or (medias.get(a['ref']) or {}).get('video_de'):
+    if a_video(a['ref'], medias):
         tags += '<span class="bi-vid">%sVidéo</span>' % ICO['cam']
     at = ', '.join(atouts(a)[:3])
     prix = ('%s €' % fr(a['prix'])) if a.get('prix') else 'Prix sur demande'
@@ -646,7 +696,7 @@ def carte(a, ph, medias, eager=False):
             '<span class="bl-body"><span class="bl-p">%s</span><span class="bl-t">%s</span><span class="bl-c">%s</span>%s</span></a>'
             % (chemin_fiche(a), picture(a['ref'], n, t, titre(a), '(max-width:640px) 100vw, (max-width:1100px) 50vw, 420px', eager=eager), tags,
                len(a['photos']['fichiers']), 's' if len(a['photos']['fichiers']) > 1 else '', prix, E(titre(a)),
-               E('%s (%s)' % (a['commune'], a['cp']) if a.get('cp') else a['commune']),
+               E(lieu(a)),
                ('<span class="bl-a">%s</span>' % E(at)) if at else ''))
 
 
@@ -658,6 +708,9 @@ def fiche(a, ph, medias, base, voisins, taux):
     actif = a['status'] in ACTIFS
     video = m.get('video') or (medias.get(m['video_de']) or {}).get('video') if m.get('video_de') else m.get('video')
     vref = m.get('video_de') or ref
+    emb = integration(ref, medias)
+    if emb:
+        video = None          # YouTube ou Instagram en tête de fiche ; le fichier hébergé ne sert qu'en secours
     tour = (m.get('visite_virtuelle') or {}).get('url') or a.get('visite_virtuelle')
     prix = a.get('prix')
     hon, hon_complet = honoraires(a)
@@ -669,12 +722,15 @@ def fiche(a, ph, medias, base, voisins, taux):
     # --- scène : vidéo + photos
     nb = len(ph)
     shots = []
-    for i, (n, tl) in enumerate(ph[:4] if video else ph[:3]):
+    for i, (n, tl) in enumerate(ph[:4] if video or emb else ph[:3]):
         cls = 'bf-shot main' if i == 0 else 'bf-shot'
         shots.append('<button type="button" class="%s" data-photo="%d" aria-label="Agrandir la photo %d sur %d">%s</button>'
                      % (cls, i, i + 1, nb, picture(ref, n, tl, '%s, photo %d' % (t, i + 1),
                                                    '(max-width:820px) 100vw, 60vw' if i == 0 else '(max-width:820px) 78vw, 30vw', eager=(i == 0 and not video))))
-    if video:
+    if emb:
+        shots = shots[:3]
+        vid = bloc_integration(emb, t)
+    elif video:
         shots = shots[:3]
         vid = ('<div class="bf-video"><span class="bf-vlab bi-vid">%sVisite en vidéo</span>'
                '<video id="bf-v" poster="/assets/biens/%s/%s" width="%d" height="%d" muted loop playsinline '
@@ -686,7 +742,7 @@ def fiche(a, ph, medias, base, voisins, taux):
     else:
         vid = ''
     toutes = ('<button type="button" class="bf-all" data-photo="0">%sLes %d photos</button>' % (ICO['grid'], nb)) if nb > 1 else ''
-    stage = '<div class="bf-stage %s">%s%s%s</div>' % ('has-v' if video else 'no-v', vid, ''.join(shots), toutes)
+    stage = '<div class="bf-stage %s">%s%s%s</div>' % ('has-v has-ig' if emb and emb[0] == 'instagram' else 'has-v' if video or emb else 'no-v', vid, ''.join(shots), toutes)
     strip = ('<div class="bf-strip" aria-label="Photos du bien">%s</div>'
              % ''.join('<button type="button" class="bf-shot" data-photo="%d" aria-label="Agrandir la photo %d sur %d">%s</button>'
                        % (i, i + 1, nb, picture(ref, n, tl, '%s, photo %d' % (t, i + 1), '78vw')) for i, (n, tl) in enumerate(ph[:8]))) if nb > 1 else ''
@@ -720,8 +776,8 @@ def fiche(a, ph, medias, base, voisins, taux):
             '<span><b>Shawez Ali</b>, agent immobilier<br>Je vous fais visiter, du lundi au samedi.</span></div></aside>'
             % ('{cls}', prix_html, ancien, E(hon), cta, wa, ICO['wa'], TEL, TEL_AFF, ICO['tel'], ICO['share'], E(ref)))
 
-    entete = ('<div class="bf-title"><div class="tags">%s</div><h1>%s</h1><p class="where">%s%s · Réf. %s</p></div><dl class="bf-keys">%s</dl>'
-              % (tags, E(t), E(a['commune']), (' (%s)' % E(a['cp'])) if a.get('cp') else '', E(ref), keys)) + card.replace('{cls}', 'bf-mob')
+    entete = ('<div class="bf-title"><div class="tags">%s</div><h1>%s</h1><p class="where">%s · Réf. %s</p></div><dl class="bf-keys">%s</dl>'
+              % (tags, E(t), E(lieu(a)), E(ref), keys)) + card.replace('{cls}', 'bf-mob')
 
     # --- sections
     secs = []
@@ -743,11 +799,12 @@ def fiche(a, ph, medias, base, voisins, taux):
                     '<iframe src="%s" title="Visite virtuelle du bien" loading="lazy" allow="fullscreen; xr-spatial-tracking" allowfullscreen></iframe></div></section>' % E(tour))
     # énergie
     if a['type'] not in TERRAINS:
+        nd = 'pas encore reçu' if a.get('manuel') else 'Non indiquée dans l\'annonce'
         dpe_bloc = (('<h3>Classe énergie (DPE) : %s</h3>%s%s' % (lettre, echelle(lettre, DPE_COUL, 'Énergie'),
                      '<p class="bf-note" style="margin-top:8px">Classe indiquée dans la description de l\'annonce.</p>' if src_dpe == 'description' else ''))
-                    if lettre else '<h3>Classe énergie (DPE)</h3><p class="nd">Non indiquée dans l\'annonce : demandez le diagnostic, je vous l\'envoie.</p>')
+                    if lettre else '<h3>Classe énergie (DPE)</h3><p class="nd">%s : demandez le diagnostic, je vous l\'envoie.</p>' % ('Diagnostic ' + nd if a.get('manuel') else nd))
         ges_bloc = (('<h3>Émissions de gaz à effet de serre (GES) : %s</h3>%s' % (lg, echelle(lg, GES_COUL, 'Climat')))
-                    if lg else '<h3>Émissions de gaz à effet de serre (GES)</h3><p class="nd">Non indiquées dans l\'annonce : demandez le diagnostic, je vous l\'envoie.</p>')
+                    if lg else '<h3>Émissions de gaz à effet de serre (GES)</h3><p class="nd">%s : demandez le diagnostic, je vous l\'envoie.</p>' % ('Diagnostic ' + nd if a.get('manuel') else 'Non indiquées dans l\'annonce'))
         cout = ('<p class="bf-note" style="margin-top:18px">Montant estimé des dépenses annuelles d\'énergie pour un usage standard : %s.</p>' % E(a['energie'])) if a.get('energie') else ''
         secs.append('<section class="bf-sec" aria-labelledby="h-nrg"><h2 id="h-nrg">Performance énergétique</h2><div class="bf-nrg"><div>%s</div><div>%s</div></div>%s'
                     '<p class="bf-note">Les informations sur les risques auxquels ce bien est exposé sont disponibles sur le site Géorisques : '
@@ -759,8 +816,8 @@ def fiche(a, ph, medias, base, voisins, taux):
                 'Les honoraires ne sont dus qu\'en cas de vente.</p></section>'
                 % (('%s € · ' % fr(prix)) if prix else '', E(hon)))
     # localisation
-    secs.append('<section class="bf-sec" aria-labelledby="h-loc"><h2 id="h-loc">Localisation</h2><p>%s%s. L\'adresse exacte est communiquée lors de la prise de rendez-vous, '
-                'pour respecter la tranquillité des occupants.</p></section>' % (E(a['commune']), (' (%s)' % E(a['cp'])) if a.get('cp') else ''))
+    secs.append('<section class="bf-sec" aria-labelledby="h-loc"><h2 id="h-loc">Localisation</h2><p>%s. L\'adresse exacte est communiquée lors de la prise de rendez-vous, '
+                'pour respecter la tranquillité des occupants.</p></section>' % E(lieu(a)))
     # simulateur
     if prix and actif and taux[0]:
         secs.append('<section class="bf-sec" aria-labelledby="h-sim"><h2 id="h-sim">Financer ce bien</h2>'
@@ -818,6 +875,11 @@ def fiche(a, ph, medias, base, voisins, taux):
                                 'thumbnailUrl': '%s/assets/biens/%s/%s' % (SITE, urllib.parse.quote(vref), video.get('poster_jpg') or video['poster']),
                                 'contentUrl': '%s/assets/biens/%s/%s' % (SITE, urllib.parse.quote(vref), video['fichier']),
                                 'uploadDate': (m.get('video', {}) or {}).get('date') or a.get('first_seen'), 'duration': 'PT%dS' % int(video.get('duree') or 30)}
+    if emb:
+        annonce['subjectOf'] = {'@type': 'VideoObject', 'name': 'Visite en vidéo : ' + t, 'description': 'Visite en vidéo : ' + t,
+                                'thumbnailUrl': imgs[0] if imgs else '', 'uploadDate': a.get('first_seen'),
+                                'embedUrl': ('https://www.youtube-nocookie.com/embed/%s' % emb[1]) if emb[0] == 'youtube'
+                                else 'https://www.instagram.com/reel/%s/' % emb[1]}
     graph = [annonce,
              {'@type': 'WebPage', '@id': url + '#page', 'url': url, 'name': t, 'inLanguage': 'fr-FR', 'isPartOf': {'@id': SITE + '/#site'},
               'primaryImageOfPage': imgs[0] if imgs else None, 'mainEntity': {'@id': url + '#annonce'}},
@@ -982,7 +1044,11 @@ def sitemap(fiches):
 def construire(etat=None):
     etat = etat or charge_annonces()
     medias = charge_medias().get('biens', {})
-    annonces = [a for a in etat['annonces'].values() if a.get('ref') and a.get('type') and a.get('commune')]
+    for ref, yid in charge_youtube().items():      # outils/biens/youtube.json {ref: id} : prioritaire sur medias.json
+        medias.setdefault(ref, {})['youtube'] = yid
+    # annonces Hektor + biens hors Hektor (outils/biens/manuels.json, mandat signé ; Hektor l'emporte à référence égale)
+    annonces = [a for a in list(etat['annonces'].values()) + list(charge_manuels(etat, medias).values())
+                if a.get('ref') and a.get('type') and a.get('commune')]
     _IDS.clear()
     _IDS.update({a['id']: chemin_fiche(a) for a in annonces if a.get('id') and a['photos']['fichiers']})
     base = gabarit()
@@ -1015,7 +1081,7 @@ def construire(etat=None):
     sitemap(plan)
     n = liens_site()
     print('Fiches : %d (dont %d en ligne) · photos : %d biens · vidéos : %d · pages du site mises à jour : %d'
-          % (len(faites), len(plan), len(ph), sum(1 for a in tous if (medias.get(a['ref']) or {}).get('video') or (medias.get(a['ref']) or {}).get('video_de')), n))
+          % (len(faites), len(plan), len(ph), sum(1 for a in tous if a_video(a['ref'], medias)), n))
 
 
 if __name__ == '__main__':

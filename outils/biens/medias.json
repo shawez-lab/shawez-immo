@@ -124,6 +124,23 @@
     "dossier": "1O0_rxMwj6w6eycs_3UkS1De6DiieoGCf",
     "note": "dossier créé le 18/10/2026 ; photos demandées à Sofia (File Mails, 19/10)",
     "photos_hd": []
+   },
+   "instagram_ecarte": "DZsNfd_I7XO / DZDMX18IHiW / DZDOINHCcUK : images de projection fabriquées et façade sur rue",
+   "video": {
+    "duree": 12.4,
+    "extrait": {
+     "debut": 33.6,
+     "duree": 12.4,
+     "recadrer_haut": 0
+    },
+    "fichier": "video.mp4",
+    "hauteur": 1280,
+    "largeur": 720,
+    "octets": 2266185,
+    "poster": "video-poster.webp",
+    "poster_jpg": "video-poster.jpg",
+    "source": "Médias site / Instagram DZsNfd_I7XO (extrait réel, sans images de projection)",
+    "webm": "video.webm"
    }
   },
   "461": {
@@ -132,6 +149,9 @@
     "note": "dossier créé le 18/10/2026 ; photos demandées à Sofia (File Mails, 19/10)",
     "photos_hd": []
    },
+   "instagram": [
+    "DaZEoi2JQJp"
+   ],
    "video": {
     "duree": 35.5,
     "extrait": {
@@ -155,6 +175,9 @@
     "note": "dossier créé le 18/10/2026 ; photos demandées à Sofia (File Mails, 19/10)",
     "photos_hd": []
    },
+   "instagram": [
+    "DbIp4gFoV3Y"
+   ],
    "video": {
     "duree": 40.0,
     "extrait": {
@@ -199,6 +222,9 @@
     "note": "dossier créé le 18/10/2026 ; photos demandées à Sofia (File Mails, 19/10)",
     "photos_hd": []
    },
+   "instagram": [
+    "DZtAYSaohYX"
+   ],
    "video": {
     "duree": 34.8,
     "extrait": {
@@ -275,6 +301,23 @@
      13,
      15
     ]
+   },
+   "instagram_ecarte": "DcmAYGDN_sX : bandeau avec l'ancien prix (149 000 €) tout le long",
+   "video": {
+    "duree": 37.0,
+    "extrait": {
+     "debut": 11.0,
+     "duree": 37.0,
+     "recadrer_haut": 0.31
+    },
+    "fichier": "video.mp4",
+    "hauteur": 884,
+    "largeur": 720,
+    "octets": 9893670,
+    "poster": "video-poster.webp",
+    "poster_jpg": "video-poster.jpg",
+    "source": "Médias site / Instagram DcmAYGDN_sX (bandeau avec l'ancien prix retiré)",
+    "webm": "video.webm"
    }
   },
   "506": {
@@ -296,6 +339,23 @@
      11,
      12
     ]
+   },
+   "instagram_ecarte": "Dd4nwiGRg_F (et DdRPFQsNHRW) : la vendeuse apparaît au début",
+   "video": {
+    "duree": 19.0,
+    "extrait": {
+     "debut": 8.0,
+     "duree": 19.0,
+     "recadrer_haut": 0
+    },
+    "fichier": "video.mp4",
+    "hauteur": 1280,
+    "largeur": 720,
+    "octets": 4970813,
+    "poster": "video-poster.webp",
+    "poster_jpg": "video-poster.jpg",
+    "source": "Médias site / Instagram Dd4nwiGRg_F (extrait sans personne)",
+    "webm": "video.webm"
    }
   },
   "507": {
@@ -329,6 +389,7 @@
      16
     ]
    },
+   "instagram_ecarte": "DdB3MzWNjuh : « 112 m² » incrusté (l'annonce dit 106 m²)",
    "video": {
     "duree": 45.0,
     "extrait": {
@@ -388,6 +449,9 @@
      20
     ]
    },
+   "instagram": [
+    "DdzDuf0uxln"
+   ],
    "video": {
     "duree": 24.0,
     "extrait": {
@@ -412,12 +476,46 @@
     "photos_hd": []
    }
   },
+  "519": {
+   "drive": {
+    "dossier": "1X3Yddcm-u6i2KjEJ5KjmyK1F9li4M14R",
+    "maj": "2026-10-19",
+    "photos_drive": 13,
+    "photos_hd": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13
+    ],
+    "seules": true
+   },
+   "instagram": [
+    "Del8q6GtmLp",
+    "DegjteDts7n",
+    "Dej6eibNLq9"
+   ]
+  },
   "520": {
    "drive": {
     "dossier": "1s2HCMKqlIbZGTUXJ5Zu4CsEPOnIuniuA",
     "note": "dossier créé le 18/10/2026 ; photos demandées à Sofia (File Mails, 19/10)",
     "photos_hd": []
-   }
+   },
+   "instagram": [
+    "DecRdsBtZE-",
+    "Deb6gfONsBI",
+    "Deb2iRwtCB5",
+    "DeY_bQeoGA3"
+   ]
   },
   "5430963": {
    "drive": {

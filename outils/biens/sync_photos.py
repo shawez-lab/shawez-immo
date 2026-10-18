@@ -20,7 +20,7 @@ Rien n'est jamais supprimé ni déplacé dans le Drive : on ne fait que lire.
 import argparse, base64, datetime as dt, glob, io, json, os, sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from commun import P, charge_annonces, charge_medias, ecrit_medias, dhash, distance, enregistre_tailles
+from commun import P, charge_annonces, charge_manuels, charge_medias, ecrit_medias, dhash, distance, enregistre_tailles
 
 SEUIL = 16          # écart d'empreinte (sur 256) en dessous duquel deux photos sont la même prise de vue
 TAILLES = (640, 1920)
@@ -66,6 +66,8 @@ def main():
     a = ap.parse_args()
 
     annonce = charge_annonces()['annonces'].get(a.ref)
+    if annonce is None and a.ref in charge_manuels(medias={}):
+        annonce = {'photos': {'fichiers': []}}   # bien hors Hektor (outils/biens/manuels.json) : photos du Drive seules
     if annonce is None:
         sys.exit('Référence inconnue dans annonces.json : %s' % a.ref)
     drive = []

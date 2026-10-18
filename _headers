@@ -40,6 +40,6 @@
   X-Robots-Tag: noindex, nofollow
 /biens/*
   ! Content-Security-Policy
-  Content-Security-Policy: default-src 'self'; frame-src https://my.matterport.com https://*.nodalview.com https://kuula.co; script-src 'self' 'unsafe-inline' https://tracker.metricool.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://tracker.metricool.com; media-src 'self'; connect-src 'self' https://tracker.metricool.com https://api-adresse.data.gouv.fr https://data.geopf.fr; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; frame-src https://my.matterport.com https://*.nodalview.com https://kuula.co https://www.youtube-nocookie.com https://www.instagram.com; script-src 'self' 'unsafe-inline' https://tracker.metricool.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://tracker.metricool.com; media-src 'self'; connect-src 'self' https://tracker.metricool.com https://api-adresse.data.gouv.fr https://data.geopf.fr; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests
 /assets/biens/*
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400

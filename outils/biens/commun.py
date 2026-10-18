@@ -29,6 +29,53 @@ def charge_annonces():
     return json.load(open(P('annonces.json'), encoding='utf-8'))
 
 
+MANUELS = P('outils', 'biens', 'manuels.json')
+
+
+def charge_manuels(etat=None, medias=None):
+    """Biens hors Hektor (outils/biens/manuels.json), au format d'annonces.json.
+    Seules les entrées dont le mandat signé est noté sont prises ; une référence déjà présente dans annonces.json l'emporte.
+    Les photos sont celles reprises du Drive (medias.json → drive.photos_hd)."""
+    try:
+        m = json.load(open(MANUELS, encoding='utf-8')).get('annonces', {})
+    except FileNotFoundError:
+        return {}
+    deja = (etat or {}).get('annonces', {})
+    medias = medias if medias is not None else charge_medias().get('biens', {})
+    out = {}
+    for ref, a in m.items():
+        if ref in deja or not (a.get('mandat') or {}).get('signe'):
+            continue
+        a = json.loads(json.dumps(a))
+        a.setdefault('ref', ref)
+        a['manuel'] = True
+        hd = ((medias.get(ref) or {}).get('drive') or {}).get('photos_hd') or []
+        a['photos'] = {'fichiers': a.get('photos', {}).get('fichiers') or ['%d.jpg' % n for n in hd]}
+        out[ref] = a
+    return out
+
+
+YOUTUBE = P('outils', 'biens', 'youtube.json')
+
+
+def charge_youtube():
+    """outils/biens/youtube.json : {"videos": {"<réf>": "<identifiant YouTube>"}} (vidéos « non répertoriées » de la chaîne).
+    Accepte aussi un lien complet (youtu.be/…, youtube.com/watch?v=…, /shorts/…) : on en garde l'identifiant."""
+    try:
+        d = json.load(open(YOUTUBE, encoding='utf-8'))
+    except FileNotFoundError:
+        return {}
+    d = d.get('videos', d)
+    out = {}
+    for ref, v in d.items():
+        if ref.startswith('_') or not v:
+            continue
+        m = re.search(r'(?:v=|youtu\.be/|/shorts/|/embed/|/live/)([A-Za-z0-9_-]{11})', str(v)) or re.fullmatch(r'([A-Za-z0-9_-]{11})', str(v).strip())
+        if m:
+            out[ref] = m.group(1)
+    return out
+
+
 def charge_medias():
     try:
         return json.load(open(MEDIAS, encoding='utf-8'))
