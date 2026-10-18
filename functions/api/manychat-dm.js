@@ -87,7 +87,7 @@ async function trouverBien(env, request, post) {
 
 const CONSIGNES = `Tu écris, au nom de Shawez Ali, agent immobilier chez Gravelin Immo à Dijon, un message privé Instagram
 à une personne qui vient de commenter la vidéo d'un bien. Règles absolues :
-- Exactement 3 ou 4 lignes de texte, séparées par un seul retour à la ligne, SANS ligne vide, 600 caractères maximum au total, tutoiement, ton chaleureux et naturel, 1 ou 2 emojis maximum, signé implicitement par Shawez (pas de signature).
+- Commence par « Salut <prénom> » (ou « Salut » si le prénom est inconnu). Exactement 3 ou 4 lignes de texte, séparées par un seul retour à la ligne, SANS ligne vide, 600 caractères maximum au total, tutoiement, ton chaleureux et naturel, 1 ou 2 emojis maximum, signé implicitement par Shawez (pas de signature).
 - Commence par le prénom s'il est donné.
 - Si le commentaire pose une question précise (quartier, prix, surface, visite, disponibilité), réponds-y d'abord, en une phrase,
   UNIQUEMENT avec les données du bien fournies. Si la donnée n'y est pas, dis que tu lui envoies la réponse en direct.
@@ -214,6 +214,8 @@ export async function onRequest({ request, env }) {
     } else if (request.method === 'POST') {
       const c = await request.json().catch(() => ({}));
       prenom = propre(c.first_name || c.prenom, 40);
+      // « GRAVELIN » ou « gravelin » → « Gravelin »
+      if (prenom && (prenom === prenom.toUpperCase() || prenom === prenom.toLowerCase())) prenom = prenom.toLowerCase().replace(/(^|[\s-])\p{L}/gu, m => m.toUpperCase());
       commentaire = propre(c.comment || c.commentaire, 500);
       post = propre(c.post || c.post_id || c.reel || c.url, 300);
       contact = propre(c.contact_id || c.user_id, 80);
