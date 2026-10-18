@@ -123,8 +123,10 @@ async function rediger(env, prenom, commentaire, bien) {
 function secours(prenom, bien) {
   const p = prenom ? ` ${prenom}` : '';
   if (!bien) return `Salut${p} 👋 merci pour ton commentaire ! C'est Shawez, agent immobilier à Dijon. Dis-moi quel bien t'intéresse ou ce que tu cherches, et je te réponds moi-même. WhatsApp : ${WHATSAPP}`;
-  const t = bien.type ? bien.type.split(' - ')[0].toLowerCase() : 'bien';
-  return `Salut${p} 👋 merci pour ton commentaire ! C'est Shawez, agent immobilier à Dijon. Le dossier de ce ${t} à ${bien.commune}${bien.prix ? ` (${bien.prix})` : ''} est juste en dessous. Tu veux le visiter ou je t'appelle ? WhatsApp : ${WHATSAPP}`;
+  const brut = bien.type ? bien.type.split(' - ')[0].trim() : 'bien';
+  const t = brut.replace(/\b(t\d)\b/gi, m => m.toUpperCase()).replace(/^./, c => c.toLowerCase());
+  const det = /^[aeiouyéèêh]/i.test(t) ? 'cet' : 'ce';
+  return `Salut${p} 👋 merci pour ton commentaire ! C'est Shawez, agent immobilier à Dijon. Le dossier de ${det} ${t} à ${bien.commune}${bien.prix ? ` (${bien.prix})` : ''} est juste en dessous. Tu veux le visiter ou je t'appelle ? WhatsApp : ${WHATSAPP}`;
 }
 
 // Contrôle du texte de Claude avant envoi : vocabulaire, montants, adresse. Renvoie la raison du refus ou null.
@@ -175,6 +177,15 @@ export async function onRequest({ request, env }) {
     let prenom, commentaire, post, contact, compte, evenement, test = false;
     if (request.method === 'GET') {
       const u = new URL(request.url);
+      if (u.searchParams.get('diag')) {
+        // Diagnostic : un appel minimal à l'API, renvoie le statut et l'erreur éventuelle (jamais la clé)
+        try {
+          const { texte, usage } = await rediger(env, 'Test', 'Bonjour', null);
+          return json(200, { ok: true, modele: env.CLAUDE_MODELE_DM || MODELE, extrait: texte.slice(0, 80), usage });
+        } catch (e) {
+          return json(200, { ok: false, modele: env.CLAUDE_MODELE_DM || MODELE, erreur: String(e.message || '').replace(/sk-[\w-]+/g, '***').slice(0, 300) });
+        }
+      }
       if (!u.searchParams.get('test')) return json(200, { ready: !!env.ANTHROPIC_API_KEY, mode: env.DM_MODE === 'live' ? 'live' : 'test' });
       test = true; prenom = 'Test'; commentaire = u.searchParams.get('c') || 'Il est dans quel quartier ?';
       post = u.searchParams.get('post') || 'test-chevigny'; compte = 'gravelin_immo'; contact = 'test'; evenement = `test-${Date.now()}`;
@@ -219,7 +230,12 @@ export async function onRequest({ request, env }) {
         ({ texte, usage } = await rediger(env, prenom, commentaire, bien));
         refus = controle(texte, bien);
         if (refus) { console.log('manychat-dm refus', refus, texte); texte = secours(prenom, bien); origine = `secours_${refus}`; }
-      } catch (e) { console.log('manychat-dm claude', e.message); texte = secours(prenom, bien); origine = 'secours_api'; }
+      } catch (e) {
+        console.log('manychat-dm claude', e.message);
+        texte = secours(prenom, bien);
+        // Raison courte (statut + type d'erreur Anthropic), jamais la clé : visible dans dm_instagram.origine
+        origine = ('secours_api:' + String(e.message || '').replace(/sk-[\w-]+/g, '***').replace(/\s+/g, ' ')).slice(0, 160);
+      }
     }
     const cout = usage ? (usage.input_tokens || 0) * PRIX_ENTREE + (usage.output_tokens || 0) * PRIX_SORTIE : 0;
 
