@@ -61,6 +61,16 @@ async function recevoir(ctx) {
     newsletter: d.consent_newsletter === true,
     formulaire: 'estimation-immobiliere-dijon',
   };
+  // « Demander une visite » depuis une fiche /biens/… : même circuit, la demande porte le bien concerné.
+  const visite = d.formulaire === 'visite-bien';
+  if (visite) {
+    rep.formulaire = 'visite-bien';
+    rep.bien = {
+      ref: texte(d.bien_ref, 40, { requis: true, nom: 'bien_ref' }),
+      titre: texte(d.bien_titre, 160, { nom: 'bien_titre' }),
+      url: texte(d.bien_url, 300, { nom: 'bien_url' }),
+    };
+  }
   const contact = {
     civilite: '',
     prenom: texte(d.prenom, 80, { requis: true, nom: 'prenom' }),
@@ -72,7 +82,9 @@ async function recevoir(ctx) {
   const base = await db(env);
   const ref = reference();
   const t = maintenant();
-  const notes = 'Formulaire « être rappelé » (page Estimation) : pas de fourchette automatique, rappel au plus vite.';
+  const notes = visite
+    ? `Demande de visite du bien réf. ${rep.bien.ref}${rep.bien.titre ? ' (' + rep.bien.titre + ')' : ''} depuis ${rep.bien.url || 'shawez-immo.com'} : rappeler pour fixer la visite.`
+    : 'Formulaire « être rappelé » (page Estimation) : pas de fourchette automatique, rappel au plus vite.';
   await base.prepare(
     `INSERT INTO demandes (reference, compte_id, source, type, adresse, code_postal, commune, reponses, contact, cree_le, suspect, notes)
      VALUES (?1, NULL, ?2, ?3, '', '', ?4, ?5, ?6, ?7, ?8, ?9)`
@@ -92,6 +104,12 @@ async function alerter(env, request, ref, rep, c) {
     ['Projet', rep.delai_libelle], ['Déjà en agence', rep.deja_en_agence ? 'oui (second avis)' : 'non'],
     ['Rappel souhaité', rep.creneau], ['Message', rep.message], ['Fourchette', 'aucune (formulaire « être rappelé ») : rappel promis au plus vite'],
   ].filter(([, v]) => v);
+  if (rep.bien) {
+    // demande de visite : le bien demandé en tête, pas de ligne « fourchette » ni « déjà en agence »
+    lignes.splice(3, lignes.length - 3, ['Bien demandé', `Réf. ${rep.bien.ref}${rep.bien.titre ? ' — ' + rep.bien.titre : ''}`],
+      ['Fiche', rep.bien.url], ['Disponibilités', rep.creneau], ['Message', rep.message]);
+    for (let i = lignes.length - 1; i >= 0; i--) if (!lignes[i][1]) lignes.splice(i, 1);
+  }
   const admin = new URL('/admin/?q=' + encodeURIComponent(ref), request.url).toString();
   const boutons = (c.telephone ? bouton('tel:' + c.telephone.replace(/[^\d+]/g, ''), 'Appeler ' + c.prenom, true) : '')
     + bouton('mailto:' + c.email + '?subject=' + encodeURIComponent('Votre demande d\'estimation ' + ref), 'Répondre', !c.telephone);
@@ -103,6 +121,9 @@ ${lignes.map(([k, v]) => `<tr><td style="padding:7px 12px 7px 0;color:#6B655C;bo
 <tr><td style="padding:12px 24px 8px;font-size:13px;color:#6B655C;">Référence ${esc(ref)} · <a href="${esc(admin)}" style="color:#8A6614;">ouvrir la demande dans l'espace agence</a></td></tr>`);
   const text = `Nouvelle demande de rappel ${ref}\n\n${lignes.map(([k, v]) => `${k} : ${v}`).join('\n')}\n\nAdmin : ${admin}`;
   for (const to of destinatairesAlerte(env)) {
-    await envoyer(env, { to, subject: `Estimation ${rep.commune} — ${nom}${c.telephone ? ' — ' + c.telephone : ''} (à rappeler)`, text, html, replyTo: c.email });
+    const subject = rep.bien
+      ? `Visite réf. ${rep.bien.ref} (${rep.commune}) — ${nom}${c.telephone ? ' — ' + c.telephone : ''}`
+      : `Estimation ${rep.commune} — ${nom}${c.telephone ? ' — ' + c.telephone : ''} (à rappeler)`;
+    await envoyer(env, { to, subject, text, html, replyTo: c.email });
   }
 }

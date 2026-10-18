@@ -53,6 +53,13 @@ async function lireJson(env, request, chemin) {
   return r.json();
 }
 
+// Fiche du bien sur shawez-immo.com : /biens/<ref>-<type>-<commune>/ (même règle que outils/biens/commun.py, chemin_fiche).
+const slug = (s) => String(s || '').normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+function ficheUrl(ref, a) {
+  const bout = [slug(ref), slug(a.type || 'bien'), slug(a.commune)].filter(Boolean).join('-');
+  return `https://shawez-immo.com/biens/${bout}/`;
+}
+
 function ficheDepuisAnnonce(ref, a) {
   const c = a.caracteristiques || {};
   return {
@@ -67,7 +74,7 @@ function ficheDepuisAnnonce(ref, a) {
       .filter(Boolean).join(', '),
     dpe: propre(a.dpe, 5),
     atouts: propre(a.description_expurgee, 400),
-    lien: a.chemin ? `https://www.gravelin-immo.com${a.chemin}` : BIENS,
+    lien: a.type && a.commune ? ficheUrl(ref, a) : BIENS,
   };
 }
 

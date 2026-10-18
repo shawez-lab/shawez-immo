@@ -136,7 +136,7 @@ Le script lit https://www.gravelin-immo.com/vente/1 à 5 (robots.txt respecté, 
 
 - **`annonces.json`**, la source unique : pour chaque référence, le type, la commune et le code postal (jamais l'adresse), le prix, la surface, les pièces, le tableau de caractéristiques, les dépenses d'énergie estimées, les mentions de l'agence, la description expurgée des adresses et des noms, les photos, ainsi que `first_seen`, `last_seen`, `status` et `status_changed`. Il contient aussi la file des posts Google (`posts`).
 - **`annonces/<ref>/1.jpg …`** : toutes les photos, en JPG de 1200 px de large, qualité 85, plus `1-600.webp` pour les cartes. Les images qui ressemblent à un plan ou à un document scanné sont écartées. Le dossier est exclu de l'indexation (`robots.txt`).
-- **`/biens-a-vendre-dijon/`** : la page des biens, avec les cartes, les filtres par type et par commune, et un JSON-LD `ItemList` + `Offer`. Un clic ouvre la fiche de l'agence dans la page `/biens-a-vendre/?fiche=…`.
+- **les fiches `/biens/…` et la page `/biens-a-vendre-dijon/`**, construites à la fin du passage par `outils/biens/build_biens.py` (voir « Biens à vendre : fiches du site » plus bas). Plus aucun lien n'envoie vers le site de l'agence.
 - **`de-claude/annonces-google.md`** : la file des posts de la fiche Google, pour Twin.
 - **`annonces-log.md`** : le journal des changements.
 
@@ -154,3 +154,28 @@ Exclure une photo (plaque lisible, personne, document) : dans `annonces.json`, m
 Sécurités : si le script trouve 0 annonce, ou moins de la moitié des annonces actives la veille, il ne modifie rien et écrit `de-claude/alerte-sync.md`.
 
 Lancer à la main : `python3 outils/sync_annonces.py`. Pour seulement régénérer la page et la file depuis `annonces.json` : `python3 outils/sync_annonces.py --sans-web`.
+
+## Biens à vendre : fiches du site (18/10/2026)
+
+Demande de Shawez : le visiteur trouve chaque annonce sur shawez-immo.com, jamais sur le site de l'agence. `python3 outils/biens/build_biens.py` (relançable, appelé chaque matin par `sync_annonces.py`) construit :
+
+- **une fiche par bien** : `/biens/<ref>-<type>-<commune>/` (ex. `/biens/512-appartement-chenove/` ; même règle dans `outils/biens/commun.py` `chemin_fiche` et dans `functions/api/manychat-dm.js` `ficheUrl`). Galerie (mosaïque, défilement au doigt sur téléphone, plein écran avec flèches, clavier, glisser), **vidéo du bien** en lecture automatique, sans le son, en boucle (`<video autoplay muted loop playsinline>` + affiche ; boutons son et pause), **visite virtuelle** (iframe, seulement si un lien existe), prix (et ancien prix barré), chiffres clés, atouts, description de l'agence sans adresse ni nom ni téléphone de collaborateur, caractéristiques, copropriété, **DPE / GES** (échelles A–G), dépenses d'énergie, Géorisques, **honoraires**, localisation (commune et code postal seulement), **simulateur de prêt** prérempli (mêmes taux que `/simulateur-pret-immobilier-dijon/`, lus dans sa page), **demande de visite** (→ `/api/lead`, `formulaire: "visite-bien"` : la demande arrive dans `/admin/` et par e-mail « Visite réf. … »), WhatsApp, appel, partage, biens proches. JSON-LD `RealEstateListing` + `Offer` (+ `VideoObject`), Open Graph avec `assets/biens/<ref>/og.jpg`. Les biens « retirée » gardent une fiche `noindex` (« n'est plus disponible ») ; ils sortent de la page des biens et du sitemap.
+- **la page des biens** `/biens-a-vendre-dijon/` : filtres type, commune, prix min. et max., surface min., tri ; l'état des filtres est dans l'adresse (`?prix_max=200000`, utilisé par le bouton « Voir les biens dans ce budget » du simulateur).
+- **`/biens-a-vendre/`** : ancienne adresse `?fiche=<lien de l'agence>` → renvoie vers la fiche interne (numéro de fiche de l'agence).
+- **les liens du site** : tout lien vers `gravelin-immo.com/vente/…` devient `/biens-a-vendre-dijon/` ou la fiche du bien (sauf `admin/`, `mon-espace/`, `outils/`, `de-claude/`). Les mentions de l'agence (nom, mentions légales, estimation) ne bougent pas.
+- **`sitemap.xml`** : une ligne par fiche en ligne.
+
+Règles : aucun chiffre qui ne vienne de l'annonce. Donnée absente = la fiche le dit. **DPE** : lettre de l'annonce si l'agence la publie (lue par `sync_annonces.py` quand elle est écrite en toutes lettres), sinon celle écrite dans la description (« DPE : D »), sinon « non indiquée : demandez le diagnostic ». **GES** : idem. **Honoraires** : `honoraires_vendeur` dans le tableau de l'agence → « à la charge du vendeur » ; `prix_honoraires_inclus` → « prix honoraires inclus », et la fiche dit que le montant et le prix hors honoraires ne figurent pas dans l'annonce (obligation loi Alur à compléter dans Hektor par l'agence : pourcentage et prix hors honoraires quand ils sont à la charge de l'acquéreur).
+
+### Photos : le dossier Drive du bien
+
+- Registre : `outils/biens/medias.json` (non publié) — pour chaque référence : `drive.dossier` (id du dossier Drive des photos), `drive.photos_hd` (photos remplacées par la version HD), `video`, `video_de` (même vidéo qu'un autre bien, ex. `PREF` → `415`), `visite_virtuelle.url`.
+- Dossiers Drive : les mandats de Shawez ont un sous-dossier `Photos` dans « 01 - MANDATS EN COURS / IMMOBILIER — Résidentiel & Locatif / <adresse> ». Pour les autres biens, un dossier par référence a été créé le 18/10 dans « 01 - MANDATS EN COURS / PHOTOS DES BIENS — site shawez-immo.com / <ref> — <type> <commune> » ; Sofia y dépose les photos (demande envoyée par la File Mails le 19/10).
+- **Procédure pour un nouveau bien (ou quand Sofia a déposé des photos)** :
+  1. Trouver le dossier : `outils/biens/medias.json` (`drive.dossier`), sinon recherche Drive (`title contains '<ref>'`, ou l'adresse du mandat dans « 01 - MANDATS EN COURS »).
+  2. Lister les photos du dossier (Drive `search_files` avec `parentId = '<dossier>'`), puis les télécharger une par une avec `download_file_content` : l'outil enregistre chaque photo dans un fichier JSON (base64) ; noter les chemins. (Limite de l'outil : 10 Mo par fichier ; une vidéo plus lourde se récupère depuis le Mac de Shawez, Bureau « GRAVELIN IMMO - SÉLECTION PREMIUM » ou « GRAVELIN IMMO - Médias site », avec `device_stage_files`.)
+  3. `python3 outils/biens/sync_photos.py <ref> --drive <id du dossier> <fichiers JSON ou photos…>` : chaque photo de l'annonce est retrouvée dans le Drive par empreinte visuelle et remplacée par sa version HD (AVIF + WebP, 640 et 1920 px). Une annonce sans photo prend les photos du Drive dans l'ordre des noms.
+  4. Vidéo : `python3 outils/biens/video.py <ref> <source.mp4> --debut S --duree S [--recadrer-haut 0.22]` (H.264 720 px, < 19 Mo, affiche). **Regarder la vidéo avant** : couper tout passage avec une adresse, un ancien prix, un chiffre qui ne correspond plus à l'annonce ou une image fabriquée (le script s'arrête aux paramètres donnés).
+  5. Visite virtuelle : ajouter `"visite_virtuelle": {"url": "https://my.matterport.com/show/?m=…"}` dans `medias.json` (domaines autorisés dans `_headers`, bloc `/biens/*` : Matterport, Nodalview, Kuula).
+  6. `python3 outils/biens/build_biens.py`, vérifier la fiche, pousser sur `main`.
+- Rien n'est jamais supprimé ni déplacé dans le Drive.

@@ -1,0 +1,468 @@
+{
+ "_lisezmoi": "Registre des médias des fiches /biens/ (non publié). drive.dossier = id du dossier Google Drive des photos du bien ; drive.photos_hd = photos de l'annonce remplacées par leur version HD du Drive ; video = vidéo encodée par outils/biens/video.py ; video_de = même vidéo qu'une autre référence ; visite_virtuelle.url = lien Matterport/Nodalview/Kuula. Procédure : README, « Biens à vendre : fiches du site ».",
+ "biens": {
+  "383": {
+   "drive": {
+    "dossier": "12YbjHA_wqF7WqX4SMzkml_uqwKyzL52j",
+    "note": "dossier créé le 18/10/2026 ; photos demandées à Sofia (File Mails, 19/10)",
+    "photos_hd": []
+   }
+  },
+  "394": {
+   "drive": {
+    "dossier": "1QT7abLgTFJrwfYXk2iAU5sh_-U0I4sqi",
+    "note": "dossier créé le 18/10/2026 ; photos demandées à Sofia (File Mails, 19/10)",
+    "photos_hd": []
+   }
+  },
+  "403": {
+   "drive": {
+    "dossier": "1Z7DhT4G4Kdw5JHdw2YbCrHjLhX2koxTT",
+    "note": "dossier créé le 18/10/2026 ; photos demandées à Sofia (File Mails, 19/10)",
+    "photos_hd": []
+   }
+  },
+  "415": {
+   "drive": {
+    "dossier": "14DUNhH5StOCyNJuDmmt2vDCLMob1aNFZ",
+    "note": "dossier créé le 18/10/2026 ; photos demandées à Sofia (File Mails, 19/10)",
+    "photos_hd": []
+   },
+   "video": {
+    "duree": 40.0,
+    "extrait": {
+     "debut": 4.0,
+     "duree": 40.0,
+     "recadrer_haut": 0.0
+    },
+    "fichier": "video.mp4",
+    "hauteur": 640,
+    "largeur": 360,
+    "octets": 2126019,
+    "poster": "video-poster.webp",
+    "poster_jpg": "video-poster.jpg",
+    "source": "Médias site / Instagram 2025-11-21 duplex",
+    "webm": "video.webm"
+   }
+  },
+  "425": {
+   "drive": {
+    "dossier": "1pDFKOo5jaBO8X5Ow8E6ZXGPgU1uPnd0U",
+    "note": "dossier créé le 18/10/2026 ; photos demandées à Sofia (File Mails, 19/10)",
+    "photos_hd": []
+   }
+  },
+  "431": {
+   "drive": {
+    "dossier": "1KYJZFs1tHRZVRv4Wj-P5tfbUDBPBnNRx",
+    "note": "dossier créé le 18/10/2026 ; photos demandées à Sofia (File Mails, 19/10)",
+    "photos_hd": []
+   }
+  },
+  "433": {
+   "drive": {
+    "dossier": "18uhdNU3wQ-OoZZEPHh3rh1kkm8w9-Eiv",
+    "note": "dossier créé le 18/10/2026 ; photos demandées à Sofia (File Mails, 19/10)",
+    "photos_hd": []
+   }
+  },
+  "438": {
+   "drive": {
+    "dossier": "176DEA0PFE4GgW2U3y_esf0B9RW4mqW3i",
+    "note": "dossier créé le 18/10/2026 ; photos demandées à Sofia (File Mails, 19/10)",
+    "photos_hd": []
+   },
+   "video": {
+    "duree": 30.0,
+    "extrait": {
+     "debut": 16.0,
+     "duree": 30.0,
+     "recadrer_haut": 0.0
+    },
+    "fichier": "video.mp4",
+    "hauteur": 1280,
+    "largeur": 720,
+    "octets": 8348240,
+    "poster": "video-poster.webp",
+    "poster_jpg": "video-poster.jpg",
+    "source": "GRAVELIN IMMO - SÉLECTION PREMIUM / 02 - Reels biens d'exception / 2026-03-16 château (extrait sans texte)",
+    "webm": "video.webm"
+   }
+  },
+  "441": {
+   "drive": {
+    "dossier": "15w29hJkBQ-Sn6i0TnNlXKjgw0jCYxG7z",
+    "note": "dossier créé le 18/10/2026 ; photos demandées à Sofia (File Mails, 19/10)",
+    "photos_hd": []
+   },
+   "video": {
+    "duree": 40.0,
+    "extrait": {
+     "debut": 10.0,
+     "duree": 40.0,
+     "recadrer_haut": 0.0
+    },
+    "fichier": "video.mp4",
+    "hauteur": 1280,
+    "largeur": 720,
+    "octets": 7705657,
+    "poster": "video-poster.webp",
+    "poster_jpg": "video-poster.jpg",
+    "source": "GRAVELIN IMMO - SÉLECTION PREMIUM / 02 - Reels biens d'exception / 2026-03-24 Plombières (sans l'ancien prix)",
+    "webm": "video.webm"
+   }
+  },
+  "446": {
+   "drive": {
+    "dossier": "19JnSd_ihbtJdYEAKPzqwiGF1lkfjiHzY",
+    "note": "dossier créé le 18/10/2026 ; photos demandées à Sofia (File Mails, 19/10)",
+    "photos_hd": []
+   }
+  },
+  "452IMMEUBLE": {
+   "drive": {
+    "dossier": "1O0_rxMwj6w6eycs_3UkS1De6DiieoGCf",
+    "note": "dossier créé le 18/10/2026 ; photos demandées à Sofia (File Mails, 19/10)",
+    "photos_hd": []
+   }
+  },
+  "461": {
+   "drive": {
+    "dossier": "1CYcPZldjgWbYz9h44CO39pzKR9vR-QPs",
+    "note": "dossier créé le 18/10/2026 ; photos demandées à Sofia (File Mails, 19/10)",
+    "photos_hd": []
+   },
+   "video": {
+    "duree": 35.5,
+    "extrait": {
+     "debut": 2.0,
+     "duree": 0.0,
+     "recadrer_haut": 0.0
+    },
+    "fichier": "video.mp4",
+    "hauteur": 1280,
+    "largeur": 720,
+    "octets": 10294121,
+    "poster": "video-poster.webp",
+    "poster_jpg": "video-poster.jpg",
+    "source": "GRAVELIN IMMO - SÉLECTION PREMIUM / 02 - Reels biens d'exception / 2026-07-05 studio Marrakech",
+    "webm": "video.webm"
+   }
+  },
+  "461BALI": {
+   "drive": {
+    "dossier": "1VlKIhlUx58to_wJaUDRy1nSLVsv_nsZj",
+    "note": "dossier créé le 18/10/2026 ; photos demandées à Sofia (File Mails, 19/10)",
+    "photos_hd": []
+   },
+   "video": {
+    "duree": 40.0,
+    "extrait": {
+     "debut": 4.0,
+     "duree": 40.0,
+     "recadrer_haut": 0.0
+    },
+    "fichier": "video.mp4",
+    "hauteur": 1280,
+    "largeur": 720,
+    "octets": 9082168,
+    "poster": "video-poster.webp",
+    "poster_jpg": "video-poster.jpg",
+    "source": "GRAVELIN IMMO - SÉLECTION PREMIUM / 02 - Reels biens d'exception / 2026-07-23 immeuble des studios",
+    "webm": "video.webm"
+   }
+  },
+  "463": {
+   "drive": {
+    "dossier": "1xoTOAWVeD2qri9Iq8TYAzgLgrPDqbk6k",
+    "note": "dossier créé le 18/10/2026 ; photos demandées à Sofia (File Mails, 19/10)",
+    "photos_hd": []
+   }
+  },
+  "474": {
+   "drive": {
+    "dossier": "1OS5wUHbsqq7RQyuEBWvRX5p5FO55Eol0",
+    "note": "dossier créé le 18/10/2026 ; photos demandées à Sofia (File Mails, 19/10)",
+    "photos_hd": []
+   }
+  },
+  "481": {
+   "drive": {
+    "dossier": "1IciBAXLRWQaOndA0bi2dzc3uiJcHyAqS",
+    "note": "dossier créé le 18/10/2026 ; photos demandées à Sofia (File Mails, 19/10)",
+    "photos_hd": []
+   }
+  },
+  "483": {
+   "drive": {
+    "dossier": "1VCY5SXFRMWin55OOZbgnBJh7_j29KnHH",
+    "note": "dossier créé le 18/10/2026 ; photos demandées à Sofia (File Mails, 19/10)",
+    "photos_hd": []
+   },
+   "video": {
+    "duree": 34.8,
+    "extrait": {
+     "debut": 0.0,
+     "duree": 0.0,
+     "recadrer_haut": 0.0
+    },
+    "fichier": "video.mp4",
+    "hauteur": 1280,
+    "largeur": 720,
+    "octets": 6660209,
+    "poster": "video-poster.webp",
+    "poster_jpg": "video-poster.jpg",
+    "source": "GRAVELIN IMMO - SÉLECTION PREMIUM / 02 - Reels biens d'exception / 2026-06-17 loft",
+    "webm": "video.webm"
+   }
+  },
+  "494": {
+   "drive": {
+    "dossier": "1WcE6-l9CLbD9tnBqIafZ0cTikaeXr_MG",
+    "note": "dossier créé le 18/10/2026 ; photos demandées à Sofia (File Mails, 19/10)",
+    "photos_hd": []
+   }
+  },
+  "500A": {
+   "drive": {
+    "dossier": "1FbBnPkRbnSm-O0yISO0NcaSaKMAZsEn4",
+    "maj": "2026-10-18",
+    "photos_drive": 36,
+    "photos_hd": [
+     1,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15,
+     18,
+     19,
+     20,
+     21,
+     22,
+     23,
+     24,
+     25
+    ]
+   }
+  },
+  "501": {
+   "drive": {
+    "dossier": "1ZhTkSx5pgd339KrdvdZ_get8F_JkHozk",
+    "maj": "2026-10-18",
+    "photos_drive": 19,
+    "photos_hd": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     15
+    ]
+   }
+  },
+  "506": {
+   "drive": {
+    "dossier": "1aasyoTAZiq-fhuX7kUIhez4ExOCGtbtd",
+    "maj": "2026-10-18",
+    "photos_drive": 22,
+    "photos_hd": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ]
+   }
+  },
+  "507": {
+   "drive": {
+    "dossier": "1ZE2EW6MO9O-nDHMcUyRF1SZn2mfibtpj",
+    "note": "dossier créé le 18/10/2026 ; photos demandées à Sofia (File Mails, 19/10)",
+    "photos_hd": []
+   }
+  },
+  "508": {
+   "drive": {
+    "dossier": "1TPDjbLAvADSEAHZZSCVqVcf5Jc2kgzwy",
+    "maj": "2026-10-18",
+    "photos_drive": 17,
+    "photos_hd": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15,
+     16
+    ]
+   },
+   "video": {
+    "duree": 45.0,
+    "extrait": {
+     "debut": 0.0,
+     "duree": 45.0,
+     "recadrer_haut": 0.22
+    },
+    "fichier": "video.mp4",
+    "hauteur": 998,
+    "largeur": 720,
+    "octets": 9593441,
+    "poster": "video-poster.webp",
+    "poster_jpg": "video-poster.jpg",
+    "source": "SÉLECTION PREMIUM / 04 - Shorts / 2026-09-08 Chenôve (bandeau recadré)",
+    "webm": "video.webm"
+   }
+  },
+  "509": {
+   "drive": {
+    "dossier": "1CsTtHygqRg2da5nL5Qw4CbkiqMwpRefK",
+    "note": "dossier créé le 18/10/2026 ; photos demandées à Sofia (File Mails, 19/10)",
+    "photos_hd": []
+   }
+  },
+  "510": {
+   "drive": {
+    "dossier": "1TyInnLIxg7BRcUIxhJrbhUBF8XY2k9wp",
+    "note": "dossier créé le 18/10/2026 ; photos demandées à Sofia (File Mails, 19/10)",
+    "photos_hd": []
+   }
+  },
+  "512": {
+   "drive": {
+    "dossier": "13oWV5g433CKiR-epJDNJ2bC1RfYjy4az",
+    "maj": "2026-10-18",
+    "photos_drive": 20,
+    "photos_hd": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15,
+     16,
+     17,
+     18,
+     19,
+     20
+    ]
+   },
+   "video": {
+    "duree": 24.0,
+    "extrait": {
+     "debut": 8.0,
+     "duree": 24.0,
+     "recadrer_haut": 0.0
+    },
+    "fichier": "video.mp4",
+    "hauteur": 1280,
+    "largeur": 720,
+    "octets": 5599429,
+    "poster": "video-poster.webp",
+    "poster_jpg": "video-poster.jpg",
+    "source": "Médias site / Instagram DdzDuf0uxln",
+    "webm": "video.webm"
+   }
+  },
+  "513": {
+   "drive": {
+    "dossier": "13l_OuzRxp8r-Mg1ev3wj9T8oE6t3Tagh",
+    "note": "dossier créé le 18/10/2026 ; photos demandées à Sofia (File Mails, 19/10)",
+    "photos_hd": []
+   }
+  },
+  "520": {
+   "drive": {
+    "dossier": "1s2HCMKqlIbZGTUXJ5Zu4CsEPOnIuniuA",
+    "note": "dossier créé le 18/10/2026 ; photos demandées à Sofia (File Mails, 19/10)",
+    "photos_hd": []
+   }
+  },
+  "5430963": {
+   "drive": {
+    "dossier": "1bl9iM_rCOQ-xIOAU1izWpjAHFwFXMB8B",
+    "note": "dossier créé le 18/10/2026 ; photos demandées à Sofia (File Mails, 19/10)",
+    "photos_hd": []
+   }
+  },
+  "Combottes": {
+   "drive": {
+    "dossier": "19TSqI8hIbfHS3TTZzSA5lxgCjijc6Tc7",
+    "note": "dossier créé le 18/10/2026 ; photos demandées à Sofia (File Mails, 19/10)",
+    "photos_hd": []
+   }
+  },
+  "Mandat": {
+   "drive": {
+    "dossier": "1Qwt4PAVxac2Jaa8WpbKw69WAo8fhRtnA",
+    "note": "dossier créé le 18/10/2026 ; photos demandées à Sofia (File Mails, 19/10)",
+    "photos_hd": []
+   },
+   "video": {
+    "duree": 30.0,
+    "extrait": {
+     "debut": 16.0,
+     "duree": 30.0,
+     "recadrer_haut": 0.0
+    },
+    "fichier": "video.mp4",
+    "hauteur": 1280,
+    "largeur": 720,
+    "octets": 6301442,
+    "poster": "video-poster.webp",
+    "poster_jpg": "video-poster.jpg",
+    "source": "Médias site / Instagram 2026-06-20 Neuilly (sans adresse ni prix)",
+    "webm": "video.webm"
+   }
+  },
+  "PREF": {
+   "drive": {
+    "dossier": "1bq1Isol-nbGSowiG17mrvjDbl38IyD4-",
+    "note": "dossier créé le 18/10/2026 ; photos demandées à Sofia (File Mails, 19/10)",
+    "photos_hd": []
+   },
+   "video_de": "415"
+  }
+ }
+}

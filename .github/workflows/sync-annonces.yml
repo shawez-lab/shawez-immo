@@ -40,7 +40,7 @@ jobs:
 
       - name: Dépendances
         if: steps.heure.outputs.go == '1'
-        run: pip install --quiet pillow
+        run: pip install --quiet 'pillow>=11.3'   # AVIF compris (photos des fiches /biens/…)
 
       - name: Synchronisation
         if: steps.heure.outputs.go == '1'
@@ -57,7 +57,7 @@ jobs:
         run: |
           git config user.name "sync-annonces"
           git config user.email "sync-annonces@users.noreply.github.com"
-          git add -A annonces.json annonces annonces-log.md biens-a-vendre-dijon sitemap.xml de-claude conseils
+          git add -A annonces.json annonces annonces-log.md biens-a-vendre-dijon biens-a-vendre biens assets/biens outils/biens/medias.json sitemap.xml de-claude conseils
           if git diff --cached --quiet; then
             echo "Aucun changement."
           else
