@@ -14,7 +14,9 @@
      notification : une ligne pour Shawez, origine, cout
    }
    Le script Gmail applique la décision : « envoyer » → envoi ; « brouillon » → brouillon Gmail ; « attente » → libellé,
-   envoi au prochain créneau (lun-sam 8 h-20 h) ; « rien » → libellé seulement.
+   envoi au prochain créneau (lun-sam 8 h-20 h) ; « rappel » → prospect sans e-mail fiable : notification « à rappeler » ;
+   « rien » → libellé seulement. Puis il CONFIRME : POST {action:'confirme', id, applique:'brouillon|envoye|attente|rappel|rien'}.
+   Tant que ce n'est pas confirmé, un nouvel appel renvoie la même réponse (conservée), sans nouvel appel facturé.
 
    Mode : tant que env.LEAD_MODE !== 'live', la décision n'est jamais « envoyer » (brouillon à la place).
    GET ?test=1 → essai sur un faux mail d'acheteur, sans rien écrire dans la base.
@@ -85,7 +87,7 @@ et tu écris la première réponse par mail, en son nom, comme lui l'écrirait.
 
 Réponds UNIQUEMENT avec un objet JSON valide, sans texte autour :
 {"categorie":"acheteur|vendeur|info|professionnel|spam","serieux":true|false,"raison":"une ligne",
- "prenom":"","nom":"","telephone":"","email":"","bien_ref":"référence de la liste ou vide","question":"ce que la personne demande, en une ligne",
+ "prenom":"","nom":"","telephone":"","email":"","bien_ref":"référence de la liste ou vide","ref_citee":"référence ou nom cité dans le mail, ou vide","question":"ce que la personne demande, en une ligne",
  "reponse":{"objet":"","corps":""} ou null,"notification":"une ligne pour Shawez : prénom, bien, ce qu'il veut, téléphone"}
 
 Règles de tri :
@@ -93,9 +95,17 @@ Règles de tri :
   d'un particulier ; professionnel : notaire, banque, diagnostiqueur, autre agence, fournisseur ; spam : publicité, démarchage.
 - serieux = true si la personne donne un téléphone, une disponibilité, un projet daté ou une question précise.
 - Ne recopie que ce qui est écrit dans le mail : un champ absent reste vide. Ne devine jamais un téléphone ou un nom.
+- bien_ref : la référence de la liste qui correspond au bien demandé. Si le mail cite une référence (« réf. 498 ») ou un nom
+  de commerce absent de la liste, mets-la dans "ref_citee" et laisse bien_ref vide. Recopie les noms propres EXACTEMENT
+  (nom du commerce, de la rue, de la personne), sans jamais les modifier.
+- Une demande sur un local, un fonds de commerce ou sa disponibilité est « acheteur », pas « info ».
 
-Règles de la réponse (seulement pour acheteur, vendeur, info ; null pour professionnel et spam) :
-- Vouvoiement, 5 à 8 lignes, chaleureux, simple, humain, sans formule toute faite ni superlatif.
+Règles de la réponse (TOUJOURS une réponse pour acheteur, vendeur, info, même si le mail ne donne qu'un téléphone ;
+null seulement pour professionnel et spam) :
+- Vouvoiement, 4 à 6 lignes courtes, factuel, chaleureux, humain, sans formule toute faite ni superlatif.
+- Pas d'excuses, pas de promesse d'action future (« je reviens vers vous très vite », « je vais me procurer », « je vérifie
+  et je vous dis ») : une réponse utile maintenant, puis la question de rendez-vous. Si une information manque, dis
+  simplement qu'on en parlera au téléphone ou sur place.
 - Reprends la question exacte de la personne et réponds-y avec les seules données de la liste des biens (prix tel qu'affiché).
 - Une seule question à la fin pour obtenir un rendez-vous : visite (acheteur) ou estimation sur place offerte (vendeur),
   en proposant d'appeler ou de passer, sans donner d'heure précise.
@@ -136,6 +146,7 @@ function controle(rep, bienPrix) {
   if (!rep || !rep.corps) return null;
   const t = `${rep.objet || ''}\n${rep.corps}`;
   if (INTERDITS.test(t)) return 'vocabulaire';
+  if (/je reviens vers vous|je vais me procurer|je vais vérifier|je vous recontacte très vite/i.test(t)) return 'promesse';
   if (/\b\d{1,3}\s?,?\s?(bis|ter)?\s*(rue|avenue|bd|boulevard|place|impasse|allée|chemin|route)\b/i.test(t.replace('30 rue Bannelier', ''))) return 'adresse';
   const chiffres = v => String(v || '').replace(/\D/g, '');
   const prix = chiffres(bienPrix);
@@ -150,6 +161,10 @@ async function journal(env) {
   await env.DB.prepare(`CREATE TABLE IF NOT EXISTS leads_tri (
     id TEXT PRIMARY KEY, recu TEXT, de TEXT, categorie TEXT, serieux INTEGER, bien_ref TEXT, telephone TEXT,
     decision TEXT, raison TEXT, origine TEXT, entree INTEGER, sortie INTEGER, cout REAL, jour TEXT, cree TEXT)`).run();
+  // Réponse conservée jusqu'à confirmation par le script Gmail (aucune demande perdue, aucun nouvel appel facturé)
+  await env.DB.prepare('CREATE TABLE IF NOT EXISTS leads_reponses (id TEXT PRIMARY KEY, resultat TEXT, cree TEXT)').run();
+  // Coûts des essais, comptés à part (jamais mélangés au journal des vrais leads)
+  await env.DB.prepare('CREATE TABLE IF NOT EXISTS leads_essais (jour TEXT, cout REAL, cree TEXT)').run();
   return env.DB;
 }
 
@@ -170,6 +185,14 @@ export async function onRequest({ request, env }) {
       };
     } else if (request.method === 'POST') {
       const c = await request.json().catch(() => ({}));
+      if (c.action === 'confirme') {
+        // Le script confirme que la décision a bien été appliquée dans Gmail (brouillon créé, envoyé, libellé posé…)
+        const id = propre(c.id, 200), applique = propre(c.applique, 30);
+        if (!id || !applique) return json(400, { error: 'champs' });
+        const b = await journal(env);
+        const r = await b.prepare('UPDATE leads_tri SET raison = ?2 WHERE id = ?1').bind(id, `applique:${applique}`).run();
+        return json(200, { ok: true, modifie: (r.meta && r.meta.changes) || 0 });
+      }
       mail = {
         id: propre(c.id, 200), de: propre(c.de, 200).toLowerCase(), nom_expediteur: propre(c.nom_expediteur, 120),
         objet: propre(c.objet, 300), corps: propre(c.corps, 8000), recu: propre(c.recu, 40), source: propre(c.source, 60),
@@ -182,10 +205,23 @@ export async function onRequest({ request, env }) {
     const base = await journal(env).catch(e => { console.log('lead-tri journal', e.message); return null; });
     const { jour } = heureParis();
     if (base && !test) {
-      // Un message déjà traité n'est pas repris, SAUF s'il attendait un créneau ou si l'analyse avait échoué
+      // Déjà confirmé par le script (applique:…) ou décision « rien » → doublon.
+      // Analysé mais pas confirmé → on renvoie la réponse conservée, sans nouvel appel facturé (attente : créneau réévalué).
+      // Échec d'analyse ou plafond → nouvelle analyse.
       const deja = await base.prepare('SELECT decision, raison FROM leads_tri WHERE id = ?1').bind(mail.id).first();
-      const aReprendre = deja && (deja.decision === 'attente' || ['analyse_impossible', 'plafond'].includes(deja.raison));
-      if (deja && !aReprendre) return json(200, { decision: 'rien', raison_decision: 'doublon', decision_initiale: deja.decision, categorie: null, reponse: null });
+      if (deja) {
+        const confirme = String(deja.raison || '').startsWith('applique:');
+        if (confirme || deja.decision === 'rien') return json(200, { decision: 'rien', raison_decision: 'doublon', decision_initiale: deja.decision, categorie: null, reponse: null });
+        if (!['analyse_impossible', 'plafond'].includes(deja.raison)) {
+          const g = await base.prepare('SELECT resultat FROM leads_reponses WHERE id = ?1').bind(mail.id).first();
+          if (g && g.resultat) {
+            const r = JSON.parse(g.resultat);
+            if (r.decision === 'attente' && creneauOuvert()) { r.decision = 'envoyer'; r.raison_decision = 'reprise_creneau'; }
+            if (r.decision === 'envoyer' && env.LEAD_MODE !== 'live') { r.decision = 'brouillon'; r.raison_decision = 'mode_test'; }
+            return json(200, { ...r, reprise: true, cout: 0 });
+          }
+        }
+      }
     }
 
     // Règle 9 avant tout appel
@@ -197,7 +233,7 @@ export async function onRequest({ request, env }) {
 
     let depense = 0;
     if (base) {
-      const r = await base.prepare('SELECT COALESCE(SUM(cout), 0) AS c FROM leads_tri WHERE jour = ?1').bind(jour).first();
+      const r = await base.prepare('SELECT (SELECT COALESCE(SUM(cout), 0) FROM leads_tri WHERE jour = ?1) + (SELECT COALESCE(SUM(cout), 0) FROM leads_essais WHERE jour = ?1) AS c').bind(jour).first();
       depense = (r && r.c) || 0;
     }
     if (depense >= PLAFOND_JOUR_USD) {
@@ -220,8 +256,14 @@ export async function onRequest({ request, env }) {
 
     let decision, raisonDecision;
     const ref = res && res.bien_ref && index[res.bien_ref] ? res.bien_ref : '';
+    const refCitee = res ? propre(res.ref_citee, 80) : '';
+    const emailFiable = /^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(mail.de || '');
     if (!res || !res.categorie) { decision = 'brouillon'; raisonDecision = 'analyse_impossible'; }
-    else if (!res.reponse || ['professionnel', 'spam'].includes(res.categorie)) { decision = 'rien'; raisonDecision = res.categorie; }
+    else if (['professionnel', 'spam'].includes(res.categorie)) { decision = 'rien'; raisonDecision = res.categorie; }
+    else if (!res.reponse || !emailFiable) {
+      // Prospect joignable seulement par téléphone (ou sans réponse rédigée) : jamais perdu, il part en « à rappeler »
+      decision = 'rappel'; raisonDecision = emailFiable ? 'sans_reponse' : 'sans_email';
+    }
     else {
       const refus = controle(res.reponse, ref ? index[ref].prix : '');
       if (refus) { decision = 'brouillon'; raisonDecision = `controle_${refus}`; }
@@ -230,22 +272,34 @@ export async function onRequest({ request, env }) {
       else { decision = 'envoyer'; raisonDecision = 'ok'; }
     }
 
+    if (base && test && cout) {
+      await base.prepare('INSERT INTO leads_essais VALUES (?1, ?2, ?3)').bind(jour, cout, new Date().toISOString()).run().catch(() => {});
+    }
     if (base && !test) {
-      await base.prepare(`INSERT OR REPLACE INTO leads_tri VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11,?12,?13,?14,?15)`)
+      await base.prepare(`INSERT INTO leads_tri VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11,?12,?13,?14,?15)
+        ON CONFLICT(id) DO UPDATE SET categorie = excluded.categorie, serieux = excluded.serieux, bien_ref = excluded.bien_ref,
+          telephone = excluded.telephone, decision = excluded.decision, raison = excluded.raison, origine = excluded.origine,
+          entree = entree + excluded.entree, sortie = sortie + excluded.sortie, cout = cout + excluded.cout`)
         .bind(mail.id, mail.recu, mail.de, res ? res.categorie || '' : '', res && res.serieux ? 1 : 0, ref, res ? propre(res.telephone, 30) : '',
           decision, raisonDecision, origine, usage ? usage.input_tokens || 0 : 0, usage ? usage.output_tokens || 0 : 0, cout, jour, new Date().toISOString())
         .run().catch(e => console.log('lead-tri insert', e.message));
     }
 
-    return json(200, {
+    const resultat = {
       categorie: res ? res.categorie : null, serieux: !!(res && res.serieux), raison: res ? res.raison || '' : '',
       prenom: res ? res.prenom || '' : '', nom: res ? res.nom || '' : '', telephone: res ? res.telephone || '' : '',
-      email: res ? res.email || mail.de : mail.de, bien_ref: ref, question: res ? res.question || '' : '',
+      email: res ? res.email || mail.de : mail.de, bien_ref: ref, ref_citee: refCitee,
+      hors_catalogue: !!(refCitee && !ref), question: res ? res.question || '' : '',
       reponse: res && res.reponse ? res.reponse : null,
       decision, raison_decision: raisonDecision,
       notification: res && res.notification ? res.notification : `Nouveau mail de ${mail.nom_expediteur || mail.de} : « ${mail.objet} »`,
       origine, cout: Math.round(cout * 1e5) / 1e5, depense_jour: Math.round((depense + cout) * 1e4) / 1e4,
-    });
+    };
+    if (base && !test && res && res.categorie) {
+      await base.prepare('INSERT OR REPLACE INTO leads_reponses VALUES (?1, ?2, ?3)')
+        .bind(mail.id, JSON.stringify(resultat), new Date().toISOString()).run().catch(e => console.log('lead-tri reponse', e.message));
+    }
+    return json(200, resultat);
   } catch (e) {
     console.log('lead-tri', e && e.stack);
     return json(500, { error: 'serveur' });
