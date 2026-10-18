@@ -87,7 +87,7 @@ async function trouverBien(env, request, post) {
 
 const CONSIGNES = `Tu écris, au nom de Shawez Ali, agent immobilier chez Gravelin Immo à Dijon, un message privé Instagram
 à une personne qui vient de commenter la vidéo d'un bien. Règles absolues :
-- 4 lignes maximum et 600 caractères maximum au total, tutoiement, ton chaleureux et naturel, 1 ou 2 emojis maximum, signé implicitement par Shawez (pas de signature).
+- Exactement 3 ou 4 lignes de texte, séparées par un seul retour à la ligne, SANS ligne vide, 600 caractères maximum au total, tutoiement, ton chaleureux et naturel, 1 ou 2 emojis maximum, signé implicitement par Shawez (pas de signature).
 - Commence par le prénom s'il est donné.
 - Si le commentaire pose une question précise (quartier, prix, surface, visite, disponibilité), réponds-y d'abord, en une phrase,
   UNIQUEMENT avec les données du bien fournies. Si la donnée n'y est pas, dis que tu lui envoies la réponse en direct.
@@ -118,7 +118,7 @@ async function rediger(env, prenom, commentaire, bien) {
   });
   if (!r.ok) throw new Error(`api ${r.status} ${(await r.text()).slice(0, 200)}`);
   const d = await r.json();
-  const texte = (d.content || []).filter(b => b.type === 'text').map(b => b.text).join('').trim();
+  const texte = normaliser((d.content || []).filter(b => b.type === 'text').map(b => b.text).join(''));
   const info = {
     stop_reason: d.stop_reason || null,
     blocs: (d.content || []).map(b => `${b.type}:${(b.text || b.thinking || '').length}`),
@@ -132,13 +132,18 @@ async function rediger(env, prenom, commentaire, bien) {
   return { texte, usage: d.usage || null, info };
 }
 
+// Lignes vides supprimées, espaces nettoyés : le DM fait au plus 4 lignes non vides
+function normaliser(t) {
+  return String(t || '').replace(/\r/g, '').split('\n').map(l => l.trim()).filter(Boolean).join('\n');
+}
+
 function secours(prenom, bien) {
   const p = prenom ? ` ${prenom}` : '';
-  if (!bien) return `Salut${p} 👋 merci pour ton commentaire ! C'est Shawez, agent immobilier à Dijon. Dis-moi quel bien t'intéresse ou ce que tu cherches, et je te réponds moi-même. WhatsApp : ${WHATSAPP}`;
+  if (!bien) return `Salut${p} 👋 merci pour ton commentaire !\nC'est Shawez, agent immobilier à Dijon.\nDis-moi quel bien t'intéresse ou ce que tu cherches, je te réponds moi-même.\nWhatsApp : ${WHATSAPP}`;
   const brut = bien.type ? bien.type.split(' - ')[0].trim() : 'bien';
   const t = brut.replace(/\b(t\d)\b/gi, m => m.toUpperCase()).replace(/^./, c => c.toLowerCase());
   const det = /^[aeiouyéèêh]/i.test(t) ? 'cet' : 'ce';
-  return `Salut${p} 👋 merci pour ton commentaire ! C'est Shawez, agent immobilier à Dijon. Le dossier de ${det} ${t} à ${bien.commune}${bien.prix ? ` (${bien.prix})` : ''} est juste en dessous. Tu veux le visiter ou je t'appelle ? WhatsApp : ${WHATSAPP}`;
+  return `Salut${p} 👋 merci pour ton commentaire !\nC'est Shawez, agent immobilier à Dijon.\nLe dossier de ${det} ${t} à ${bien.commune}${bien.prix ? ` (${bien.prix})` : ''} est juste en dessous.\nTu veux le visiter ou je t'appelle ? WhatsApp : ${WHATSAPP}`;
 }
 
 // Contrôle du texte de Claude avant envoi : vocabulaire, montants, adresse. Renvoie la raison du refus ou null.
@@ -151,6 +156,7 @@ function controle(texte, bien) {
   const montants = (texte.match(/\d[\d\s.\u202f]*\s?(€|euros|k€)/gi) || []).map(chiffres);
   for (const m of montants) if (!prix || (m !== prix && m + '000' !== prix)) return 'montant';
   if (texte.length > 640) return 'longueur';
+  if (texte.split('\n').filter(l => l.trim()).length > 4) return 'lignes';
   return null;
 }
 
