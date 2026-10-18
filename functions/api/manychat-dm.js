@@ -20,6 +20,13 @@ const ESTIMER = 'https://shawez-immo.com/estimer/';
 const PRET = 'https://shawez-immo.com/simulateur-pret-immobilier-dijon/';
 const BIENS = 'https://shawez-immo.com/biens-a-vendre-dijon/';
 const WHATSAPP = '07 67 57 92 28';
+const PLAFOND_JOUR_USD = 0.5;              // au-delà : message de secours, aucun appel à Claude
+const PRIX_ENTREE = 3 / 1e6, PRIX_SORTIE = 15 / 1e6;   // estimation Sonnet ($ par jeton), pour le plafond
+// Mode test : tant que DM_MODE n'est pas « live » (variable Cloudflare), seuls ces comptes reçoivent un DM.
+const COMPTES_TEST = ['gravelin_immo', 'shawez_immo'];
+// Règle 9 du Cerveau : comptes Instagram à qui on n'écrit jamais (en minuscules, sans @).
+const JAMAIS = ['xvbabar21'];
+const INTERDITS = /\b(mandataire|gratuit|gratuite|gratuitement|ia|robot|automatique|automatiquement|claude|chatgpt|intelligence artificielle)\b/i;
 
 const json = (status, obj) => new Response(JSON.stringify(obj), {
   status, headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' },
@@ -114,10 +121,36 @@ async function rediger(env, prenom, commentaire, bien) {
 }
 
 function secours(prenom, bien) {
-  const p = prenom ? `${prenom}, ` : '';
-  const b = bien ? `ce ${bien.type ? bien.type.split(' - ')[0].toLowerCase() : 'bien'} à ${bien.commune}${bien.prix ? `, ${bien.prix}` : ''}` : 'ce bien';
-  return `Salut ${p}merci pour ton commentaire 🙏 C'est Shawez, agent immobilier à Dijon. Tu as tout le dossier de ${b} juste en dessous. Tu veux le visiter ou je t'appelle ? WhatsApp : ${WHATSAPP}`;
+  const p = prenom ? ` ${prenom}` : '';
+  if (!bien) return `Salut${p} 👋 merci pour ton commentaire ! C'est Shawez, agent immobilier à Dijon. Dis-moi quel bien t'intéresse ou ce que tu cherches, et je te réponds moi-même. WhatsApp : ${WHATSAPP}`;
+  const t = bien.type ? bien.type.split(' - ')[0].toLowerCase() : 'bien';
+  return `Salut${p} 👋 merci pour ton commentaire ! C'est Shawez, agent immobilier à Dijon. Le dossier de ce ${t} à ${bien.commune}${bien.prix ? ` (${bien.prix})` : ''} est juste en dessous. Tu veux le visiter ou je t'appelle ? WhatsApp : ${WHATSAPP}`;
 }
+
+// Contrôle du texte de Claude avant envoi : vocabulaire, montants, adresse. Renvoie la raison du refus ou null.
+function controle(texte, bien) {
+  if (INTERDITS.test(texte)) return 'vocabulaire';
+  if (/\b\d{1,3}\s?,?\s?(bis|ter)?\s*(rue|avenue|bd|boulevard|place|impasse|allée|chemin|route)\b/i.test(texte)) return 'adresse';
+  if (/\b(rue|avenue|boulevard|impasse|allée)\s+[A-ZÉ]/.test(texte)) return 'adresse';
+  const chiffres = v => String(v || '').replace(/\D/g, '');
+  const prix = chiffres(bien && bien.prix);
+  const montants = (texte.match(/\d[\d\s.\u202f]*\s?(€|euros|k€)/gi) || []).map(chiffres);
+  for (const m of montants) if (!prix || (m !== prix && m + '000' !== prix)) return 'montant';
+  if (texte.length > 900) return 'longueur';
+  return null;
+}
+
+const sansMessage = (raison, extra = {}) => json(200, { message: '', fiche_url: '', envoyer: 'non', raison, ...extra });
+
+async function journal(env) {
+  if (!env.DB) return null;
+  await env.DB.prepare(`CREATE TABLE IF NOT EXISTS dm_instagram (
+    evenement TEXT PRIMARY KEY, contact TEXT, compte TEXT, post TEXT, ref TEXT, jour TEXT,
+    origine TEXT, entree INTEGER, sortie INTEGER, cout REAL, cree TEXT)`).run();
+  return env.DB;
+}
+
+const jourParis = () => new Intl.DateTimeFormat('fr-CA', { timeZone: 'Europe/Paris' }).format(new Date());
 
 function blocManyChat(texte, bien) {
   const boutons = [
@@ -139,25 +172,65 @@ export async function onRequest({ request, env }) {
   try {
     if (!egal(request.headers.get('X-Boss-Token') || '', env.MANYCHAT_TOKEN || '')) return json(401, { error: 'acces' });
 
-    let prenom, commentaire, post;
+    let prenom, commentaire, post, contact, compte, evenement, test = false;
     if (request.method === 'GET') {
       const u = new URL(request.url);
-      if (!u.searchParams.get('test')) return json(200, { ready: !!env.ANTHROPIC_API_KEY });
-      prenom = 'Test'; commentaire = 'Il est dans quel quartier ?'; post = u.searchParams.get('post') || 'test-chevigny';
+      if (!u.searchParams.get('test')) return json(200, { ready: !!env.ANTHROPIC_API_KEY, mode: env.DM_MODE === 'live' ? 'live' : 'test' });
+      test = true; prenom = 'Test'; commentaire = u.searchParams.get('c') || 'Il est dans quel quartier ?';
+      post = u.searchParams.get('post') || 'test-chevigny'; compte = 'gravelin_immo'; contact = 'test'; evenement = `test-${Date.now()}`;
     } else if (request.method === 'POST') {
       const c = await request.json().catch(() => ({}));
       prenom = propre(c.first_name || c.prenom, 40);
       commentaire = propre(c.comment || c.commentaire, 500);
       post = propre(c.post || c.post_id || c.reel || c.url, 300);
+      contact = propre(c.contact_id || c.user_id, 80);
+      compte = propre(c.ig_username || c.username, 60).replace(/^@/, '').toLowerCase();
+      evenement = propre(c.event_id || c.comment_id, 120);
     } else return json(405, { error: 'methode' });
 
-    const bien = await trouverBien(env, request, post);
-    let texte, usage = null, origine = 'claude';
-    try { ({ texte, usage } = await rediger(env, prenom, commentaire, bien)); }
-    catch (e) { console.log('manychat-dm claude', e.message); texte = secours(prenom, bien); origine = 'secours'; }
+    // 1. Filtres : règle 9, mode test, doublons
+    if (JAMAIS.includes(compte)) return sansMessage('regle9');
+    if (env.DM_MODE !== 'live' && !COMPTES_TEST.includes(compte)) return sansMessage('mode_test', { compte });
+    if (!evenement) {
+      const brut = new TextEncoder().encode(`${contact}|${idReel(post)}|${commentaire}`);
+      evenement = [...new Uint8Array(await crypto.subtle.digest('SHA-256', brut))].slice(0, 12).map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+    const base = await journal(env).catch(e => { console.log('journal', e.message); return null; });
+    const jour = jourParis();
+    if (base && !test) {
+      const deja = await base.prepare('SELECT 1 FROM dm_instagram WHERE evenement = ?1 OR (contact = ?2 AND post = ?3 AND jour = ?4) LIMIT 1')
+        .bind(evenement, contact, idReel(post), jour).first();
+      if (deja) return sansMessage('doublon');
+    }
 
-    console.log('manychat-dm', JSON.stringify({ post: idReel(post), ref: bien && bien.ref, origine, usage }));
-    return json(200, { ...blocManyChat(texte, bien), origine, usage });
+    // 2. Bien + plafond du jour
+    const bien = await trouverBien(env, request, post);
+    let depense = 0;
+    if (base) {
+      const r = await base.prepare('SELECT COALESCE(SUM(cout), 0) AS c FROM dm_instagram WHERE jour = ?1').bind(jour).first();
+      depense = (r && r.c) || 0;
+    }
+
+    // 3. Rédaction par Claude, contrôlée ; sinon secours
+    let texte, usage = null, origine = 'claude', refus = null;
+    if (depense >= PLAFOND_JOUR_USD) { texte = secours(prenom, bien); origine = 'plafond'; }
+    else {
+      try {
+        ({ texte, usage } = await rediger(env, prenom, commentaire, bien));
+        refus = controle(texte, bien);
+        if (refus) { console.log('manychat-dm refus', refus, texte); texte = secours(prenom, bien); origine = `secours_${refus}`; }
+      } catch (e) { console.log('manychat-dm claude', e.message); texte = secours(prenom, bien); origine = 'secours_api'; }
+    }
+    const cout = usage ? (usage.input_tokens || 0) * PRIX_ENTREE + (usage.output_tokens || 0) * PRIX_SORTIE : 0;
+
+    if (base) {
+      await base.prepare('INSERT OR IGNORE INTO dm_instagram VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11)')
+        .bind(evenement, contact, compte, idReel(post), bien ? bien.ref || '' : '', jour, origine,
+          usage ? usage.input_tokens || 0 : 0, usage ? usage.output_tokens || 0 : 0, cout, new Date().toISOString())
+        .run().catch(e => console.log('journal insert', e.message));
+    }
+    console.log('manychat-dm', JSON.stringify({ post: idReel(post), ref: bien && bien.ref, compte, origine, cout }));
+    return json(200, { ...blocManyChat(texte, bien), envoyer: 'oui', origine, cout: Math.round(cout * 1e5) / 1e5, depense_jour: Math.round((depense + cout) * 1e4) / 1e4 });
   } catch (e) {
     console.log('manychat-dm', e && e.stack);
     return json(500, { error: 'serveur' });
