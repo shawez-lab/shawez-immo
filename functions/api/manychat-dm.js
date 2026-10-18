@@ -21,7 +21,7 @@ const PRET = 'https://shawez-immo.com/simulateur-pret-immobilier-dijon/';
 const BIENS = 'https://shawez-immo.com/biens-a-vendre-dijon/';
 const WHATSAPP = '07 67 57 92 28';
 const PLAFOND_JOUR_USD = 0.5;              // au-delà : message de secours, aucun appel à Claude
-const PRIX_ENTREE = 2 / 1e6;   // Sonnet 5.5 : 2 $ / million de jetons en entrée   // estimation Sonnet ($ par jeton), pour le plafond
+const PRIX_ENTREE = 2 / 1e6, PRIX_SORTIE = 10 / 1e6;   // Sonnet 5.5 : 2 $ / 10 $ par million de jetons (entrée / sortie), pour le plafond
 // Mode test : tant que DM_MODE n'est pas « live » (variable Cloudflare), seuls ces comptes reçoivent un DM.
 const COMPTES_TEST = ['gravelin_immo', 'shawez_immo'];
 // Règle 9 du Cerveau : comptes Instagram à qui on n'écrit jamais (en minuscules, sans @).
