@@ -6,7 +6,8 @@
     "serveur": "node serveur.mjs",
     "test": "playwright test",
     "test:apercu": "playwright test --config=apercu.config.mjs",
-    "lighthouse": "node lighthouse.mjs"
+    "lighthouse": "node lighthouse.mjs",
+    "test:node": "node --test --test-concurrency=1 node/*.test.mjs"
   },
   "devDependencies": {
     "@playwright/test": "1.56.0",

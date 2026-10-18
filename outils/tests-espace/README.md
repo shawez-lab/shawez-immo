@@ -35,6 +35,20 @@ La recherche d'adresses est remplacée par des adresses de test (`tests/aides.mj
 | `90-captures` | captures de chaque étape et du résultat → `captures/` ; rien ne dépasse de l'écran |
 | `14-dossier-agence` | dossier ouvert à la main par l'agence (vendeur venu par téléphone, recommandation, mandat déjà signé) : le formulaire de /admin/, les 10 statuts de départ, jamais de fourchette ; l'espace du vendeur ouvert avec son e-mail, le lien à lui envoyer par WhatsApp, SMS ou e-mail (message déjà écrit, 7 jours, une seule ouverture), l'e-mail « Votre espace est ouvert » (jamais entre 21 h et 8 h) ; dossier sans espace puis ouvert ; espace déjà existant (adresse jamais prouvée : le dossier attend le lien, un intrus ne le voit jamais) ; promesses 1 et 2 hors mesure ; Google Sheet ; droits, validation, double envoi ; règles WCAG A et AA ; captures `dossier-*` |
 
+## Tests node : connexion, sessions et droits (sans navigateur)
+
+```
+cd outils/tests-espace
+npm ci
+npm run test:node     # lance son propre site local (port 8893, base D1 neuve) et sa fausse boîte d'envoi
+```
+
+`node/unitaires.test.mjs` (règles de `functions/_lib/base.js` et des pages privées) et `node/auth-droits.test.mjs` :
+origine des requêtes, cookie de session, un client ne voit jamais l'agence ni les données d'un autre client, adresse de
+l'agence sans preuve par e-mail, lien à usage unique, trop d'essais de mot de passe, déconnexion de tous les appareils,
+export RGPD, en-têtes des pages privées (nonce sur chaque script, pas de mesure d'audience), fichiers internes jamais
+servis, migration du 18/10/2026 (ajouts seulement). Lancés aussi par GitHub Actions (`tests-espace.yml`, job `node-local`).
+
 ## Sur le site en ligne
 
 `tests/apercu.spec.mjs` (configuration `apercu.config.mjs`), lancé par GitHub Actions (`.github/workflows/tests-espace.yml`)
