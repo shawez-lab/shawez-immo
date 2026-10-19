@@ -148,6 +148,14 @@ function creneauOuvert(d = new Date()) {
   return !/^dim/i.test(p.weekday) && h >= 8 && h < 20;
 }
 
+// Minutes avant le prochain créneau d'envoi (lundi-samedi 8 h, Paris) : sert au « Smart Delay » de ManyChat
+function minutesAvantCreneau(d = new Date()) {
+  for (let m = 0; m <= 60 * 24 * 3; m += 5) {
+    if (creneauOuvert(new Date(d.getTime() + m * 60000))) return Math.max(m, 5);
+  }
+  return 60 * 12;
+}
+
 function normaliser(t) {
   return String(t || '').replace(/\r/g, '').split('\n').map(l => l.trim()).filter(Boolean).join('\n');
 }
@@ -158,7 +166,7 @@ function secours(prenom, bien) {
   const brut = bien.type ? bien.type.split(' - ')[0].trim() : 'bien';
   const t = brut.replace(/\b(t\d)\b/gi, m => m.toUpperCase()).replace(/^./, c => c.toLowerCase());
   const det = /^[aeiouyéèêh]/i.test(t) ? 'cet' : 'ce';
-  return `Salut${p} 👋 merci pour ton commentaire !\nC'est Shawez, agent immobilier à Dijon.\nLe dossier de ${det} ${t} à ${bien.commune}${bien.prix ? ` (${bien.prix})` : ''} est juste en dessous.\nTu veux le visiter ou je t'appelle ? WhatsApp : ${WHATSAPP}`;
+  return `Salut${p} 👋 merci pour ton commentaire !\nC'est Shawez, agent immobilier à Dijon.\nLe dossier de ${det} ${t} à ${bien.commune}${bien.prix ? `, à ${bien.prix},` : ''} est juste en dessous.\nTu veux le visiter ou je t'appelle ? WhatsApp : ${WHATSAPP}`;
 }
 
 // Contrôle du texte de Claude avant envoi : vocabulaire, montants, adresse. Renvoie la raison du refus ou null.
@@ -247,9 +255,10 @@ export async function onRequest({ request, env }) {
     if (!COMPTES_TEST.includes(compte) && !creneauOuvert()) {
       const b = await journal(env).catch(() => null);
       if (b) await b.prepare('INSERT OR IGNORE INTO dm_instagram VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11)')
-        .bind(evenement || `hc-${Date.now()}`, contact, compte, idReel(post), '', jourParis(), 'hors_creneau', 0, 0, 0, new Date().toISOString())
+        .bind(`hc-${evenement || Date.now()}`, contact, compte, idReel(post), '', jourParis(), 'hors_creneau', 0, 0, 0, new Date().toISOString())
         .run().catch(() => {});
-      return sansMessage('hors_creneau', { compte });
+      // ManyChat : branche « plus_tard » → Smart Delay de attendre_minutes → rappel de cette même requête → envoi.
+      return sansMessage('hors_creneau', { compte, envoyer: 'plus_tard', attendre_minutes: minutesAvantCreneau() });
     }
     if (!evenement) {
       const brut = new TextEncoder().encode(`${contact}|${idReel(post)}|${commentaire}`);
@@ -258,7 +267,7 @@ export async function onRequest({ request, env }) {
     const base = await journal(env).catch(e => { console.log('journal', e.message); return null; });
     const jour = jourParis();
     if (base && !test) {
-      const deja = await base.prepare('SELECT 1 FROM dm_instagram WHERE evenement = ?1 OR (contact = ?2 AND post = ?3 AND jour = ?4) LIMIT 1')
+      const deja = await base.prepare("SELECT 1 FROM dm_instagram WHERE origine <> 'hors_creneau' AND (evenement = ?1 OR (contact = ?2 AND post = ?3 AND jour = ?4)) LIMIT 1")
         .bind(evenement, contact, idReel(post), jour).first();
       if (deja) return sansMessage('doublon');
     }
