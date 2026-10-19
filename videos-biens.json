@@ -1,5 +1,5 @@
 {
-  "_lisezmoi": "Registre vidéo → bien pour /api/manychat-dm. Clé = identifiant du Reel Instagram (instagram.com/reel/<id>). « ref » = référence dans annonces.json ; « manuel » = bien sans annonce publique (jamais d'adresse exacte ni de nom de vendeur ici, ce fichier est public).",
+  "_lisezmoi": "Registre vidéo → bien pour /api/manychat-dm. Clé = identifiant du Reel Instagram (instagram.com/reel/<id>). « ref » = référence dans annonces.json ; « manuel » = bien sans annonce publique (jamais d'adresse exacte ni de nom de vendeur ici, ce fichier est public). Clé « story-… » : réponses aux stories (le flux ManyChat envoie post=story-<sujet>).",
   "videos": {
     "test-chevigny": {
       "ref": "520"
@@ -54,6 +54,18 @@
     },
     "DdzDuf0uxln": {
       "ref": "512"
+    },
+    "story-tabac": {
+      "manuel": {
+        "ref": "tabac-521",
+        "lien": "https://shawez-immo.com/biens-a-vendre-dijon/",
+        "confidentialite": "https://shawez-immo.com/assets/docs/engagement-confidentialite.pdf",
+        "type": "Fonds de commerce tabac-presse - FDJ",
+        "commune": "Dijon",
+        "prix": "181 000 € le fonds seul, ou 286 000 € avec les murs",
+        "chiffres": "environ 1,8 million d'euros encaissés par an en caisse, tabac, jeux et presse compris ; la plus grande partie est reversée à l'État et aux fournisseurs, le commerce garde une commission. Chiffre d'affaires comptable du dernier exercice : environ 208 000 €, surtout des commissions.",
+        "documents": "bilans, relevés des Douanes et de la FDJ envoyés après signature de l'engagement de confidentialité et envoi d'une pièce d'identité"
+      }
     }
   }
 }
