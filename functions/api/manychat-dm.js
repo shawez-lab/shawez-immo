@@ -108,6 +108,8 @@ const CONSIGNES = `Tu écris, au nom de Shawez Ali, agent immobilier chez Gravel
   l'argent qui passe en caisse et le chiffre d'affaires comptable), puis dis que pour recevoir les bilans complets il suffit de
   signer l'engagement de confidentialité du bouton « Accès aux bilans » et de le renvoyer avec sa pièce d'identité, et que tu lui
   envoies les bilans tout de suite après. Ne donne jamais le résultat comptable, les salaires ni le nom ou l'adresse du commerce.
+- Si aucun bien n'est fourni : une phrase chaleureuse et naturelle, puis une seule question simple sur ce qu'il cherche.
+  Ne dis jamais que tu n'as pas l'information ni que tu préfères ne rien dire de faux.
 - Ne mentionne pas les boutons en détail : ils s'affichent sous ton message (dossier du bien, estimation, calcul de prêt).
 Réponds avec le texte du message seul, sans guillemets.`;
 
@@ -168,6 +170,9 @@ function normaliser(t) {
 function secours(prenom, bien) {
   const p = prenom ? ` ${prenom}` : '';
   if (!bien) return `Salut${p} 👋 merci pour ton commentaire !\nC'est Shawez, agent immobilier à Dijon.\nDis-moi quel bien t'intéresse ou ce que tu cherches, je te réponds moi-même.\nWhatsApp : ${WHATSAPP}`;
+  if (bien.chiffres && bien.confidentialite) {
+    return `Salut${p} 👋 le 1,8 million, c'est tout ce qui passe en caisse sur l'année, tabac, jeux et presse compris.\nLa plus grande partie repart à l'État, le chiffre d'affaires comptable tourne autour de 208 000 €.\nPour les bilans complets, signe l'engagement de confidentialité du bouton Accès aux bilans et renvoie-le avec ta pièce d'identité, je t'envoie tout dans la foulée.\nTu cherches à reprendre un commerce sur Dijon ?`;
+  }
   const brut = bien.type ? bien.type.split(' - ')[0].trim() : 'bien';
   const t = brut.replace(/\b(t\d)\b/gi, m => m.toUpperCase()).replace(/^./, c => c.toLowerCase());
   const det = /^[aeiouyéèêh]/i.test(t) ? 'cet' : 'ce';
@@ -294,8 +299,9 @@ export async function onRequest({ request, env }) {
     const base = await journal(env).catch(e => { console.log('journal', e.message); return null; });
     const jour = jourParis();
     if (base && !test) {
-      const deja = await base.prepare("SELECT 1 FROM dm_instagram WHERE origine <> 'hors_creneau' AND (evenement = ?1 OR (contact = ?2 AND post = ?3 AND jour = ?4)) LIMIT 1")
-        .bind(evenement, contact, idReel(post), jour).first();
+      const story = /^story/i.test(post || '');
+      const deja = await base.prepare("SELECT 1 FROM dm_instagram WHERE origine <> 'hors_creneau' AND (evenement = ?1 OR (?5 = 0 AND contact = ?2 AND post = ?3 AND jour = ?4)) LIMIT 1")
+        .bind(evenement, contact, idReel(post), jour, story ? 1 : 0).first();
       if (deja) return sansMessage('doublon');
     }
 
@@ -318,6 +324,8 @@ export async function onRequest({ request, env }) {
     else {
       try {
         ({ texte, usage } = await rediger(env, prenom, commentaire, bien));
+        // Une parenthèse devient une simple virgule, comme on l'écrirait sur un téléphone
+        texte = normaliser(texte.replace(/\s*\(([^()\n]{1,120})\)/g, ', $1,').replace(/,\s*([.!?,])/g, '$1').replace(/,\s*$/gm, ''));
         refus = controle(texte, bien);
         if (refus) { console.log('manychat-dm refus', refus, texte); texte = secours(prenom, bien); origine = `secours_${refus}`; }
       } catch (e) {
