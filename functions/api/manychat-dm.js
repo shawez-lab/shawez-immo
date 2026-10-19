@@ -206,7 +206,26 @@ async function journal(env) {
   await env.DB.prepare(`CREATE TABLE IF NOT EXISTS dm_instagram (
     evenement TEXT PRIMARY KEY, contact TEXT, compte TEXT, post TEXT, ref TEXT, jour TEXT,
     origine TEXT, entree INTEGER, sortie INTEGER, cout REAL, cree TEXT)`).run();
+  await env.DB.prepare('CREATE TABLE IF NOT EXISTS dm_stop (cle TEXT PRIMARY KEY, motif TEXT, cree TEXT)').run();
   return env.DB;
+}
+
+// Stop mémorisé : une personne qui a dit stop (par son contact ManyChat ou son compte Instagram) ne reçoit plus
+// aucune réponse automatique, sur tous les flux, jusqu'à ce que Shawez retire la ligne de dm_stop.
+async function estStoppe(env, contact, compte) {
+  const b = await journal(env).catch(() => null);
+  if (!b) return false;
+  const cles = [contact && `c:${contact}`, compte && `i:${compte}`].filter(Boolean);
+  if (!cles.length) return false;
+  const r = await b.prepare(`SELECT 1 FROM dm_stop WHERE cle IN (${cles.map((_, i) => '?' + (i + 1)).join(',')}) LIMIT 1`).bind(...cles).first().catch(() => null);
+  return !!r;
+}
+async function memoriserStop(env, contact, compte, motif) {
+  const b = await journal(env).catch(() => null);
+  if (!b) return;
+  for (const cle of [contact && `c:${contact}`, compte && `i:${compte}`].filter(Boolean)) {
+    await b.prepare('INSERT OR IGNORE INTO dm_stop VALUES (?1,?2,?3)').bind(cle, motif, new Date().toISOString()).run().catch(() => {});
+  }
 }
 
 const jourParis = () => new Intl.DateTimeFormat('fr-CA', { timeZone: 'Europe/Paris' }).format(new Date());
@@ -260,6 +279,9 @@ export async function onRequest({ request, env }) {
         const cpt = propre(c.ig_username || c.username, 60).toLowerCase().replace(/^@/, '');
         const source = propre(c.source, 40);
         if (jamais(env, cpt)) return sansMessage('regle9', { source });
+        const ctc = propre(c.contact_id || c.user_id, 80);
+        if (STOP.test(propre(c.comment || c.commentaire, 500))) { await memoriserStop(env, ctc, cpt, 'stop'); return sansMessage('stop', { source, a_reprendre: true }); }
+        if (await estStoppe(env, ctc, cpt)) return sansMessage('stop', { source, a_reprendre: true });
         if (env.DM_MODE !== 'live' && !COMPTES_TEST.includes(cpt)) return sansMessage('mode_test', { compte: cpt, source });
         if (COMPTES_TEST.includes(cpt) || creneauOuvert()) return json(200, { envoyer: 'oui', raison: 'ok', source });
         const att = minutesAvantCreneau();
@@ -282,7 +304,8 @@ export async function onRequest({ request, env }) {
     // 1. Filtres : règle 9, mode test, doublons
     if (jamais(env, compte)) return sansMessage('regle9');
     // La personne demande d'arrêter : aucune réponse automatique, à traiter par Shawez (tag ManyChat « stop »).
-    if (STOP.test(commentaire || '')) return sansMessage('stop', { a_reprendre: true });
+    if (STOP.test(commentaire || '')) { if (!test) await memoriserStop(env, contact, compte, 'stop'); return sansMessage('stop', { a_reprendre: true }); }
+    if (!test && await estStoppe(env, contact, compte)) return sansMessage('stop', { a_reprendre: true });
     if (env.DM_MODE !== 'live' && !COMPTES_TEST.includes(compte)) return sansMessage('mode_test', { compte });
     // Règle de Shawez : rien n'est envoyé à un client la nuit (20 h-8 h) ni le dimanche. Le commentaire est journalisé
     // (origine « hors_creneau ») pour que l'agent « Rattrapage commentaires » réponde au prochain créneau.
