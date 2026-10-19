@@ -300,6 +300,11 @@ export async function onRequest({ request, env }) {
     }
 
     // 2. Bien + plafond du jour
+    // Réponses aux stories : on ne sait pas quelle story a été vue. Le texte de la réponse décide :
+    // mots du tabac / des chiffres → dossier tabac ; sinon aucun bien (réponse honnête : « dis-moi ce qui t'intéresse »).
+    if (/^story/i.test(post || '') && !/^story-./i.test(post || '')) {
+      post = /tabac|bilan|chiffre|\bca\b|compta|fdj|presse|fonds|1[,.]8|million/i.test(commentaire || '') ? 'story-tabac' : '';
+    }
     const bien = await trouverBien(env, request, post);
     let depense = 0;
     if (base) {
