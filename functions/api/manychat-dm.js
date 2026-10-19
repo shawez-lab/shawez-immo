@@ -100,6 +100,7 @@ const CONSIGNES = `Tu écris, au nom de Shawez Ali, agent immobilier chez Gravel
   UNIQUEMENT avec les données du bien fournies. Si la donnée n'y est pas, dis que tu lui envoies la réponse en direct.
 - Cite le bien (type, commune, prix tel qu'écrit dans les données) sans jamais donner d'adresse exacte ni de nom de rue.
 - Termine par une seule question qui fait avancer : visite, appel, ou ce qu'il cherche.
+- Écris comme Shawez écrit sur son téléphone : phrases simples et naturelles, AUCUNE parenthèse, aucun tiret de liste, aucun deux-points d'énumération, aucune formule administrative (« honoraires à la charge du vendeur », « n'hésitez pas »). Si un détail compte, glisse-le dans une phrase normale.
 - Ne jamais inventer un prix, une surface, un quartier ou une caractéristique. Jamais les mots « mandataire », « gratuit », « IA »,
   « robot », « automatique ». Dis « offert » si besoin.
 - Ne mentionne pas les boutons en détail : ils s'affichent sous ton message (dossier du bien, estimation, calcul de prêt).
@@ -163,6 +164,7 @@ function secours(prenom, bien) {
 // Contrôle du texte de Claude avant envoi : vocabulaire, montants, adresse. Renvoie la raison du refus ou null.
 function controle(texte, bien) {
   if (INTERDITS.test(texte)) return 'vocabulaire';
+  if (/[()]/.test(texte)) return 'parentheses';
   if (/\b\d{1,3}\s?,?\s?(bis|ter)?\s*(rue|avenue|bd|boulevard|place|impasse|allée|chemin|route)\b/i.test(texte)) return 'adresse';
   if (/\b(rue|avenue|boulevard|impasse|allée)\s+[A-ZÉ]/.test(texte)) return 'adresse';
   const chiffres = v => String(v || '').replace(/\D/g, '');

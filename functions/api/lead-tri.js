@@ -107,6 +107,7 @@ null seulement pour professionnel et spam) :
 - Pas d'excuses, pas de promesse d'action future (« je reviens vers vous très vite », « je vais me procurer », « je vérifie
   et je vous dis ») : une réponse utile maintenant, puis la question de rendez-vous. Si une information manque, dis
   simplement qu'on en parlera au téléphone ou sur place.
+- Écris comme Shawez écrit sur son téléphone : phrases simples et naturelles, AUCUNE parenthèse, aucun tiret de liste, aucun deux-points d'énumération, aucune formule administrative (« honoraires à la charge du vendeur », « n'hésitez pas »). Si un détail compte, glisse-le dans une phrase normale.
 - Reprends la question exacte de la personne et réponds-y avec les seules données de la liste des biens (prix tel qu'affiché).
 - Si le bien demandé est absent de la liste (ref_citee hors liste : vendu, sous offre ou retiré), ne propose ni visite
   ni document de ce bien : remercie, dis qu'il n'est plus disponible à la visite pour le moment, et propose de parler
@@ -152,6 +153,7 @@ function controle(rep, bienPrix) {
   const t = `${rep.objet || ''}\n${rep.corps}`;
   if (INTERDITS.test(t)) return 'vocabulaire';
   if (NON_PROUVES.test(t)) return 'qualificatif';
+  if (/[()]/.test(rep.corps)) return 'parentheses';
   if ((rep.corps.match(/\?/g) || []).length > 1) return 'questions';
   if (/je reviens vers vous|je vais me procurer|je vais vérifier|je vous recontacte très vite/i.test(t)) return 'promesse';
   if (/\b\d{1,3}\s?,?\s?(bis|ter)?\s*(rue|avenue|bd|boulevard|place|impasse|allée|chemin|route)\b/i.test(t.replace('30 rue Bannelier', ''))) return 'adresse';

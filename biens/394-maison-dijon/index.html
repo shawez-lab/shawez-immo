@@ -1115,6 +1115,16 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 .bf-video{grid-row:1/3;position:relative;background:#0F0E0C;overflow:hidden;}
 .bf-video video{width:100%;height:100%;object-fit:cover;display:block;}
 .bf-emb{min-height:420px;}
+.bf-stage{position:relative;}
+.bf-igbtn{position:absolute;left:16px;bottom:16px;z-index:3;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;padding:12px 18px;border:0;border-radius:999px;background:rgba(15,14,12,.86);color:#fff;font:600 15px/1 inherit;letter-spacing:.01em;cursor:pointer;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(6px);}
+.bf-igbtn svg{width:18px;height:18px;}
+.bf-igbtn:hover{background:#0F0E0C;}
+.bf-igbox{position:fixed;inset:0;z-index:80;background:rgba(10,9,8,.86);display:flex;align-items:center;justify-content:center;padding:16px;}
+.bf-igbox[hidden]{display:none;}
+.bf-igcard{position:relative;width:min(92vw,400px,calc((100svh - 80px)*.8));}
+.bf-igcrop{position:relative;width:100%;aspect-ratio:4/5;overflow:hidden;border-radius:16px;background:#000;}
+.bf-igcrop iframe{position:absolute;left:0;top:-56px;width:100%;height:calc(100% + 420px);border:0;background:#000;}
+.bf-igclose{position:absolute;right:-6px;top:-46px;width:38px;height:38px;border-radius:50%;border:0;background:#fff;color:#0F0E0C;font:400 26px/1 inherit;cursor:pointer;}
 .bf-emb iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;background:#0F0E0C;}
 .bf-emb-ig iframe{background:#fff;}
 .bf-stage.has-ig{grid-template-columns:minmax(340px,.95fr) minmax(0,1.25fr) minmax(0,.8fr);height:min(88vh,820px);}
@@ -1715,6 +1725,13 @@ if(v){
 }
 /* ---- vidéo intégrée (YouTube ou Instagram) : chargée une fois la page affichée, pour garder la page rapide ---- */
 var em=$('#bf-emb');
+var igb=$('#bf-igbtn'), igx=$('#bf-igbox');
+if(igb&&igx&&em){ var fermeIg=function(){ igx.hidden=true; D.documentElement.style.overflow=''; em.src='about:blank'; delete em.dataset.go; igb.focus(); };
+  igb.addEventListener('click',function(){ igx.hidden=false; D.documentElement.style.overflow='hidden'; em.dataset.go='1'; em.src=em.getAttribute('data-src'); $('.bf-igclose',igx).focus(); });
+  $('.bf-igclose',igx).addEventListener('click',fermeIg);
+  igx.addEventListener('click',function(e){ if(e.target===igx)fermeIg(); });
+  D.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!igx.hidden)fermeIg(); });
+  em=null; }
 if(em){ var charge=function(){ if(em.dataset.go)return; em.dataset.go='1'; em.src=em.getAttribute('data-src'); };
   if(D.readyState==='complete'){ setTimeout(charge,50); } else { window.addEventListener('load',function(){ setTimeout(charge,50); }); setTimeout(charge,3500); } }
 /* ---- galerie plein écran : glisser au doigt, flèches, clavier ---- */
