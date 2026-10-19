@@ -468,3 +468,35 @@
 .ee-fiche .ee-links{margin-top:12px;}
 .ee-fiche .ee-ok{margin-top:10px;}
 .ee-nv input[readonly]{color:var(--muted);}
+/* Audit du 18/10/2026 : tableau de bord de l'agence (vues rapides cliquables, barre, pages), boutons occupés, suppression */
+.ee-ad-barre{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 18px;margin-bottom:12px;}
+.ee-ad-barre .ee-links{margin-top:0;}
+.ee-ad-maj{margin:0;font-size:.84rem;color:var(--muted);}
+#ad-err{margin-bottom:12px;}
+#ad-err[hidden],#ad-no-compte[hidden],#me-compte-err[hidden],#ad-ja[hidden]{display:none;}
+@media(min-width:960px){.ee-stats{grid-template-columns:repeat(6,1fr);}}
+button.ee-stat{display:block;width:100%;text-align:left;font:inherit;color:var(--ink);cursor:pointer;min-height:76px;transition:border-color .2s,background .2s;}
+button.ee-stat:hover{border-color:var(--line-strong);}
+button.ee-stat:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+button.ee-stat[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink);}
+button.ee-stat[aria-pressed="true"] span{color:inherit;}
+.ee-stat-alerte b{color:#A23B2A;}
+button.ee-stat-alerte[aria-pressed="true"] b{color:inherit;}
+.ee-tools-2{justify-content:space-between;margin-top:-4px;}
+.ee-nb{margin:0;font-size:.86rem;color:var(--muted);font-variant-numeric:tabular-nums;}
+.ee-plus{display:flex;justify-content:center;margin-top:14px;}
+.ee-plus .btn[hidden]{display:none;}
+.btn[aria-busy="true"]{opacity:.7;cursor:progress;}
+.ee-btn-danger{background:#7E2C1F;border-color:#7E2C1F;color:#fff;}
+.ee-btn-danger:hover{background:#A23B2A;border-color:#A23B2A;}
+.ee-btn-danger:focus-visible{outline:2px solid #7E2C1F;outline-offset:3px;}
+.ee-rgpd{margin-top:14px;font-size:.84rem;color:var(--muted);}
+.ee-ja{margin-top:12px;max-height:420px;overflow:auto;}
+.ee-ad-barre .ee-links a,.ee-ad-barre .ee-links button{display:inline-flex;align-items:center;min-height:36px;}
+@media(max-width:759px){
+  .ee-stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;}
+  button.ee-stat{min-height:64px;padding:10px 10px;}
+  .ee-stat b{font-size:1.45rem;}
+  .ee-stat span{font-size:.72rem;line-height:1.25;display:block;margin-top:4px;}
+  .ee-ad-barre .ee-links{gap:4px 16px;}
+}

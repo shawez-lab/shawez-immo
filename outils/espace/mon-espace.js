@@ -5,6 +5,10 @@
   var $=EE.$, $$=EE.$$, err=EE.err, C=EE.CONF;
   var out=$('#me-out'), inn=$('#me-in'), load=$('#me-load');
   var qs=new URLSearchParams(location.search);
+  // Les liens reçus (?lien=…, ?reinit=…) sont retirés de l'adresse tout de suite : ils ne restent ni dans
+  // l'historique, ni sur une capture d'écran, ni dans un favori. La page les garde en mémoire le temps de servir.
+  var jetonLien=qs.get('lien')||'', jetonReinit=qs.get('reinit')||'';
+  if(jetonLien||jetonReinit){ var qp=new URLSearchParams(location.search); qp.delete('lien'); qp.delete('reinit'); try{history.replaceState(null,'',location.pathname+(qp.toString()?'?'+qp.toString():''));}catch(e){} }
   var civ='', compte=null, lienPossible=false, TAILLE_MAX=10*1024*1024;
   EE.voirMdp(document);
   $$('[data-ee-txt=conseiller]').forEach(function(e){e.textContent=C.conseiller;});
@@ -98,11 +102,12 @@
     if(d.taille_max)TAILLE_MAX=d.taille_max;
     compte=d.compte||null;
     EE.pictogramme();
-    if(!compte){
+    // lien « nouveau mot de passe » ouvert alors qu'on est déjà connecté : le formulaire s'affiche quand même
+    if(!compte||jetonReinit){
       out.hidden=false; inn.hidden=true;
       etape('email');
       if(qs.get('email')&&!$('#me-email').value)$('#me-email').value=qs.get('email');
-      if(qs.get('reinit'))onglet('reinit'); else if(qs.get('oubli'))onglet('oubli'); else onglet('cnx');
+      if(jetonReinit)onglet('reinit'); else if(qs.get('oubli'))onglet('oubli'); else onglet('cnx');
       if(qs.get('verifie')==='0')flash('Ce lien de confirmation n\'est plus valable. Connectez-vous pour en recevoir un nouveau.');
       return;
     }
@@ -212,9 +217,10 @@
   });
   /* ---------- mot de passe oublié ---------- */
   $('#me-oubli').addEventListener('submit',function(e){
-    e.preventDefault(); var f=this, m=$('#mo-email'); m.value=m.value.replace(/\s+/g,''); if(!err(m,!EE.emailOk(m.value)))return;
-    msg(f,'');
+    e.preventDefault(); var f=this, m=$('#mo-email'), b=$('[type=submit]',f); m.value=m.value.replace(/\s+/g,''); if(!err(m,!EE.emailOk(m.value))){m.focus();return;}
+    msg(f,''); EE.occupe(b,true);
     EE.api('/mot-de-passe/oubli',{body:{email:m.value,site:C.site||undefined}}).then(function(d){
+      EE.occupe(b,false);
       if(d._status!==200){msg(f,EE.messageChamp(d));return;}
       if(d.envoye)msg(f,'Si un espace existe avec cette adresse, un lien vient d\'y être envoyé (pensez aux indésirables). Il est valable 1 heure.',true);
       else msg(f,'L\'envoi de liens par e-mail n\'est pas encore ouvert. '+aide+' Il vous envoie un lien pour choisir un nouveau mot de passe.');
@@ -222,14 +228,42 @@
   });
   /* ---------- nouveau mot de passe (lien reçu) ---------- */
   $('#me-reinit').addEventListener('submit',function(e){
-    e.preventDefault(); var f=this; if(!err($('#mr-mdp'),$('#mr-mdp').value.trim().length<8))return;
-    EE.api('/mot-de-passe/reinit',{body:{jeton:qs.get('reinit'),mot_de_passe:$('#mr-mdp').value}}).then(function(d){
-      if(d._status===200){history.replaceState(null,'',location.pathname);qs=new URLSearchParams();charger();} else msg(f,EE.messageChamp(d));
+    e.preventDefault(); var f=this, b=$('[type=submit]',f); if(!err($('#mr-mdp'),$('#mr-mdp').value.trim().length<8)){$('#mr-mdp').focus();return;}
+    if(!jetonReinit){msg(f,EE.MSG.jeton);return;}
+    msg(f,''); EE.occupe(b,true);
+    EE.api('/mot-de-passe/reinit',{body:{jeton:jetonReinit,mot_de_passe:$('#mr-mdp').value}}).then(function(d){
+      EE.occupe(b,false);
+      if(d._status===200){jetonReinit='';$('#mr-mdp').value='';qs=new URLSearchParams();charger().then(function(){var n=$('#me-mdp-ok');n.textContent='Nouveau mot de passe enregistré. Les autres appareils ont été déconnectés.';n.hidden=false;});}
+      else if(d.error==='jeton'){jetonReinit='';msg(f,'Ce lien n\'est plus valable (1 heure, une seule fois). Demandez-en un nouveau avec « Mot de passe oublié ? ».');}
+      else msg(f,EE.messageChamp(d));
     });
   });
 
   /* ---------- connecté ---------- */
-  $('#me-logout').addEventListener('click',function(){EE.api('/deconnexion',{body:{}}).then(function(){location.href=C.espace;});});
+  /* déconnexion : cet appareil, ou tous les appareils ; si le réseau coupe, on le dit (on ne fait pas croire que c'est fait) */
+  function deconnecter(b,partout){
+    var e=$('#me-compte-err'); e.hidden=true;
+    if(partout&&!EE.confirmer(b,'Confirmer : déconnecter tous mes appareils'))return;
+    EE.occupe(b,true);
+    EE.api('/deconnexion',{body:partout?{partout:true}:{}}).then(function(d){
+      if(d._status===200){location.href=C.espace;return;}
+      EE.occupe(b,false); e.textContent=EE.message(d); e.hidden=false;
+    });
+  }
+  $('#me-logout').addEventListener('click',function(){deconnecter(this,false);});
+  $('#me-logout-all').addEventListener('click',function(){deconnecter(this,true);});
+  /* RGPD : toutes mes données dans un fichier */
+  $('#me-export').addEventListener('click',function(){
+    var b=this, e=$('#me-compte-err'); e.hidden=true; EE.occupe(b,true,'Préparation du fichier…');
+    EE.telecharger('/moi/export','mes-donnees.json').then(function(d){ EE.occupe(b,false); if(d._status!==200&&d.error!=='connexion'){e.textContent=EE.message(d);e.hidden=false;} });
+  });
+  /* session expirée pendant qu'on était sur la page : retour à la connexion, avec un mot simple */
+  window.addEventListener('ee:session',function(){
+    if(inn.hidden)return;
+    compte=null; inn.hidden=true; out.hidden=false; etape('email'); onglet('cnx'); EE.pictogramme();
+    flash('Votre session a expiré : indiquez votre e-mail pour vous reconnecter. Rien n\'est perdu.');
+    window.scrollTo({top:0}); $('#me-email').focus({preventScroll:true});
+  });
   $('#me-verif-btn').addEventListener('click',function(){var b=this;b.disabled=true;EE.api('/verification',{body:{}}).then(function(d){b.textContent=d.envoye?'Lien envoyé':'Envoi impossible pour le moment';});});
   /* choisir ou changer son mot de passe */
   $('#me-mdp-btn').addEventListener('click',function(){
@@ -255,8 +289,12 @@
   $('#me-del-btn').addEventListener('click',function(){$('#me-del').hidden=false;modeSuppr(!!compte.mot_de_passe);(compte.mot_de_passe?$('#md-mdp'):$('#md-conf')).focus();});
   $('#me-del-annule').addEventListener('click',function(){$('#me-del').hidden=true;});
   $('#me-del').addEventListener('submit',function(e){
-    e.preventDefault(); var f=this;
+    e.preventDefault(); var f=this, b=$('[type=submit]',f);
+    if(!$('#md-conf-f').hidden&&$('#md-conf').value.trim().toUpperCase()!=='SUPPRIMER'){err($('#md-conf'),true);$('#md-conf').focus();return;}
+    if(!$('#md-mdp-f').hidden&&!$('#md-mdp').value){err($('#md-mdp'),true);$('#md-mdp').focus();return;}
+    msg(f,''); EE.occupe(b,true);
     EE.api('/compte/supprimer',{body:{mot_de_passe:$('#md-mdp').value,confirmation:$('#md-conf').value}}).then(function(d){
+      EE.occupe(b,false);
       if(d._status===200){location.href='/';return;}
       if(d.error==='champs'&&d.champ==='confirmation'){modeSuppr(false);err($('#md-conf'),true);$('#md-conf').focus();return;}
       msg(f,d.error==='identifiants'?'Mot de passe incorrect.':EE.messageChamp(d));
@@ -301,15 +339,15 @@
   });
   $('#me-cards').addEventListener('click',function(e){
     var b=e.target.closest('[data-suppr]'); if(!b)return;
-    if(b.getAttribute('data-ok')!=='1'){b.setAttribute('data-ok','1');b.textContent='Confirmer';return;}
+    if(!EE.confirmer(b,'Confirmer le retrait'))return;
     b.disabled=true;
-    EE.api('/fichier/supprimer',{body:{id:b.getAttribute('data-suppr')}}).then(function(d){ if(d._status===200){var li=b.closest('li');li.parentNode.removeChild(li);} else {b.disabled=false;b.textContent=EE.message(d);} });
+    EE.api('/fichier/supprimer',{body:{id:b.getAttribute('data-suppr')}}).then(function(d){ if(d._status===200){var li=b.closest('li');li.parentNode.removeChild(li);} else {b.disabled=false;b.removeAttribute('data-ok');b.textContent='Retirer';var z=b.closest('.ee-files');if(z)msg(z,EE.message(d));} });
   });
 
   /* ---------- arrivée par un lien de connexion (?lien=…) : la page l'échange contre une session ---------- */
-  if(qs.get('lien')){
-    EE.api('/lien/ouvrir',{body:{jeton:qs.get('lien')}}).then(function(d){
-      history.replaceState(null,'',location.pathname);
+  if(jetonLien){
+    EE.api('/lien/ouvrir',{body:{jeton:jetonLien}}).then(function(d){
+      jetonLien='';
       var ok=d._status===200;
       qs=new URLSearchParams();
       charger().then(function(){

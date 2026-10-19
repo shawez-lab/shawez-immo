@@ -89,14 +89,16 @@
         </form>
         <p class="ee-ok" id="me-mdp-ok" role="status" hidden style="margin-top:14px;">Mot de passe enregistré.</p>
 
-        <div class="ee-links"><a href="/admin/" id="me-admin" data-ee-lien="admin" hidden>Espace agence</a><button type="button" id="me-mdp-btn">Choisir un mot de passe</button><button type="button" id="me-logout">Me déconnecter</button><button type="button" class="ee-danger" id="me-del-btn">Supprimer mon espace</button></div>
+        <div class="ee-links"><a href="/admin/" id="me-admin" data-ee-lien="admin" hidden>Espace agence</a><button type="button" id="me-mdp-btn">Choisir un mot de passe</button><button type="button" id="me-export">Télécharger mes données</button><button type="button" id="me-logout">Me déconnecter</button><button type="button" id="me-logout-all">Me déconnecter de tous mes appareils</button><button type="button" class="ee-danger" id="me-del-btn">Supprimer mon espace</button></div>
+        <p class="ee-err" id="me-compte-err" role="alert" hidden></p>
+        <p class="hint ee-rgpd">Vos données servent seulement à suivre votre projet avec <span data-ee-txt="conseiller">Shawez</span> et GRAVELIN IMMO. Vous pouvez les télécharger ou supprimer votre espace à tout moment. <a href="/politique-de-confidentialite/#espace-estimation" data-ee-lien="confidentialite">Confidentialité</a></p>
         <form class="form" id="me-del" novalidate hidden style="margin-top:18px;">
           <div class="ee-step">
             <div class="ee-head"><h2 class="ee-q ee-q-s">Supprimer <em>mon espace</em></h2><p class="ee-sub" id="md-sub">Votre compte, vos estimations et vos fichiers sont effacés définitivement.</p></div>
             <div class="field" id="md-mdp-f"><label for="md-mdp">Mot de passe</label><input type="password" id="md-mdp" autocomplete="current-password"><span class="msg">Indiquez votre mot de passe.</span></div>
             <div class="field" id="md-conf-f" hidden><label for="md-conf">Écrivez SUPPRIMER pour confirmer</label><input type="text" id="md-conf" autocomplete="off" autocapitalize="characters"><span class="msg">Écrivez SUPPRIMER (en majuscules) pour confirmer.</span></div>
             <p class="ee-err" role="alert" hidden></p>
-            <div class="ee-nav"><button type="button" class="btn" id="me-del-annule">Annuler</button><button type="submit" class="btn btn-primary">Supprimer définitivement</button></div>
+            <div class="ee-nav"><button type="button" class="btn" id="me-del-annule">Annuler</button><button type="submit" class="btn ee-btn-danger">Supprimer définitivement</button></div>
           </div>
         </form>
       </div>

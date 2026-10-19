@@ -1574,7 +1574,40 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 .ee-fiche .ee-links{margin-top:12px;}
 .ee-fiche .ee-ok{margin-top:10px;}
 .ee-nv input[readonly]{color:var(--muted);}
+/* Audit du 18/10/2026 : tableau de bord de l'agence (vues rapides cliquables, barre, pages), boutons occupés, suppression */
+.ee-ad-barre{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 18px;margin-bottom:12px;}
+.ee-ad-barre .ee-links{margin-top:0;}
+.ee-ad-maj{margin:0;font-size:.84rem;color:var(--muted);}
+#ad-err{margin-bottom:12px;}
+#ad-err[hidden],#ad-no-compte[hidden],#me-compte-err[hidden],#ad-ja[hidden]{display:none;}
+@media(min-width:960px){.ee-stats{grid-template-columns:repeat(6,1fr);}}
+button.ee-stat{display:block;width:100%;text-align:left;font:inherit;color:var(--ink);cursor:pointer;min-height:76px;transition:border-color .2s,background .2s;}
+button.ee-stat:hover{border-color:var(--line-strong);}
+button.ee-stat:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+button.ee-stat[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink);}
+button.ee-stat[aria-pressed="true"] span{color:inherit;}
+.ee-stat-alerte b{color:#A23B2A;}
+button.ee-stat-alerte[aria-pressed="true"] b{color:inherit;}
+.ee-tools-2{justify-content:space-between;margin-top:-4px;}
+.ee-nb{margin:0;font-size:.86rem;color:var(--muted);font-variant-numeric:tabular-nums;}
+.ee-plus{display:flex;justify-content:center;margin-top:14px;}
+.ee-plus .btn[hidden]{display:none;}
+.btn[aria-busy="true"]{opacity:.7;cursor:progress;}
+.ee-btn-danger{background:#7E2C1F;border-color:#7E2C1F;color:#fff;}
+.ee-btn-danger:hover{background:#A23B2A;border-color:#A23B2A;}
+.ee-btn-danger:focus-visible{outline:2px solid #7E2C1F;outline-offset:3px;}
+.ee-rgpd{margin-top:14px;font-size:.84rem;color:var(--muted);}
+.ee-ja{margin-top:12px;max-height:420px;overflow:auto;}
+.ee-ad-barre .ee-links a,.ee-ad-barre .ee-links button{display:inline-flex;align-items:center;min-height:36px;}
+@media(max-width:759px){
+  .ee-stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;}
+  button.ee-stat{min-height:64px;padding:10px 10px;}
+  .ee-stat b{font-size:1.45rem;}
+  .ee-stat span{font-size:.72rem;line-height:1.25;display:block;margin-top:4px;}
+  .ee-ad-barre .ee-links{gap:4px 16px;}
+}
 </style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://shawez-immo.com/estimer/#page", "url": "https://shawez-immo.com/estimer/", "name": "Estimation en ligne à Dijon et en Côte-d'Or — Shawez Ali", "description": "Estimez votre appartement ou votre maison en deux minutes : une fourchette calculée sur les ventes réelles (DVF) autour de chez vous, puis l'avis de Shawez.", "inLanguage": "fr-FR", "isPartOf": {"@id": "https://shawez-immo.com/#site"}, "about": {"@id": "https://shawez-immo.com/#agent"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://shawez-immo.com/"}, {"@type": "ListItem", "position": 2, "name": "Estimer mon bien", "item": "https://shawez-immo.com/estimer/"}]}, {"@type": "Service", "@id": "https://shawez-immo.com/estimer/#service", "name": "Estimation immobilière en ligne", "serviceType": "Estimation immobilière", "provider": {"@type": "RealEstateAgent", "@id": "https://shawez-immo.com/#agent", "name": "Shawez Ali — Agent immobilier", "telephone": "+33767579228", "address": {"@type": "PostalAddress", "streetAddress": "30 rue Bannelier", "postalCode": "21000", "addressLocality": "Dijon", "addressCountry": "FR"}}, "areaServed": {"@type": "AdministrativeArea", "name": "Côte-d'Or"}, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR", "description": "Estimation offerte et sans engagement"}}]}</script>
 </head>
 <body data-route="/estimer">
 <header id="nav">
@@ -1587,7 +1620,7 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
       <li><a href="/videos-immobilier-dijon/" data-nav="videos">Vidéos</a></li>
       <li><a href="/simulateur-pret-immobilier-dijon/" data-nav="simulateur">Simulateur</a></li>
       <li><a href="/shawez-ali-agent-immobilier-dijon/" data-nav="a-propos">À propos</a></li>
-      <li><a href="https://www.gravelin-immo.com/vente/1?utm_source=shawez-immo" title="Catalogue des biens à vendre de l'agence GRAVELIN IMMO" data-sortie="biens">Biens à vendre</a></li>
+      <li><a href="/biens-a-vendre-dijon/" data-nav="biens-a-vendre-dijon">Biens à vendre</a></li>
     </ul>
   </nav>
   <div class="nav-cta">
@@ -1601,7 +1634,7 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
   <ul>
     <li><a href="/vendre-bien-immobilier-dijon/">Vendre <small>Film, photos, drone, diffusion partout</small></a></li>
     <li><a href="/vendre-commerce-dijon/">Commerces <small>Cédez en toute discrétion</small></a></li>
-    <li><a href="https://www.gravelin-immo.com/vente/1?utm_source=shawez-immo" data-sortie="biens">Biens à vendre <small>Nos biens en vente</small></a></li>
+    <li><a href="/biens-a-vendre-dijon/">Biens à vendre <small>Nos biens en vente</small></a></li>
     <li><a href="/conseils-vendeurs/">Conseils <small>Vendre mieux, éviter les pièges</small></a></li>
     <li><a href="/videos-immobilier-dijon/">Vidéos <small>Voyez comment votre bien sera filmé</small></a></li>
     <li><a href="/simulateur-pret-immobilier-dijon/">Simulateur <small>Combien puis-je emprunter ?</small></a></li>
@@ -1816,7 +1849,7 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
         <span>Agent commercial en immobilier, rattaché à GRAVELIN IMMO — 30 rue Bannelier, 21000 Dijon. RSAC Dijon n° 843 345 380 (numéro SIREN, extrait INPI en cours de vérification) · SIREN 843 345 380.</span>
         <span><a href="tel:+33767579228">07 67 57 92 28</a> · <a href="mailto:shawez@gravelin-immo.com">shawez@gravelin-immo.com</a></span>
       </div>
-      <div><p class="ft-h">Vendre</p><ul><li><a href="/estimer/">Estimer mon bien</a></li><li><a href="/estimation-immobiliere-dijon/">Estimation chez vous, offerte</a></li><li><a href="/vendre-bien-immobilier-dijon/">Vendre à Dijon</a></li><li><a href="/vendre-commerce-dijon/">Commerces</a></li><li><a href="https://www.gravelin-immo.com/vente/1?utm_source=shawez-immo" data-sortie="biens">Voir les biens à vendre</a></li><li><a href="/honoraires/">Honoraires</a></li></ul></div>
+      <div><p class="ft-h">Vendre</p><ul><li><a href="/estimer/">Estimer mon bien</a></li><li><a href="/estimation-immobiliere-dijon/">Estimation chez vous, offerte</a></li><li><a href="/vendre-bien-immobilier-dijon/">Vendre à Dijon</a></li><li><a href="/vendre-commerce-dijon/">Commerces</a></li><li><a href="/biens-a-vendre-dijon/">Voir les biens à vendre</a></li><li><a href="/honoraires/">Honoraires</a></li></ul></div>
       <div><p class="ft-h">Découvrir</p><ul><li><a href="/conseils-vendeurs/">Conseils aux vendeurs</a></li><li><a href="/simulateur-pret-immobilier-dijon/">Simulateur de prêt</a></li><li><a href="/videos-immobilier-dijon/">Vidéos</a></li><li><a href="/shawez-ali-agent-immobilier-dijon/">À propos</a></li><li><a href="/secteurs-dijon-nuits-saint-georges-beaune/">Territoire</a></li><li><a href="/avis/">Avis</a></li><li><a href="/podcast/">Podcast</a></li></ul></div>
       <div><p class="ft-h">Pratique</p><ul><li><a href="/contact/">Contact</a></li><li><a href="/mon-espace/">Mon espace</a></li><li><a href="/mentions-legales/">Mentions légales</a></li><li><a href="/politique-de-confidentialite/">Confidentialité</a></li><li><a href="/cookies/">Cookies</a></li><li><a href="https://www.instagram.com/shawez_immo" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.linkedin.com/in/shawez-ali" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://www.youtube.com/@gravelinimmo" target="_blank" rel="noopener">YouTube</a></li></ul></div>
     </div>
@@ -2192,7 +2225,7 @@ updateTone();
   window.addEventListener('pageshow',function(e){ hide(); if(e.persisted){ var m=document.getElementById('menu'), x=document.getElementById('menu-close'); if(m&&x&&m.classList.contains('open'))x.click(); } });
 })();
 </script>
-<script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"33710f67a0c16d7cbb94d1b2ba10e7a8"})});</script>
+<script>if(!location.search){function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"33710f67a0c16d7cbb94d1b2ba10e7a8"})});}</script>
 <script id="compte-js">
 /* Pictogramme « Mon espace » : état connecté d'après le témoin se_ok (posé par l'API à la connexion, retiré à la déconnexion) */
 window.EECompte=function(){var on=/(?:^|;\s*)se_ok=1/.test(document.cookie||'');[].forEach.call(document.querySelectorAll('[data-compte]'),function(a){a.classList.toggle('is-in',on);var t=on?'Mon espace : connecté':'Mon espace : se connecter';if(a.hasAttribute('aria-label')){a.setAttribute('aria-label',t);a.title=t;}var x=a.querySelector('[data-compte-txt]');if(x)x.textContent=on?'Mon espace · connecté':'Mon espace';});};
@@ -2229,8 +2262,35 @@ var EE=(function(){
     if(ctrl){init.signal=ctrl.signal;t=setTimeout(function(){ctrl.abort();},opts.delai||30000);}
     return fetch(CONF.api+chemin,init).then(function(r){
       clearTimeout(t);
-      return r.json().catch(function(){return {};}).then(function(d){d=d||{};d._status=r.status;if(r.status>=500&&!d.error)d.error='serveur';return d;});
+      return r.json().catch(function(){return {};}).then(function(d){
+        d=d||{};d._status=r.status;if(r.status>=500&&!d.error)d.error='serveur';
+        // session expirée pendant qu'on travaillait : la page le dit une fois et propose de se reconnecter
+        if(r.status===401&&d.error==='connexion'&&chemin!=='/moi'){ try{window.dispatchEvent(new CustomEvent('ee:session',{detail:{chemin:chemin}}));}catch(e){} }
+        return d;
+      });
     },function(){clearTimeout(t);return {_status:0,error:'reseau'};});
+  }
+  /* Action irréversible : le premier clic arme le bouton (« Confirmer : … »), le second agit. Sans second clic dans les
+     8 secondes, le bouton reprend son texte : un clic oublié ne supprime jamais rien plus tard. Rend true au second clic. */
+  function confirmer(b,txt,ms){
+    if(b.getAttribute('data-ok')==='1'){ clearTimeout(b._eeT); b.removeAttribute('data-ok'); if(b._eeTxt!=null)b.textContent=b._eeTxt; return true; }
+    b._eeTxt=b.textContent; b.setAttribute('data-ok','1'); b.textContent=txt;
+    clearTimeout(b._eeT); b._eeT=setTimeout(function(){ b.removeAttribute('data-ok'); b.textContent=b._eeTxt; },ms||8000);
+    return false;
+  }
+  /* Bouton occupé pendant une requête : désactivé, annoncé (aria-busy), texte d'attente le cas échéant. */
+  function occupe(b,on,txt){
+    if(!b)return;
+    if(on){ b.disabled=true; b.setAttribute('aria-busy','true'); if(txt){ b._eeAvant=b.innerHTML; b.textContent=txt; } }
+    else { b.disabled=false; b.removeAttribute('aria-busy'); if(b._eeAvant!=null){ b.innerHTML=b._eeAvant; b._eeAvant=null; } }
+  }
+  function retarder(fn,ms){ var t=null; return function(){ var a=arguments, s=this; clearTimeout(t); t=setTimeout(function(){fn.apply(s,a);},ms||150); }; }
+  /* Téléchargement d'un fichier de l'API (export) : la session expirée se dit clairement au lieu d'un fichier d'erreur. */
+  function telecharger(chemin,nom){
+    return fetch(CONF.api+chemin,{credentials:'same-origin'}).then(function(r){
+      if(!r.ok)return r.json().catch(function(){return {};}).then(function(d){ d._status=r.status; if(r.status===401)try{window.dispatchEvent(new CustomEvent('ee:session',{detail:{chemin:chemin}}));}catch(e){} return d; });
+      return r.blob().then(function(b){ var u=URL.createObjectURL(b), a=document.createElement('a'); a.href=u; a.download=nom; document.body.appendChild(a); a.click(); setTimeout(function(){URL.revokeObjectURL(u);a.remove();},1500); return {_status:200}; });
+    },function(){ return {_status:0,error:'reseau'}; });
   }
   var MSG={
     reseau:"La connexion a échoué ou a mis trop de temps. Vérifiez votre réseau et réessayez : rien n'est perdu.",
@@ -2253,7 +2313,13 @@ var EE=(function(){
     stockage_plein:"L'espace de stockage est plein : envoyez ce fichier par e-mail à "+CONF.email+".",
     visite_fixee:"Une visite est déjà fixée pour ce bien.",
     visite_close:"Ce dossier a avancé : la visite se fixe par téléphone.",
-    avis_absent:"Créez d'abord le PDF de l'avis de valeur."
+    avis_absent:"Créez d'abord le PDF de l'avis de valeur.",
+    admin_non_verifie:"Votre adresse doit d'abord être confirmée par le lien reçu par e-mail.",
+    compte_agence:"C'est un compte de l'agence : il ne se modifie pas d'ici.",
+    soi_meme:"Vous ne pouvez pas supprimer votre propre compte d'ici.",
+    format:"Requête refusée.",json:"Requête refusée.",
+    espace_existe:"Ce dossier a déjà un espace : rechargez la page.",
+    creneau_pris:"Ce créneau vient d'être pris : choisissez-en un autre."
   };
   function message(d){return MSG[d&&d.error]||MSG.serveur;}
   var CHAMPS={email:"L'adresse e-mail n'est pas valide.",telephone:"Le numéro de téléphone n'est pas valide.",prenom:"Indiquez votre prénom.",nom:"Indiquez votre nom.",mot_de_passe:"Le mot de passe doit compter 8 caractères au moins.",consentement:"Cochez la case pour continuer.",adresse:"L'adresse du bien est incomplète.",surface:"La surface n'est pas valide.",confirmation:"Écrivez SUPPRIMER pour confirmer.",creneaux:"Ce créneau n'est plus proposé : choisissez-en un autre.",debut:"La date de la visite n'est pas valide.",prix_bas:"Indiquez la fourchette de prix (basse et haute).",prix_haut:"La valeur haute doit dépasser la valeur basse.",agenda_ics:"Collez l'« Adresse secrète au format iCal » de Google Agenda (https://calendar.google.com/calendar/ical/…/basic.ics).",rdv_url:"Collez le lien de votre page de réservation Google Agenda (https://calendar.app.google/…).",atouts:"8 lignes au plus, 240 caractères par ligne.",vigilance:"8 lignes au plus, 240 caractères par ligne.",visite_le:"Indiquez la date de la visite (aujourd'hui au plus tard).",texte:"Écrivez ou dictez le compte rendu (3 000 caractères au plus).",montant:"Indiquez le montant de l'offre, en euros.",recue_le:"La date de l'offre n'est pas valide.",conditions:"Les conditions sont trop longues (1 500 caractères au plus).",etapes:"Une date d'étape n'est pas valide.",nom_notaire:"Le nom du notaire est trop long.",coordonnees:"Les coordonnées sont trop longues (300 caractères au plus)."};
@@ -2412,7 +2478,7 @@ var EE=(function(){
     return scripts[src];
   }
 
-  return {jourLong:jourLong,quand:quand,quandCourt:quandCourt,heure:heure,visite:visite,script:script,CONF:CONF,$:$,$$:$$,esc:esc,euros:euros,date:date,jour:jour,mois:mois,taille:taille,rayon:rayon,api:api,message:message,messageChamp:messageChamp,resultat:resultat,voirMdp:voirMdp,err:err,emailOk:emailOk,telOk:telOk,connecte:connecte,pictogramme:pictogramme,portraits:portraits,mem:mem,uuid:uuid,TEL:CONF.tel,wa:wa};
+  return {MSG:MSG,confirmer:confirmer,occupe:occupe,retarder:retarder,telecharger:telecharger,jourLong:jourLong,quand:quand,quandCourt:quandCourt,heure:heure,visite:visite,script:script,CONF:CONF,$:$,$$:$$,esc:esc,euros:euros,date:date,jour:jour,mois:mois,taille:taille,rayon:rayon,api:api,message:message,messageChamp:messageChamp,resultat:resultat,voirMdp:voirMdp,err:err,emailOk:emailOk,telOk:telOk,connecte:connecte,pictogramme:pictogramme,portraits:portraits,mem:mem,uuid:uuid,TEL:CONF.tel,wa:wa};
 })();
 
 /* Parcours d'estimation /estimer/ : une question par écran, 6 étapes, puis un seul écran de coordonnées
