@@ -225,7 +225,7 @@ export async function onRequest({ request, env }) {
   try {
     if (!egal(request.headers.get('X-Boss-Token') || '', env.MANYCHAT_TOKEN || '')) return json(401, { error: 'acces' });
 
-    let prenom, commentaire, post, contact, compte, evenement, test = false;
+    let prenom, commentaire, post, contact, compte, evenement, source = '', test = false;
     if (request.method === 'GET') {
       const u = new URL(request.url);
       if (u.searchParams.get('diag')) {
@@ -260,6 +260,7 @@ export async function onRequest({ request, env }) {
         if (att > 23 * 60) return sansMessage('fenetre_24h', { source, a_reprendre: true });
         return sansMessage('hors_creneau', { source, envoyer: 'plus_tard', attendre_minutes: att });
       }
+      source = propre(c.source, 40);
       prenom = propre(c.first_name || c.prenom, 40);
       // « GRAVELIN » ou « gravelin » → « Gravelin »
       if (prenom && (prenom === prenom.toUpperCase() || prenom === prenom.toLowerCase())) prenom = prenom.toLowerCase().replace(/(^|[\s-])\p{L}/gu, m => m.toUpperCase());
@@ -281,7 +282,10 @@ export async function onRequest({ request, env }) {
         .bind(`hc-${evenement || Date.now()}`, contact, compte, idReel(post), '', jourParis(), 'hors_creneau', 0, 0, 0, new Date().toISOString())
         .run().catch(() => {});
       // ManyChat : branche « plus_tard » → Smart Delay de attendre_minutes → rappel de cette même requête → envoi.
-      return sansMessage('hors_creneau', { compte, envoyer: 'plus_tard', attendre_minutes: minutesAvantCreneau() });
+      const att = minutesAvantCreneau();
+      // Réponses aux stories : fenêtre Instagram de 24 h → au-delà de 23 h d'attente, pas de report, reprise à la main
+      if (source === 'story_reply' && att > 23 * 60) return sansMessage('fenetre_24h', { compte, source, a_reprendre: true });
+      return sansMessage('hors_creneau', { compte, source, envoyer: 'plus_tard', attendre_minutes: att });
     }
     if (!evenement) {
       const brut = new TextEncoder().encode(`${contact}|${idReel(post)}|${commentaire}|${jourParis()}`);
