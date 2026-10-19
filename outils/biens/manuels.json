@@ -1,0 +1,22 @@
+{
+ "_lisezmoi": "Biens hors Hektor (mandat signé mais annonce pas encore dans annonces.json). Même forme qu'une annonce de annonces.json. Une entrée n'est publiée que si son mandat signé est retrouvé (champ « mandat »). Dès que la même référence arrive dans annonces.json, l'annonce Hektor remplace l'entrée manuelle. Jamais d'adresse exacte ni de nom de vendeur : « secteur » = quartier seulement. Photos : python3 outils/biens/sync_photos.py <ref> --drive <dossier> FICHIERS…, puis python3 outils/biens/build_biens.py.",
+ "annonces": {
+  "519": {
+   "ref": "519",
+   "mandat": {"numero": "519", "type": "mandat simple de vente", "signe": "2026-10-15", "signature": "Yousign", "drive": "1VcuUE8rvZQfKcTFZ_vBCx0Lij0jtaM_L"},
+   "type": "Appartement",
+   "commune": "Dijon",
+   "cp": "21000",
+   "secteur": "quartier des Bourroches, à 10 min du centre",
+   "prix": 139000,
+   "pieces": 4,
+   "status": "en vente",
+   "first_seen": "2026-10-15",
+   "status_changed": "2026-10-15",
+   "atouts": ["Deux balcons", "Lumineux", "2e étage", "Cave", "Grenier"],
+   "caracteristiques": {"nbetage": "2", "nbchambres": "2", "balcon": "OUI", "cave": "OUI", "copropriete": "OUI", "honoraires_vendeur": "OUI"},
+   "description_expurgee": "Appartement de 4 pièces au 2e étage d'une résidence du quartier des Bourroches, à 10 minutes du centre de Dijon. Il comprend une pièce de vie, deux chambres, une pièce supplémentaire, une cuisine, une salle d'eau, un WC séparé et une entrée avec penderie. Lumineux, il profite de deux balcons. Une cave et un grenier complètent le bien.",
+   "photos": {"fichiers": []}
+  }
+ }
+}

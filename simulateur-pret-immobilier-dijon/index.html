@@ -1129,7 +1129,7 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
       <li><a href="/videos-immobilier-dijon/" data-nav="videos">Vidéos</a></li>
       <li><a href="/simulateur-pret-immobilier-dijon/" data-nav="simulateur">Simulateur</a></li>
       <li><a href="/shawez-ali-agent-immobilier-dijon/" data-nav="a-propos">À propos</a></li>
-      <li><a href="/biens-a-vendre-dijon/">Biens à vendre</a></li>
+      <li><a href="/biens-a-vendre-dijon/" data-nav="biens-a-vendre-dijon">Biens à vendre</a></li>
     </ul>
   </nav>
   <div class="nav-cta">
@@ -1213,7 +1213,7 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
       </dl>
       <p class="sim-taux" id="r-taux"></p>
       <div class="btn-row">
-        <a class="btn btn-primary btn-lg" href="/biens-a-vendre-dijon/">Voir les biens dans ce budget</a>
+        <a class="btn btn-primary btn-lg" id="sim-biens" href="/biens-a-vendre-dijon/">Voir les biens dans ce budget</a>
         <a class="btn btn-lg" href="https://wa.me/33767579228?text=Bonjour%20Shawez%2C%20j%27ai%20fait%20la%20simulation%20de%20pr%C3%AAt%20sur%20votre%20site%20et%20je%20souhaite%20%C3%AAtre%20rappel%C3%A9." target="_blank" rel="noopener">Être rappelé par Shawez</a>
       </div>
       <p class="sim-private">Calcul fait dans votre navigateur. Aucune donnée n'est envoyée ni conservée.</p>
@@ -1627,7 +1627,7 @@ function calc(){
   var budget=capital+apport;            /* prix + frais de notaire */
   var prix=budget/(1+f), notaire=prix*f;
   var interets=mens*n-capital;
-  set('r-prix',eur.format(Math.floor(prix/1000)*1000)); set('r-peek',eur.format(Math.floor(prix/1000)*1000)); hasRes=true; peek();
+  set('r-prix',eur.format(Math.floor(prix/1000)*1000));/* sim-biens-js */var vb=$('sim-biens');if(vb)vb.href='/biens-a-vendre-dijon/?prix_max='+Math.floor(prix/1000)*1000; set('r-peek',eur.format(Math.floor(prix/1000)*1000)); hasRes=true; peek();
   set('r-msg','Avec une mensualité de '+eur.format(mens)+', soit 35 % de vos revenus moins vos crédits en cours, '+(apport?'et '+eur.format(apport)+' d\'apport.':'sans apport.'));
   set('r-capital',eur.format(Math.round(capital)));
   $('r-mens').innerHTML=eur.format(mens)+' <small>/ mois</small>';

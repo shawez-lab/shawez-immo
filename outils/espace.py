@@ -351,6 +351,21 @@ def page(nom, conf, gabarit, css, commun):
     s = re.sub(r'<script type="application/ld\+json">.*?</script>\n?', '', s, flags=re.S)
     s = re.sub(r'<style id="espace-v1">.*?</style>\n?', '', s, flags=re.S)
     s = s.replace('</head>', f'<style id="espace-v1">\n{css}</style>\n</head>', 1)
+    # données structurées propres à la page (ajoutées par un autre outil) : gardées d'une construction à l'autre
+    cible = os.path.join(RACINE, dossier, 'index.html')
+    if os.path.exists(cible):
+        ld = re.search(r'<script type="application/ld\+json">.*?</script>\n?', lire(cible), flags=re.S)
+        if ld:
+            s = s.replace('</head>', ld.group(0) + '</head>', 1)
+    # mesure d'audience : jamais sur une page privée (le lien de connexion ?lien=… ne doit jamais partir chez
+    # Metricool) ; sur /estimer/, seulement sans paramètre dans l'adresse (?adresse= = donnée personnelle).
+    # Mêmes règles que outils/build.py, appliquées dès la construction : rien ne part en ligne avant build.py.
+    mesure = re.compile(r'<script>(?:if\(!location\.search\)\{)?function loadScript\(a\).*?</script>\n?', re.S)
+    if conf['robots'].startswith('noindex'):
+        s = mesure.sub('', s)
+    else:
+        s = mesure.sub(lambda m: m.group(0) if m.group(0).startswith('<script>if(!location.search){')
+                       else m.group(0).replace('<script>', '<script>if(!location.search){', 1).replace('</script>', '}</script>', 1), s)
     s = re.sub(r'<body data-route="[^"]*"', f'<body data-route="{conf["route"]}"', s, count=1)
     main = lire(os.path.join(SRC, f'{nom}.html'))
     s = re.sub(r'<main id="main">.*?</main>', lambda m: f'<main id="main">\n{main}</main>', s, count=1, flags=re.S)

@@ -245,7 +245,11 @@ export class Erreur extends Error {
 }
 
 export function json(status, corps, entetes = {}) {
-  const h = new Headers({ 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex' });
+  const h = new Headers({
+    'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex',
+    // réponses de l'API : jamais interprétées comme une page, jamais dans un cadre, jamais de provenance transmise
+    'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'no-referrer', 'X-Frame-Options': 'DENY',
+  });
   for (const [k, v] of Object.entries(entetes)) {
     if (Array.isArray(v)) v.forEach((x) => h.append(k, x)); else h.set(k, v);
   }
@@ -371,6 +375,15 @@ async function memeEmpreinte(mdp, sel, iter, attendu) {
   return diff === 0;
 }
 
+/* Empreinte factice : quand l'e-mail n'a pas de compte (ou pas de mot de passe), le calcul est fait quand même,
+   pour que le temps de réponse ne dise pas si l'adresse existe. */
+let LEURRE = null;
+export async function verifierLeurre(mdp) {
+  if (!LEURRE) LEURRE = await hacher('leurre-' + jeton());
+  await verifierMdp(typeof mdp === 'string' && mdp ? mdp.slice(0, 200) : 'x', LEURRE);
+  return false;
+}
+
 export async function verifierMdp(mdp, stocke) {
   const [algo, iter, sel, h] = String(stocke || '').split('$');
   if (algo !== 'pbkdf2-sha256' || typeof mdp !== 'string' || !mdp || mdp.length > 200) return false;   // '' = compte sans mot de passe
@@ -392,24 +405,31 @@ export async function sha256(s) {
 }
 
 const COOKIE = 'se_session';
-const DUREE = 30 * 24 * 3600;
+const DUREE = 30 * 24 * 3600;            // vendeur : 30 jours sans visite
+const DUREE_AGENCE = 7 * 24 * 3600;      // agence (accès à tous les dossiers) : 7 jours sans visite
+const RENOUVELER = 24 * 3600;            // la session est prolongée au plus une fois par jour (une seule écriture)
 
 // Deux cookies : la session (HttpOnly, illisible par les scripts) et un simple témoin « se_ok=1 », sans valeur secrète,
 // que les pages lisent pour afficher le pictogramme « connecté » sans appeler l'API à chaque page.
 const TEMOIN = 'se_ok';
+const cookiesSession = (t, duree) => [
+  `${COOKIE}=${t}; Path=/; Max-Age=${duree}; HttpOnly; Secure; SameSite=Lax`,
+  `${TEMOIN}=1; Path=/; Max-Age=${duree}; Secure; SameSite=Lax`,
+];
+const dureeDe = (compte, env) => (estAdmin(compte, env) ? DUREE_AGENCE : DUREE);
+
 export async function ouvrirSession(env, compteId, prouve = false) {
   const base = await db(env);
   const t = jeton();
-  const exp = Math.floor(Date.now() / 1000) + DUREE;
+  const c = await base.prepare('SELECT email, verifie FROM comptes WHERE id = ?1').bind(compteId).first();
+  const duree = dureeDe(c, env);
+  const exp = Math.floor(Date.now() / 1000) + duree;
   await base.batch([
     base.prepare('INSERT INTO sessions (id, compte_id, expire, cree_le, prouve) VALUES (?1, ?2, ?3, ?4, ?5)').bind(await sha256(t), compteId, exp, maintenant(), prouve ? 1 : 0),
     base.prepare('UPDATE comptes SET derniere_connexion = ?1 WHERE id = ?2').bind(maintenant(), compteId),
     base.prepare('DELETE FROM sessions WHERE expire < ?1').bind(Math.floor(Date.now() / 1000)),
   ]);
-  return [
-    `${COOKIE}=${t}; Path=/; Max-Age=${DUREE}; HttpOnly; Secure; SameSite=Lax`,
-    `${TEMOIN}=1; Path=/; Max-Age=${DUREE}; Secure; SameSite=Lax`,
-  ];
+  return cookiesSession(t, duree);
 }
 
 export const cookieEfface = [
@@ -424,19 +444,40 @@ function lireCookie(request) {
   return m ? m[1] : null;
 }
 
+/* Session glissante : tant que la personne revient, elle reste connectée (30 jours sans visite pour un vendeur,
+   7 jours pour l'agence). La prolongation s'écrit au plus une fois par jour et le cookie prolongé repart avec la
+   réponse (renouvellement(request), lu par l'API). Une ancienne session de l'agence ouverte pour 30 jours est ramenée à 7. */
+const renouvellements = new WeakMap();
+export const renouvellement = (request) => renouvellements.get(request) || null;
+
 export async function compteSession(request, env) {
   const t = lireCookie(request);
   if (!t) return null;
   const base = await db(env);
+  const id = await sha256(t);
+  const maintenantS = Math.floor(Date.now() / 1000);
   const r = await base.prepare(
-    `SELECT c.* , s.id AS session_id, s.prouve AS session_prouvee FROM sessions s JOIN comptes c ON c.id = s.compte_id WHERE s.id = ?1 AND s.expire > ?2`
-  ).bind(await sha256(t), Math.floor(Date.now() / 1000)).first();
-  return r || null;
+    `SELECT c.* , s.id AS session_id, s.prouve AS session_prouvee, s.expire AS session_expire FROM sessions s JOIN comptes c ON c.id = s.compte_id WHERE s.id = ?1 AND s.expire > ?2`
+  ).bind(id, maintenantS).first();
+  if (!r) return null;
+  const duree = dureeDe(r, env);
+  if (Math.abs(r.session_expire - (maintenantS + duree)) > RENOUVELER) {
+    try {
+      await base.prepare('UPDATE sessions SET expire = ?1 WHERE id = ?2').bind(maintenantS + duree, id).run();
+      renouvellements.set(request, cookiesSession(t, duree));
+    } catch (e) { /* la session reste valable jusqu'à son ancienne échéance */ }
+  }
+  return r;
 }
 
 export async function fermerSession(request, env) {
   const t = lireCookie(request);
   if (t) await (await db(env)).prepare('DELETE FROM sessions WHERE id = ?1').bind(await sha256(t)).run();
+}
+
+/* Déconnexion de tous les appareils (téléphone perdu, ordinateur partagé). */
+export async function fermerSessions(env, compteId) {
+  await (await db(env)).prepare('DELETE FROM sessions WHERE compte_id = ?1').bind(compteId).run();
 }
 
 /* ---------- Admins ---------- */

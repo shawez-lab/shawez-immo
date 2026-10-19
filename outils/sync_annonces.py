@@ -1,4 +1,7 @@
-"""Synchronisation des annonces de l'agence GRAVELIN IMMO → annonces.json, photos, page du site, file des posts Google.
+"""Synchronisation des annonces de l'agence GRAVELIN IMMO → annonces.json, photos, fiches du site, file des posts Google.
+
+La page des biens et les fiches /biens/… sont construites par outils/biens/build_biens.py (appelé à la fin) ;
+la fonction page() ci-dessous n'est plus appelée (ancienne page qui renvoyait vers l'agence).
 
     python3 outils/sync_annonces.py              # passage complet (lancé chaque jour par GitHub Actions)
     python3 outils/sync_annonces.py --sans-web   # régénère seulement la page et les fichiers depuis annonces.json
@@ -78,7 +81,9 @@ TYPES = {'appartement': 'Appartement', 'duplex': 'Duplex', 'maison': 'Maison', '
          'terrain': 'Terrain', 'terrain-a-batir': 'Terrain à bâtir', 'loft': 'Loft', 'chateau': 'Château', 'studio': 'Studio',
          'viager-maison': 'Viager', 'local-commercial': 'Local commercial', 'commerce': 'Commerce', 'bureau': 'Bureau',
          'parking': 'Parking', 'garage': 'Garage'}
-STATUTS = {'vendu': 'vendu', 'vendue': 'vendu', 'sous-compromis': 'sous compromis', 'sous compromis': 'sous compromis', 'compromis': 'sous compromis'}
+STATUTS = {'vendu': 'vendu', 'vendue': 'vendu', 'sous-compromis': 'sous compromis', 'sous compromis': 'sous compromis', 'compromis': 'sous compromis',
+           'sous-offre': 'sous offre', 'sous offre': 'sous offre', 'offre acceptée': 'sous offre', 'offre acceptee': 'sous offre'}
+ACTIFS = ('en vente', 'sous compromis', 'sous offre')
 
 def nombre(s):
     s = (s or '').replace('\xa0', ' ').replace(' ', '').replace(',', '.')
@@ -127,7 +132,29 @@ def fiche(url):
     mentions = [T(x) for x in re.findall(r'property-status__content">(.*?)</span>', s.split('property-detail-v1__description')[0], re.S)]
     return {'tableau': lignes_tableau(s), 'description': T(desc.group(1)) if desc else '', 'photos': photos, 'texte': T(s),
             'energie': ('entre %s € et %s €' % (' '.join(ener.group(1).split()), ' '.join(ener.group(2).split()))) if ener else None,
-            'mentions_fiche': mentions}
+            'mentions_fiche': mentions, **extras_fiche(s)}
+
+
+def extras_fiche(s):
+    """Ce que la fiche de l'agence affiche en plus (lu seulement s'il est écrit en toutes lettres ; sinon rien) :
+    mention des honoraires, classes DPE / GES, lien de visite virtuelle."""
+    out = {}
+    try:
+        txt = T(s)
+        h = re.search(r"(Honoraires?\s+(?:de\s+\w+\s+)?(?:TTC\s+)?(?:à|a)\s+la\s+charge\s+(?:de\s+l'|du\s+)(?:acquéreur|acquereur|vendeur)[^.]{0,160}\.?)", txt, re.I)
+        if h:
+            out['honoraires_texte'] = re.sub(r'\s+', ' ', h.group(1)).strip()
+        for cle, motif in (('dpe', r"(?:Consommation\s+(?:d'énergie|énergétique)|Classe\s+énergie|DPE)\s*[:\-]?\s*(?:classe\s*)?([A-G])\b"),
+                           ('ges', r"(?:Émissions?\s+de\s+gaz\s+à\s+effet\s+de\s+serre|Classe\s+climat|GES)\s*[:\-]?\s*(?:classe\s*)?([A-G])\b")):
+            m = re.search(motif, txt, re.I)
+            if m:
+                out[cle] = m.group(1).upper()
+        v = re.search(r'(https://(?:my\.matterport\.com/show/\?m=|[\w.-]*nodalview\.com/|kuula\.co/share/)[^"\'\s<>]+)', s)
+        if v:
+            out['visite_virtuelle'] = html.unescape(v.group(1))
+    except Exception:
+        pass
+    return out
 
 # ---------------------------------------------------------------- confidentialité
 VOIES = r"(?:rue|avenue|av\.|boulevard|bd|place|impasse|allée|allee|chemin|route|quai|cours|square|passage|faubourg|rond-point|voie|sentier|résidence|residence|lotissement|hameau|lieu-dit)"
@@ -299,6 +326,12 @@ def lien_neutre(a):
     fin = '/' if a['chemin'].endswith('/') else ''   # même forme que l'adresse d'origine, sinon l'agence renvoie à l'accueil
     return '%s/vente/%s/%s-bien%s?%s' % (BASE, '/'.join(a['chemin'].strip('/').split('/')[1:-1]), a['id'], fin, UTM)
 
+def lien_fiche(a):
+    """Fiche du bien sur shawez-immo.com (outils/biens/build_biens.py) : c'est elle qu'on partage, plus le site de l'agence."""
+    sys.path.insert(0, os.path.join(ROOT, 'outils', 'biens'))
+    from commun import chemin_fiche
+    return SITE + chemin_fiche(a)
+
 def photo_url(a, n):
     f = a['photos']['fichiers']
     return '%s/annonces/%s/%s' % (SITE, a['ref'], f[n]) if len(f) > n else ''
@@ -365,7 +398,7 @@ def synchronise(etat):
                 break
             for x in c:
                 vues.setdefault(x['ref'], x)
-    actifs = [a for a in etat['annonces'].values() if a['status'] in ('en vente', 'sous compromis')]
+    actifs = [a for a in etat['annonces'].values() if a['status'] in ACTIFS]
     if not vues:
         alerte('0 annonce trouvée sur les pages de vente.')
         return False
@@ -392,11 +425,12 @@ def synchronise(etat):
         surf = nombre(m_s.group(1)) if m_s else nombre(tab.get('surf_hab') or tab.get('surfhab') or tab.get('surf_carrez') or (tab.get('surfterrn') if seg[2].startswith('terrain') else None))
         mentions = list(dict.fromkeys(c['mentions'] + f['mentions_fiche']))
         vus_st = {STATUTS.get(m_.lower().strip()) for m_ in mentions}
-        statut = 'vendu' if 'vendu' in vus_st else 'sous compromis' if 'sous compromis' in vus_st else 'en vente'
+        statut = 'vendu' if 'vendu' in vus_st else 'sous compromis' if 'sous compromis' in vus_st else 'sous offre' if 'sous offre' in vus_st else 'en vente'
         # « chemin » est remplacé par sa forme neutre avant l'écriture
         nouveau = {'ref': ref, 'id': c['id'], 'chemin': c['chemin'], 'type': typ, 'commune': c['commune'], 'cp': c['cp'],
                    'prix': c['prix'], 'surface': surf, 'compo_agence': c['compo'], 'pieces': int(pieces) if pieces else None,
-                   'caracteristiques': tab, 'energie': f['energie'], 'dpe': None,
+                   'caracteristiques': tab, 'energie': f['energie'], 'dpe': f.get('dpe'), 'ges': f.get('ges'),
+                   'honoraires_texte': f.get('honoraires_texte'), 'visite_virtuelle': f.get('visite_virtuelle'),
                    'description_expurgee': expurge(f['description']), 'mentions_agence': mentions}
         nouveau['photos'] = photos(ref, f['photos'], (a or {}).get('photos', {}))
         if a is None and not lien_valide(lien_neutre(nouveau)):
@@ -418,7 +452,7 @@ def synchronise(etat):
             a['prix_precedent'] = ancien_prix
             log.append('Annonce %s : prix %s € → %s €.' % (ref, fr_nombre(ancien_prix), fr_nombre(c['prix'])))
     for ref, a in etat['annonces'].items():
-        if ref not in vues and a['status'] in ('en vente', 'sous compromis'):
+        if ref not in vues and a['status'] in ACTIFS:
             # absente de la liste : on vérifie la fiche avant de conclure (la liste de l'agence n'est pas stable)
             en_ligne = False
             try:
@@ -440,6 +474,9 @@ def synchronise(etat):
 # ---------------------------------------------------------------- file des posts (pour Twin)
 def file_posts(etat):
     posts = etat.setdefault('posts', [])
+    for p in posts:   # les posts renvoient vers la fiche du bien sur shawez-immo.com
+        if p.get('ref') in etat['annonces'] and 'gravelin-immo.com' in (p.get('lien') or ''):
+            p['lien'] = lien_fiche(etat['annonces'][p['ref']])
     connus = {(p['ref'], p['cle']) for p in posts}
     prevus = sorted([p['date'] for p in posts if p['action'] == 'publier'], reverse=True)
     stock = not posts   # premier passage : le stock existant est étalé à un par jour ouvré
@@ -449,10 +486,10 @@ def file_posts(etat):
         if not a['photos']['fichiers']:
             continue
         pub = [p for p in posts if p['ref'] == a['ref'] and p['action'] == 'publier']
-        if not pub and a['status'] == 'en vente':   # pas de nouveau post pour un bien déjà sous compromis
+        if not pub and a['status'] == 'en vente':   # pas de nouveau post pour un bien déjà sous offre ou sous compromis
             d = next(jours) if stock else max(AUJ, dt.date.fromisoformat(a['first_seen']))
             posts.append({'date': d.isoformat(), 'action': 'publier', 'ref': a['ref'], 'cle': 'publier', 'titre': titre(a), 'texte': texte_post(a),
-                          'photos': [photo_url(a, i) for i in range(3)], 'lien': lien_agence(a)})
+                          'photos': [photo_url(a, i) for i in range(3)], 'lien': lien_fiche(a)})
             continue
         if not pub:
             continue
@@ -464,6 +501,8 @@ def file_posts(etat):
             cle, texte = 'retiree', TXT_RETIRE
         elif a['status'] == 'sous compromis':
             cle, texte = 'compromis', 'Sous compromis — ' + texte_post(a)
+        elif a['status'] == 'sous offre':
+            continue   # sous offre : pastille sur le site, mais aucun post Google (décision de Shawez, 17/10/2026)
         elif a.get('prix_precedent') and a.get('prix'):
             cle, texte = 'prix-%d' % a['prix'], texte_post(a)
         if not cle or (a['ref'], cle) in connus:
@@ -478,7 +517,7 @@ def file_posts(etat):
                     pub[0]['texte'] = texte
             continue
         posts.append({'date': AUJ.isoformat(), 'action': 'mettre à jour', 'ref': a['ref'], 'cle': cle, 'titre': titre(a), 'texte': texte,
-                      'photos': [photo_url(a, i) for i in range(3)], 'lien': lien_agence(a)})
+                      'photos': [photo_url(a, i) for i in range(3)], 'lien': lien_fiche(a)})
     posts.sort(key=lambda p: (p['date'], p['action'] != 'publier', p['ref']))
 
 def md_posts(etat):
@@ -495,7 +534,7 @@ def md_posts(etat):
     open(P('de-claude', 'annonces-google.md'), 'w', encoding='utf-8').write('\n'.join(out) + '\n')
 
 # ---------------------------------------------------------------- page du site
-PASTILLE = {'en vente': ('', ''), 'sous compromis': ('Sous compromis', 'st-compromis'), 'vendu': ('Vendu', 'st-vendu')}
+PASTILLE = {'en vente': ('', ''), 'sous offre': ('Sous offre', 'st-compromis'), 'sous compromis': ('Sous compromis', 'st-compromis'), 'vendu': ('Vendu', 'st-vendu')}
 
 def carte_html(a):
     lab, cls = PASTILLE[a['status']]
@@ -548,7 +587,7 @@ JS = """<script id="annonces-js">
 def page(etat):
     tous = sorted(etat['annonces'].values(), key=lambda a: (a['first_seen'], int(a['id'])), reverse=True)   # plus récentes d'abord
     limite = (AUJ - dt.timedelta(days=JOURS_VENDU)).isoformat()
-    grille = [a for a in tous if a['photos']['fichiers'] and (a['status'] in ('en vente', 'sous compromis') or (a['status'] == 'vendu' and a['status_changed'] >= limite))]
+    grille = [a for a in tous if a['photos']['fichiers'] and (a['status'] in ACTIFS or (a['status'] == 'vendu' and a['status_changed'] >= limite))]
     vendus = [a for a in tous if a['photos']['fichiers'] and a['status'] == 'vendu' and a['status_changed'] < limite]
     types = sorted({a['type'] for a in grille}); communes = sorted({a['commune'] for a in grille})
     opt = lambda vs: ''.join('<option>%s</option>' % html.escape(v) for v in vs)
@@ -660,7 +699,10 @@ if __name__ == '__main__':
     for r in cote:
         etat['annonces'].pop(r)
     md_posts(etat)
-    page(etat)
     sitemap(etat)
-    n = sum(1 for a in etat['annonces'].values() if a['status'] in ('en vente', 'sous compromis'))
+    # fiches /biens/…, page des biens, liens du site : outils/biens/build_biens.py (remplace l'ancienne page qui renvoyait à l'agence)
+    sys.path.insert(0, os.path.join(ROOT, 'outils', 'biens'))
+    import build_biens
+    build_biens.construire(etat)
+    n = sum(1 for a in etat['annonces'].values() if a['status'] in ACTIFS)
     print('%d annonces actives · %d au total · %d lignes de posts' % (n, len(etat['annonces']), len(etat['posts'])))
