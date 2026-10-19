@@ -12,8 +12,8 @@
                                             vers: 'admin' (adresse de l'agence seulement) : le lien ouvre /admin/
      POST /api/espace/lien/ouvrir           { jeton } → ouvre la session
      POST /api/espace/connexion             { email, mot_de_passe } (pour ceux qui ont choisi un mot de passe)
-     POST /api/espace/deconnexion
-     POST /api/espace/inscription           compte sans estimation (ex. accès admin)
+     POST /api/espace/deconnexion           { partout?: true } : cet appareil, ou tous les appareils du compte
+     POST /api/espace/inscription          compte sans estimation (ex. accès admin)
      POST /api/espace/mot-de-passe/oubli    { email } → lien par e-mail (si l'envoi est possible)
      POST /api/espace/mot-de-passe/reinit   { jeton, mot_de_passe }
      GET  /api/espace/verifier?jeton=…      anciens liens de confirmation : renvoi vers /mon-espace/?lien=…
@@ -32,6 +32,7 @@
                                             et envoyés à 8 h) ; sans effet si rien n'est dû
    Client connecté
      GET  /api/espace/moi                   compte + ses demandes (frise, prochaine étape, visite) + ses fichiers
+     GET  /api/espace/moi/export            RGPD : toutes ses données dans un fichier JSON (téléchargement)
      POST /api/espace/visite                { demande, creneaux: [1 à 3 débuts], message?, deplacer? } : demande de visite
      POST /api/espace/verification          renvoie le lien de vérification
      POST /api/espace/mot-de-passe/definir  { mot_de_passe, actuel? } : choisir ou changer son mot de passe
@@ -77,11 +78,17 @@
      GET  /api/espace/admin/export.csv?quoi=demandes|comptes&site=…&statut=…
      GET  /api/espace/admin/promesses       les 7 promesses faites au vendeur, sur 7 et 30 jours : tenue / ratée, délai médian
      GET  /api/espace/admin/promesses.csv?jours=7|30   les mêmes mesures, une ligne par mesure
+     GET  /api/espace/admin/journal-agence  qui a exporté, supprimé, fabriqué un lien, changé un réglage (200 dernières lignes ;
+                                            { actif: false } tant que la migration 2026-10-18-admin.sql n'est pas appliquée)
+
+   Sessions : glissantes (30 jours sans visite pour un vendeur, 7 jours pour l'agence), cookie HttpOnly + Secure + SameSite=Lax,
+   prolongées au plus une fois par jour. Toute requête qui modifie doit venir du site lui-même (en-tête Origin).
 */
 import {
   db, json, Erreur, corps, texte, entier, choix, email as lireEmail, telephone, motDePasse, verifierOrigine,
   ip, limiter, hacher, verifierMdp, jeton, sha256, ouvrirSession, cookieEfface, temoinPresent, compteSession, fermerSession,
   estAdmin, admins, comptepublic, maintenant, STATUTS, STATUTS_CLIENT, PARCOURS, SORTIES, reglerHachage,
+  fermerSessions, renouvellement, verifierLeurre,
 } from '../../_lib/base.js';
 import { estimer, ventesComparables } from '../../_lib/estimation.js';
 import {
@@ -104,9 +111,15 @@ export async function onRequest(context) {
     if (!r) return json(404, { error: 'introuvable' });
     const reponse = await r(context);
     tachesAuPassage(context);
+    // session prolongée pendant cette requête : le cookie prolongé repart avec la réponse (sauf si elle pose déjà le sien)
+    const prolongee = renouvellement(request);
+    if (prolongee && !reponse.headers.has('Set-Cookie')) {
+      try { prolongee.forEach((c) => reponse.headers.append('Set-Cookie', c)); } catch (e) { /* réponse figée : la session reste valable */ }
+    }
     return reponse;
   } catch (e) {
-    if (e instanceof Erreur) return json(e.status, { error: e.code, ...(e.extra || {}) });
+    // session expirée : le témoin « connecté » est retiré en même temps (le pictogramme ne ment plus)
+    if (e instanceof Erreur) return json(e.status, { error: e.code, ...(e.extra || {}) }, e.code === 'connexion' && temoinPresent(request) ? { 'Set-Cookie': cookieEfface } : {});
     console.log('erreur', e && e.stack);
     return json(500, { error: 'serveur' });
   }
@@ -129,6 +142,7 @@ const ROUTES = {
   'GET /flux/promesses.csv': fluxPromesses,
   'GET /flux/aujourdhui.csv': fluxAujourdhui,
   'GET /moi': moi,
+  'GET /moi/export': exporterMesDonnees,
   'POST /verification': renvoyerVerification,
   'POST /compte/supprimer': supprimerCompte,
   'POST /fichier': fichierDeposer,
@@ -165,13 +179,14 @@ const ROUTES = {
   'POST /admin/notaire': adminNotaire,
   'GET /admin/promesses': adminPromesses,
   'GET /admin/promesses.csv': adminPromessesCsv,
+  'GET /admin/journal-agence': adminJournalAgence,
 };
 
 /* ------------------------------------------------------------------ */
 
 /* Version de l'API : les tests sur l'aperçu attendent de la voir avant de commencer (le site met une à deux minutes
    à se mettre à jour après une poussée). À changer à chaque évolution de l'API. */
-const VERSION = '2026-10-16.1';
+const VERSION = '2026-10-19.1';
 
 /* Clé du flux Google Sheet : on ne garde que son empreinte. Celle-ci est la clé de mise en service ; dès qu'un admin
    en génère une nouvelle (/admin/ → « Google Sheet »), c'est l'empreinte en base qui fait foi. */
@@ -448,7 +463,8 @@ async function connexion({ request, env }) {
   await limiter(env, 'cnx:' + ip(request), 20, 900);
   await limiter(env, 'cnx:' + e, 10, 900);
   const c = await (await db(env)).prepare('SELECT * FROM comptes WHERE email = ?1').bind(e).first();
-  const ok = c && typeof d.mot_de_passe === 'string' && (await verifierMdp(d.mot_de_passe, c.mdp));
+  // sans compte (ou sans mot de passe) : le même calcul est fait, le temps de réponse ne dit rien de l'adresse
+  const ok = c && c.mdp ? typeof d.mot_de_passe === 'string' && (await verifierMdp(d.mot_de_passe, c.mdp)) : await verifierLeurre(d.mot_de_passe);
   if (!ok) {
     // le compte existe mais n'a pas de mot de passe : on le dit, sinon la personne croit n'avoir « jamais créé de compte »
     if (c && !c.mdp) throw new Erreur(401, 'sans_mot_de_passe', { lien: peutEcrire(env, e) });
@@ -457,9 +473,16 @@ async function connexion({ request, env }) {
   return json(200, { compte: comptepublic(c, env) }, { 'Set-Cookie': await ouvrirSession(env, c.id) });
 }
 
+/* { partout: true } : déconnecte aussi tous les autres appareils du compte (téléphone perdu, ordinateur partagé). */
 async function deconnexion({ request, env }) {
-  await fermerSession(request, env);
-  return json(200, { ok: true }, { 'Set-Cookie': cookieEfface });
+  let partout = false;
+  try { partout = (await corps(request, 200)).partout === true; } catch (e) { /* corps vide ou absent : cet appareil seulement */ }
+  const c = partout ? await compteSession(request, env) : null;
+  if (c) {
+    await fermerSessions(env, c.id);
+    await noterAgence(env, c, 'deconnexion_partout', null);
+  } else await fermerSession(request, env);
+  return json(200, { ok: true, partout: !!c }, { 'Set-Cookie': cookieEfface });
 }
 
 async function inscription(ctx) {
@@ -719,6 +742,48 @@ async function moi({ request, env }) {
     email: peutEcrire(env, c.email),
     taille_max: TAILLE_MAX,
     rdv_url: await reglage(base, 'rdv_url'),
+  });
+}
+
+/* Droit d'accès et de portabilité (RGPD, articles 15 et 20) : tout ce que l'espace contient sur la personne, dans un
+   fichier JSON lisible, téléchargé depuis son espace. Les notes internes de l'agence et les brouillons n'y sont pas :
+   une copie complète se demande à l'agence (le fichier le dit). */
+async function exporterMesDonnees({ request, env }) {
+  const c = await compteSession(request, env);
+  if (!c) throw new Erreur(401, 'connexion');
+  await limiter(env, 'export:' + c.id, 10, 3600);
+  const base = await db(env);
+  const dem = (await base.prepare('SELECT * FROM demandes WHERE compte_id = ?1 AND en_attente = 0 ORDER BY cree_le').bind(c.id).all()).results;
+  const ids = dem.map((d) => d.id);
+  const visites = await visitesDe(base, ids);
+  const suites = await suiteDe(base, ids);
+  const fichiers = await fichiersDe(env, ids);
+  const contenu = {
+    explication: `Export de votre espace, fait le ${new Date().toLocaleString('fr-FR', { timeZone: 'Europe/Paris' })}. Il contient votre compte, vos estimations et dossiers, `
+      + 'les visites, offres, comptes rendus et étapes chez le notaire que vous voyez dans votre espace, et la liste de vos fichiers (téléchargeables depuis votre espace). '
+      + 'Pour une copie complète de toutes les informations détenues par GRAVELIN IMMO, ou pour les faire corriger : shawez@gravelin-immo.com, 30 rue Bannelier, 21000 Dijon.',
+    compte: {
+      email: c.email, civilite: c.civilite || '', prenom: c.prenom || '', nom: c.nom || '', telephone: c.telephone || '',
+      email_confirme: !!c.verifie, mot_de_passe: c.mdp ? 'défini (seule une empreinte chiffrée est gardée)' : 'aucun',
+      site: siteDe(c.source), consentement_le: c.consentement_le || null, cree_le: c.cree_le, derniere_connexion: c.derniere_connexion || null,
+    },
+    dossiers: dem.map((d) => {
+      const s = suites.get(d.id);
+      return {
+        reference: d.reference, cree_le: d.cree_le, statut: STATUTS_CLIENT[d.statut] || d.statut, adresse: d.adresse || '', code_postal: d.code_postal || '', commune: d.commune || '',
+        vos_reponses: lireJson(d.reponses), coordonnees_donnees: lireJson(d.contact),
+        estimation: d.prix_bas ? { prix_bas: d.prix_bas, prix_haut: d.prix_haut, prix_m2: d.prix_m2, ventes_comparables: d.comparables, rayon_m: d.rayon, donnees_du: d.donnees_du } : null,
+        visite: visitePublique(visites.get(d.id)),
+        ...suiteVendeurPublique(s),
+        fichiers: fichiers.filter((f) => f.demande_id === d.id && f.role !== 'brouillon').map((f) => ({ nom: f.nom, type: f.type, taille: f.taille, depose_par: f.depose_par, depose_le: f.cree_le, nature: DOCUMENTS[f.libelle] || (f.role === 'avis' ? 'Avis de valeur' : '') })),
+      };
+    }),
+  };
+  return new Response(JSON.stringify(contenu, null, 2), {
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex', 'X-Content-Type-Options': 'nosniff',
+      'Content-Disposition': `attachment; filename="mes-donnees-${paris(new Date()).date}.json"`,
+    },
   });
 }
 
@@ -1178,12 +1243,16 @@ async function adminDossierModifier(ctx) {
 }
 
 async function adminSupprimerDemande({ request, env }) {
-  await exigerAdmin(request, env);
+  const moiAdmin = await exigerAdmin(request, env);
   const d = await corps(request, 500);
   const id = entier(d.id, 1, 1e12, { requis: true, nom: 'id' });
+  const base = await db(env);
+  const dem = await base.prepare('SELECT id, reference FROM demandes WHERE id = ?1').bind(id).first();
+  if (!dem) throw new Erreur(404, 'introuvable');
   await supprimerFichiersDe(env, [id]);
-  await effacerSuivi(await db(env), [id]);
-  await (await db(env)).prepare('DELETE FROM demandes WHERE id = ?1').bind(id).run();
+  await effacerSuivi(base, [id]);
+  await base.prepare('DELETE FROM demandes WHERE id = ?1').bind(id).run();
+  await noterAgence(env, moiAdmin, 'demande_supprimee', { reference: dem.reference });
   return json(200, { ok: true });
 }
 
@@ -1192,15 +1261,43 @@ async function adminSupprimerCompte({ request, env }) {
   const d = await corps(request, 500);
   const id = entier(d.id, 1, 1e12, { requis: true, nom: 'id' });
   if (id === moiAdmin.id) throw new Erreur(400, 'soi_meme');
+  const c = await (await db(env)).prepare('SELECT id, email FROM comptes WHERE id = ?1').bind(id).first();
+  if (!c) throw new Erreur(404, 'introuvable');
+  // un compte de l'agence ne s'efface pas depuis l'espace agence (on se priverait d'accès par erreur)
+  if (admins(env).includes(String(c.email).toLowerCase())) throw new Erreur(400, 'compte_agence');
+  const n = (await (await db(env)).prepare('SELECT COUNT(*) AS n FROM demandes WHERE compte_id = ?1').bind(id).first()).n;
   await effacerCompte(env, id);
+  await noterAgence(env, moiAdmin, 'compte_supprime', { compte: id, demandes: n });
   return json(200, { ok: true });
+}
+
+/* ---------------------- Journal de l'agence ----------------------
+   Qui, dans l'agence, a exporté, supprimé, fabriqué un lien de connexion ou changé un réglage, et quand (RGPD :
+   traçabilité des accès aux données). Table journal_agence : migration functions/migrations/2026-10-18-admin.sql.
+   Tant qu'elle n'est pas créée, rien n'est noté et rien ne casse. Jamais de mot de passe ni de lien dans le détail. */
+async function noterAgence(env, compte, action, detail) {
+  if (!compte || !estAdmin(compte, env)) return;
+  try {
+    await (await db(env)).prepare('INSERT INTO journal_agence (par, action, detail, cree_le) VALUES (?1, ?2, ?3, ?4)')
+      .bind(compte.email, action, detail ? JSON.stringify(detail) : null, maintenant()).run();
+  } catch (e) { /* table pas encore créée : migration à appliquer */ }
+}
+
+async function adminJournalAgence({ request, env }) {
+  await exigerAdmin(request, env);
+  try {
+    const r = await (await db(env)).prepare('SELECT par, action, detail, cree_le FROM journal_agence ORDER BY id DESC LIMIT 200').all();
+    return json(200, { actif: true, journal: r.results.map((l) => ({ ...l, detail: l.detail ? lireJson(l.detail) : null })) });
+  } catch (e) {
+    return json(200, { actif: false, journal: [] });
+  }
 }
 
 /* Lien à transmettre au client (WhatsApp, SMS, e-mail) : connexion directe, ou choix d'un nouveau mot de passe. 24 h ;
    7 jours pour le lien d'un dossier (jours: 7), comme les liens des e-mails de suivi : le vendeur ne lit pas toujours
    son téléphone dans la journée. */
 async function adminLien({ request, env }) {
-  await exigerAdmin(request, env);
+  const moiAdmin = await exigerAdmin(request, env);
   const d = await corps(request, 500);
   const id = entier(d.id, 1, 1e12, { requis: true, nom: 'id' });
   const type = d.type === 'reinit' ? 'reinit' : 'acces';
@@ -1216,13 +1313,15 @@ async function adminLien({ request, env }) {
     const dem = await base.prepare('SELECT id FROM demandes WHERE id = ?1 AND compte_id = ?2').bind(entier(d.demande, 1, 1e12, { nom: 'demande' }), id).first();
     if (dem) await journal(base, dem.id, 'lien_espace', 'agence', { jours });
   }
+  await noterAgence(env, moiAdmin, 'lien_fabrique', { compte: id, type, jours });
   return json(200, { type, jours, lien: `${new URL(request.url).origin}/mon-espace/?${type === 'reinit' ? 'reinit' : 'lien'}=${t}` });
 }
 
 async function adminFlux({ request, env }) {
-  await exigerAdmin(request, env);
+  const moiAdmin = await exigerAdmin(request, env);
   const cle = jeton();
   await (await db(env)).prepare("INSERT INTO reglages (cle, valeur) VALUES ('flux', ?1) ON CONFLICT(cle) DO UPDATE SET valeur = ?1").bind(await sha256(cle)).run();
+  await noterAgence(env, moiAdmin, 'cle_flux', null);
   const adresse = `${new URL(request.url).origin}/api/espace/flux/site.csv?cle=${cle}`;
   const promesses = adresse.replace('/flux/site.csv', '/flux/promesses.csv');
   return json(200, { adresse, formule: `=IMPORTDATA("${adresse}")`, promesses, formule_promesses: `=IMPORTDATA("${promesses}")` });
@@ -1248,9 +1347,10 @@ const jourFr = (iso) => { const [a, m, j] = String(iso || '').slice(0, 10).split
 const moisFr = (iso) => { try { return new Date(String(iso).slice(0, 10) + 'T12:00:00Z').toLocaleDateString('fr-FR', { month: 'long', year: 'numeric', timeZone: 'UTC' }); } catch (e) { return ''; } };
 
 async function adminExport({ request, env }) {
-  await exigerAdmin(request, env);
+  const moiAdmin = await exigerAdmin(request, env);
   const p = new URL(request.url).searchParams;
   const quoi = p.get('quoi') === 'comptes' ? 'comptes' : 'demandes';
+  await noterAgence(env, moiAdmin, 'export', { quoi, site: p.get('site') || '', statut: p.get('statut') || '' });
   const base = await db(env);
   let lignes;
   if (quoi === 'comptes') {
@@ -2105,9 +2205,11 @@ async function adminJournal({ request, env }) {
 /* Réglages de l'agence. rdv_url : la page de réservation Google Agenda (« Planning de rendez-vous »), si elle existe ;
    l'espace du vendeur la propose alors à la place des trois créneaux. */
 async function adminReglages({ request, env }) {
-  await exigerAdmin(request, env);
+  const moiAdmin = await exigerAdmin(request, env);
   const d = await corps(request, 2000);
   const base = await db(env);
+  // l'adresse iCal est secrète : seul le fait qu'elle change est noté
+  await noterAgence(env, moiAdmin, 'reglages', { agenda: d.agenda_ics != null ? (d.agenda_ics ? 'relie' : 'delie') : undefined, rdv_url: d.rdv_url != null ? (d.rdv_url ? 'change' : 'retire') : undefined });
   if (d.agenda_ics != null) {
     const u = texte(d.agenda_ics, 600, { nom: 'agenda_ics' });
     if (u) {

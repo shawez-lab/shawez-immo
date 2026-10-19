@@ -87,3 +87,9 @@ CREATE TABLE IF NOT EXISTS reglages (
 --   étape 3 : comptes_rendus (visite_le, texte, publie, publie_le), offres (montant, recue_le, conditions, statut),
 --             notaires (nom, coordonnees, etapes en JSON), courriers (e-mails au vendeur gardés entre 21 h et 8 h)
 --             fichiers.libelle (nature d'un document déposé par l'agence : mandat, diagnostics, compromis…)
+
+-- Audit du 18/10/2026 : migration à appliquer à la main, après relecture (elle n'est PAS créée automatiquement) :
+--   functions/migrations/2026-10-18-admin.sql
+--   journal_agence (par, action, detail, cree_le) : qui, dans l'agence, a exporté, supprimé, fabriqué un lien, changé un réglage
+--   + index de performance (sessions, jetons, limites, demandes, fichiers, evenements, visites, offres, courriers)
+-- Sans cette migration, tout fonctionne ; seul le journal de l'agence reste « pas encore activé ».

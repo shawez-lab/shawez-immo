@@ -409,7 +409,7 @@ test('la page des 7 promesses : cartes, 7 et 30 jours, export CSV, depuis /admin
   // on y arrive depuis l'espace agence
   await page.goto('/admin/');
   await expect(page.locator('#ad-in')).toBeVisible();
-  const lien = page.locator('.ee-ad-liens a');
+  const lien = page.locator('.ee-ad-barre a[data-ee-lien="promesses"]');   // barre de l'espace agence (audit du 18/10/2026)
   await expect(lien).toContainText('Les 7 promesses');
   await lien.click();
   await expect(page).toHaveURL(/\/admin\/promesses\/$/);
