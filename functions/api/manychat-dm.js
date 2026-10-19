@@ -25,7 +25,10 @@ const PRIX_ENTREE = 2 / 1e6, PRIX_SORTIE = 10 / 1e6;   // Sonnet 5.5 : 2 $ / 10 
 // Mode test : tant que DM_MODE n'est pas « live » (variable Cloudflare), seuls ces comptes reçoivent un DM.
 const COMPTES_TEST = ['gravelin_immo', 'shawez_immo'];
 // Règle 9 du Cerveau : comptes Instagram à qui on n'écrit jamais (en minuscules, sans @).
-const JAMAIS = ['***'];
+const JAMAIS_BASE = ['***'];
+// Liste complétable sans code : variable Cloudflare JAMAIS_IG = « compte1,compte2 » (minuscules, sans @).
+const jamais = (env, cpt) => JAMAIS_BASE.concat(String(env.JAMAIS_IG || '').toLowerCase().split(/[\s,;]+/).filter(Boolean).map(x => x.replace(/^@/, ''))).includes(cpt);
+const STOP = /^\s*(stop|arr[eê]te[rz]?|d[ée]sinscri|ne m'[ée]cri(s|vez) plus)/i;
 const INTERDITS = /\b(mandataire|gratuit|gratuite|gratuitement|ia|robot|automatique|automatiquement|claude|chatgpt|intelligence artificielle)\b/i;
 
 const json = (status, obj) => new Response(JSON.stringify(obj), {
@@ -256,7 +259,7 @@ export async function onRequest({ request, env }) {
         // Conversation Starters, mentions en story) : règle 9, mode test, horaires de Paris, fenêtre Instagram de 24 h.
         const cpt = propre(c.ig_username || c.username, 60).toLowerCase().replace(/^@/, '');
         const source = propre(c.source, 40);
-        if (JAMAIS.includes(cpt)) return sansMessage('regle9', { source });
+        if (jamais(env, cpt)) return sansMessage('regle9', { source });
         if (env.DM_MODE !== 'live' && !COMPTES_TEST.includes(cpt)) return sansMessage('mode_test', { compte: cpt, source });
         if (COMPTES_TEST.includes(cpt) || creneauOuvert()) return json(200, { envoyer: 'oui', raison: 'ok', source });
         const att = minutesAvantCreneau();
@@ -277,7 +280,9 @@ export async function onRequest({ request, env }) {
     } else return json(405, { error: 'methode' });
 
     // 1. Filtres : règle 9, mode test, doublons
-    if (JAMAIS.includes(compte)) return sansMessage('regle9');
+    if (jamais(env, compte)) return sansMessage('regle9');
+    // La personne demande d'arrêter : aucune réponse automatique, à traiter par Shawez (tag ManyChat « stop »).
+    if (STOP.test(commentaire || '')) return sansMessage('stop', { a_reprendre: true });
     if (env.DM_MODE !== 'live' && !COMPTES_TEST.includes(compte)) return sansMessage('mode_test', { compte });
     // Règle de Shawez : rien n'est envoyé à un client la nuit (20 h-8 h) ni le dimanche. Le commentaire est journalisé
     // (origine « hors_creneau ») pour que l'agent « Rattrapage commentaires » réponde au prochain créneau.
@@ -289,7 +294,7 @@ export async function onRequest({ request, env }) {
       // ManyChat : branche « plus_tard » → Smart Delay de attendre_minutes → rappel de cette même requête → envoi.
       const att = minutesAvantCreneau();
       // Réponses aux stories : fenêtre Instagram de 24 h → au-delà de 23 h d'attente, pas de report, reprise à la main
-      if (source === 'story_reply' && att > 23 * 60) return sansMessage('fenetre_24h', { compte, source, a_reprendre: true });
+      if ((source === 'story_reply' || source === 'dm') && att > 23 * 60) return sansMessage('fenetre_24h', { compte, source, a_reprendre: true });
       return sansMessage('hors_creneau', { compte, source, envoyer: 'plus_tard', attendre_minutes: att });
     }
     if (!evenement) {
