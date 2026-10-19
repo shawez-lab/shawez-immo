@@ -26,6 +26,8 @@ def fix_a(m):
     href = re.search(r'href="([^"]*)"', tag).group(1)
     if not re.match(r'https?://(www\.)?gravelin-immo\.com', href):
         return tag
+    if '/vente' in href:
+        return tag   # biens à vendre : pages internes (outils/biens/build_biens.py remplace ces liens)
     new = with_utm(href)
     tag = tag.replace('href="%s"' % href, 'href="%s"' % new)
     tag = re.sub(r'\s+target="_blank"', '', tag)
@@ -153,8 +155,7 @@ html,body{{margin:0;height:100%;background:#0F0E0C;color:#F3EFE6;font-family:'Sc
 PAGES_SAS = {
     'estimation-en-ligne/index.html': dict(title="Estimation en ligne", ftitle="Outil d'estimation de l'agence GRAVELIN IMMO",
         desc="L'outil d'estimation en ligne de l'agence GRAVELIN IMMO, présenté par Shawez Ali.", src=EST.replace('&', '&amp;')),
-    'biens-a-vendre/index.html': dict(title="Biens à vendre", ftitle="Catalogue des biens à vendre de l'agence GRAVELIN IMMO",
-        desc="Le catalogue des biens à vendre de l'agence GRAVELIN IMMO, présenté par Shawez Ali.", src=VENTE),
+    # /biens-a-vendre/ n'est plus une page sas : les biens ont leurs fiches sur ce site (outils/biens/build_biens.py).
 }
 
 if __name__ == '__main__':

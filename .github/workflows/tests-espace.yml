@@ -26,6 +26,14 @@ on:
       - 'admin/**'
       - 'assets/avis/**'
       - '.github/workflows/tests-espace.yml'
+  # demande de fusion : seulement les tests locaux (node-local), jamais le site en ligne
+  pull_request:
+    paths:
+      - 'functions/**'
+      - 'outils/espace/**'
+      - 'outils/tests-espace/**'
+      - 'mon-espace/**'
+      - 'admin/**'
 
 permissions:
   contents: read
@@ -35,7 +43,24 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # Connexion, sessions et droits, sur un site local (base D1 locale neuve) : rien ne touche la production.
+  node-local:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: outils/tests-espace
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - run: npm ci
+      - name: Tests node (authentification et droits)
+        run: npm run test:node
+
   en-ligne:
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     defaults:

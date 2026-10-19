@@ -26,8 +26,10 @@
    "dpe": null,
    "energie": null,
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "498",
-   "last_seen": "2026-10-16",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Sous-compromis"
@@ -52,7 +54,8 @@
    "status": "sous compromis",
    "status_changed": "2026-09-28",
    "surface": 15.0,
-   "type": "Appartement"
+   "type": "Appartement",
+   "visite_virtuelle": null
   },
   "394": {
    "caracteristiques": {
@@ -80,11 +83,13 @@
    "compo_agence": "5 pièces - 95 m²",
    "cp": "21000",
    "description_expurgee": "Au coeur d'un quartier calme et recherché de Dijon (Montagne Sainte Anne), venez découvrir cette maison de 95m² edifiée sur un terrain de 773m². Gros potentiel, elle dispose de combles aménageables et d'un sous-sol d'une surface de 115m² laissant de nombreuses possibilitées d'aménagements. Elle se compose d'une entrée desservant un salon/séjour de près de 30m², de trois chambres dont deux avec placards, une cuisine séparé, une salle de bain, WC séparé. Combles aménageables ainsi qu'un sous-sol pouvant contenir plusieurs véhicules ou pouvant être aménagé. Plusieurs places de stationnement possible dans la cours. Terrasse exposé Ouest. Jardin arrière arboré et sans vis à vis. DPE : F. Audit énergétique réalisé. A proximité de la verdure, des commerces et des transports en communs. Pour toutes demandes de renseignements ou de visites, veuillez contacter Clément PATOUILLET au O 6 / 23 / 63 / 72 / 96",
-   "dpe": null,
+   "dpe": "F",
    "energie": "entre 2 500 € et 3 440 €",
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "512",
-   "last_seen": "2026-10-16",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Sous-offre"
@@ -126,10 +131,11 @@
    "pieces": 5,
    "prix": 259000.0,
    "ref": "394",
-   "status": "en vente",
-   "status_changed": "2026-09-28",
+   "status": "sous offre",
+   "status_changed": "2026-10-17",
    "surface": 95.0,
-   "type": "Maison"
+   "type": "Maison",
+   "visite_virtuelle": null
   },
   "403": {
    "caracteristiques": {
@@ -148,8 +154,10 @@
    "dpe": null,
    "energie": null,
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "528",
-   "last_seen": "2026-10-16",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Nouveauté"
@@ -168,7 +176,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 375.0,
-   "type": "Terrain à bâtir"
+   "type": "Terrain à bâtir",
+   "visite_virtuelle": null
   },
   "412": {
    "caracteristiques": {
@@ -279,8 +288,10 @@
    "dpe": null,
    "energie": "entre 1 300 € et 1 810 €",
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "554",
-   "last_seen": "2026-10-16",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité",
@@ -330,7 +341,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 92.93,
-   "type": "Duplex"
+   "type": "Duplex",
+   "visite_virtuelle": null
   },
   "425": {
    "caracteristiques": {
@@ -364,11 +376,13 @@
    "compo_agence": "2 pièces - 36,18 m²",
    "cp": "21000",
    "description_expurgee": "Appartement de charme – Vue exceptionnelle sur l Situé au 1er étage d’un immeuble ancien , cet appartement de 36,18 m² offre un cadre de vie unique au cœur de Dijon, avec une vue imprenable et rare sur la cathédrale Saint-Bénigne . En excellent état , ce bien séduit immédiatement par le charme de l’ancien : murs en pierre , parquets , et belle hauteur sous plafond confèrent à l’ensemble une atmosphère chaleureuse et élégante. L’appartement est vendu clé en main , entièrement meublé avec goût, permettant une installation immédiate ou un investissement locatif sans travaux à prévoir. Surface : 36,18 m² Étage : 1er Caractère : ancien, pierre, parquet, hauteur sous plafond Mobilier : inclus dans la vente DPE : D - Dossier technique rassurant Emplacement : exceptionnel et recherché Un bien rare sur le marché , idéal pour les amateurs de lieux de caractère, une résidence principale, un pied-à-terre ou un investissement patrimonial de qualité. Les informations sur les risques auxquels ce bien est exposé sont disponibles sur le site Géorisques : www.georisques.gouv.fr Les informations sur les risques auxquels ce bien est exposé sont disponibles sur le site Géorisques",
-   "dpe": null,
+   "dpe": "D",
    "energie": "entre 860 € et 1 210 €",
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "563",
-   "last_seen": "2026-10-16",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Coup de coeur"
@@ -405,7 +419,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 36.18,
-   "type": "Appartement"
+   "type": "Appartement",
+   "visite_virtuelle": null
   },
   "431": {
    "caracteristiques": {
@@ -434,8 +449,10 @@
    "dpe": null,
    "energie": "entre 530 € et 718 €",
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "579",
-   "last_seen": "2026-10-16",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [],
    "photos": {
@@ -464,7 +481,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 20.55,
-   "type": "Appartement"
+   "type": "Appartement",
+   "visite_virtuelle": null
   },
   "433": {
    "caracteristiques": {
@@ -485,8 +503,10 @@
    "dpe": null,
    "energie": null,
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "590",
-   "last_seen": "2026-10-16",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [],
    "photos": {
@@ -505,7 +525,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 815.0,
-   "type": "Terrain à bâtir"
+   "type": "Terrain à bâtir",
+   "visite_virtuelle": null
   },
   "438": {
    "caracteristiques": {
@@ -539,8 +560,10 @@
    "dpe": null,
    "energie": null,
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "602",
-   "last_seen": "2026-10-16",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Coup de coeur"
@@ -577,7 +600,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 520.0,
-   "type": "Château"
+   "type": "Château",
+   "visite_virtuelle": null
   },
   "441": {
    "caracteristiques": {
@@ -605,11 +629,13 @@
    "compo_agence": "5 pièces - 153 m²",
    "cp": "21370",
    "description_expurgee": "Maison d’architecte contemporaine construite en 2023 située à Plombières-lès-Dijon dans un environnement privilégié offrant un cadre de vie rare entre nature et proximité immédiate de Dijon. Cette propriété séduit par son architecture moderne, ses volumes généreux et la qualité de ses prestations. Dès l’entrée, vous découvrez un espace de vie exceptionnel baigné de lumière grâce à de larges ouvertures comprenant une cuisine ouverte parfaitement intégrée et un séjour convivial. L’ensemble se prolonge par une immense terrasse offrant une vue dégagée et dominante sans vis-à-vis, idéale pour profiter pleinement des extérieurs en toute tranquillité. La maison propose également trois belles chambres lumineuses pensées pour allier confort et intimité, parfaitement adaptées à une vie de famille ou au télétravail. Construite selon les dernières normes, elle bénéficie d’un excellent DPE A garantissant performance énergétique, confort thermique et économies au quotidien. Les matériaux choisis ainsi que les finitions soignées confèrent à l’ensemble une atmosphère élégante et chaleureuse. Vivre à Plombières-lès-Dijon, c’est profiter d’un environnement verdoyant recherché avec un accès rapide aux sentiers de promenade, au canal de Bourgogne et aux espaces naturels tout en bénéficiant d’une vie de village dynamique avec écoles, commerces et commodités à proximité. La situation est idéale avec un accès rapide à Dijon ainsi qu’à l’autoroute A38 facilitant tous les déplacements. Ce bien rare sur le secteur est une opportunité unique pour les amateurs de biens modernes sans travaux offrant confort, luminosité et qualité de vie exceptionnelle. Les informations sur les risques auxquels ce bien est exposé sont disponibles sur le site Géorisques https://www.georisques.gouv.fr Les informations sur les risques auxquels ce bien est exposé sont disponibles sur le site Géorisques",
-   "dpe": null,
+   "dpe": "A",
    "energie": "entre 740 € et 1 040 €",
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "607",
-   "last_seen": "2026-10-16",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité",
@@ -653,7 +679,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 153.0,
-   "type": "Maison"
+   "type": "Maison",
+   "visite_virtuelle": null
   },
   "446": {
    "caracteristiques": {
@@ -686,8 +713,10 @@
    "dpe": null,
    "energie": "entre 950 € et 1 330 €",
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "620",
-   "last_seen": "2026-10-16",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [],
    "photos": {
@@ -724,7 +753,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 45.2,
-   "type": "Appartement"
+   "type": "Appartement",
+   "visite_virtuelle": null
   },
   "450": {
    "caracteristiques": {
@@ -879,8 +909,10 @@
    "dpe": null,
    "energie": null,
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "650",
-   "last_seen": "2026-10-16",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité",
@@ -916,7 +948,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 222.0,
-   "type": "Immeuble"
+   "type": "Immeuble",
+   "visite_virtuelle": null
   },
   "455": {
    "caracteristiques": {
@@ -1060,8 +1093,10 @@
    "dpe": null,
    "energie": "entre 480 € et 710 €",
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "666",
-   "last_seen": "2026-10-16",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité",
@@ -1093,7 +1128,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 20.0,
-   "type": "Studio"
+   "type": "Studio",
+   "visite_virtuelle": null
   },
   "461BALI": {
    "caracteristiques": {
@@ -1124,8 +1160,10 @@
    "dpe": null,
    "energie": "entre 460 € et 690 €",
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "668",
-   "last_seen": "2026-10-16",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité"
@@ -1158,7 +1196,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 20.0,
-   "type": "Studio"
+   "type": "Studio",
+   "visite_virtuelle": null
   },
   "463": {
    "caracteristiques": {
@@ -1190,8 +1229,10 @@
    "dpe": null,
    "energie": "entre 460 € et 690 €",
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "670",
-   "last_seen": "2026-10-16",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Sous-offre",
@@ -1220,10 +1261,11 @@
    "pieces": 3,
    "prix": 392000.0,
    "ref": "463",
-   "status": "en vente",
-   "status_changed": "2026-09-28",
+   "status": "sous offre",
+   "status_changed": "2026-10-17",
    "surface": 60.0,
-   "type": "Immeuble"
+   "type": "Immeuble",
+   "visite_virtuelle": null
   },
   "464": {
    "caracteristiques": {
@@ -1404,8 +1446,10 @@
    "dpe": null,
    "energie": null,
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "693",
-   "last_seen": "2026-10-16",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Accord",
@@ -1441,7 +1485,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 26.0,
-   "type": "Appartement"
+   "type": "Appartement",
+   "visite_virtuelle": null
   },
   "481": {
    "caracteristiques": {
@@ -1473,8 +1518,10 @@
    "dpe": null,
    "energie": "entre 190 € et 300 €",
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "659",
-   "last_seen": "2026-10-16",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité"
@@ -1515,7 +1562,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 28.66,
-   "type": "Appartement"
+   "type": "Appartement",
+   "visite_virtuelle": null
   },
   "483": {
    "caracteristiques": {
@@ -1534,8 +1582,10 @@
    "dpe": null,
    "energie": null,
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "687",
-   "last_seen": "2026-10-16",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité",
@@ -1589,7 +1639,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 42.0,
-   "type": "Loft"
+   "type": "Loft",
+   "visite_virtuelle": null
   },
   "486": {
    "caracteristiques": {
@@ -1768,8 +1819,10 @@
    "dpe": null,
    "energie": null,
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "636",
-   "last_seen": "2026-10-16",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [],
    "photos": {
@@ -1832,7 +1885,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 340.0,
-   "type": "Maison"
+   "type": "Maison",
+   "visite_virtuelle": null
   },
   "500A": {
    "caracteristiques": {
@@ -1863,8 +1917,10 @@
    "dpe": null,
    "energie": null,
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "730",
-   "last_seen": "2026-10-16",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Coup de coeur"
@@ -1931,7 +1987,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 206.0,
-   "type": "Maison"
+   "type": "Maison",
+   "visite_virtuelle": null
   },
   "501": {
    "caracteristiques": {
@@ -1962,8 +2019,10 @@
    "dpe": null,
    "energie": "entre 921 € et 1 247 €",
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "731",
-   "last_seen": "2026-10-16",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité",
@@ -2012,7 +2071,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 53.62,
-   "type": "Appartement"
+   "type": "Appartement",
+   "visite_virtuelle": null
   },
   "504": {
    "caracteristiques": {
@@ -2168,8 +2228,10 @@
    "dpe": null,
    "energie": "entre 3 630 € et 4 950 €",
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "708",
-   "last_seen": "2026-10-16",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Sous-offre",
@@ -2209,10 +2271,11 @@
    "pieces": 5,
    "prix": 220000.0,
    "ref": "506",
-   "status": "en vente",
-   "status_changed": "2026-09-28",
+   "status": "sous offre",
+   "status_changed": "2026-10-17",
    "surface": 84.0,
-   "type": "Maison"
+   "type": "Maison",
+   "visite_virtuelle": null
   },
   "507": {
    "caracteristiques": {
@@ -2243,8 +2306,10 @@
    "dpe": null,
    "energie": "entre 1 000 € et 1 390 €",
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "718",
-   "last_seen": "2026-10-16",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [],
    "photos": {
@@ -2282,7 +2347,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 44.3,
-   "type": "Appartement"
+   "type": "Appartement",
+   "visite_virtuelle": null
   },
   "508": {
    "caracteristiques": {
@@ -2314,8 +2380,10 @@
    "dpe": null,
    "energie": "entre 2 690 € et 3 680 €",
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "745",
-   "last_seen": "2026-10-16",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [],
    "photos": {
@@ -2362,7 +2430,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 106.0,
-   "type": "Appartement"
+   "type": "Appartement",
+   "visite_virtuelle": null
   },
   "509": {
    "caracteristiques": {
@@ -2388,11 +2457,13 @@
    "compo_agence": "5 pièces - 141 m²",
    "cp": "21160",
    "description_expurgee": "Ensemble immobilier entièrement rénové, très rare sur le secteur de la côte des vins ! Au sein du magnifique village viticole de Couchey, venez découvrir cette superbe propriété ancienne composée de deux maisons entièrement rénovées et situées au calme au coeur de ce bourg historique. Deux maisons vendues en une seule, l'une en face de l'autre dans cette petite impasse pleine de charme. La première partie d'habitation, sur 3 niveaux, se compose comme suit : Au rez-de-chaussée, une grande chambre avec salle d'eau/buanderie et un WC séparé pour une surface de plus de 26m² avec accès indépendant à l'extérieur. Au premier étage, une terrasse donnant accès à un salon/séjour avec cuisine ouverte, aménagée et équipée de 27m². Le deuxième étage se compose d'un dégagement desservant une grande salle d'eau et une grande chambre de près de 14m² avec son balcon privatif. Surface totale de 78m². Une magnifique cave voutée de 25m² vient compléter ce bien atypique de la côte des vins. Pompe à chaleur Air/Eau de 2021. Double vitrage PVC. Volets roulants électriques. DPE : C La seconde partie de 63m², totalement indépendante et parfaite pour une exploitation en location courte ou longue durée, se compose d'une entrée sur salon/séjour et cuisine ouverte de 33m². Cuisine aménagée et équipée. A l'étage une chambre de 22,5m² avec partie salle d'eau et un WC séparé. Chauffage électrique. Volets roulants électriques. Cave voûtée de 30m² sur 2,30m de hauteur. Une place de stationnement. Cet ensemble immobilier entièrement refait à neuf n'attend plus que vous pour l'exploiter selon vos envies, vos besoins et vos idées ! Pour toutes demandes de renseignements ou visites : Clément PATOUILLET, agent commercial au O 6 / 23 / 63 / 72 96 Les risques auxquels ce bien est exposé : www.georisques.gouv.fr",
-   "dpe": null,
+   "dpe": "C",
    "energie": "entre 850 € et 1 190 €",
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "751",
-   "last_seen": "2026-10-16",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Coup de coeur"
@@ -2465,7 +2536,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 141.0,
-   "type": "Propriété"
+   "type": "Propriété",
+   "visite_virtuelle": null
   },
   "510": {
    "caracteristiques": {
@@ -2502,8 +2574,10 @@
    "dpe": null,
    "energie": "entre 770 € et 1 060 €",
    "first_seen": "2026-10-10",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "763",
-   "last_seen": "2026-10-16",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Accord"
@@ -2548,7 +2622,8 @@
    "status": "en vente",
    "status_changed": "2026-10-10",
    "surface": 49.08,
-   "type": "Appartement"
+   "type": "Appartement",
+   "visite_virtuelle": null
   },
   "512": {
    "caracteristiques": {
@@ -2578,8 +2653,10 @@
    "dpe": null,
    "energie": null,
    "first_seen": "2026-10-10",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "759",
-   "last_seen": "2026-10-16",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [],
    "photos": {
@@ -2642,7 +2719,8 @@
    "status": "en vente",
    "status_changed": "2026-10-10",
    "surface": 93.17,
-   "type": "Appartement"
+   "type": "Appartement",
+   "visite_virtuelle": null
   },
   "513": {
    "caracteristiques": {
@@ -2673,8 +2751,10 @@
    "dpe": null,
    "energie": "entre 440 € et 650 €",
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "754",
-   "last_seen": "2026-10-16",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité",
@@ -2710,7 +2790,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 23.2,
-   "type": "Studio"
+   "type": "Studio",
+   "visite_virtuelle": null
   },
   "520": {
    "caracteristiques": {
@@ -2748,8 +2829,10 @@
    "dpe": null,
    "energie": "entre 410 € et 640 €",
    "first_seen": "2026-10-14",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "765",
-   "last_seen": "2026-10-16",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Coup de coeur"
@@ -2802,7 +2885,8 @@
    "status": "en vente",
    "status_changed": "2026-10-14",
    "surface": 61.49,
-   "type": "Appartement"
+   "type": "Appartement",
+   "visite_virtuelle": null
   },
   "5430963": {
    "caracteristiques": {
@@ -2824,8 +2908,10 @@
    "dpe": null,
    "energie": null,
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "71",
-   "last_seen": "2026-10-16",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [],
    "photos": {
@@ -2842,7 +2928,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 1500.0,
-   "type": "Terrain"
+   "type": "Terrain",
+   "visite_virtuelle": null
   },
   "Combottes": {
    "caracteristiques": {
@@ -2878,8 +2965,10 @@
    "dpe": null,
    "energie": "entre 1 880 € et 2 570 €",
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "454",
-   "last_seen": "2026-10-16",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité",
@@ -2921,7 +3010,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 132.37,
-   "type": "Maison"
+   "type": "Maison",
+   "visite_virtuelle": null
   },
   "Mandat": {
    "caracteristiques": {
@@ -2953,8 +3043,10 @@
    "dpe": null,
    "energie": "entre 2 330 € et 3 180 €",
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "672",
-   "last_seen": "2026-10-16",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Prix en baisse"
@@ -3007,7 +3099,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 90.0,
-   "type": "Maison"
+   "type": "Maison",
+   "visite_virtuelle": null
   },
   "PREF": {
    "caracteristiques": {
@@ -3045,8 +3138,10 @@
    "dpe": null,
    "energie": "entre 1 300 € et 1 810 €",
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "739",
-   "last_seen": "2026-10-16",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Sous-offre",
@@ -3087,19 +3182,20 @@
    "pieces": 3,
    "prix": 220000.0,
    "ref": "PREF",
-   "status": "en vente",
-   "status_changed": "2026-09-28",
+   "status": "sous offre",
+   "status_changed": "2026-10-17",
    "surface": 92.93,
-   "type": "Duplex"
+   "type": "Duplex",
+   "visite_virtuelle": null
   }
  },
- "maj": "2026-10-16",
+ "maj": "2026-10-19",
  "posts": [
   {
    "action": "publier",
    "cle": "publier",
    "date": "2026-09-29",
-   "lien": "https://www.gravelin-immo.com/vente/1-dijon/studio/754-bien?utm_source=shawez-immo",
+   "lien": "https://shawez-immo.com/biens/513-studio-dijon/",
    "photos": [
     "https://shawez-immo.com/annonces/513/1.jpg",
     "https://shawez-immo.com/annonces/513/2.jpg",
@@ -3113,7 +3209,7 @@
    "action": "publier",
    "cle": "publier",
    "date": "2026-09-30",
-   "lien": "https://www.gravelin-immo.com/vente/13-couchey/propriete/t5/751-bien/?utm_source=shawez-immo",
+   "lien": "https://shawez-immo.com/biens/509-propriete-couchey/",
    "photos": [
     "https://shawez-immo.com/annonces/509/1.jpg",
     "https://shawez-immo.com/annonces/509/2.jpg",
@@ -3127,7 +3223,7 @@
    "action": "publier",
    "cle": "publier",
    "date": "2026-10-01",
-   "lien": "https://www.gravelin-immo.com/vente/86-chenove/appartement/t5/745-bien/?utm_source=shawez-immo",
+   "lien": "https://shawez-immo.com/biens/508-appartement-chenove/",
    "photos": [
     "https://shawez-immo.com/annonces/508/1.jpg",
     "https://shawez-immo.com/annonces/508/2.jpg",
@@ -3141,7 +3237,7 @@
    "action": "publier",
    "cle": "publier",
    "date": "2026-10-02",
-   "lien": "https://www.gravelin-immo.com/vente/1-dijon/appartement/t2/744-bien/?utm_source=shawez-immo",
+   "lien": "https://shawez-immo.com/biens/505-appartement-dijon/",
    "photos": [
     "https://shawez-immo.com/annonces/505/1.jpg",
     "https://shawez-immo.com/annonces/505/2.jpg",
@@ -3155,7 +3251,7 @@
    "action": "publier",
    "cle": "publier",
    "date": "2026-10-05",
-   "lien": "https://www.gravelin-immo.com/vente/1-dijon/duplex/t3/739-bien/?utm_source=shawez-immo",
+   "lien": "https://shawez-immo.com/biens/pref-duplex-dijon/",
    "photos": [
     "https://shawez-immo.com/annonces/PREF/1.jpg",
     "https://shawez-immo.com/annonces/PREF/2.jpg",
@@ -3169,7 +3265,7 @@
    "action": "publier",
    "cle": "publier",
    "date": "2026-10-06",
-   "lien": "https://www.gravelin-immo.com/vente/1-dijon/appartement/t3/731-bien/?utm_source=shawez-immo",
+   "lien": "https://shawez-immo.com/biens/501-appartement-dijon/",
    "photos": [
     "https://shawez-immo.com/annonces/501/1.jpg",
     "https://shawez-immo.com/annonces/501/2.jpg",
@@ -3183,7 +3279,7 @@
    "action": "publier",
    "cle": "publier",
    "date": "2026-10-07",
-   "lien": "https://www.gravelin-immo.com/vente/617-allerey-sur-saone/maison/t7/730-bien/?utm_source=shawez-immo",
+   "lien": "https://shawez-immo.com/biens/500a-maison-allerey-sur-saone/",
    "photos": [
     "https://shawez-immo.com/annonces/500A/1.jpg",
     "https://shawez-immo.com/annonces/500A/2.jpg",
@@ -3197,7 +3293,7 @@
    "action": "publier",
    "cle": "publier",
    "date": "2026-10-08",
-   "lien": "https://www.gravelin-immo.com/vente/1-dijon/appartement/t2/718-bien/?utm_source=shawez-immo",
+   "lien": "https://shawez-immo.com/biens/507-appartement-dijon/",
    "photos": [
     "https://shawez-immo.com/annonces/507/1.jpg",
     "https://shawez-immo.com/annonces/507/2.jpg",
@@ -3211,7 +3307,7 @@
    "action": "publier",
    "cle": "publier",
    "date": "2026-10-09",
-   "lien": "https://www.gravelin-immo.com/vente/1-dijon/maison/t5/708-bien/?utm_source=shawez-immo",
+   "lien": "https://shawez-immo.com/biens/506-maison-dijon/",
    "photos": [
     "https://shawez-immo.com/annonces/506/1.jpg",
     "https://shawez-immo.com/annonces/506/2.jpg",
@@ -3225,7 +3321,7 @@
    "action": "publier",
    "cle": "publier",
    "date": "2026-10-10",
-   "lien": "https://www.gravelin-immo.com/vente/1-dijon/appartement/t3/763-bien/?utm_source=shawez-immo",
+   "lien": "https://shawez-immo.com/biens/510-appartement-dijon/",
    "photos": [
     "https://shawez-immo.com/annonces/510/1.jpg",
     "https://shawez-immo.com/annonces/510/2.jpg",
@@ -3239,7 +3335,7 @@
    "action": "publier",
    "cle": "publier",
    "date": "2026-10-10",
-   "lien": "https://www.gravelin-immo.com/vente/86-chenove/appartement/t4/759-bien/?utm_source=shawez-immo",
+   "lien": "https://shawez-immo.com/biens/512-appartement-chenove/",
    "photos": [
     "https://shawez-immo.com/annonces/512/1.jpg",
     "https://shawez-immo.com/annonces/512/2.jpg",
@@ -3253,7 +3349,7 @@
    "action": "mettre à jour",
    "cle": "retiree",
    "date": "2026-10-10",
-   "lien": "https://www.gravelin-immo.com/vente/1-dijon/appartement/t2/744-bien/?utm_source=shawez-immo",
+   "lien": "https://shawez-immo.com/biens/505-appartement-dijon/",
    "photos": [
     "https://shawez-immo.com/annonces/505/1.jpg",
     "https://shawez-immo.com/annonces/505/2.jpg",
@@ -3267,7 +3363,7 @@
    "action": "mettre à jour",
    "cle": "prix-109000",
    "date": "2026-10-10",
-   "lien": "https://www.gravelin-immo.com/vente/1-dijon/appartement/t2/718-bien/?utm_source=shawez-immo",
+   "lien": "https://shawez-immo.com/biens/507-appartement-dijon/",
    "photos": [
     "https://shawez-immo.com/annonces/507/1.jpg",
     "https://shawez-immo.com/annonces/507/2.jpg",
@@ -3281,7 +3377,7 @@
    "action": "publier",
    "cle": "publier",
    "date": "2026-10-12",
-   "lien": "https://www.gravelin-immo.com/vente/1-dijon/propriete/t6/702-bien/?utm_source=shawez-immo",
+   "lien": "https://shawez-immo.com/biens/493-propriete-dijon/",
    "photos": [
     "https://shawez-immo.com/annonces/493/1.jpg",
     "https://shawez-immo.com/annonces/493/2.jpg",
@@ -3295,7 +3391,7 @@
    "action": "mettre à jour",
    "cle": "prix-139000",
    "date": "2026-10-13",
-   "lien": "https://www.gravelin-immo.com/vente/1-dijon/appartement/t3/731-bien/?utm_source=shawez-immo",
+   "lien": "https://shawez-immo.com/biens/501-appartement-dijon/",
    "photos": [
     "https://shawez-immo.com/annonces/501/1.jpg",
     "https://shawez-immo.com/annonces/501/2.jpg",
@@ -3309,7 +3405,7 @@
    "action": "publier",
    "cle": "publier",
    "date": "2026-10-14",
-   "lien": "https://www.gravelin-immo.com/vente/1-dijon/appartement/t2/693-bien/?utm_source=shawez-immo",
+   "lien": "https://shawez-immo.com/biens/474-appartement-dijon/",
    "photos": [
     "https://shawez-immo.com/annonces/474/1.jpg",
     "https://shawez-immo.com/annonces/474/2.jpg",
@@ -3323,7 +3419,7 @@
    "action": "publier",
    "cle": "publier",
    "date": "2026-10-14",
-   "lien": "https://www.gravelin-immo.com/vente/310-chevigny-st-sauveur/appartement/t3/765-bien/?utm_source=shawez-immo",
+   "lien": "https://shawez-immo.com/biens/520-appartement-chevigny-saint-sauveur/",
    "photos": [
     "https://shawez-immo.com/annonces/520/1.jpg",
     "https://shawez-immo.com/annonces/520/2.jpg",
@@ -3337,7 +3433,7 @@
    "action": "publier",
    "cle": "publier",
    "date": "2026-10-15",
-   "lien": "https://www.gravelin-immo.com/vente/1-dijon/loft/t1/687-bien/?utm_source=shawez-immo",
+   "lien": "https://shawez-immo.com/biens/483-loft-dijon/",
    "photos": [
     "https://shawez-immo.com/annonces/483/1.jpg",
     "https://shawez-immo.com/annonces/483/2.jpg",
@@ -3351,7 +3447,7 @@
    "action": "mettre à jour",
    "cle": "retiree",
    "date": "2026-10-16",
-   "lien": "https://www.gravelin-immo.com/vente/1-dijon/propriete/t6/702-bien/?utm_source=shawez-immo",
+   "lien": "https://shawez-immo.com/biens/493-propriete-dijon/",
    "photos": [
     "https://shawez-immo.com/annonces/493/1.jpg",
     "https://shawez-immo.com/annonces/493/2.jpg",
@@ -3365,7 +3461,7 @@
    "action": "publier",
    "cle": "publier",
    "date": "2026-10-19",
-   "lien": "https://www.gravelin-immo.com/vente/494-neuilly-crimolois/maison/t5/672-bien/?utm_source=shawez-immo",
+   "lien": "https://shawez-immo.com/biens/mandat-maison-neuilly-crimolois/",
    "photos": [
     "https://shawez-immo.com/annonces/Mandat/1.jpg",
     "https://shawez-immo.com/annonces/Mandat/2.jpg",
@@ -3379,7 +3475,7 @@
    "action": "publier",
    "cle": "publier",
    "date": "2026-10-20",
-   "lien": "https://www.gravelin-immo.com/vente/1-dijon/immeuble/670-bien?utm_source=shawez-immo",
+   "lien": "https://shawez-immo.com/biens/463-immeuble-dijon/",
    "photos": [
     "https://shawez-immo.com/annonces/463/1.jpg",
     "https://shawez-immo.com/annonces/463/2.jpg",
@@ -3393,7 +3489,7 @@
    "action": "publier",
    "cle": "publier",
    "date": "2026-10-21",
-   "lien": "https://www.gravelin-immo.com/vente/1-dijon/studio/668-bien?utm_source=shawez-immo",
+   "lien": "https://shawez-immo.com/biens/461bali-studio-dijon/",
    "photos": [
     "https://shawez-immo.com/annonces/461BALI/1.jpg",
     "https://shawez-immo.com/annonces/461BALI/2.jpg",
@@ -3407,7 +3503,7 @@
    "action": "publier",
    "cle": "publier",
    "date": "2026-10-22",
-   "lien": "https://www.gravelin-immo.com/vente/1-dijon/studio/666-bien?utm_source=shawez-immo",
+   "lien": "https://shawez-immo.com/biens/461-studio-dijon/",
    "photos": [
     "https://shawez-immo.com/annonces/461/1.jpg",
     "https://shawez-immo.com/annonces/461/2.jpg",
@@ -3421,7 +3517,7 @@
    "action": "publier",
    "cle": "publier",
    "date": "2026-10-28",
-   "lien": "https://www.gravelin-immo.com/vente/1-dijon/appartement/t2/659-bien/?utm_source=shawez-immo",
+   "lien": "https://shawez-immo.com/biens/481-appartement-dijon/",
    "photos": [
     "https://shawez-immo.com/annonces/481/1.jpg",
     "https://shawez-immo.com/annonces/481/2.jpg",
@@ -3435,7 +3531,7 @@
    "action": "publier",
    "cle": "publier",
    "date": "2026-10-29",
-   "lien": "https://www.gravelin-immo.com/vente/1-dijon/immeuble/650-bien?utm_source=shawez-immo",
+   "lien": "https://shawez-immo.com/biens/452immeuble-immeuble-dijon/",
    "photos": [
     "https://shawez-immo.com/annonces/452IMMEUBLE/1.jpg",
     "https://shawez-immo.com/annonces/452IMMEUBLE/2.jpg",
@@ -3449,7 +3545,7 @@
    "action": "publier",
    "cle": "publier",
    "date": "2026-11-04",
-   "lien": "https://www.gravelin-immo.com/vente/611-bragny-sur-saone/maison/t3/636-bien/?utm_source=shawez-immo",
+   "lien": "https://shawez-immo.com/biens/494-maison-bragny-sur-saone/",
    "photos": [
     "https://shawez-immo.com/annonces/494/1.jpg",
     "https://shawez-immo.com/annonces/494/2.jpg",
@@ -3463,7 +3559,7 @@
    "action": "publier",
    "cle": "publier",
    "date": "2026-11-05",
-   "lien": "https://www.gravelin-immo.com/vente/1-dijon/appartement/t2/620-bien/?utm_source=shawez-immo",
+   "lien": "https://shawez-immo.com/biens/446-appartement-dijon/",
    "photos": [
     "https://shawez-immo.com/annonces/446/1.jpg",
     "https://shawez-immo.com/annonces/446/2.jpg",
@@ -3477,7 +3573,7 @@
    "action": "publier",
    "cle": "publier",
    "date": "2026-11-06",
-   "lien": "https://www.gravelin-immo.com/vente/18-plombieres-les-dijon/maison/t5/607-bien/?utm_source=shawez-immo",
+   "lien": "https://shawez-immo.com/biens/441-maison-plombieres-les-dijon/",
    "photos": [
     "https://shawez-immo.com/annonces/441/1.jpg",
     "https://shawez-immo.com/annonces/441/2.jpg",
@@ -3491,7 +3587,7 @@
    "action": "publier",
    "cle": "publier",
    "date": "2026-11-09",
-   "lien": "https://www.gravelin-immo.com/vente/598-st-gervais-en-valliere/chateau/t18/602-bien/?utm_source=shawez-immo",
+   "lien": "https://shawez-immo.com/biens/438-chateau-saint-gervais-en-valliere/",
    "photos": [
     "https://shawez-immo.com/annonces/438/1.jpg",
     "https://shawez-immo.com/annonces/438/2.jpg",
@@ -3505,7 +3601,7 @@
    "action": "publier",
    "cle": "publier",
    "date": "2026-11-12",
-   "lien": "https://www.gravelin-immo.com/vente/240-saulon-la-rue/terrain-a-batir/590-bien?utm_source=shawez-immo",
+   "lien": "https://shawez-immo.com/biens/433-terrain-a-batir-saulon-la-rue/",
    "photos": [
     "https://shawez-immo.com/annonces/433/1.jpg",
     "https://shawez-immo.com/annonces/433/2.jpg",
@@ -3519,7 +3615,7 @@
    "action": "publier",
    "cle": "publier",
    "date": "2026-11-13",
-   "lien": "https://www.gravelin-immo.com/vente/1-dijon/appartement/t1/579-bien/?utm_source=shawez-immo",
+   "lien": "https://shawez-immo.com/biens/431-appartement-dijon/",
    "photos": [
     "https://shawez-immo.com/annonces/431/1.jpg",
     "https://shawez-immo.com/annonces/431/2.jpg",
@@ -3533,7 +3629,7 @@
    "action": "publier",
    "cle": "publier",
    "date": "2026-11-16",
-   "lien": "https://www.gravelin-immo.com/vente/1-dijon/appartement/t2/563-bien/?utm_source=shawez-immo",
+   "lien": "https://shawez-immo.com/biens/425-appartement-dijon/",
    "photos": [
     "https://shawez-immo.com/annonces/425/1.jpg",
     "https://shawez-immo.com/annonces/425/2.jpg",
@@ -3547,7 +3643,7 @@
    "action": "publier",
    "cle": "publier",
    "date": "2026-11-17",
-   "lien": "https://www.gravelin-immo.com/vente/1-dijon/duplex/t3/554-bien/?utm_source=shawez-immo",
+   "lien": "https://shawez-immo.com/biens/415-duplex-dijon/",
    "photos": [
     "https://shawez-immo.com/annonces/415/1.jpg",
     "https://shawez-immo.com/annonces/415/2.jpg",
@@ -3561,7 +3657,7 @@
    "action": "publier",
    "cle": "publier",
    "date": "2026-11-19",
-   "lien": "https://www.gravelin-immo.com/vente/216-arceau/terrain-a-batir/528-bien?utm_source=shawez-immo",
+   "lien": "https://shawez-immo.com/biens/403-terrain-a-batir-arceau/",
    "photos": [
     "https://shawez-immo.com/annonces/403/1.jpg",
     "",
@@ -3575,7 +3671,7 @@
    "action": "publier",
    "cle": "publier",
    "date": "2026-11-20",
-   "lien": "https://www.gravelin-immo.com/vente/1-dijon/maison/t5/512-bien/?utm_source=shawez-immo",
+   "lien": "https://shawez-immo.com/biens/394-maison-dijon/",
    "photos": [
     "https://shawez-immo.com/annonces/394/1.jpg",
     "https://shawez-immo.com/annonces/394/2.jpg",
@@ -3589,7 +3685,7 @@
    "action": "publier",
    "cle": "publier",
    "date": "2026-11-23",
-   "lien": "https://www.gravelin-immo.com/vente/301-beze/maison/t6/454-bien/?utm_source=shawez-immo",
+   "lien": "https://shawez-immo.com/biens/combottes-maison-beze/",
    "photos": [
     "https://shawez-immo.com/annonces/Combottes/1.jpg",
     "https://shawez-immo.com/annonces/Combottes/2.jpg",
@@ -3603,7 +3699,7 @@
    "action": "publier",
    "cle": "publier",
    "date": "2026-11-24",
-   "lien": "https://www.gravelin-immo.com/vente/364-bligny-sur-ouche/terrain/71-bien?utm_source=shawez-immo",
+   "lien": "https://shawez-immo.com/biens/5430963-terrain-bligny-sur-ouche/",
    "photos": [
     "https://shawez-immo.com/annonces/5430963/1.jpg",
     "",
