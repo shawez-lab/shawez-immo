@@ -301,7 +301,7 @@ export async function onRequest({ request, env }) {
     if (base && !test) {
       const story = /^story/i.test(post || '');
       if (source === 'dm') {
-        const dejaDm = await base.prepare("SELECT 1 FROM dm_instagram WHERE contact = ?1 AND jour = ?2 AND origine <> 'hors_creneau' LIMIT 1").bind(contact, jour).first();
+        const dejaDm = await base.prepare("SELECT 1 FROM dm_instagram WHERE contact = ?1 AND jour = ?2 AND post = 'dm' AND origine <> 'hors_creneau' LIMIT 1").bind(contact, jour).first();
         if (dejaDm) return sansMessage('deja_repondu_aujourdhui');
       }
       const deja = await base.prepare("SELECT 1 FROM dm_instagram WHERE origine <> 'hors_creneau' AND (evenement = ?1 OR (?5 = 0 AND contact = ?2 AND post = ?3 AND jour = ?4)) LIMIT 1")
