@@ -237,6 +237,20 @@ export async function onRequest({ request, env }) {
       post = u.searchParams.get('post') || 'test-chevigny'; compte = 'gravelin_immo'; contact = 'test'; evenement = `test-${Date.now()}`;
     } else if (request.method === 'POST') {
       const c = await request.json().catch(() => ({}));
+      if (c.action === 'garde') {
+        // Garde-fou sans appel à Claude, pour les flux ManyChat non personnalisés (réponses aux stories,
+        // Conversation Starters, mentions en story) : règle 9, mode test, horaires de Paris, fenêtre Instagram de 24 h.
+        const cpt = propre(c.ig_username || c.username, 60).toLowerCase().replace(/^@/, '');
+        const source = propre(c.source, 40);
+        if (JAMAIS.includes(cpt)) return sansMessage('regle9', { source });
+        if (env.DM_MODE !== 'live' && !COMPTES_TEST.includes(cpt)) return sansMessage('mode_test', { compte: cpt, source });
+        if (COMPTES_TEST.includes(cpt) || creneauOuvert()) return json(200, { envoyer: 'oui', raison: 'ok', source });
+        const att = minutesAvantCreneau();
+        // Fenêtre de 24 h ouverte par le message de la personne : au-delà de 23 h d'attente, on ne programme pas,
+        // le cas reste à reprendre à la main dans l'Inbox.
+        if (att > 23 * 60) return sansMessage('fenetre_24h', { source, a_reprendre: true });
+        return sansMessage('hors_creneau', { source, envoyer: 'plus_tard', attendre_minutes: att });
+      }
       prenom = propre(c.first_name || c.prenom, 40);
       // « GRAVELIN » ou « gravelin » → « Gravelin »
       if (prenom && (prenom === prenom.toUpperCase() || prenom === prenom.toLowerCase())) prenom = prenom.toLowerCase().replace(/(^|[\s-])\p{L}/gu, m => m.toUpperCase());
