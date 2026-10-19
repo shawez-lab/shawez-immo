@@ -26,8 +26,10 @@
    "dpe": null,
    "energie": null,
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "498",
-   "last_seen": "2026-10-18",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Sous-compromis"
@@ -52,7 +54,8 @@
    "status": "sous compromis",
    "status_changed": "2026-09-28",
    "surface": 15.0,
-   "type": "Appartement"
+   "type": "Appartement",
+   "visite_virtuelle": null
   },
   "394": {
    "caracteristiques": {
@@ -80,11 +83,13 @@
    "compo_agence": "5 pièces - 95 m²",
    "cp": "21000",
    "description_expurgee": "Au coeur d'un quartier calme et recherché de Dijon (Montagne Sainte Anne), venez découvrir cette maison de 95m² edifiée sur un terrain de 773m². Gros potentiel, elle dispose de combles aménageables et d'un sous-sol d'une surface de 115m² laissant de nombreuses possibilitées d'aménagements. Elle se compose d'une entrée desservant un salon/séjour de près de 30m², de trois chambres dont deux avec placards, une cuisine séparé, une salle de bain, WC séparé. Combles aménageables ainsi qu'un sous-sol pouvant contenir plusieurs véhicules ou pouvant être aménagé. Plusieurs places de stationnement possible dans la cours. Terrasse exposé Ouest. Jardin arrière arboré et sans vis à vis. DPE : F. Audit énergétique réalisé. A proximité de la verdure, des commerces et des transports en communs. Pour toutes demandes de renseignements ou de visites, veuillez contacter Clément PATOUILLET au O 6 / 23 / 63 / 72 / 96",
-   "dpe": null,
+   "dpe": "F",
    "energie": "entre 2 500 € et 3 440 €",
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "512",
-   "last_seen": "2026-10-18",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Sous-offre"
@@ -129,7 +134,8 @@
    "status": "sous offre",
    "status_changed": "2026-10-17",
    "surface": 95.0,
-   "type": "Maison"
+   "type": "Maison",
+   "visite_virtuelle": null
   },
   "403": {
    "caracteristiques": {
@@ -148,8 +154,10 @@
    "dpe": null,
    "energie": null,
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "528",
-   "last_seen": "2026-10-18",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Nouveauté"
@@ -168,7 +176,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 375.0,
-   "type": "Terrain à bâtir"
+   "type": "Terrain à bâtir",
+   "visite_virtuelle": null
   },
   "412": {
    "caracteristiques": {
@@ -279,8 +288,10 @@
    "dpe": null,
    "energie": "entre 1 300 € et 1 810 €",
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "554",
-   "last_seen": "2026-10-18",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité",
@@ -330,7 +341,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 92.93,
-   "type": "Duplex"
+   "type": "Duplex",
+   "visite_virtuelle": null
   },
   "425": {
    "caracteristiques": {
@@ -364,11 +376,13 @@
    "compo_agence": "2 pièces - 36,18 m²",
    "cp": "21000",
    "description_expurgee": "Appartement de charme – Vue exceptionnelle sur l Situé au 1er étage d’un immeuble ancien , cet appartement de 36,18 m² offre un cadre de vie unique au cœur de Dijon, avec une vue imprenable et rare sur la cathédrale Saint-Bénigne . En excellent état , ce bien séduit immédiatement par le charme de l’ancien : murs en pierre , parquets , et belle hauteur sous plafond confèrent à l’ensemble une atmosphère chaleureuse et élégante. L’appartement est vendu clé en main , entièrement meublé avec goût, permettant une installation immédiate ou un investissement locatif sans travaux à prévoir. Surface : 36,18 m² Étage : 1er Caractère : ancien, pierre, parquet, hauteur sous plafond Mobilier : inclus dans la vente DPE : D - Dossier technique rassurant Emplacement : exceptionnel et recherché Un bien rare sur le marché , idéal pour les amateurs de lieux de caractère, une résidence principale, un pied-à-terre ou un investissement patrimonial de qualité. Les informations sur les risques auxquels ce bien est exposé sont disponibles sur le site Géorisques : www.georisques.gouv.fr Les informations sur les risques auxquels ce bien est exposé sont disponibles sur le site Géorisques",
-   "dpe": null,
+   "dpe": "D",
    "energie": "entre 860 € et 1 210 €",
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "563",
-   "last_seen": "2026-10-18",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Coup de coeur"
@@ -405,7 +419,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 36.18,
-   "type": "Appartement"
+   "type": "Appartement",
+   "visite_virtuelle": null
   },
   "431": {
    "caracteristiques": {
@@ -434,8 +449,10 @@
    "dpe": null,
    "energie": "entre 530 € et 718 €",
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "579",
-   "last_seen": "2026-10-18",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [],
    "photos": {
@@ -464,7 +481,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 20.55,
-   "type": "Appartement"
+   "type": "Appartement",
+   "visite_virtuelle": null
   },
   "433": {
    "caracteristiques": {
@@ -485,8 +503,10 @@
    "dpe": null,
    "energie": null,
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "590",
-   "last_seen": "2026-10-18",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [],
    "photos": {
@@ -505,7 +525,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 815.0,
-   "type": "Terrain à bâtir"
+   "type": "Terrain à bâtir",
+   "visite_virtuelle": null
   },
   "438": {
    "caracteristiques": {
@@ -539,8 +560,10 @@
    "dpe": null,
    "energie": null,
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "602",
-   "last_seen": "2026-10-18",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Coup de coeur"
@@ -577,7 +600,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 520.0,
-   "type": "Château"
+   "type": "Château",
+   "visite_virtuelle": null
   },
   "441": {
    "caracteristiques": {
@@ -605,11 +629,13 @@
    "compo_agence": "5 pièces - 153 m²",
    "cp": "21370",
    "description_expurgee": "Maison d’architecte contemporaine construite en 2023 située à Plombières-lès-Dijon dans un environnement privilégié offrant un cadre de vie rare entre nature et proximité immédiate de Dijon. Cette propriété séduit par son architecture moderne, ses volumes généreux et la qualité de ses prestations. Dès l’entrée, vous découvrez un espace de vie exceptionnel baigné de lumière grâce à de larges ouvertures comprenant une cuisine ouverte parfaitement intégrée et un séjour convivial. L’ensemble se prolonge par une immense terrasse offrant une vue dégagée et dominante sans vis-à-vis, idéale pour profiter pleinement des extérieurs en toute tranquillité. La maison propose également trois belles chambres lumineuses pensées pour allier confort et intimité, parfaitement adaptées à une vie de famille ou au télétravail. Construite selon les dernières normes, elle bénéficie d’un excellent DPE A garantissant performance énergétique, confort thermique et économies au quotidien. Les matériaux choisis ainsi que les finitions soignées confèrent à l’ensemble une atmosphère élégante et chaleureuse. Vivre à Plombières-lès-Dijon, c’est profiter d’un environnement verdoyant recherché avec un accès rapide aux sentiers de promenade, au canal de Bourgogne et aux espaces naturels tout en bénéficiant d’une vie de village dynamique avec écoles, commerces et commodités à proximité. La situation est idéale avec un accès rapide à Dijon ainsi qu’à l’autoroute A38 facilitant tous les déplacements. Ce bien rare sur le secteur est une opportunité unique pour les amateurs de biens modernes sans travaux offrant confort, luminosité et qualité de vie exceptionnelle. Les informations sur les risques auxquels ce bien est exposé sont disponibles sur le site Géorisques https://www.georisques.gouv.fr Les informations sur les risques auxquels ce bien est exposé sont disponibles sur le site Géorisques",
-   "dpe": null,
+   "dpe": "A",
    "energie": "entre 740 € et 1 040 €",
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "607",
-   "last_seen": "2026-10-18",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité",
@@ -653,7 +679,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 153.0,
-   "type": "Maison"
+   "type": "Maison",
+   "visite_virtuelle": null
   },
   "446": {
    "caracteristiques": {
@@ -686,8 +713,10 @@
    "dpe": null,
    "energie": "entre 950 € et 1 330 €",
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "620",
-   "last_seen": "2026-10-18",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [],
    "photos": {
@@ -724,7 +753,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 45.2,
-   "type": "Appartement"
+   "type": "Appartement",
+   "visite_virtuelle": null
   },
   "450": {
    "caracteristiques": {
@@ -879,8 +909,10 @@
    "dpe": null,
    "energie": null,
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "650",
-   "last_seen": "2026-10-18",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité",
@@ -916,7 +948,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 222.0,
-   "type": "Immeuble"
+   "type": "Immeuble",
+   "visite_virtuelle": null
   },
   "455": {
    "caracteristiques": {
@@ -1060,8 +1093,10 @@
    "dpe": null,
    "energie": "entre 480 € et 710 €",
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "666",
-   "last_seen": "2026-10-18",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité",
@@ -1093,7 +1128,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 20.0,
-   "type": "Studio"
+   "type": "Studio",
+   "visite_virtuelle": null
   },
   "461BALI": {
    "caracteristiques": {
@@ -1124,8 +1160,10 @@
    "dpe": null,
    "energie": "entre 460 € et 690 €",
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "668",
-   "last_seen": "2026-10-18",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité"
@@ -1158,7 +1196,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 20.0,
-   "type": "Studio"
+   "type": "Studio",
+   "visite_virtuelle": null
   },
   "463": {
    "caracteristiques": {
@@ -1190,8 +1229,10 @@
    "dpe": null,
    "energie": "entre 460 € et 690 €",
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "670",
-   "last_seen": "2026-10-18",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Sous-offre",
@@ -1223,7 +1264,8 @@
    "status": "sous offre",
    "status_changed": "2026-10-17",
    "surface": 60.0,
-   "type": "Immeuble"
+   "type": "Immeuble",
+   "visite_virtuelle": null
   },
   "464": {
    "caracteristiques": {
@@ -1404,8 +1446,10 @@
    "dpe": null,
    "energie": null,
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "693",
-   "last_seen": "2026-10-18",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Accord",
@@ -1441,7 +1485,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 26.0,
-   "type": "Appartement"
+   "type": "Appartement",
+   "visite_virtuelle": null
   },
   "481": {
    "caracteristiques": {
@@ -1473,8 +1518,10 @@
    "dpe": null,
    "energie": "entre 190 € et 300 €",
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "659",
-   "last_seen": "2026-10-18",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité"
@@ -1515,7 +1562,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 28.66,
-   "type": "Appartement"
+   "type": "Appartement",
+   "visite_virtuelle": null
   },
   "483": {
    "caracteristiques": {
@@ -1534,8 +1582,10 @@
    "dpe": null,
    "energie": null,
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "687",
-   "last_seen": "2026-10-18",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité",
@@ -1589,7 +1639,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 42.0,
-   "type": "Loft"
+   "type": "Loft",
+   "visite_virtuelle": null
   },
   "486": {
    "caracteristiques": {
@@ -1768,8 +1819,10 @@
    "dpe": null,
    "energie": null,
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "636",
-   "last_seen": "2026-10-18",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [],
    "photos": {
@@ -1832,7 +1885,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 340.0,
-   "type": "Maison"
+   "type": "Maison",
+   "visite_virtuelle": null
   },
   "500A": {
    "caracteristiques": {
@@ -1863,8 +1917,10 @@
    "dpe": null,
    "energie": null,
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "730",
-   "last_seen": "2026-10-18",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Coup de coeur"
@@ -1931,7 +1987,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 206.0,
-   "type": "Maison"
+   "type": "Maison",
+   "visite_virtuelle": null
   },
   "501": {
    "caracteristiques": {
@@ -1962,8 +2019,10 @@
    "dpe": null,
    "energie": "entre 921 € et 1 247 €",
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "731",
-   "last_seen": "2026-10-18",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité",
@@ -2012,7 +2071,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 53.62,
-   "type": "Appartement"
+   "type": "Appartement",
+   "visite_virtuelle": null
   },
   "504": {
    "caracteristiques": {
@@ -2168,8 +2228,10 @@
    "dpe": null,
    "energie": "entre 3 630 € et 4 950 €",
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "708",
-   "last_seen": "2026-10-18",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Sous-offre",
@@ -2212,7 +2274,8 @@
    "status": "sous offre",
    "status_changed": "2026-10-17",
    "surface": 84.0,
-   "type": "Maison"
+   "type": "Maison",
+   "visite_virtuelle": null
   },
   "507": {
    "caracteristiques": {
@@ -2243,8 +2306,10 @@
    "dpe": null,
    "energie": "entre 1 000 € et 1 390 €",
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "718",
-   "last_seen": "2026-10-18",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [],
    "photos": {
@@ -2282,7 +2347,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 44.3,
-   "type": "Appartement"
+   "type": "Appartement",
+   "visite_virtuelle": null
   },
   "508": {
    "caracteristiques": {
@@ -2314,8 +2380,10 @@
    "dpe": null,
    "energie": "entre 2 690 € et 3 680 €",
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "745",
-   "last_seen": "2026-10-18",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [],
    "photos": {
@@ -2362,7 +2430,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 106.0,
-   "type": "Appartement"
+   "type": "Appartement",
+   "visite_virtuelle": null
   },
   "509": {
    "caracteristiques": {
@@ -2388,11 +2457,13 @@
    "compo_agence": "5 pièces - 141 m²",
    "cp": "21160",
    "description_expurgee": "Ensemble immobilier entièrement rénové, très rare sur le secteur de la côte des vins ! Au sein du magnifique village viticole de Couchey, venez découvrir cette superbe propriété ancienne composée de deux maisons entièrement rénovées et situées au calme au coeur de ce bourg historique. Deux maisons vendues en une seule, l'une en face de l'autre dans cette petite impasse pleine de charme. La première partie d'habitation, sur 3 niveaux, se compose comme suit : Au rez-de-chaussée, une grande chambre avec salle d'eau/buanderie et un WC séparé pour une surface de plus de 26m² avec accès indépendant à l'extérieur. Au premier étage, une terrasse donnant accès à un salon/séjour avec cuisine ouverte, aménagée et équipée de 27m². Le deuxième étage se compose d'un dégagement desservant une grande salle d'eau et une grande chambre de près de 14m² avec son balcon privatif. Surface totale de 78m². Une magnifique cave voutée de 25m² vient compléter ce bien atypique de la côte des vins. Pompe à chaleur Air/Eau de 2021. Double vitrage PVC. Volets roulants électriques. DPE : C La seconde partie de 63m², totalement indépendante et parfaite pour une exploitation en location courte ou longue durée, se compose d'une entrée sur salon/séjour et cuisine ouverte de 33m². Cuisine aménagée et équipée. A l'étage une chambre de 22,5m² avec partie salle d'eau et un WC séparé. Chauffage électrique. Volets roulants électriques. Cave voûtée de 30m² sur 2,30m de hauteur. Une place de stationnement. Cet ensemble immobilier entièrement refait à neuf n'attend plus que vous pour l'exploiter selon vos envies, vos besoins et vos idées ! Pour toutes demandes de renseignements ou visites : Clément PATOUILLET, agent commercial au O 6 / 23 / 63 / 72 96 Les risques auxquels ce bien est exposé : www.georisques.gouv.fr",
-   "dpe": null,
+   "dpe": "C",
    "energie": "entre 850 € et 1 190 €",
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "751",
-   "last_seen": "2026-10-18",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Coup de coeur"
@@ -2465,7 +2536,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 141.0,
-   "type": "Propriété"
+   "type": "Propriété",
+   "visite_virtuelle": null
   },
   "510": {
    "caracteristiques": {
@@ -2502,8 +2574,10 @@
    "dpe": null,
    "energie": "entre 770 € et 1 060 €",
    "first_seen": "2026-10-10",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "763",
-   "last_seen": "2026-10-18",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Accord"
@@ -2548,7 +2622,8 @@
    "status": "en vente",
    "status_changed": "2026-10-10",
    "surface": 49.08,
-   "type": "Appartement"
+   "type": "Appartement",
+   "visite_virtuelle": null
   },
   "512": {
    "caracteristiques": {
@@ -2578,8 +2653,10 @@
    "dpe": null,
    "energie": null,
    "first_seen": "2026-10-10",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "759",
-   "last_seen": "2026-10-18",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [],
    "photos": {
@@ -2642,7 +2719,8 @@
    "status": "en vente",
    "status_changed": "2026-10-10",
    "surface": 93.17,
-   "type": "Appartement"
+   "type": "Appartement",
+   "visite_virtuelle": null
   },
   "513": {
    "caracteristiques": {
@@ -2673,8 +2751,10 @@
    "dpe": null,
    "energie": "entre 440 € et 650 €",
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "754",
-   "last_seen": "2026-10-18",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité",
@@ -2710,7 +2790,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 23.2,
-   "type": "Studio"
+   "type": "Studio",
+   "visite_virtuelle": null
   },
   "520": {
    "caracteristiques": {
@@ -2748,8 +2829,10 @@
    "dpe": null,
    "energie": "entre 410 € et 640 €",
    "first_seen": "2026-10-14",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "765",
-   "last_seen": "2026-10-18",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Coup de coeur"
@@ -2802,7 +2885,8 @@
    "status": "en vente",
    "status_changed": "2026-10-14",
    "surface": 61.49,
-   "type": "Appartement"
+   "type": "Appartement",
+   "visite_virtuelle": null
   },
   "5430963": {
    "caracteristiques": {
@@ -2824,8 +2908,10 @@
    "dpe": null,
    "energie": null,
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "71",
-   "last_seen": "2026-10-18",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [],
    "photos": {
@@ -2842,7 +2928,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 1500.0,
-   "type": "Terrain"
+   "type": "Terrain",
+   "visite_virtuelle": null
   },
   "Combottes": {
    "caracteristiques": {
@@ -2878,8 +2965,10 @@
    "dpe": null,
    "energie": "entre 1 880 € et 2 570 €",
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "454",
-   "last_seen": "2026-10-18",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Exclusivité",
@@ -2921,7 +3010,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 132.37,
-   "type": "Maison"
+   "type": "Maison",
+   "visite_virtuelle": null
   },
   "Mandat": {
    "caracteristiques": {
@@ -2953,8 +3043,10 @@
    "dpe": null,
    "energie": "entre 2 330 € et 3 180 €",
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "672",
-   "last_seen": "2026-10-18",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Prix en baisse"
@@ -3007,7 +3099,8 @@
    "status": "en vente",
    "status_changed": "2026-09-28",
    "surface": 90.0,
-   "type": "Maison"
+   "type": "Maison",
+   "visite_virtuelle": null
   },
   "PREF": {
    "caracteristiques": {
@@ -3045,8 +3138,10 @@
    "dpe": null,
    "energie": "entre 1 300 € et 1 810 €",
    "first_seen": "2026-09-28",
+   "ges": null,
+   "honoraires_texte": null,
    "id": "739",
-   "last_seen": "2026-10-18",
+   "last_seen": "2026-10-19",
    "lien_complet": false,
    "mentions_agence": [
     "Sous-offre",
@@ -3090,10 +3185,11 @@
    "status": "sous offre",
    "status_changed": "2026-10-17",
    "surface": 92.93,
-   "type": "Duplex"
+   "type": "Duplex",
+   "visite_virtuelle": null
   }
  },
- "maj": "2026-10-18",
+ "maj": "2026-10-19",
  "posts": [
   {
    "action": "publier",
