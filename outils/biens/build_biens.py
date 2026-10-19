@@ -343,6 +343,16 @@ CSS_FICHE = CSS_COMMUN + """
 .bf-video{grid-row:1/3;position:relative;background:#0F0E0C;overflow:hidden;}
 .bf-video video{width:100%;height:100%;object-fit:cover;display:block;}
 .bf-emb{min-height:420px;}
+.bf-stage{position:relative;}
+.bf-igbtn{position:absolute;left:16px;bottom:16px;z-index:3;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;padding:12px 18px;border:0;border-radius:999px;background:rgba(15,14,12,.86);color:#fff;font:600 15px/1 inherit;letter-spacing:.01em;cursor:pointer;box-shadow:0 8px 28px rgba(0,0,0,.28);backdrop-filter:blur(6px);}
+.bf-igbtn svg{width:18px;height:18px;}
+.bf-igbtn:hover{background:#0F0E0C;}
+.bf-igbox{position:fixed;inset:0;z-index:80;background:rgba(10,9,8,.86);display:flex;align-items:center;justify-content:center;padding:16px;}
+.bf-igbox[hidden]{display:none;}
+.bf-igcard{position:relative;width:min(92vw,400px,calc((100svh - 80px)*.8));}
+.bf-igcrop{position:relative;width:100%;aspect-ratio:4/5;overflow:hidden;border-radius:16px;background:#000;}
+.bf-igcrop iframe{position:absolute;left:0;top:-56px;width:100%;height:calc(100% + 420px);border:0;background:#000;}
+.bf-igclose{position:absolute;right:-6px;top:-46px;width:38px;height:38px;border-radius:50%;border:0;background:#fff;color:#0F0E0C;font:400 26px/1 inherit;cursor:pointer;}
 .bf-emb iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;background:#0F0E0C;}
 .bf-emb-ig iframe{background:#fff;}
 .bf-stage.has-ig{grid-template-columns:minmax(340px,.95fr) minmax(0,1.25fr) minmax(0,.8fr);height:min(88vh,820px);}
@@ -509,6 +519,13 @@ if(v){
 }
 /* ---- vidéo intégrée (YouTube ou Instagram) : chargée une fois la page affichée, pour garder la page rapide ---- */
 var em=$('#bf-emb');
+var igb=$('#bf-igbtn'), igx=$('#bf-igbox');
+if(igb&&igx&&em){ var fermeIg=function(){ igx.hidden=true; D.documentElement.style.overflow=''; em.src='about:blank'; delete em.dataset.go; igb.focus(); };
+  igb.addEventListener('click',function(){ igx.hidden=false; D.documentElement.style.overflow='hidden'; em.dataset.go='1'; em.src=em.getAttribute('data-src'); $('.bf-igclose',igx).focus(); });
+  $('.bf-igclose',igx).addEventListener('click',fermeIg);
+  igx.addEventListener('click',function(e){ if(e.target===igx)fermeIg(); });
+  D.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!igx.hidden)fermeIg(); });
+  em=null; }
 if(em){ var charge=function(){ if(em.dataset.go)return; em.dataset.go='1'; em.src=em.getAttribute('data-src'); };
   if(D.readyState==='complete'){ setTimeout(charge,50); } else { window.addEventListener('load',function(){ setTimeout(charge,50); }); setTimeout(charge,3500); } }
 /* ---- galerie plein écran : glisser au doigt, flèches, clavier ---- */
@@ -676,6 +693,15 @@ def bloc_integration(emb, t):
     else:
         src = 'https://www.instagram.com/reel/%s/embed/' % urllib.parse.quote(emb[1])
         allow = 'autoplay; encrypted-media; picture-in-picture; clipboard-write; fullscreen'
+    if emb[0] == 'instagram':
+        # Instagram : pas de lecteur brut dans la page (en-tête, mentions J'aime, image trop large).
+        # Un bouton « Voir la vidéo » ouvre une fenêtre propre, format vertical, recadrée sur la vidéo seule.
+        return ('<button type="button" class="bf-igbtn" id="bf-igbtn">%s<span>Voir la vidéo du bien</span></button>'
+                '<div class="bf-igbox" id="bf-igbox" role="dialog" aria-modal="true" aria-label="Vidéo du bien" hidden>'
+                '<div class="bf-igcard"><button type="button" class="bf-igclose" aria-label="Fermer la vidéo">×</button>'
+                '<div class="bf-igcrop"><iframe id="bf-emb" data-src="%s" data-clic="1" title="Vidéo du bien : %s" allow="%s" '
+                'allowfullscreen scrolling="no" referrerpolicy="strict-origin-when-cross-origin"></iframe></div></div></div>'
+                % (ICO['play'], E(src), E(t), allow))
     return ('<div class="bf-video bf-emb bf-emb-%s"><span class="bf-vlab bi-vid">%sVisite en vidéo</span>'
             '<iframe id="bf-emb" data-src="%s" title="Vidéo du bien : %s" allow="%s" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>'
             % ('yt' if emb[0] == 'youtube' else 'ig', ICO['cam'], E(src), E(t), allow))
@@ -727,7 +753,12 @@ def fiche(a, ph, medias, base, voisins, taux):
         shots.append('<button type="button" class="%s" data-photo="%d" aria-label="Agrandir la photo %d sur %d">%s</button>'
                      % (cls, i, i + 1, nb, picture(ref, n, tl, '%s, photo %d' % (t, i + 1),
                                                    '(max-width:820px) 100vw, 60vw' if i == 0 else '(max-width:820px) 78vw, 30vw', eager=(i == 0 and not video))))
-    if emb:
+    igbloc = ''
+    if emb and emb[0] == 'instagram':
+        igbloc = bloc_integration(emb, t)
+        shots = shots[:3]
+        vid = ''
+    elif emb:
         shots = shots[:3]
         vid = bloc_integration(emb, t)
     elif video:
@@ -742,7 +773,7 @@ def fiche(a, ph, medias, base, voisins, taux):
     else:
         vid = ''
     toutes = ('<button type="button" class="bf-all" data-photo="0">%sLes %d photos</button>' % (ICO['grid'], nb)) if nb > 1 else ''
-    stage = '<div class="bf-stage %s">%s%s%s</div>' % ('has-v has-ig' if emb and emb[0] == 'instagram' else 'has-v' if video or emb else 'no-v', vid, ''.join(shots), toutes)
+    stage = '<div class="bf-stage %s">%s%s%s%s</div>' % ('no-v' if igbloc else 'has-v' if video or emb else 'no-v', vid, ''.join(shots), toutes, igbloc)
     strip = ('<div class="bf-strip" aria-label="Photos du bien">%s</div>'
              % ''.join('<button type="button" class="bf-shot" data-photo="%d" aria-label="Agrandir la photo %d sur %d">%s</button>'
                        % (i, i + 1, nb, picture(ref, n, tl, '%s, photo %d' % (t, i + 1), '78vw')) for i, (n, tl) in enumerate(ph[:8]))) if nb > 1 else ''
