@@ -300,6 +300,10 @@ export async function onRequest({ request, env }) {
     const jour = jourParis();
     if (base && !test) {
       const story = /^story/i.test(post || '');
+      if (source === 'dm') {
+        const dejaDm = await base.prepare("SELECT 1 FROM dm_instagram WHERE contact = ?1 AND jour = ?2 AND origine <> 'hors_creneau' LIMIT 1").bind(contact, jour).first();
+        if (dejaDm) return sansMessage('deja_repondu_aujourdhui');
+      }
       const deja = await base.prepare("SELECT 1 FROM dm_instagram WHERE origine <> 'hors_creneau' AND (evenement = ?1 OR (?5 = 0 AND contact = ?2 AND post = ?3 AND jour = ?4)) LIMIT 1")
         .bind(evenement, contact, idReel(post), jour, story ? 1 : 0).first();
       if (deja) return sansMessage('doublon');
@@ -308,8 +312,14 @@ export async function onRequest({ request, env }) {
     // 2. Bien + plafond du jour
     // Réponses aux stories : on ne sait pas quelle story a été vue. Le texte de la réponse décide :
     // mots du tabac / des chiffres → dossier tabac ; sinon aucun bien (réponse honnête : « dis-moi ce qui t'intéresse »).
-    if (/^story/i.test(post || '') && !/^story-./i.test(post || '')) {
-      post = /tabac|bilan|chiffre|\bca\b|compta|fdj|presse|fonds|1[,.]8|million/i.test(commentaire || '') ? 'story-tabac' : '';
+    // Messages privés directs (post=dm) et réponses aux stories (post=story) : le texte décide du bien.
+    if (/^(story|dm)$/i.test(post || '')) {
+      const c = commentaire || '';
+      post = /tabac|bilan|chiffre|\bca\b|\bebe\b|compta|fdj|presse|fonds|1[,.]8|million/i.test(c) ? 'story-tabac'
+        : /bourroche|blondel|deux balcons|2 balcons/i.test(c) ? 'Del8q6GtmLp'
+        : /chevigny/i.test(c) ? 'DeY_bQeoGA3'
+        : /ch[eé]n[oô]ve/i.test(c) ? 'DdzDuf0uxln'
+        : '';
     }
     const bien = await trouverBien(env, request, post);
     let depense = 0;
