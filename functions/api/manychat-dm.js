@@ -103,6 +103,11 @@ const CONSIGNES = `Tu écris, au nom de Shawez Ali, agent immobilier chez Gravel
 - Écris comme Shawez écrit sur son téléphone : phrases simples et naturelles, AUCUNE parenthèse, aucun tiret de liste, aucun deux-points d'énumération, aucune formule administrative (« honoraires à la charge du vendeur », « n'hésitez pas »). Si un détail compte, glisse-le dans une phrase normale.
 - Ne jamais inventer un prix, une surface, un quartier ou une caractéristique. Jamais les mots « mandataire », « gratuit », « IA »,
   « robot », « automatique ». Dis « offert » si besoin.
+- Si la personne demande des documents, des chiffres, le bilan, la comptabilité ou le chiffre d'affaires d'un fonds de commerce :
+  donne d'abord les chiffres publics fournis dans les données, en expliquant simplement leur sens (par exemple la différence entre
+  l'argent qui passe en caisse et le chiffre d'affaires comptable), puis dis que pour recevoir les bilans complets il suffit de
+  signer l'engagement de confidentialité du bouton « Accès aux bilans » et de le renvoyer avec sa pièce d'identité, et que tu lui
+  envoies les bilans tout de suite après. Ne donne jamais le résultat comptable, les salaires ni le nom ou l'adresse du commerce.
 - Ne mentionne pas les boutons en détail : ils s'affichent sous ton message (dossier du bien, estimation, calcul de prêt).
 Réponds avec le texte du message seul, sans guillemets.`;
 
@@ -176,9 +181,11 @@ function controle(texte, bien) {
   if (/\b\d{1,3}\s?,?\s?(bis|ter)?\s*(rue|avenue|bd|boulevard|place|impasse|allée|chemin|route)\b/i.test(texte)) return 'adresse';
   if (/\b(rue|avenue|boulevard|impasse|allée)\s+[A-ZÉ]/.test(texte)) return 'adresse';
   const chiffres = v => String(v || '').replace(/\D/g, '');
-  const prix = chiffres(bien && bien.prix);
-  const montants = (texte.match(/\d[\d\s.\u202f]*\s?(€|euros|k€)/gi) || []).map(chiffres);
-  for (const m of montants) if (!prix || (m !== prix && m + '000' !== prix)) return 'montant';
+  // Montants autorisés : tous ceux qui figurent dans les données du bien (prix, chiffres publics)
+  const source = bien ? Object.values(bien).join(' ') : '';
+  const permis = new Set((source.match(/\d[\d\s.,\u202f]*\s?(€|euros|k€|million)/gi) || []).map(chiffres));
+  const montants = (texte.match(/\d[\d\s.,\u202f]*\s?(€|euros|k€|millions?)/gi) || []).map(chiffres);
+  for (const m of montants) if (!m || !(permis.has(m) || permis.has(m.replace(/000$/, '')) || [...permis].some(p => p === m + '000'))) return 'montant';
   if (texte.length > 640) return 'longueur';
   if (texte.split('\n').filter(l => l.trim()).length > 4) return 'lignes';
   return null;
@@ -200,7 +207,9 @@ function blocManyChat(texte, bien) {
   const boutons = [
     { type: 'url', caption: '📄 Dossier du bien', url: bien && bien.lien ? bien.lien : BIENS },
     { type: 'url', caption: '🏠 Estimer mon bien', url: ESTIMER },
-    { type: 'url', caption: '💶 Calculer mon prêt', url: PRET },
+    bien && bien.confidentialite
+      ? { type: 'url', caption: '🔒 Accès aux bilans', url: bien.confidentialite }
+      : { type: 'url', caption: '💶 Calculer mon prêt', url: PRET },
   ];
   return {
     version: 'v2',
@@ -275,7 +284,7 @@ export async function onRequest({ request, env }) {
       return sansMessage('hors_creneau', { compte, envoyer: 'plus_tard', attendre_minutes: minutesAvantCreneau() });
     }
     if (!evenement) {
-      const brut = new TextEncoder().encode(`${contact}|${idReel(post)}|${commentaire}`);
+      const brut = new TextEncoder().encode(`${contact}|${idReel(post)}|${commentaire}|${jourParis()}`);
       evenement = [...new Uint8Array(await crypto.subtle.digest('SHA-256', brut))].slice(0, 12).map(b => b.toString(16).padStart(2, '0')).join('');
     }
     const base = await journal(env).catch(e => { console.log('journal', e.message); return null; });
