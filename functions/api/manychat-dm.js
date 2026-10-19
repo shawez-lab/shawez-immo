@@ -350,7 +350,7 @@ export async function onRequest({ request, env }) {
 
     if (base) {
       await base.prepare('INSERT OR IGNORE INTO dm_instagram VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11)')
-        .bind(evenement, contact, compte, idReel(post), bien ? bien.ref || '' : '', jour, origine,
+        .bind(evenement, contact, compte, source === 'dm' ? 'dm' : idReel(post), bien ? bien.ref || '' : '', jour, origine,
           usage ? usage.input_tokens || 0 : 0, usage ? usage.output_tokens || 0 : 0, cout, new Date().toISOString())
         .run().catch(e => console.log('journal insert', e.message));
     }
