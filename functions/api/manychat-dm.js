@@ -335,7 +335,10 @@ export async function onRequest({ request, env }) {
       return sansMessage('hors_creneau', { compte, source, envoyer: 'plus_tard', attendre_minutes: att });
     }
     if (!evenement) {
-      const brut = new TextEncoder().encode(`${contact}|${idReel(post)}|${commentaire}|${jourParis()}`);
+      // DM et stories sans identifiant d'événement : même texte du même contact à 2 minutes près = même événement (relance ManyChat),
+      // au-delà c'est un nouveau message (plusieurs « oui » dans une conversation). Commentaires : un par jour et par Reel.
+      const fenetre = (source === 'dm' || /^(story|dm)/i.test(post || '')) ? `m${Math.floor(Date.now() / 120000)}` : jourParis();
+      const brut = new TextEncoder().encode(`${contact}|${idReel(post)}|${commentaire}|${fenetre}`);
       evenement = [...new Uint8Array(await crypto.subtle.digest('SHA-256', brut))].slice(0, 12).map(b => b.toString(16).padStart(2, '0')).join('');
     }
     const base = await journal(env).catch(e => { console.log('journal', e.message); return null; });
