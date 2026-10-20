@@ -100,7 +100,10 @@ const CONSIGNES = `Tu écris, au nom de Shawez Ali, agent immobilier chez Gravel
 D'ABORD, vérifie que le message parle d'immobilier : acheter, vendre, estimer, louer, visiter, un bien, un prix, un fonds de commerce, un prêt.
 Si ce n'est pas le cas (conversation personnelle ou amicale, paiement, virement, sponsoring, partenariat, matériel, rendez-vous déjà en cours,
 remerciement, message qui répond visiblement à une conversation précédente avec Shawez), réponds exactement HORS_SUJET et rien d'autre.
-Sinon, règles absolues :
+Si un historique est fourni et qu'il parle d'immobilier, un message court comme « oui », « merci », une disponibilité ou une question
+de suite fait partie de la conversation immobilière : ce n'est PAS hors sujet, poursuis-la vers le résultat (visite, appel, estimation).
+Dans ce cas, ne recommence pas par « Salut », écris 1 à 3 lignes qui répondent directement au dernier message, sans répéter ce qui a déjà été dit.
+Dès que tu écris un message, règles absolues, sauf le « Salut » de début quand la conversation continue :
 - Commence par « Salut <prénom> » (ou « Salut » si le prénom est inconnu). Exactement 3 ou 4 lignes de texte, séparées par un seul retour à la ligne, SANS ligne vide, 600 caractères maximum au total, tutoiement, ton chaleureux et naturel, 1 ou 2 emojis maximum, signé implicitement par Shawez (pas de signature).
 - Commence par le prénom s'il est donné.
 - Si le commentaire pose une question précise (quartier, prix, surface, visite, disponibilité), réponds-y d'abord, en une phrase,
@@ -122,7 +125,7 @@ Sinon, règles absolues :
 - Ne mentionne pas les boutons en détail : ils s'affichent sous ton message (dossier du bien, estimation, calcul de prêt).
 Réponds avec le texte du message seul, sans guillemets.`;
 
-async function rediger(env, prenom, commentaire, bien, source) {
+async function rediger(env, prenom, commentaire, bien, source, fil = []) {
   if (!env.ANTHROPIC_API_KEY) throw new Error('cle absente');
   const donnees = bien
     ? Object.entries(bien).filter(([k, v]) => v && k !== 'lien' && k !== 'ref').map(([k, v]) => `${k} : ${v}`).join('\n')
@@ -137,7 +140,7 @@ async function rediger(env, prenom, commentaire, bien, source) {
       thinking: { type: 'between_tools' },
       output_config: { effort: 'low' },
       system: CONSIGNES,
-      messages: [{ role: 'user', content: `Type : ${source === 'dm' ? 'message privé direct' : /story/i.test(source || '') ? 'réponse à une story' : 'commentaire sous une vidéo'}\nPrénom : ${prenom || '(inconnu)'}\nMessage : ${commentaire || '(vide)'}\n\nDonnées du bien :\n${donnees}` }],
+      messages: [{ role: 'user', content: `${fil.length ? 'Historique récent de la conversation, du plus ancien au plus récent :\n' + fil.map(m => (m.sens === 'out' ? 'Shawez : ' : 'Client : ') + m.texte).join('\n') + '\n\n' : ''}Type : ${source === 'dm' ? 'message privé direct' : /story/i.test(source || '') ? 'réponse à une story' : 'commentaire sous une vidéo'}\nPrénom : ${prenom || '(inconnu)'}\nMessage : ${commentaire || '(vide)'}\n\nDonnées du bien :\n${donnees}` }],
     }),
   });
   if (!r.ok) throw new Error(`api ${r.status} ${(await r.text()).slice(0, 200)}`);
@@ -213,6 +216,9 @@ async function journal(env) {
     evenement TEXT PRIMARY KEY, contact TEXT, compte TEXT, post TEXT, ref TEXT, jour TEXT,
     origine TEXT, entree INTEGER, sortie INTEGER, cout REAL, cree TEXT)`).run();
   await env.DB.prepare('CREATE TABLE IF NOT EXISTS dm_stop (cle TEXT PRIMARY KEY, motif TEXT, cree TEXT)').run();
+  // Fil de conversation : derniers messages reçus et envoyés par contact, pour poursuivre un échange sans le perdre
+  await env.DB.prepare('CREATE TABLE IF NOT EXISTS dm_fil (id INTEGER PRIMARY KEY AUTOINCREMENT, contact TEXT, sens TEXT, texte TEXT, cle TEXT, cree TEXT)').run();
+  await env.DB.prepare('CREATE INDEX IF NOT EXISTS dm_fil_contact ON dm_fil (contact, id)').run();
   return env.DB;
 }
 
@@ -333,11 +339,8 @@ export async function onRequest({ request, env }) {
     const base = await journal(env).catch(e => { console.log('journal', e.message); return null; });
     const jour = jourParis();
     if (base && !test) {
-      const story = /^story/i.test(post || '');
-      if (source === 'dm') {
-        const dejaDm = await base.prepare("SELECT 1 FROM dm_instagram WHERE contact = ?1 AND jour = ?2 AND post = 'dm' AND origine NOT IN ('hors_creneau','hors_sujet') LIMIT 1").bind(contact, jour).first();
-        if (dejaDm) return sansMessage('deja_repondu_aujourdhui');
-      }
+      // Stories et DM directs : antidoublon par message seulement (décision de Shawez du 20/10 : plus de limite d'une réponse par jour)
+      const story = /^(story|dm)/i.test(post || '') || source === 'dm';
       const deja = await base.prepare("SELECT 1 FROM dm_instagram WHERE origine <> 'hors_creneau' AND (evenement = ?1 OR (?5 = 0 AND contact = ?2 AND post = ?3 AND jour = ?4)) LIMIT 1")
         .bind(evenement, contact, idReel(post), jour, story ? 1 : 0).first();
       if (deja) return sansMessage('doublon');
@@ -347,6 +350,17 @@ export async function onRequest({ request, env }) {
     // Réponses aux stories : on ne sait pas quelle story a été vue. Le texte de la réponse décide :
     // mots du tabac / des chiffres → dossier tabac ; sinon aucun bien (réponse honnête : « dis-moi ce qui t'intéresse »).
     // Messages privés directs (post=dm) et réponses aux stories (post=story) : le texte décide du bien.
+    // Historique récent du contact (30 jours, 8 derniers messages) : sert au contexte et à retrouver le bien déjà discuté
+    let fil = [];
+    if (base && !test && contact) {
+      const depuis = new Date(Date.now() - 30 * 864e5).toISOString();
+      const r = await base.prepare('SELECT sens, texte, cle FROM dm_fil WHERE contact = ?1 AND cree > ?2 ORDER BY id DESC LIMIT 8').bind(contact, depuis).all().catch(() => null);
+      fil = ((r && r.results) || []).reverse();
+    }
+    const noter = async (sens, texte, cle) => {
+      if (base && !test && contact && texte) await base.prepare('INSERT INTO dm_fil (contact, sens, texte, cle, cree) VALUES (?1,?2,?3,?4,?5)')
+        .bind(contact, sens, String(texte).slice(0, 1000), cle || '', new Date().toISOString()).run().catch(() => {});
+    };
     if (/^(story|dm)$/i.test(post || '')) {
       const c = commentaire || '';
       post = /tabac|bilan|chiffre|\bca\b|\bebe\b|compta|fdj|presse|fonds|1[,.]8|million/i.test(c) ? 'story-tabac'
@@ -355,7 +369,13 @@ export async function onRequest({ request, env }) {
         : /ch[eé]n[oô]ve/i.test(c) ? 'DdzDuf0uxln'
         : '';
     }
+    if (/^(story|dm)$/i.test(post || '') || post === '') {
+      // Rien de reconnu dans ce message : on reste sur le bien dont on parlait déjà avec ce contact
+      const dernier = [...fil].reverse().find(m => m.cle);
+      if (dernier) post = dernier.cle;
+    }
     const bien = await trouverBien(env, request, post);
+    const cleBien = bien ? post : '';
     let depense = 0;
     if (base) {
       const r = await base.prepare('SELECT COALESCE(SUM(cout), 0) AS c FROM dm_instagram WHERE jour = ?1').bind(jour).first();
@@ -367,13 +387,14 @@ export async function onRequest({ request, env }) {
     if (depense >= PLAFOND_JOUR_USD) { texte = secours(prenom, bien); origine = 'plafond'; }
     else {
       try {
-        ({ texte, usage } = await rediger(env, prenom, commentaire, bien, source || (/^dm$/i.test(post || '') ? 'dm' : '')));
+        ({ texte, usage } = await rediger(env, prenom, commentaire, bien, source || (/^dm$/i.test(post || '') ? 'dm' : ''), fil));
         if (/^\W*HORS_SUJET\W*$/i.test(texte)) {
           // Pas une demande immobilière (conversation perso, partenariat…) : aucun message, Shawez reprend à la main
           const coutHs = usage ? (usage.input_tokens || 0) * PRIX_ENTREE + (usage.output_tokens || 0) * PRIX_SORTIE : 0;
           if (base) await base.prepare('INSERT OR IGNORE INTO dm_instagram VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11)')
             .bind(evenement, contact, compte, source === 'dm' ? 'dm' : idReel(post), '', jour, 'hors_sujet',
               usage ? usage.input_tokens || 0 : 0, usage ? usage.output_tokens || 0 : 0, coutHs, new Date().toISOString()).run().catch(() => {});
+          await noter('in', commentaire, '');
           return sansMessage('hors_sujet', { a_reprendre: true });
         }
         // Une parenthèse devient une simple virgule, comme on l'écrirait sur un téléphone
@@ -396,6 +417,8 @@ export async function onRequest({ request, env }) {
           usage ? usage.input_tokens || 0 : 0, usage ? usage.output_tokens || 0 : 0, cout, new Date().toISOString())
         .run().catch(e => console.log('journal insert', e.message));
     }
+    await noter('in', commentaire, cleBien);
+    await noter('out', texte, cleBien);
     console.log('manychat-dm', JSON.stringify({ post: idReel(post), ref: bien && bien.ref, compte, origine, cout }));
     return json(200, { ...blocManyChat(texte, bien), envoyer: 'oui', origine, cout: Math.round(cout * 1e5) / 1e5, depense_jour: Math.round((depense + cout) * 1e4) / 1e4 });
   } catch (e) {
