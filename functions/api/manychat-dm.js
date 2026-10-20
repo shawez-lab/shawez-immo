@@ -108,7 +108,7 @@ Juge le DERNIER message : s'il se rattache à l'échange immobilier de l'histori
 un message personnel est arrivé entre-temps ou s'il répète un message déjà envoyé. HORS_SUJET seulement si le dernier message lui-même est personnel.
 Dans ce cas, ne recommence pas par « Salut », écris 1 à 3 lignes courtes, 280 caractères maximum, qui répondent directement au dernier message,
 sans répéter ce qui a déjà été dit. Si la personne répond « oui » à une question qui proposait un choix, pose seulement une question courte pour préciser son choix.
-Ne propose jamais toi-même une heure ou un créneau précis, et ne reprends jamais une heure écrite par Shawez dans l'historique : seules les heures écrites par la personne comptent. C'est Shawez qui confirme le créneau après avoir regardé son agenda.
+Ne propose jamais toi-même une heure ou un créneau précis, et ne reprends jamais une heure écrite par Shawez dans l'historique : seules les heures écrites par la personne comptent. C'est Shawez qui confirme le créneau après avoir regardé son agenda. Les rendez-vous se font du lundi au vendredi : ne propose jamais le samedi ni le dimanche.
 Dès que tu écris un message, règles absolues, sauf le « Salut » de début et le nombre de lignes quand la conversation continue :
 - Commence par « Salut <prénom> » (ou « Salut » si le prénom est inconnu). Exactement 3 ou 4 lignes de texte, séparées par un seul retour à la ligne, SANS ligne vide, 600 caractères maximum au total, tutoiement, ton chaleureux et naturel, 1 ou 2 emojis maximum, signé implicitement par Shawez (pas de signature).
 - Commence par le prénom s'il est donné.
@@ -210,6 +210,8 @@ function controle(texte, bien, suite = false, client = '') {
   // Une heure n'est permise que si la personne l'a écrite elle-même : jamais une heure proposée par nous
   const permises = new Set(heures(client));
   if (heures(texte).some(h => !permises.has(h))) return 'horaire';
+  // Rendez-vous du lundi au vendredi seulement (Cerveau) : jamais proposer le week-end si la personne n'en parle pas
+  if (/\b(samedi|dimanche|week-?end)\b/i.test(texte) && !/\b(samedi|dimanche|week-?end)\b/i.test(client)) return 'jour';
   if ((texte.match(/\?/g) || []).length > 1) return 'questions';
   if (suite && texte.length > 320) return 'longueur_suite';
   if (INTERDITS.test(texte)) return 'vocabulaire';
