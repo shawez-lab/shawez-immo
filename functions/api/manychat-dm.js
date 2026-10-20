@@ -106,7 +106,9 @@ Si un historique est fourni et qu'il parle d'immobilier, un message court comme 
 de suite fait partie de la conversation immobilière : ce n'est PAS hors sujet, poursuis-la vers le résultat (visite, appel, estimation).
 Juge le DERNIER message : s'il se rattache à l'échange immobilier de l'historique (visite, disponibilité, prix, « oui »), réponds, même si
 un message personnel est arrivé entre-temps ou s'il répète un message déjà envoyé. HORS_SUJET seulement si le dernier message lui-même est personnel.
-Dans ce cas, ne recommence pas par « Salut », écris 1 à 3 lignes qui répondent directement au dernier message, sans répéter ce qui a déjà été dit.
+Dans ce cas, ne recommence pas par « Salut », écris 1 à 3 lignes courtes, 280 caractères maximum, qui répondent directement au dernier message,
+sans répéter ce qui a déjà été dit. Si la personne répond « oui » à une question qui proposait un choix, pose seulement une question courte pour préciser son choix.
+Ne propose jamais toi-même une heure ou un créneau précis : c'est Shawez qui les confirme après avoir regardé son agenda.
 Dès que tu écris un message, règles absolues, sauf le « Salut » de début et le nombre de lignes quand la conversation continue :
 - Commence par « Salut <prénom> » (ou « Salut » si le prénom est inconnu). Exactement 3 ou 4 lignes de texte, séparées par un seul retour à la ligne, SANS ligne vide, 600 caractères maximum au total, tutoiement, ton chaleureux et naturel, 1 ou 2 emojis maximum, signé implicitement par Shawez (pas de signature).
 - Commence par le prénom s'il est donné.
@@ -198,8 +200,10 @@ function secours(prenom, bien) {
 }
 
 // Contrôle du texte de Claude avant envoi : vocabulaire, montants, adresse. Renvoie la raison du refus ou null.
-function controle(texte, bien) {
+function controle(texte, bien, suite = false) {
   if (META.test(texte)) return 'metadiscours';
+  if ((texte.match(/\?/g) || []).length > 1) return 'questions';
+  if (suite && texte.length > 320) return 'longueur_suite';
   if (INTERDITS.test(texte)) return 'vocabulaire';
   if (/[()]/.test(texte)) return 'parentheses';
   if (/\b\d{1,3}\s?,?\s?(bis|ter)?\s*(rue|avenue|bd|boulevard|place|impasse|allée|chemin|route)\b/i.test(texte)) return 'adresse';
@@ -409,7 +413,7 @@ export async function onRequest({ request, env }) {
         }
         // Une parenthèse devient une simple virgule, comme on l'écrirait sur un téléphone
         texte = normaliser(texte.replace(/\s*\(([^()\n]{1,120})\)/g, ', $1,').replace(/,\s*([.!?,])/g, '$1').replace(/,\s*$/gm, ''));
-        refus = controle(texte, bien);
+        refus = controle(texte, bien, fil.length > 0 && (source === 'dm' || /^story/i.test(source || '')));
         if (refus) {
           console.log('manychat-dm refus', refus, texte);
           if (refus === 'metadiscours' || (fil.length && (source === 'dm' || /^story/i.test(source || '')))) {
