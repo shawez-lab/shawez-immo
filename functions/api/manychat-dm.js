@@ -96,7 +96,11 @@ async function trouverBien(env, request, post) {
 }
 
 const CONSIGNES = `Tu écris, au nom de Shawez Ali, agent immobilier chez Gravelin Immo à Dijon, un message privé Instagram
-à une personne qui vient de commenter la vidéo d'un bien. Règles absolues :
+à une personne qui vient de commenter la vidéo d'un bien, de répondre à une story ou d'écrire un message privé (le « Type » le précise).
+D'ABORD, vérifie que le message parle d'immobilier : acheter, vendre, estimer, louer, visiter, un bien, un prix, un fonds de commerce, un prêt.
+Si ce n'est pas le cas (conversation personnelle ou amicale, paiement, virement, sponsoring, partenariat, matériel, rendez-vous déjà en cours,
+remerciement, message qui répond visiblement à une conversation précédente avec Shawez), réponds exactement HORS_SUJET et rien d'autre.
+Sinon, règles absolues :
 - Commence par « Salut <prénom> » (ou « Salut » si le prénom est inconnu). Exactement 3 ou 4 lignes de texte, séparées par un seul retour à la ligne, SANS ligne vide, 600 caractères maximum au total, tutoiement, ton chaleureux et naturel, 1 ou 2 emojis maximum, signé implicitement par Shawez (pas de signature).
 - Commence par le prénom s'il est donné.
 - Si le commentaire pose une question précise (quartier, prix, surface, visite, disponibilité), réponds-y d'abord, en une phrase,
@@ -113,10 +117,12 @@ const CONSIGNES = `Tu écris, au nom de Shawez Ali, agent immobilier chez Gravel
   envoies les bilans tout de suite après. Ne donne jamais le résultat comptable, les salaires ni le nom ou l'adresse du commerce.
 - Si aucun bien n'est fourni : une phrase chaleureuse et naturelle, puis une seule question simple sur ce qu'il cherche.
   Ne dis jamais que tu n'as pas l'information ni que tu préfères ne rien dire de faux.
+- Ne parle jamais de « commentaire » si le Type est un message privé ou une réponse à une story : dis « ton message ».
+- N'invente jamais un agenda, des disponibilités, des visites prévues ou une activité de la semaine.
 - Ne mentionne pas les boutons en détail : ils s'affichent sous ton message (dossier du bien, estimation, calcul de prêt).
 Réponds avec le texte du message seul, sans guillemets.`;
 
-async function rediger(env, prenom, commentaire, bien) {
+async function rediger(env, prenom, commentaire, bien, source) {
   if (!env.ANTHROPIC_API_KEY) throw new Error('cle absente');
   const donnees = bien
     ? Object.entries(bien).filter(([k, v]) => v && k !== 'lien' && k !== 'ref').map(([k, v]) => `${k} : ${v}`).join('\n')
@@ -131,7 +137,7 @@ async function rediger(env, prenom, commentaire, bien) {
       thinking: { type: 'between_tools' },
       output_config: { effort: 'low' },
       system: CONSIGNES,
-      messages: [{ role: 'user', content: `Prénom : ${prenom || '(inconnu)'}\nCommentaire : ${commentaire || '(vide)'}\n\nDonnées du bien :\n${donnees}` }],
+      messages: [{ role: 'user', content: `Type : ${source === 'dm' ? 'message privé direct' : /story/i.test(source || '') ? 'réponse à une story' : 'commentaire sous une vidéo'}\nPrénom : ${prenom || '(inconnu)'}\nMessage : ${commentaire || '(vide)'}\n\nDonnées du bien :\n${donnees}` }],
     }),
   });
   if (!r.ok) throw new Error(`api ${r.status} ${(await r.text()).slice(0, 200)}`);
@@ -172,14 +178,14 @@ function normaliser(t) {
 
 function secours(prenom, bien) {
   const p = prenom ? ` ${prenom}` : '';
-  if (!bien) return `Salut${p} 👋 merci pour ton commentaire !\nC'est Shawez, agent immobilier à Dijon.\nDis-moi quel bien t'intéresse ou ce que tu cherches, je te réponds moi-même.\nWhatsApp : ${WHATSAPP}`;
+  if (!bien) return `Salut${p} 👋 merci pour ton message !\nC'est Shawez, agent immobilier à Dijon.\nDis-moi quel bien t'intéresse ou ce que tu cherches, je te réponds moi-même.\nWhatsApp : ${WHATSAPP}`;
   if (bien.chiffres && bien.confidentialite) {
     return `Salut${p} 👋 le 1,8 million, c'est tout ce qui passe en caisse sur l'année, tabac, jeux et presse compris.\nLa plus grande partie repart à l'État, le chiffre d'affaires comptable tourne autour de 208 000 €.\nPour les bilans complets, signe l'engagement de confidentialité du bouton Accès aux bilans et renvoie-le avec ta pièce d'identité, je t'envoie tout dans la foulée.\nTu cherches à reprendre un commerce sur Dijon ?`;
   }
   const brut = bien.type ? bien.type.split(' - ')[0].trim() : 'bien';
   const t = brut.replace(/\b(t\d)\b/gi, m => m.toUpperCase()).replace(/^./, c => c.toLowerCase());
   const det = /^[aeiouyéèêh]/i.test(t) ? 'cet' : 'ce';
-  return `Salut${p} 👋 merci pour ton commentaire !\nC'est Shawez, agent immobilier à Dijon.\nLe dossier de ${det} ${t} à ${bien.commune}${bien.prix ? `, à ${bien.prix},` : ''} est juste en dessous.\nTu veux le visiter ou je t'appelle ? WhatsApp : ${WHATSAPP}`;
+  return `Salut${p} 👋 merci pour ton message !\nC'est Shawez, agent immobilier à Dijon.\nLe dossier de ${det} ${t} à ${bien.commune}${bien.prix ? `, à ${bien.prix},` : ''} est juste en dessous.\nTu veux le visiter ou je t'appelle ? WhatsApp : ${WHATSAPP}`;
 }
 
 // Contrôle du texte de Claude avant envoi : vocabulaire, montants, adresse. Renvoie la raison du refus ou null.
@@ -361,7 +367,15 @@ export async function onRequest({ request, env }) {
     if (depense >= PLAFOND_JOUR_USD) { texte = secours(prenom, bien); origine = 'plafond'; }
     else {
       try {
-        ({ texte, usage } = await rediger(env, prenom, commentaire, bien));
+        ({ texte, usage } = await rediger(env, prenom, commentaire, bien, source || (/^dm$/i.test(post || '') ? 'dm' : '')));
+        if (/^\W*HORS_SUJET\W*$/i.test(texte)) {
+          // Pas une demande immobilière (conversation perso, partenariat…) : aucun message, Shawez reprend à la main
+          const coutHs = usage ? (usage.input_tokens || 0) * PRIX_ENTREE + (usage.output_tokens || 0) * PRIX_SORTIE : 0;
+          if (base) await base.prepare('INSERT OR IGNORE INTO dm_instagram VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11)')
+            .bind(evenement, contact, compte, source === 'dm' ? 'dm' : idReel(post), '', jour, 'hors_sujet',
+              usage ? usage.input_tokens || 0 : 0, usage ? usage.output_tokens || 0 : 0, coutHs, new Date().toISOString()).run().catch(() => {});
+          return sansMessage('hors_sujet', { a_reprendre: true });
+        }
         // Une parenthèse devient une simple virgule, comme on l'écrirait sur un téléphone
         texte = normaliser(texte.replace(/\s*\(([^()\n]{1,120})\)/g, ', $1,').replace(/,\s*([.!?,])/g, '$1').replace(/,\s*$/gm, ''));
         refus = controle(texte, bien);
