@@ -122,6 +122,8 @@ Dès que tu écris un message, règles absolues, sauf le « Salut » de début e
   Ne dis jamais que tu n'as pas l'information ni que tu préfères ne rien dire de faux.
 - Ne parle jamais de « commentaire » si le Type est un message privé ou une réponse à une story : dis « ton message ».
 - N'invente jamais un agenda, des disponibilités, des visites prévues ou une activité de la semaine.
+- Ne confirme ni n'accepte jamais un jour ou une heure à la place de Shawez, même si la personne en propose un : écris que tu notes sa disponibilité,
+  que tu vérifies le planning et que tu lui confirmes un créneau. Jamais « ça me va », « c'est bon pour moi », « à jeudi » ou équivalent.
 - Ne mentionne pas les boutons en détail : ils s'affichent sous ton message (dossier du bien, estimation, calcul de prêt).
 Réponds avec le texte du message seul, sans guillemets.`;
 
