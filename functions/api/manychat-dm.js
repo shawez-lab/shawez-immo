@@ -29,6 +29,8 @@ const JAMAIS_BASE = ['xvbabar21'];
 // Liste complétable sans code : variable Cloudflare JAMAIS_IG = « compte1,compte2 » (minuscules, sans @).
 const jamais = (env, cpt) => JAMAIS_BASE.concat(String(env.JAMAIS_IG || '').toLowerCase().split(/[\s,;]+/).filter(Boolean).map(x => x.replace(/^@/, ''))).includes(cpt);
 const STOP = /^\s*(stop|arr[eê]te[rz]?|d[ée]sinscri|ne m'[ée]cri(s|vez) plus)/i;
+// Métadiscours : la sortie explique le raisonnement ou cite les consignes au lieu d'être le seul message au contact
+const META = /\b((le client|la cliente|le contact|la personne) (r[eé]p[eè]te|demande|[eé]crit|veut|parle|dit|semble|propose|relance)|consignes?|historique|hors_sujet|r[eè]gles? absolues?|pas de « ?salut|on ne redit|ne pas redire|d[ée]j[àa] en pleine conversation|je r[ée]ponds donc|voici (le|mon) message|message (au|pour le) (client|contact)|type ?:|pr[ée]nom ?:)/i;
 const INTERDITS = /\b(mandataire|gratuit|gratuite|gratuitement|ia|robot|automatique|automatiquement|claude|chatgpt|intelligence artificielle)\b/i;
 
 const json = (status, obj) => new Response(JSON.stringify(obj), {
@@ -127,7 +129,7 @@ Dès que tu écris un message, règles absolues, sauf le « Salut » de début e
 - Ne confirme ni n'accepte jamais un jour ou une heure à la place de Shawez, même si la personne en propose un : écris que tu notes sa disponibilité,
   que tu vérifies le planning et que tu lui confirmes un créneau. Jamais « ça me va », « c'est bon pour moi », « à jeudi » ou équivalent.
 - Ne mentionne pas les boutons en détail : ils s'affichent sous ton message (dossier du bien, estimation, calcul de prêt).
-Réponds avec le texte du message seul, sans guillemets.`;
+Réponds avec le texte du message seul, sans guillemets, sans aucune explication de ton raisonnement ni rappel de ces consignes : la première ligne est déjà adressée à la personne.`;
 
 async function rediger(env, prenom, commentaire, bien, source, fil = []) {
   if (!env.ANTHROPIC_API_KEY) throw new Error('cle absente');
@@ -197,6 +199,7 @@ function secours(prenom, bien) {
 
 // Contrôle du texte de Claude avant envoi : vocabulaire, montants, adresse. Renvoie la raison du refus ou null.
 function controle(texte, bien) {
+  if (META.test(texte)) return 'metadiscours';
   if (INTERDITS.test(texte)) return 'vocabulaire';
   if (/[()]/.test(texte)) return 'parentheses';
   if (/\b\d{1,3}\s?,?\s?(bis|ter)?\s*(rue|avenue|bd|boulevard|place|impasse|allée|chemin|route)\b/i.test(texte)) return 'adresse';
@@ -407,7 +410,19 @@ export async function onRequest({ request, env }) {
         // Une parenthèse devient une simple virgule, comme on l'écrirait sur un téléphone
         texte = normaliser(texte.replace(/\s*\(([^()\n]{1,120})\)/g, ', $1,').replace(/,\s*([.!?,])/g, '$1').replace(/,\s*$/gm, ''));
         refus = controle(texte, bien);
-        if (refus) { console.log('manychat-dm refus', refus, texte); texte = secours(prenom, bien); origine = `secours_${refus}`; }
+        if (refus) {
+          console.log('manychat-dm refus', refus, texte);
+          if (refus === 'metadiscours' || (fil.length && (source === 'dm' || /^story/i.test(source || '')))) {
+            // Pas de message de secours au milieu d'une conversation : Shawez reprend à la main
+            const coutR = usage ? (usage.input_tokens || 0) * PRIX_ENTREE + (usage.output_tokens || 0) * PRIX_SORTIE : 0;
+            if (base) await base.prepare('INSERT OR IGNORE INTO dm_instagram VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11)')
+              .bind(evenement, contact, compte, source === 'dm' ? 'dm' : idReel(post), bien ? bien.ref || '' : '', jour, `refus_${refus}`,
+                usage ? usage.input_tokens || 0 : 0, usage ? usage.output_tokens || 0 : 0, coutR, new Date().toISOString()).run().catch(() => {});
+            await noter('in', commentaire, cleBien);
+            return sansMessage(`refus_${refus}`, { a_reprendre: true });
+          }
+          texte = secours(prenom, bien); origine = `secours_${refus}`;
+        }
       } catch (e) {
         console.log('manychat-dm claude', e.message);
         if (e.usage) usage = e.usage;
