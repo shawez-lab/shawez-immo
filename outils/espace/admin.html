@@ -24,7 +24,7 @@
       </div>
       <p class="ee-err" id="ad-err" role="alert" hidden></p>
       <div class="ee-stats" id="ad-stats" role="group" aria-label="Vues rapides : un clic filtre la liste"></div>
-      <div class="ee-tabs" role="group" aria-label="Vue"><button type="button" class="pill" data-vue="demandes" aria-pressed="true">Demandes</button><button type="button" class="pill" data-vue="comptes" aria-pressed="false">Comptes</button><button type="button" class="pill" data-vue="reglages" aria-pressed="false">Réglages</button></div>
+      <div class="ee-tabs" role="group" aria-label="Vue"><button type="button" class="pill" data-vue="demandes" aria-pressed="true">Demandes</button><button type="button" class="pill" data-vue="comptes" aria-pressed="false">Comptes</button><button type="button" class="pill" data-vue="biens" aria-pressed="false">Biens</button><button type="button" class="pill" data-vue="reglages" aria-pressed="false">Réglages</button></div>
       <div id="ad-demandes">
         <div class="ee-tools">
           <input type="search" id="ad-q" placeholder="Nom, e-mail, téléphone, commune, référence…" aria-label="Rechercher">
@@ -45,6 +45,14 @@
           <a class="btn" id="ad-export-c" href="/api/espace/admin/export.csv?quoi=comptes" download>Export CSV</a>
         </div>
         <div class="ee-rows" id="ad-crows"></div>
+      </div>
+      <div id="ad-biens" hidden>
+        <div class="ee-card">
+          <h3>Mes biens : qui regarde, qui veut visiter</h3>
+          <p class="meta">Par bien, sur les 30 derniers jours : vues de la fiche, clics sur « Visiter ce bien », vidéo regardée (son activé ou vidéo ouverte), WhatsApp, appels, et visites réservées en 2 clics. Sans cookie : on compte des gestes, jamais des personnes. Les essais ne comptent pas.</p>
+          <div class="acts"><button type="button" class="btn" id="ad-mb-btn">Actualiser</button></div>
+          <div id="ad-mb" data-test="mesures-biens"></div>
+        </div>
       </div>
       <div id="ad-reglages" hidden>
         <div class="ee-card" style="margin-bottom:14px;">
