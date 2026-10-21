@@ -514,6 +514,9 @@ mesure('vue',true);
 D.addEventListener('click',function(e){ var a=e.target.closest&&e.target.closest('a,button'); if(!a)return; var h=a.getAttribute('href')||'';
   if(h==='#visite')mesure('visiter',true); else if(h.indexOf('wa.me/')>=0)mesure('whatsapp',true); else if(h.indexOf('tel:')===0)mesure('appel',true);
   else if(a.id==='bf-vs'||a.id==='bf-igbtn')mesure('video',true); },true);
+/* bloc « Visitez ce bien en 2 clics » : son script arrive une fois la page affichée (photos et texte d'abord) */
+if($('[data-rdv]',fiche)){ var rdvjs=function(){ if(D.getElementById('rdv-js'))return; var sc=D.createElement('script'); sc.id='rdv-js'; sc.src='/assets/rdv.js?v=4'; sc.async=true; D.body.appendChild(sc); };
+  if(D.readyState==='complete')setTimeout(rdvjs,0); else window.addEventListener('load',function(){ setTimeout(rdvjs,0); }); }
 /* « Visiter ce bien » : la page bouge encore pendant le défilement (photos et vidéo qui se chargent) ; on vérifie l'arrivée */
 var vis=$('#visite');
 if(vis)D.addEventListener('click',function(e){ var a=e.target.closest&&e.target.closest('a[href="#visite"]'); if(!a)return; e.preventDefault();
@@ -959,7 +962,7 @@ def fiche(a, ph, medias, base, voisins, taux):
     return page_html(base, route=chemin_fiche(a), titre_page=titre_page, desc=d, canonical=url,
                      image='%s/assets/biens/%s/og.jpg' % (SITE, urllib.parse.quote(ref)), image_alt=t, main=main, graph=graph,
                      css=CSS_FICHE + CSS_LISTE_SEUL, js=JS_FICHE, sticky=sticky,
-                     head_extra=preload + ('<script src="/assets/rdv.js?v=4" defer></script>\n' if actif else ''),
+                     head_extra=preload,
                      robots='index,follow,max-image-preview:large,max-video-preview:-1' if en_ligne(a) else 'noindex,follow')
 
 

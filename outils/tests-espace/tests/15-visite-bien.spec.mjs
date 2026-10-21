@@ -44,7 +44,8 @@ test('fiche bien : « Visiter ce bien » → créneau → confirmer ; alerte, do
   await capture(page, info, 'bien-2-formulaire');
   await expect(bloc.locator('[data-test="rdv-confirmer"]')).toHaveText(/Confirmer cette visite/);
 
-  // clic 2
+  // clic 2 (un humain met plus de 4 s depuis l'affichage du bloc ; plus vite, c'est noté comme robot, sans alerte)
+  await page.waitForTimeout(4000);
   await bloc.locator('[data-test="rdv-confirmer"]').click();
   const ok = bloc.locator('[data-test="rdv-ok"]');
   await expect(ok).toBeVisible();

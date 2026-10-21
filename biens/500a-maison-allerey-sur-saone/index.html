@@ -1098,7 +1098,6 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 #menu .m-alt+.m-alt{margin-top:10px;}
 </style>
 <link rel="preload" as="image" type="image/avif" imagesrcset="/assets/biens/500A/1-640.avif 640w, /assets/biens/500A/1-1920.avif 1920w" imagesizes="(max-width:820px) 100vw, 60vw" fetchpriority="high">
-<script src="/assets/rdv.js?v=4" defer></script>
 <style id="biens-css">
 .bi-crumb{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 18px;padding:0;list-style:none;font-size:.84rem;color:var(--muted);}
 .bi-crumb a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line-strong);}
@@ -1721,6 +1720,9 @@ mesure('vue',true);
 D.addEventListener('click',function(e){ var a=e.target.closest&&e.target.closest('a,button'); if(!a)return; var h=a.getAttribute('href')||'';
   if(h==='#visite')mesure('visiter',true); else if(h.indexOf('wa.me/')>=0)mesure('whatsapp',true); else if(h.indexOf('tel:')===0)mesure('appel',true);
   else if(a.id==='bf-vs'||a.id==='bf-igbtn')mesure('video',true); },true);
+/* bloc « Visitez ce bien en 2 clics » : son script arrive une fois la page affichée (photos et texte d'abord) */
+if($('[data-rdv]',fiche)){ var rdvjs=function(){ if(D.getElementById('rdv-js'))return; var sc=D.createElement('script'); sc.id='rdv-js'; sc.src='/assets/rdv.js?v=4'; sc.async=true; D.body.appendChild(sc); };
+  if(D.readyState==='complete')setTimeout(rdvjs,0); else window.addEventListener('load',function(){ setTimeout(rdvjs,0); }); }
 /* « Visiter ce bien » : la page bouge encore pendant le défilement (photos et vidéo qui se chargent) ; on vérifie l'arrivée */
 var vis=$('#visite');
 if(vis)D.addEventListener('click',function(e){ var a=e.target.closest&&e.target.closest('a[href="#visite"]'); if(!a)return; e.preventDefault();
