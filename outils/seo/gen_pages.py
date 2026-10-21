@@ -74,10 +74,14 @@ def build(p):
                       "author": {"@id": BASE + "/#shawez"}, "publisher": {"@id": BASE + "/#shawez"},
                       "mainEntityOfPage": {"@id": url + "#page"}, "inLanguage": "fr-FR", "isAccessibleForFree": True})
     if p.get('service'):
-        nodes.append({"@type": "Service", "@id": url + "#service", "name": p['service'], "serviceType": "Estimation et vente immobilière",
-                      "provider": {"@id": BASE + "/#agent"}, "areaServed": {"@type": "City", "name": p['city']},
-                      "url": url, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR",
-                                              "description": "Estimation offerte et sans engagement"}})
+        srv = {"@type": "Service", "@id": url + "#service", "name": p['service'],
+               "serviceType": p.get('service_type', "Estimation et vente immobilière"),
+               "provider": {"@id": BASE + "/#agent"}, "areaServed": {"@type": "City", "name": p['city']}, "url": url}
+        if p.get('service_desc'):
+            srv["description"] = p['service_desc']
+        if not p.get('service_type'):
+            srv["offers"] = {"@type": "Offer", "price": "0", "priceCurrency": "EUR", "description": "Estimation offerte et sans engagement"}
+        nodes.append(srv)
     faq = p['faq']
     nodes.append({"@type": "FAQPage", "@id": url + "#faq", "mainEntity": [
         {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": re.sub('<[^>]+>', '', a)}} for q, a in faq]})
@@ -91,8 +95,13 @@ def build(p):
     body = ''.join('\n        <h2 id="%s">%s</h2>\n        %s\n' % (sid, html.escape(t), b) for sid, t, b in p['sections'])
     faq_html = ''.join('<details><summary>%s</summary><div class="a"><p>%s</p></div></details>' % (html.escape(q), a) for q, a in faq)
     side = ''.join('<a class="link" href="%s">%s</a>' % (u, html.escape(n)) for n, u in p['links'])
+    route = p.get('route', p['path'].rstrip('/'))
+    if p.get('route'):
+        h = re.sub(r'<body data-route="[^"]*">', '<body data-route="%s">' % p['route'], h, count=1)
+    cta = p.get('cta_html', '<div class="btn-row" style="margin-top:32px;"><a class="btn btn-primary btn-lg" href="/estimer/">Estimer mon bien <span class="arw">→</span></a><a class="btn" href="/estimation-immobiliere-dijon/">Demander l\'avis de valeur de Shawez</a></div>')
+    side_title = p.get('side_title', 'À lire aussi')
     main = f'''<main id="main">
-<section class="route" data-route="{p['path'].rstrip('/')}" id="r-{p['id']}">
+<section class="route" data-route="{route}" id="r-{p['id']}">
   <div class="page-head shell">
     {crumb_html}
     <div class="art-head">
@@ -102,7 +111,7 @@ def build(p):
         <p class="lede">{p['lede']}</p>
         <div class="byline"><span>Par Shawez Ali</span><span>Mis à jour le {p['date_fr']}</span></div>
       </div>
-      <div class="frame"><span class="c"></span><img src="{p['image']}" alt="{esc(p['image_alt'])}" width="512" height="640" fetchpriority="high" decoding="async"></div>
+      <div class="frame"><span class="c"></span><img src="{p['image']}" alt="{esc(p['image_alt'])}" width="{p.get('img_w', 512)}" height="{p.get('img_h', 640)}" fetchpriority="high" decoding="async"></div>
     </div>
   </div>
   <div class="shell sec-mid">
@@ -113,10 +122,10 @@ def build(p):
 {body}
         <h2 id="questions">Questions fréquentes</h2>
         <div class="faq" style="max-width:760px;">{faq_html}</div>
-        <div class="btn-row" style="margin-top:32px;"><a class="btn btn-primary btn-lg" href="/estimer/">Estimer mon bien <span class="arw">→</span></a><a class="btn" href="/estimation-immobiliere-dijon/">Demander l'avis de valeur de Shawez</a></div>
+        {cta}
       </div>
       <aside class="art-side">
-        <div class="card"><h3>À lire aussi</h3>{side}</div>
+        <div class="card"><h3>{side_title}</h3>{side}</div>
       </aside>
     </div>
   </div>
