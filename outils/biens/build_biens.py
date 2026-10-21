@@ -441,6 +441,19 @@ CSS_FICHE = CSS_COMMUN + """
 .bf-lb figure picture,.bf-lb figure img{max-width:100%;max-height:100%;object-fit:contain;display:block;}
 .bf-lb .nav{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;padding:0;background:rgba(15,14,12,.6);}
 .bf-lb .prev{left:14px;}.bf-lb .next{right:14px;}
+.bf-stage.has-phone{grid-template-columns:minmax(0,1.35fr) minmax(0,.8fr) auto;height:min(78vh,760px);}
+.bf-stage.has-phone .bf-shot.main{grid-column:1;grid-row:1/3;}
+.bf-ph-col{grid-column:3;grid-row:1/3;background:#000;}
+.bf-ph{position:relative;height:100%;aspect-ratio:9/16;max-width:100%;}
+.bf-ph-scr{position:relative;width:100%;height:100%;overflow:hidden;background:#000;}
+.bf-ph-scr video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+.bf-ph-lien{position:absolute;inset:0;z-index:2;}
+.bf-ph-ig{position:absolute;left:12px;bottom:12px;z-index:3;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:rgba(15,14,12,.55);color:#fff;pointer-events:none;backdrop-filter:blur(6px);}
+.bf-ph-ig svg{width:20px;height:20px;}
+.bf-ph-son{position:absolute;right:12px;bottom:12px;z-index:4;width:44px;height:44px;border-radius:50%;border:0;display:grid;place-items:center;background:rgba(15,14,12,.55);color:#fff;cursor:pointer;backdrop-filter:blur(6px);}
+.bf-ph-son svg{width:22px;height:22px;}
+.bf-ph-son:focus-visible,.bf-ph-lien:focus-visible{outline:3px solid #E3B341;outline-offset:-3px;}
+.bf-stage.has-phone .bf-all{right:auto;left:14px;}
 .bf-share-ok{font-size:.84rem;color:var(--muted);min-height:1.2em;margin:0;}
 @media(max-width:1080px){.bf-head{grid-template-columns:minmax(0,1fr);}.bf-card{position:static;}.bf-card.bf-desk{display:none;}.bf-card.bf-mob{display:flex;margin-top:24px;box-shadow:none;}.bf-sims{grid-template-columns:1fr 1fr;}}
 @media(max-width:820px){
@@ -451,6 +464,10 @@ CSS_FICHE = CSS_COMMUN + """
  .bf-stage.has-v{grid-template-columns:1fr;grid-template-rows:auto;height:auto;}
  .bf-stage.has-v .bf-video{grid-row:auto;height:min(78svh,calc(100vw*16/9));}
  .bf-stage.has-ig{grid-template-columns:1fr;height:auto;}
+ .bf-stage.has-phone{grid-template-columns:1fr;height:auto;}
+ .bf-stage.has-phone .bf-ph-col{grid-column:auto;grid-row:auto;height:auto;display:flex;justify-content:center;}
+ .bf-stage.has-phone .bf-ph{height:min(82svh,calc(100vw*16/9));}
+ .bf-stage.has-phone .bf-all{position:static;order:2;justify-self:center;margin:0 0 16px;}
  .bf-stage.has-ig .bf-emb{height:calc(100vw*16/9 + 150px);max-height:none;}
  .bf-stage.no-v{display:block;height:auto;}
  .bf-stage .bf-shot:not(.main){display:none;}
@@ -654,6 +671,7 @@ ICO = {
     'tel': '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.6a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.8.3 1.7.5 2.6.7a2 2 0 0 1 1.7 2z"/></svg>',
     'wa': '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 21l2.2-5.2A8.4 8.4 0 1 1 21 11.5z"/></svg>',
     'share': '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>',
+    'ig': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>',
     'grid': '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg>',
 }
 
@@ -729,6 +747,23 @@ def bloc_integration(emb, t):
             % ('yt' if emb[0] == 'youtube' else 'ig', ICO['cam'], E(src), E(t), allow))
 
 
+def telephone(ref, vref, video, ig, ph, t):
+    """Cadre vertical (9:16) à droite des photos : la vraie vidéo du bien, rien d'autre. Elle démarre seule dès l'arrivée
+    sur la page, sans le son (seule lecture automatique permise par les navigateurs), en boucle ; bouton du son en bas à
+    droite ; un clic sur la vidéo ouvre le Reel sur Instagram. Sans fichier vidéo hébergé : pas de cadre (jamais de photos
+    qui défilent à la place de la vidéo)."""
+    if not video:
+        return ''
+    ecran = ('<video id="bf-v" poster="/assets/biens/%s/%s" width="%d" height="%d" muted loop playsinline autoplay preload="metadata" '
+             'disablepictureinpicture aria-label="Vidéo du bien : %s">%s</video>'
+             % (urllib.parse.quote(vref), video['poster'], video['largeur'], video['hauteur'], E(t), sources_video(vref, video)))
+    son = ('<button type="button" class="bf-ph-son" id="bf-vs" aria-pressed="false" aria-label="Activer le son" data-on=\'%s\' data-off=\'%s\'>%s</button>'
+           % (ICO['son'], ICO['mute'], ICO['mute']))
+    lien = ('<a class="bf-ph-lien" href="https://www.instagram.com/reel/%s/" target="_blank" rel="noopener" aria-label="Voir la vidéo du bien sur Instagram"></a>'
+            '<span class="bf-ph-ig">%s</span>' % (urllib.parse.quote(ig), ICO['ig'])) if ig else ''
+    return '<div class="bf-video bf-ph-col"><div class="bf-ph"><div class="bf-ph-scr">%s%s%s</div></div></div>' % (ecran, lien, son)
+
+
 def carte(a, ph, medias, eager=False):
     n, t = ph[0]
     st = statut(a)
@@ -757,8 +792,11 @@ def fiche(a, ph, medias, base, voisins, taux):
     video = m.get('video') or (medias.get(m['video_de']) or {}).get('video') if m.get('video_de') else m.get('video')
     vref = m.get('video_de') or ref
     emb = integration(ref, medias)
-    if emb:
-        video = None          # YouTube ou Instagram en tête de fiche ; le fichier hébergé ne sert qu'en secours
+    ig = emb[1] if emb and emb[0] == 'instagram' else None
+    if emb and emb[0] == 'youtube':
+        video = None          # YouTube en tête de fiche
+    elif emb:
+        emb = None            # Instagram : la vidéo hébergée (ou les photos) tourne dans l'écran téléphone, le clic ouvre le Reel
     tour = (m.get('visite_virtuelle') or {}).get('url') or a.get('visite_virtuelle')
     prix = a.get('prix')
     hon, hon_complet = honoraires(a)
@@ -776,26 +814,16 @@ def fiche(a, ph, medias, base, voisins, taux):
                      % (cls, i, i + 1, nb, picture(ref, n, tl, '%s, photo %d' % (t, i + 1),
                                                    '(max-width:820px) 100vw, 60vw' if i == 0 else '(max-width:820px) 78vw, 30vw', eager=(i == 0 and not video))))
     igbloc = ''
-    if emb and emb[0] == 'instagram':
-        igbloc = bloc_integration(emb, t)
+    if video:
         shots = shots[:3]
-        vid = ''
+        vid = telephone(ref, vref, video, ig, ph, t)
     elif emb:
         shots = shots[:3]
         vid = bloc_integration(emb, t)
-    elif video:
-        shots = shots[:3]
-        vid = ('<div class="bf-video"><span class="bf-vlab bi-vid">%sVisite en vidéo</span>'
-               '<video id="bf-v" poster="/assets/biens/%s/%s" width="%d" height="%d" muted loop playsinline '
-               'preload="none" disablepictureinpicture aria-label="Vidéo du bien : %s">%s</video>'
-               '<div class="bf-vctl"><button type="button" id="bf-vs" aria-pressed="false" aria-label="Activer le son" data-on=\'%s\' data-off=\'%s\'>%s</button>'
-               '<button type="button" id="bf-vp" aria-pressed="false" aria-label="Mettre la vidéo en pause" data-play=\'%s\' data-pause=\'%s\'>%s</button></div></div>'
-               % (ICO['cam'], urllib.parse.quote(vref), video['poster'], video['largeur'], video['hauteur'], E(t), sources_video(vref, video),
-                  ICO['son'], ICO['mute'], ICO['mute'], ICO['play'], ICO['pause'], ICO['pause']))
     else:
         vid = ''
     toutes = ('<button type="button" class="bf-all" data-photo="0">%sLes %d photos</button>' % (ICO['grid'], nb)) if nb > 1 else ''
-    stage = '<div class="bf-stage %s">%s%s%s%s</div>' % ('no-v' if igbloc else 'has-v' if video or emb else 'no-v', vid, ''.join(shots), toutes, igbloc)
+    stage = '<div class="bf-stage %s">%s%s%s%s</div>' % ('has-v has-phone' if video else 'has-v' if emb else 'no-v', ''.join(shots), toutes, vid, igbloc)
     strip = ('<div class="bf-strip" aria-label="Photos du bien">%s</div>'
              % ''.join('<button type="button" class="bf-shot" data-photo="%d" aria-label="Agrandir la photo %d sur %d">%s</button>'
                        % (i, i + 1, nb, picture(ref, n, tl, '%s, photo %d' % (t, i + 1), '78vw')) for i, (n, tl) in enumerate(ph[:8]))) if nb > 1 else ''
