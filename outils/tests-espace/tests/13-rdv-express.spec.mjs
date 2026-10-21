@@ -112,7 +112,7 @@ test('le créneau pris entre-temps est refusé proprement, la liste se recharge'
   // un autre visiteur prend ce créneau juste avant
   const autre = await (await browser.newContext({ baseURL: SITE })).newPage();
   await autre.goto('/contact/');
-  const r = await api(autre, '/rdv', { creneau: debut, prenom: 'TEST Autre', telephone: '0600000000', adresse: 'Dijon', consentement: true, duree: 6000 });
+  const r = await api(autre, '/rdv', { creneau: debut, prenom: 'Bertrand', telephone: '0600000000', adresse: 'Dijon', consentement: true, duree: 6000 });
   expect(r._status).toBe(201);
   await remplirEtConfirmer(bloc, { prenom: 'TEST Contact' });
   await expect(bloc.locator('.rdvx-err')).toHaveText(/vient d'être pris/);

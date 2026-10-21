@@ -99,3 +99,13 @@ test('fiche bien : un essai (?test) ne compte rien ; la mesure refuse les gestes
   expect((await api(page, '/mesure', { ref: REF, evt: 'clic' }))._status).toBe(400);
   expect((await api(page, '/mesure', { ref: '../x', evt: 'vue' }))._status).toBe(400);
 });
+
+test('un essai (prénom « TEST ») ne prend jamais le créneau d\'un vrai client', async ({ page }) => {
+  await page.goto(FICHE + '?test');
+  const d = await api(page, '/creneaux');
+  const debut = d.jours[d.jours.length - 1].heures.slice(-1)[0].debut;
+  const r = await api(page, '/rdv', { creneau: debut, prenom: 'TEST Essai', telephone: '0600000000', consentement: true, duree: 6000, depuis: 'bien', bien: REF });
+  expect(r._status).toBe(201);
+  const apres = await api(page, '/creneaux');
+  expect(apres.jours.flatMap((j) => j.heures.map((h) => h.debut))).toContain(debut);
+});
