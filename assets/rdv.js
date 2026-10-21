@@ -2,7 +2,9 @@
    1er clic : un créneau libre (l'API retire les moments déjà pris : visites fixées et, s'il est relié, l'agenda Google
    de Shawez). 2e clic : « Confirmer », après prénom, téléphone et adresse du bien. La demande arrive dans /admin/
    (statut « Nouvelle », visite demandée sur ce créneau) avec l'alerte à Shawez. Aucun cookie, aucune donnée gardée
-   dans le navigateur. Point de montage : <div data-rdv data-depuis="accueil"></div>. */
+   dans le navigateur. Point de montage : <div data-rdv data-depuis="accueil"></div>.
+   Fiche d'un bien à vendre : <div data-rdv data-depuis="bien" data-bien="<réf>" data-bien-titre="…"></div> → visite de ce
+   bien (pas d'adresse à demander), notée « Visite d'un bien à vendre » dans /admin/. */
 (function () {
   'use strict';
   var TEL = '+33767579228', TEL_AFF = '07 67 57 92 28';
@@ -56,22 +58,24 @@
 
   function monter(racine) {
     var depuis = racine.getAttribute('data-depuis') || 'site';
-    var titre = racine.getAttribute('data-titre') || 'Prenez rendez-vous <em>en 2 clics.</em>';
+    var bien = racine.getAttribute('data-bien') || '', bienTitre = racine.getAttribute('data-bien-titre') || '';
+    var titre = racine.getAttribute('data-titre') || (bien ? 'Visitez ce bien <em>en 2 clics.</em>' : 'Prenez rendez-vous <em>en 2 clics.</em>');
+    var wa = bien ? 'https://wa.me/33767579228?text=' + encodeURIComponent('Bonjour Shawez, je souhaite visiter le bien réf. ' + bien + (bienTitre ? ' (' + bienTitre + ')' : '') + '.') : WA;
     var jours = null, agenda = 'non', jour = 0, choisi = null, envoi = false, fini = null, t0 = Date.now(), cle = uuid(), erreur = '';
     var champs = { prenom: '', telephone: '', adresse: '' };
     var id = 'rdvx-' + Math.random().toString(36).slice(2, 8);
 
     function alt() {
-      return '<div class="rdvx-alt"><a class="btn" href="tel:' + TEL + '">Appeler le ' + TEL_AFF + '</a><a class="btn" href="' + WA + '" target="_blank" rel="noopener">M\'écrire sur WhatsApp</a></div>';
+      return '<div class="rdvx-alt"><a class="btn" href="tel:' + TEL + '">Appeler le ' + TEL_AFF + '</a><a class="btn" href="' + wa + '" target="_blank" rel="noopener">M\'écrire sur WhatsApp</a></div>';
     }
     function dessiner(focus) {
       var h = '<h2 id="' + id + '-t">' + titre + '</h2>';
       if (fini) {
-        h += '<div class="rdvx-ok" role="status" data-test="rdv-ok"><b>C\'est noté : ' + esc(fini.quand) + '.</b><span>Shawez vous appelle pour confirmer ce rendez-vous, au plus vite. Comptez 45 minutes chez vous, c\'est offert et sans engagement.</span><span>Référence ' + esc(fini.reference) + '</span></div>' + alt();
+        h += '<div class="rdvx-ok" role="status" data-test="rdv-ok"><b>C\'est noté : ' + esc(fini.quand) + '.</b><span>' + (bien ? 'Shawez vous appelle pour confirmer la visite de ce bien, au plus vite. L\'adresse exacte vous est donnée à ce moment-là.' : 'Shawez vous appelle pour confirmer ce rendez-vous, au plus vite. Comptez 45 minutes chez vous, c\'est offert et sans engagement.') + '</span><span>Référence ' + esc(fini.reference) + '</span></div>' + alt();
         racine.innerHTML = h; var ok = racine.querySelector('.rdvx-ok'); if (ok && focus) { ok.setAttribute('tabindex', '-1'); ok.focus({ preventScroll: true }); try { ok.scrollIntoView({ block: 'center', behavior: 'smooth' }); } catch (e) { ok.scrollIntoView(); } }
         return;
       }
-      h += '<p class="rdvx-sub">Shawez passe voir votre bien : 45 minutes, offert et sans engagement. ' +
+      h += '<p class="rdvx-sub">' + (bien ? 'Shawez vous fait visiter ce bien. ' : 'Shawez passe voir votre bien : 45 minutes, offert et sans engagement. ') +
         (agenda === 'relie' ? 'Les créneaux ci-dessous sont libres dans son agenda.' : 'Choisissez un créneau, il vous appelle pour le confirmer.') + '</p>';
       if (!jours) { h += '<div class="rdvx-load" role="status" aria-label="Chargement des créneaux"></div>'; racine.innerHTML = h; return; }
       if (!jours.length) { h += '<p class="rdvx-sub"><b>Aucun créneau en ligne pour le moment.</b> Appelez Shawez ou écrivez-lui : il vous propose une date.</p>' + alt(); racine.innerHTML = h; return; }
@@ -84,14 +88,14 @@
       }).join('') + '</div>';
       if (choisi) {
         h += '<form class="rdvx-form" novalidate>' +
-          '<p class="rdvx-choisi" id="' + id + '-c">Rendez-vous ' + esc(quand(choisi)) + '</p>' +
+          '<p class="rdvx-choisi" id="' + id + '-c">' + (bien ? 'Visite ' : 'Rendez-vous ') + esc(quand(choisi)) + '</p>' +
           '<div class="rdvx-grid"><div><label for="' + id + '-p">Prénom</label><input type="text" id="' + id + '-p" name="prenom" autocomplete="given-name" required maxlength="80" value="' + esc(champs.prenom) + '"></div>' +
           '<div><label for="' + id + '-tel">Téléphone</label><input type="tel" id="' + id + '-tel" name="telephone" autocomplete="tel" inputmode="tel" required maxlength="30" value="' + esc(champs.telephone) + '"></div></div>' +
-          '<div><label for="' + id + '-a">Adresse du bien</label><input type="text" id="' + id + '-a" name="adresse" autocomplete="street-address" required maxlength="200" placeholder="Rue, ville" value="' + esc(champs.adresse) + '"></div>' +
+          (bien ? '' : '<div><label for="' + id + '-a">Adresse du bien</label><input type="text" id="' + id + '-a" name="adresse" autocomplete="street-address" required maxlength="200" placeholder="Rue, ville" value="' + esc(champs.adresse) + '"></div>') +
           '<div class="rdvx-hp" aria-hidden="true"><label for="' + id + '-w">Ne pas remplir</label><input type="text" id="' + id + '-w" name="ee_hp" tabindex="-1" autocomplete="off"></div>' +
           (erreur ? '<p class="rdvx-err" role="alert">' + esc(erreur) + '</p>' : '') +
-          '<div class="rdvx-go"><button type="submit" class="btn btn-primary btn-lg" data-test="rdv-confirmer"' + (envoi ? ' disabled' : '') + '>' + (envoi ? 'Envoi…' : 'Confirmer ce rendez-vous') + ' <span class="arw" aria-hidden="true">→</span></button></div>' +
-          '<p class="rdvx-note">Shawez vous appelle pour confirmer. Vos coordonnées servent seulement à ce rendez-vous : <a href="/politique-de-confidentialite/">confidentialité</a>.</p>' +
+          '<div class="rdvx-go"><button type="submit" class="btn btn-primary btn-lg" data-test="rdv-confirmer"' + (envoi ? ' disabled' : '') + '>' + (envoi ? 'Envoi…' : bien ? 'Confirmer cette visite' : 'Confirmer ce rendez-vous') + ' <span class="arw" aria-hidden="true">→</span></button></div>' +
+          '<p class="rdvx-note">Shawez vous appelle pour confirmer. Vos coordonnées servent seulement à ' + (bien ? 'cette visite' : 'ce rendez-vous') + ' : <a href="/politique-de-confidentialite/">confidentialité</a>.</p>' +
           '</form>';
       } else if (erreur) h += '<p class="rdvx-err" role="alert" style="margin-top:12px;">' + esc(erreur) + '</p>';
       var ancien = racine.querySelector('.rdvx-days'), gauche = ancien ? ancien.scrollLeft : 0;
@@ -123,13 +127,16 @@
       lire();
       var p = racine.querySelector('[name="prenom"]'), t = racine.querySelector('[name="telephone"]'), a = racine.querySelector('[name="adresse"]');
       var chiffres = champs.telephone.replace(/\D/g, '');
-      var ko = [[p, !champs.prenom.trim()], [t, chiffres.length < 9 || chiffres.length > 15], [a, champs.adresse.trim().length < 3]];
+      var ko = [[p, !champs.prenom.trim()], [t, chiffres.length < 9 || chiffres.length > 15]];
+      if (!bien) ko.push([a, champs.adresse.trim().length < 3]);
       ko.forEach(function (x) { x[0].setAttribute('aria-invalid', String(x[1])); });
       var premier = ko.filter(function (x) { return x[1]; })[0];
       if (premier) { erreur = premier[0] === p ? 'Indiquez votre prénom.' : premier[0] === t ? 'Le numéro de téléphone n\'est pas valide.' : 'Indiquez l\'adresse du bien.'; dessiner('#' + premier[0].id); return; }
       envoi = true; erreur = ''; dessiner();
-      api('/rdv', { creneau: choisi, prenom: champs.prenom.trim(), telephone: champs.telephone.trim(), adresse: champs.adresse.trim(), consentement: true,
-        ee_hp: (racine.querySelector('[name="ee_hp"]') || {}).value || '', duree: Date.now() - t0, cle: cle, depuis: depuis }).then(function (d) {
+      var envoi_ = { creneau: choisi, prenom: champs.prenom.trim(), telephone: champs.telephone.trim(), consentement: true,
+        ee_hp: (racine.querySelector('[name="ee_hp"]') || {}).value || '', duree: Date.now() - t0, cle: cle, depuis: depuis };
+      if (bien) { envoi_.bien = bien; envoi_.bien_titre = bienTitre; } else envoi_.adresse = champs.adresse.trim();
+      api('/rdv', envoi_).then(function (d) {
         envoi = false;
         if (d._status === 201 || d._status === 200) { fini = { quand: quand(choisi), reference: d.reference }; dessiner(true); return; }
         if (d.error === 'creneau_pris') { erreur = 'Ce créneau vient d\'être pris : choisissez-en un autre.'; choisi = null; jours = null; dessiner(); charger(); return; }

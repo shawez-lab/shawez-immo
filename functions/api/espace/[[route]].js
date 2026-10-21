@@ -149,6 +149,8 @@ const ROUTES = {
   'GET /admin/export.csv': adminExport,
   'GET /creneaux': creneauxDispo,
   'POST /rdv': rdvExpress,
+  'POST /mesure': mesureBien,
+  'GET /admin/mesures-biens': adminMesuresBiens,
   'GET /taches': taches,
   'POST /visite': visiteDemander,
   'POST /admin/visite': adminVisite,
@@ -171,7 +173,7 @@ const ROUTES = {
 
 /* Version de l'API : les tests sur l'aperçu attendent de la voir avant de commencer (le site met une à deux minutes
    à se mettre à jour après une poussée). À changer à chaque évolution de l'API. */
-const VERSION = '2026-10-18.1';
+const VERSION = '2026-10-21.1';
 
 /* Clé du flux Google Sheet : on ne garde que son empreinte. Celle-ci est la clé de mise en service ; dès qu'un admin
    en génère une nouvelle (/admin/ → « Google Sheet »), c'est l'empreinte en base qui fait foi. */
@@ -1183,7 +1185,7 @@ const LIBELLES = {
   delai: { asap: 'Dès que possible', '6mois': 'Dans les 6 mois', plus6mois: 'Dans plus de 6 mois', nsp: 'Ne sait pas encore', aucun: 'Pas de projet de vente' },
   etat: { travaux: 'Travaux importants', rafraichir: 'Quelques travaux', bon: 'Bon état', neuf: 'Refait à neuf' },
   epoque: { avant1948: 'Avant 1948', '1948-1974': '1948 – 1974', '1975-2000': '1975 – 2000', '2001-2012': '2001 – 2012', apres2012: 'Après 2012', nsp: 'Ne sait pas' },
-  autre_type: { commerce: 'Fonds de commerce', murs: 'Murs commerciaux', immeuble: 'Immeuble', terrain: 'Terrain', autre: 'Autre' },
+  autre_type: { commerce: 'Fonds de commerce', murs: 'Murs commerciaux', immeuble: 'Immeuble', terrain: 'Terrain', autre: 'Autre', rdv: 'Rendez-vous d\'estimation', visite_bien: 'Visite d\'un bien à vendre' },
 };
 const euros = (n) => (n == null ? '' : Math.round(n).toLocaleString('fr-FR').replace(/[  ]/g, ' ') + ' €');
 const typeLibelle = (rep) => (rep.type === 'autre' ? LIBELLES.autre_type[rep.autre_type] || 'Autre' : rep.type === 'maison' ? 'Maison' : 'Appartement');
@@ -1607,7 +1609,10 @@ async function rdvExpress(ctx) {
     email: d.email ? lireEmail(d.email) : '',
     telephone: telephone(d.telephone),
   };
-  const adresse = texte(d.adresse, 200, { requis: true, nom: 'adresse' });
+  // visite d'un bien à vendre (fiche /biens/<réf>/) : pas d'adresse à demander, c'est celle du bien
+  const bien = typeof d.bien === 'string' && /^[A-Za-z0-9-]{1,20}$/.test(d.bien) ? d.bien : '';
+  const bienTitre = bien ? texte(d.bien_titre, 160, { nom: 'bien_titre' }) : '';
+  const adresse = bien ? `Visite du bien réf. ${bien}${bienTitre ? ' — ' + bienTitre : ''}` : texte(d.adresse, 200, { requis: true, nom: 'adresse' });
   if (adresse.length < 3) throw new Erreur(400, 'champs', { champ: 'adresse' });
   const message = texte(d.message, 500, { nom: 'message' });
   const base = await db(env);
@@ -1625,8 +1630,11 @@ async function rdvExpress(ctx) {
   const lieu = site(request, env, d);
   const ref = REF();
   const t = maintenant();
-  const rep = { type: 'autre', autre_type: 'rdv', formulaire: d.depuis && /^[a-z0-9-]{1,30}$/.test(d.depuis) ? 'rdv-' + d.depuis : 'rdv', creneau, message };
-  const notes = 'Rendez-vous pris en ligne (2 clics), sans estimation : confirmer le créneau et appeler.';
+  const rep = { type: 'autre', autre_type: bien ? 'visite_bien' : 'rdv', formulaire: d.depuis && /^[a-z0-9-]{1,30}$/.test(d.depuis) ? 'rdv-' + d.depuis : 'rdv', creneau, message };
+  if (bien) { rep.bien = bien; if (bienTitre) rep.bien_titre = bienTitre; }
+  const notes = bien
+    ? `Visite du bien réf. ${bien} demandée en ligne (2 clics) par un acquéreur : confirmer le créneau et appeler.`
+    : 'Rendez-vous pris en ligne (2 clics), sans estimation : confirmer le créneau et appeler.';
   const dem = await base.prepare(
     `INSERT INTO demandes (reference, compte_id, source, type, adresse, code_postal, commune, reponses, contact, cree_le, suspect, notes, cle)
      VALUES (?1, NULL, ?2, 'autre', ?3, '', '', ?4, ?5, ?6, ?7, ?8, ?9) RETURNING *`
@@ -1636,8 +1644,45 @@ async function rdvExpress(ctx) {
   await journal(base, dem.id, 'rdv_en_ligne', 'client', { creneau, depuis: rep.formulaire }).catch(() => {});
   await journal(base, dem.id, 'visite_demandee', 'client', { creneaux: [creneau], deplacee: false }).catch(() => {});
 
+  if (bien && !robot && !essai(contact)) await compterBien(base, bien, 'rdv').catch(() => {});
   if (!robot && !essai(contact)) ctx.waitUntil(alerteVisite(env, request, dem, contact, [creneau], message, false).catch((e) => console.log('alerte rdv', e && e.message)));
   return json(201, { reference: ref, creneau, quand: quandFr(creneau) });
+}
+
+/* ---------------------- Mesures par bien (sans cookie, sans adresse IP gardée) ----------------------
+   Un compteur par jour, par bien et par geste : vue de la fiche, clic « Visiter ce bien », vidéo regardée (son activé
+   ou vidéo ouverte), WhatsApp, appel ; « rdv » = visite réservée en 2 clics (compté par /rdv). Rien d'autre n'est noté :
+   ni qui, ni d'où. Les essais (?test dans l'adresse de la page) ne comptent pas : le navigateur n'envoie rien. */
+const GESTES_BIEN = ['vue', 'visiter', 'video', 'whatsapp', 'appel'];
+async function compterBien(base, ref, evt) {
+  const jour = paris(new Date()).date;
+  await base.prepare('INSERT INTO mesures_biens (jour, ref, evt, n) VALUES (?1, ?2, ?3, 1) ON CONFLICT(jour, ref, evt) DO UPDATE SET n = n + 1')
+    .bind(jour, ref, evt).run();
+}
+
+async function mesureBien({ request, env }) {
+  const d = await corps(request, 300);
+  const ref = typeof d.ref === 'string' && /^[A-Za-z0-9-]{1,20}$/.test(d.ref) ? d.ref : null;
+  if (!ref || !GESTES_BIEN.includes(d.evt)) throw new Erreur(400, 'champs', { champ: ref ? 'evt' : 'ref' });
+  await limiter(env, 'mes:' + ip(request), 120, 3600);
+  await compterBien(await db(env), ref, d.evt);
+  return new Response(null, { status: 204, headers: { 'Cache-Control': 'no-store' } });
+}
+
+async function adminMesuresBiens({ request, env }) {
+  await exigerAdmin(request, env);
+  const url = new URL(request.url);
+  const jours = Math.min(365, Math.max(1, Number(url.searchParams.get('jours')) || 30));
+  const depuis = paris(new Date(Date.now() - (jours - 1) * 86400000)).date;
+  const r = await (await db(env)).prepare('SELECT ref, evt, SUM(n) AS n FROM mesures_biens WHERE jour >= ?1 GROUP BY ref, evt').bind(depuis).all();
+  const par = new Map();
+  for (const l of r.results || []) {
+    const x = par.get(l.ref) || { ref: l.ref, vue: 0, visiter: 0, video: 0, whatsapp: 0, appel: 0, rdv: 0 };
+    x[l.evt] = Number(l.n) || 0;
+    par.set(l.ref, x);
+  }
+  const biens = [...par.values()].sort((a, b) => b.rdv - a.rdv || b.visiter - a.visiter || b.vue - a.vue);
+  return json(200, { jours, depuis, biens }, { 'Cache-Control': 'no-store' });
 }
 
 /* Le vendeur propose jusqu'à trois créneaux : l'agence est prévenue et confirme. */
