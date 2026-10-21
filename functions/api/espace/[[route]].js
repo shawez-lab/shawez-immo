@@ -1574,8 +1574,12 @@ async function creneauxLibres(base, now) {
   try {
     const r = await base.prepare("SELECT debut, duree FROM visites WHERE etat = 'fixee' AND debut >= ?1").bind(new Date(de - 3 * 3600000).toISOString()).all();
     for (const v of r.results || []) occupe.push([Date.parse(v.debut), Date.parse(v.debut) + (v.duree || DUREE_VISITE) * 60000]);
-    // un rendez-vous pris en 2 clics (un seul créneau demandé, pas encore confirmé) bloque déjà son créneau
-    const q = await base.prepare("SELECT creneaux, duree FROM visites WHERE etat = 'demandee' AND demandee_le >= ?1").bind(new Date(de - 21 * 86400000).toISOString()).all();
+    // un rendez-vous pris en 2 clics (un seul créneau demandé, pas encore confirmé) bloque déjà son créneau ;
+    // sauf un essai (prénom « TEST… » ou e-mail @test.invalid) : la base est partagée avec l'aperçu, un essai ne prend jamais
+    // la place d'un vrai client
+    const q = await base.prepare(`SELECT v.creneaux, v.duree FROM visites v LEFT JOIN demandes d ON d.id = v.demande_id
+      WHERE v.etat = 'demandee' AND v.demandee_le >= ?1
+        AND NOT (COALESCE(d.contact, '') LIKE '%"prenom":"test%' OR COALESCE(d.contact, '') LIKE '%@test.invalid%')`).bind(new Date(de - 21 * 86400000).toISOString()).all();
     for (const v of q.results || []) {
       const l = lireCreneaux(v);
       if (l.length === 1) occupe.push([Date.parse(l[0]), Date.parse(l[0]) + (v.duree || DUREE_VISITE) * 60000]);
