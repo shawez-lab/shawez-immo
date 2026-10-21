@@ -1193,6 +1193,10 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 .bf-form .chk{display:flex;gap:10px;align-items:flex-start;font-size:.86rem;color:var(--ink-2);font-weight:400;}
 .bf-form .chk input{width:20px;height:20px;margin-top:2px;flex:0 0 auto;}
 .bf-form .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
+#visite{scroll-margin-top:84px;}
+.bf-ecrire{margin-top:22px;max-width:860px;margin-inline:auto;}
+.bf-ecrire>summary{cursor:pointer;min-height:48px;display:flex;align-items:center;font-weight:600;text-decoration:underline;text-underline-offset:3px;}
+.bf-ecrire[open]>summary{margin-bottom:14px;}
 .bf-msg{margin-top:12px;padding:14px 16px;border-radius:var(--r-m);font-size:.94rem;}
 .bf-msg.ok{background:rgba(63,166,107,.12);border:1px solid rgba(63,166,107,.4);}
 .bf-msg.ko{background:rgba(215,34,31,.07);border:1px solid rgba(215,34,31,.3);}
@@ -1210,7 +1214,7 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 .bf-lb .nav{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;padding:0;background:rgba(15,14,12,.6);}
 .bf-lb .prev{left:14px;}.bf-lb .next{right:14px;}
 .bf-share-ok{font-size:.84rem;color:var(--muted);min-height:1.2em;margin:0;}
-@media(max-width:1080px){.bf-head{grid-template-columns:1fr;}.bf-card{position:static;}.bf-card.bf-desk{display:none;}.bf-card.bf-mob{display:flex;margin-top:24px;box-shadow:none;}.bf-sims{grid-template-columns:1fr 1fr;}}
+@media(max-width:1080px){.bf-head{grid-template-columns:minmax(0,1fr);}.bf-card{position:static;}.bf-card.bf-desk{display:none;}.bf-card.bf-mob{display:flex;margin-top:24px;box-shadow:none;}.bf-sims{grid-template-columns:1fr 1fr;}}
 @media(max-width:820px){
  .bf{padding-top:var(--nav-h);}
  .bf>.shell:first-child{padding-inline:0;}
@@ -1707,6 +1711,21 @@ window.EECompte();window.addEventListener('pageshow',window.EECompte);
 'use strict';
 var D=document, $=function(s,c){return (c||D).querySelector(s);}, $$=function(s,c){return Array.prototype.slice.call((c||D).querySelectorAll(s));};
 var fiche=$('#bf'); if(!fiche)return;
+/* ---- mesures par bien, sans cookie : vue, clic « Visiter ce bien », vidéo regardée, WhatsApp, appel (jamais pendant un essai : ?test) ---- */
+var srcRef=$('[data-bien]',fiche), fRef=$('#bf-form',fiche), REF=srcRef?srcRef.getAttribute('data-bien'):(fRef?fRef.getAttribute('data-ref'):'');
+var vu={};
+var mesure=function(evt,une){ if(!REF||/[?&]test\b/.test(location.search)||(une&&vu[evt]))return; vu[evt]=1;
+  try{ fetch('/api/espace/mesure',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({ref:REF,evt:evt}),keepalive:true,credentials:'same-origin'}).catch(function(){}); }catch(e){} };
+mesure('vue',true);
+D.addEventListener('click',function(e){ var a=e.target.closest&&e.target.closest('a,button'); if(!a)return; var h=a.getAttribute('href')||'';
+  if(h==='#visite')mesure('visiter',true); else if(h.indexOf('wa.me/')>=0)mesure('whatsapp',true); else if(h.indexOf('tel:')===0)mesure('appel',true);
+  else if(a.id==='bf-vs'||a.id==='bf-igbtn')mesure('video',true); },true);
+/* « Visiter ce bien » : la page bouge encore pendant le défilement (photos et vidéo qui se chargent) ; on vérifie l'arrivée */
+var vis=$('#visite');
+if(vis)D.addEventListener('click',function(e){ var a=e.target.closest&&e.target.closest('a[href="#visite"]'); if(!a)return; e.preventDefault();
+  var go=function(doux){ vis.scrollIntoView({behavior:doux?'smooth':'auto',block:'start'}); };
+  go(true); try{ history.replaceState(null,'','#visite'); }catch(x){}
+  setTimeout(function(){ var r=vis.getBoundingClientRect().top; if(r<-8||r>innerHeight*0.4)go(false); },900); });
 /* ---- vidéo : lecture automatique sans le son, en boucle ; pause et son au choix du visiteur ---- */
 var v=$('#bf-v');
 if(v){

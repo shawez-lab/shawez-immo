@@ -121,7 +121,7 @@
 .ee-tl li::before{content:"";height:4px;border-radius:99px;background:var(--stone-2);}
 .ee-tl li.done{color:var(--ink);}
 .ee-tl li.done::before{background:var(--accent);}
-.ee-tabs{display:flex;gap:8px;margin-bottom:18px;}
+.ee-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;}
 .ee-tabs .pill{color:var(--ink);border-color:var(--line-strong);}
 .ee-tabs .pill[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink);}
 .ee-hello{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:22px;}
