@@ -368,6 +368,13 @@ export async function onRequest({ request, env }) {
       const deja = await base.prepare("SELECT 1 FROM dm_instagram WHERE origine <> 'hors_creneau' AND (evenement = ?1 OR (?5 = 0 AND contact = ?2 AND post = ?3 AND jour = ?4)) LIMIT 1")
         .bind(evenement, contact, idReel(post), jour, story ? 1 : 0).first();
       if (deja) return sansMessage('doublon');
+      // Déclencheur « tous les Reels » (source=reel_tous) : il passe 1 minute après les déclencheurs par Reel.
+      // Si ce contact a déjà reçu une réponse dans les 15 dernières minutes, c'est le même commentaire : on ne répond pas deux fois.
+      if (source === 'reel_tous') {
+        const recent = await base.prepare("SELECT 1 FROM dm_instagram WHERE contact = ?1 AND origine <> 'hors_creneau' AND cree > ?2 LIMIT 1")
+          .bind(contact, new Date(Date.now() - 15 * 60000).toISOString()).first();
+        if (recent) return sansMessage('doublon_reel_tous');
+      }
     }
 
     // 2. Bien + plafond du jour
