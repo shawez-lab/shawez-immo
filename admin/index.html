@@ -1227,7 +1227,7 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 .ee-tl li::before{content:"";height:4px;border-radius:99px;background:var(--stone-2);}
 .ee-tl li.done{color:var(--ink);}
 .ee-tl li.done::before{background:var(--accent);}
-.ee-tabs{display:flex;gap:8px;margin-bottom:18px;}
+.ee-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px;}
 .ee-tabs .pill{color:var(--ink);border-color:var(--line-strong);}
 .ee-tabs .pill[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink);}
 .ee-hello{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:22px;}
@@ -1584,7 +1584,7 @@ button.ee-stat-alerte[aria-pressed="true"] b{color:inherit;}
       <li><a href="/videos-immobilier-dijon/" data-nav="videos">Vidéos</a></li>
       <li><a href="/simulateur-pret-immobilier-dijon/" data-nav="simulateur">Simulateur</a></li>
       <li><a href="/shawez-ali-agent-immobilier-dijon/" data-nav="a-propos">À propos</a></li>
-      <li><a href="https://www.gravelin-immo.com/vente/1?utm_source=shawez-immo" title="Catalogue des biens à vendre de l'agence GRAVELIN IMMO" data-sortie="biens">Biens à vendre</a></li>
+      <li><a href="/biens-a-vendre-dijon/" data-nav="biens-a-vendre-dijon">Biens à vendre</a></li>
     </ul>
   </nav>
   <div class="nav-cta">
@@ -1598,7 +1598,7 @@ button.ee-stat-alerte[aria-pressed="true"] b{color:inherit;}
   <ul>
     <li><a href="/vendre-bien-immobilier-dijon/">Vendre <small>Film, photos, drone, diffusion partout</small></a></li>
     <li><a href="/vendre-commerce-dijon/">Commerces <small>Cédez en toute discrétion</small></a></li>
-    <li><a href="https://www.gravelin-immo.com/vente/1?utm_source=shawez-immo" data-sortie="biens">Biens à vendre <small>Nos biens en vente</small></a></li>
+    <li><a href="/biens-a-vendre-dijon/">Biens à vendre <small>Nos biens en vente</small></a></li>
     <li><a href="/conseils-vendeurs/">Conseils <small>Vendre mieux, éviter les pièges</small></a></li>
     <li><a href="/videos-immobilier-dijon/">Vidéos <small>Voyez comment votre bien sera filmé</small></a></li>
     <li><a href="/simulateur-pret-immobilier-dijon/">Simulateur <small>Combien puis-je emprunter ?</small></a></li>
@@ -1647,7 +1647,7 @@ button.ee-stat-alerte[aria-pressed="true"] b{color:inherit;}
       </div>
       <p class="ee-err" id="ad-err" role="alert" hidden></p>
       <div class="ee-stats" id="ad-stats" role="group" aria-label="Vues rapides : un clic filtre la liste"></div>
-      <div class="ee-tabs" role="group" aria-label="Vue"><button type="button" class="pill" data-vue="demandes" aria-pressed="true">Demandes</button><button type="button" class="pill" data-vue="comptes" aria-pressed="false">Comptes</button><button type="button" class="pill" data-vue="reglages" aria-pressed="false">Réglages</button></div>
+      <div class="ee-tabs" role="group" aria-label="Vue"><button type="button" class="pill" data-vue="demandes" aria-pressed="true">Demandes</button><button type="button" class="pill" data-vue="comptes" aria-pressed="false">Comptes</button><button type="button" class="pill" data-vue="biens" aria-pressed="false">Biens</button><button type="button" class="pill" data-vue="reglages" aria-pressed="false">Réglages</button></div>
       <div id="ad-demandes">
         <div class="ee-tools">
           <input type="search" id="ad-q" placeholder="Nom, e-mail, téléphone, commune, référence…" aria-label="Rechercher">
@@ -1668,6 +1668,14 @@ button.ee-stat-alerte[aria-pressed="true"] b{color:inherit;}
           <a class="btn" id="ad-export-c" href="/api/espace/admin/export.csv?quoi=comptes" download>Export CSV</a>
         </div>
         <div class="ee-rows" id="ad-crows"></div>
+      </div>
+      <div id="ad-biens" hidden>
+        <div class="ee-card">
+          <h3>Mes biens : qui regarde, qui veut visiter</h3>
+          <p class="meta">Par bien, sur les 30 derniers jours : vues de la fiche, clics sur « Visiter ce bien », vidéo regardée (son activé ou vidéo ouverte), WhatsApp, appels, et visites réservées en 2 clics. Sans cookie : on compte des gestes, jamais des personnes. Les essais ne comptent pas.</p>
+          <div class="acts"><button type="button" class="btn" id="ad-mb-btn">Actualiser</button></div>
+          <div id="ad-mb" data-test="mesures-biens"></div>
+        </div>
       </div>
       <div id="ad-reglages" hidden>
         <div class="ee-card" style="margin-bottom:14px;">
@@ -1713,7 +1721,7 @@ button.ee-stat-alerte[aria-pressed="true"] b{color:inherit;}
         <span>Agent commercial en immobilier, rattaché à GRAVELIN IMMO — 30 rue Bannelier, 21000 Dijon. RSAC Dijon n° 843 345 380 (numéro SIREN, extrait INPI en cours de vérification) · SIREN 843 345 380.</span>
         <span><a href="tel:+33767579228">07 67 57 92 28</a> · <a href="mailto:shawez@gravelin-immo.com">shawez@gravelin-immo.com</a></span>
       </div>
-      <div><p class="ft-h">Vendre</p><ul><li><a href="/estimer/">Estimer mon bien</a></li><li><a href="/estimation-immobiliere-dijon/">Estimation chez vous, offerte</a></li><li><a href="/vendre-bien-immobilier-dijon/">Vendre à Dijon</a></li><li><a href="/vendre-commerce-dijon/">Commerces</a></li><li><a href="https://www.gravelin-immo.com/vente/1?utm_source=shawez-immo" data-sortie="biens">Voir les biens à vendre</a></li><li><a href="/honoraires/">Honoraires</a></li></ul></div>
+      <div><p class="ft-h">Vendre</p><ul><li><a href="/estimer/">Estimer mon bien</a></li><li><a href="/estimation-immobiliere-dijon/">Estimation chez vous, offerte</a></li><li><a href="/vendre-bien-immobilier-dijon/">Vendre à Dijon</a></li><li><a href="/vendre-commerce-dijon/">Commerces</a></li><li><a href="/biens-a-vendre-dijon/">Voir les biens à vendre</a></li><li><a href="/honoraires/">Honoraires</a></li></ul></div>
       <div><p class="ft-h">Découvrir</p><ul><li><a href="/conseils-vendeurs/">Conseils aux vendeurs</a></li><li><a href="/simulateur-pret-immobilier-dijon/">Simulateur de prêt</a></li><li><a href="/videos-immobilier-dijon/">Vidéos</a></li><li><a href="/shawez-ali-agent-immobilier-dijon/">À propos</a></li><li><a href="/secteurs-dijon-nuits-saint-georges-beaune/">Territoire</a></li><li><a href="/avis/">Avis</a></li><li><a href="/podcast/">Podcast</a></li></ul></div>
       <div><p class="ft-h">Pratique</p><ul><li><a href="/contact/">Contact</a></li><li><a href="/mon-espace/">Mon espace</a></li><li><a href="/mentions-legales/">Mentions légales</a></li><li><a href="/politique-de-confidentialite/">Confidentialité</a></li><li><a href="/cookies/">Cookies</a></li><li><a href="https://www.instagram.com/shawez_immo" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.linkedin.com/in/shawez-ali" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://www.youtube.com/@gravelinimmo" target="_blank" rel="noopener">YouTube</a></li></ul></div>
     </div>
@@ -2549,6 +2557,19 @@ var EE=(function(){
     $('#ad-no-txt').textContent='Votre session a expiré. Demandez un nouveau lien de connexion : la page se rouvrira où vous étiez (les notes non enregistrées sont à ressaisir).';
     EE.pictogramme(); window.scrollTo({top:0}); $('#ad-email').focus({preventScroll:true});
   });
+  /* mesures par bien (onglet « Biens ») : /api/espace/admin/mesures-biens, sans cookie côté visiteur */
+  function mesuresBiens(){
+    var b=$('#ad-mb-btn'), z=$('#ad-mb'); EE.occupe(b,true);
+    EE.api('/admin/mesures-biens').then(function(d){
+      EE.occupe(b,false); z.dataset.lu='1';
+      if(d._status!==200){z.innerHTML='<p class="ee-err">'+EE.esc(EE.message(d))+'</p>';return;}
+      var pl=function(n,un,plus){return n+' '+(n>1?plus:un);};
+      z.innerHTML=d.biens.length?'<ul class="ee-kv">'+d.biens.map(function(x){
+        return '<li><span>Réf. '+EE.esc(x.ref)+'</span><span>'+[pl(x.vue,'vue','vues'),pl(x.visiter,'clic « Visiter »','clics « Visiter »'),pl(x.rdv,'visite réservée','visites réservées'),pl(x.video,'vidéo regardée','vidéos regardées'),pl(x.whatsapp,'WhatsApp','WhatsApp'),pl(x.appel,'appel','appels')].join(' · ')+'</span></li>';
+      }).join('')+'</ul>':'<p class="hint">Rien pour le moment : les compteurs démarrent avec la mise en ligne des fiches mesurées.</p>';
+    });
+  }
+  $('#ad-mb-btn').addEventListener('click',mesuresBiens);
   /* journal de l'agence (Réglages) */
   var ACTIONS_AGENCE={export:'Export CSV',demande_supprimee:'Demande supprimée',compte_supprime:'Compte supprimé',lien_fabrique:'Lien de connexion fabriqué',cle_flux:'Nouvelle clé Google Sheet',reglages:'Réglages modifiés',deconnexion_partout:'Déconnexion de tous les appareils'};
   $('#ad-ja-btn').addEventListener('click',function(){
@@ -2560,7 +2581,7 @@ var EE=(function(){
       z.innerHTML=d.journal.length?'<ul class="ee-kv ee-ja">'+d.journal.map(function(l){var x=l.detail||{};return '<li><span>'+EE.esc(EE.quandCourt(l.cree_le))+'</span><span>'+EE.esc((ACTIONS_AGENCE[l.action]||l.action)+(x.reference?' · '+x.reference:'')+(x.quoi?' · '+x.quoi:'')+' · '+l.par)+'</span></li>';}).join('')+'</ul>':'<p class="hint">Rien pour le moment.</p>';
     });
   });
-  $$('[data-vue]').forEach(function(b){b.addEventListener('click',function(){var v=b.getAttribute('data-vue');['demandes','comptes','reglages'].forEach(function(k){$('#ad-'+k).hidden=v!==k;});$$('[data-vue]').forEach(function(x){x.setAttribute('aria-pressed',String(x===b));});});});
+  $$('[data-vue]').forEach(function(b){b.addEventListener('click',function(){var v=b.getAttribute('data-vue');['demandes','comptes','biens','reglages'].forEach(function(k){$('#ad-'+k).hidden=v!==k;});if(v==='biens'&&!$('#ad-mb').dataset.lu)mesuresBiens();$$('[data-vue]').forEach(function(x){x.setAttribute('aria-pressed',String(x===b));});});});
 
   /* ce qu'il est advenu de l'e-mail au vendeur, en fin de message */
   function mailTxt(m){ return m==='envoye'?' · e-mail envoyé au vendeur.':m==='differe'?' · e-mail au vendeur prévu à 8 h (rien ne part entre 21 h et 8 h).':MAIL_CLIENTS?'.':' · prévenez-le par téléphone (e-mails pas encore ouverts).'; }

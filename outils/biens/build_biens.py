@@ -421,6 +421,10 @@ CSS_FICHE = CSS_COMMUN + """
 .bf-form .chk{display:flex;gap:10px;align-items:flex-start;font-size:.86rem;color:var(--ink-2);font-weight:400;}
 .bf-form .chk input{width:20px;height:20px;margin-top:2px;flex:0 0 auto;}
 .bf-form .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
+#visite{scroll-margin-top:84px;}
+.bf-ecrire{margin-top:22px;max-width:860px;margin-inline:auto;}
+.bf-ecrire>summary{cursor:pointer;min-height:48px;display:flex;align-items:center;font-weight:600;text-decoration:underline;text-underline-offset:3px;}
+.bf-ecrire[open]>summary{margin-bottom:14px;}
 .bf-msg{margin-top:12px;padding:14px 16px;border-radius:var(--r-m);font-size:.94rem;}
 .bf-msg.ok{background:rgba(63,166,107,.12);border:1px solid rgba(63,166,107,.4);}
 .bf-msg.ko{background:rgba(215,34,31,.07);border:1px solid rgba(215,34,31,.3);}
@@ -439,27 +443,19 @@ CSS_FICHE = CSS_COMMUN + """
 .bf-lb .prev{left:14px;}.bf-lb .next{right:14px;}
 .bf-stage.has-phone{grid-template-columns:minmax(0,1.35fr) minmax(0,.8fr) auto;height:min(78vh,760px);}
 .bf-stage.has-phone .bf-shot.main{grid-column:1;grid-row:1/3;}
-.bf-ph-col{grid-column:3;grid-row:1/3;display:flex;align-items:center;justify-content:center;padding:18px 26px;background:radial-gradient(120% 90% at 50% 40%,#2A2622 0%,#0F0E0C 70%);}
-.bf-ph{position:relative;height:100%;aspect-ratio:9/19;max-width:100%;padding:9px;border-radius:44px;background:linear-gradient(145deg,#3A3631,#141210);box-shadow:0 0 0 1px rgba(255,255,255,.08) inset,0 30px 70px rgba(0,0,0,.55),0 6px 18px rgba(0,0,0,.35);}
-.bf-ph::before{content:"";position:absolute;top:17px;left:50%;transform:translateX(-50%);width:30%;height:22px;border-radius:999px;background:#000;z-index:4;}
-.bf-ph-scr{position:relative;width:100%;height:100%;border-radius:36px;overflow:hidden;background:#000;}
+.bf-ph-col{grid-column:3;grid-row:1/3;background:#000;}
+.bf-ph{position:relative;height:100%;aspect-ratio:9/16;max-width:100%;}
+.bf-ph-scr{position:relative;width:100%;height:100%;overflow:hidden;background:#000;}
 .bf-ph-scr video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
-.bf-ph-slides picture{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease;}
-.bf-ph-slides picture.on{opacity:1;}
-.bf-ph-slides img{width:100%;height:100%;object-fit:cover;animation:bfkb 7s ease-in-out infinite alternate;}
-@keyframes bfkb{from{transform:scale(1)}to{transform:scale(1.12)}}
-@media(prefers-reduced-motion:reduce){.bf-ph-slides img{animation:none}}
 .bf-ph-lien{position:absolute;inset:0;z-index:2;}
-.bf-ph-tag{position:absolute;left:14px;top:52px;z-index:3;display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border-radius:999px;background:rgba(15,14,12,.55);color:#fff;font:600 12px/1 inherit;backdrop-filter:blur(6px);pointer-events:none;}
-.bf-ph-tag svg{width:14px;height:14px;}
-.bf-ph-ig{position:absolute;left:14px;bottom:18px;z-index:3;display:inline-flex;align-items:center;gap:7px;padding:9px 13px;border-radius:999px;background:rgba(255,255,255,.92);color:#0F0E0C;font:600 13px/1 inherit;pointer-events:none;}
-.bf-ph-ig svg{width:16px;height:16px;}
-.bf-ph-son{position:absolute;right:14px;bottom:14px;z-index:4;width:46px;height:46px;border-radius:50%;border:0;display:grid;place-items:center;background:rgba(15,14,12,.72);color:#fff;cursor:pointer;backdrop-filter:blur(6px);}
+.bf-ph-ig{position:absolute;left:12px;bottom:12px;z-index:3;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:rgba(15,14,12,.55);color:#fff;pointer-events:none;backdrop-filter:blur(6px);}
+.bf-ph-ig svg{width:20px;height:20px;}
+.bf-ph-son{position:absolute;right:12px;bottom:12px;z-index:4;width:44px;height:44px;border-radius:50%;border:0;display:grid;place-items:center;background:rgba(15,14,12,.55);color:#fff;cursor:pointer;backdrop-filter:blur(6px);}
 .bf-ph-son svg{width:22px;height:22px;}
-.bf-ph-son:focus-visible,.bf-ph-lien:focus-visible{outline:3px solid #E3B341;outline-offset:2px;}
+.bf-ph-son:focus-visible,.bf-ph-lien:focus-visible{outline:3px solid #E3B341;outline-offset:-3px;}
 .bf-stage.has-phone .bf-all{right:auto;left:14px;}
 .bf-share-ok{font-size:.84rem;color:var(--muted);min-height:1.2em;margin:0;}
-@media(max-width:1080px){.bf-head{grid-template-columns:1fr;}.bf-card{position:static;}.bf-card.bf-desk{display:none;}.bf-card.bf-mob{display:flex;margin-top:24px;box-shadow:none;}.bf-sims{grid-template-columns:1fr 1fr;}}
+@media(max-width:1080px){.bf-head{grid-template-columns:minmax(0,1fr);}.bf-card{position:static;}.bf-card.bf-desk{display:none;}.bf-card.bf-mob{display:flex;margin-top:24px;box-shadow:none;}.bf-sims{grid-template-columns:1fr 1fr;}}
 @media(max-width:820px){
  .bf{padding-top:var(--nav-h);}
  .bf>.shell:first-child{padding-inline:0;}
@@ -469,8 +465,8 @@ CSS_FICHE = CSS_COMMUN + """
  .bf-stage.has-v .bf-video{grid-row:auto;height:min(78svh,calc(100vw*16/9));}
  .bf-stage.has-ig{grid-template-columns:1fr;height:auto;}
  .bf-stage.has-phone{grid-template-columns:1fr;height:auto;}
- .bf-stage.has-phone .bf-ph-col{grid-column:auto;grid-row:auto;padding:18px 0 22px;height:auto;}
- .bf-stage.has-phone .bf-ph{height:min(76svh,calc((100vw - 64px)*19/9));}
+ .bf-stage.has-phone .bf-ph-col{grid-column:auto;grid-row:auto;height:auto;display:flex;justify-content:center;}
+ .bf-stage.has-phone .bf-ph{height:min(82svh,calc(100vw*16/9));}
  .bf-stage.has-phone .bf-all{position:static;order:2;justify-self:center;margin:0 0 16px;}
  .bf-stage.has-ig .bf-emb{height:calc(100vw*16/9 + 150px);max-height:none;}
  .bf-stage.no-v{display:block;height:auto;}
@@ -526,6 +522,24 @@ JS_FICHE = r"""
 'use strict';
 var D=document, $=function(s,c){return (c||D).querySelector(s);}, $$=function(s,c){return Array.prototype.slice.call((c||D).querySelectorAll(s));};
 var fiche=$('#bf'); if(!fiche)return;
+/* ---- mesures par bien, sans cookie : vue, clic « Visiter ce bien », vidéo regardée, WhatsApp, appel (jamais pendant un essai : ?test) ---- */
+var srcRef=$('[data-bien]',fiche), fRef=$('#bf-form',fiche), REF=srcRef?srcRef.getAttribute('data-bien'):(fRef?fRef.getAttribute('data-ref'):'');
+var vu={};
+var mesure=function(evt,une){ if(!REF||/[?&]test\b/.test(location.search)||(une&&vu[evt]))return; vu[evt]=1;
+  try{ fetch('/api/espace/mesure',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({ref:REF,evt:evt}),keepalive:true,credentials:'same-origin'}).catch(function(){}); }catch(e){} };
+mesure('vue',true);
+D.addEventListener('click',function(e){ var a=e.target.closest&&e.target.closest('a,button'); if(!a)return; var h=a.getAttribute('href')||'';
+  if(h==='#visite')mesure('visiter',true); else if(h.indexOf('wa.me/')>=0)mesure('whatsapp',true); else if(h.indexOf('tel:')===0)mesure('appel',true);
+  else if(a.id==='bf-vs'||a.id==='bf-igbtn')mesure('video',true); },true);
+/* bloc « Visitez ce bien en 2 clics » : son script arrive une fois la page affichée (photos et texte d'abord) */
+if($('[data-rdv]',fiche)){ var rdvjs=function(){ if(D.getElementById('rdv-js'))return; var sc=D.createElement('script'); sc.id='rdv-js'; sc.src='/assets/rdv.js?v=4'; sc.async=true; D.body.appendChild(sc); };
+  if(D.readyState==='complete')setTimeout(rdvjs,0); else window.addEventListener('load',function(){ setTimeout(rdvjs,0); }); }
+/* « Visiter ce bien » : la page bouge encore pendant le défilement (photos et vidéo qui se chargent) ; on vérifie l'arrivée */
+var vis=$('#visite');
+if(vis)D.addEventListener('click',function(e){ var a=e.target.closest&&e.target.closest('a[href="#visite"]'); if(!a)return; e.preventDefault();
+  var go=function(doux){ vis.scrollIntoView({behavior:doux?'smooth':'auto',block:'start'}); };
+  go(true); try{ history.replaceState(null,'','#visite'); }catch(x){}
+  setTimeout(function(){ var r=vis.getBoundingClientRect().top; if(r<-8||r>innerHeight*0.4)go(false); },900); });
 /* ---- vidéo : lecture automatique sans le son, en boucle ; pause et son au choix du visiteur ---- */
 var v=$('#bf-v');
 if(v){
@@ -542,9 +556,6 @@ if(v){
   if(bp)bp.addEventListener('click',function(){ if(v.paused){ delete v.dataset.pause; essai(); bp.setAttribute('aria-pressed','false'); bp.setAttribute('aria-label','Mettre la vidéo en pause'); bp.innerHTML=bp.dataset.pause; } else { v.dataset.pause='1'; v.pause(); bp.setAttribute('aria-pressed','true'); bp.setAttribute('aria-label','Lire la vidéo'); bp.innerHTML=bp.dataset.play; } });
   if(bs)bs.addEventListener('click',function(){ v.muted=!v.muted; bs.setAttribute('aria-pressed',String(!v.muted)); bs.setAttribute('aria-label',v.muted?'Activer le son':'Couper le son'); bs.innerHTML=v.muted?bs.dataset.off:bs.dataset.on; if(!v.muted)essai(); });
 }
-/* ---- écran téléphone sans fichier vidéo : les photos défilent seules ---- */
-var sl=$('#bf-slides');
-if(sl){ var ps=$$('picture',sl), k=0; if(ps.length>1 && !(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)){ setInterval(function(){ ps[k].classList.remove('on'); k=(k+1)%ps.length; ps[k].classList.add('on'); },3200); } }
 /* ---- vidéo intégrée (YouTube ou Instagram) : chargée une fois la page affichée, pour garder la page rapide ---- */
 var em=$('#bf-emb');
 var igb=$('#bf-igbtn'), igx=$('#bf-igbox');
@@ -737,22 +748,20 @@ def bloc_integration(emb, t):
 
 
 def telephone(ref, vref, video, ig, ph, t):
-    """Écran au format téléphone : la vidéo du bien tourne seule, sans le son, en boucle ; bouton du son en bas ;
-    un clic sur l'écran ouvre le Reel sur Instagram. Sans fichier vidéo : les photos du bien défilent dans l'écran."""
-    if video:
-        ecran = ('<video id="bf-v" poster="/assets/biens/%s/%s" width="%d" height="%d" muted loop playsinline preload="none" '
-                 'disablepictureinpicture aria-label="Vidéo du bien : %s">%s</video>'
-                 % (urllib.parse.quote(vref), video['poster'], video['largeur'], video['hauteur'], E(t), sources_video(vref, video)))
-        son = ('<button type="button" class="bf-ph-son" id="bf-vs" aria-pressed="false" aria-label="Activer le son" data-on=\'%s\' data-off=\'%s\'>%s</button>'
-               % (ICO['son'], ICO['mute'], ICO['mute']))
-    else:
-        ecran = '<div class="bf-ph-slides" id="bf-slides">%s</div>' % ''.join(
-            picture(ref, n, tl, '%s, photo %d' % (t, i + 1), '(max-width:820px) 80vw, 360px', cls='on' if i == 0 else '') for i, (n, tl) in enumerate(ph[:6]))
-        son = ''
+    """Cadre vertical (9:16) à droite des photos : la vraie vidéo du bien, rien d'autre. Elle démarre seule dès l'arrivée
+    sur la page, sans le son (seule lecture automatique permise par les navigateurs), en boucle ; bouton du son en bas à
+    droite ; un clic sur la vidéo ouvre le Reel sur Instagram. Sans fichier vidéo hébergé : pas de cadre (jamais de photos
+    qui défilent à la place de la vidéo)."""
+    if not video:
+        return ''
+    ecran = ('<video id="bf-v" poster="/assets/biens/%s/%s" width="%d" height="%d" muted loop playsinline autoplay preload="metadata" '
+             'disablepictureinpicture aria-label="Vidéo du bien : %s">%s</video>'
+             % (urllib.parse.quote(vref), video['poster'], video['largeur'], video['hauteur'], E(t), sources_video(vref, video)))
+    son = ('<button type="button" class="bf-ph-son" id="bf-vs" aria-pressed="false" aria-label="Activer le son" data-on=\'%s\' data-off=\'%s\'>%s</button>'
+           % (ICO['son'], ICO['mute'], ICO['mute']))
     lien = ('<a class="bf-ph-lien" href="https://www.instagram.com/reel/%s/" target="_blank" rel="noopener" aria-label="Voir la vidéo du bien sur Instagram"></a>'
-            '<span class="bf-ph-ig">%sVoir sur Instagram</span>' % (urllib.parse.quote(ig), ICO['ig'])) if ig else ''
-    return ('<div class="bf-video bf-ph-col"><div class="bf-ph"><div class="bf-ph-scr">%s'
-            '<span class="bf-ph-tag">%sVisite en vidéo</span>%s%s</div></div></div>' % (ecran, ICO['cam'], lien, son))
+            '<span class="bf-ph-ig">%s</span>' % (urllib.parse.quote(ig), ICO['ig'])) if ig else ''
+    return '<div class="bf-video bf-ph-col"><div class="bf-ph"><div class="bf-ph-scr">%s%s%s</div></div></div>' % (ecran, lien, son)
 
 
 def carte(a, ph, medias, eager=False):
@@ -805,7 +814,7 @@ def fiche(a, ph, medias, base, voisins, taux):
                      % (cls, i, i + 1, nb, picture(ref, n, tl, '%s, photo %d' % (t, i + 1),
                                                    '(max-width:820px) 100vw, 60vw' if i == 0 else '(max-width:820px) 78vw, 30vw', eager=(i == 0 and not video))))
     igbloc = ''
-    if video or ig:
+    if video:
         shots = shots[:3]
         vid = telephone(ref, vref, video, ig, ph, t)
     elif emb:
@@ -814,7 +823,7 @@ def fiche(a, ph, medias, base, voisins, taux):
     else:
         vid = ''
     toutes = ('<button type="button" class="bf-all" data-photo="0">%sLes %d photos</button>' % (ICO['grid'], nb)) if nb > 1 else ''
-    stage = '<div class="bf-stage %s">%s%s%s%s</div>' % ('has-v has-phone' if video or ig else 'has-v' if emb else 'no-v', ''.join(shots), toutes, vid, igbloc)
+    stage = '<div class="bf-stage %s">%s%s%s%s</div>' % ('has-v has-phone' if video else 'has-v' if emb else 'no-v', ''.join(shots), toutes, vid, igbloc)
     strip = ('<div class="bf-strip" aria-label="Photos du bien">%s</div>'
              % ''.join('<button type="button" class="bf-shot" data-photo="%d" aria-label="Agrandir la photo %d sur %d">%s</button>'
                        % (i, i + 1, nb, picture(ref, n, tl, '%s, photo %d' % (t, i + 1), '78vw')) for i, (n, tl) in enumerate(ph[:8]))) if nb > 1 else ''
@@ -836,7 +845,7 @@ def fiche(a, ph, medias, base, voisins, taux):
     ancien = ('<p class="bf-old">%s €</p>' % fr(a['prix_precedent'])) if a.get('prix_precedent') and prix and a['prix_precedent'] > prix else ''
     wa_txt = 'Bonjour Shawez, je suis intéressé(e) par le bien réf. %s (%s) : %s' % (ref, t, url)
     wa = 'https://wa.me/%s?text=%s' % (WA, urllib.parse.quote(wa_txt))
-    cta = 'Demander une visite' if actif else 'Être recontacté'
+    cta = 'Visiter ce bien' if actif else 'Être recontacté'
     card = ('<aside class="bf-card %s" aria-label="Prix et contact">%s%s<p class="bf-note" style="margin:0">%s</p>'
             '<a class="btn btn-primary btn-lg" href="#visite">%s</a>'
             '<div class="mini"><a class="btn" href="%s" target="_blank" rel="noopener" aria-label="Écrire à Shawez sur WhatsApp">%s<span>WhatsApp</span></a>'
@@ -904,7 +913,11 @@ def fiche(a, ph, medias, base, voisins, taux):
                     '<p class="bf-note" style="margin-top:12px"><a class="link" href="/simulateur-pret-immobilier-dijon/">Simulateur complet : combien puis-je emprunter ?</a></p></section>'
                     % (json.dumps({str(k): v for k, v in taux[0].items()}), E(taux[1]), fr(prix)))
     # formulaire de visite
-    secs.append('<section class="bf-sec" id="visite" aria-labelledby="h-vis"><h2 id="h-vis">%s</h2>'
+    # bien en vente : visite en 2 clics sur les créneaux libres (assets/rdv.js, /api/espace/rdv), le message reste possible
+    tete_vis = (('<section class="bf-sec" id="visite"><div data-rdv data-depuis="bien" data-bien="%s" data-bien-titre="%s"></div>'
+                 '<details class="bf-ecrire"><summary>Plutôt une question ? Écrivez à Shawez</summary>' % (E(ref), E(t)))
+                if actif else '<section class="bf-sec" id="visite" aria-labelledby="h-vis"><h2 id="h-vis">%s</h2>' % 'Être recontacté')
+    secs.append(tete_vis +
                 '<form class="form bf-form" id="bf-form" novalidate data-ref="%s" data-titre="%s" data-type="%s" data-commune="%s" data-wa="%s">'
                 '<div class="row"><div class="field"><label for="fv-prenom">Prénom</label><input type="text" id="fv-prenom" name="prenom" autocomplete="given-name" required></div>'
                 '<div class="field"><label for="fv-nom">Nom</label><input type="text" id="fv-nom" name="nom" autocomplete="family-name" required></div></div>'
@@ -916,9 +929,9 @@ def fiche(a, ph, medias, base, voisins, taux):
                 '<div class="field"><label class="chk"><input type="checkbox" name="consent" required> J\'accepte d\'être recontacté(e) par Shawez Ali au sujet de ce bien. '
                 'Mes données ne servent qu\'à cela (<a class="link" href="/politique-de-confidentialite/">confidentialité</a>).</label></div>'
                 '<button type="submit" class="btn btn-primary btn-lg">%s</button>'
-                '<div class="bf-msg" id="bf-fmsg" role="status" tabindex="-1" hidden></div></form></section>'
-                % ('Demander une visite' if actif else 'Être recontacté', E(ref), E(t), E(a['type']), E(a['commune']), WA,
-                   'Envoyer ma demande de visite' if actif else 'Envoyer'))
+                '<div class="bf-msg" id="bf-fmsg" role="status" tabindex="-1" hidden></div></form>%s</section>'
+                % (E(ref), E(t), E(a['type']), E(a['commune']), WA,
+                   'Envoyer mon message' if actif else 'Envoyer', '</details>' if actif else ''))
     if voisins:
         secs.append('<section class="bf-sec" aria-labelledby="h-sim2"><h2 id="h-sim2">À voir aussi</h2><ul class="bf-sims bl-grid">%s</ul>'
                     '<p style="margin-top:24px"><a class="btn" href="/biens-a-vendre-dijon/">Tous les biens à vendre</a></p></section>'
@@ -976,7 +989,8 @@ def fiche(a, ph, medias, base, voisins, taux):
               '<a class="btn ico" href="%s" target="_blank" rel="noopener" aria-label="Écrire sur WhatsApp">%s</a>' % (cta, TEL, ICO['tel'], wa, ICO['wa']))
     return page_html(base, route=chemin_fiche(a), titre_page=titre_page, desc=d, canonical=url,
                      image='%s/assets/biens/%s/og.jpg' % (SITE, urllib.parse.quote(ref)), image_alt=t, main=main, graph=graph,
-                     css=CSS_FICHE + CSS_LISTE_SEUL, js=JS_FICHE, sticky=sticky, head_extra=preload,
+                     css=CSS_FICHE + CSS_LISTE_SEUL, js=JS_FICHE, sticky=sticky,
+                     head_extra=preload,
                      robots='index,follow,max-image-preview:large,max-video-preview:-1' if en_ligne(a) else 'noindex,follow')
 
 
