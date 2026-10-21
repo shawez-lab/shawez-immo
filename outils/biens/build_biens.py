@@ -437,6 +437,27 @@ CSS_FICHE = CSS_COMMUN + """
 .bf-lb figure picture,.bf-lb figure img{max-width:100%;max-height:100%;object-fit:contain;display:block;}
 .bf-lb .nav{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;padding:0;background:rgba(15,14,12,.6);}
 .bf-lb .prev{left:14px;}.bf-lb .next{right:14px;}
+.bf-stage.has-phone{grid-template-columns:minmax(0,1.35fr) minmax(0,.8fr) auto;height:min(78vh,760px);}
+.bf-stage.has-phone .bf-shot.main{grid-column:1;grid-row:1/3;}
+.bf-ph-col{grid-column:3;grid-row:1/3;display:flex;align-items:center;justify-content:center;padding:18px 26px;background:radial-gradient(120% 90% at 50% 40%,#2A2622 0%,#0F0E0C 70%);}
+.bf-ph{position:relative;height:100%;aspect-ratio:9/19;max-width:100%;padding:9px;border-radius:44px;background:linear-gradient(145deg,#3A3631,#141210);box-shadow:0 0 0 1px rgba(255,255,255,.08) inset,0 30px 70px rgba(0,0,0,.55),0 6px 18px rgba(0,0,0,.35);}
+.bf-ph::before{content:"";position:absolute;top:17px;left:50%;transform:translateX(-50%);width:30%;height:22px;border-radius:999px;background:#000;z-index:4;}
+.bf-ph-scr{position:relative;width:100%;height:100%;border-radius:36px;overflow:hidden;background:#000;}
+.bf-ph-scr video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+.bf-ph-slides picture{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease;}
+.bf-ph-slides picture.on{opacity:1;}
+.bf-ph-slides img{width:100%;height:100%;object-fit:cover;animation:bfkb 7s ease-in-out infinite alternate;}
+@keyframes bfkb{from{transform:scale(1)}to{transform:scale(1.12)}}
+@media(prefers-reduced-motion:reduce){.bf-ph-slides img{animation:none}}
+.bf-ph-lien{position:absolute;inset:0;z-index:2;}
+.bf-ph-tag{position:absolute;left:14px;top:52px;z-index:3;display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border-radius:999px;background:rgba(15,14,12,.55);color:#fff;font:600 12px/1 inherit;backdrop-filter:blur(6px);pointer-events:none;}
+.bf-ph-tag svg{width:14px;height:14px;}
+.bf-ph-ig{position:absolute;left:14px;bottom:18px;z-index:3;display:inline-flex;align-items:center;gap:7px;padding:9px 13px;border-radius:999px;background:rgba(255,255,255,.92);color:#0F0E0C;font:600 13px/1 inherit;pointer-events:none;}
+.bf-ph-ig svg{width:16px;height:16px;}
+.bf-ph-son{position:absolute;right:14px;bottom:14px;z-index:4;width:46px;height:46px;border-radius:50%;border:0;display:grid;place-items:center;background:rgba(15,14,12,.72);color:#fff;cursor:pointer;backdrop-filter:blur(6px);}
+.bf-ph-son svg{width:22px;height:22px;}
+.bf-ph-son:focus-visible,.bf-ph-lien:focus-visible{outline:3px solid #E3B341;outline-offset:2px;}
+.bf-stage.has-phone .bf-all{right:auto;left:14px;}
 .bf-share-ok{font-size:.84rem;color:var(--muted);min-height:1.2em;margin:0;}
 @media(max-width:1080px){.bf-head{grid-template-columns:1fr;}.bf-card{position:static;}.bf-card.bf-desk{display:none;}.bf-card.bf-mob{display:flex;margin-top:24px;box-shadow:none;}.bf-sims{grid-template-columns:1fr 1fr;}}
 @media(max-width:820px){
@@ -447,6 +468,10 @@ CSS_FICHE = CSS_COMMUN + """
  .bf-stage.has-v{grid-template-columns:1fr;grid-template-rows:auto;height:auto;}
  .bf-stage.has-v .bf-video{grid-row:auto;height:min(78svh,calc(100vw*16/9));}
  .bf-stage.has-ig{grid-template-columns:1fr;height:auto;}
+ .bf-stage.has-phone{grid-template-columns:1fr;height:auto;}
+ .bf-stage.has-phone .bf-ph-col{grid-column:auto;grid-row:auto;padding:18px 0 22px;height:auto;}
+ .bf-stage.has-phone .bf-ph{height:min(76svh,calc((100vw - 64px)*19/9));}
+ .bf-stage.has-phone .bf-all{position:static;order:2;justify-self:center;margin:0 0 16px;}
  .bf-stage.has-ig .bf-emb{height:calc(100vw*16/9 + 150px);max-height:none;}
  .bf-stage.no-v{display:block;height:auto;}
  .bf-stage .bf-shot:not(.main){display:none;}
@@ -517,6 +542,9 @@ if(v){
   if(bp)bp.addEventListener('click',function(){ if(v.paused){ delete v.dataset.pause; essai(); bp.setAttribute('aria-pressed','false'); bp.setAttribute('aria-label','Mettre la vidéo en pause'); bp.innerHTML=bp.dataset.pause; } else { v.dataset.pause='1'; v.pause(); bp.setAttribute('aria-pressed','true'); bp.setAttribute('aria-label','Lire la vidéo'); bp.innerHTML=bp.dataset.play; } });
   if(bs)bs.addEventListener('click',function(){ v.muted=!v.muted; bs.setAttribute('aria-pressed',String(!v.muted)); bs.setAttribute('aria-label',v.muted?'Activer le son':'Couper le son'); bs.innerHTML=v.muted?bs.dataset.off:bs.dataset.on; if(!v.muted)essai(); });
 }
+/* ---- écran téléphone sans fichier vidéo : les photos défilent seules ---- */
+var sl=$('#bf-slides');
+if(sl){ var ps=$$('picture',sl), k=0; if(ps.length>1 && !(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)){ setInterval(function(){ ps[k].classList.remove('on'); k=(k+1)%ps.length; ps[k].classList.add('on'); },3200); } }
 /* ---- vidéo intégrée (YouTube ou Instagram) : chargée une fois la page affichée, pour garder la page rapide ---- */
 var em=$('#bf-emb');
 var igb=$('#bf-igbtn'), igx=$('#bf-igbox');
@@ -632,6 +660,7 @@ ICO = {
     'tel': '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.6a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.8.3 1.7.5 2.6.7a2 2 0 0 1 1.7 2z"/></svg>',
     'wa': '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 21l2.2-5.2A8.4 8.4 0 1 1 21 11.5z"/></svg>',
     'share': '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>',
+    'ig': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>',
     'grid': '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg>',
 }
 
@@ -707,6 +736,25 @@ def bloc_integration(emb, t):
             % ('yt' if emb[0] == 'youtube' else 'ig', ICO['cam'], E(src), E(t), allow))
 
 
+def telephone(ref, vref, video, ig, ph, t):
+    """Écran au format téléphone : la vidéo du bien tourne seule, sans le son, en boucle ; bouton du son en bas ;
+    un clic sur l'écran ouvre le Reel sur Instagram. Sans fichier vidéo : les photos du bien défilent dans l'écran."""
+    if video:
+        ecran = ('<video id="bf-v" poster="/assets/biens/%s/%s" width="%d" height="%d" muted loop playsinline preload="none" '
+                 'disablepictureinpicture aria-label="Vidéo du bien : %s">%s</video>'
+                 % (urllib.parse.quote(vref), video['poster'], video['largeur'], video['hauteur'], E(t), sources_video(vref, video)))
+        son = ('<button type="button" class="bf-ph-son" id="bf-vs" aria-pressed="false" aria-label="Activer le son" data-on=\'%s\' data-off=\'%s\'>%s</button>'
+               % (ICO['son'], ICO['mute'], ICO['mute']))
+    else:
+        ecran = '<div class="bf-ph-slides" id="bf-slides">%s</div>' % ''.join(
+            picture(ref, n, tl, '%s, photo %d' % (t, i + 1), '(max-width:820px) 80vw, 360px', cls='on' if i == 0 else '') for i, (n, tl) in enumerate(ph[:6]))
+        son = ''
+    lien = ('<a class="bf-ph-lien" href="https://www.instagram.com/reel/%s/" target="_blank" rel="noopener" aria-label="Voir la vidéo du bien sur Instagram"></a>'
+            '<span class="bf-ph-ig">%sVoir sur Instagram</span>' % (urllib.parse.quote(ig), ICO['ig'])) if ig else ''
+    return ('<div class="bf-video bf-ph-col"><div class="bf-ph"><div class="bf-ph-scr">%s'
+            '<span class="bf-ph-tag">%sVisite en vidéo</span>%s%s</div></div></div>' % (ecran, ICO['cam'], lien, son))
+
+
 def carte(a, ph, medias, eager=False):
     n, t = ph[0]
     st = statut(a)
@@ -735,8 +783,11 @@ def fiche(a, ph, medias, base, voisins, taux):
     video = m.get('video') or (medias.get(m['video_de']) or {}).get('video') if m.get('video_de') else m.get('video')
     vref = m.get('video_de') or ref
     emb = integration(ref, medias)
-    if emb:
-        video = None          # YouTube ou Instagram en tête de fiche ; le fichier hébergé ne sert qu'en secours
+    ig = emb[1] if emb and emb[0] == 'instagram' else None
+    if emb and emb[0] == 'youtube':
+        video = None          # YouTube en tête de fiche
+    elif emb:
+        emb = None            # Instagram : la vidéo hébergée (ou les photos) tourne dans l'écran téléphone, le clic ouvre le Reel
     tour = (m.get('visite_virtuelle') or {}).get('url') or a.get('visite_virtuelle')
     prix = a.get('prix')
     hon, hon_complet = honoraires(a)
@@ -754,26 +805,16 @@ def fiche(a, ph, medias, base, voisins, taux):
                      % (cls, i, i + 1, nb, picture(ref, n, tl, '%s, photo %d' % (t, i + 1),
                                                    '(max-width:820px) 100vw, 60vw' if i == 0 else '(max-width:820px) 78vw, 30vw', eager=(i == 0 and not video))))
     igbloc = ''
-    if emb and emb[0] == 'instagram':
-        igbloc = bloc_integration(emb, t)
+    if video or ig:
         shots = shots[:3]
-        vid = ''
+        vid = telephone(ref, vref, video, ig, ph, t)
     elif emb:
         shots = shots[:3]
         vid = bloc_integration(emb, t)
-    elif video:
-        shots = shots[:3]
-        vid = ('<div class="bf-video"><span class="bf-vlab bi-vid">%sVisite en vidéo</span>'
-               '<video id="bf-v" poster="/assets/biens/%s/%s" width="%d" height="%d" muted loop playsinline '
-               'preload="none" disablepictureinpicture aria-label="Vidéo du bien : %s">%s</video>'
-               '<div class="bf-vctl"><button type="button" id="bf-vs" aria-pressed="false" aria-label="Activer le son" data-on=\'%s\' data-off=\'%s\'>%s</button>'
-               '<button type="button" id="bf-vp" aria-pressed="false" aria-label="Mettre la vidéo en pause" data-play=\'%s\' data-pause=\'%s\'>%s</button></div></div>'
-               % (ICO['cam'], urllib.parse.quote(vref), video['poster'], video['largeur'], video['hauteur'], E(t), sources_video(vref, video),
-                  ICO['son'], ICO['mute'], ICO['mute'], ICO['play'], ICO['pause'], ICO['pause']))
     else:
         vid = ''
     toutes = ('<button type="button" class="bf-all" data-photo="0">%sLes %d photos</button>' % (ICO['grid'], nb)) if nb > 1 else ''
-    stage = '<div class="bf-stage %s">%s%s%s%s</div>' % ('no-v' if igbloc else 'has-v' if video or emb else 'no-v', vid, ''.join(shots), toutes, igbloc)
+    stage = '<div class="bf-stage %s">%s%s%s%s</div>' % ('has-v has-phone' if video or ig else 'has-v' if emb else 'no-v', ''.join(shots), toutes, vid, igbloc)
     strip = ('<div class="bf-strip" aria-label="Photos du bien">%s</div>'
              % ''.join('<button type="button" class="bf-shot" data-photo="%d" aria-label="Agrandir la photo %d sur %d">%s</button>'
                        % (i, i + 1, nb, picture(ref, n, tl, '%s, photo %d' % (t, i + 1), '78vw')) for i, (n, tl) in enumerate(ph[:8]))) if nb > 1 else ''
