@@ -25,7 +25,7 @@ Faits vérifiables :
 - [Château à vendre en Bourgogne](https://shawez-immo.com/chateau-a-vendre-bourgogne/): châteaux, propriétés et demeures de caractère en vente, et la méthode pour les vendre.
 - [Biens à vendre](https://shawez-immo.com/biens-a-vendre-dijon/): toutes les annonces, avec photos, vidéos et prix, mises à jour chaque matin.
 - [Prix immobilier à Dijon au m²](https://shawez-immo.com/prix-immobilier-dijon/): médianes 2025 par secteur, d'après la base DVF.
-- [Prix immobilier en Côte-d'Or](https://shawez-immo.com/prix-immobilier-cote-d-or/): prix au m² commune par commune (Chenôve, Talant, Quetigny, Longvic, Gevrey-Chambertin, Genlis, Auxonne…), d'après la base DVF.
+- [Prix immobilier en Côte-d'Or](https://shawez-immo.com/prix-immobilier-cote-d-or/): prix au m² dans 76 communes de Côte-d'Or (Beaune, Fontaine-lès-Dijon, Nuits-Saint-Georges, Chenôve, Talant, Montbard, Châtillon-sur-Seine, Semur-en-Auxois…), une page par commune, d'après la base DVF.
 - [Honoraires](https://shawez-immo.com/honoraires/): barème de l'agence GRAVELIN IMMO.
 - [Qui est Shawez Ali](https://shawez-immo.com/shawez-ali-agent-immobilier-dijon/)
 - [Avis clients](https://shawez-immo.com/avis/)
