@@ -1103,6 +1103,7 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 @media(max-width:359px){.nav-compte{width:38px;height:38px;}}
 #menu .m-alt+.m-alt{margin-top:10px;}
 </style>
+<style id="nav-location">@media(min-width:760px){#nav .brand{flex-shrink:0;}}@media(max-width:1439px){.nav-links{gap:16px;}}@media(max-width:1380px){.nav-links{display:none;} #burger{display:inline-flex;align-items:center;gap:8px;} .nav-cta .btn-primary{display:none;}}</style>
 <style id="espace-v1">
 /* ---------- ESPACE ESTIMATION (estimer, mon-espace, admin) — mêmes jetons que le site ---------- */
 .ee{padding-bottom:clamp(72px,10vw,136px);}
@@ -1157,6 +1158,14 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 .ee-stp button:hover{border-color:var(--ink);}
 .ee-stp button:disabled{opacity:.35;cursor:default;}
 .ee-stp output{min-width:52px;text-align:center;font-family:var(--font-display);font-size:1.35rem;font-weight:420;font-variant-numeric:tabular-nums;}
+/* compteurs vides au départ : un choix est obligatoire, l'erreur s'affiche sous la ligne */
+.ee-stp{flex-wrap:wrap;}
+.ee-stp .l{flex:1 1 0;min-width:0;}
+.ee-stp .msg{flex-basis:100%;display:none;margin-top:-4px;font-size:.84rem;color:#A23B2A;}
+.ee-stp.err .msg{display:block;}
+.ee-stp.err output{color:#A23B2A;}
+.ee-stp.err button{border-color:#A23B2A;}
+.ee-remise{margin:14px 0 0;max-width:62ch;color:var(--muted);font-size:.95rem;line-height:1.55;}
 .ee-unit{position:relative;}
 .ee-unit input{padding-right:56px!important;}
 .ee-unit i{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-style:normal;color:var(--muted);font-weight:600;}
@@ -1573,7 +1582,6 @@ button.ee-stat-alerte[aria-pressed="true"] b{color:inherit;}
 }
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebPage", "@id": "https://shawez-immo.com/estimer/#page", "url": "https://shawez-immo.com/estimer/", "name": "Estimation en ligne à Dijon et en Côte-d'Or — Shawez Ali", "description": "Estimez votre appartement ou votre maison en deux minutes : une fourchette calculée sur les ventes réelles (DVF) autour de chez vous, puis l'avis de Shawez.", "inLanguage": "fr-FR", "isPartOf": {"@id": "https://shawez-immo.com/#site"}, "about": {"@id": "https://shawez-immo.com/#agent"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Accueil", "item": "https://shawez-immo.com/"}, {"@type": "ListItem", "position": 2, "name": "Estimer mon bien", "item": "https://shawez-immo.com/estimer/"}]}, {"@type": "Service", "@id": "https://shawez-immo.com/estimer/#service", "name": "Estimation immobilière en ligne", "serviceType": "Estimation immobilière", "provider": {"@type": "RealEstateAgent", "@id": "https://shawez-immo.com/#agent", "name": "Shawez Ali — Agent immobilier", "telephone": "+33767579228", "address": {"@type": "PostalAddress", "streetAddress": "30 rue Bannelier", "postalCode": "21000", "addressLocality": "Dijon", "addressCountry": "FR"}}, "areaServed": {"@type": "AdministrativeArea", "name": "Côte-d'Or"}, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR", "description": "Estimation offerte et sans engagement"}}]}</script>
-<style id="nav-location">@media(min-width:760px){#nav .brand{flex-shrink:0;}}@media(max-width:1439px){.nav-links{gap:16px;}}@media(max-width:1380px){.nav-links{display:none;} #burger{display:inline-flex;align-items:center;gap:8px;} .nav-cta .btn-primary{display:none;}}</style>
 </head>
 <body data-route="/estimer">
 <header id="nav">
@@ -1629,7 +1637,8 @@ button.ee-stat-alerte[aria-pressed="true"] b{color:inherit;}
   <div class="page-head shell">
     <p class="label">Estimation offerte · 2 minutes</p>
     <h1 class="display d-xl" style="margin-top:14px;">Combien vaut votre bien <em>aujourd'hui ?</em></h1>
-    <p class="lede">6 questions, 2 minutes : votre fourchette de prix s'affiche tout de suite, calculée sur les ventes signées autour de chez vous. Ensuite, si vous le voulez, une estimation précise chez vous, offerte et sans engagement.</p>
+    <p class="lede">6 étapes, 2 minutes : votre fourchette de prix s'affiche tout de suite, calculée sur les ventes signées autour de chez vous. Ensuite, si vous le voulez, une estimation précise chez vous, offerte et sans engagement.</p>
+    <p class="ee-remise">Vos coordonnées vous sont demandées à la dernière étape : la fourchette s'affiche alors aussitôt à l'écran, et elle reste rangée dans un espace personnel ouvert avec votre e-mail, sans mot de passe à créer.</p>
   </div>
   <div class="shell">
     <form class="form ee-wrap" id="ee-form" novalidate autocomplete="on">
@@ -1678,16 +1687,16 @@ button.ee-stat-alerte[aria-pressed="true"] b{color:inherit;}
         <div class="ee-head"><p class="ee-count">Étape 3 sur 6</p><h2 class="ee-q">Décrivez-le <em>en quelques clics.</em></h2></div>
         <div class="field">
           <label for="ee-surface" id="ee-surface-lab">Surface habitable</label>
-          <div class="ee-unit"><input type="number" id="ee-surface" inputmode="numeric" min="9" max="2000" placeholder="ex. 72"><i>m²</i></div>
+          <div class="ee-unit"><input type="number" id="ee-surface" inputmode="numeric" min="5" max="2000" placeholder="ex. 72"><i>m²</i></div>
           <span class="hint" id="ee-surface-hint">Surface loi Carrez si vous l'avez, sinon une surface approximative.</span>
-          <span class="msg">Indiquez la surface (en m²).</span>
+          <span class="msg">Indiquez une surface entre 5 et 2 000 m².</span>
         </div>
         <div class="ee-stps" data-pour="appartement maison">
-          <div class="ee-stp" data-k="etage" data-min="0" data-max="40" data-v="1" data-pour="appartement"><div class="l">Étage du bien<small>0 = rez-de-chaussée</small></div><div class="c"><button type="button" data-d="-1" aria-label="Moins">−</button><output aria-live="polite">1</output><button type="button" data-d="1" aria-label="Plus">+</button></div></div>
-          <div class="ee-stp" data-k="etages_immeuble" data-min="0" data-max="40" data-v="4" data-pour="appartement"><div class="l">Étages de l'immeuble<small>Sans compter le rez-de-chaussée</small></div><div class="c"><button type="button" data-d="-1" aria-label="Moins">−</button><output aria-live="polite">4</output><button type="button" data-d="1" aria-label="Plus">+</button></div></div>
-          <div class="ee-stp" data-k="niveaux" data-min="1" data-max="6" data-v="2" data-pour="maison"><div class="l">Niveaux habitables<small>1 = plain-pied</small></div><div class="c"><button type="button" data-d="-1" aria-label="Moins">−</button><output aria-live="polite">2</output><button type="button" data-d="1" aria-label="Plus">+</button></div></div>
-          <div class="ee-stp" data-k="pieces" data-min="1" data-max="20" data-v="3"><div class="l">Pièces<small>Sans la cuisine ni les salles d'eau</small></div><div class="c"><button type="button" data-d="-1" aria-label="Moins">−</button><output aria-live="polite">3</output><button type="button" data-d="1" aria-label="Plus">+</button></div></div>
-          <div class="ee-stp" data-k="chambres" data-min="0" data-max="15" data-v="2"><div class="l">Chambres</div><div class="c"><button type="button" data-d="-1" aria-label="Moins">−</button><output aria-live="polite">2</output><button type="button" data-d="1" aria-label="Plus">+</button></div></div>
+          <div class="ee-stp" data-k="etage" data-min="0" data-max="40" data-v="" data-pour="appartement"><div class="l">Étage du bien<small>0 = rez-de-chaussée</small></div><div class="c"><button type="button" data-d="-1" aria-label="Moins">−</button><output aria-live="polite">–</output><button type="button" data-d="1" aria-label="Plus">+</button></div><span class="msg">Choisissez l'étage du bien.</span></div>
+          <div class="ee-stp" data-k="etages_immeuble" data-min="0" data-max="40" data-v="" data-pour="appartement"><div class="l">Étages de l'immeuble<small>Sans compter le rez-de-chaussée</small></div><div class="c"><button type="button" data-d="-1" aria-label="Moins">−</button><output aria-live="polite">–</output><button type="button" data-d="1" aria-label="Plus">+</button></div><span class="msg">Indiquez le nombre d'étages de l'immeuble.</span></div>
+          <div class="ee-stp" data-k="niveaux" data-min="1" data-max="6" data-v="" data-pour="maison"><div class="l">Niveaux habitables<small>1 = plain-pied</small></div><div class="c"><button type="button" data-d="-1" aria-label="Moins">−</button><output aria-live="polite">–</output><button type="button" data-d="1" aria-label="Plus">+</button></div><span class="msg">Indiquez le nombre de niveaux.</span></div>
+          <div class="ee-stp" data-k="pieces" data-min="1" data-max="20" data-v=""><div class="l">Pièces<small>Sans la cuisine ni les salles d'eau</small></div><div class="c"><button type="button" data-d="-1" aria-label="Moins">−</button><output aria-live="polite">–</output><button type="button" data-d="1" aria-label="Plus">+</button></div><span class="msg">Indiquez le nombre de pièces.</span></div>
+          <div class="ee-stp" data-k="chambres" data-min="0" data-max="15" data-v=""><div class="l">Chambres</div><div class="c"><button type="button" data-d="-1" aria-label="Moins">−</button><output aria-live="polite">–</output><button type="button" data-d="1" aria-label="Plus">+</button></div><span class="msg">Indiquez le nombre de chambres.</span></div>
         </div>
         <div class="field" data-pour="maison">
           <label for="ee-terrain">Surface du terrain</label>
@@ -2127,7 +2136,9 @@ buildMap($('#map-home')); buildMap($('#map-page'));
   function goStep(n){ steps.forEach(function(s){s.hidden=(parseInt(s.getAttribute('data-step'),10)!==n);}); prog.forEach(function(p,i){p.classList.toggle('done',i<n);}); cur=n;
     var h=steps[n-1].querySelector('h2'); form.scrollIntoView({behavior:PERF==='accessible'?'auto':'smooth',block:'start'}); if(h){h.setAttribute('tabindex','-1');setTimeout(function(){h.focus({preventScroll:true});},350);} }
   function validate(n){ var ok=true;
-    if(n===1){ ok=err('#f-type .pill',!state.type)&&ok; ok=err('#f-commune',!(state.commune||'').trim())&&ok; ok=err('#f-pieces',!state.pieces)&&ok; }
+    if(n===1){ ok=err('#f-type .pill',!state.type)&&ok; ok=err('#f-commune',!(state.commune||'').trim())&&ok; ok=err('#f-pieces',!state.pieces)&&ok;
+      /* surface facultative, mais pas négative, nulle ni farfelue : 5 à 2 000 m², ou vide */
+      var sf=$('#f-surface'), sv=String(state.surface||'').trim().replace(',','.'); ok=err('#f-surface',(sf&&sf.validity&&sf.validity.badInput)||(sv!==''&&!(+sv>=5&&+sv<=2000)))&&ok; }
     if(n===2){ ok=err('#f-delai .pill',!state.delai)&&ok; ok=err('#f-agence .pill',!state.agence)&&ok; }
     if(n===3){ ok=err('#f-prenom',!(state.prenom||'').trim())&&ok; ok=err('#f-nom',!(state.nom||'').trim())&&ok;
       var tel=(state.tel||'').replace(/\s/g,''); ok=err('#f-tel',tel!==''&&!/^(?:\+33|0033|0)[1-9](?:[.\-]?\d{2}){4}$/.test(tel))&&ok;
@@ -2148,7 +2159,8 @@ buildMap($('#map-home')); buildMap($('#map-page'));
     fetch(window.SHAWEZ_LEAD_ENDPOINT,{method:'GET',cache:'no-store',signal:ctrl?ctrl.signal:undefined}).then(function(r){ clearTimeout(t); return r.ok?r.json():{}; }).catch(function(){ clearTimeout(t); return {}; })
     .then(function(j){ if(j&&j.ready===true){ sendLead(); } else { var st=$('#est-state'); st.className='state'; st.innerHTML=''; $('#send-row').hidden=false; $('#send-note').hidden=false; } });
   }
-  function payload(){ return {type:state.type||'',commune:state.commune||'',surface:state.surface?Number(state.surface):null,pieces:state.pieces||'',delai:state.delai||'',deja_en_agence:state.agence==='Oui',message:state.message||'',prenom:state.prenom||'',nom:state.nom||'',email:(state.email||'').trim(),telephone:(state.tel||'').replace(/\s/g,''),creneau:state.creneau||'',consent_notice:!!$('#f-consent').checked,consent_newsletter:!!$('#f-news').checked,website:($('#f-website')||{}).value||'',source:'shawez-immo.com',page:location.href.split('?')[0],ts:new Date().toISOString(),schema:'lead.v1'}; }
+  function surfaceOk(v){ v=Number(String(v||'').trim().replace(',','.')); return v>=5&&v<=2000?v:null; }
+  function payload(){ return {type:state.type||'',commune:state.commune||'',surface:surfaceOk(state.surface),pieces:state.pieces||'',delai:state.delai||'',deja_en_agence:state.agence==='Oui',message:state.message||'',prenom:state.prenom||'',nom:state.nom||'',email:(state.email||'').trim(),telephone:(state.tel||'').replace(/\s/g,''),creneau:state.creneau||'',consent_notice:!!$('#f-consent').checked,consent_newsletter:!!$('#f-news').checked,website:($('#f-website')||{}).value||'',source:'shawez-immo.com',page:location.href.split('?')[0],ts:new Date().toISOString(),schema:'lead.v1'}; }
   function sendLead(){
     setState('','Envoi de votre demande…'); $('#send-row').hidden=true; $('#send-note').hidden=true;
     var ctrl=('AbortController' in window)?new AbortController():null; var t=setTimeout(function(){if(ctrl)ctrl.abort();},12000);
@@ -2496,6 +2508,7 @@ var EE=(function(){
     var autre=R.type==='autre';
     $('#ee-surface-lab').textContent=autre?'Surface approximative (facultatif)':'Surface habitable';
     $('#ee-surface-hint').textContent=autre?'Si vous la connaissez.':R.type==='maison'?'Une surface approximative suffit.':'Surface loi Carrez si vous l\'avez, sinon une surface approximative.';
+    $('.msg',$('#ee-surface').closest('.field')).textContent=autre?'Indiquez une surface en m², ou laissez vide si vous ne la connaissez pas.':'Indiquez une surface entre 5 et 2 000 m².';
   }
   var change=0;   // heure du dernier changement d'étape
   function aller(nom,focus){
@@ -2586,22 +2599,28 @@ var EE=(function(){
   });});
 
   /* ---------- 3. compteurs et choix ---------- */
+  /* Les compteurs partent vides (« – ») : rien n'est prérempli, le vendeur choisit chaque valeur.
+     Premier appui : « − » donne le minimum, « + » le minimum plus un. */
+  function vide(s){ return s.getAttribute('data-v')===''||s.getAttribute('data-v')==null; }
   function majCompteur(s){
     var o=$('output',s), min=+s.getAttribute('data-min'), max=+s.getAttribute('data-max'), k=s.getAttribute('data-k'), v=+s.getAttribute('data-v');
+    if(vide(s)){ o.textContent='–'; o.setAttribute('aria-label','non renseigné'); $$('button',s)[0].disabled=false; $$('button',s)[1].disabled=false; return; }
+    o.removeAttribute('aria-label');
     o.textContent=(k==='etage'&&v===0)?'RDC':v; $$('button',s)[0].disabled=v<=min; $$('button',s)[1].disabled=v>=max;
   }
+  function errCompteur(s,on){ s.classList.toggle('err',!!on); return !on; }
   $$('.ee-stp',form).forEach(function(s){
     var min=+s.getAttribute('data-min'), max=+s.getAttribute('data-max'), k=s.getAttribute('data-k'), nom=$('.l',s).firstChild.textContent;
     $$('button',s)[0].setAttribute('aria-label',nom+' : moins'); $$('button',s)[1].setAttribute('aria-label',nom+' : plus');
-    $$('button',s).forEach(function(b){b.addEventListener('click',function(){var v=Math.max(min,Math.min(max,+s.getAttribute('data-v')+(+b.getAttribute('data-d'))));s.setAttribute('data-v',v);majCompteur(s);
+    $$('button',s).forEach(function(b){b.addEventListener('click',function(){var d=+b.getAttribute('data-d');var v=vide(s)?(d<0?min:Math.min(max,min+1)):Math.max(min,Math.min(max,+s.getAttribute('data-v')+d));s.setAttribute('data-v',v);majCompteur(s);errCompteur(s,false);
       if(k==='niveaux'){var pp=form.querySelector('input[name=plain_pied]');if(pp)pp.checked=(v===1);}
       memoriser();
     });});
     majCompteur(s);
   });
   function stp(k){return form.querySelector('.ee-stp[data-k="'+k+'"]');}
-  function val(k){var s=stp(k);return s?+s.getAttribute('data-v'):null;}
-  function fixer(k,v){var s=stp(k);if(s){s.setAttribute('data-v',v);majCompteur(s);}}
+  function val(k){var s=stp(k);return s&&!vide(s)?+s.getAttribute('data-v'):null;}
+  function fixer(k,v){var s=stp(k);if(s){s.setAttribute('data-v',v==null||v===''?'':v);majCompteur(s);}}
   $$('[data-choix]',form).forEach(function(g){
     var k=g.getAttribute('data-choix');
     $$('.ee-opt',g).forEach(function(b){b.setAttribute('aria-pressed','false');b.addEventListener('click',function(){
@@ -2632,15 +2651,19 @@ var EE=(function(){
     if(nom==='type'){ var ok=!!R.type&&(R.type!=='autre'||!!R.autre_type); $('#ee-type-msg').hidden=ok; $('#ee-type-msg').style.display=ok?'':'block'; return ok; }
     if(nom==='bien'){
       var s=$('#ee-surface'), v=s.value.trim().replace(',','.'), ok2=true;
-      if(R.type==='autre'){ ok2=err(s,v!==''&&!(+v>=1&&+v<=100000)); return ok2; }
-      ok2=err(s,!(+v>=9&&+v<=2000))&&ok2;
+      if(R.type==='autre'){ ok2=err(s,s.validity.badInput||(v!==''&&!(+v>=1&&+v<=100000))); return ok2; }
+      ok2=err(s,!(+v>=5&&+v<=2000))&&ok2;
+      // compteurs visibles : un choix est obligatoire
+      $$('.ee-stp',form).forEach(function(c){ if(!c.hidden)ok2=errCompteur(c,vide(c))&&ok2; else errCompteur(c,false); });
       if(R.type==='maison'){var t2=$('#ee-terrain');ok2=err(t2,t2.value.trim()===''||!(+t2.value>=0&&+t2.value<=1000000))&&ok2;}
       ok2=err($('[data-choix=epoque]',form),!R.epoque)&&ok2;
       ok2=err($('[data-choix=etat]',form),!R.etat)&&ok2;
-      if(R.type==='appartement'&&val('etage')>val('etages_immeuble'))fixer('etages_immeuble',val('etage'));
-      if(val('chambres')>=val('pieces')&&val('pieces')>1)fixer('chambres',val('pieces')-1);
-      if(val('pieces')===1&&val('chambres')>1)fixer('chambres',1);
-      if(!ok2){var f=steps.bien.querySelector('.field.err');if(f){f.scrollIntoView({block:'center',behavior:'smooth'});var c=f.querySelector('input,button');if(c)c.focus({preventScroll:true});}}
+      if(ok2){
+        if(R.type==='appartement'&&val('etage')>val('etages_immeuble'))fixer('etages_immeuble',val('etage'));
+        if(val('chambres')>=val('pieces')&&val('pieces')>1)fixer('chambres',val('pieces')-1);
+        if(val('pieces')===1&&val('chambres')>1)fixer('chambres',1);
+      }
+      if(!ok2){var f=steps.bien.querySelector('.field.err,.ee-stp.err');if(f){f.scrollIntoView({block:'center',behavior:'smooth'});var c=f.querySelector('input,button');if(c)c.focus({preventScroll:true});}}
       return ok2;
     }
     if(nom==='prix'){ return true; }
@@ -2791,7 +2814,7 @@ var EE=(function(){
     var m={v:2,t0:T0,cle:CLE,cur:cur,R:R,civ:civ,libre:inp.dataset.libre||'',adresseSaisie:inp.value,
       champs:{},compteurs:{},coches:{},autreOuvert:!$('#ee-autre').hidden,fini:fini||ancien.fini||null};
     ['ee-surface','ee-terrain','ee-prix','ee-message','ee-prenom','ee-nom','ee-email','ee-tel'].forEach(function(id){var el=document.getElementById(id);if(el)m.champs[id]=el.value;});
-    $$('.ee-stp',form).forEach(function(s){m.compteurs[s.getAttribute('data-k')]=+s.getAttribute('data-v');});
+    $$('.ee-stp',form).forEach(function(s){m.compteurs[s.getAttribute('data-k')]=vide(s)?null:+s.getAttribute('data-v');});
     $$('.ee-check input, #ee-consent',form).forEach(function(c){m.coches[c.name||c.id]=c.checked;});
     EE.mem.ecrire(CLE_MEM,m);
   }
@@ -2816,7 +2839,7 @@ var EE=(function(){
     var seq=sequence(), cible=seq.indexOf(m.cur); if(cible<0)cible=0;
     var i=0; pret=false;
     while(i<cible&&valider(seq[i]))i++;
-    $$('.field.err',form).forEach(function(f){f.classList.remove('err');}); $('#ee-type-msg').hidden=true; $('#ee-type-msg').style.display='';
+    $$('.field.err,.ee-stp.err',form).forEach(function(f){f.classList.remove('err');}); $('#ee-type-msg').hidden=true; $('#ee-type-msg').style.display='';
     pret=true; aller(seq[i],false);
     return true;
   }

@@ -1103,6 +1103,7 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 @media(max-width:359px){.nav-compte{width:38px;height:38px;}}
 #menu .m-alt+.m-alt{margin-top:10px;}
 </style>
+<style id="nav-location">@media(min-width:760px){#nav .brand{flex-shrink:0;}}@media(max-width:1439px){.nav-links{gap:16px;}}@media(max-width:1380px){.nav-links{display:none;} #burger{display:inline-flex;align-items:center;gap:8px;} .nav-cta .btn-primary{display:none;}}</style>
 <style id="espace-v1">
 /* ---------- ESPACE ESTIMATION (estimer, mon-espace, admin) — mêmes jetons que le site ---------- */
 .ee{padding-bottom:clamp(72px,10vw,136px);}
@@ -1157,6 +1158,14 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 .ee-stp button:hover{border-color:var(--ink);}
 .ee-stp button:disabled{opacity:.35;cursor:default;}
 .ee-stp output{min-width:52px;text-align:center;font-family:var(--font-display);font-size:1.35rem;font-weight:420;font-variant-numeric:tabular-nums;}
+/* compteurs vides au départ : un choix est obligatoire, l'erreur s'affiche sous la ligne */
+.ee-stp{flex-wrap:wrap;}
+.ee-stp .l{flex:1 1 0;min-width:0;}
+.ee-stp .msg{flex-basis:100%;display:none;margin-top:-4px;font-size:.84rem;color:#A23B2A;}
+.ee-stp.err .msg{display:block;}
+.ee-stp.err output{color:#A23B2A;}
+.ee-stp.err button{border-color:#A23B2A;}
+.ee-remise{margin:14px 0 0;max-width:62ch;color:var(--muted);font-size:.95rem;line-height:1.55;}
 .ee-unit{position:relative;}
 .ee-unit input{padding-right:56px!important;}
 .ee-unit i{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-style:normal;color:var(--muted);font-weight:600;}
@@ -1572,7 +1581,6 @@ button.ee-stat-alerte[aria-pressed="true"] b{color:inherit;}
   .ee-ad-barre .ee-links{gap:4px 16px;}
 }
 </style>
-<style id="nav-location">@media(min-width:760px){#nav .brand{flex-shrink:0;}}@media(max-width:1439px){.nav-links{gap:16px;}}@media(max-width:1380px){.nav-links{display:none;} #burger{display:inline-flex;align-items:center;gap:8px;} .nav-cta .btn-primary{display:none;}}</style>
 </head>
 <body data-route="/mon-espace">
 <header id="nav">
@@ -1742,9 +1750,9 @@ button.ee-stat-alerte[aria-pressed="true"] b{color:inherit;}
         <span>Agent commercial en immobilier, rattaché à GRAVELIN IMMO — 30 rue Bannelier, 21000 Dijon. RSAC Dijon n° 843 345 380 (numéro SIREN, extrait INPI en cours de vérification) · SIREN 843 345 380.</span>
         <span><a href="tel:+33767579228">07 67 57 92 28</a> · <a href="mailto:shawez@gravelin-immo.com">shawez@gravelin-immo.com</a></span>
       </div>
-      <div><p class="ft-h">Vendre</p><ul><li><a href="/estimer/">Estimer mon bien</a></li><li><a href="/estimation-immobiliere-dijon/">Estimation chez vous, offerte</a></li><li><a href="/vendre-bien-immobilier-dijon/">Vendre à Dijon</a></li><li><a href="/location-immobiliere-dijon/">Mettre en location</a></li><li><a href="/vendre-commerce-dijon/">Commerces</a></li><li><a href="/biens-a-vendre-dijon/">Voir les biens à vendre</a></li><li><a href="/honoraires/">Honoraires</a></li></ul></div>
-      <div><p class="ft-h">Découvrir</p><ul><li><a href="/conseils-vendeurs/">Conseils aux vendeurs</a></li><li><a href="/simulateur-pret-immobilier-dijon/">Simulateur de prêt</a></li><li><a href="/videos-immobilier-dijon/">Vidéos</a></li><li><a href="/shawez-ali-agent-immobilier-dijon/">À propos</a></li><li><a href="/secteurs-dijon-nuits-saint-georges-beaune/">Territoire</a></li><li><a href="/avis/">Avis</a></li><li><a href="/podcast/">Podcast</a></li></ul></div>
-      <div><p class="ft-h">Pratique</p><ul><li><a href="/contact/">Contact</a></li><li><a href="/mon-espace/">Mon espace</a></li><li><a href="/mentions-legales/">Mentions légales</a></li><li><a href="/politique-de-confidentialite/">Confidentialité</a></li><li><a href="/cookies/">Cookies</a></li><li><a href="https://www.instagram.com/shawez_immo" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.linkedin.com/in/shawez-ali" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://www.youtube.com/@gravelinimmo" target="_blank" rel="noopener">YouTube</a></li></ul></div>
+      <div><p class="ft-h">Vendre</p><ul><li><a href="/estimer/">Estimer mon bien</a></li><li><a href="/estimation-immobiliere-dijon/">Estimation chez vous, offerte</a></li><li><a href="/vendre-bien-immobilier-dijon/">Vendre à Dijon</a></li><li><a href="/location-immobiliere-dijon/">Mettre en location</a></li><li><a href="/vendre-commerce-dijon/">Commerces</a></li><li><a href="/fonds-de-commerce-a-vendre-dijon/">Fonds de commerce à vendre</a></li><li><a href="/immobilier-professionnel-dijon/">Murs, bureaux, locaux</a></li><li><a href="/chateau-a-vendre-bourgogne/">Châteaux et prestige</a></li><li><a href="/biens-a-vendre-dijon/">Voir les biens à vendre</a></li><li><a href="/honoraires/">Honoraires</a></li></ul></div>
+      <div><p class="ft-h">Découvrir</p><ul><li><a href="/agent-immobilier-dijon/">Agent immobilier à Dijon</a></li><li><a href="/conseils-vendeurs/">Conseils aux vendeurs</a></li><li><a href="/simulateur-pret-immobilier-dijon/">Simulateur de prêt</a></li><li><a href="/videos-immobilier-dijon/">Vidéos</a></li><li><a href="/shawez-ali-agent-immobilier-dijon/">À propos</a></li><li><a href="/secteurs-dijon-nuits-saint-georges-beaune/">Territoire</a></li><li><a href="/prix-immobilier-dijon/">Prix au m² à Dijon</a></li><li><a href="/avis/">Avis</a></li><li><a href="/podcast/">Podcast</a></li></ul></div>
+      <div><p class="ft-h">Pratique</p><ul><li><a href="/contact/">Contact</a></li><li><a href="/mon-espace/">Mon espace</a></li><li><a href="/mentions-legales/">Mentions légales</a></li><li><a href="/politique-de-confidentialite/">Confidentialité</a></li><li><a href="/cookies/">Cookies</a></li><li><a href="/plan-du-site/">Plan du site</a></li><li><a href="https://www.instagram.com/shawez_immo" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.linkedin.com/in/shawez-ali" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://www.youtube.com/@gravelinimmo" target="_blank" rel="noopener">YouTube</a></li></ul></div>
     </div>
     <div class="ft-bot">
       <span>© 2026 Shawez Ali · Agent commercial en immobilier, GRAVELIN IMMO</span>
@@ -2052,7 +2060,9 @@ buildMap($('#map-home')); buildMap($('#map-page'));
   function goStep(n){ steps.forEach(function(s){s.hidden=(parseInt(s.getAttribute('data-step'),10)!==n);}); prog.forEach(function(p,i){p.classList.toggle('done',i<n);}); cur=n;
     var h=steps[n-1].querySelector('h2'); form.scrollIntoView({behavior:PERF==='accessible'?'auto':'smooth',block:'start'}); if(h){h.setAttribute('tabindex','-1');setTimeout(function(){h.focus({preventScroll:true});},350);} }
   function validate(n){ var ok=true;
-    if(n===1){ ok=err('#f-type .pill',!state.type)&&ok; ok=err('#f-commune',!(state.commune||'').trim())&&ok; ok=err('#f-pieces',!state.pieces)&&ok; }
+    if(n===1){ ok=err('#f-type .pill',!state.type)&&ok; ok=err('#f-commune',!(state.commune||'').trim())&&ok; ok=err('#f-pieces',!state.pieces)&&ok;
+      /* surface facultative, mais pas négative, nulle ni farfelue : 5 à 2 000 m², ou vide */
+      var sf=$('#f-surface'), sv=String(state.surface||'').trim().replace(',','.'); ok=err('#f-surface',(sf&&sf.validity&&sf.validity.badInput)||(sv!==''&&!(+sv>=5&&+sv<=2000)))&&ok; }
     if(n===2){ ok=err('#f-delai .pill',!state.delai)&&ok; ok=err('#f-agence .pill',!state.agence)&&ok; }
     if(n===3){ ok=err('#f-prenom',!(state.prenom||'').trim())&&ok; ok=err('#f-nom',!(state.nom||'').trim())&&ok;
       var tel=(state.tel||'').replace(/\s/g,''); ok=err('#f-tel',tel!==''&&!/^(?:\+33|0033|0)[1-9](?:[.\-]?\d{2}){4}$/.test(tel))&&ok;
@@ -2073,7 +2083,8 @@ buildMap($('#map-home')); buildMap($('#map-page'));
     fetch(window.SHAWEZ_LEAD_ENDPOINT,{method:'GET',cache:'no-store',signal:ctrl?ctrl.signal:undefined}).then(function(r){ clearTimeout(t); return r.ok?r.json():{}; }).catch(function(){ clearTimeout(t); return {}; })
     .then(function(j){ if(j&&j.ready===true){ sendLead(); } else { var st=$('#est-state'); st.className='state'; st.innerHTML=''; $('#send-row').hidden=false; $('#send-note').hidden=false; } });
   }
-  function payload(){ return {type:state.type||'',commune:state.commune||'',surface:state.surface?Number(state.surface):null,pieces:state.pieces||'',delai:state.delai||'',deja_en_agence:state.agence==='Oui',message:state.message||'',prenom:state.prenom||'',nom:state.nom||'',email:(state.email||'').trim(),telephone:(state.tel||'').replace(/\s/g,''),creneau:state.creneau||'',consent_notice:!!$('#f-consent').checked,consent_newsletter:!!$('#f-news').checked,website:($('#f-website')||{}).value||'',source:'shawez-immo.com',page:location.href.split('?')[0],ts:new Date().toISOString(),schema:'lead.v1'}; }
+  function surfaceOk(v){ v=Number(String(v||'').trim().replace(',','.')); return v>=5&&v<=2000?v:null; }
+  function payload(){ return {type:state.type||'',commune:state.commune||'',surface:surfaceOk(state.surface),pieces:state.pieces||'',delai:state.delai||'',deja_en_agence:state.agence==='Oui',message:state.message||'',prenom:state.prenom||'',nom:state.nom||'',email:(state.email||'').trim(),telephone:(state.tel||'').replace(/\s/g,''),creneau:state.creneau||'',consent_notice:!!$('#f-consent').checked,consent_newsletter:!!$('#f-news').checked,website:($('#f-website')||{}).value||'',source:'shawez-immo.com',page:location.href.split('?')[0],ts:new Date().toISOString(),schema:'lead.v1'}; }
   function sendLead(){
     setState('','Envoi de votre demande…'); $('#send-row').hidden=true; $('#send-note').hidden=true;
     var ctrl=('AbortController' in window)?new AbortController():null; var t=setTimeout(function(){if(ctrl)ctrl.abort();},12000);

@@ -75,11 +75,11 @@ def liens():
         ("Deux possibilités : un rapport immédiat avec l'outil de l'agence, ou une estimation étudiée personnellement par Shawez.",
          "Deux possibilités : une fourchette immédiate en ligne, ou une estimation étudiée personnellement par Shawez."),
         ("<p class=\"label\">Estimation immédiate</p><h2>Rapport détaillé par e-mail <em>en 2 minutes.</em></h2><p>L'outil d'estimation de notre agence GRAVELIN IMMO. Il s'ouvre dans un nouvel onglet.</p>",
-         "<p class=\"label\">Estimation en ligne</p><h2>Votre fourchette de prix <em>en 2 minutes.</em></h2><p>Six questions sur votre bien, comparé aux ventes réelles autour de chez vous. Le résultat reste dans votre espace.</p>"),
+         "<p class=\"label\">Estimation en ligne</p><h2>Votre fourchette de prix <em>en 2 minutes.</em></h2><p>Six étapes, et votre bien est comparé aux ventes réelles autour de chez vous. Le résultat reste dans votre espace.</p>"),
         ('<a class="link" href="/estimer/">l\'outil d\'estimation de l\'agence GRAVELIN IMMO</a> : quelques questions sur le bien, et un rapport détaillé vous est envoyé par e-mail en 2 minutes.',
-         '<a class="link" href="/estimer/">l\'estimation en ligne</a> : six questions sur le bien, et une fourchette indicative calculée sur les ventes réelles (DVF) autour de chez vous, à confirmer par une visite.'),
+         '<a class="link" href="/estimer/">l\'estimation en ligne</a> : six étapes, et une fourchette indicative calculée sur les ventes réelles (DVF) autour de chez vous, à confirmer par une visite.'),
         ("Avec l'outil d'estimation de l'agence GRAVELIN IMMO : quelques questions sur le bien, et un rapport détaillé vous est envoyé par e-mail en 2 minutes.",
-         "Avec l'estimation en ligne : six questions sur le bien, et une fourchette indicative calculée sur les ventes réelles (DVF) autour de chez vous, à confirmer par une visite."),
+         "Avec l'estimation en ligne : six étapes, et une fourchette indicative calculée sur les ventes réelles (DVF) autour de chez vous, à confirmer par une visite."),
         # contact
         ('<a class="link" href="/estimer/">estimation immédiate</a>', '<a class="link" href="/estimer/">estimation en ligne</a>'),
         # à propos

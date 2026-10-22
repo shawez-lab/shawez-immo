@@ -275,7 +275,7 @@ function lireReponses(d) {
     return r;
   }
   Object.assign(r, {
-    surface: entier(d.surface, 9, 2000, { requis: true, nom: 'surface' }),
+    surface: entier(d.surface, 5, 2000, { requis: true, nom: 'surface' }),
     pieces: entier(d.pieces, 1, 30, { requis: true, nom: 'pieces' }),
     chambres: entier(d.chambres, 0, 20, { requis: true, nom: 'chambres' }),
     epoque: choix(d.epoque, ['avant1948', '1948-1974', '1975-2000', '2001-2012', 'apres2012', 'nsp'], { requis: true, nom: 'epoque' }),

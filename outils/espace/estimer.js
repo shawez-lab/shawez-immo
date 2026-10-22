@@ -38,6 +38,7 @@
     var autre=R.type==='autre';
     $('#ee-surface-lab').textContent=autre?'Surface approximative (facultatif)':'Surface habitable';
     $('#ee-surface-hint').textContent=autre?'Si vous la connaissez.':R.type==='maison'?'Une surface approximative suffit.':'Surface loi Carrez si vous l\'avez, sinon une surface approximative.';
+    $('.msg',$('#ee-surface').closest('.field')).textContent=autre?'Indiquez une surface en m², ou laissez vide si vous ne la connaissez pas.':'Indiquez une surface entre 5 et 2 000 m².';
   }
   var change=0;   // heure du dernier changement d'étape
   function aller(nom,focus){
@@ -128,22 +129,28 @@
   });});
 
   /* ---------- 3. compteurs et choix ---------- */
+  /* Les compteurs partent vides (« – ») : rien n'est prérempli, le vendeur choisit chaque valeur.
+     Premier appui : « − » donne le minimum, « + » le minimum plus un. */
+  function vide(s){ return s.getAttribute('data-v')===''||s.getAttribute('data-v')==null; }
   function majCompteur(s){
     var o=$('output',s), min=+s.getAttribute('data-min'), max=+s.getAttribute('data-max'), k=s.getAttribute('data-k'), v=+s.getAttribute('data-v');
+    if(vide(s)){ o.textContent='–'; o.setAttribute('aria-label','non renseigné'); $$('button',s)[0].disabled=false; $$('button',s)[1].disabled=false; return; }
+    o.removeAttribute('aria-label');
     o.textContent=(k==='etage'&&v===0)?'RDC':v; $$('button',s)[0].disabled=v<=min; $$('button',s)[1].disabled=v>=max;
   }
+  function errCompteur(s,on){ s.classList.toggle('err',!!on); return !on; }
   $$('.ee-stp',form).forEach(function(s){
     var min=+s.getAttribute('data-min'), max=+s.getAttribute('data-max'), k=s.getAttribute('data-k'), nom=$('.l',s).firstChild.textContent;
     $$('button',s)[0].setAttribute('aria-label',nom+' : moins'); $$('button',s)[1].setAttribute('aria-label',nom+' : plus');
-    $$('button',s).forEach(function(b){b.addEventListener('click',function(){var v=Math.max(min,Math.min(max,+s.getAttribute('data-v')+(+b.getAttribute('data-d'))));s.setAttribute('data-v',v);majCompteur(s);
+    $$('button',s).forEach(function(b){b.addEventListener('click',function(){var d=+b.getAttribute('data-d');var v=vide(s)?(d<0?min:Math.min(max,min+1)):Math.max(min,Math.min(max,+s.getAttribute('data-v')+d));s.setAttribute('data-v',v);majCompteur(s);errCompteur(s,false);
       if(k==='niveaux'){var pp=form.querySelector('input[name=plain_pied]');if(pp)pp.checked=(v===1);}
       memoriser();
     });});
     majCompteur(s);
   });
   function stp(k){return form.querySelector('.ee-stp[data-k="'+k+'"]');}
-  function val(k){var s=stp(k);return s?+s.getAttribute('data-v'):null;}
-  function fixer(k,v){var s=stp(k);if(s){s.setAttribute('data-v',v);majCompteur(s);}}
+  function val(k){var s=stp(k);return s&&!vide(s)?+s.getAttribute('data-v'):null;}
+  function fixer(k,v){var s=stp(k);if(s){s.setAttribute('data-v',v==null||v===''?'':v);majCompteur(s);}}
   $$('[data-choix]',form).forEach(function(g){
     var k=g.getAttribute('data-choix');
     $$('.ee-opt',g).forEach(function(b){b.setAttribute('aria-pressed','false');b.addEventListener('click',function(){
@@ -174,15 +181,19 @@
     if(nom==='type'){ var ok=!!R.type&&(R.type!=='autre'||!!R.autre_type); $('#ee-type-msg').hidden=ok; $('#ee-type-msg').style.display=ok?'':'block'; return ok; }
     if(nom==='bien'){
       var s=$('#ee-surface'), v=s.value.trim().replace(',','.'), ok2=true;
-      if(R.type==='autre'){ ok2=err(s,v!==''&&!(+v>=1&&+v<=100000)); return ok2; }
-      ok2=err(s,!(+v>=9&&+v<=2000))&&ok2;
+      if(R.type==='autre'){ ok2=err(s,s.validity.badInput||(v!==''&&!(+v>=1&&+v<=100000))); return ok2; }
+      ok2=err(s,!(+v>=5&&+v<=2000))&&ok2;
+      // compteurs visibles : un choix est obligatoire
+      $$('.ee-stp',form).forEach(function(c){ if(!c.hidden)ok2=errCompteur(c,vide(c))&&ok2; else errCompteur(c,false); });
       if(R.type==='maison'){var t2=$('#ee-terrain');ok2=err(t2,t2.value.trim()===''||!(+t2.value>=0&&+t2.value<=1000000))&&ok2;}
       ok2=err($('[data-choix=epoque]',form),!R.epoque)&&ok2;
       ok2=err($('[data-choix=etat]',form),!R.etat)&&ok2;
-      if(R.type==='appartement'&&val('etage')>val('etages_immeuble'))fixer('etages_immeuble',val('etage'));
-      if(val('chambres')>=val('pieces')&&val('pieces')>1)fixer('chambres',val('pieces')-1);
-      if(val('pieces')===1&&val('chambres')>1)fixer('chambres',1);
-      if(!ok2){var f=steps.bien.querySelector('.field.err');if(f){f.scrollIntoView({block:'center',behavior:'smooth'});var c=f.querySelector('input,button');if(c)c.focus({preventScroll:true});}}
+      if(ok2){
+        if(R.type==='appartement'&&val('etage')>val('etages_immeuble'))fixer('etages_immeuble',val('etage'));
+        if(val('chambres')>=val('pieces')&&val('pieces')>1)fixer('chambres',val('pieces')-1);
+        if(val('pieces')===1&&val('chambres')>1)fixer('chambres',1);
+      }
+      if(!ok2){var f=steps.bien.querySelector('.field.err,.ee-stp.err');if(f){f.scrollIntoView({block:'center',behavior:'smooth'});var c=f.querySelector('input,button');if(c)c.focus({preventScroll:true});}}
       return ok2;
     }
     if(nom==='prix'){ return true; }
@@ -333,7 +344,7 @@
     var m={v:2,t0:T0,cle:CLE,cur:cur,R:R,civ:civ,libre:inp.dataset.libre||'',adresseSaisie:inp.value,
       champs:{},compteurs:{},coches:{},autreOuvert:!$('#ee-autre').hidden,fini:fini||ancien.fini||null};
     ['ee-surface','ee-terrain','ee-prix','ee-message','ee-prenom','ee-nom','ee-email','ee-tel'].forEach(function(id){var el=document.getElementById(id);if(el)m.champs[id]=el.value;});
-    $$('.ee-stp',form).forEach(function(s){m.compteurs[s.getAttribute('data-k')]=+s.getAttribute('data-v');});
+    $$('.ee-stp',form).forEach(function(s){m.compteurs[s.getAttribute('data-k')]=vide(s)?null:+s.getAttribute('data-v');});
     $$('.ee-check input, #ee-consent',form).forEach(function(c){m.coches[c.name||c.id]=c.checked;});
     EE.mem.ecrire(CLE_MEM,m);
   }
@@ -358,7 +369,7 @@
     var seq=sequence(), cible=seq.indexOf(m.cur); if(cible<0)cible=0;
     var i=0; pret=false;
     while(i<cible&&valider(seq[i]))i++;
-    $$('.field.err',form).forEach(function(f){f.classList.remove('err');}); $('#ee-type-msg').hidden=true; $('#ee-type-msg').style.display='';
+    $$('.field.err,.ee-stp.err',form).forEach(function(f){f.classList.remove('err');}); $('#ee-type-msg').hidden=true; $('#ee-type-msg').style.display='';
     pret=true; aller(seq[i],false);
     return true;
   }

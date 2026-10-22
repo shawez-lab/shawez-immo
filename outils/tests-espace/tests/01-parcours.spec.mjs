@@ -1,7 +1,7 @@
 /* Le parcours /estimer/ : chaque étape, Retour, erreurs de saisie, rechargement, double clic, réseau lent,
    adresses avec accents et bis/ter, appartement, maison, commerce, résultat immédiat sans mot de passe. */
 import { test, expect } from '@playwright/test';
-import { fausseBan, moi, retour, PAUSE, parcours, coordonnees, afficherResultat, estimationComplete, etape, attendreEtape, suivant, choisirAdresse, emailTest, assezLent } from './aides.mjs';
+import { fausseBan, moi, retour, PAUSE, parcours, coordonnees, afficherResultat, estimationComplete, etape, attendreEtape, suivant, choisirAdresse, emailTest, assezLent, compteurs } from './aides.mjs';
 
 test.beforeEach(async ({ page }) => { await fausseBan(page); });
 
@@ -17,7 +17,7 @@ test('appartement : six étapes, un écran de coordonnées, fourchette affichée
   await page.locator('.ee-tile[data-type="appartement"]').click();
   await attendreEtape(page, 'bien');
   await page.locator('#ee-surface').fill('72');
-  await page.locator('.ee-stp[data-k="etage"] button[data-d="1"]').click();   // 2e étage
+  await compteurs(page, { etage: 2 });   // 2e étage (les compteurs partent vides)
   await page.locator('[data-choix="epoque"] [data-v="1948-1974"]').click();
   await page.locator('[data-choix="etat"] [data-v="bon"]').click();
   await suivant(page, 'bien');
@@ -154,7 +154,18 @@ test('erreurs de saisie claires à chaque étape', async ({ page }) => {
   // surface absente, époque et état non choisis
   await suivant(page, 'bien');
   await expect(etape(page, 'bien').locator('.field.err')).toHaveCount(3);
-  await expect(etape(page, 'bien').locator('.field.err .msg').first()).toContainText('Indiquez la surface');
+  await expect(etape(page, 'bien').locator('.field.err .msg').first()).toContainText('Indiquez une surface entre 5 et 2 000 m²');
+  // compteurs vides : un choix est obligatoire (étage, étages de l'immeuble, pièces, chambres)
+  await expect(etape(page, 'bien').locator('.ee-stp.err')).toHaveCount(4);
+  await expect(etape(page, 'bien').locator('.ee-stp[data-k="pieces"] output')).toHaveText('–');
+  await compteurs(page);
+  await expect(etape(page, 'bien').locator('.ee-stp.err')).toHaveCount(0);
+  for (const v of ['-1', '0']) {   // surface négative ou nulle : refusée avant le changement d'étape
+    await page.locator('#ee-surface').fill(v);
+    await suivant(page, 'bien');
+    await expect(page.locator('#ee-surface')).toHaveAttribute('aria-invalid', 'true');
+    await expect(etape(page, 'bien')).toBeVisible();
+  }
   await page.locator('#ee-surface').fill('4');
   await suivant(page, 'bien');
   await expect(page.locator('#ee-surface')).toHaveAttribute('aria-invalid', 'true');
@@ -216,7 +227,7 @@ test('rechargement en cours de parcours : état conservé, même étape', async 
   await attendreEtape(page, 'bien');
   await page.locator('#ee-surface').fill('118');
   await page.locator('#ee-terrain').fill('320');
-  await page.locator('.ee-stp[data-k="pieces"] button[data-d="1"]').click();   // 4 pièces
+  await compteurs(page, { pieces: 4 });
   await page.locator('[data-choix="epoque"] [data-v="avant1948"]').click();
   await page.locator('[data-choix="etat"] [data-v="neuf"]').click();
   await suivant(page, 'bien');
@@ -275,6 +286,7 @@ test('double clic sur « Étape suivante » : aucune étape sautée', async ({ p
   await page.locator('.ee-tile[data-type="appartement"]').dblclick();
   await attendreEtape(page, 'bien');
   await page.locator('#ee-surface').fill('72');
+  await compteurs(page);
   await page.locator('[data-choix="epoque"] [data-v="nsp"]').click();
   await page.locator('[data-choix="etat"] [data-v="bon"]').click();
   await etape(page, 'bien').locator('[data-next]').dblclick();
@@ -354,6 +366,7 @@ test('recherche d\'adresses en panne : on garde l\'adresse écrite, la demande e
   await page.locator('.ee-tile[data-type="appartement"]').click();
   await attendreEtape(page, 'bien');
   await page.locator('#ee-surface').fill('60');
+  await compteurs(page);
   await page.locator('[data-choix="epoque"] [data-v="nsp"]').click();
   await page.locator('[data-choix="etat"] [data-v="bon"]').click();
   await suivant(page, 'bien');
