@@ -138,7 +138,7 @@
       if (bien) { envoi_.bien = bien; envoi_.bien_titre = bienTitre; } else envoi_.adresse = champs.adresse.trim();
       api('/rdv', envoi_).then(function (d) {
         envoi = false;
-        if (d._status === 201 || d._status === 200) { fini = { quand: quand(choisi), reference: d.reference }; dessiner(true); return; }
+        if (d._status === 201 || d._status === 200) { fini = { quand: quand(choisi), reference: d.reference }; try { if (window.oaiLead) window.oaiLead(d.reference); } catch (x) {} dessiner(true); return; }
         if (d.error === 'creneau_pris') { erreur = 'Ce créneau vient d\'être pris : choisissez-en un autre.'; choisi = null; jours = null; dessiner(); charger(); return; }
         if (d.error === 'champs') erreur = { prenom: 'Indiquez votre prénom.', telephone: 'Le numéro de téléphone n\'est pas valide.', adresse: 'Indiquez l\'adresse du bien.' }[d.champ] || 'Vérifiez le formulaire.';
         else if (d._status === 429) erreur = 'Trop d\'essais d\'un coup. Appelez Shawez au ' + TEL_AFF + '.';

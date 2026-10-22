@@ -10,6 +10,10 @@
    aucun cookie, aucun localStorage ni sessionStorage (journal : de-claude/metricool-test.md).
    Pages privées (/admin/, /mon-espace/) : AUCUNE balise (le lien de connexion ?lien= ne doit jamais partir chez Metricool).
    /estimer/ : balise chargée seulement si l'adresse n'a pas de paramètre (?adresse= = donnée personnelle).
+4. Mesure des annonces ChatGPT (pixel OpenAI Ads) : <script src="/assets/oai-mesure.js" defer> avant </body> de toutes
+   les pages publiques. Le script ne charge rien sans accord : bandeau montré seulement aux visiteurs venus d'une annonce
+   ChatGPT (?oppref= ou utm_source=chatgpt|openai), SDK chargé seulement après « Accepter ». Jamais sur les pages
+   privées (retiré ici, et le script lui-même s'arrête sur /admin/, /mon-espace/, ?adresse= et ?lien=).
 """
 import datetime as dt, glob, html, json, os, re, subprocess, sys
 from zoneinfo import ZoneInfo
@@ -23,6 +27,8 @@ RSS_LINK = '<link rel="alternate" type="application/rss+xml" href="/conseils/fee
 METRICOOL = ('<script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");'
              'c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,'
              'b.appendChild(c)}loadScript(function(){beTracker.t({hash:"33710f67a0c16d7cbb94d1b2ba10e7a8"})});</script>')
+
+OAI = '<script src="/assets/oai-mesure.js" defer></script>'
 
 PRIVEES = ('admin/', 'mon-espace/')
 SANS_PARAM = ('estimer/',)
@@ -133,6 +139,12 @@ def patch(s, f=''):
         i = s.rfind('</body>')
         if i >= 0:      # un fragment sans </body> n'est pas une page : on n'y touche pas
             s = s[:i] + (METRICOOL_SANS_PARAM if f.startswith(SANS_PARAM) else METRICOOL) + '\n' + s[i:]
+    if f.startswith(PRIVEES):
+        s = s.replace(OAI + '\n', '').replace(OAI, '')
+    elif OAI not in s:
+        i = s.rfind('</body>')
+        if i >= 0:
+            s = s[:i] + OAI + '\n' + s[i:]
     return s
 
 if __name__ == '__main__':

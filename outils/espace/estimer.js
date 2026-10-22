@@ -261,6 +261,7 @@
         memoriser(etat);
         montrer(etat,true);
         try{ if(window.beTracker)window.beTracker.t({hash:'33710f67a0c16d7cbb94d1b2ba10e7a8'}); }catch(x){}
+        try{ if(window.oaiLead)window.oaiLead(d.reference); }catch(x){}
         return;
       }
       if(d.error==='champs'&&d.champ){
