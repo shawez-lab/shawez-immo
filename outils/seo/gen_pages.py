@@ -76,7 +76,7 @@ def build(p):
     if p.get('service'):
         srv = {"@type": "Service", "@id": url + "#service", "name": p['service'],
                "serviceType": p.get('service_type', "Estimation et vente immobilière"),
-               "provider": {"@id": BASE + "/#agent"}, "areaServed": {"@type": "City", "name": p['city']}, "url": url}
+               "provider": {"@id": BASE + "/#agent"}, "areaServed": {"@type": p.get('area_type', 'City'), "name": p['city']}, "url": url}
         if p.get('service_desc'):
             srv["description"] = p['service_desc']
         if not p.get('service_type'):

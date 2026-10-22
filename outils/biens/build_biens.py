@@ -783,9 +783,65 @@ def carte(a, ph, medias, eager=False):
                ('<span class="bl-a">%s</span>' % E(at)) if at else ''))
 
 
+# ------------------------------------------------------------------------------------------------ SEO des fiches
+# Titres ≤ 60 caractères et uniques, descriptions ≤ 160 ; une annonce publiée deux fois (même bien, deux références)
+# pointe sa canonical vers la première et sort du sitemap (contenu dupliqué).
+_TITRES, _DOUBLONS = set(), {}
+
+
+def titre_court(a):
+    bits = []
+    if a.get('surface'):
+        bits.append('%s m²' % fr(round(a['surface']), True))
+    return '%s%s à %s' % (a['type'], (' ' + ', '.join(bits)) if bits else '', a['commune'])
+
+
+def titre_seo(a, prix):
+    p = (' — %s €' % fr(prix)) if prix else ''
+    cands = ['%s%s | Shawez Ali' % (titre(a), p), '%s%s' % (titre(a), p), '%s%s' % (titre_court(a), p), titre_court(a)]
+    ok = [c for c in cands if len(c) <= 60] or [titre_court(a)[:60]]
+    cle = (titre_court(a), prix)
+    if cle not in _TITRES and a['ref'] not in _DOUBLONS:
+        _TITRES.add(cle)
+        return ok[0]
+    c = '%s%s, réf. %s' % (titre_court(a), p, a['ref'])
+    return c if len(c) <= 60 else '%s, réf. %s' % (titre_court(a), a['ref'])
+    c = '%s%s, réf. %s' % (titre_court(a), p, a['ref'])
+    if len(c) > 60:
+        c = '%s, réf. %s' % (titre_court(a), a['ref'])
+    _TITRES.add(cle(c))
+    return c
+
+
+def desc_seo(t, prix, at, ref):
+    px = (' : %s €' % fr(prix)) if prix else ''
+    for n in (3, 2, 1, 0):
+        d = '%s%s. %s Visite avec Shawez Ali, agent immobilier à Dijon. Réf. %s.' % (t, px, (', '.join(at[:n]) + '.') if at and n else '', ref)
+        d = d.replace('.  ', '. ')
+        if len(d) <= 160:
+            return d
+    return ('%s%s. Visite avec Shawez Ali, agent immobilier. Réf. %s.' % (t, px, ref))[:160]
+
+
+def doublons(annonces):
+    """{ref en double: ref gardée} — même type, commune, surface, prix et début de description."""
+    vus, out = {}, {}
+    ordre = sorted(annonces, key=lambda a: (a['status'] not in ACTIFS, a['status'] != 'en vente', not str(a['ref']).isdigit(), str(a['ref'])))
+    for a in ordre:
+        cle = (a['type'], a['commune'], a.get('surface'), a.get('prix'), re.sub(r'\s+', ' ', a.get('description_expurgee') or '')[:200])
+        if not a.get('surface') or not a.get('prix'):
+            continue
+        if cle in vus:
+            out[a['ref']] = vus[cle]
+        else:
+            vus[cle] = a
+    return out
+
+
 def fiche(a, ph, medias, base, voisins, taux):
     ref, m = a['ref'], medias.get(a['ref']) or {}
     url = SITE + chemin_fiche(a)
+    canon = SITE + chemin_fiche(_DOUBLONS[ref]) if ref in _DOUBLONS else url
     t = titre(a)
     st = statut(a)
     actif = a['status'] in ACTIFS
@@ -980,18 +1036,19 @@ def fiche(a, ph, medias, base, voisins, taux):
                    % ', '.join('/assets/biens/%s/%d-%d.avif %dw' % (urllib.parse.quote(ref), n0, x, x) for x, _ in t0))
     else:
         preload = ''
-    titre_page = '%s%s | Shawez Ali' % (t, (' — %s €' % fr(prix)) if prix else '')
-    d = '%s%s. %s Visite avec Shawez Ali, agent immobilier à Dijon. Réf. %s.' % (
-        t, (' : %s €' % fr(prix)) if prix else '', (', '.join(at[:3]) + '.') if at else '', ref)
+    titre_page = titre_seo(a, prix)
+    d = desc_seo(t, prix, at, ref)
     if st and not actif:
         d = '%s — %s. Voir les biens disponibles à Dijon et alentours.' % (t, st)
+        if len(d) > 160:
+            d = '%s — %s. Biens disponibles à Dijon et alentours.' % (titre_court(a), st)
     sticky = ('<a class="btn btn-primary" href="#visite">%s</a><a class="btn ico" href="tel:%s" aria-label="Appeler Shawez">%s</a>'
               '<a class="btn ico" href="%s" target="_blank" rel="noopener" aria-label="Écrire sur WhatsApp">%s</a>' % (cta, TEL, ICO['tel'], wa, ICO['wa']))
-    return page_html(base, route=chemin_fiche(a), titre_page=titre_page, desc=d, canonical=url,
+    return page_html(base, route=chemin_fiche(a), titre_page=titre_page, desc=d, canonical=canon,
                      image='%s/assets/biens/%s/og.jpg' % (SITE, urllib.parse.quote(ref)), image_alt=t, main=main, graph=graph,
                      css=CSS_FICHE + CSS_LISTE_SEUL, js=JS_FICHE, sticky=sticky,
                      head_extra=preload,
-                     robots='index,follow,max-image-preview:large,max-video-preview:-1' if en_ligne(a) else 'noindex,follow')
+                     robots='index,follow,max-image-preview:large,max-video-preview:-1' if en_ligne(a) and ref not in _DOUBLONS else 'noindex,follow')
 
 
 # ------------------------------------------------------------------------------------------------ page des biens
@@ -1146,13 +1203,16 @@ def construire(etat=None):
     tous = sorted([a for a in annonces if ph.get(a['ref'])], key=lambda a: (a['first_seen'], int(a['id']) if str(a.get('id', '')).isdigit() else 0), reverse=True)
     visibles = [a for a in tous if en_ligne(a)]
     actifs = [a for a in visibles if a['status'] in ACTIFS]
+    _TITRES.clear()
+    _DOUBLONS.clear()
+    _DOUBLONS.update(doublons(visibles))
     faites, plan = set(), []
     for a in tous:
         proches = [b for b in actifs if b['ref'] != a['ref'] and (b['commune'] == a['commune'] or b['type'] == a['type'])]
         proches.sort(key=lambda b: (b['type'] != a['type'], b['commune'] != a['commune'], abs((b.get('prix') or 0) - (a.get('prix') or 0))))
         ecrire(P(chemin_fiche(a).strip('/'), 'index.html'), fiche(a, ph[a['ref']], medias, base, [(b, ph[b['ref']]) for b in proches[:3]], taux))
         faites.add(chemin_fiche(a))
-        if en_ligne(a):
+        if en_ligne(a) and a['ref'] not in _DOUBLONS:
             plan.append((chemin_fiche(a), max(a.get('status_changed') or a['first_seen'], a['first_seen'])))
     # fiches d'anciennes annonces qui ne sont plus dans annonces.json : supprimées (leur adresse renvoie à la page des biens)
     for d in glob.glob(P('biens', '*', 'index.html')):

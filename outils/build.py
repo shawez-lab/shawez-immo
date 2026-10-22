@@ -151,3 +151,22 @@ if __name__ == '__main__':
         espace.pictogramme()
     except Exception as e:
         print('pictogramme :', e)
+    # SEO : liens du pied de page vers les pages piliers, plan du site (/plan-du-site/, refait depuis sitemap.xml)
+    # et blocs « Pages liées » (outils/seo/nav_piliers.py, plan_du_site.py, maillage.py)
+    try:
+        sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'seo'))
+        import nav_piliers, plan_du_site, maillage
+        print('pied de page :', nav_piliers.tout(), 'pages mises à jour')
+        print('plan du site :', 'mis à jour' if plan_du_site.construire() else 'inchangé')
+        maillage.COMMUNES.update(maillage.communes())
+        n = 0
+        for f in maillage.pages():
+            p = P(f); s = open(p, encoding='utf-8').read()
+            if 'noindex' in (re.search(r'<meta name="robots" content="([^"]*)"', s) or [None, ''])[1]:
+                continue
+            t = maillage.poser('/' + f[:-len('index.html')], s)
+            if t != s:
+                open(p, 'w', encoding='utf-8').write(t); n += 1
+        print('pages liées :', n, 'pages mises à jour')
+    except Exception as e:
+        print('seo :', e)
