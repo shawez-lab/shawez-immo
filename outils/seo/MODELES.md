@@ -4,6 +4,9 @@ Règle : **une page = un mot-clé principal** (carte : Google Sheet « SEO — c
 Générer : `python3 outils/seo/pages_spec.py /tmp/pages.json && python3 outils/seo/gen_pages.py . /tmp/pages.json`
 (gabarit = article « Choisir un agent » : même en-tête, style, pied de page ; JSON-LD WebSite + Person + agence + `#agent` + WebPage + BreadcrumbList + FAQPage, + Service pour une ville, + Article pour un guide).
 Contrôles : `python3 outils/seo/audit.py .` (titres ≤ 60, descriptions ≤ 160, un H1, pas de doublon) et `python3 outils/seo/crawl.py .` (liens cassés, pages orphelines).
+Audit complet (site servi en local, tous les contrôles, code 1 s'il reste une erreur) : `python3 outils/seo/audit_complet.py`.
+Pages piliers : `python3 outils/seo/piliers_spec.py /tmp/piliers.json && python3 outils/seo/gen_pages.py . /tmp/piliers.json`. Sitemap : `python3 outils/seo/sitemap_maj.py` (ajoute les pages indexables, retire les autres, lastmod des pages modifiées).
+Pied de page vers les piliers (`nav_piliers.py`), plan du site (`plan_du_site.py`) et blocs « Pages liées » (`maillage.py`) : refaits par `python3 outils/build.py`.
 Chiffres : uniquement DVF (`python3 outils/seo/dvf_stats.py`, rayon autour du centre, ventes de l'année) ou source officielle datée. Jamais de chiffre d'activité de Shawez sans accord écrit.
 Mots interdits : « IA », « Claude », « mandataire », « meilleur », « n°1 », « gratuite » (dire « offerte »), « instantanée », « garantie ».
 
