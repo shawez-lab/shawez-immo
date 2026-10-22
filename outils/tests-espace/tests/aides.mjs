@@ -68,6 +68,20 @@ export async function choisirAdresse(page, saisie, libelle) {
   await expect(page.locator('#ee-picked')).toBeVisible();
 }
 
+/* Compteurs de l'étape « Le bien » : vides au départ, il faut les choisir (seuls les compteurs visibles sont réglés).
+   Valeurs par défaut : celles qui étaient préremplies avant (1er étage, 4 étages, 2 niveaux, 3 pièces, 2 chambres). */
+export async function compteurs(page, v = {}) {
+  const d = { etage: 1, etages_immeuble: 4, niveaux: 2, pieces: 3, chambres: 2, ...v };
+  for (const [k, n] of Object.entries(d)) {
+    const s = page.locator(`.ee-stp[data-k="${k}"]`);
+    if (!(await s.isVisible())) continue;
+    if ((await s.getAttribute('data-v')) === '') await s.locator('button[data-d="-1"]').click();
+    let c = +(await s.getAttribute('data-v'));
+    while (c < n) { await s.locator('button[data-d="1"]').click(); c++; }
+    while (c > n) { await s.locator('button[data-d="-1"]').click(); c--; }
+  }
+}
+
 /* Va de l'adresse jusqu'à l'écran des coordonnées. */
 export async function parcours(page, o = {}) {
   const b = { type: 'appartement', adresse: '30 rue bannelier dijon', surface: '72', epoque: '1948-1974', etat: 'bon', delai: 'asap', ...o };
@@ -88,6 +102,7 @@ export async function parcours(page, o = {}) {
     await page.locator(`.ee-tile[data-type="${b.type}"]`).click();
     await attendreEtape(page, 'bien');
     await page.locator('#ee-surface').fill(b.surface);
+    await compteurs(page, b.compteurs);
     if (b.type === 'maison') await page.locator('#ee-terrain').fill(b.terrain || '450');
     await page.locator(`[data-choix="epoque"] [data-v="${b.epoque}"]`).click();
     await page.locator(`[data-choix="etat"] [data-v="${b.etat}"]`).click();

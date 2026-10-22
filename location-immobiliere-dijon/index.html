@@ -1526,7 +1526,9 @@ buildMap($('#map-home')); buildMap($('#map-page'));
   function goStep(n){ steps.forEach(function(s){s.hidden=(parseInt(s.getAttribute('data-step'),10)!==n);}); prog.forEach(function(p,i){p.classList.toggle('done',i<n);}); cur=n;
     var h=steps[n-1].querySelector('h2'); form.scrollIntoView({behavior:PERF==='accessible'?'auto':'smooth',block:'start'}); if(h){h.setAttribute('tabindex','-1');setTimeout(function(){h.focus({preventScroll:true});},350);} }
   function validate(n){ var ok=true;
-    if(n===1){ ok=err('#f-type .pill',!state.type)&&ok; ok=err('#f-commune',!(state.commune||'').trim())&&ok; ok=err('#f-pieces',!state.pieces)&&ok; }
+    if(n===1){ ok=err('#f-type .pill',!state.type)&&ok; ok=err('#f-commune',!(state.commune||'').trim())&&ok; ok=err('#f-pieces',!state.pieces)&&ok;
+      /* surface facultative, mais pas négative, nulle ni farfelue : 5 à 2 000 m², ou vide */
+      var sf=$('#f-surface'), sv=String(state.surface||'').trim().replace(',','.'); ok=err('#f-surface',(sf&&sf.validity&&sf.validity.badInput)||(sv!==''&&!(+sv>=5&&+sv<=2000)))&&ok; }
     if(n===2){ ok=err('#f-delai .pill',!state.delai)&&ok; ok=err('#f-agence .pill',!state.agence)&&ok; }
     if(n===3){ ok=err('#f-prenom',!(state.prenom||'').trim())&&ok; ok=err('#f-nom',!(state.nom||'').trim())&&ok;
       var tel=(state.tel||'').replace(/\s/g,''); ok=err('#f-tel',tel!==''&&!/^(?:\+33|0033|0)[1-9](?:[.\-]?\d{2}){4}$/.test(tel))&&ok;
@@ -1547,7 +1549,8 @@ buildMap($('#map-home')); buildMap($('#map-page'));
     fetch(window.SHAWEZ_LEAD_ENDPOINT,{method:'GET',cache:'no-store',signal:ctrl?ctrl.signal:undefined}).then(function(r){ clearTimeout(t); return r.ok?r.json():{}; }).catch(function(){ clearTimeout(t); return {}; })
     .then(function(j){ if(j&&j.ready===true){ sendLead(); } else { var st=$('#est-state'); st.className='state'; st.innerHTML=''; $('#send-row').hidden=false; $('#send-note').hidden=false; } });
   }
-  function payload(){ return {type:state.type||'',commune:state.commune||'',surface:state.surface?Number(state.surface):null,pieces:state.pieces||'',delai:state.delai||'',deja_en_agence:state.agence==='Oui',message:state.message||'',prenom:state.prenom||'',nom:state.nom||'',email:(state.email||'').trim(),telephone:(state.tel||'').replace(/\s/g,''),creneau:state.creneau||'',consent_notice:!!$('#f-consent').checked,consent_newsletter:!!$('#f-news').checked,website:($('#f-website')||{}).value||'',source:'shawez-immo.com',page:location.href.split('?')[0],ts:new Date().toISOString(),schema:'lead.v1'}; }
+  function surfaceOk(v){ v=Number(String(v||'').trim().replace(',','.')); return v>=5&&v<=2000?v:null; }
+  function payload(){ return {type:state.type||'',commune:state.commune||'',surface:surfaceOk(state.surface),pieces:state.pieces||'',delai:state.delai||'',deja_en_agence:state.agence==='Oui',message:state.message||'',prenom:state.prenom||'',nom:state.nom||'',email:(state.email||'').trim(),telephone:(state.tel||'').replace(/\s/g,''),creneau:state.creneau||'',consent_notice:!!$('#f-consent').checked,consent_newsletter:!!$('#f-news').checked,website:($('#f-website')||{}).value||'',source:'shawez-immo.com',page:location.href.split('?')[0],ts:new Date().toISOString(),schema:'lead.v1'}; }
   function sendLead(){
     setState('','Envoi de votre demande…'); $('#send-row').hidden=true; $('#send-note').hidden=true;
     var ctrl=('AbortController' in window)?new AbortController():null; var t=setTimeout(function(){if(ctrl)ctrl.abort();},12000);
