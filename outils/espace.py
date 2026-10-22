@@ -362,6 +362,8 @@ def page(nom, conf, gabarit, css, commun):
     mesure = re.compile(r'<script>(?:if\(!location\.search\)\{)?function loadScript\(a\).*?</script>\n?', re.S)
     if conf['robots'].startswith('noindex'):
         s = mesure.sub('', s)
+        # mesure des annonces ChatGPT (outils/build.py, assets/oai-mesure.js) : jamais sur une page privée
+        s = re.sub(r'<script src="/assets/oai-mesure\.js" defer></script>\n?', '', s)
     else:
         s = mesure.sub(lambda m: m.group(0) if m.group(0).startswith('<script>if(!location.search){')
                        else m.group(0).replace('<script>', '<script>if(!location.search){', 1).replace('</script>', '}</script>', 1), s)

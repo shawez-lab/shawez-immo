@@ -1548,7 +1548,7 @@ buildMap($('#map-home')); buildMap($('#map-page'));
   function sendLead(){
     setState('','Envoi de votre demande…'); $('#send-row').hidden=true; $('#send-note').hidden=true;
     var ctrl=('AbortController' in window)?new AbortController():null; var t=setTimeout(function(){if(ctrl)ctrl.abort();},12000);
-    fetch(window.SHAWEZ_LEAD_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload()),signal:ctrl?ctrl.signal:undefined}).then(function(r){ clearTimeout(t); if(r.status===202||r.status===201||r.status===200){ return r.json().catch(function(){return {};}).then(function(j){ sess.del('est-draft'); setState('ok','<b>Demande reçue.</b> '+(j.reference?'Référence : '+j.reference+'. ':'')+'Shawez la lit lui-même et vous répond par e-mail'+(state.tel?' ou par téléphone':'')+'. L\'estimation elle-même vous sera envoyée après l\'étude du bien.'); }); } throw new Error('http '+r.status); })
+    fetch(window.SHAWEZ_LEAD_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload()),signal:ctrl?ctrl.signal:undefined}).then(function(r){ clearTimeout(t); if(r.status===202||r.status===201||r.status===200){ return r.json().catch(function(){return {};}).then(function(j){ sess.del('est-draft'); try{if(window.oaiLead)window.oaiLead(j.reference);}catch(x){} setState('ok','<b>Demande reçue.</b> '+(j.reference?'Référence : '+j.reference+'. ':'')+'Shawez la lit lui-même et vous répond par e-mail'+(state.tel?' ou par téléphone':'')+'. L\'estimation elle-même vous sera envoyée après l\'étude du bien.'); }); } throw new Error('http '+r.status); })
     .catch(function(){ clearTimeout(t); setState('ko','<b>La transmission automatique n\'a pas abouti.</b> Votre demande n\'a pas été enregistrée. Vous pouvez l\'envoyer directement par WhatsApp ou par e-mail : tout est déjà prêt ci-dessous.'); $('#send-row').hidden=false; $('#send-note').hidden=false; });
   }
   function line(k,v){return v?'<div><span>'+k+'</span><span>'+v+'</span></div>':'';}
@@ -1602,5 +1602,6 @@ updateTone();
 window.EECompte=function(){var on=/(?:^|;\s*)se_ok=1/.test(document.cookie||'');[].forEach.call(document.querySelectorAll('[data-compte]'),function(a){a.classList.toggle('is-in',on);var t=on?'Mon espace : connecté':'Mon espace : se connecter';if(a.hasAttribute('aria-label')){a.setAttribute('aria-label',t);a.title=t;}var x=a.querySelector('[data-compte-txt]');if(x)x.textContent=on?'Mon espace · connecté':'Mon espace';});};
 window.EECompte();window.addEventListener('pageshow',window.EECompte);
 </script>
+<script src="/assets/oai-mesure.js" defer></script>
 </body>
 </html>

@@ -628,7 +628,7 @@ if(form){
     var ctrl=('AbortController' in window)?new AbortController():null, t=setTimeout(function(){ if(ctrl)ctrl.abort(); },12000);
     fetch('/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(corps),signal:ctrl?ctrl.signal:undefined})
     .then(function(r){ clearTimeout(t); if(r.status>=200&&r.status<300)return r.json().catch(function(){return {};}); throw new Error('http '+r.status); })
-    .then(function(j){ form.reset(); b.disabled=false; etat('ok','<b>Demande reçue.</b> '+(j.reference?'Référence '+j.reference+'. ':'')+'Shawez vous rappelle pour fixer la visite.'); })
+    .then(function(j){ try{if(window.oaiLead)window.oaiLead(j.reference);}catch(x){} form.reset(); b.disabled=false; etat('ok','<b>Demande reçue.</b> '+(j.reference?'Référence '+j.reference+'. ':'')+'Shawez vous rappelle pour fixer la visite.'); })
     .catch(function(){ clearTimeout(t); b.disabled=false; etat('ko','<b>La transmission automatique n\'a pas abouti.</b> Envoyez votre demande directement, tout est prêt :'+repli()); });
   });
 }
