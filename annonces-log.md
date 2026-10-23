@@ -86,3 +86,8 @@ Chaque passage de `outils/sync_annonces.py` ajoute ici les changements constaté
 ## 2026-10-22
 
 - Nouvelle annonce 519 : Appartement à Dijon, 139 000 €.
+
+## 2026-10-23
+
+- Nouvelle annonce 527 : Immeuble à Beaune, 2 500 000 €.
+- Nouvelle annonce 525 : Maison à Neuilly-Crimolois, 450 000 €.
