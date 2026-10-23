@@ -87,6 +87,14 @@ Cible : `cahier-des-charges/systeme-parfait-vendeur-v1.md` (projet Claude). Bran
 - **RGPD** : « Télécharger mes données » dans l'espace (`GET /api/espace/moi/export`) ; journal de l'agence (exports, suppressions, liens fabriqués, réglages) dans `/admin/` → Réglages, actif après la migration `functions/migrations/2026-10-18-admin.sql` (à appliquer à la main, ajouts seulement).
 - **Tableau de bord** : vues rapides cliquables (retards, visites à confirmer, nouvelles, à rappeler), recherche, filtres gardés dans l'onglet, « Masquer les essais », pages de 40 dossiers, Actualiser, Me déconnecter, alerte avant de perdre des notes non enregistrées, confirmations qui se désarment au bout de 8 secondes.
 
+## Pages location (mise en location, sans gestion)
+
+17 pages : `/location-immobiliere-dijon/` (page principale), `/estimation-loyer-dijon/`, `/location-meublee-dijon/`, `/location-etudiante-dijon/`, `/louer-appartement-dijon/` (locataires), une page par commune `/location-immobiliere-<commune>/` (Chenôve, Talant, Fontaine-lès-Dijon, Quetigny, Chevigny-Saint-Sauveur, Longvic, Saint-Apollinaire, Beaune) et 4 articles dans `conseils-vendeurs/` (flux RSS).
+
+- Contenu : `outils/seo/location_spec.py` (textes, FAQ, sources officielles), généré par `outils/seo/gen_pages.py` sur le gabarit des articles : `python3 outils/seo/location_spec.py /tmp/location.json && python3 outils/seo/gen_pages.py . /tmp/location.json && python3 outils/build.py`.
+- Menu : `python3 outils/seo/nav_location.py` (relançable) ajoute « Location » au menu, au menu mobile et au pied de page de toutes les pages ; sous 1 380 px, le menu passe au bouton « Menu » pour ne plus écraser le logo.
+- Règles : jamais de gestion locative proposée (« mise en location, sans gestion : vous gardez la main ensuite ») ; aucun loyer moyen (pas d'observatoire local des loyers officiel pour Dijon) ; honoraires = barème de `/honoraires/` ; chiffres légaux tirés de service-public.fr, legifrance.gouv.fr et anil.org, cités sur chaque page (consultés le 21 octobre 2026). À relire chaque année : plafonds d'honoraires de location, liste des zones tendues et de l'encadrement, calendrier DPE.
+
 ## Avis Google
 
 Source unique : **`avis.json`**, à la racine. Le script `outils/avis.py` en tire :

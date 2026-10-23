@@ -42,6 +42,18 @@ jobs:
         if: steps.heure.outputs.go == '1'
         run: pip install --quiet 'pillow>=11.3'   # AVIF compris (photos des fiches /biens/…)
 
+      - name: Outils vidéo (vidéos Instagram des biens)
+        if: steps.heure.outputs.go == '1'
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg tesseract-ocr tesseract-ocr-fra >/dev/null
+
+      - name: Vidéos des biens reprises d'Instagram (version qualité, jamais celle avec le prix incrusté)
+        if: steps.heure.outputs.go == '1'
+        continue-on-error: true   # Instagram indisponible : les annonces sont quand même synchronisées
+        env:
+          IG_TOKEN: ${{ secrets.IG_TOKEN }}
+          IG_BUSINESS_ID: ${{ secrets.IG_BUSINESS_ID }}
+        run: python3 outils/biens/reels.py
+
       - name: Synchronisation
         if: steps.heure.outputs.go == '1'
         env:

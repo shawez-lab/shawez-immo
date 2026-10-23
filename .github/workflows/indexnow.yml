@@ -1,15 +1,18 @@
-name: IndexNow (Bing, Yandex, Naver, Seznam)
+name: IndexNow (Bing, ChatGPT Search, Yandex, Seznam, Naver)
 
-# À chaque mise en ligne d'une page : signale aux moteurs compatibles IndexNow toutes les URL du sitemap.
-# Google n'utilise pas IndexNow : lui passe par la Search Console (sitemap déclaré + demandes d'indexation).
+# À chaque poussée sur main : signale à IndexNow les pages HTML ajoutées, modifiées ou supprimées par cette poussée
+# (outils/indexnow.py : ignore /admin/, /mon-espace/, de-claude/, outils/, les pages noindex ; 10 000 URL au plus).
+# Une fois par jour : les pages changées par les commits automatiques des dernières 25 h (fiches /biens/ de
+# sync-annonces, construction du site), car un commit fait avec GITHUB_TOKEN ne relance pas ce workflow.
+# Lancement manuel : tout le sitemap. Clé publique : /<clé>.txt à la racine (= outils/indexnow-key.txt), aucun secret.
+# Google n'utilise pas IndexNow : lui passe par la Search Console (sitemap déclaré).
 on:
   push:
     branches: [main]
     paths:
       - '**.html'
-      - 'sitemap.xml'
   schedule:
-    - cron: '17 5 * * 1'   # lundi 7 h 17 Paris : rappel hebdomadaire de tout le sitemap
+    - cron: '23 6 * * *'
   workflow_dispatch: {}
 
 permissions:
@@ -17,7 +20,7 @@ permissions:
 
 concurrency:
   group: indexnow
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   indexnow:
@@ -26,31 +29,32 @@ jobs:
     steps:
       - uses: actions/checkout@v5
         with:
-          ref: main
+          ref: ${{ github.event_name == 'push' && github.sha || 'main' }}
+          fetch-depth: 0
 
-      - name: Attendre la publication Cloudflare Pages (clé IndexNow servie)
+      - name: Liste des URL (essai, sans envoi)
+        id: liste
+        run: |
+          case "${{ github.event_name }}" in
+            push)     ARGS="--avant ${{ github.event.before }} --apres ${{ github.sha }}" ;;
+            schedule) ARGS="--depuis '25 hours ago'" ;;
+            *)        ARGS="--sitemap" ;;
+          esac
+          echo "args=$ARGS" >> "$GITHUB_OUTPUT"
+          eval python3 outils/indexnow.py $ARGS --essai | tee liste.txt
+          if grep -q "^Aucune page" liste.txt; then echo "vide=1" >> "$GITHUB_OUTPUT"; fi
+
+      - name: Attendre la publication Cloudflare Pages (clé servie)
+        if: steps.liste.outputs.vide != '1'
         run: |
           KEY=$(cat outils/indexnow-key.txt)
           for i in $(seq 1 30); do
-            if curl -fsS "https://shawez-immo.com/${KEY}.txt" | grep -q "$KEY"; then echo "Clé servie."; exit 0; fi
+            if curl -fsS "https://shawez-immo.com/${KEY}.txt" | grep -q "$KEY"; then echo "Clé servie."; break; fi
             sleep 15
           done
-          echo "La clé n'est pas servie après 7 min 30 : on tente quand même."
+          # laisser à Cloudflare Pages le temps de publier les pages de cette poussée
+          if [ "${{ github.event_name }}" = "push" ]; then sleep 90; fi
 
-      - name: Envoyer les URL du sitemap à IndexNow
-        run: |
-          KEY=$(cat outils/indexnow-key.txt)
-          python3 - "$KEY" <<'PY'
-          import sys, json, re, urllib.request
-          key = sys.argv[1]
-          xml = open("sitemap.xml", encoding="utf-8").read()
-          urls = re.findall(r"<loc>\s*(https://shawez-immo\.com/[^<\s]*)\s*</loc>", xml)
-          urls = [u for u in urls if not re.search(r"/(admin|mon-espace|merci|biens-a-vendre|estimation-en-ligne)/", u)]
-          body = json.dumps({"host": "shawez-immo.com", "key": key, "keyLocation": f"https://shawez-immo.com/{key}.txt", "urlList": urls}).encode()
-          req = urllib.request.Request("https://api.indexnow.org/indexnow", data=body, headers={"Content-Type": "application/json; charset=utf-8"})
-          try:
-              with urllib.request.urlopen(req, timeout=30) as r:
-                  print("IndexNow:", r.status, len(urls), "URL")
-          except urllib.error.HTTPError as e:
-              print("IndexNow HTTP", e.code, e.read()[:300]); sys.exit(0 if e.code in (200, 202) else 1)
-          PY
+      - name: Envoyer à IndexNow
+        if: steps.liste.outputs.vide != '1'
+        run: eval python3 outils/indexnow.py ${{ steps.liste.outputs.args }}

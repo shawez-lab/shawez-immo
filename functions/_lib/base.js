@@ -157,6 +157,13 @@ CREATE TABLE IF NOT EXISTS courriers (
   cree_le TEXT NOT NULL,
   envoye_le TEXT
 );
+CREATE TABLE IF NOT EXISTS mesures_biens (
+  jour TEXT NOT NULL,
+  ref TEXT NOT NULL,
+  evt TEXT NOT NULL,
+  n INTEGER NOT NULL DEFAULT 0,
+  PRIMARY KEY (jour, ref, evt)
+);
 `;
 const COLONNES_SP = [
   ['demandes', 'raison', 'TEXT'],       // « Pas maintenant » ou « Perdu » : la raison notée par l'agence
@@ -165,7 +172,7 @@ const COLONNES_SP = [
 ];
 /* 1 : étape 2 (journal, visites, avis de valeur). 2 : étape 3 (comptes rendus de visite, offres, notaire, e-mails
    gardés pour le matin, nature des documents). */
-const VERSION_SP = '2';
+const VERSION_SP = '3';   // 3 : mesures_biens (vues, clics « Visiter », vidéo, par bien et par jour, sans cookie)
 
 /* Les 10 statuts d'un dossier, dans l'ordre (jamais plus), et les deux sorties : « Pas maintenant » (relance programmée)
    et « Perdu » (raison notée). Les clés des cinq premiers statuts sont celles de la première version. */

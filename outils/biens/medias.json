@@ -502,7 +502,24 @@
     "Del8q6GtmLp",
     "DegjteDts7n",
     "Dej6eibNLq9"
-   ]
+   ],
+   "video": {
+    "duree": 40.0,
+    "extrait": {
+     "debut": 0,
+     "duree": 0,
+     "recadrer_haut": 0
+    },
+    "fichier": "video.mp4",
+    "hauteur": 1280,
+    "largeur": 720,
+    "octets": 11351310,
+    "poster": "video-poster.webp",
+    "poster_jpg": "video-poster.jpg",
+    "reel": "Del8q6GtmLp",
+    "source": "instagram:Del8q6GtmLp",
+    "webm": "video.webm"
+   }
   },
   "520": {
    "drive": {
@@ -511,11 +528,29 @@
     "photos_hd": []
    },
    "instagram": [
+    "Del2B4OtNOJ",
     "DecRdsBtZE-",
     "Deb6gfONsBI",
     "Deb2iRwtCB5",
     "DeY_bQeoGA3"
-   ]
+   ],
+   "video": {
+    "duree": 33.9,
+    "extrait": {
+     "debut": 0,
+     "duree": 0,
+     "recadrer_haut": 0
+    },
+    "fichier": "video.mp4",
+    "hauteur": 1280,
+    "largeur": 720,
+    "octets": 6765195,
+    "poster": "video-poster.webp",
+    "poster_jpg": "video-poster.jpg",
+    "reel": "Del2B4OtNOJ",
+    "source": "instagram:Del2B4OtNOJ",
+    "webm": "video.webm"
+   }
   },
   "5430963": {
    "drive": {

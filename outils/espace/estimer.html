@@ -2,7 +2,8 @@
   <div class="page-head shell">
     <p class="label">Estimation offerte · 2 minutes</p>
     <h1 class="display d-xl" style="margin-top:14px;">Combien vaut votre bien <em>aujourd'hui ?</em></h1>
-    <p class="lede">6 questions, 2 minutes : votre fourchette de prix s'affiche tout de suite, calculée sur les ventes signées autour de chez vous. Ensuite, si vous le voulez, une estimation précise chez vous, offerte et sans engagement.</p>
+    <p class="lede">6 étapes, 2 minutes : votre fourchette de prix s'affiche tout de suite, calculée sur les ventes signées autour de chez vous. Ensuite, si vous le voulez, une estimation précise chez vous, offerte et sans engagement.</p>
+    <p class="ee-remise">Vos coordonnées vous sont demandées à la dernière étape : la fourchette s'affiche alors aussitôt à l'écran, et elle reste rangée dans un espace personnel ouvert avec votre e-mail, sans mot de passe à créer.</p>
   </div>
   <div class="shell">
     <form class="form ee-wrap" id="ee-form" novalidate autocomplete="on">
@@ -51,16 +52,16 @@
         <div class="ee-head"><p class="ee-count">Étape 3 sur 6</p><h2 class="ee-q">Décrivez-le <em>en quelques clics.</em></h2></div>
         <div class="field">
           <label for="ee-surface" id="ee-surface-lab">Surface habitable</label>
-          <div class="ee-unit"><input type="number" id="ee-surface" inputmode="numeric" min="9" max="2000" placeholder="ex. 72"><i>m²</i></div>
+          <div class="ee-unit"><input type="number" id="ee-surface" inputmode="numeric" min="5" max="2000" placeholder="ex. 72"><i>m²</i></div>
           <span class="hint" id="ee-surface-hint">Surface loi Carrez si vous l'avez, sinon une surface approximative.</span>
-          <span class="msg">Indiquez la surface (en m²).</span>
+          <span class="msg">Indiquez une surface entre 5 et 2 000 m².</span>
         </div>
         <div class="ee-stps" data-pour="appartement maison">
-          <div class="ee-stp" data-k="etage" data-min="0" data-max="40" data-v="1" data-pour="appartement"><div class="l">Étage du bien<small>0 = rez-de-chaussée</small></div><div class="c"><button type="button" data-d="-1" aria-label="Moins">−</button><output aria-live="polite">1</output><button type="button" data-d="1" aria-label="Plus">+</button></div></div>
-          <div class="ee-stp" data-k="etages_immeuble" data-min="0" data-max="40" data-v="4" data-pour="appartement"><div class="l">Étages de l'immeuble<small>Sans compter le rez-de-chaussée</small></div><div class="c"><button type="button" data-d="-1" aria-label="Moins">−</button><output aria-live="polite">4</output><button type="button" data-d="1" aria-label="Plus">+</button></div></div>
-          <div class="ee-stp" data-k="niveaux" data-min="1" data-max="6" data-v="2" data-pour="maison"><div class="l">Niveaux habitables<small>1 = plain-pied</small></div><div class="c"><button type="button" data-d="-1" aria-label="Moins">−</button><output aria-live="polite">2</output><button type="button" data-d="1" aria-label="Plus">+</button></div></div>
-          <div class="ee-stp" data-k="pieces" data-min="1" data-max="20" data-v="3"><div class="l">Pièces<small>Sans la cuisine ni les salles d'eau</small></div><div class="c"><button type="button" data-d="-1" aria-label="Moins">−</button><output aria-live="polite">3</output><button type="button" data-d="1" aria-label="Plus">+</button></div></div>
-          <div class="ee-stp" data-k="chambres" data-min="0" data-max="15" data-v="2"><div class="l">Chambres</div><div class="c"><button type="button" data-d="-1" aria-label="Moins">−</button><output aria-live="polite">2</output><button type="button" data-d="1" aria-label="Plus">+</button></div></div>
+          <div class="ee-stp" data-k="etage" data-min="0" data-max="40" data-v="" data-pour="appartement"><div class="l">Étage du bien<small>0 = rez-de-chaussée</small></div><div class="c"><button type="button" data-d="-1" aria-label="Moins">−</button><output aria-live="polite">–</output><button type="button" data-d="1" aria-label="Plus">+</button></div><span class="msg">Choisissez l'étage du bien.</span></div>
+          <div class="ee-stp" data-k="etages_immeuble" data-min="0" data-max="40" data-v="" data-pour="appartement"><div class="l">Étages de l'immeuble<small>Sans compter le rez-de-chaussée</small></div><div class="c"><button type="button" data-d="-1" aria-label="Moins">−</button><output aria-live="polite">–</output><button type="button" data-d="1" aria-label="Plus">+</button></div><span class="msg">Indiquez le nombre d'étages de l'immeuble.</span></div>
+          <div class="ee-stp" data-k="niveaux" data-min="1" data-max="6" data-v="" data-pour="maison"><div class="l">Niveaux habitables<small>1 = plain-pied</small></div><div class="c"><button type="button" data-d="-1" aria-label="Moins">−</button><output aria-live="polite">–</output><button type="button" data-d="1" aria-label="Plus">+</button></div><span class="msg">Indiquez le nombre de niveaux.</span></div>
+          <div class="ee-stp" data-k="pieces" data-min="1" data-max="20" data-v=""><div class="l">Pièces<small>Sans la cuisine ni les salles d'eau</small></div><div class="c"><button type="button" data-d="-1" aria-label="Moins">−</button><output aria-live="polite">–</output><button type="button" data-d="1" aria-label="Plus">+</button></div><span class="msg">Indiquez le nombre de pièces.</span></div>
+          <div class="ee-stp" data-k="chambres" data-min="0" data-max="15" data-v=""><div class="l">Chambres</div><div class="c"><button type="button" data-d="-1" aria-label="Moins">−</button><output aria-live="polite">–</output><button type="button" data-d="1" aria-label="Plus">+</button></div><span class="msg">Indiquez le nombre de chambres.</span></div>
         </div>
         <div class="field" data-pour="maison">
           <label for="ee-terrain">Surface du terrain</label>

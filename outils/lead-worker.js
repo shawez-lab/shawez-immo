@@ -57,6 +57,8 @@ export default {
       const v = d[k];
       lead[k] = typeof v === 'boolean' ? v : v == null ? '' : String(v).trim().slice(0, max);
     }
+    // surface facultative : nulle, négative, absurde (> 100 000 m²) ou illisible → ignorée
+    { const n = Number(String(lead.surface).replace(',', '.')); lead.surface = lead.surface !== '' && Number.isFinite(n) && n > 0 && n <= 100000 ? String(Math.round(n)) : ''; }
     const manque = [];
     if (!lead.prenom) manque.push('prenom');
     if (!lead.nom) manque.push('nom');

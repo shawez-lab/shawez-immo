@@ -53,7 +53,14 @@ const dire = async (page, id) => (await api(page, '/admin/dire', { demande: id }
 const vue = async (page, id) => (await api(page, '/admin/demandes')).demandes.find((x) => x.id === id);
 const promesse7 = async (page, ref) => (await api(page, '/admin/promesses')).promesses[6].a_regarder.filter((m) => m.reference === ref);
 const csv7 = async (page, ref) => (await page.evaluate(async () => (await fetch('/api/espace/admin/promesses.csv?jours=7')).text())).split('\r\n').filter((l) => l.startsWith('7;') && l.includes(ref));
-const dansDeuxJours = () => { const d = new Date(Date.now() + 2 * 86400000); if (d.getUTCDay() === 0) d.setUTCDate(d.getUTCDate() + 1); return d.toISOString().slice(0, 10) + 'T08:00:00.000Z'; };
+/* dans deux jours (pas un dimanche) à 10 h, heure de Paris : l'instant UTC suit le décalage du jour (été ou hiver) */
+const dansDeuxJours = () => {
+  const d = new Date(Date.now() + 2 * 86400000); if (d.getUTCDay() === 0) d.setUTCDate(d.getUTCDate() + 1);
+  const essai = new Date(d.toISOString().slice(0, 10) + 'T10:00:00Z');
+  const vu = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Paris', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).format(essai);
+  const [hv, mv] = vu.split(':').map(Number);
+  return new Date(essai.getTime() - ((hv * 60 + mv) - 600) * 60000).toISOString();
+};
 
 /* ------------------------------------------------------------------------------------------------------------- */
 
@@ -114,7 +121,7 @@ test.describe('e-mails aux vendeurs fermés (comme en ligne aujourd\'hui)', () =
 
     // 3. WhatsApp s'ouvre avec le message ; le dossier note que le vendeur est prévenu
     const [fenetre] = await Promise.all([page.waitForEvent('popup'), wa.click()]);
-    expect(fenetre.url()).toContain('wa.me/33611223344');
+    await expect.poll(() => fenetre.url(), { message: 'la fenêtre WhatsApp n’a pas encore son adresse' }).toContain('wa.me/33611223344');   // l'adresse arrive un instant après l'ouverture
     await fenetre.close();
     await expect(bloc.locator('[data-test="dire-fait"]')).toHaveText('Noté : vendeur prévenu par WhatsApp (Mandat signé).');
     await expect(bloc.locator('[data-test="dire-quoi"]')).toHaveCount(0);

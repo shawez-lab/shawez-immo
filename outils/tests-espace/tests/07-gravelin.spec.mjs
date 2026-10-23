@@ -5,7 +5,7 @@ import AxeBuilder from '@axe-core/playwright';
 import { readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { fausseBan, coordonnees, afficherResultat, etape, attendreEtape, suivant, choisirAdresse, moi, emailTest, connexionParLien, ADMIN, api } from './aides.mjs';
+import { fausseBan, coordonnees, afficherResultat, etape, attendreEtape, suivant, choisirAdresse, moi, emailTest, connexionParLien, ADMIN, api, compteurs } from './aides.mjs';
 
 const DEMO = '/outils/espace-estimation-gravelin/';
 /* Depuis le Lot 1, /outils/ n'est plus servi par le site (fichiers internes en 404) : le module de l'agence est à copier
@@ -55,6 +55,7 @@ test('module à la charte de l\'agence : parcours complet, résultat, espace, so
   await page.locator('.ee-tile[data-type="appartement"]').click();
   await attendreEtape(page, 'bien');
   await page.locator('#ee-surface').fill('72');
+  await compteurs(page);
   await page.locator('[data-choix="epoque"] [data-v="1948-1974"]').click();
   await page.locator('[data-choix="etat"] [data-v="bon"]').click();
   await photo('etape-3-le-bien', true);
