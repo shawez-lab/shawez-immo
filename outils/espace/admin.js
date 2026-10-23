@@ -210,6 +210,19 @@
     $('#ad-no-txt').textContent='Votre session a expiré. Demandez un nouveau lien de connexion : la page se rouvrira où vous étiez (les notes non enregistrées sont à ressaisir).';
     EE.pictogramme(); window.scrollTo({top:0}); $('#ad-email').focus({preventScroll:true});
   });
+  /* mesures par bien (onglet « Biens ») : /api/espace/admin/mesures-biens, sans cookie côté visiteur */
+  function mesuresBiens(){
+    var b=$('#ad-mb-btn'), z=$('#ad-mb'); EE.occupe(b,true);
+    EE.api('/admin/mesures-biens').then(function(d){
+      EE.occupe(b,false); z.dataset.lu='1';
+      if(d._status!==200){z.innerHTML='<p class="ee-err">'+EE.esc(EE.message(d))+'</p>';return;}
+      var pl=function(n,un,plus){return n+' '+(n>1?plus:un);};
+      z.innerHTML=d.biens.length?'<ul class="ee-kv">'+d.biens.map(function(x){
+        return '<li><span>Réf. '+EE.esc(x.ref)+'</span><span>'+[pl(x.vue,'vue','vues'),pl(x.visiter,'clic « Visiter »','clics « Visiter »'),pl(x.rdv,'visite réservée','visites réservées'),pl(x.video,'vidéo regardée','vidéos regardées'),pl(x.whatsapp,'WhatsApp','WhatsApp'),pl(x.appel,'appel','appels')].join(' · ')+'</span></li>';
+      }).join('')+'</ul>':'<p class="hint">Rien pour le moment : les compteurs démarrent avec la mise en ligne des fiches mesurées.</p>';
+    });
+  }
+  $('#ad-mb-btn').addEventListener('click',mesuresBiens);
   /* journal de l'agence (Réglages) */
   var ACTIONS_AGENCE={export:'Export CSV',demande_supprimee:'Demande supprimée',compte_supprime:'Compte supprimé',lien_fabrique:'Lien de connexion fabriqué',cle_flux:'Nouvelle clé Google Sheet',reglages:'Réglages modifiés',deconnexion_partout:'Déconnexion de tous les appareils'};
   $('#ad-ja-btn').addEventListener('click',function(){
@@ -221,7 +234,7 @@
       z.innerHTML=d.journal.length?'<ul class="ee-kv ee-ja">'+d.journal.map(function(l){var x=l.detail||{};return '<li><span>'+EE.esc(EE.quandCourt(l.cree_le))+'</span><span>'+EE.esc((ACTIONS_AGENCE[l.action]||l.action)+(x.reference?' · '+x.reference:'')+(x.quoi?' · '+x.quoi:'')+' · '+l.par)+'</span></li>';}).join('')+'</ul>':'<p class="hint">Rien pour le moment.</p>';
     });
   });
-  $$('[data-vue]').forEach(function(b){b.addEventListener('click',function(){var v=b.getAttribute('data-vue');['demandes','comptes','reglages'].forEach(function(k){$('#ad-'+k).hidden=v!==k;});$$('[data-vue]').forEach(function(x){x.setAttribute('aria-pressed',String(x===b));});});});
+  $$('[data-vue]').forEach(function(b){b.addEventListener('click',function(){var v=b.getAttribute('data-vue');['demandes','comptes','biens','reglages'].forEach(function(k){$('#ad-'+k).hidden=v!==k;});if(v==='biens'&&!$('#ad-mb').dataset.lu)mesuresBiens();$$('[data-vue]').forEach(function(x){x.setAttribute('aria-pressed',String(x===b));});});});
 
   /* ce qu'il est advenu de l'e-mail au vendeur, en fin de message */
   function mailTxt(m,n){ return m==='envoye'?' · e-mail envoyé au vendeur.':m==='differe'?' · e-mail au vendeur prévu à 8 h (rien ne part entre 21 h et 8 h).':n&&n.a_dire?' · le message pour le vendeur est prêt, en haut du dossier.':'.'; }

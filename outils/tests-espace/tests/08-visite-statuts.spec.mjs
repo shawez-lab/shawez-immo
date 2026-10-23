@@ -6,6 +6,13 @@ import { fausseBan, estimationComplete, moi, api, viderBoite, courrier, pour, li
 
 test.beforeEach(async ({ page }) => { await fausseBan(page); });
 
+/* « 2026-10-27 » + « 18:05 » (heure de Paris) → l'instant UTC correspondant, quel que soit le décalage ce jour-là */
+const utcDeParis = (jour, hm) => {
+  const essai = new Date(`${jour}T${hm}:00Z`);
+  const vu = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Paris', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).format(essai);
+  const [hv, mv] = vu.split(':').map(Number), [h, m] = hm.split(':').map(Number);
+  return new Date(essai.getTime() - ((hv * 60 + mv) - (h * 60 + m)) * 60000).toISOString();
+};
 const capture = (page, info, nom) => page.screenshot({ path: `captures/${info.project.name}-${nom}.png`, fullPage: true });
 
 /* Un client fait son estimation dans son propre navigateur. */
@@ -146,13 +153,14 @@ test('rappel de visite : envoyé la veille à 18 h, une seule fois', async ({ pa
   expect(r.demande.statut).toBe('visite');
   await viderBoite(request);
   const veille = new Date(new Date(j + 'T12:00:00Z').getTime() - 86400000).toISOString().slice(0, 10);
-  const taches = async (h) => (await request.get(`${SITE}/api/espace/taches?maintenant=${veille}T${h}:00Z`)).json();
-  expect((await taches('15:30')).rappels).toBe(0);                 // 17 h 30 à Paris
-  expect((await taches('16:05')).rappels).toBeGreaterThanOrEqual(1);   // 18 h 05
+  // l'heure de Paris du jour de la veille, en UTC (été ou hiver : le changement d'heure ne doit pas casser le test)
+  const taches = async (h) => (await request.get(`${SITE}/api/espace/taches?maintenant=${utcDeParis(veille, h)}`)).json();
+  expect((await taches('17:30')).rappels).toBe(0);                 // 17 h 30 à Paris
+  expect((await taches('18:05')).rappels).toBeGreaterThanOrEqual(1);   // 18 h 05
   const rappel = await courrier(request, pour(c.contact.email, /Rappel : visite d'estimation demain à 10 h/));
   expect(rappel.length).toBe(1);
   expect(rappel[0].text).toContain('titre de propriété');
-  expect((await taches('17:05')).rappels).toBe(0);                 // déjà parti
+  expect((await taches('19:05')).rappels).toBe(0);                 // déjà parti
   expect((await courrier(request, pour(c.contact.email, /Rappel/), { attente: 1500 })).length).toBe(1);
   await c.ctx.close();
 });

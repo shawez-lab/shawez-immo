@@ -7,7 +7,7 @@
    GET  /api/lead → { ready: true } quand la base est reliée (la page envoie alors d'elle-même ; sinon WhatsApp/e-mail)
    POST /api/lead → { reference } (201)
 */
-import { db, json, Erreur, corps, texte, entier, email as lireEmail, telephone, verifierOrigine, ip, limiter, maintenant } from '../_lib/base.js';
+import { db, json, Erreur, corps, texte, email as lireEmail, telephone, verifierOrigine, ip, limiter, maintenant } from '../_lib/base.js';
 import { envoyer, mailPossible, destinatairesAlerte, adresseDeTest, gabarit, bouton, esc } from '../_lib/mail.js';
 
 const TYPES = {
@@ -19,6 +19,14 @@ const DELAIS = { 'Je vends dans les 3 mois': 'asap', "Je vends dans l'année": '
 function reference() {
   const d = new Date().toISOString().slice(0, 10).replace(/-/g, '');
   return `E-${d}-${crypto.randomUUID().replace(/-/g, '').slice(0, 6).toUpperCase()}`;
+}
+
+/* Surface facultative : une valeur nulle, négative, absurde (> 100 000 m²) ou illisible est ignorée (null),
+   pour ne jamais perdre la demande à cause d'elle. Le formulaire, lui, n'accepte que 5 à 2 000 m², ou vide. */
+function surfaceLue(v) {
+  if (v == null || v === '') return null;
+  const n = Number(typeof v === 'string' ? v.trim().replace(',', '.') : v);
+  return Number.isFinite(n) && n > 0 && n <= 100000 ? Math.round(n) : null;
 }
 
 export async function onRequest(context) {
@@ -50,7 +58,7 @@ async function recevoir(ctx) {
   const rep = {
     type, ...(autreType ? { autre_type: autreType } : {}),
     commune: texte(d.commune, 120, { requis: true, nom: 'commune' }),
-    surface: entier(d.surface, 1, 100000, { nom: 'surface' }),
+    surface: surfaceLue(d.surface),
     pieces: Number.isFinite(pieces) ? pieces : (/studio/i.test(piecesLibelle) ? 1 : null),
     pieces_libelle: piecesLibelle,
     delai: DELAIS[d.delai] || 'nsp',

@@ -78,3 +78,11 @@ Chaque passage de `outils/sync_annonces.py` ajoute ici les changements constaté
 ## 2026-10-16
 
 - Annonce 493 : absente des pages de l'agence et fiche hors ligne, sans mention → « retirée ».
+
+## 2026-10-21
+
+- Annonce 446 : prix 120 000 € → 115 000 €.
+
+## 2026-10-22
+
+- Nouvelle annonce 519 : Appartement à Dijon, 139 000 €.

@@ -1104,6 +1104,7 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 @media(max-width:359px){.nav-compte{width:38px;height:38px;}}
 #menu .m-alt+.m-alt{margin-top:10px;}
 </style>
+<style id="nav-location">@media(min-width:760px){#nav .brand{flex-shrink:0;}}@media(max-width:1439px){.nav-links{gap:16px;}}@media(max-width:1380px){.nav-links{display:none;} #burger{display:inline-flex;align-items:center;gap:8px;} .nav-cta .btn-primary{display:none;}}</style>
 </head>
 <body data-route="/territoire">
 <header id="nav">
@@ -1112,6 +1113,7 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
     <ul class="nav-links">
       <li><a href="/vendre-bien-immobilier-dijon/" data-nav="vendre">Vendre</a></li>
       <li><a href="/vendre-commerce-dijon/" data-nav="commerces">Commerces</a></li>
+      <li><a href="/location-immobiliere-dijon/" data-nav="location">Location</a></li>
       <li><a href="/conseils-vendeurs/" data-nav="conseils">Conseils</a></li>
       <li><a href="/videos-immobilier-dijon/" data-nav="videos">Vidéos</a></li>
       <li><a href="/simulateur-pret-immobilier-dijon/" data-nav="simulateur">Simulateur</a></li>
@@ -1130,6 +1132,7 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
   <ul>
     <li><a href="/vendre-bien-immobilier-dijon/">Vendre <small>Film, photos, drone, diffusion partout</small></a></li>
     <li><a href="/vendre-commerce-dijon/">Commerces <small>Cédez en toute discrétion</small></a></li>
+    <li><a href="/location-immobiliere-dijon/">Location <small>Trouver un locataire, sans gestion</small></a></li>
     <li><a href="/biens-a-vendre-dijon/">Biens à vendre <small>Nos biens en vente</small></a></li>
     <li><a href="/conseils-vendeurs/">Conseils <small>Vendre mieux, éviter les pièges</small></a></li>
     <li><a href="/videos-immobilier-dijon/">Vidéos <small>Voyez comment votre bien sera filmé</small></a></li>
@@ -1182,9 +1185,11 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
       <p>Plus au sud, <a class="link" href="/immobilier-nuits-saint-georges/">Nuits-Saint-Georges</a> et <a class="link" href="/agent-immobilier-beaune/">Beaune</a>, sur la Route des Grands Crus, ont leur propre marché : maisons de village, demeures de caractère, biens liés à la vigne. Les acheteurs viennent parfois de loin, et la visite en vidéo leur permet de se faire une idée avant de se déplacer.</p>
       <p>Pour les acquéreurs, la carte est aussi un point de départ. Selon le budget et le mode de vie, un appartement au centre de Dijon, une maison à Talant ou une maison de village vers Nuits-Saint-Georges répondent à des projets très différents. Je vous dis ce que j'observe dans chaque secteur, sans chercher à vous orienter vers un bien plutôt qu'un autre.</p>
       <p>Partout, je reste agent commercial de l'agence GRAVELIN IMMO, à Dijon. Touchez une commune sur la carte pour voir ce que j'y ai déjà fait, ou <a class="link" href="/estimation-immobiliere-dijon/">demandez l'estimation de votre bien</a>. Les prix réels secteur par secteur sont sur la page <a class="link" href="/prix-immobilier-dijon/">prix immobilier à Dijon</a>.</p>
+      <p>Je fais aussi la mise en location, sans gestion : je trouve le locataire, je prépare le bail et je fais l'état des lieux, puis vous gardez la main. <a class="link" href="/location-immobiliere-dijon/">Mettre en location à Dijon</a> ; dans la métropole : <a class="link" href="/location-immobiliere-chenove/">Chenôve</a>, <a class="link" href="/location-immobiliere-talant/">Talant</a>, <a class="link" href="/location-immobiliere-fontaine-les-dijon/">Fontaine-lès-Dijon</a>, <a class="link" href="/location-immobiliere-quetigny/">Quetigny</a>, <a class="link" href="/location-immobiliere-chevigny-saint-sauveur/">Chevigny-Saint-Sauveur</a>, <a class="link" href="/location-immobiliere-longvic/">Longvic</a>, <a class="link" href="/location-immobiliere-saint-apollinaire/">Saint-Apollinaire</a>, <a class="link" href="/location-immobiliere-beaune/">Beaune</a>. Pour fixer le loyer : <a class="link" href="/estimation-loyer-dijon/">estimer le loyer à Dijon</a> ; pour un meublé ou des étudiants : <a class="link" href="/location-meublee-dijon/">location meublée</a>, <a class="link" href="/location-etudiante-dijon/">location étudiante</a>. Vous cherchez un logement : <a class="link" href="/louer-appartement-dijon/">louer un appartement à Dijon</a>.</p>
     </div>
   </div>
 </section>
+<!-- maillage --><nav class="shell maillage" aria-label="Pages liées" style="padding-block:clamp(32px,5vw,64px);"><p class="label">Pages liées</p><ul style="list-style:none;margin:14px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:10px 28px;"><li><a class="link" href="/agent-immobilier-dijon/">Agent immobilier à Dijon</a></li><li><a class="link" href="/prix-immobilier-cote-d-or/">Prix immobilier en Côte-d&#x27;Or</a></li><li><a class="link" href="/chateau-a-vendre-bourgogne/">Châteaux et biens de prestige</a></li></ul></nav><!-- /maillage -->
 </main>
 <footer>
   <div class="shell">
@@ -1196,9 +1201,9 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
         <span>Agent commercial en immobilier, rattaché à GRAVELIN IMMO — 30 rue Bannelier, 21000 Dijon. RSAC Dijon n° 843 345 380 (numéro SIREN, extrait INPI en cours de vérification) · SIREN 843 345 380.</span>
         <span><a href="tel:+33767579228">07 67 57 92 28</a> · <a href="mailto:shawez@gravelin-immo.com">shawez@gravelin-immo.com</a></span>
       </div>
-      <div><p class="ft-h">Vendre</p><ul><li><a href="/estimer/">Estimer mon bien</a></li><li><a href="/estimation-immobiliere-dijon/">Estimation chez vous, offerte</a></li><li><a href="/vendre-bien-immobilier-dijon/">Vendre à Dijon</a></li><li><a href="/vendre-commerce-dijon/">Commerces</a></li><li><a href="/biens-a-vendre-dijon/">Voir les biens à vendre</a></li><li><a href="/honoraires/">Honoraires</a></li></ul></div>
-      <div><p class="ft-h">Découvrir</p><ul><li><a href="/conseils-vendeurs/">Conseils aux vendeurs</a></li><li><a href="/simulateur-pret-immobilier-dijon/">Simulateur de prêt</a></li><li><a href="/videos-immobilier-dijon/">Vidéos</a></li><li><a href="/shawez-ali-agent-immobilier-dijon/">À propos</a></li><li><a href="/secteurs-dijon-nuits-saint-georges-beaune/">Territoire</a></li><li><a href="/avis/">Avis</a></li><li><a href="/podcast/">Podcast</a></li></ul></div>
-      <div><p class="ft-h">Pratique</p><ul><li><a href="/contact/">Contact</a></li><li><a href="/mon-espace/">Mon espace</a></li><li><a href="/mentions-legales/">Mentions légales</a></li><li><a href="/politique-de-confidentialite/">Confidentialité</a></li><li><a href="/cookies/">Cookies</a></li><li><a href="https://www.instagram.com/shawez_immo" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.linkedin.com/in/shawez-ali" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://www.youtube.com/@gravelinimmo" target="_blank" rel="noopener">YouTube</a></li></ul></div>
+      <div><p class="ft-h">Vendre</p><ul><li><a href="/estimer/">Estimer mon bien</a></li><li><a href="/estimation-immobiliere-dijon/">Estimation chez vous, offerte</a></li><li><a href="/vendre-bien-immobilier-dijon/">Vendre à Dijon</a></li><li><a href="/location-immobiliere-dijon/">Mettre en location</a></li><li><a href="/vendre-commerce-dijon/">Commerces</a></li><li><a href="/fonds-de-commerce-a-vendre-dijon/">Fonds de commerce à vendre</a></li><li><a href="/immobilier-professionnel-dijon/">Murs, bureaux, locaux</a></li><li><a href="/chateau-a-vendre-bourgogne/">Châteaux et prestige</a></li><li><a href="/biens-a-vendre-dijon/">Voir les biens à vendre</a></li><li><a href="/honoraires/">Honoraires</a></li></ul></div>
+      <div><p class="ft-h">Découvrir</p><ul><li><a href="/agent-immobilier-dijon/">Agent immobilier à Dijon</a></li><li><a href="/conseils-vendeurs/">Conseils aux vendeurs</a></li><li><a href="/simulateur-pret-immobilier-dijon/">Simulateur de prêt</a></li><li><a href="/videos-immobilier-dijon/">Vidéos</a></li><li><a href="/shawez-ali-agent-immobilier-dijon/">À propos</a></li><li><a href="/secteurs-dijon-nuits-saint-georges-beaune/">Territoire</a></li><li><a href="/prix-immobilier-dijon/">Prix au m² à Dijon</a></li><li><a href="/avis/">Avis</a></li><li><a href="/podcast/">Podcast</a></li></ul></div>
+      <div><p class="ft-h">Pratique</p><ul><li><a href="/contact/">Contact</a></li><li><a href="/mon-espace/">Mon espace</a></li><li><a href="/mentions-legales/">Mentions légales</a></li><li><a href="/politique-de-confidentialite/">Confidentialité</a></li><li><a href="/cookies/">Cookies</a></li><li><a href="/plan-du-site/">Plan du site</a></li><li><a href="https://www.instagram.com/shawez_immo" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.linkedin.com/in/shawez-ali" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://www.youtube.com/@gravelinimmo" target="_blank" rel="noopener">YouTube</a></li></ul></div>
     </div>
     <div class="ft-bot">
       <span>© 2026 Shawez Ali · Agent commercial en immobilier, GRAVELIN IMMO</span>
@@ -1235,6 +1240,13 @@ function playMuted(v){ if(!v)return; if(!(v.parentNode&&v.closest('.reel.unmuted
 
 /* ---------- VIDÉOS : données ---------- */
 var REELS=[
+ {f:'v41',t:'Rez-de-jardin avec terrasse, à Chevigny',s:'Visite en vidéo'},
+ {f:'v42',t:'Un T4 avec deux balcons, à Dijon',s:'Visite en vidéo'},
+ {f:'v43',t:'Maison avec jardin et trois chambres',s:'Visite en vidéo'},
+ {f:'v44',t:'Un T4 avec vue, quartier des Grands Crus',s:'Visite en vidéo'},
+ {f:'v45',t:'Un restaurant de 135 places à reprendre',s:'Commerces'},
+ {f:'v46',t:'Un fleuriste au cœur de Dijon',s:'Commerces'},
+ {f:'v47',t:'Une boutique près de la place Darcy',s:'Commerces'},
  {f:'equipe-v1',t:'En tournage, derrière la caméra',s:'Les coulisses · l\'équipe'},
  {f:'v35',t:'Un loft sous la charpente',s:'Visite en vidéo'},
  {f:'v38',t:'Un château du XIXe siècle et son parc',s:'Visite en vidéo'},
@@ -1499,7 +1511,9 @@ buildMap($('#map-home')); buildMap($('#map-page'));
   function goStep(n){ steps.forEach(function(s){s.hidden=(parseInt(s.getAttribute('data-step'),10)!==n);}); prog.forEach(function(p,i){p.classList.toggle('done',i<n);}); cur=n;
     var h=steps[n-1].querySelector('h2'); form.scrollIntoView({behavior:PERF==='accessible'?'auto':'smooth',block:'start'}); if(h){h.setAttribute('tabindex','-1');setTimeout(function(){h.focus({preventScroll:true});},350);} }
   function validate(n){ var ok=true;
-    if(n===1){ ok=err('#f-type .pill',!state.type)&&ok; ok=err('#f-commune',!(state.commune||'').trim())&&ok; ok=err('#f-pieces',!state.pieces)&&ok; }
+    if(n===1){ ok=err('#f-type .pill',!state.type)&&ok; ok=err('#f-commune',!(state.commune||'').trim())&&ok; ok=err('#f-pieces',!state.pieces)&&ok;
+      /* surface facultative, mais pas négative, nulle ni farfelue : 5 à 2 000 m², ou vide */
+      var sf=$('#f-surface'), sv=String(state.surface||'').trim().replace(',','.'); ok=err('#f-surface',(sf&&sf.validity&&sf.validity.badInput)||(sv!==''&&!(+sv>=5&&+sv<=2000)))&&ok; }
     if(n===2){ ok=err('#f-delai .pill',!state.delai)&&ok; ok=err('#f-agence .pill',!state.agence)&&ok; }
     if(n===3){ ok=err('#f-prenom',!(state.prenom||'').trim())&&ok; ok=err('#f-nom',!(state.nom||'').trim())&&ok;
       var tel=(state.tel||'').replace(/\s/g,''); ok=err('#f-tel',tel!==''&&!/^(?:\+33|0033|0)[1-9](?:[.\-]?\d{2}){4}$/.test(tel))&&ok;
@@ -1520,11 +1534,12 @@ buildMap($('#map-home')); buildMap($('#map-page'));
     fetch(window.SHAWEZ_LEAD_ENDPOINT,{method:'GET',cache:'no-store',signal:ctrl?ctrl.signal:undefined}).then(function(r){ clearTimeout(t); return r.ok?r.json():{}; }).catch(function(){ clearTimeout(t); return {}; })
     .then(function(j){ if(j&&j.ready===true){ sendLead(); } else { var st=$('#est-state'); st.className='state'; st.innerHTML=''; $('#send-row').hidden=false; $('#send-note').hidden=false; } });
   }
-  function payload(){ return {type:state.type||'',commune:state.commune||'',surface:state.surface?Number(state.surface):null,pieces:state.pieces||'',delai:state.delai||'',deja_en_agence:state.agence==='Oui',message:state.message||'',prenom:state.prenom||'',nom:state.nom||'',email:(state.email||'').trim(),telephone:(state.tel||'').replace(/\s/g,''),creneau:state.creneau||'',consent_notice:!!$('#f-consent').checked,consent_newsletter:!!$('#f-news').checked,website:($('#f-website')||{}).value||'',source:'shawez-immo.com',page:location.href.split('?')[0],ts:new Date().toISOString(),schema:'lead.v1'}; }
+  function surfaceOk(v){ v=Number(String(v||'').trim().replace(',','.')); return v>=5&&v<=2000?v:null; }
+  function payload(){ return {type:state.type||'',commune:state.commune||'',surface:surfaceOk(state.surface),pieces:state.pieces||'',delai:state.delai||'',deja_en_agence:state.agence==='Oui',message:state.message||'',prenom:state.prenom||'',nom:state.nom||'',email:(state.email||'').trim(),telephone:(state.tel||'').replace(/\s/g,''),creneau:state.creneau||'',consent_notice:!!$('#f-consent').checked,consent_newsletter:!!$('#f-news').checked,website:($('#f-website')||{}).value||'',source:'shawez-immo.com',page:location.href.split('?')[0],ts:new Date().toISOString(),schema:'lead.v1'}; }
   function sendLead(){
     setState('','Envoi de votre demande…'); $('#send-row').hidden=true; $('#send-note').hidden=true;
     var ctrl=('AbortController' in window)?new AbortController():null; var t=setTimeout(function(){if(ctrl)ctrl.abort();},12000);
-    fetch(window.SHAWEZ_LEAD_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload()),signal:ctrl?ctrl.signal:undefined}).then(function(r){ clearTimeout(t); if(r.status===202||r.status===201||r.status===200){ return r.json().catch(function(){return {};}).then(function(j){ sess.del('est-draft'); setState('ok','<b>Demande reçue.</b> '+(j.reference?'Référence : '+j.reference+'. ':'')+'Shawez la lit lui-même et vous répond par e-mail'+(state.tel?' ou par téléphone':'')+'. L\'estimation elle-même vous sera envoyée après l\'étude du bien.'); }); } throw new Error('http '+r.status); })
+    fetch(window.SHAWEZ_LEAD_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload()),signal:ctrl?ctrl.signal:undefined}).then(function(r){ clearTimeout(t); if(r.status===202||r.status===201||r.status===200){ return r.json().catch(function(){return {};}).then(function(j){ sess.del('est-draft'); try{if(window.oaiLead)window.oaiLead(j.reference);}catch(x){} setState('ok','<b>Demande reçue.</b> '+(j.reference?'Référence : '+j.reference+'. ':'')+'Shawez la lit lui-même et vous répond par e-mail'+(state.tel?' ou par téléphone':'')+'. L\'estimation elle-même vous sera envoyée après l\'étude du bien.'); }); } throw new Error('http '+r.status); })
     .catch(function(){ clearTimeout(t); setState('ko','<b>La transmission automatique n\'a pas abouti.</b> Votre demande n\'a pas été enregistrée. Vous pouvez l\'envoyer directement par WhatsApp ou par e-mail : tout est déjà prêt ci-dessous.'); $('#send-row').hidden=false; $('#send-note').hidden=false; });
   }
   function line(k,v){return v?'<div><span>'+k+'</span><span>'+v+'</span></div>':'';}
@@ -1578,5 +1593,6 @@ updateTone();
 window.EECompte=function(){var on=/(?:^|;\s*)se_ok=1/.test(document.cookie||'');[].forEach.call(document.querySelectorAll('[data-compte]'),function(a){a.classList.toggle('is-in',on);var t=on?'Mon espace : connecté':'Mon espace : se connecter';if(a.hasAttribute('aria-label')){a.setAttribute('aria-label',t);a.title=t;}var x=a.querySelector('[data-compte-txt]');if(x)x.textContent=on?'Mon espace · connecté':'Mon espace';});};
 window.EECompte();window.addEventListener('pageshow',window.EECompte);
 </script>
+<script src="/assets/oai-mesure.js" defer></script>
 </body>
 </html>

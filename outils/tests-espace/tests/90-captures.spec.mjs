@@ -1,6 +1,6 @@
 /* Captures de chaque étape et du résultat, iPhone 13 et ordinateur → captures/<appareil>/ */
 import { test, expect } from '@playwright/test';
-import { fausseBan, coordonnees, afficherResultat, etape, attendreEtape, suivant, choisirAdresse, pictogramme, emailTest } from './aides.mjs';
+import { fausseBan, coordonnees, afficherResultat, etape, attendreEtape, suivant, choisirAdresse, pictogramme, emailTest, compteurs } from './aides.mjs';
 
 test('captures du parcours, du résultat et de l\'espace', async ({ page }, info) => {
   test.setTimeout(180000);
@@ -38,6 +38,7 @@ test('captures du parcours, du résultat et de l\'espace', async ({ page }, info
   await page.locator('.ee-tile[data-type="appartement"]').click();
   await attendreEtape(page, 'bien');
   await page.locator('#ee-surface').fill('72');
+  await compteurs(page);
   await page.locator('[data-choix="epoque"] [data-v="1948-1974"]').click();
   await page.locator('[data-choix="etat"] [data-v="bon"]').click();
   await photo('etape-3-le-bien', true);

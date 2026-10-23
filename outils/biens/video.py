@@ -47,6 +47,39 @@ def webm(mp4, dst):
                     '-cpu-used', '4', '-row-mt', '1', '-pix_fmt', 'yuv420p', '-c:a', 'libopus', '-b:a', '64k', dst], check=True)
 
 
+def encoder_bien(ref, source, debut=0, duree=0, haut=0, texte='', extra=None):
+    """Encode la vidéo du bien (MP4 + WebM + affiche) dans assets/biens/<ref>/ et la note dans medias.json."""
+    dossier = P('assets', 'biens', ref)
+    os.makedirs(dossier, exist_ok=True)
+    dst = os.path.join(dossier, 'video.mp4')
+    for crf in (24, 27, 30, 33):
+        encode(source, dst, debut, duree, haut, crf)
+        if os.path.getsize(dst) <= LIMITE:
+            break
+    webm(dst, os.path.join(dossier, 'video.webm'))
+    info = sonde(dst)
+    v = [s for s in info['streams'] if s['codec_type'] == 'video'][0]
+    # affiche : une image nette au début de l'extrait
+    from PIL import Image
+    tmp = os.path.join(dossier, '_poster.png')
+    subprocess.run(['ffmpeg', '-v', 'error', '-y', '-ss', '0.8', '-i', dst, '-frames:v', '1', tmp], check=True)
+    im = Image.open(tmp).convert('RGB')
+    im.save(os.path.join(dossier, 'video-poster.webp'), 'WEBP', quality=78, method=6)
+    im.save(os.path.join(dossier, 'video-poster.jpg'), 'JPEG', quality=82, optimize=True, progressive=True)
+    os.remove(tmp)
+    m = charge_medias()
+    fiche = {
+        'fichier': 'video.mp4', 'webm': 'video.webm', 'poster': 'video-poster.webp', 'poster_jpg': 'video-poster.jpg',
+        'largeur': v['width'], 'hauteur': v['height'], 'duree': round(float(info['format']['duration']), 1),
+        'octets': os.path.getsize(dst), 'source': texte or os.path.basename(source),
+        'extrait': {'debut': debut, 'duree': duree, 'recadrer_haut': haut}}
+    fiche.update(extra or {})
+    m['biens'].setdefault(ref, {})['video'] = fiche
+    ecrit_medias(m)
+    print('%s : video.mp4 %dx%d, %.1f s, %.1f Mo' % (ref, v['width'], v['height'], float(info['format']['duration']), os.path.getsize(dst) / 1e6))
+    return fiche
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('ref')
@@ -66,32 +99,7 @@ def main():
         print('%s : video.webm %.1f Mo' % (a.ref, os.path.getsize(os.path.join(d, 'video.webm')) / 1e6))
         return
 
-    dossier = P('assets', 'biens', a.ref)
-    os.makedirs(dossier, exist_ok=True)
-    dst = os.path.join(dossier, 'video.mp4')
-    for crf in (24, 27, 30, 33):
-        encode(a.source, dst, a.debut, a.duree, a.recadrer_haut, crf)
-        if os.path.getsize(dst) <= LIMITE:
-            break
-    webm(dst, os.path.join(dossier, 'video.webm'))
-    info = sonde(dst)
-    v = [s for s in info['streams'] if s['codec_type'] == 'video'][0]
-    # affiche : une image nette au début de l'extrait
-    from PIL import Image
-    tmp = os.path.join(dossier, '_poster.png')
-    subprocess.run(['ffmpeg', '-v', 'error', '-y', '-ss', '0.8', '-i', dst, '-frames:v', '1', tmp], check=True)
-    im = Image.open(tmp).convert('RGB')
-    im.save(os.path.join(dossier, 'video-poster.webp'), 'WEBP', quality=78, method=6)
-    im.save(os.path.join(dossier, 'video-poster.jpg'), 'JPEG', quality=82, optimize=True, progressive=True)
-    os.remove(tmp)
-    m = charge_medias()
-    m['biens'].setdefault(a.ref, {})['video'] = {
-        'fichier': 'video.mp4', 'webm': 'video.webm', 'poster': 'video-poster.webp', 'poster_jpg': 'video-poster.jpg',
-        'largeur': v['width'], 'hauteur': v['height'], 'duree': round(float(info['format']['duration']), 1),
-        'octets': os.path.getsize(dst), 'source': a.source_texte or os.path.basename(a.source),
-        'extrait': {'debut': a.debut, 'duree': a.duree, 'recadrer_haut': a.recadrer_haut}}
-    ecrit_medias(m)
-    print('%s : video.mp4 %dx%d, %.1f s, %.1f Mo' % (a.ref, v['width'], v['height'], float(info['format']['duration']), os.path.getsize(dst) / 1e6))
+    encoder_bien(a.ref, a.source, a.debut, a.duree, a.recadrer_haut, a.source_texte or os.path.basename(a.source))
 
 
 if __name__ == '__main__':

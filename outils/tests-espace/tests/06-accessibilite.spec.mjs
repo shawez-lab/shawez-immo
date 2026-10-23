@@ -1,7 +1,7 @@
 /* Accessibilité de base : règles WCAG A/AA (axe-core) sur chaque écran du module, libellés, parcours au clavier. */
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
-import { fausseBan, coordonnees, afficherResultat, etape, attendreEtape, suivant, choisirAdresse, emailTest, api, connexionParLien, ADMIN, PAUSE } from './aides.mjs';
+import { fausseBan, coordonnees, afficherResultat, etape, attendreEtape, suivant, choisirAdresse, emailTest, api, connexionParLien, ADMIN, PAUSE, compteurs } from './aides.mjs';
 
 async function axe(page, nom) {
   // les couleurs changent en fondu (0,2 s) : on mesure une fois le fondu fini
@@ -31,6 +31,7 @@ test('chaque écran du parcours, le résultat, l\'espace et l\'admin passent les
   await suivant(page, 'bien');
   await axe(page, 'étape 3 en erreur');
   await page.locator('#ee-surface').fill('72');
+  await compteurs(page);
   await page.locator('[data-choix="epoque"] [data-v="nsp"]').click();
   await page.locator('[data-choix="etat"] [data-v="bon"]').click();
   await axe(page, 'étape 3');
@@ -111,6 +112,7 @@ test('parcours entier au clavier seul', async ({ page }, info) => {
   await page.keyboard.press('Tab');
   await expect(page.locator('#ee-surface')).toBeFocused();
   await page.keyboard.type('110');
+  for (const k of ['niveaux', 'pieces', 'chambres']) { await page.locator(`.ee-stp[data-k="${k}"] button[data-d="1"]`).focus(); await page.keyboard.press('Enter'); }
   for (let i = 0; i < 20 && !(await page.locator('#ee-terrain').evaluate((e) => e === document.activeElement)); i++) await page.keyboard.press('Tab');
   await page.keyboard.type('500');
   await page.locator('[data-choix="epoque"] [data-v="1975-2000"]').focus(); await page.keyboard.press('Space');
