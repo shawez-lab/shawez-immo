@@ -46,10 +46,13 @@ jobs:
 
       - name: Outils vidéo (vidéos Instagram des biens)
         if: steps.heure.outputs.go == '1' && steps.heure.outputs.reels == '1'
+        timeout-minutes: 6
+        continue-on-error: true   # miroir apt lent : on passe, les annonces sont synchronisées quand même
         run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg tesseract-ocr tesseract-ocr-fra >/dev/null
 
       - name: Vidéos des biens reprises d'Instagram (version qualité, jamais celle avec le prix incrusté)
         if: steps.heure.outputs.go == '1' && steps.heure.outputs.reels == '1'
+        timeout-minutes: 15
         continue-on-error: true   # Instagram indisponible : les annonces sont quand même synchronisées
         env:
           IG_TOKEN: ${{ secrets.IG_TOKEN }}
