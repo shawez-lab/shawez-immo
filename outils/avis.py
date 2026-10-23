@@ -165,6 +165,39 @@ def jsonld(s):
         return '<script type="application/ld+json">%s</script>' % json.dumps(d, ensure_ascii=False)
     return re.sub(r'<script type="application/ld\+json">(.*?)</script>', fix, s, flags=re.S)
 
+# ---------- /estimer/ : photo + note datée à côté du formulaire (action 22) ----------
+VISAGE = '<img class="ee-conf-img" src="/assets/shawez-ali-visage-144.webp" alt="Shawez Ali" width="48" height="48" decoding="async">'
+CSS_ESTIMER = """<style id="avis-estimer-css">
+.ee-conf{display:flex;align-items:center;gap:12px;margin:18px 0 0;max-width:40em;}
+.ee-conf-img{width:48px;height:48px;border-radius:50%;object-fit:cover;flex:none;border:2px solid #fff;box-shadow:0 1px 4px rgba(15,14,12,.18);}
+.ee-conf p{margin:0;font-size:14px;line-height:1.45;color:#4A453E;}
+.ee-conf b{color:#0F0E0C;font-weight:600;}
+.ee-conf .stars{font-size:14px;letter-spacing:1px;color:#8A6614;}
+.ee-conf a{color:inherit;text-decoration:underline;text-underline-offset:2px;}
+.ee-conf-form{margin:0 0 20px;padding:12px 14px;border-radius:14px;background:#F3EFE6;border:1px solid rgba(15,14,12,.08);}
+</style>"""
+
+def bloc_estimer_haut():
+    return ('<!-- avis:estimer-haut -->%s<div class="ee-conf">%s<p><b>Shawez Ali</b>, agent immobilier à Dijon (Gravelin Immo)<br>'
+            '<span class="stars" aria-hidden="true">★★★★★</span> <b>%s/5</b> sur %d avis Google '
+            '<a href="%s" target="_blank" rel="noopener">(relevé du %s)</a></p></div><!-- /avis:estimer-haut -->'
+            % (CSS_ESTIMER, VISAGE, fr(F['note']), F['nombre'], E(F['lien_avis']), date_fr(F['releve_le'])))
+
+def bloc_estimer_form():
+    A = D['preuve_agence']
+    return ('<!-- avis:estimer-form --><div class="ee-conf ee-conf-form">%s<p><b>C\'est Shawez qui vous rappelle, personne d\'autre.</b> '
+            'Sa fiche Google : %s/5 sur %d avis (relevé du %s). L\'agence %s : %s/5 sur %d avis (relevé du %s).</p></div><!-- /avis:estimer-form -->'
+            % (VISAGE.replace(' decoding', ' loading="lazy" decoding'), fr(F['note']), F['nombre'], date_fr(F['releve_le']),
+               E(A['nom']), fr(A['note']), A['nombre'], date_fr(A['releve_le'])))
+
+p = 'estimer/index.html'
+if __import__('os').path.exists(p):
+    s = open(p, encoding='utf-8').read()
+    assert '<!-- avis:estimer-haut -->' in s and '<!-- avis:estimer-form -->' in s, 'estimer : marqueurs absents (relancer outils/espace.py)'
+    s = repl(s, 'estimer-haut', bloc_estimer_haut())
+    s = repl(s, 'estimer-form', bloc_estimer_form())
+    open(p, 'w', encoding='utf-8').write(s)
+
 # ---------- accueil ----------
 p = 'index.html'; s = open(p, encoding='utf-8').read()
 if '<!-- avis:accueil -->' not in s:   # premier passage : remplace le bloc d'attente
