@@ -116,6 +116,8 @@ Dès que tu écris un message, règles absolues, sauf le « Salut » de début e
   UNIQUEMENT avec les données du bien fournies. Si la donnée n'y est pas, dis que tu lui envoies la réponse en direct.
 - Cite le bien (type, commune, prix tel qu'écrit dans les données) sans jamais donner d'adresse exacte ni de nom de rue.
 - Termine par UNE seule question courte qui ne demande qu'une chose : visite, appel, OU ce qu'il cherche, jamais deux demandes reliées par « et » ou « ou ».
+  Exception : si la personne n'a pas de projet, dit non, remercie ou clôt la conversation, réponds en UNE phrase courte et chaleureuse, sans question et sans relancer.
+- Quand la conversation continue (historique non vide), ne commence JAMAIS par « Salut », « Bonjour » ni par le prénom : réponds directement, comme dans une vraie discussion.
 - Écris comme Shawez écrit sur son téléphone : phrases simples et naturelles, AUCUNE parenthèse, aucun tiret de liste, aucun deux-points d'énumération, aucune formule administrative (« honoraires à la charge du vendeur », « n'hésitez pas »). Si un détail compte, glisse-le dans une phrase normale.
 - Ne jamais inventer un prix, une surface, un quartier ou une caractéristique. Jamais les mots « mandataire », « gratuit », « IA »,
   « robot », « automatique ». Dis « offert » si besoin.
@@ -229,6 +231,29 @@ function controle(texte, bien, suite = false, client = '') {
   return null;
 }
 
+// Message qui ne fait que remercier, dire non ou clore (« Merci, bonne journée », « Non pas pour l'instant ») : pas de nouvelle question
+const FORMULES_CLOTURE = ['pas pour l instant', 'pas pour le moment', 'pas maintenant', 'bonne fin de journee', 'bonne journee', 'bonne soiree',
+  'bon week end', 'bon weekend', 'du retour', 'pour ta reponse', 'pour votre reponse', 'pour l info', 'pour l information', 'a toi aussi', 'a vous aussi',
+  'toi aussi', 'vous aussi', 'a bientot', 'avec plaisir', 'ca marche', 'merci beaucoup', 'merci bien', 'cordialement', 'pareillement', 'merci', 'beaucoup',
+  'non', 'ok', 'okay', 'oki', 'd accord', 'daccord', 'super', 'parfait', 'top', 'cool', 'genial', 'a toi', 'a vous', 'bien', 'aussi', 'et', 'encore', 'de meme'];
+function estCloture(t) {
+  let x = String(t || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z\s]/g, ' ').replace(/\s+/g, ' ').trim();
+  if (!x) return /\S/.test(String(t || ''));   // seulement des emojis / ponctuation
+  for (const f of FORMULES_CLOTURE) x = x.replace(new RegExp('\\b' + f + '\\b', 'g'), ' ');
+  return !x.replace(/\s+/g, '');
+}
+const CLOTURES = ['Avec plaisir, belle journée à toi 😊', 'Merci à toi, à bientôt 🙂', 'Pas de souci, belle journée à toi 😊', 'Avec plaisir, à bientôt 🙂'];
+// Conversation déjà engagée : pas de « Salut <prénom> » à chaque message
+function sansSalut(t) {
+  const l = String(t || '').split('\n');
+  if (/^(salut|bonjour|hello|coucou|hey)\b/i.test(l[0] || '')) {
+    if (l.length > 1 && l[0].replace(/[^\p{L}]/gu, '').length <= 22) l.shift();
+    else l[0] = l[0].replace(/^([Ss]alut|[Bb]onjour|[Hh]ello|[Cc]oucou|[Hh]ey)\b[\s,]*([\p{Lu}][\p{L}'-]*)?[\s,!.]*(\p{Extended_Pictographic}\s*)*/u, '');
+    if (l[0]) l[0] = l[0].charAt(0).toUpperCase() + l[0].slice(1);
+  }
+  return l.filter(Boolean).join('\n');
+}
+
 const sansMessage = (raison, extra = {}) => json(200, { message: '', fiche_url: '', envoyer: 'non', raison, ...extra });
 
 async function journal(env) {
@@ -263,7 +288,7 @@ async function memoriserStop(env, contact, compte, motif) {
 
 const jourParis = () => new Intl.DateTimeFormat('fr-CA', { timeZone: 'Europe/Paris' }).format(new Date());
 
-function blocManyChat(texte, bien) {
+function blocManyChat(texte, bien, avecBoutons = true) {
   const boutons = [
     { type: 'url', caption: '📄 Dossier du bien', url: bien && bien.lien ? bien.lien : BIENS },
     { type: 'url', caption: '🏠 Estimer mon bien', url: ESTIMER },
@@ -273,7 +298,7 @@ function blocManyChat(texte, bien) {
   ];
   return {
     version: 'v2',
-    content: { type: 'instagram', messages: [{ type: 'text', text: texte.slice(0, 640), buttons: boutons }] },
+    content: { type: 'instagram', messages: [avecBoutons ? { type: 'text', text: texte.slice(0, 640), buttons: boutons } : { type: 'text', text: texte.slice(0, 640) }] },
     // Champs à plat, pour un mappage en champs personnalisés si on préfère un bloc ManyChat classique :
     message: texte.slice(0, 640),
     fiche_url: boutons[0].url,
@@ -326,6 +351,7 @@ export async function onRequest({ request, env }) {
       source = propre(c.source, 40);
       prenom = propre(c.first_name || c.prenom, 40);
       // « GRAVELIN » ou « gravelin » → « Gravelin »
+      if (/[{}]/.test(prenom || '')) prenom = '';   // variable ManyChat non remplacée (« {{first_name}} »)
       if (prenom && (prenom === prenom.toUpperCase() || prenom === prenom.toLowerCase())) prenom = prenom.toLowerCase().replace(/(^|[\s-])\p{L}/gu, m => m.toUpperCase());
       commentaire = propre(c.comment || c.commentaire, 500);
       post = propre(c.post || c.post_id || c.reel || c.url, 300);
@@ -392,6 +418,19 @@ export async function onRequest({ request, env }) {
       if (base && !test && contact && texte) await base.prepare('INSERT INTO dm_fil (contact, sens, texte, cle, cree) VALUES (?1,?2,?3,?4,?5)')
         .bind(contact, sens, String(texte).slice(0, 1000), cle || '', new Date().toISOString()).run().catch(() => {});
     };
+    const dejaEcrit = fil.some(m => m.sens === 'out');
+    if (dejaEcrit && estCloture(commentaire)) {
+      // Fin de conversation : une seule phrase de politesse, sans question ni boutons ; si on a déjà clos, plus rien
+      const avant = [...fil].reverse();
+      const iOut = avant.findIndex(m => m.sens === 'out');
+      const inAvant = avant.slice(iOut + 1).find(m => m.sens === 'in');
+      const dejaClos = iOut >= 0 && CLOTURES.includes(avant[iOut].texte) || (inAvant && estCloture(inAvant.texte) && avant[iOut].texte.length < 80);
+      await noter('in', commentaire, '');
+      if (dejaClos || !creneauOuvert()) return sansMessage('cloture');
+      const t = CLOTURES[(fil.length + (commentaire || '').length) % CLOTURES.length];
+      await noter('out', t, '');
+      return json(200, { ...blocManyChat(t, null, false), envoyer: 'oui', origine: 'cloture', cout: 0 });
+    }
     if (/^(story|dm)$/i.test(post || '')) {
       const c = commentaire || '';
       post = /tabac|bilan|chiffre|\bca\b|\bebe\b|compta|fdj|presse|fonds|1[,.]8|million/i.test(c) ? 'story-tabac'
@@ -430,6 +469,7 @@ export async function onRequest({ request, env }) {
         }
         // Une parenthèse devient une simple virgule, comme on l'écrirait sur un téléphone
         texte = normaliser(texte.replace(/\s*\(([^()\n]{1,120})\)/g, ', $1,').replace(/,\s*([.!?,])/g, '$1').replace(/,\s*$/gm, ''));
+        if (dejaEcrit) texte = sansSalut(texte);
         refus = controle(texte, bien, fil.length > 0 && (source === 'dm' || /^story/i.test(source || '')), fil.filter(m => m.sens === 'in').map(m => m.texte).concat(commentaire || '').join('\n'));
         if (refus) {
           console.log('manychat-dm refus', refus, texte);
@@ -463,7 +503,8 @@ export async function onRequest({ request, env }) {
     await noter('in', commentaire, cleBien);
     await noter('out', texte, cleBien);
     console.log('manychat-dm', JSON.stringify({ post: idReel(post), ref: bien && bien.ref, compte, origine, cout }));
-    return json(200, { ...blocManyChat(texte, bien), envoyer: 'oui', origine, cout: Math.round(cout * 1e5) / 1e5, depense_jour: Math.round((depense + cout) * 1e4) / 1e4 });
+    // Boutons seulement au premier message (ou quand un bien est en jeu) : pas à chaque réponse d'une conversation
+    return json(200, { ...blocManyChat(texte, bien, !dejaEcrit || !!bien), envoyer: 'oui', origine, cout: Math.round(cout * 1e5) / 1e5, depense_jour: Math.round((depense + cout) * 1e4) / 1e4 });
   } catch (e) {
     console.log('manychat-dm', e && e.stack);
     return json(500, { error: 'serveur' });
