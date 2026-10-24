@@ -168,6 +168,8 @@ if __name__ == '__main__':
     try:
         sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'seo'))
         import nav_piliers, plan_du_site, maillage
+        import sitemap_videos
+        print('sitemap vidéos :', sitemap_videos.construire())
         print('pied de page :', nav_piliers.tout(), 'pages mises à jour')
         print('plan du site :', 'mis à jour' if plan_du_site.construire() else 'inchangé')
         maillage.COMMUNES.update(maillage.communes())
