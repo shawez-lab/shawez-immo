@@ -243,6 +243,7 @@ function estCloture(t) {
   return !x.replace(/\s+/g, '');
 }
 const CLOTURES = ['Avec plaisir, belle journée à toi 😊', 'Merci à toi, à bientôt 🙂', 'Pas de souci, belle journée à toi 😊', 'Avec plaisir, à bientôt 🙂'];
+const MENTION_IA = 'Réponse rapide de mon assistant IA, je prends le relais moi-même 🙂';
 // Conversation déjà engagée : pas de « Salut <prénom> » à chaque message
 function sansSalut(t) {
   const l = String(t || '').split('\n');
@@ -341,12 +342,9 @@ export async function onRequest({ request, env }) {
         if (STOP.test(propre(c.comment || c.commentaire, 500))) { await memoriserStop(env, ctc, cpt, 'stop'); return sansMessage('stop', { source, a_reprendre: true }); }
         if (await estStoppe(env, ctc, cpt)) return sansMessage('stop', { source, a_reprendre: true });
         if (env.DM_MODE !== 'live' && !COMPTES_TEST.includes(cpt)) return sansMessage('mode_test', { compte: cpt, source });
-        if (COMPTES_TEST.includes(cpt) || creneauOuvert()) return json(200, { envoyer: 'oui', raison: 'ok', source });
-        const att = minutesAvantCreneau();
-        // Fenêtre de 24 h ouverte par le message de la personne : au-delà de 23 h d'attente, on ne programme pas,
-        // le cas reste à reprendre à la main dans l'Inbox.
-        if (att > 23 * 60) return sansMessage('fenetre_24h', { source, a_reprendre: true });
-        return sansMessage('hors_creneau', { source, envoyer: 'plus_tard', attendre_minutes: att });
+        // Décision de Shawez du 24/10/2026 : quand c'est le client qui écrit en premier, on répond tout de suite,
+        // y compris le soir et le dimanche (au-delà de 24 h, Meta n'autorise plus la réponse automatique).
+        return json(200, { envoyer: 'oui', raison: 'ok', source });
       }
       source = propre(c.source, 40);
       prenom = propre(c.first_name || c.prenom, 40);
@@ -366,19 +364,8 @@ export async function onRequest({ request, env }) {
     if (STOP.test(commentaire || '')) { if (!test) await memoriserStop(env, contact, compte, 'stop'); return sansMessage('stop', { a_reprendre: true }); }
     if (!test && await estStoppe(env, contact, compte)) return sansMessage('stop', { a_reprendre: true });
     if (env.DM_MODE !== 'live' && !COMPTES_TEST.includes(compte)) return sansMessage('mode_test', { compte });
-    // Règle de Shawez : rien n'est envoyé à un client la nuit (20 h-8 h) ni le dimanche. Le commentaire est journalisé
-    // (origine « hors_creneau ») pour que l'agent « Rattrapage commentaires » réponde au prochain créneau.
-    if (!COMPTES_TEST.includes(compte) && !creneauOuvert()) {
-      const b = await journal(env).catch(() => null);
-      if (b) await b.prepare('INSERT OR IGNORE INTO dm_instagram VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11)')
-        .bind(`hc-${evenement || Date.now()}`, contact, compte, idReel(post), '', jourParis(), 'hors_creneau', 0, 0, 0, new Date().toISOString())
-        .run().catch(() => {});
-      // ManyChat : branche « plus_tard » → Smart Delay de attendre_minutes → rappel de cette même requête → envoi.
-      const att = minutesAvantCreneau();
-      // Réponses aux stories : fenêtre Instagram de 24 h → au-delà de 23 h d'attente, pas de report, reprise à la main
-      if ((source === 'story_reply' || source === 'dm') && att > 23 * 60) return sansMessage('fenetre_24h', { compte, source, a_reprendre: true });
-      return sansMessage('hors_creneau', { compte, source, envoyer: 'plus_tard', attendre_minutes: att });
-    }
+    // Décision de Shawez du 24/10/2026 : le client qui écrit en premier reçoit sa réponse tout de suite, à toute heure,
+    // dimanche compris. Seuls les envois à l'initiative du réseau (relances, alertes) restent du lundi au samedi, 8 h-20 h.
     if (!evenement) {
       // DM et stories sans identifiant d'événement : même texte du même contact à 2 minutes près = même événement (relance ManyChat),
       // au-delà c'est un nouveau message (plusieurs « oui » dans une conversation). Commentaires : un par jour et par Reel.
@@ -426,7 +413,7 @@ export async function onRequest({ request, env }) {
       const inAvant = avant.slice(iOut + 1).find(m => m.sens === 'in');
       const dejaClos = iOut >= 0 && CLOTURES.includes(avant[iOut].texte) || (inAvant && estCloture(inAvant.texte) && avant[iOut].texte.length < 80);
       await noter('in', commentaire, '');
-      if (dejaClos || !creneauOuvert()) return sansMessage('cloture');
+      if (dejaClos) return sansMessage('cloture');
       const t = CLOTURES[(fil.length + (commentaire || '').length) % CLOTURES.length];
       await noter('out', t, '');
       return json(200, { ...blocManyChat(t, null, false), envoyer: 'oui', origine: 'cloture', cout: 0 });
@@ -493,6 +480,9 @@ export async function onRequest({ request, env }) {
       }
     }
     const cout = usage ? (usage.input_tokens || 0) * PRIX_ENTREE + (usage.output_tokens || 0) * PRIX_SORTIE : 0;
+    // Règlement européen sur l'IA, article 50 (en vigueur depuis le 2 août 2026) : la personne est informée qu'un assistant IA
+    // lui répond. Une seule fois par contact, sur le premier message rédigé par l'IA ; la mention est enregistrée avec le message.
+    if (origine === 'claude' && !fil.some(m => m.sens === 'out' && String(m.texte || '').includes(MENTION_IA))) texte = `${texte}\n${MENTION_IA}`;
 
     if (base) {
       await base.prepare('INSERT OR IGNORE INTO dm_instagram VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11)')
