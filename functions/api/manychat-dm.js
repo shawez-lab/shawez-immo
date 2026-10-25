@@ -116,6 +116,8 @@ Dès que tu écris un message, règles absolues, sauf le « Salut » de début e
   UNIQUEMENT avec les données du bien fournies. Si la donnée n'y est pas, dis que tu lui envoies la réponse en direct.
 - Cite le bien (type, commune, prix tel qu'écrit dans les données) sans jamais donner d'adresse exacte ni de nom de rue.
 - Termine par UNE seule question courte qui ne demande qu'une chose : visite, appel, OU ce qu'il cherche, jamais deux demandes reliées par « et » ou « ou ».
+  Exception : si la personne n'a pas de projet, dit non, remercie ou clôt la conversation, réponds en UNE phrase courte et chaleureuse, sans question et sans relancer.
+- Quand la conversation continue (historique non vide), ne commence JAMAIS par « Salut », « Bonjour » ni par le prénom : réponds directement, comme dans une vraie discussion.
 - Écris comme Shawez écrit sur son téléphone : phrases simples et naturelles, AUCUNE parenthèse, aucun tiret de liste, aucun deux-points d'énumération, aucune formule administrative (« honoraires à la charge du vendeur », « n'hésitez pas »). Si un détail compte, glisse-le dans une phrase normale.
 - Ne jamais inventer un prix, une surface, un quartier ou une caractéristique. Jamais les mots « mandataire », « gratuit », « IA »,
   « robot », « automatique ». Dis « offert » si besoin.
@@ -229,6 +231,30 @@ function controle(texte, bien, suite = false, client = '') {
   return null;
 }
 
+// Message qui ne fait que remercier, dire non ou clore (« Merci, bonne journée », « Non pas pour l'instant ») : pas de nouvelle question
+const FORMULES_CLOTURE = ['pas pour l instant', 'pas pour le moment', 'pas maintenant', 'bonne fin de journee', 'bonne journee', 'bonne soiree',
+  'bon week end', 'bon weekend', 'du retour', 'pour ta reponse', 'pour votre reponse', 'pour l info', 'pour l information', 'a toi aussi', 'a vous aussi',
+  'toi aussi', 'vous aussi', 'a bientot', 'avec plaisir', 'ca marche', 'merci beaucoup', 'merci bien', 'cordialement', 'pareillement', 'merci', 'beaucoup',
+  'non', 'ok', 'okay', 'oki', 'd accord', 'daccord', 'super', 'parfait', 'top', 'cool', 'genial', 'a toi', 'a vous', 'bien', 'aussi', 'et', 'encore', 'de meme'];
+function estCloture(t) {
+  let x = String(t || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z\s]/g, ' ').replace(/\s+/g, ' ').trim();
+  if (!x) return /\S/.test(String(t || ''));   // seulement des emojis / ponctuation
+  for (const f of FORMULES_CLOTURE) x = x.replace(new RegExp('\\b' + f + '\\b', 'g'), ' ');
+  return !x.replace(/\s+/g, '');
+}
+const CLOTURES = ['Avec plaisir, belle journée à toi 😊', 'Merci à toi, à bientôt 🙂', 'Pas de souci, belle journée à toi 😊', 'Avec plaisir, à bientôt 🙂'];
+const MENTION_IA = 'Réponse rapide de mon assistant IA, je prends le relais moi-même 🙂';
+// Conversation déjà engagée : pas de « Salut <prénom> » à chaque message
+function sansSalut(t) {
+  const l = String(t || '').split('\n');
+  if (/^(salut|bonjour|hello|coucou|hey)\b/i.test(l[0] || '')) {
+    if (l.length > 1 && l[0].replace(/[^\p{L}]/gu, '').length <= 22) l.shift();
+    else l[0] = l[0].replace(/^([Ss]alut|[Bb]onjour|[Hh]ello|[Cc]oucou|[Hh]ey)\b[\s,]*([\p{Lu}][\p{L}'-]*)?[\s,!.]*(\p{Extended_Pictographic}\s*)*/u, '');
+    if (l[0]) l[0] = l[0].charAt(0).toUpperCase() + l[0].slice(1);
+  }
+  return l.filter(Boolean).join('\n');
+}
+
 const sansMessage = (raison, extra = {}) => json(200, { message: '', fiche_url: '', envoyer: 'non', raison, ...extra });
 
 async function journal(env) {
@@ -263,7 +289,7 @@ async function memoriserStop(env, contact, compte, motif) {
 
 const jourParis = () => new Intl.DateTimeFormat('fr-CA', { timeZone: 'Europe/Paris' }).format(new Date());
 
-function blocManyChat(texte, bien) {
+function blocManyChat(texte, bien, avecBoutons = true) {
   const boutons = [
     { type: 'url', caption: '📄 Dossier du bien', url: bien && bien.lien ? bien.lien : BIENS },
     { type: 'url', caption: '🏠 Estimer mon bien', url: ESTIMER },
@@ -273,7 +299,7 @@ function blocManyChat(texte, bien) {
   ];
   return {
     version: 'v2',
-    content: { type: 'instagram', messages: [{ type: 'text', text: texte.slice(0, 640), buttons: boutons }] },
+    content: { type: 'instagram', messages: [avecBoutons ? { type: 'text', text: texte.slice(0, 640), buttons: boutons } : { type: 'text', text: texte.slice(0, 640) }] },
     // Champs à plat, pour un mappage en champs personnalisés si on préfère un bloc ManyChat classique :
     message: texte.slice(0, 640),
     fiche_url: boutons[0].url,
@@ -316,16 +342,14 @@ export async function onRequest({ request, env }) {
         if (STOP.test(propre(c.comment || c.commentaire, 500))) { await memoriserStop(env, ctc, cpt, 'stop'); return sansMessage('stop', { source, a_reprendre: true }); }
         if (await estStoppe(env, ctc, cpt)) return sansMessage('stop', { source, a_reprendre: true });
         if (env.DM_MODE !== 'live' && !COMPTES_TEST.includes(cpt)) return sansMessage('mode_test', { compte: cpt, source });
-        if (COMPTES_TEST.includes(cpt) || creneauOuvert()) return json(200, { envoyer: 'oui', raison: 'ok', source });
-        const att = minutesAvantCreneau();
-        // Fenêtre de 24 h ouverte par le message de la personne : au-delà de 23 h d'attente, on ne programme pas,
-        // le cas reste à reprendre à la main dans l'Inbox.
-        if (att > 23 * 60) return sansMessage('fenetre_24h', { source, a_reprendre: true });
-        return sansMessage('hors_creneau', { source, envoyer: 'plus_tard', attendre_minutes: att });
+        // Décision de Shawez du 24/10/2026 : quand c'est le client qui écrit en premier, on répond tout de suite,
+        // y compris le soir et le dimanche (au-delà de 24 h, Meta n'autorise plus la réponse automatique).
+        return json(200, { envoyer: 'oui', raison: 'ok', source });
       }
       source = propre(c.source, 40);
       prenom = propre(c.first_name || c.prenom, 40);
       // « GRAVELIN » ou « gravelin » → « Gravelin »
+      if (/[{}]/.test(prenom || '')) prenom = '';   // variable ManyChat non remplacée (« {{first_name}} »)
       if (prenom && (prenom === prenom.toUpperCase() || prenom === prenom.toLowerCase())) prenom = prenom.toLowerCase().replace(/(^|[\s-])\p{L}/gu, m => m.toUpperCase());
       commentaire = propre(c.comment || c.commentaire, 500);
       post = propre(c.post || c.post_id || c.reel || c.url, 300);
@@ -340,19 +364,8 @@ export async function onRequest({ request, env }) {
     if (STOP.test(commentaire || '')) { if (!test) await memoriserStop(env, contact, compte, 'stop'); return sansMessage('stop', { a_reprendre: true }); }
     if (!test && await estStoppe(env, contact, compte)) return sansMessage('stop', { a_reprendre: true });
     if (env.DM_MODE !== 'live' && !COMPTES_TEST.includes(compte)) return sansMessage('mode_test', { compte });
-    // Règle de Shawez : rien n'est envoyé à un client la nuit (20 h-8 h) ni le dimanche. Le commentaire est journalisé
-    // (origine « hors_creneau ») pour que l'agent « Rattrapage commentaires » réponde au prochain créneau.
-    if (!COMPTES_TEST.includes(compte) && !creneauOuvert()) {
-      const b = await journal(env).catch(() => null);
-      if (b) await b.prepare('INSERT OR IGNORE INTO dm_instagram VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11)')
-        .bind(`hc-${evenement || Date.now()}`, contact, compte, idReel(post), '', jourParis(), 'hors_creneau', 0, 0, 0, new Date().toISOString())
-        .run().catch(() => {});
-      // ManyChat : branche « plus_tard » → Smart Delay de attendre_minutes → rappel de cette même requête → envoi.
-      const att = minutesAvantCreneau();
-      // Réponses aux stories : fenêtre Instagram de 24 h → au-delà de 23 h d'attente, pas de report, reprise à la main
-      if ((source === 'story_reply' || source === 'dm') && att > 23 * 60) return sansMessage('fenetre_24h', { compte, source, a_reprendre: true });
-      return sansMessage('hors_creneau', { compte, source, envoyer: 'plus_tard', attendre_minutes: att });
-    }
+    // Décision de Shawez du 24/10/2026 : le client qui écrit en premier reçoit sa réponse tout de suite, à toute heure,
+    // dimanche compris. Seuls les envois à l'initiative du réseau (relances, alertes) restent du lundi au samedi, 8 h-20 h.
     if (!evenement) {
       // DM et stories sans identifiant d'événement : même texte du même contact à 2 minutes près = même événement (relance ManyChat),
       // au-delà c'est un nouveau message (plusieurs « oui » dans une conversation). Commentaires : un par jour et par Reel.
@@ -392,6 +405,19 @@ export async function onRequest({ request, env }) {
       if (base && !test && contact && texte) await base.prepare('INSERT INTO dm_fil (contact, sens, texte, cle, cree) VALUES (?1,?2,?3,?4,?5)')
         .bind(contact, sens, String(texte).slice(0, 1000), cle || '', new Date().toISOString()).run().catch(() => {});
     };
+    const dejaEcrit = fil.some(m => m.sens === 'out');
+    if (dejaEcrit && estCloture(commentaire)) {
+      // Fin de conversation : une seule phrase de politesse, sans question ni boutons ; si on a déjà clos, plus rien
+      const avant = [...fil].reverse();
+      const iOut = avant.findIndex(m => m.sens === 'out');
+      const inAvant = avant.slice(iOut + 1).find(m => m.sens === 'in');
+      const dejaClos = iOut >= 0 && CLOTURES.includes(avant[iOut].texte) || (inAvant && estCloture(inAvant.texte) && avant[iOut].texte.length < 80);
+      await noter('in', commentaire, '');
+      if (dejaClos) return sansMessage('cloture');
+      const t = CLOTURES[(fil.length + (commentaire || '').length) % CLOTURES.length];
+      await noter('out', t, '');
+      return json(200, { ...blocManyChat(t, null, false), envoyer: 'oui', origine: 'cloture', cout: 0 });
+    }
     if (/^(story|dm)$/i.test(post || '')) {
       const c = commentaire || '';
       post = /tabac|bilan|chiffre|\bca\b|\bebe\b|compta|fdj|presse|fonds|1[,.]8|million/i.test(c) ? 'story-tabac'
@@ -430,6 +456,7 @@ export async function onRequest({ request, env }) {
         }
         // Une parenthèse devient une simple virgule, comme on l'écrirait sur un téléphone
         texte = normaliser(texte.replace(/\s*\(([^()\n]{1,120})\)/g, ', $1,').replace(/,\s*([.!?,])/g, '$1').replace(/,\s*$/gm, ''));
+        if (dejaEcrit) texte = sansSalut(texte);
         refus = controle(texte, bien, fil.length > 0 && (source === 'dm' || /^story/i.test(source || '')), fil.filter(m => m.sens === 'in').map(m => m.texte).concat(commentaire || '').join('\n'));
         if (refus) {
           console.log('manychat-dm refus', refus, texte);
@@ -453,6 +480,9 @@ export async function onRequest({ request, env }) {
       }
     }
     const cout = usage ? (usage.input_tokens || 0) * PRIX_ENTREE + (usage.output_tokens || 0) * PRIX_SORTIE : 0;
+    // Règlement européen sur l'IA, article 50 (en vigueur depuis le 2 août 2026) : la personne est informée qu'un assistant IA
+    // lui répond. Une seule fois par contact, sur le premier message rédigé par l'IA ; la mention est enregistrée avec le message.
+    if (origine === 'claude' && !fil.some(m => m.sens === 'out' && String(m.texte || '').includes(MENTION_IA))) texte = `${texte}\n${MENTION_IA}`;
 
     if (base) {
       await base.prepare('INSERT OR IGNORE INTO dm_instagram VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11)')
@@ -463,7 +493,8 @@ export async function onRequest({ request, env }) {
     await noter('in', commentaire, cleBien);
     await noter('out', texte, cleBien);
     console.log('manychat-dm', JSON.stringify({ post: idReel(post), ref: bien && bien.ref, compte, origine, cout }));
-    return json(200, { ...blocManyChat(texte, bien), envoyer: 'oui', origine, cout: Math.round(cout * 1e5) / 1e5, depense_jour: Math.round((depense + cout) * 1e4) / 1e4 });
+    // Boutons seulement au premier message (ou quand un bien est en jeu) : pas à chaque réponse d'une conversation
+    return json(200, { ...blocManyChat(texte, bien, !dejaEcrit || !!bien), envoyer: 'oui', origine, cout: Math.round(cout * 1e5) / 1e5, depense_jour: Math.round((depense + cout) * 1e4) / 1e4 });
   } catch (e) {
     console.log('manychat-dm', e && e.stack);
     return json(500, { error: 'serveur' });
