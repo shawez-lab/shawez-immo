@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Le compteur du site — Shawez Ali</title>
+<meta name="description" content="Espace réservé à l&#x27;agence.">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#F7F6F2">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<style>
+@font-face{font-family:'Familjen Grotesk';font-style:normal;font-weight:400 700;font-display:swap;src:url(/assets/fonts/familjen.woff2) format('woff2');}
+@font-face{font-family:'Schibsted Grotesk';font-style:normal;font-weight:400 700;font-display:swap;src:url(/assets/fonts/schibsted.woff2) format('woff2');}
+:root{color-scheme:light;--ground:#F7F6F2;--stone:#ECE8E0;--surface:#FFFFFF;--ink:#0F0E0C;--ink-2:#3A3630;--muted:#6B655C;--line:rgba(22,22,26,.12);--accent:#E2B33C;--ok:#1F7A4A;--ko:#B3261E;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--ground);color:var(--ink);font:400 17px/1.5 'Schibsted Grotesk',Arial,sans-serif;}
+main{max-width:980px;margin:0 auto;padding:24px 16px 64px;}
+h1,h2{font-family:'Familjen Grotesk',Arial,sans-serif;line-height:1.15;margin:0;}
+h1{font-size:clamp(1.7rem,5vw,2.4rem);}
+h2{font-size:1.25rem;margin:36px 0 12px;}
+a{color:var(--ink);}
+.haut{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.liens{display:flex;flex-wrap:wrap;gap:8px;}
+.liens a,.periodes button{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink);font:inherit;font-size:.95rem;text-decoration:none;cursor:pointer;}
+.periodes{display:flex;gap:8px;margin:18px 0 6px;flex-wrap:wrap;}
+.periodes button[aria-pressed="true"]{background:var(--ink);color:#F3EFE6;border-color:var(--ink);}
+.meta{color:var(--muted);font-size:.92rem;margin:6px 0 0;}
+.tuiles{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px;}
+.tuile{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;}
+.tuile b{display:block;font:700 2.1rem/1.1 'Familjen Grotesk',Arial,sans-serif;}
+.tuile span{color:var(--ink-2);font-size:.95rem;}
+.objectifs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;}
+.obj{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;}
+.obj .chiffre{font:700 1.8rem/1.1 'Familjen Grotesk',Arial,sans-serif;}
+.obj .etat{display:inline-block;margin-left:8px;font-size:.9rem;font-weight:600;}
+.obj .etat.ok{color:var(--ok);} .obj .etat.ko{color:var(--ko);}
+.barre{position:relative;height:10px;border-radius:99px;background:var(--stone);margin:12px 0 6px;overflow:hidden;}
+.barre i{position:absolute;inset:0 auto 0 0;background:var(--accent);border-radius:99px;}
+.barre em{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--ink);}
+table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);font-size:.95rem;vertical-align:top;}
+th{background:var(--stone);font-weight:600;}
+td.n,th.n{text-align:right;white-space:nowrap;}
+td.chemin{word-break:break-all;}
+tr:last-child td{border-bottom:0;}
+.message{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:18px;}
+[hidden]{display:none!important;}
+@media(max-width:720px){.tuiles{grid-template-columns:1fr 1fr;}.objectifs{grid-template-columns:1fr;}}
+@media(max-width:480px){th,td{padding:9px 8px;font-size:.88rem;}.tuile b{font-size:1.8rem;}}
+.defile{overflow-x:auto;border-radius:16px;}
+</style>
+</head>
+<body>
+<main id="main">
+  <div class="haut">
+    <h1>Le compteur du site</h1>
+    <div class="liens"><a href="/admin/">Espace agence</a><a href="/admin/promesses/">Les 7 promesses</a></div>
+  </div>
+  <p class="meta">Visiteurs → demandes → rendez-vous → mandats. Sans cookie. Les essais (« TEST ») ne comptent jamais.</p>
+  <div class="periodes" role="group" aria-label="Période">
+    <button type="button" data-jours="7" aria-pressed="false">7 jours</button>
+    <button type="button" data-jours="30" aria-pressed="true">30 jours</button>
+    <button type="button" data-jours="90" aria-pressed="false">90 jours</button>
+  </div>
+  <div id="message" class="message" hidden></div>
+  <div id="contenu" hidden>
+    <p class="meta" id="depuis"></p>
+    <div class="tuiles">
+      <div class="tuile"><b id="t-visites">–</b><span>visiteurs</span></div>
+      <div class="tuile"><b id="t-demandes">–</b><span>demandes</span></div>
+      <div class="tuile"><b id="t-rdv">–</b><span>RDV fixés</span></div>
+      <div class="tuile"><b id="t-mandats">–</b><span>mandats</span></div>
+    </div>
+    <h2>Les objectifs</h2>
+    <div class="objectifs">
+      <div class="obj" id="o-vd"><div>Visiteur → demande</div><div><span class="chiffre">–</span><span class="etat"></span></div><div class="barre"><i></i><em></em></div><div class="meta">Objectif : 5 % et plus.</div></div>
+      <div class="obj" id="o-dr"><div>Demande → rendez-vous</div><div><span class="chiffre">–</span><span class="etat"></span></div><div class="barre"><i></i><em></em></div><div class="meta">Objectif : 40 % et plus.</div></div>
+    </div>
+    <p class="meta">Délai de rappel (moins de 15 minutes) : voir <a href="/admin/promesses/">Les 7 promesses</a>.</p>
+    <h2>D'où viennent les visiteurs</h2>
+    <div class="defile"><table><thead><tr><th>Source</th><th class="n">Visiteurs</th><th class="n">Part</th></tr></thead><tbody id="sources"></tbody></table></div>
+    <h2>Pages d'arrivée</h2>
+    <div class="defile"><table><thead><tr><th>Page</th><th class="n">Visiteurs</th></tr></thead><tbody id="entrees"></tbody></table></div>
+    <h2>Pages les plus vues</h2>
+    <div class="defile"><table><thead><tr><th>Page</th><th class="n">Vues</th></tr></thead><tbody id="pages"></tbody></table></div>
+    <h2>Jour par jour</h2>
+    <div class="defile"><table><thead><tr><th>Jour</th><th class="n">Visiteurs</th><th class="n">Vues</th><th class="n">Demandes</th></tr></thead><tbody id="jours"></tbody></table></div>
+  </div>
+</main>
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id);};
+  var nf=function(n){return Number(n||0).toLocaleString('fr-FR');};
+  var esc=function(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});};
+  var jourFr=function(j){var p=String(j).split('-');return p.length===3?p[2]+'/'+p[1]+'/'+p[0]:j;};
+  function message(html){$('message').innerHTML=html;$('message').hidden=false;$('contenu').hidden=true;}
+  function objectif(id,valeur,cible,vide){
+    var b=$(id),c=b.querySelector('.chiffre'),e=b.querySelector('.etat');
+    if(valeur==null){c.textContent='–';e.textContent=vide;e.className='etat';b.querySelector('.barre i').style.width='0';}
+    else{c.textContent=String(valeur).replace('.',',')+' %';var ok=valeur>=cible;e.textContent=ok?'atteint':'pas encore';e.className='etat '+(ok?'ok':'ko');
+      var max=Math.max(cible*2,valeur);b.querySelector('.barre i').style.width=Math.min(100,valeur/max*100)+'%';}
+    var max2=Math.max(cible*2,valeur||0);b.querySelector('.barre em').style.left=(cible/max2*100)+'%';
+  }
+  function lignes(id,liste,f,vide,col){$(id).innerHTML=liste.length?liste.map(f).join(''):'<tr><td colspan="'+col+'">'+vide+'</td></tr>';}
+  function charger(jours){
+    [].forEach.call(document.querySelectorAll('.periodes button'),function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-jours')==String(jours)));});
+    fetch('/api/mesure-site?jours='+jours,{credentials:'same-origin',cache:'no-store'}).then(function(r){
+      if(r.status===401){message('Connectez-vous d\'abord dans l\'<a href="/admin/">espace agence</a>, puis revenez ici.');return null;}
+      if(r.status===403){message('Cette page est réservée au compte de l\'agence.');return null;}
+      if(!r.ok){message('Le compteur ne répond pas pour le moment. Réessayez dans une minute.');return null;}
+      return r.json();
+    }).then(function(d){
+      if(!d)return;
+      $('message').hidden=true;$('contenu').hidden=false;
+      $('depuis').textContent=d.mesure_depuis?('Compteur des visiteurs en marche depuis le '+jourFr(d.mesure_depuis)+'. Période : depuis le '+jourFr(d.depuis)+'.'):'Le compteur des visiteurs démarre avec cette version : aucune visite comptée pour l\'instant.';
+      $('t-visites').textContent=nf(d.visites);$('t-demandes').textContent=nf(d.demandes);$('t-rdv').textContent=nf(d.rdv);$('t-mandats').textContent=nf(d.mandats);
+      objectif('o-vd',d.taux_visite_demande,5,'pas encore de visiteurs comptés');
+      objectif('o-dr',d.taux_demande_rdv,40,'pas encore de demande');
+      var tot=d.visites||0;
+      lignes('sources',d.sources,function(s){return '<tr><td>'+esc(s.nom)+'</td><td class="n">'+nf(s.n)+'</td><td class="n">'+(tot?Math.round(s.n/tot*100):0)+' %</td></tr>';},'Rien pour cette période.',3);
+      lignes('entrees',d.entrees,function(p){return '<tr><td class="chemin">'+esc(p.chemin)+'</td><td class="n">'+nf(p.n)+'</td></tr>';},'Rien pour cette période.',2);
+      lignes('pages',d.pages,function(p){return '<tr><td class="chemin">'+esc(p.chemin)+'</td><td class="n">'+nf(p.n)+'</td></tr>';},'Rien pour cette période.',2);
+      lignes('jours',d.par_jour.slice().reverse(),function(j){return '<tr><td>'+jourFr(j.jour)+'</td><td class="n">'+nf(j.visites)+'</td><td class="n">'+nf(j.vues)+'</td><td class="n">'+nf(j.demandes)+'</td></tr>';},'Rien pour cette période.',4);
+    }).catch(function(){message('Pas de connexion. Réessayez dans une minute.');});
+  }
+  [].forEach.call(document.querySelectorAll('.periodes button'),function(b){b.addEventListener('click',function(){charger(Number(b.getAttribute('data-jours')));});});
+  charger(30);
+})();
+</script>
+</body>
+</html>
