@@ -190,3 +190,9 @@ if __name__ == '__main__':
         print('en-tête vague 3 :', entete.tout(pages()), 'page(s)')
     except Exception as e:
         print('en-tête vague 3 :', e)
+    # compteur « visiteurs → demandes → RDV » sans cookie (résultats dans /admin/stats/)
+    try:
+        import compteur
+        print('compteur du site :', compteur.tout(pages()), 'page(s)')
+    except Exception as e:
+        print('compteur du site :', e)

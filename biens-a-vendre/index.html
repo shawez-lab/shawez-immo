@@ -12,4 +12,5 @@ try{var f=new URLSearchParams(location.search).get('fiche')||'',m=f.match(/\/(\d
 document.getElementById('go').href=dest;location.replace(dest);})();
 </script><script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"33710f67a0c16d7cbb94d1b2ba10e7a8"})});</script>
 <script src="/assets/oai-mesure.js" defer></script>
+<script id="mesure-site">(function(){try{if(/[?&]test\b/i.test(location.search)||navigator.webdriver)return;var s=window.sessionStorage,n=!s.getItem("ms-v");s.setItem("ms-v","1");var r="";if(n&&document.referrer){try{var h=new URL(document.referrer).hostname;if(h!==location.hostname)r=h;}catch(e){}}var u=n?(new URLSearchParams(location.search).get("utm_source")||"").slice(0,40):"";fetch("/api/mesure-site",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({p:location.pathname,n:n?1:0,r:r,u:u}),keepalive:true,credentials:"omit"}).catch(function(){});}catch(e){}})();</script>
 </body></html>
