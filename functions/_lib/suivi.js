@@ -233,14 +233,14 @@ export function suiteVendeur(d, visite, conseiller = 'Shawez', offres = {}) {
   switch (d.statut) {
     case 'recue':
       if (v && v.etat === 'demandee') return `${conseiller} vous appelle et confirme votre créneau de visite.`;
-      return `${conseiller} vous appelle : dans le quart d'heure entre 9 h et 19 h, sinon le lendemain à 9 h.`;
+      return `${conseiller} vous appelle au plus vite (du lundi au vendredi, de 9 h à 19 h).`;
     case 'appele':
-      if (v && v.etat === 'demandee') return `${conseiller} confirme votre créneau de visite dans l'heure (entre 9 h et 19 h).`;
+      if (v && v.etat === 'demandee') return `${conseiller} confirme votre créneau de visite au plus vite (du lundi au vendredi, de 9 h à 19 h).`;
       return 'La visite d\'estimation : choisissez votre créneau ci-dessous.';
     case 'visite':
-      if (v && v.etat === 'demandee') return `${conseiller} confirme votre nouveau créneau dans l'heure (entre 9 h et 19 h).`;
-      if (v && v.debut && new Date(v.debut).getTime() > Date.now()) return `La visite de votre bien, ${quandFr(v.debut)}. Ensuite : votre avis de valeur, sous 24 h.`;
-      return 'Votre avis de valeur, dans les 24 heures qui suivent la visite.';
+      if (v && v.etat === 'demandee') return `${conseiller} confirme votre nouveau créneau au plus vite (du lundi au vendredi, de 9 h à 19 h).`;
+      if (v && v.debut && new Date(v.debut).getTime() > Date.now()) return `La visite de votre bien, ${quandFr(v.debut)}. Ensuite : votre avis de valeur, ici, dans la foulée.`;
+      return 'Votre avis de valeur, ici, dans la foulée de la visite.';
     case 'avis': return `${conseiller} vous appelle pour en parler. Si vous décidez de vendre : le mandat.`;
     case 'mandat': return 'Les photos, puis la mise en ligne de l\'annonce.';
     case 'annonce': return 'Les premières visites.';
