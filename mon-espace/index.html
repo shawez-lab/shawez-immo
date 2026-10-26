@@ -2363,7 +2363,7 @@ var EE=(function(){
         h+='<p class="ee-rdv-prep">'+esc(CONF.conseiller)+' vient chez vous pour votre prix précis : 45 minutes, offert et sans engagement. Choisissez votre créneau dans son agenda, en 2 clics.</p>'+
           '<div class="ee-rdv-go"><a class="btn btn-primary" href="'+esc(o.rdvUrl)+'" target="_blank" rel="noopener" data-rdv-agenda>Choisir mon créneau <span class="arw">→</span></a></div>';
       } else if(!ouvert){
-        h+='<p class="ee-rdv-prep">'+esc(CONF.conseiller)+' vient chez vous pour votre prix précis, sous 48 h si vous le souhaitez : 45 minutes, offert et sans engagement. Vous restez libre ensuite.</p>'+
+        h+='<p class="ee-rdv-prep">'+esc(CONF.conseiller)+' vient chez vous pour votre prix précis, dès que vous le souhaitez : 45 minutes, offert et sans engagement. Vous restez libre ensuite.</p>'+
           '<div class="ee-rdv-go"><button type="button" class="btn btn-primary" data-rdv-ouvrir>Choisir mon créneau <span class="arw">→</span></button></div>';
       }
       if(ouvert)h+=selecteur();
@@ -2373,10 +2373,11 @@ var EE=(function(){
       if(!jours)return '<div class="ee-load" style="height:120px;" role="status" aria-label="Chargement des créneaux"></div>';
       if(!jours.length)return '<p class="ee-err">Aucun créneau en ligne pour le moment : appelez '+esc(CONF.conseiller)+' au <a href="tel:'+CONF.tel+'">'+CONF.telAffiche+'</a>, il trouve une date avec vous.</p>';
       var j=jours[jourOuvert]||jours[0];
+      var premierTot=-1; jours.some(function(x,k){ if(x.sous48h&&x.heures.length){premierTot=k;return true;} return false; });
       return '<p class="ee-rdv-prep" id="'+idAide+'">Choisissez jusqu\'à 3 créneaux qui vous arrangent : '+esc(CONF.conseiller)+' confirme l\'un d\'eux au plus vite.</p>'+
         '<div class="ee-days" role="group" aria-label="Jour">'+jours.map(function(x,k){
           var n=choisis.filter(function(c){return x.heures.some(function(hh){return hh.debut===c;});}).length;
-          return '<button type="button" class="pill" data-rdv-jour="'+k+'" aria-pressed="'+(k===jourOuvert)+'"><b>'+esc(x.court)+'</b>'+(x.sous48h?'<small>sous 48 h</small>':'')+(n?'<i aria-label="'+n+' choisi'+(n>1?'s':'')+'">'+n+'</i>':'')+'</button>';
+          return '<button type="button" class="pill" data-rdv-jour="'+k+'" aria-pressed="'+(k===jourOuvert)+'"><b>'+esc(x.court)+'</b>'+(k===premierTot?'<small>au plus tôt</small>':'')+(n?'<i aria-label="'+n+' choisi'+(n>1?'s':'')+'">'+n+'</i>':'')+'</button>';
         }).join('')+'</div>'+
         '<div class="ee-hours" role="group" aria-label="Heure, '+esc(j.libelle)+'">'+j.heures.map(function(x){
           var on=choisis.indexOf(x.debut)>=0;

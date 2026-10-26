@@ -34,9 +34,11 @@ test('visite : le vendeur choisit 3 créneaux après le résultat, l\'agence con
   // 1. juste après le résultat : le bloc « Visite d'estimation »
   const rdv = pc.locator('#ee-rdv');
   await expect(rdv).toBeVisible();
-  await expect(rdv).toContainText('sous 48 h');
+  await expect(rdv).toContainText('dès que vous le souhaitez');
+  await expect(rdv, 'règle n° 10 : aucun délai chiffré dans un texte lu par le vendeur').not.toContainText(/\b(24|48) h\b/);
   await rdv.locator('[data-rdv-ouvrir]').click();
   await expect(rdv.locator('.ee-days .pill').first()).toBeVisible();
+  await expect(rdv.locator('.ee-days .pill small'), 'un seul jour marqué « au plus tôt »').toHaveText(['au plus tôt']);
   expect(await rdv.locator('.ee-days .pill').count()).toBe(6);
   // du lundi au vendredi seulement (Règles du Boss du 10/10/2026 : jamais le samedi)
   for (const t of await rdv.locator('.ee-days .pill b').allTextContents()) expect(t).not.toMatch(/^(sam|dim)/);
@@ -102,7 +104,7 @@ test('visite : le vendeur choisit 3 créneaux après le résultat, l\'agence con
   await expect(carte.locator('.ee-etape span')).toHaveText('Étape 3 sur 10');
   await expect(carte.locator('.ee-bar i')).toHaveCount(10);
   await expect(carte.locator('[data-test="visite-fixee"]')).toBeVisible();
-  await expect(carte.locator('[data-test="suite"]')).toContainText('avis de valeur, sous 24 h');
+  await expect(carte.locator('[data-test="suite"]')).toContainText('avis de valeur, ici, dans la foulée');
   await carte.locator('.ee-frise summary').click();
   await expect(carte.locator('.ee-frise li')).toHaveCount(10);
   await expect(carte.locator('.ee-frise li[aria-current="step"]')).toContainText('Visite d\'estimation');
