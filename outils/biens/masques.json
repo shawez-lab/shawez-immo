@@ -1,0 +1,6 @@
+{
+ "_lisezmoi": "Annonces retirées du site à la demande du vendeur, même si l'agence les affiche encore (la synchro du matin ne les remet pas en ligne). Pour remettre une annonce en ligne : retirer sa ligne, puis python3 outils/biens/build_biens.py.",
+ "annonces": {
+  "508": {"motif": "Retrait temporaire demandé par les vendeurs le 26/10/2026 (travaux en cours dans l'appartement).", "depuis": "2026-10-27"}
+ }
+}
