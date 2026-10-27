@@ -43,3 +43,6 @@
   Content-Security-Policy: default-src 'self'; frame-src https://my.matterport.com https://*.nodalview.com https://kuula.co https://www.youtube-nocookie.com https://www.instagram.com; script-src 'self' 'unsafe-inline' https://tracker.metricool.com https://bzrcdn.openai.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://tracker.metricool.com https://bzr.openai.com; media-src 'self'; connect-src 'self' https://tracker.metricool.com https://api-adresse.data.gouv.fr https://data.geopf.fr https://bzr.openai.com https://bzrcdn.openai.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests
 /assets/biens/*
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+/trial/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: public, max-age=604800
