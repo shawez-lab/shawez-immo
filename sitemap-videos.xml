@@ -100,17 +100,6 @@
     </video:video>
   </url>
   <url>
-    <loc>https://shawez-immo.com/biens/508-appartement-chenove/</loc>
-    <video:video>
-      <video:thumbnail_loc>https://shawez-immo.com/assets/biens/508/video-poster.jpg</video:thumbnail_loc>
-      <video:title>Visite en vidéo : Appartement 5 pièces, 106 m² à Chenôve</video:title>
-      <video:description>Visite en vidéo : Appartement 5 pièces, 106 m² à Chenôve</video:description>
-      <video:content_loc>https://shawez-immo.com/assets/biens/508/video.mp4</video:content_loc>
-      <video:duration>45</video:duration>
-      <video:publication_date>2026-09-28</video:publication_date>
-    </video:video>
-  </url>
-  <url>
     <loc>https://shawez-immo.com/biens/512-appartement-chenove/</loc>
     <video:video>
       <video:thumbnail_loc>https://shawez-immo.com/assets/biens/512/video-poster.jpg</video:thumbnail_loc>

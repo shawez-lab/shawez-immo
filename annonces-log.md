@@ -91,3 +91,7 @@ Chaque passage de `outils/sync_annonces.py` ajoute ici les changements constaté
 
 - Nouvelle annonce 527 : Immeuble à Beaune, 2 500 000 €.
 - Nouvelle annonce 525 : Maison à Neuilly-Crimolois, 450 000 €.
+
+## 2026-10-27
+
+- Annonce 508 : absente des pages de l'agence et fiche hors ligne, sans mention → « retirée ».
