@@ -74,6 +74,15 @@
   "motscles": {
     "chateau": {
       "ref": "438"
+    },
+    "chevigny": {
+      "ref": "520"
+    },
+    "architecte": {
+      "ref": "441"
+    },
+    "duplex": {
+      "ref": "415"
     }
   }
 }
