@@ -2,7 +2,7 @@
 """Trial Reels : monte plusieurs versions d'une vidéo de bien (accroche, plans, mots, appel à commenter).
 
 Usage : python3 outils/trial-reels/fabriquer.py outils/trial-reels/plans/<jour>.json
-Sortie : trial/<jour>/<fichier>.mp4 (1080x1920, H.264, AAC muet) + trial/<jour>/manifest.json
+Sortie : trial/<jour>/<fichier>.mp4 (1080x1920, H.264 CRF 24, environ 5 Mo, AAC muet) + trial/<jour>/manifest.json
 Le manifest donne pour chaque version l'adresse publique, la légende et l'heure de publication prévue :
 c'est lui que l'agent qui programme dans Metricool (type TRIAL_REEL) lit.
 
@@ -202,8 +202,8 @@ def monter(src, version, mot, sortie, tmp):
     audio = len(calques) + 1
     cmd = ['ffmpeg', '-v', 'error', '-y'] + entrees + [
         '-filter_complex', ';'.join(filtres), '-map', '[v]', '-map', f'{audio}:a',
-        '-t', f'{total:.3f}', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '19',
-        '-profile:v', 'high', '-level', '4.1', '-maxrate', '12M', '-bufsize', '24M', '-g', '60',
+        '-t', f'{total:.3f}', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '24',
+        '-profile:v', 'high', '-level', '4.1', '-maxrate', '6M', '-bufsize', '12M', '-g', '60',
         '-r', '30', '-c:a', 'aac', '-b:a', '128k', '-movflags', '+faststart', sortie]
     subprocess.run(cmd, check=True)
     return total
