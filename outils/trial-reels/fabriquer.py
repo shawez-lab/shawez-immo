@@ -162,7 +162,7 @@ def monter(src, version, mot, sortie, tmp):
         dur = (fin - deb) / vit
         filtres.append(
             f'[0:v]trim=start={deb}:end={fin},setpts=(PTS-STARTPTS)/{vit},fps=30,'
-            f'scale={W}:{H}:flags=lanczos,setsar=1,eq=contrast=1.03:saturation=1.07,'
+            f'scale={W}:{H}:force_original_aspect_ratio=increase:flags=lanczos,crop={W}:{H},setsar=1,eq=contrast=1.03:saturation=1.07,'
             f'unsharp=5:5:0.5:5:5:0[s{i}]')
         reperes.append((t, t + dur))
         t += dur
