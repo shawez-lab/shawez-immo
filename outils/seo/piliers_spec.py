@@ -33,7 +33,10 @@ P.append(dict(
   sections=[
     ("qui-je-suis", "Qui je suis",
      "<p>Je m'appelle Shawez Ali. Je suis agent immobilier, avec le statut d'agent commercial en immobilier, rattaché à l'agence GRAVELIN IMMO (30 rue Bannelier, 21000 Dijon), titulaire de la carte professionnelle. Les mandats sont signés au nom de l'agence ; moi, je suis votre interlocuteur du premier appel jusqu'à la signature chez le notaire. " + L("/shawez-ali-agent-immobilier-dijon/", "En savoir plus sur moi et mon équipe") + ".</p>"
-     "<p>Je fais moi-même l'estimation, les visites et la négociation. Pour présenter votre bien, une équipe prend le relais : Robin, photographe et pilote de drone, Jason, vidéaste, et une équipe de montage et de diffusion. Les acheteurs arrivent en visite en ayant déjà vu le bien.</p>"),
+     "<p>Je fais moi-même l'estimation, les visites et la négociation. Pour présenter votre bien, une équipe prend le relais : Robin, photographe et pilote de drone, Jason, vidéaste, et une équipe de montage et de diffusion. Les acheteurs arrivent en visite en ayant déjà vu le bien.</p>"
+     "<p>Je travaille en français et en anglais, et je parle aussi couramment l'hindi, l'ourdou et le pendjabi, "
+     "très bien le persan, et bien le grec et l'arabe. Acheteurs et vendeurs étrangers&nbsp;: "
+     "<a class=\"link\" href=\"/en/\" lang=\"en\">my page in English</a>.</p>"),
     ("ce-que-je-vends", "Ce que je vends",
      "<ul>"
      "<li><strong>Appartements et maisons</strong> à Dijon et dans la métropole : " + L("/vendre-bien-immobilier-dijon/", "vendre votre bien à Dijon") + ", " + L("/biens-a-vendre-dijon/", "les biens à vendre") + ".</li>"

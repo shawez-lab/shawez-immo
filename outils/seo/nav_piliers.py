@@ -20,6 +20,9 @@ REMPLACEMENTS = [
      '<p class="ft-h">Découvrir</p><ul><li><a href="/agent-immobilier-dijon/">Agent immobilier à Dijon</a></li><li><a href="/conseils-vendeurs/">Conseils aux vendeurs</a></li>'),
     ('<li><a href="/secteurs-dijon-nuits-saint-georges-beaune/">Territoire</a></li>',
      '<li><a href="/secteurs-dijon-nuits-saint-georges-beaune/">Territoire</a></li><li><a href="/prix-immobilier-dijon/">Prix au m² à Dijon</a></li>'),
+    # colonne « Découvrir » : pages en anglais pour la clientèle internationale (27/10/2026)
+    ('<li><a href="/prix-immobilier-dijon/">Prix au m² à Dijon</a></li>',
+     '<li><a href="/prix-immobilier-dijon/">Prix au m² à Dijon</a></li><li><a href="/en/" lang="en">English</a></li>'),
     # colonne « Pratique »
     ('<li><a href="/cookies/">Cookies</a></li>',
      '<li><a href="/cookies/">Cookies</a></li><li><a href="/plan-du-site/">Plan du site</a></li>'),
