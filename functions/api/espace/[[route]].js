@@ -174,7 +174,7 @@ const ROUTES = {
 
 /* Version de l'API : les tests sur l'aperçu attendent de la voir avant de commencer (le site met une à deux minutes
    à se mettre à jour après une poussée). À changer à chaque évolution de l'API. */
-const VERSION = '2026-10-21.1';
+const VERSION = '2026-10-27.1';
 
 /* Clé du flux Google Sheet : on ne garde que son empreinte. Celle-ci est la clé de mise en service ; dès qu'un admin
    en génère une nouvelle (/admin/ → « Google Sheet »), c'est l'empreinte en base qui fait foi. */
