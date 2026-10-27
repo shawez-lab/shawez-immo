@@ -37,6 +37,14 @@ const WA_EN_SERVICE_DEPUIS = '';
 const WA_BLOQUES_BASE = [];
 // Métadiscours : la sortie explique le raisonnement ou cite les consignes au lieu d'être le seul message au contact
 const META = /\b((le client|la cliente|le contact|la personne) (r[eé]p[eè]te|demande|[eé]crit|veut|parle|dit|semble|propose|relance)|consignes?|historique|hors_sujet|r[eè]gles? absolues?|pas de « ?salut|on ne redit|ne pas redire|d[ée]j[àa] en pleine conversation|je r[ée]ponds donc|voici (le|mon) message|message (au|pour le) (client|contact)|type ?:|pr[ée]nom ?:)/i;
+// Instagram ne transmet pas à ManyChat le texte d'un commentaire (ni l'identifiant du Reel) : le flux « tous les Reels »
+// envoie ce texte fixe. Claude ne doit alors rien deviner du commentaire (ni compliment, ni question).
+const COMMENTAIRE_INCONNU = /^\s*demande d.informations sur un reel\s*$/i;
+// Une ligne du journal ne compte comme « réponse déjà envoyée » que si un message est vraiment parti
+// (hors sujet et refus : rien n'est parti, la personne doit pouvoir être servie au message suivant).
+const ENVOYE = "origine NOT IN ('hors_creneau','hors_sujet') AND origine NOT LIKE 'refus_%'";
+// Prénom ManyChat qui n'en est pas un (compte d'entreprise « Les Suites… », « La Maison… ») : on n'écrit pas « Salut Les »
+const PAS_UN_PRENOM = /^(les|la|le|l'|des|du|de|un|une|the|mon|ma|agence|immo|studio|domaine|restaurant|boutique|maison|sas|sarl)$/i;
 const INTERDITS = /\b(mandataire|gratuit|gratuite|gratuitement|ia|robot|automatique|automatiquement|claude|chatgpt|intelligence artificielle)\b/i;
 
 const json = (status, obj) => new Response(JSON.stringify(obj), {
@@ -151,6 +159,11 @@ Dès que tu écris un message, règles absolues, sauf le « Salut » de début e
   envoies les bilans tout de suite après. Ne donne jamais le résultat comptable, les salaires ni le nom ou l'adresse du commerce.
 - Si aucun bien n'est fourni : une phrase chaleureuse et naturelle, puis une seule question simple sur ce qu'il cherche.
   Ne dis jamais que tu n'as pas l'information ni que tu préfères ne rien dire de faux.
+- Si le texte du commentaire n'a pas été transmis : ne devine jamais ce qu'il a écrit ni ce qu'il en pense. Jamais « content que la vidéo
+  t'ait plu », « ça fait plaisir », « merci pour ton compliment » ni « ta question ». Dis simplement que tu as vu son commentaire sous ta vidéo,
+  puis UNE question courte sur son projet.
+- Si la personne veut vendre ou faire estimer son propre bien, ou si son commentaire contient un mot de vendeur : ne parle d'aucun bien en vente.
+  Propose-lui de passer lui faire une estimation offerte et pose UNE seule question : dans quelle commune se trouve son bien.
 - Ne parle jamais de « commentaire » si le Type est un message privé ou une réponse à une story : dis « ton message ».
 - N'invente jamais un agenda, des disponibilités, des visites prévues ou une activité de la semaine.
 - Ne confirme ni n'accepte jamais un jour ou une heure à la place de Shawez, même si la personne en propose un : écris que tu notes sa disponibilité,
@@ -180,11 +193,15 @@ Règles absolues quand tu écris :
 - Documents, bilans, chiffre d'affaires d'un fonds : chiffres publics fournis seulement, puis l'engagement de confidentialité à signer avec une pièce d'identité.
 Réponds avec le texte du message seul, sans guillemets ni explication : la première ligne est déjà adressée à la personne.`;
 
-async function rediger(env, prenom, commentaire, bien, source, fil = []) {
+async function rediger(env, prenom, commentaire, bien, source, fil = [], intention = '') {
   if (!env.ANTHROPIC_API_KEY) throw new Error('cle absente');
-  const donnees = bien
+  const inconnu = COMMENTAIRE_INCONNU.test(commentaire || '');
+  if (intention === 'vendre') commentaire = 'texte exact non transmis par Instagram, mais le commentaire contient un mot de vendeur : vendre, estimer, estimation ou valeur de son bien';
+  else if (inconnu) commentaire = 'texte du commentaire non transmis par Instagram';
+  const donnees = intention === 'vendre' ? 'Aucun bien en vente à présenter : la personne est peut-être vendeuse.'
+    : bien
     ? Object.entries(bien).filter(([k, v]) => v && k !== 'lien' && k !== 'ref').map(([k, v]) => `${k} : ${v}`).join('\n')
-    : 'Bien non identifié : remercie, demande quel bien l’intéresse ou ce qu’il cherche.';
+    : inconnu ? 'Bien non identifié.' : 'Bien non identifié : remercie, demande quel bien l’intéresse ou ce qu’il cherche.';
   const r = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
     headers: { 'x-api-key': env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
@@ -369,7 +386,7 @@ export async function onRequest({ request, env }) {
   try {
     if (!egal(request.headers.get('X-Boss-Token') || '', env.MANYCHAT_TOKEN || '')) return json(401, { error: 'acces' });
 
-    let prenom, commentaire, post, contact, compte, evenement, source = '', test = false, waContactExistant = false;
+    let prenom, commentaire, post, contact, compte, evenement, source = '', test = false, waContactExistant = false, intention = '';
     if (request.method === 'GET') {
       const u = new URL(request.url);
       if (u.searchParams.get('diag')) {
@@ -388,6 +405,8 @@ export async function onRequest({ request, env }) {
       if (!u.searchParams.get('test')) return json(200, { ready: !!env.ANTHROPIC_API_KEY, mode: env.DM_MODE === 'live' ? 'live' : 'test' });
       test = true; prenom = 'Test'; commentaire = u.searchParams.get('c') || 'Il est dans quel quartier ?';
       post = u.searchParams.get('post') || 'test-chevigny'; compte = 'gravelin_immo'; contact = 'test'; evenement = `test-${Date.now()}`;
+      intention = /^vend/i.test(u.searchParams.get('intention') || '') ? 'vendre' : '';
+      if (intention) post = 'vendre';
     } else if (request.method === 'POST') {
       const c = await request.json().catch(() => ({}));
       if (c.action === 'garde') {
@@ -409,8 +428,12 @@ export async function onRequest({ request, env }) {
       // « GRAVELIN » ou « gravelin » → « Gravelin »
       if (/[{}]/.test(prenom || '')) prenom = '';   // variable ManyChat non remplacée (« {{first_name}} »)
       if (prenom && (prenom === prenom.toUpperCase() || prenom === prenom.toLowerCase())) prenom = prenom.toLowerCase().replace(/(^|[\s-])\p{L}/gu, m => m.toUpperCase());
+      if (prenom && PAS_UN_PRENOM.test(prenom)) prenom = '';
       commentaire = propre(c.comment || c.commentaire, 500);
+      intention = /^vend/i.test(propre(c.intention, 20)) ? 'vendre' : '';
       post = propre(c.post || c.post_id || c.reel || c.url, 300);
+      // Vendeur : clé à part, pour qu'une réponse du matin à un autre commentaire ne bloque jamais un vendeur (une réponse vendeur par jour)
+      if (intention) post = 'vendre';
       contact = propre(c.contact_id || c.user_id, 80);
       compte = propre(c.ig_username || c.username, 60).replace(/^@/, '').toLowerCase();
       evenement = propre(c.event_id || c.comment_id, 120);
@@ -449,13 +472,14 @@ export async function onRequest({ request, env }) {
     if (base && !test) {
       // Stories et DM directs : antidoublon par message seulement (décision de Shawez du 20/10 : plus de limite d'une réponse par jour)
       const story = /^(story|dm|wa)/i.test(post || '') || source === 'dm' || source === 'whatsapp';
-      const deja = await base.prepare("SELECT 1 FROM dm_instagram WHERE origine <> 'hors_creneau' AND (evenement = ?1 OR (?5 = 0 AND contact = ?2 AND post = ?3 AND jour = ?4)) LIMIT 1")
+      const deja = await base.prepare(`SELECT 1 FROM dm_instagram WHERE (evenement = ?1 AND origine <> 'hors_creneau') OR (?5 = 0 AND contact = ?2 AND post = ?3 AND jour = ?4 AND ${ENVOYE}) LIMIT 1`)
         .bind(evenement, contact, idReel(post), jour, story ? 1 : 0).first();
       if (deja) return sansMessage('doublon');
       // Déclencheur « tous les Reels » (source=reel_tous) : il passe 1 minute après les déclencheurs par Reel.
-      // Si ce contact a déjà reçu une réponse dans les 15 dernières minutes, c'est le même commentaire : on ne répond pas deux fois.
+      // Si ce contact a déjà reçu une réponse à un COMMENTAIRE dans les 15 dernières minutes, c'est le même commentaire : on ne répond pas deux fois.
+      // Un DM, une story ou un message resté sans réponse (hors sujet, refus) ne bloque jamais un commentaire (bug du 27/10 : « Je veux vendre ma maison » ignoré).
       if (source === 'reel_tous') {
-        const recent = await base.prepare("SELECT 1 FROM dm_instagram WHERE contact = ?1 AND origine <> 'hors_creneau' AND cree > ?2 LIMIT 1")
+        const recent = await base.prepare(`SELECT 1 FROM dm_instagram WHERE contact = ?1 AND ${ENVOYE} AND post NOT IN ('dm','wa') AND post NOT LIKE 'story%' AND cree > ?2 LIMIT 1`)
           .bind(contact, new Date(Date.now() - 15 * 60000).toISOString()).first();
         if (recent) return sansMessage('doublon_reel_tous');
       }
@@ -504,9 +528,9 @@ export async function onRequest({ request, env }) {
       const dernier = [...fil].reverse().find(m => m.cle);
       if (dernier) post = dernier.cle;
     }
-    let bien = await trouverBien(env, request, post);
+    let bien = intention === 'vendre' ? null : await trouverBien(env, request, post);
     let cleBien = bien ? post : '';
-    if (!bien) {
+    if (!bien && intention !== 'vendre') {
       // Reel absent du registre (Trial Reel, nouvelle version) ou message sans bien reconnu : le mot-clé écrit par la personne décide
       const mc = await motCle(env, request, commentaire);
       if (mc) { bien = await trouverBien(env, request, mc); if (bien) cleBien = mc; }
@@ -522,7 +546,7 @@ export async function onRequest({ request, env }) {
     if (depense >= PLAFOND_JOUR_USD) { texte = secours(prenom, bien, source === 'whatsapp'); origine = 'plafond'; }
     else {
       try {
-        ({ texte, usage } = await rediger(env, prenom, commentaire, bien, source || (/^dm$/i.test(post || '') ? 'dm' : ''), fil));
+        ({ texte, usage } = await rediger(env, prenom, commentaire, bien, source || (/^dm$/i.test(post || '') ? 'dm' : ''), fil, intention));
         if (/^\W*HORS_SUJET\W*$/i.test(texte)) {
           // Pas une demande immobilière (conversation perso, partenariat…) : aucun message, Shawez reprend à la main
           const coutHs = usage ? (usage.input_tokens || 0) * PRIX_ENTREE + (usage.output_tokens || 0) * PRIX_SORTIE : 0;
@@ -572,7 +596,9 @@ export async function onRequest({ request, env }) {
     await noter('out', texte, cleBien);
     console.log('manychat-dm', JSON.stringify({ post: idReel(post), ref: bien && bien.ref, compte, origine, cout }));
     // Boutons seulement au premier message (ou quand un bien est en jeu) : pas à chaque réponse d'une conversation
-    return json(200, { ...blocManyChat(texte, bien, !dejaEcrit || !!bien, source === 'whatsapp'), envoyer: 'oui', origine, cout: Math.round(cout * 1e5) / 1e5, depense_jour: Math.round((depense + cout) * 1e4) / 1e4 });
+    const bloc = blocManyChat(texte, bien, !dejaEcrit || !!bien, source === 'whatsapp');
+    if (intention === 'vendre') bloc.fiche_url = ESTIMER;
+    return json(200, { ...bloc, envoyer: 'oui', origine, cout: Math.round(cout * 1e5) / 1e5, depense_jour: Math.round((depense + cout) * 1e4) / 1e4 });
   } catch (e) {
     console.log('manychat-dm', e && e.stack);
     return json(500, { error: 'serveur' });
