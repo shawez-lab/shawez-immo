@@ -54,6 +54,22 @@ test('LE BUG : estimation → accueil → pictogramme → connecté ; puis mot d
   expect(r._status).toBe(200);
 });
 
+/* Partout en France (27/10/2026) : hors Côte-d'Or, la demande est enregistrée d'abord, puis la fourchette est calculée
+   sur les ventes DVF de la commune, lues à la demande sur data.gouv.fr (ici Lyon 1er, arrondissement 69381). */
+test('partout en France : Lyon, fourchette calculée sur les ventes de la commune', async ({ page }) => {
+  const second = page.waitForResponse((r) => /\/api\/espace\/estimation\/fourchette$/.test(r.url()), { timeout: 60000 });
+  const { reponse } = await estimationComplete(page, { adresse: '10 rue de la république lyon' }, { prenom: 'Essai', nom: 'Automatique' });
+  expect(reponse.statut).toBe(201);
+  expect(reponse.corps.resultat).toMatchObject({ fourchette: false, raison: 'calcul' });
+  const f = await (await second).json();
+  console.log('Lyon :', JSON.stringify(f.resultat));
+  expect(f.resultat.fourchette, `fourchette à Lyon (raison : ${f.resultat.raison})`).toBe(true);
+  expect(f.resultat.comparables).toBeGreaterThanOrEqual(5);
+  await expect(page.locator('[data-test="fourchette"]')).toBeVisible();
+  await page.screenshot({ path: `captures/apercu-${test.info().project.name}-lyon.png`, fullPage: true });
+  await supprimer(page);
+});
+
 /* Étape 2 du système parfait, côté vendeur, sur la vraie base : créneaux de visite proposés après le résultat, frise des
    10 étapes dans l'espace. L'adresse d'essai (@test.invalid) ne déclenche aucune alerte ; le compte est supprimé à la fin
    (son journal et sa demande de visite partent avec lui). L'admin et le PDF sont vérifiés par la série locale. */
