@@ -69,7 +69,8 @@ function ficheDepuisAnnonce(ref, a) {
   const c = a.caracteristiques || {};
   return {
     ref,
-    type: propre(a.compo_agence || a.type, 80),
+    // Nature du bien d'abord (« Château », « Maison »), puis la composition : Claude et le message de secours savent de quoi on parle
+    type: propre([a.type, a.compo_agence].filter(Boolean).join(' - '), 80),
     commune: propre(a.commune, 60),
     prix: propre(c.prix_honoraires_inclus || c.prix_vente || '', 30),
     pieces: propre(c.nbpiecees, 5),
@@ -83,11 +84,27 @@ function ficheDepuisAnnonce(ref, a) {
   };
 }
 
+// Mots-clés des vidéos (« Commente CHÂTEAU ») : registre motscles de /videos-biens.json, sans accents, en minuscules.
+// Sert quand le Reel n'est pas dans le registre (Trial Reels, nouvelles versions) : le mot du commentaire dit le bien.
+const sansAccents = (s) => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+
+async function motCle(env, request, texte) {
+  let registre = {};
+  try { registre = await lireJson(env, request, '/videos-biens.json'); } catch (e) { return ''; }
+  const t = ` ${sansAccents(texte).replace(/[^a-z0-9]+/g, ' ')} `;
+  for (const k of Object.keys(registre.motscles || {})) {
+    if (t.includes(` ${sansAccents(k)} `)) return `mot:${sansAccents(k)}`;
+  }
+  return '';
+}
+
 async function trouverBien(env, request, post) {
   const id = idReel(post);
   let registre = {};
   try { registre = await lireJson(env, request, '/videos-biens.json'); } catch (e) { console.log('registre', e.message); }
-  const entree = (registre.videos || {})[id];
+  const entree = /^mot:/.test(id)
+    ? Object.entries(registre.motscles || {}).find(([k]) => `mot:${sansAccents(k)}` === id)?.[1]
+    : (registre.videos || {})[id];
   if (!entree) return null;
   if (entree.manuel) return { ...entree.manuel, lien: entree.manuel.lien || BIENS };
   try {
@@ -197,7 +214,7 @@ function secours(prenom, bien) {
   }
   const brut = bien.type ? bien.type.split(' - ')[0].trim() : 'bien';
   const t = brut.replace(/\b(t\d)\b/gi, m => m.toUpperCase()).replace(/^./, c => c.toLowerCase());
-  const det = /^[aeiouyéèêh]/i.test(t) ? 'cet' : 'ce';
+  const det = /^(maison|propri|villa|long[eè]re|ferme|grange|demeure|b[aâ]tisse)/i.test(t) ? 'cette' : /^[aeiouyéèêh]/i.test(t) ? 'cet' : 'ce';
   return `Salut${p} 👋 merci pour ton message !\nC'est Shawez, agent immobilier à Dijon.\nLe dossier de ${det} ${t} à ${bien.commune}${bien.prix ? `, à ${bien.prix},` : ''} est juste en dessous.\nTu veux le visiter ou je t'appelle ? WhatsApp : ${WHATSAPP}`;
 }
 
@@ -431,8 +448,13 @@ export async function onRequest({ request, env }) {
       const dernier = [...fil].reverse().find(m => m.cle);
       if (dernier) post = dernier.cle;
     }
-    const bien = await trouverBien(env, request, post);
-    const cleBien = bien ? post : '';
+    let bien = await trouverBien(env, request, post);
+    let cleBien = bien ? post : '';
+    if (!bien) {
+      // Reel absent du registre (Trial Reel, nouvelle version) ou message sans bien reconnu : le mot-clé écrit par la personne décide
+      const mc = await motCle(env, request, commentaire);
+      if (mc) { bien = await trouverBien(env, request, mc); if (bien) cleBien = mc; }
+    }
     let depense = 0;
     if (base) {
       const r = await base.prepare('SELECT COALESCE(SUM(cout), 0) AS c FROM dm_instagram WHERE jour = ?1').bind(jour).first();
