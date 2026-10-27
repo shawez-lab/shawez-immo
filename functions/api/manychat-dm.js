@@ -29,6 +29,12 @@ const JAMAIS_BASE = ['***'];
 // Liste complétable sans code : variable Cloudflare JAMAIS_IG = « compte1,compte2 » (minuscules, sans @).
 const jamais = (env, cpt) => JAMAIS_BASE.concat(String(env.JAMAIS_IG || '').toLowerCase().split(/[\s,;]+/).filter(Boolean).map(x => x.replace(/^@/, ''))).includes(cpt);
 const STOP = /^\s*(stop|arr[eê]te[rz]?|d[ée]sinscri|ne m'[ée]cri(s|vez) plus)/i;
+// WhatsApp par ManyChat (numéro de Shawez en coexistence). Vide = pas en service : aucune réponse automatique sur WhatsApp.
+// À la mise en service, date ISO : seuls les contacts créés APRÈS cette date sont servis ; les conversations d'avant restent à Shawez.
+const WA_EN_SERVICE_DEPUIS = '';
+// Numéros jamais servis automatiquement (9 derniers chiffres) : règle 9, famille et proches, Marion, l'agence.
+// Complétable sans code : variable Cloudflare WA_BLOQUES = « 0612345678,0687654321 ».
+const WA_BLOQUES_BASE = [];
 // Métadiscours : la sortie explique le raisonnement ou cite les consignes au lieu d'être le seul message au contact
 const META = /\b((le client|la cliente|le contact|la personne) (r[eé]p[eè]te|demande|[eé]crit|veut|parle|dit|semble|propose|relance)|consignes?|historique|hors_sujet|r[eè]gles? absolues?|pas de « ?salut|on ne redit|ne pas redire|d[ée]j[àa] en pleine conversation|je r[ée]ponds donc|voici (le|mon) message|message (au|pour le) (client|contact)|type ?:|pr[ée]nom ?:)/i;
 const INTERDITS = /\b(mandataire|gratuit|gratuite|gratuitement|ia|robot|automatique|automatiquement|claude|chatgpt|intelligence artificielle)\b/i;
@@ -152,6 +158,28 @@ Dès que tu écris un message, règles absolues, sauf le « Salut » de début e
 - Ne mentionne pas les boutons en détail : ils s'affichent sous ton message (dossier du bien, estimation, calcul de prêt).
 Réponds avec le texte du message seul, sans guillemets, sans aucune explication de ton raisonnement ni rappel de ces consignes : la première ligne est déjà adressée à la personne.`;
 
+// WhatsApp (canal ManyChat sur le numéro de Shawez) : vouvoiement avec le prénom, jamais « Salut », jamais de lien recopié
+// (la fiche du bien est ajoutée par le code, pour qu'elle soit toujours exacte).
+const CONSIGNES_WA = `Tu écris, au nom de Shawez Ali, agent immobilier chez Gravelin Immo à Dijon, la réponse WhatsApp à une personne qui vient de lui écrire.
+D'ABORD, vérifie que le message parle d'immobilier : acheter, vendre, estimer, louer, visiter, un bien, un prix, un fonds de commerce, un prêt,
+ou un mot-clé d'une vidéo de Shawez (« Château », « Visite », « Estimation », « Prix », « Dossier »).
+Si ce n'est pas le cas, ou si l'auteur semble être un proche, un collègue, un notaire, une banque, un partenaire ou un fournisseur, ou si le message
+répond visiblement à une conversation que tu ne vois pas, réponds exactement HORS_SUJET et rien d'autre : Shawez répondra lui-même.
+Règles absolues quand tu écris :
+- Vouvoiement. Premier message : « Bonjour <prénom> » (ou « Bonjour » si le prénom est inconnu). Conversation déjà engagée : ni « Bonjour », ni prénom en tête, tu réponds directement.
+- 2 à 4 lignes courtes, 450 caractères maximum, ton chaleureux et naturel, 1 emoji au plus. Écris comme Shawez sur son téléphone : AUCUNE parenthèse,
+  aucun tiret de liste, aucune formule administrative (« n'hésitez pas », « honoraires à la charge du vendeur »).
+- Un mot-clé seul (« Château ») avec un bien fourni : la personne attend ce que la vidéo a promis. Donne-le tout de suite : le bien en une phrase,
+  puis dis que la fiche avec la vidéo et les photos est juste en dessous. Ne lui demande jamais ce qu'elle cherche à la place.
+- Une question précise (prix, surface, quartier, visite) : réponds d'abord, en une phrase, UNIQUEMENT avec les données du bien fournies.
+- Aucun bien fourni : une phrase chaleureuse, puis une seule question simple sur le bien ou la vidéo qui l'intéresse.
+- Termine par UNE seule question courte qui ne demande qu'une chose, sauf si la personne remercie, dit non ou clôt : alors une phrase de politesse, sans question.
+- Ne jamais inventer un prix, une surface, un quartier, une caractéristique, un agenda ou une disponibilité. Jamais d'adresse exacte, jamais de nom de rue.
+  Jamais les mots « mandataire », « gratuit », « IA », « robot », « automatique » ; dis « offert » si besoin. Ne recopie aucun lien.
+- Ne propose jamais d'heure ni de jour, n'accepte jamais un créneau à la place de Shawez : note sa disponibilité, Shawez confirme lui-même.
+- Documents, bilans, chiffre d'affaires d'un fonds : chiffres publics fournis seulement, puis l'engagement de confidentialité à signer avec une pièce d'identité.
+Réponds avec le texte du message seul, sans guillemets ni explication : la première ligne est déjà adressée à la personne.`;
+
 async function rediger(env, prenom, commentaire, bien, source, fil = []) {
   if (!env.ANTHROPIC_API_KEY) throw new Error('cle absente');
   const donnees = bien
@@ -166,8 +194,8 @@ async function rediger(env, prenom, commentaire, bien, source, fil = []) {
       // Sonnet 5.5 : pas de réflexion préalable pour un DM court (doc officielle : between_tools, effort ≤ high)
       thinking: { type: 'between_tools' },
       output_config: { effort: 'low' },
-      system: CONSIGNES,
-      messages: [{ role: 'user', content: `${fil.length ? 'Historique récent de la conversation, du plus ancien au plus récent :\n' + fil.map(m => (m.sens === 'out' ? 'Shawez : ' : 'Client : ') + m.texte).join('\n') + '\n\n' : ''}Type : ${source === 'dm' ? 'message privé direct' : /story/i.test(source || '') ? 'réponse à une story' : 'commentaire sous une vidéo'}\nPrénom : ${prenom || '(inconnu)'}\nMessage : ${commentaire || '(vide)'}\n\nDonnées du bien :\n${donnees}` }],
+      system: source === 'whatsapp' ? CONSIGNES_WA : CONSIGNES,
+      messages: [{ role: 'user', content: `${fil.length ? 'Historique récent de la conversation, du plus ancien au plus récent :\n' + fil.map(m => (m.sens === 'out' ? 'Shawez : ' : 'Client : ') + m.texte).join('\n') + '\n\n' : ''}Type : ${source === 'whatsapp' ? 'message WhatsApp' : source === 'dm' ? 'message privé direct' : /story/i.test(source || '') ? 'réponse à une story' : 'commentaire sous une vidéo'}\nPrénom : ${prenom || '(inconnu)'}\nMessage : ${commentaire || '(vide)'}\n\nDonnées du bien :\n${donnees}` }],
     }),
   });
   if (!r.ok) throw new Error(`api ${r.status} ${(await r.text()).slice(0, 200)}`);
@@ -206,8 +234,15 @@ function normaliser(t) {
   return String(t || '').replace(/\r/g, '').split('\n').map(l => l.trim()).filter(Boolean).join('\n');
 }
 
-function secours(prenom, bien) {
+function secours(prenom, bien, wa = false) {
   const p = prenom ? ` ${prenom}` : '';
+  if (wa) {
+    // WhatsApp : vouvoiement, pas de numéro WhatsApp à rappeler, le lien de la fiche est ajouté par blocManyChat
+    if (!bien || bien.confidentialite) return `Bonjour${p}, merci pour votre message 🙂\nC'est Shawez, agent immobilier à Dijon.\nDites-moi quel bien vous intéresse, je vous réponds moi-même.`;
+    const b = bien.type ? bien.type.split(' - ')[0].trim().replace(/^./, c => c.toLowerCase()) : 'bien';
+    const d = /^(maison|propri|villa|long[eè]re|ferme|grange|demeure|b[aâ]tisse)/i.test(b) ? 'cette' : /^[aeiouyéèêh]/i.test(b) ? 'cet' : 'ce';
+    return `Bonjour${p}, merci pour votre message 🙂\nLa fiche de ${d} ${b} à ${bien.commune}${bien.prix ? `, à ${bien.prix},` : ''} est juste en dessous, avec la vidéo et les photos.\nVous voulez le visiter ou je vous appelle ?`;
+  }
   if (!bien) return `Salut${p} 👋 merci pour ton message !\nC'est Shawez, agent immobilier à Dijon.\nDis-moi quel bien t'intéresse ou ce que tu cherches, je te réponds moi-même.\nWhatsApp : ${WHATSAPP}`;
   if (bien.chiffres && bien.confidentialite) {
     return `Salut${p} 👋 le 1,8 million, c'est tout ce qui passe en caisse sur l'année, tabac, jeux et presse compris.\nLa plus grande partie repart à l'État, le chiffre d'affaires comptable tourne autour de 208 000 €.\nPour les bilans complets, signe l'engagement de confidentialité du bouton Accès aux bilans et renvoie-le avec ta pièce d'identité, je t'envoie tout dans la foulée.\nTu cherches à reprendre un commerce sur Dijon ?`;
@@ -306,7 +341,13 @@ async function memoriserStop(env, contact, compte, motif) {
 
 const jourParis = () => new Intl.DateTimeFormat('fr-CA', { timeZone: 'Europe/Paris' }).format(new Date());
 
-function blocManyChat(texte, bien, avecBoutons = true) {
+function blocManyChat(texte, bien, avecBoutons = true, wa = false) {
+  if (wa) {
+    // WhatsApp : texte seul ; quand un bien est en jeu, la fiche est ajoutée en dernière ligne (WhatsApp en montre l'aperçu)
+    const t = bien && bien.lien && avecBoutons && !texte.includes(bien.lien) ? `${texte}\n${bien.lien}` : texte;
+    return { version: 'v2', content: { type: 'whatsapp', messages: [{ type: 'text', text: t.slice(0, 1000) }] },
+      message: t.slice(0, 1000), fiche_url: bien && bien.lien ? bien.lien : '', bien_ref: bien ? bien.ref || '' : '' };
+  }
   const boutons = [
     { type: 'url', caption: '📄 Dossier du bien', url: bien && bien.lien ? bien.lien : BIENS },
     { type: 'url', caption: '🏠 Estimer mon bien', url: ESTIMER },
@@ -328,7 +369,7 @@ export async function onRequest({ request, env }) {
   try {
     if (!egal(request.headers.get('X-Boss-Token') || '', env.MANYCHAT_TOKEN || '')) return json(401, { error: 'acces' });
 
-    let prenom, commentaire, post, contact, compte, evenement, source = '', test = false;
+    let prenom, commentaire, post, contact, compte, evenement, source = '', test = false, waContactExistant = false;
     if (request.method === 'GET') {
       const u = new URL(request.url);
       if (u.searchParams.get('diag')) {
@@ -373,6 +414,19 @@ export async function onRequest({ request, env }) {
       contact = propre(c.contact_id || c.user_id, 80);
       compte = propre(c.ig_username || c.username, 60).replace(/^@/, '').toLowerCase();
       evenement = propre(c.event_id || c.comment_id, 120);
+      if (source === 'whatsapp') {
+        // WhatsApp : l'identité est le numéro (9 derniers chiffres). Garde-fous AVANT tout : canal en service, numéro non bloqué.
+        const tel = String(c.phone || c.telephone || '').replace(/\D/g, '').slice(-9);
+        compte = tel ? `wa:${tel}` : '';
+        post = 'wa';
+        if (!WA_EN_SERVICE_DEPUIS) return sansMessage('wa_pas_en_service', { a_reprendre: true });
+        const bloques = WA_BLOQUES_BASE.concat(String(env.WA_BLOQUES || '').split(/[,;\n]+/).map(x => x.replace(/\D/g, '').slice(-9)).filter(Boolean));
+        if (!tel || bloques.includes(tel)) return sansMessage('regle9', { a_reprendre: true });
+        // Contact qui existait avant la mise en service (proches, collègues, clients en cours) : Shawez garde la main,
+        // sauf si la conversation a été ouverte par cette fonction (vérifié plus bas avec l'historique). Date inconnue = contact existant.
+        const cree = Date.parse(c.contact_cree || c.subscribed_at || c.subscribed || '');
+        waContactExistant = !(cree && cree >= Date.parse(WA_EN_SERVICE_DEPUIS));
+      }
     } else return json(405, { error: 'methode' });
 
     // 1. Filtres : règle 9, mode test, doublons
@@ -386,7 +440,7 @@ export async function onRequest({ request, env }) {
     if (!evenement) {
       // DM et stories sans identifiant d'événement : même texte du même contact à 2 minutes près = même événement (relance ManyChat),
       // au-delà c'est un nouveau message (plusieurs « oui » dans une conversation). Commentaires : un par jour et par Reel.
-      const fenetre = (source === 'dm' || /^(story|dm)/i.test(post || '')) ? `m${Math.floor(Date.now() / 120000)}` : jourParis();
+      const fenetre = (source === 'dm' || source === 'whatsapp' || /^(story|dm|wa)/i.test(post || '')) ? `m${Math.floor(Date.now() / 120000)}` : jourParis();
       const brut = new TextEncoder().encode(`${contact}|${idReel(post)}|${commentaire}|${fenetre}`);
       evenement = [...new Uint8Array(await crypto.subtle.digest('SHA-256', brut))].slice(0, 12).map(b => b.toString(16).padStart(2, '0')).join('');
     }
@@ -394,7 +448,7 @@ export async function onRequest({ request, env }) {
     const jour = jourParis();
     if (base && !test) {
       // Stories et DM directs : antidoublon par message seulement (décision de Shawez du 20/10 : plus de limite d'une réponse par jour)
-      const story = /^(story|dm)/i.test(post || '') || source === 'dm';
+      const story = /^(story|dm|wa)/i.test(post || '') || source === 'dm' || source === 'whatsapp';
       const deja = await base.prepare("SELECT 1 FROM dm_instagram WHERE origine <> 'hors_creneau' AND (evenement = ?1 OR (?5 = 0 AND contact = ?2 AND post = ?3 AND jour = ?4)) LIMIT 1")
         .bind(evenement, contact, idReel(post), jour, story ? 1 : 0).first();
       if (deja) return sansMessage('doublon');
@@ -423,6 +477,8 @@ export async function onRequest({ request, env }) {
         .bind(contact, sens, String(texte).slice(0, 1000), cle || '', new Date().toISOString()).run().catch(() => {});
     };
     const dejaEcrit = fil.some(m => m.sens === 'out');
+    // WhatsApp : un contact d'avant la mise en service n'est servi que si cette fonction lui a déjà écrit
+    if (source === 'whatsapp' && waContactExistant && !dejaEcrit) { await noter('in', commentaire, ''); return sansMessage('wa_contact_existant', { a_reprendre: true }); }
     if (dejaEcrit && estCloture(commentaire)) {
       // Fin de conversation : une seule phrase de politesse, sans question ni boutons ; si on a déjà clos, plus rien
       const avant = [...fil].reverse();
@@ -435,7 +491,7 @@ export async function onRequest({ request, env }) {
       await noter('out', t, '');
       return json(200, { ...blocManyChat(t, null, false), envoyer: 'oui', origine: 'cloture', cout: 0 });
     }
-    if (/^(story|dm)$/i.test(post || '')) {
+    if (/^(story|dm|wa)$/i.test(post || '')) {
       const c = commentaire || '';
       post = /tabac|bilan|chiffre|\bca\b|\bebe\b|compta|fdj|presse|fonds|1[,.]8|million/i.test(c) ? 'story-tabac'
         : /bourroche|blondel|deux balcons|2 balcons/i.test(c) ? 'Del8q6GtmLp'
@@ -443,7 +499,7 @@ export async function onRequest({ request, env }) {
         : /ch[eé]n[oô]ve/i.test(c) ? 'DdzDuf0uxln'
         : '';
     }
-    if (/^(story|dm)$/i.test(post || '') || post === '') {
+    if (/^(story|dm|wa)$/i.test(post || '') || post === '') {
       // Rien de reconnu dans ce message : on reste sur le bien dont on parlait déjà avec ce contact
       const dernier = [...fil].reverse().find(m => m.cle);
       if (dernier) post = dernier.cle;
@@ -463,7 +519,7 @@ export async function onRequest({ request, env }) {
 
     // 3. Rédaction par Claude, contrôlée ; sinon secours
     let texte, usage = null, origine = 'claude', refus = null;
-    if (depense >= PLAFOND_JOUR_USD) { texte = secours(prenom, bien); origine = 'plafond'; }
+    if (depense >= PLAFOND_JOUR_USD) { texte = secours(prenom, bien, source === 'whatsapp'); origine = 'plafond'; }
     else {
       try {
         ({ texte, usage } = await rediger(env, prenom, commentaire, bien, source || (/^dm$/i.test(post || '') ? 'dm' : ''), fil));
@@ -479,10 +535,10 @@ export async function onRequest({ request, env }) {
         // Une parenthèse devient une simple virgule, comme on l'écrirait sur un téléphone
         texte = normaliser(texte.replace(/\s*\(([^()\n]{1,120})\)/g, ', $1,').replace(/,\s*([.!?,])/g, '$1').replace(/,\s*$/gm, ''));
         if (dejaEcrit) texte = sansSalut(texte);
-        refus = controle(texte, bien, fil.length > 0 && (source === 'dm' || /^story/i.test(source || '')), fil.filter(m => m.sens === 'in').map(m => m.texte).concat(commentaire || '').join('\n'));
+        refus = controle(texte, bien, fil.length > 0 && (source === 'dm' || source === 'whatsapp' || /^story/i.test(source || '')), fil.filter(m => m.sens === 'in').map(m => m.texte).concat(commentaire || '').join('\n'));
         if (refus) {
           console.log('manychat-dm refus', refus, texte);
-          if (refus === 'metadiscours' || (fil.length && (source === 'dm' || /^story/i.test(source || '')))) {
+          if (refus === 'metadiscours' || (fil.length && (source === 'dm' || source === 'whatsapp' || /^story/i.test(source || '')))) {
             // Pas de message de secours au milieu d'une conversation : Shawez reprend à la main
             const coutR = usage ? (usage.input_tokens || 0) * PRIX_ENTREE + (usage.output_tokens || 0) * PRIX_SORTIE : 0;
             if (base) await base.prepare('INSERT OR IGNORE INTO dm_instagram VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11)')
@@ -491,12 +547,12 @@ export async function onRequest({ request, env }) {
             await noter('in', commentaire, cleBien);
             return sansMessage(`refus_${refus}`, { a_reprendre: true });
           }
-          texte = secours(prenom, bien); origine = `secours_${refus}`;
+          texte = secours(prenom, bien, source === 'whatsapp'); origine = `secours_${refus}`;
         }
       } catch (e) {
         console.log('manychat-dm claude', e.message);
         if (e.usage) usage = e.usage;
-        texte = secours(prenom, bien);
+        texte = secours(prenom, bien, source === 'whatsapp');
         // Raison courte (statut + type d'erreur Anthropic), jamais la clé : visible dans dm_instagram.origine
         origine = ('secours_api:' + String(e.message || '').replace(/sk-[\w-]+/g, '***').replace(/\s+/g, ' ')).slice(0, 160);
       }
@@ -516,7 +572,7 @@ export async function onRequest({ request, env }) {
     await noter('out', texte, cleBien);
     console.log('manychat-dm', JSON.stringify({ post: idReel(post), ref: bien && bien.ref, compte, origine, cout }));
     // Boutons seulement au premier message (ou quand un bien est en jeu) : pas à chaque réponse d'une conversation
-    return json(200, { ...blocManyChat(texte, bien, !dejaEcrit || !!bien), envoyer: 'oui', origine, cout: Math.round(cout * 1e5) / 1e5, depense_jour: Math.round((depense + cout) * 1e4) / 1e4 });
+    return json(200, { ...blocManyChat(texte, bien, !dejaEcrit || !!bien, source === 'whatsapp'), envoyer: 'oui', origine, cout: Math.round(cout * 1e5) / 1e5, depense_jour: Math.round((depense + cout) * 1e4) / 1e4 });
   } catch (e) {
     console.log('manychat-dm', e && e.stack);
     return json(500, { error: 'serveur' });
