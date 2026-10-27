@@ -162,8 +162,8 @@ Dès que tu écris un message, règles absolues, sauf le « Salut » de début e
 - Si le texte du commentaire n'a pas été transmis : ne devine jamais ce qu'il a écrit ni ce qu'il en pense. Jamais « content que la vidéo
   t'ait plu », « ça fait plaisir », « merci pour ton compliment » ni « ta question ». Dis simplement que tu as vu son commentaire sous ta vidéo,
   puis UNE question courte sur son projet.
-- Si la personne veut vendre ou faire estimer son propre bien, ou si son commentaire contient un mot de vendeur : ne parle d'aucun bien en vente.
-  Propose-lui de passer lui faire une estimation offerte et pose UNE seule question : dans quelle commune se trouve son bien.
+- Si la personne veut vendre ou faire estimer son propre bien : ne parle d'aucun bien en vente et ne mets pas son projet au conditionnel.
+  Dis que tu peux passer lui faire une estimation offerte et pose UNE seule question : dans quelle commune se trouve son bien.
 - Ne parle jamais de « commentaire » si le Type est un message privé ou une réponse à une story : dis « ton message ».
 - N'invente jamais un agenda, des disponibilités, des visites prévues ou une activité de la semaine.
 - Ne confirme ni n'accepte jamais un jour ou une heure à la place de Shawez, même si la personne en propose un : écris que tu notes sa disponibilité,
@@ -196,7 +196,8 @@ Réponds avec le texte du message seul, sans guillemets ni explication : la prem
 async function rediger(env, prenom, commentaire, bien, source, fil = [], intention = '') {
   if (!env.ANTHROPIC_API_KEY) throw new Error('cle absente');
   const inconnu = COMMENTAIRE_INCONNU.test(commentaire || '');
-  if (intention === 'vendre') commentaire = 'texte exact non transmis par Instagram, mais le commentaire contient un mot de vendeur : vendre, estimer, estimation ou valeur de son bien';
+  // Mots-clés du flux vendeur (« vendre ma », « je vends », « estimation »…) : la personne parle de SON bien
+  if (intention === 'vendre') commentaire = 'texte exact non transmis par Instagram ; d’après ses mots, la personne veut vendre ou faire estimer son bien';
   else if (inconnu) commentaire = 'texte du commentaire non transmis par Instagram';
   const donnees = intention === 'vendre' ? 'Aucun bien en vente à présenter : la personne est peut-être vendeuse.'
     : bien
