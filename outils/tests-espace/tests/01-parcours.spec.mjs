@@ -108,9 +108,12 @@ test('moins de 5 ventes comparables : pas de fourchette, rappel au plus vite', a
   await expect(page.locator('#ee-res-box')).toContainText('trop peu de ventes comparables');
 });
 
-test('hors de la Côte-d\'Or : pas de fourchette', async ({ page }) => {
+test('hors de la Côte-d\'Or : demande enregistrée, puis fourchette sur les ventes de la commune', async ({ page }) => {
+  // partout en France depuis le 27/10/2026 : premier temps sans calcul (la demande est enregistrée et l'agence prévenue),
+  // second temps POST /estimation/fourchette (ventes DVF lues à la demande) ; sans réseau, le rappel est annoncé
   const { reponse } = await estimationComplete(page, { adresse: '10 rue de la république lyon' });
-  expect(reponse.corps.resultat).toMatchObject({ fourchette: false, raison: 'hors_zone' });
+  expect(reponse.corps.resultat).toMatchObject({ fourchette: false, raison: 'calcul' });
+  await expect(page.locator('#ee-res-box [data-test="fourchette"], #ee-res-box [data-test="rappel"]').first()).toBeVisible({ timeout: 45000 });
 });
 
 test('adresses avec accents, bis et ter', async ({ page }) => {

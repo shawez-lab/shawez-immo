@@ -6,7 +6,11 @@
    3. Ajustements bornés selon l'état, l'étage et l'ascenseur, l'extérieur, le stationnement, l'époque.
    4. Fourchette : ± la moitié de l’écart interquartile (entre 5 et 10 % ; jusqu'à 12 % s'il y a peu de ventes
       ou s'il a fallu les chercher loin), arrondie. Le rayon affiché est la distance de la vente retenue la plus éloignée.
-   Moins de 5 comparables, ou un bien hors de la Côte-d'Or : pas de fourchette, on annonce un rappel. */
+   Moins de 5 comparables : pas de fourchette, on annonce un rappel.
+   Hors de la Côte-d'Or (décision de Shawez du 27/10/2026 : l'estimation marche partout en France), les mêmes ventes DVF
+   sont lues à la demande, commune par commune (functions/_lib/dvf-france.js), avec exactement la même méthode. */
+
+import { chercherFrance } from './dvf-france.js';
 
 const RAYONS = {
   appartement: [300, 500, 800, 1200, 2000, 3000, 5000],
@@ -82,13 +86,42 @@ export function ajustements(r) {
   return { total, lignes };
 }
 
+/* Ventes à plat (hors Côte-d'Or) : même règle que la recherche par tuiles — même type, surface comparable, rayon qui
+   s'élargit tant qu'il y a moins de VISE ventes. Le détail de chaque vente voyage avec elle (det). */
+function comparer(lignes, r, t) {
+  const [smin, smax] = t ? [0.6, 1.7] : [0.6, 1.6];
+  const tous = [];
+  for (const v of lignes) {
+    if (v[2] !== t) continue;
+    const ratio = v[3] / r.surface;
+    if (ratio < smin || ratio > smax) continue;
+    tous.push({ d: distance(r.lat, r.lon, v[0], v[1]), pm2: v[4], surface: v[3], mois: v[5], pieces: v[6], terrain: v[7], det: [v[8], v[9], v[10], v[11]] });
+  }
+  tous.sort((a, b) => a.d - b.d);
+  let comps = [];
+  let rayon = 0;
+  for (const rr of RAYONS[r.type]) {
+    rayon = rr;
+    comps = tous.filter((c) => c.d <= rr);
+    if (comps.length >= VISE) break;
+  }
+  return { comps, recherche: rayon };
+}
+
 /* Recherche des ventes comparables autour du bien. Rend { comps, recherche } (comps : toutes les ventes du dernier
    rayon essayé, avec la tuile et le rang de chacune pour retrouver son détail), ou { raison } quand on ne cherche pas. */
-async function chercher(env, base, idx, r) {
+async function chercher(env, base, idx, r, distant = true) {
   if (r.type !== 'appartement' && r.type !== 'maison') return { raison: 'type' };
   if (r.lat == null || r.lon == null || !r.surface) return { raison: 'adresse' };
-  if (!String(r.code_postal || '').startsWith(idx.departement)) return { raison: 'hors_zone' };
   const t = r.type === 'maison' ? 1 : 0;
+  if (!String(r.code_postal || '').startsWith(idx.departement)) {
+    // hors Côte-d'Or : calcul en deux temps (la demande est enregistrée d'abord, la fourchette suit : voir l'API)
+    if (!distant) return { raison: 'calcul' };
+    const rayons = RAYONS[r.type];
+    // grande ville : seule la zone proche du bien est lue (1,2 km pour un appartement, 3 km pour une maison), où les
+    // ventes ne manquent pas ; c'est ce qui garde le calcul court
+    return chercherFrance(base, idx, r, { rayonMax: rayons[rayons.length - 1], rayonZone: rayons[3], vise: VISE, distance, comparer: (lignes) => comparer(lignes, r, t) });
+  }
   const [smin, smax] = t ? [0.6, 1.7] : [0.6, 1.6];
   const pas = idx.tuile;
   let comps = [];
@@ -118,14 +151,14 @@ async function chercher(env, base, idx, r) {
   return { comps, recherche: rayon };
 }
 
-export async function estimer(env, requestUrl, r) {
+export async function estimer(env, requestUrl, r, { distant = true } = {}) {
   const base = new URL(requestUrl).origin;
   const idx = await chargerIndex(env, base);
   const meta = idx ? { donnees_du: idx.derniere_vente, annees: idx.annees, source: idx.source } : { donnees_du: null };
   const sans = (raison) => ({ fourchette: false, raison, ...meta });
 
   if (!idx) return sans('donnees_absentes');
-  const trouve = await chercher(env, base, idx, r);
+  const trouve = await chercher(env, base, idx, r, distant);
   if (trouve.raison) return sans(trouve.raison);
   let { comps } = trouve;
   const recherche = trouve.recherche;
@@ -219,7 +252,7 @@ export async function ventesComparables(env, requestUrl, r, { n = 12, candidats 
   const proches = comps.map((c) => ({ c, s: note(c) })).sort((a, b) => a.s - b.s).slice(0, candidats).map((x) => x.c);
   const liste = [];
   for (const c of proches) {
-    const l = ligneDetail(await detail(env, base, c.nom), c.i);
+    const l = c.det || ligneDetail(await detail(env, base, c.nom), c.i);
     const mois = `${Math.floor(c.mois / 100)}-${String(c.mois % 100).padStart(2, '0')}`;
     const v = {
       mois, surface: c.surface, pieces: c.pieces || null, terrain: r.type === 'maison' ? c.terrain || null : null,
