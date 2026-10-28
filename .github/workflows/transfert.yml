@@ -1,0 +1,26 @@
+name: Transfert d'une vidéo publiée (Instagram) vers le dépôt
+on: push
+permissions:
+  contents: write
+jobs:
+  transfert:
+    if: ${{ !contains(github.event.head_commit.message, '[media]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Télécharger le reel public
+        run: |
+          which ffmpeg || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg)
+          pip install -q yt-dlp
+          mkdir -p media
+          set +e
+          yt-dlp --no-progress -f "bv*+ba/b" --merge-output-format mp4 --write-info-json -o "media/reel-DfDFNQ5tDOO.%(ext)s" "https://www.instagram.com/reel/DfDFNQ5tDOO/" > log.txt 2>&1
+          rc=$?
+          set -e
+          echo "::notice::yt-dlp code $rc | $(tail -c 400 log.txt | tr '\n' ' ')"
+          ls -la media || true
+          if [ -f media/reel-DfDFNQ5tDOO.mp4 ]; then
+            echo "::notice::FICHIER $(stat -c %s media/reel-DfDFNQ5tDOO.mp4) octets | $(ffprobe -v error -show_entries format=duration:stream=codec_name,width,height -of csv=p=0 media/reel-DfDFNQ5tDOO.mp4 | tr '\n' ' ')"
+            git config user.name "transfert" && git config user.email "transfert@shawez-immo.com"
+            git add media && git commit -qm "[media] reel DfDFNQ5tDOO" && git push -q origin HEAD:transfert-media
+          fi
