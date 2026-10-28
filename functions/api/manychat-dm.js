@@ -124,9 +124,12 @@ async function videosDuMoment(env, request, jour) {
   try {
     const registre = await lireJson(env, request, '/videos-biens.json');
     // Biens en cours ce jour-là, les plus récents d'abord, 4 au plus pour que la question reste courte
-    return (registre.en_essai || []).filter(e => (!e.depuis || e.depuis <= jour) && (!e.jusqu_au || e.jusqu_au >= jour))
+    const biens = (registre.en_essai || []).filter(e => (!e.depuis || e.depuis <= jour) && (!e.jusqu_au || e.jusqu_au >= jour))
       .sort((a, b) => String(b.depuis || '').localeCompare(String(a.depuis || ''))).slice(0, 4)
-      .map(e => `- ${e.libelle} : mot « ${e.mot} »`).join('\n');
+      .map(e => `- ${e.libelle} : mot « ${e.mot} »`);
+    // Le commentaire peut aussi venir de la vidéo skate du défi pause (le texte et le Reel ne sont pas transmis)
+    if (jour >= DEFI_PAUSE.depuis && jour <= DEFI_PAUSE.jusqu_au) biens.push('- la vidéo skate « mets pause au bon moment », pas un bien : la capture envoyée en privé donne droit à l’estimation offerte');
+    return biens.join('\n');
   } catch (e) { return ''; }
 }
 
@@ -184,7 +187,9 @@ Dès que tu écris un message, règles absolues, sauf le « Salut » de début e
 - Si des « vidéos du moment » sont listées dans les données : la personne a sans doute commenté le mot d'une de ces vidéos pour recevoir
   la visite. Dis que tu as vu son commentaire, puis demande-lui en UNE question courte de quel bien il s'agit en citant ces biens par leur
   nom simple, pour lui envoyer la visite complète tout de suite. C'est la seule question où tu peux citer plusieurs choix.
-- Si les données parlent du « défi pause » : une image envoyée sans texte, ou un message qui dit qu'il l'a eu, c'est la capture du défi.
+  Si la liste contient la vidéo skate « mets pause au bon moment », glisse avant ta question une phrase : s'il a réussi à mettre pause
+  au bon moment, il t'envoie la capture en message privé et son estimation est offerte. Ne cite pas cette vidéo dans ta question.
+- Si les données contiennent une ligne qui commence par « Défi pause : » : une image envoyée sans texte, ou un message qui dit qu'il l'a eu, c'est la capture du défi.
   Ce n'est PAS hors sujet, sauf si l'historique montre clairement une conversation perso. Félicite-le simplement d'être dans le 1 % qui
   y arrive, dis que comme promis l'estimation de son bien est offerte, puis UNE question : dans quelle commune se trouve son bien.
   Ne décris jamais l'image, tu ne la vois pas.
