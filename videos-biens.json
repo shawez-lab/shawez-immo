@@ -118,6 +118,20 @@
    "libelle": "le château du XVIIIe près de Beaune",
    "depuis": "2026-10-28",
    "jusqu_au": "2026-11-04"
+  },
+  {
+   "mot": "NEUILLY",
+   "ref": "525",
+   "libelle": "la maison de Neuilly-Crimolois avec terrasse couverte et dressing",
+   "depuis": "2026-10-29",
+   "jusqu_au": "2026-11-06"
+  },
+  {
+   "mot": "BEAUNE",
+   "ref": "527",
+   "libelle": "l’hôtel particulier du XVIIe dans le cœur historique de Beaune",
+   "depuis": "2026-10-29",
+   "jusqu_au": "2026-11-06"
   }
  ]
 }
