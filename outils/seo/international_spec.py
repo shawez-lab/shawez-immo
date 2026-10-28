@@ -134,7 +134,9 @@ P.append(dict(EN,
      + L("/prix-immobilier-cote-d-or/", "the price pages") + " (in French), based on the official DVF data of "
      "notarised sales.</p>"),
     ("guides", "Guides for international buyers",
-     "<ul>" + "".join("<li>" + L(u, t) + "</li>" for u, t in GUIDES) + "</ul>"),
+     "<ul>" + "".join("<li>" + L(u, t) + "</li>" for u, t in GUIDES) + "</ul><p>"
+     + L("/en/guides/", "All the guides for international buyers") + ": the buying steps, the tax, the villages, "
+     "daily life, and guides for buyers from the UK, the US, Benelux, South Asia and the Middle East.</p>"),
   ],
   faq=[
     ("Can a foreigner buy property in France?",
@@ -153,7 +155,8 @@ P.append(dict(EN,
      "On WhatsApp or by phone at +33 7 67 57 92 28, by email at shawez@gravelin-immo.com, or at the agency, "
      "30 rue Bannelier in Dijon, Monday to Friday, 9am to 7pm."),
   ],
-  links=[("Properties for sale (in French)", "/biens-a-vendre-dijon/"),
+  links=[("All guides for international buyers", "/en/guides/"),
+         ("Properties for sale (in French)", "/biens-a-vendre-dijon/"),
          ("Châteaux and prestige homes", "/chateau-a-vendre-bourgogne/"),
          ("Businesses for sale", "/fonds-de-commerce-a-vendre-dijon/"),
          ("Real estate agent in Beaune", "/agent-immobilier-beaune/"),
