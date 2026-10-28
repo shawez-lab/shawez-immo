@@ -1,0 +1,13 @@
+name: Vérification lien dossier (anonyme)
+on: push
+jobs:
+  verif:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ouvrir le lien sans compte Google
+        run: |
+          code=$(curl -s -o page.html -w '%{http_code}' -L -A "Mozilla/5.0" "https://drive.google.com/drive/folders/10wxvdcUh_jbNtFK0--vJh3wWkmXulVtV")
+          echo "HTTP $code"
+          grep -o '<title>[^<]*</title>' page.html || true
+          grep -q 'JUNGLE JUICE' page.html
+          if grep -q 'ServiceLogin' page.html; then echo "page de connexion"; exit 1; fi
