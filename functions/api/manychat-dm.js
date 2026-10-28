@@ -141,11 +141,13 @@ async function trouverBien(env, request, post) {
     ? Object.entries(registre.motscles || {}).find(([k]) => `mot:${sansAccents(k)}` === id)?.[1]
     : (registre.videos || {})[id];
   if (!entree) return null;
-  if (entree.manuel) return { ...entree.manuel, lien: entree.manuel.lien || BIENS };
+  // Vidéo en anglais (« langue »: « en » dans le registre) : Claude répond en anglais, boutons en anglais
+  const langue = entree.langue === 'en' ? { langue: 'anglais, la vidéo est en anglais' } : {};
+  if (entree.manuel) return { ...entree.manuel, ...langue, lien: entree.manuel.lien || BIENS };
   try {
     const d = await lireJson(env, request, '/annonces.json');
     const a = (d.annonces || {})[entree.ref];
-    return a ? ficheDepuisAnnonce(entree.ref, a) : null;
+    return a ? { ...ficheDepuisAnnonce(entree.ref, a), ...langue } : null;
   } catch (e) { console.log('annonces', e.message); return null; }
 }
 
@@ -165,6 +167,11 @@ Ne propose jamais toi-même une heure ou un créneau précis, et ne reprends jam
 Dès que tu écris un message, règles absolues, sauf le « Salut » de début et le nombre de lignes quand la conversation continue :
 - Commence par « Salut <prénom> » (ou « Salut » si le prénom est inconnu). Exactement 3 ou 4 lignes de texte, séparées par un seul retour à la ligne, SANS ligne vide, 600 caractères maximum au total, tutoiement, ton chaleureux et naturel, 1 ou 2 emojis maximum, signé implicitement par Shawez (pas de signature).
 - Commence par le prénom s'il est donné.
+- Prénom inconnu mais pseudo Instagram fourni : si le pseudo commence clairement par un prénom, par exemple justin.bridoux10 → Justin
+  ou emeline7435 → Emeline, utilise ce prénom avec une majuscule, sans ajouter d'accent. Si le pseudo n'est pas clairement un prénom
+  (nom d'entreprise, de lieu, lettres et chiffres), écris seulement « Salut ».
+- Langue : si la personne écrit en anglais, ou si les données du bien contiennent « langue : anglais », écris tout le message en anglais,
+  avec le même style et les mêmes règles, en commençant par « Hi <prénom> » au lieu de « Salut ». Sinon, toujours en français.
 - Si le commentaire pose une question précise (quartier, prix, surface, visite, disponibilité), réponds-y d'abord, en une phrase,
   UNIQUEMENT avec les données du bien fournies. Si la donnée n'y est pas, dis que tu lui envoies la réponse en direct.
 - Cite le bien (type, commune, prix tel qu'écrit dans les données) sans jamais donner d'adresse exacte ni de nom de rue.
@@ -224,7 +231,7 @@ Règles absolues quand tu écris :
 - Documents, bilans, chiffre d'affaires d'un fonds : chiffres publics fournis seulement, puis l'engagement de confidentialité à signer avec une pièce d'identité.
 Réponds avec le texte du message seul, sans guillemets ni explication : la première ligne est déjà adressée à la personne.`;
 
-async function rediger(env, prenom, commentaire, bien, source, fil = [], intention = '', videosDuMoment = '', defi = false) {
+async function rediger(env, prenom, commentaire, bien, source, fil = [], intention = '', videosDuMoment = '', defi = false, pseudo = '') {
   if (!env.ANTHROPIC_API_KEY) throw new Error('cle absente');
   const inconnu = COMMENTAIRE_INCONNU.test(commentaire || '');
   // Mots-clés du flux vendeur (« vendre ma », « je vends », « estimation »…) : la personne parle de SON bien
@@ -247,7 +254,7 @@ async function rediger(env, prenom, commentaire, bien, source, fil = [], intenti
       thinking: { type: 'between_tools' },
       output_config: { effort: 'low' },
       system: source === 'whatsapp' ? CONSIGNES_WA : CONSIGNES,
-      messages: [{ role: 'user', content: `${fil.length ? 'Historique récent de la conversation, du plus ancien au plus récent :\n' + fil.map(m => (m.sens === 'out' ? 'Shawez : ' : 'Client : ') + m.texte).join('\n') + '\n\n' : ''}Type : ${source === 'whatsapp' ? 'message WhatsApp' : source === 'dm' ? 'message privé direct' : /story/i.test(source || '') ? 'réponse à une story' : 'commentaire sous une vidéo'}\nPrénom : ${prenom || '(inconnu)'}\nMessage : ${commentaire || '(vide)'}\n\nDonnées du bien :\n${donnees}` }],
+      messages: [{ role: 'user', content: `${fil.length ? 'Historique récent de la conversation, du plus ancien au plus récent :\n' + fil.map(m => (m.sens === 'out' ? 'Shawez : ' : 'Client : ') + m.texte).join('\n') + '\n\n' : ''}Type : ${source === 'whatsapp' ? 'message WhatsApp' : source === 'dm' ? 'message privé direct' : /story/i.test(source || '') ? 'réponse à une story' : 'commentaire sous une vidéo'}\nPrénom : ${prenom || '(inconnu)'}${!prenom && pseudo ? `\nPseudo Instagram : ${pseudo}` : ''}\nMessage : ${commentaire || '(vide)'}\n\nDonnées du bien :\n${donnees}` }],
     }),
   });
   if (!r.ok) throw new Error(`api ${r.status} ${(await r.text()).slice(0, 200)}`);
@@ -348,12 +355,20 @@ function estCloture(t) {
 }
 const CLOTURES = ['Avec plaisir, belle journée à toi 😊', 'Merci à toi, à bientôt 🙂', 'Pas de souci, belle journée à toi 😊', 'Avec plaisir, à bientôt 🙂'];
 const MENTION_IA = 'Réponse rapide de mon assistant IA, je prends le relais moi-même 🙂';
+const MENTION_IA_EN = 'Quick reply from my AI assistant, I’ll take it from here myself 🙂';
+// Message rédigé en anglais (vidéo anglaise, contact qui écrit en anglais) : mention et boutons en anglais
+function enAnglais(t) {
+  const x = ` ${String(t || '').toLowerCase().replace(/[’]/g, "'").replace(/[^a-z' ]+/g, ' ')} `;
+  const en = (x.match(/ (?=(the|you|your|and|is|it|this|for|with|i'll|i|to|of|what|which|would|send|here|hi|hello|can|me|my) )/g) || []).length;
+  const fr = (x.match(/ (?=(le|la|les|de|des|tu|ton|ta|et|est|pour|avec|je|un|une|que|qui|sur|salut|bonjour|te|mon|ma) )/g) || []).length;
+  return en > fr;
+}
 // Conversation déjà engagée : pas de « Salut <prénom> » à chaque message
 function sansSalut(t) {
   const l = String(t || '').split('\n');
-  if (/^(salut|bonjour|hello|coucou|hey)\b/i.test(l[0] || '')) {
+  if (/^(salut|bonjour|hello|hi|coucou|hey)\b/i.test(l[0] || '')) {
     if (l.length > 1 && l[0].replace(/[^\p{L}]/gu, '').length <= 22) l.shift();
-    else l[0] = l[0].replace(/^([Ss]alut|[Bb]onjour|[Hh]ello|[Cc]oucou|[Hh]ey)\b[\s,]*([\p{Lu}][\p{L}'-]*)?[\s,!.]*(\p{Extended_Pictographic}\s*)*/u, '');
+    else l[0] = l[0].replace(/^([Ss]alut|[Bb]onjour|[Hh]ello|[Hh]i|[Cc]oucou|[Hh]ey)\b[\s,]*([\p{Lu}][\p{L}'-]*)?[\s,!.]*(\p{Extended_Pictographic}\s*)*/u, '');
     if (l[0]) l[0] = l[0].charAt(0).toUpperCase() + l[0].slice(1);
   }
   return l.filter(Boolean).join('\n');
@@ -393,15 +408,19 @@ async function memoriserStop(env, contact, compte, motif) {
 
 const jourParis = () => new Intl.DateTimeFormat('fr-CA', { timeZone: 'Europe/Paris' }).format(new Date());
 
-function blocManyChat(texte, bien, avecBoutons = true, wa = false) {
+function blocManyChat(texte, bien, avecBoutons = true, wa = false, en = false) {
   if (wa) {
     // WhatsApp : texte seul ; quand un bien est en jeu, la fiche est ajoutée en dernière ligne (WhatsApp en montre l'aperçu)
     const t = bien && bien.lien && avecBoutons && !texte.includes(bien.lien) ? `${texte}\n${bien.lien}` : texte;
     return { version: 'v2', content: { type: 'whatsapp', messages: [{ type: 'text', text: t.slice(0, 1000) }] },
       message: t.slice(0, 1000), fiche_url: bien && bien.lien ? bien.lien : '', bien_ref: bien ? bien.ref || '' : '' };
   }
-  const boutons = [
-    { type: 'url', caption: '📄 Dossier du bien', url: bien && bien.lien ? bien.lien : BIENS },
+  const boutons = en ? [
+    { type: 'url', caption: '📄 See the property', url: bien && bien.lien ? bien.lien : BIENS },
+    { type: 'url', caption: '🇬🇧 Guides for buyers', url: 'https://shawez-immo.com/en/guides/' },
+    { type: 'url', caption: '💬 WhatsApp me', url: 'https://wa.me/33767579228' },
+  ] : [
+    bien && bien.lien ? { type: 'url', caption: '📄 Dossier du bien', url: bien.lien } : { type: 'url', caption: '🔑 Voir les biens à vendre', url: BIENS },
     { type: 'url', caption: '🏠 Estimer mon bien', url: ESTIMER },
     bien && bien.confidentialite
       ? { type: 'url', caption: '🔒 Accès aux bilans', url: bien.confidentialite }
@@ -589,7 +608,8 @@ export async function onRequest({ request, env }) {
     else {
       try {
         const enCours = !bien && intention !== 'vendre' && COMMENTAIRE_INCONNU.test(commentaire || '') ? await videosDuMoment(env, request, jour) : '';
-        ({ texte, usage } = await rediger(env, prenom, commentaire, bien, source || (/^dm$/i.test(post || '') ? 'dm' : ''), fil, intention, enCours, defi));
+        ({ texte, usage } = await rediger(env, prenom, commentaire, bien, source || (/^dm$/i.test(post || '') ? 'dm' : ''), fil, intention, enCours, defi,
+          source === 'whatsapp' || /^wa:/.test(compte || '') ? '' : compte));
         if (/^\W*HORS_SUJET\W*$/i.test(texte)) {
           // Pas une demande immobilière (conversation perso, partenariat…) : aucun message, Shawez reprend à la main
           const coutHs = usage ? (usage.input_tokens || 0) * PRIX_ENTREE + (usage.output_tokens || 0) * PRIX_SORTIE : 0;
@@ -627,7 +647,9 @@ export async function onRequest({ request, env }) {
     const cout = usage ? (usage.input_tokens || 0) * PRIX_ENTREE + (usage.output_tokens || 0) * PRIX_SORTIE : 0;
     // Règlement européen sur l'IA, article 50 (en vigueur depuis le 2 août 2026) : la personne est informée qu'un assistant IA
     // lui répond. Une seule fois par contact, sur le premier message rédigé par l'IA ; la mention est enregistrée avec le message.
-    if (origine === 'claude' && !fil.some(m => m.sens === 'out' && String(m.texte || '').includes(MENTION_IA))) texte = `${texte}\n${MENTION_IA}`;
+    const anglais = source !== 'whatsapp' && enAnglais(texte);
+    if (origine === 'claude' && !fil.some(m => m.sens === 'out' && (String(m.texte || '').includes(MENTION_IA) || String(m.texte || '').includes(MENTION_IA_EN))))
+      texte = `${texte}\n${anglais ? MENTION_IA_EN : MENTION_IA}`;
 
     if (base) {
       await base.prepare('INSERT OR IGNORE INTO dm_instagram VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11)')
@@ -639,7 +661,7 @@ export async function onRequest({ request, env }) {
     await noter('out', texte, cleBien);
     console.log('manychat-dm', JSON.stringify({ post: idReel(post), ref: bien && bien.ref, compte, origine, cout }));
     // Boutons seulement au premier message (ou quand un bien est en jeu) : pas à chaque réponse d'une conversation
-    const bloc = blocManyChat(texte, bien, !dejaEcrit || !!bien, source === 'whatsapp');
+    const bloc = blocManyChat(texte, bien, !dejaEcrit || !!bien, source === 'whatsapp', anglais);
     if (intention === 'vendre') bloc.fiche_url = ESTIMER;
     return json(200, { ...bloc, envoyer: 'oui', origine, cout: Math.round(cout * 1e5) / 1e5, depense_jour: Math.round((depense + cout) * 1e4) / 1e4 });
   } catch (e) {
