@@ -117,8 +117,10 @@ async function motCle(env, request, texte) {
 async function videosDuMoment(env, request, jour) {
   try {
     const registre = await lireJson(env, request, '/videos-biens.json');
-    return (registre.en_essai || []).filter(e => !e.jusqu_au || e.jusqu_au >= jour)
-      .slice(0, 3).map(e => `- ${e.libelle} : mot « ${e.mot} »`).join('\n');
+    // Biens en cours ce jour-là, les plus récents d'abord, 4 au plus pour que la question reste courte
+    return (registre.en_essai || []).filter(e => (!e.depuis || e.depuis <= jour) && (!e.jusqu_au || e.jusqu_au >= jour))
+      .sort((a, b) => String(b.depuis || '').localeCompare(String(a.depuis || ''))).slice(0, 4)
+      .map(e => `- ${e.libelle} : mot « ${e.mot} »`).join('\n');
   } catch (e) { return ''; }
 }
 
