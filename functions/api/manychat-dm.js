@@ -40,6 +40,12 @@ const META = /\b((le client|la cliente|le contact|la personne) (r[eé]p[eè]te|d
 // Instagram ne transmet pas à ManyChat le texte d'un commentaire (ni l'identifiant du Reel) : le flux « tous les Reels »
 // envoie ce texte fixe. Claude ne doit alors rien deviner du commentaire (ni compliment, ni question).
 const COMMENTAIRE_INCONNU = /^\s*demande d.informations sur un reel\s*$/i;
+// Défi « Seul 1 % arrive à mettre pause » (vidéo skate de Shawez, 28/10/2026) : la vidéo promet l'estimation offerte à qui envoie
+// en message privé la capture de la bonne image. Instagram transmet une image seule sous forme de lien lookaside signé.
+const IMAGE_SEULE = /^\s*https:\/\/lookaside\.fbsbx\.com\/ig_messaging_cdn\/\S*\s*$/i;
+const DEFI_PAUSE = { depuis: '2026-10-28', jusqu_au: '2026-12-31' };
+const MOTS_DEFI = /pause|capture|screen|je l.?ai eu|j.?ai r[ée]ussi|\b1 ?%|d[ée]fi|skate/i;
+const DONNEES_DEFI = 'Défi pause : la vidéo du skate de Shawez dit « Seul 1 % arrive à mettre pause pile au bon moment » et promet l’estimation offerte à qui envoie en message privé la capture de la bonne image.';
 // Une ligne du journal ne compte comme « réponse déjà envoyée » que si un message est vraiment parti
 // (hors sujet et refus : rien n'est parti, la personne doit pouvoir être servie au message suivant).
 const ENVOYE = "origine NOT IN ('hors_creneau','hors_sujet') AND origine NOT LIKE 'refus_%'";
@@ -142,7 +148,8 @@ async function trouverBien(env, request, post) {
 
 const CONSIGNES = `Tu écris, au nom de Shawez Ali, agent immobilier chez Gravelin Immo à Dijon, un message privé Instagram
 à une personne qui vient de commenter la vidéo d'un bien, de répondre à une story ou d'écrire un message privé (le « Type » le précise).
-D'ABORD, vérifie que le message parle d'immobilier : acheter, vendre, estimer, louer, visiter, un bien, un prix, un fonds de commerce, un prêt.
+D'ABORD, vérifie que le message parle d'immobilier : acheter, vendre, estimer, louer, visiter, un bien, un prix, un fonds de commerce, un prêt,
+ou que c'est la capture du « défi pause » quand les données en parlent.
 Si ce n'est pas le cas (conversation personnelle ou amicale, paiement, virement, sponsoring, partenariat, matériel, rendez-vous déjà en cours,
 remerciement, message qui répond visiblement à une conversation précédente avec Shawez), réponds exactement HORS_SUJET et rien d'autre.
 Si un historique est fourni et qu'il parle d'immobilier, un message court comme « oui », « merci », une disponibilité ou une question
@@ -177,6 +184,10 @@ Dès que tu écris un message, règles absolues, sauf le « Salut » de début e
 - Si des « vidéos du moment » sont listées dans les données : la personne a sans doute commenté le mot d'une de ces vidéos pour recevoir
   la visite. Dis que tu as vu son commentaire, puis demande-lui en UNE question courte de quel bien il s'agit en citant ces biens par leur
   nom simple, pour lui envoyer la visite complète tout de suite. C'est la seule question où tu peux citer plusieurs choix.
+- Si les données parlent du « défi pause » : une image envoyée sans texte, ou un message qui dit qu'il l'a eu, c'est la capture du défi.
+  Ce n'est PAS hors sujet, sauf si l'historique montre clairement une conversation perso. Félicite-le simplement d'être dans le 1 % qui
+  y arrive, dis que comme promis l'estimation de son bien est offerte, puis UNE question : dans quelle commune se trouve son bien.
+  Ne décris jamais l'image, tu ne la vois pas.
 - Si la personne veut vendre ou faire estimer son propre bien : ne parle d'aucun bien en vente et ne mets pas son projet au conditionnel.
   Dis que tu peux passer lui faire une estimation offerte et pose UNE seule question : dans quelle commune se trouve son bien.
 - Ne parle jamais de « commentaire » si le Type est un message privé ou une réponse à une story : dis « ton message ».
@@ -208,17 +219,19 @@ Règles absolues quand tu écris :
 - Documents, bilans, chiffre d'affaires d'un fonds : chiffres publics fournis seulement, puis l'engagement de confidentialité à signer avec une pièce d'identité.
 Réponds avec le texte du message seul, sans guillemets ni explication : la première ligne est déjà adressée à la personne.`;
 
-async function rediger(env, prenom, commentaire, bien, source, fil = [], intention = '', videosDuMoment = '') {
+async function rediger(env, prenom, commentaire, bien, source, fil = [], intention = '', videosDuMoment = '', defi = false) {
   if (!env.ANTHROPIC_API_KEY) throw new Error('cle absente');
   const inconnu = COMMENTAIRE_INCONNU.test(commentaire || '');
   // Mots-clés du flux vendeur (« vendre ma », « je vends », « estimation »…) : la personne parle de SON bien
   if (intention === 'vendre') commentaire = 'texte exact non transmis par Instagram ; d’après ses mots, la personne veut vendre ou faire estimer son bien';
   else if (inconnu) commentaire = 'texte du commentaire non transmis par Instagram';
-  const donnees = intention === 'vendre' ? 'Aucun bien en vente à présenter : la personne est peut-être vendeuse.'
+  const donneesBien = intention === 'vendre' ? 'Aucun bien en vente à présenter : la personne est peut-être vendeuse.'
     : bien
     ? Object.entries(bien).filter(([k, v]) => v && k !== 'lien' && k !== 'ref').map(([k, v]) => `${k} : ${v}`).join('\n')
     : inconnu ? (videosDuMoment ? `Bien non identifié. Vidéos du moment, avec le mot à commenter :\n${videosDuMoment}` : 'Bien non identifié.')
     : 'Bien non identifié : remercie, demande quel bien l’intéresse ou ce qu’il cherche.';
+  // Capture du défi pause : la promesse de la vidéo passe avant la question générique sur le bien recherché
+  const donnees = !defi ? donneesBien : bien ? `${donneesBien}\n\n${DONNEES_DEFI}` : `Aucun bien en vente à présenter.\n${DONNEES_DEFI}`;
   const r = await fetch('https://api.anthropic.com/v1/messages', {
     method: 'POST',
     headers: { 'x-api-key': env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
@@ -486,6 +499,13 @@ export async function onRequest({ request, env }) {
     }
     const base = await journal(env).catch(e => { console.log('journal', e.message); return null; });
     const jour = jourParis();
+    // Image seule en message privé : repère court à la place du lien signé d'Instagram.
+    // Pendant le défi pause, une image seule ou « je l'ai eu » en privé, c'est sans doute la capture promise par la vidéo.
+    const prive = source === 'dm' || /^story/i.test(source || '') || /^(story|dm)/i.test(post || '');
+    const imageSeule = IMAGE_SEULE.test(commentaire || '');
+    if (imageSeule) commentaire = '[image envoyée sans texte]';
+    const defi = prive && source !== 'whatsapp' && jour >= DEFI_PAUSE.depuis && jour <= DEFI_PAUSE.jusqu_au
+      && (imageSeule || MOTS_DEFI.test(commentaire || ''));
     if (base && !test) {
       // Stories et DM directs : antidoublon par message seulement (décision de Shawez du 20/10 : plus de limite d'une réponse par jour)
       const story = /^(story|dm|wa)/i.test(post || '') || source === 'dm' || source === 'whatsapp';
@@ -564,7 +584,7 @@ export async function onRequest({ request, env }) {
     else {
       try {
         const enCours = !bien && intention !== 'vendre' && COMMENTAIRE_INCONNU.test(commentaire || '') ? await videosDuMoment(env, request, jour) : '';
-        ({ texte, usage } = await rediger(env, prenom, commentaire, bien, source || (/^dm$/i.test(post || '') ? 'dm' : ''), fil, intention, enCours));
+        ({ texte, usage } = await rediger(env, prenom, commentaire, bien, source || (/^dm$/i.test(post || '') ? 'dm' : ''), fil, intention, enCours, defi));
         if (/^\W*HORS_SUJET\W*$/i.test(texte)) {
           // Pas une demande immobilière (conversation perso, partenariat…) : aucun message, Shawez reprend à la main
           const coutHs = usage ? (usage.input_tokens || 0) * PRIX_ENTREE + (usage.output_tokens || 0) * PRIX_SORTIE : 0;
