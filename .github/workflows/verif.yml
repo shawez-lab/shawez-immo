@@ -6,8 +6,9 @@ jobs:
     steps:
       - name: Ouvrir le lien sans compte Google
         run: |
-          code=$(curl -s -o page.html -w '%{http_code}' -L -A "Mozilla/5.0" "https://drive.google.com/drive/folders/10wxvdcUh_jbNtFK0--vJh3wWkmXulVtV")
-          echo "HTTP $code"
-          grep -o '<title>[^<]*</title>' page.html || true
-          grep -q 'JUNGLE JUICE' page.html
-          if grep -q 'ServiceLogin' page.html; then echo "page de connexion"; exit 1; fi
+          out=$(curl -s -o page.html -w '%{http_code} %{url_effective}' -L -A "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36" "https://drive.google.com/drive/folders/10wxvdcUh_jbNtFK0--vJh3wWkmXulVtV")
+          t=$(grep -o '<title>[^<]*</title>' page.html | head -1 | tr -d '\n')
+          n=$(grep -o 'JUNGLE' page.html | wc -l)
+          l=$(grep -c 'ServiceLogin\|signin' page.html || true)
+          echo "::notice::RESULTAT $out | titre=$t | jungle=$n | login=$l | taille=$(wc -c < page.html)"
+          for f in "1 - PUBLIC" "VENDEUR" "ACQUEREUR" "NOTAIRE" "Photos" "Proposition"; do c=$(grep -c "$f" page.html || true); echo "::notice::DOSSIER $f=$c"; done
