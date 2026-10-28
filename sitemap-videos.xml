@@ -210,6 +210,39 @@
     </video:video>
   </url>
   <url>
+    <loc>https://shawez-immo.com/en/buying-a-house-in-beaune/</loc>
+    <video:video>
+      <video:thumbnail_loc>['https://shawez-immo.com/assets/videos/en-beaune-2-5-million-poster.jpg']</video:thumbnail_loc>
+      <video:title>€2.5 million in Burgundy: same building, two completely different lives</video:title>
+      <video:description>Shawez Ali, real estate agent in Dijon, films both floors of a townhouse for sale in the heart of Beaune: a private courtyard with a timber gallery on old stone columns, then beams, light and parquet upstairs.</video:description>
+      <video:content_loc>https://shawez-immo.com/assets/videos/en-beaune-2-5-million.mp4</video:content_loc>
+      <video:duration>53</video:duration>
+      <video:publication_date>2026-10-28T19:36:45+01:00</video:publication_date>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://shawez-immo.com/en/guides/</loc>
+    <video:video>
+      <video:thumbnail_loc>['https://shawez-immo.com/assets/videos/en-beaune-2-5-million-poster.jpg']</video:thumbnail_loc>
+      <video:title>€2.5 million in Burgundy: same building, two completely different lives</video:title>
+      <video:description>Shawez Ali, real estate agent in Dijon, films both floors of a townhouse for sale in the heart of Beaune: a private courtyard with a timber gallery on old stone columns, then beams, light and parquet upstairs.</video:description>
+      <video:content_loc>https://shawez-immo.com/assets/videos/en-beaune-2-5-million.mp4</video:content_loc>
+      <video:duration>53</video:duration>
+      <video:publication_date>2026-10-28T19:36:45+01:00</video:publication_date>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://shawez-immo.com/en/</loc>
+    <video:video>
+      <video:thumbnail_loc>['https://shawez-immo.com/assets/videos/en-beaune-2-5-million-poster.jpg']</video:thumbnail_loc>
+      <video:title>€2.5 million in Burgundy: same building, two completely different lives</video:title>
+      <video:description>Shawez Ali, real estate agent in Dijon, films both floors of a townhouse for sale in the heart of Beaune: a private courtyard with a timber gallery on old stone columns, then beams, light and parquet upstairs.</video:description>
+      <video:content_loc>https://shawez-immo.com/assets/videos/en-beaune-2-5-million.mp4</video:content_loc>
+      <video:duration>53</video:duration>
+      <video:publication_date>2026-10-28T19:36:45+01:00</video:publication_date>
+    </video:video>
+  </url>
+  <url>
     <loc>https://shawez-immo.com/</loc>
     <video:video>
       <video:thumbnail_loc>['https://shawez-immo.com/film-equipe-poster.webp?v=5']</video:thumbnail_loc>
