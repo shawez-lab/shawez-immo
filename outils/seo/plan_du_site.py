@@ -22,6 +22,7 @@ GROUPES = [
     ('Location (sans gestion)', lambda u: u.startswith('/location-') or u in ('/estimation-loyer-dijon/', '/louer-appartement-dijon/')),
     ('Biens à vendre', lambda u: u.startswith('/biens') ),
     ('Conseils', lambda u: u.startswith('/conseils-vendeurs/')),
+    ('International (English)', lambda u: u.startswith('/en/')),
     ('Pratique', lambda u: True),
 ]
 
