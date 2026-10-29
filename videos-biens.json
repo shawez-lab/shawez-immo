@@ -105,13 +105,7 @@
    "langue": "en"
   }
  },
- "commentaires_manychat": [
-  "chateau",
-  "loft",
-  "marrakech",
-  "neuilly",
-  "beaune"
- ],
+ "commentaires_manychat": ["chateau", "loft", "marrakech", "neuilly", "beaune"],
  "en_essai": [
   {
    "mot": "LOFT",
