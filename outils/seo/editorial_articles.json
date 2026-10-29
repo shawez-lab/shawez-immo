@@ -1,0 +1,82 @@
+[
+  {
+    "id": "PRESTIGE-VIDEO-01-EN",
+    "path": "/en/filming-character-home-space-circulation/",
+    "title": "Filming a character home: which shots help buyers understand the space?",
+    "description": "Plan a film of a character property in Burgundy: show circulation, levels and architectural details without distorting the space.",
+    "language": "en",
+    "group": "prestige_videos"
+  },
+  {
+    "id": "PRESTIGE-VIDEO-02-EN",
+    "path": "/en/light-preparation-character-property-film/",
+    "title": "Preparing the light for a property film without changing the house",
+    "description": "Orientation, windows, furniture, patina and visual continuity: prepare a character home for a film that stays faithful to its real qualities.",
+    "language": "en",
+    "group": "prestige_videos"
+  },
+  {
+    "id": "PRESTIGE-VIDEO-03-EN",
+    "path": "/en/english-video-dossier-burgundy-property-viewing/",
+    "title": "Preparing an English-language video dossier before an overseas buyer’s visit",
+    "description": "Organise captions, plans and documents for a Burgundy property so an English-speaking buyer can prepare a viewing without avoidable ambiguity.",
+    "language": "en",
+    "group": "prestige_videos"
+  },
+  {
+    "id": "PRESTIGE-VIDEO-04-EN",
+    "path": "/en/video-documents-character-property-dossier/",
+    "title": "A film cannot answer everything: preparing a character home’s documents",
+    "description": "Connect film, plans and verified information when presenting a character home, separating what pictures show from what still needs to be established.",
+    "language": "en",
+    "group": "prestige_videos"
+  },
+  {
+    "id": "PRESTIGE-VIDEO-05-EN",
+    "path": "/en/filming-grounds-outbuildings-future-use/",
+    "title": "Filming grounds and outbuildings without promising an unverified future use",
+    "description": "Present the grounds and outbuildings of a Burgundy property with practical reference points, separating existing features from projects to investigate.",
+    "language": "en",
+    "group": "prestige_videos"
+  },
+  {
+    "id": "PRESTIGE-VIDEO-01",
+    "path": "/conseils-vendeurs/filmer-demeure-sequences-volumes-circulation/",
+    "title": "Filmer une belle demeure : quelles séquences permettent de comprendre ses volumes ?",
+    "description": "Préparer le film d’une maison de caractère en Bourgogne : montrer les circulations, les niveaux et les détails sans déformer les volumes.",
+    "language": "fr",
+    "group": "prestige_videos"
+  },
+  {
+    "id": "PRESTIGE-VIDEO-02",
+    "path": "/conseils-vendeurs/lumiere-tournage-maison-caractere-preparation/",
+    "title": "Préparer la lumière d’un tournage immobilier sans transformer la maison",
+    "description": "Orientation, fenêtres, mobilier, patine et continuité des images : préparer une maison de caractère pour un tournage fidèle à ses qualités.",
+    "language": "fr",
+    "group": "prestige_videos"
+  },
+  {
+    "id": "PRESTIGE-VIDEO-03",
+    "path": "/conseils-vendeurs/dossier-video-anglais-bien-exception-visite/",
+    "title": "Préparer un dossier vidéo en anglais avant la visite d’un acheteur éloigné",
+    "description": "Organiser les légendes, plans et documents d’une propriété en Bourgogne pour qu’un acheteur anglophone prépare une visite sans ambiguïté.",
+    "language": "fr",
+    "group": "prestige_videos"
+  },
+  {
+    "id": "PRESTIGE-VIDEO-04",
+    "path": "/conseils-vendeurs/video-documents-demeure-caractere-dossier/",
+    "title": "Une vidéo ne répond pas à tout : préparer les documents d’une demeure de caractère",
+    "description": "Relier film, plans et informations vérifiées pour présenter une demeure de caractère sans confondre ce que l’image montre et ce qui reste à établir.",
+    "language": "fr",
+    "group": "prestige_videos"
+  },
+  {
+    "id": "PRESTIGE-VIDEO-05",
+    "path": "/conseils-vendeurs/filmer-parc-dependances-propriete-usages/",
+    "title": "Filmer parc et dépendances : donner envie sans promettre un usage impossible",
+    "description": "Présenter les extérieurs et dépendances d’une propriété bourguignonne avec des repères concrets, en séparant l’existant des projets à étudier.",
+    "language": "fr",
+    "group": "prestige_videos"
+  }
+]
