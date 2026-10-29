@@ -6,7 +6,7 @@
   "perdant": "moins de 300 vues ou moins de 2 fois la médiane (le plus haut des deux)",
   "style_interdit": "dès 2 versions jugées sans aucune gagnante et au moins 2/3 de perdantes ; jamais levé automatiquement",
   "bien_en_pause": "4 versions jugées sans gagnante ni message privé : pause de 14 jours",
-  "quota_du_jour": "au moins 8 versions sur 10 dans un style gagnant, au plus 2 dans un style à tester, zéro dans un style interdit"
+  "quota_du_jour": "au moins 80 % des versions du jour dans un style gagnant, au plus 20 % dans un style à tester, zéro dans un style interdit ; 15 Trial Reels au plus sur 24 heures glissantes"
  },
  "seuils": {
   "mediane_vues": 184,
@@ -239,6 +239,6 @@
    "date": "2026-10-27"
   }
  ],
- "consigne_monteur": "Chaque version porte un « style » de la liste. Jamais un style de styles_interdits, jamais un bien de biens_en_pause. Au moins 8 versions sur 10 dans styles_gagnants (sur les biens les plus forts), au plus 2 dans styles_a_tester. Chaque Trial Reel programmé est ajouté à registre.json.",
+ "consigne_monteur": "Chaque version porte un « style » de la liste. Jamais un style de styles_interdits, jamais un bien de biens_en_pause. Au moins 80 % des versions du jour dans styles_gagnants (sur les biens les plus forts), au plus 20 % dans styles_a_tester. Chaque Trial Reel programmé est ajouté à registre.json.",
  "consigne_codex": "Ne livre plus aucun Trial Reel dans un style de styles_interdits : il sera refusé. Livre d'abord des variantes des gagnants_recents (même accroche, autre musique, autres premiers plans)."
 }

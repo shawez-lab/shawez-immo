@@ -44,8 +44,8 @@ PERDANT_X = 2           # … ou moins de 2 fois la médiane (le plus haut des d
 STYLE_BAN_N = 2         # style interdit dès 2 versions jugées sans gagnant, avec 2/3 de perdants
 BIEN_PAUSE_N = 4        # bien en pause après 4 versions jugées sans gagnant ni message privé
 PAUSE_JOURS = 14
-TESTS_MAX = 2           # au plus 2 versions par jour dans un style à tester
-QUOTA_GAGNANTS = 8      # au moins 8 versions sur 10 dans un style gagnant
+TESTS_MAX = 20          # au plus 20 % des versions du jour dans un style à tester
+QUOTA_GAGNANTS = 80     # au moins 80 % des versions du jour dans un style gagnant
 
 STYLES = {
     'chiffre_choc': "le prix ou un chiffre fort dès le premier mot (« 2 500 000 € derrière cette porte », « 18 pièces, 520 m², un étang »)",
@@ -252,7 +252,7 @@ def juger(args):
             'perdant': 'moins de %d vues ou moins de %d fois la médiane (le plus haut des deux)' % (PERDANT_MIN, PERDANT_X),
             'style_interdit': 'dès %d versions jugées sans aucune gagnante et au moins 2/3 de perdantes ; jamais levé automatiquement' % STYLE_BAN_N,
             'bien_en_pause': '%d versions jugées sans gagnante ni message privé : pause de %d jours' % (BIEN_PAUSE_N, PAUSE_JOURS),
-            'quota_du_jour': 'au moins %d versions sur 10 dans un style gagnant, au plus %d dans un style à tester, zéro dans un style interdit' % (QUOTA_GAGNANTS, TESTS_MAX),
+            'quota_du_jour': 'au moins %d %% des versions du jour dans un style gagnant, au plus %d %% dans un style à tester, zéro dans un style interdit ; 15 Trial Reels au plus sur 24 heures glissantes' % (QUOTA_GAGNANTS, TESTS_MAX),
         },
         'seuils': {'mediane_vues': int(mediane), 'gagnant_des': int(seuil_g), 'perdant_sous': int(seuil_p),
                    'versions_jugees': len(juges), 'versions_en_cours': len(jugeables) - len(juges)},
@@ -266,7 +266,7 @@ def juger(args):
         'gagnants_recents': [{'id': v['id'], 'ref': v.get('ref'), 'style': v.get('style'), 'vues': v['vues'],
                               'url': v.get('url'), 'date': v['date']} for v in recents],
         'consigne_monteur': ("Chaque version porte un « style » de la liste. Jamais un style de styles_interdits, jamais un bien de biens_en_pause. "
-                             "Au moins %d versions sur 10 dans styles_gagnants (sur les biens les plus forts), au plus %d dans styles_a_tester. "
+                             "Au moins %d %% des versions du jour dans styles_gagnants (sur les biens les plus forts), au plus %d %% dans styles_a_tester. "
                              "Chaque Trial Reel programmé est ajouté à registre.json." % (QUOTA_GAGNANTS, TESTS_MAX)),
         'consigne_codex': ("Ne livre plus aucun Trial Reel dans un style de styles_interdits : il sera refusé. "
                            "Livre d'abord des variantes des gagnants_recents (même accroche, autre musique, autres premiers plans)."),
