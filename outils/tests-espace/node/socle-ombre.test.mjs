@@ -125,6 +125,7 @@ test('question au socle : forme de la demande, réponse lue, jamais d\'erreur le
   assert.equal(comparer('part', { statut: 'part' }), 'accord');
   assert.equal(comparer('part', { statut: 'ne_part_pas' }), 'ecart');
   assert.equal(comparer('part', { statut: null }), 'sans_reponse');
+  assert.equal(comparer('ne_part_pas', { statut: null }), 'site_seul');
 });
 
 /* ---------- le site envoie exactement comme avant ---------- */
@@ -177,7 +178,7 @@ test('socle d\'accord, en désaccord, lent, en panne : l\'e-mail part toujours, 
   socle = async () => new Response(JSON.stringify({ ok: true, mode: 'essai', sent: false, data: { status: 'would_send', rule: null, code: null } }), { status: 200 });
 });
 
-test('e-mail gardé périmé (visite déplacée) : le site ne l\'envoie pas, le socle est quand même interrogé et l\'écart compté', async () => {
+test('e-mail gardé périmé (visite déplacée) : le site ne l\'envoie pas, le socle n\'est pas interrogé, rien n\'est compté en écart', async () => {
   await vider();
   const id = await dossier('perime@exemple-essai.fr');
   await courrierGarde(id, { ...COURRIER, controle: { visite: '2026-11-17T13:30:00.000Z' } });
@@ -186,7 +187,8 @@ test('e-mail gardé périmé (visite déplacée) : le site ne l\'envoie pas, le 
   assert.equal(boite.length, 0);
   const l = await lignesOmbre();
   assert.equal(l.length, 1);
-  assert.deepEqual([l[0].site, l[0].site_raison, l[0].socle, l[0].resultat], ['ne_part_pas', 'perime', 'part', 'ecart']);
+  assert.equal(auSocle.length, 0, 'ce que le site n\'envoie pas n\'est jamais rangé comme envoi chez le socle');
+  assert.deepEqual([l[0].site, l[0].site_raison, l[0].socle, l[0].resultat], ['ne_part_pas', 'perime', null, 'site_seul']);
 });
 
 test('rappel de visite la veille à 18 h : envoyé comme avant, la question au socle porte « rappel_visite »', async () => {
@@ -198,13 +200,30 @@ test('rappel de visite la veille à 18 h : envoyé comme avant, la question au s
   assert.equal(boite.length, 1);
   assert.equal(auSocle.length, 1);
   assert.equal(auSocle[0].corps.automation, 'rappel_visite');
-  assert.match(auSocle[0].corps.ref, /^visite-\d+$/);
+  assert.match(auSocle[0].corps.ref, /^visite-\d+-\d+$/);
   assert.equal(boite[0].subject.length > 0, true);
   const l = await lignesOmbre();
   assert.deepEqual([l[0].automation, l[0].site, l[0].resultat], ['rappel_visite', 'part', 'accord']);
   // deuxième passage dans le même créneau : ni rappel, ni question
   await appeler(RELIE, 'taches', SOIR);
   assert.equal(boite.length, 1); assert.equal(auSocle.length, 1);
+  // visite déplacée au surlendemain : même ligne, rappel remis à zéro ; la question porte une autre référence
+  await DB.prepare("UPDATE visites SET debut = '2026-11-18T13:30:00.000Z', rappel_le = NULL WHERE demande_id = ?1").bind(id).run();
+  await appeler(RELIE, 'taches', '2026-11-17T17:30:00.000Z');
+  assert.equal(boite.length, 2); assert.equal(auSocle.length, 2);
+  assert.notEqual(auSocle[1].corps.ref, auSocle[0].corps.ref);
+});
+
+test('rappel juste après la confirmation : le site ne l\'envoie pas, le socle n\'est pas interrogé', async () => {
+  await vider();
+  const id = await dossier('recent@exemple-essai.fr');
+  await DB.prepare("INSERT INTO visites (demande_id, etat, debut, fixee_le, cree_le) VALUES (?1, 'fixee', '2026-11-17T13:30:00.000Z', '2026-11-16T16:45:00.000Z', ?2)").bind(id, MATIN).run();
+  const r = await appeler(RELIE, 'taches', SOIR);
+  assert.equal(r.corps.rappels, 0);
+  assert.equal(boite.length, 0); assert.equal(auSocle.length, 0);
+  const l = await lignesOmbre();
+  assert.deepEqual([l[0].automation, l[0].site_raison, l[0].resultat], ['rappel_visite', 'confirmation_recente', 'site_seul']);
+  assert.equal((await rapportOmbre(RELIE, DB)).ecarts, 0);
 });
 
 /* ---------- le rapport ---------- */
