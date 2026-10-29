@@ -29,6 +29,7 @@ import os
 import re
 import statistics
 import sys
+from zoneinfo import ZoneInfo
 
 ICI = os.path.dirname(os.path.abspath(__file__))
 REGISTRE = os.path.join(ICI, 'registre.json')
@@ -159,7 +160,8 @@ def quand(v):
 
 
 def juger(args):
-    maintenant = dt.datetime.strptime(args.maintenant, '%Y-%m-%dT%H:%M') if args.maintenant else dt.datetime.now()
+    maintenant = (dt.datetime.strptime(args.maintenant, '%Y-%m-%dT%H:%M') if args.maintenant
+                  else dt.datetime.now(ZoneInfo('Europe/Paris')).replace(tzinfo=None, second=0, microsecond=0))
     registre = lire_json(REGISTRE, {'versions': []})
     precedent = lire_json(JUGE, {})
     mesures = lire_mesures(args.mesures)
