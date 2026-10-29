@@ -2622,5 +2622,165 @@
     "description": "Depuis le Royaume-Uni, rapprochez l’annonce, le DPE reçu et sa référence ADEME avant de comparer une maison bourguignonne à une autre.",
     "language": "fr",
     "group": "uk"
+  },
+  {
+    "id": "COM-21001-FR",
+    "path": "/conseils-vendeurs/agencourt-village-rues-champs/",
+    "title": "Agencourt : lire le village entre ses rues et les champs",
+    "description": "À Agencourt, la rue de Cîteaux, le cœur ancien et les paysages agricoles racontent une commune qui mérite mieux qu’une simple proximité de Nuits.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21002-FR",
+    "path": "/conseils-vendeurs/agey-pierre-seche-savoir-faire/",
+    "title": "Agey : la pierre sèche, un savoir-faire bien vivant",
+    "description": "Une formation annoncée à Agey en 2021 éclaire la pierre sèche : un savoir-faire précis, utile pour regarder autrement les murs et les petits ouvrages.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21004-FR",
+    "path": "/conseils-vendeurs/aignay-le-duc-lumiere-pierre/",
+    "title": "Aignay-le-Duc : quand la lumière raconte la pierre",
+    "description": "Le lavoir de la Margelle, son œuvre lumineuse et les anciens remparts invitent à découvrir plusieurs visages du patrimoine d’Aignay-le-Duc.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21005-FR",
+    "path": "/conseils-vendeurs/aiserey-ferme-ecluse-deux-histoires/",
+    "title": "Aiserey : une ferme et une écluse, deux façons de bâtir",
+    "description": "La ferme aux escaliers et l’écluse 71 racontent l’agriculture et le canal à Aiserey. Deux repères pour regarder les bâtiments au-delà de leur âge.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21006-FR",
+    "path": "/conseils-vendeurs/aisey-sur-seine-ecole-entraide-grande-rue/",
+    "title": "Aisey-sur-Seine : l’école et l’entraide dans la Grande Rue",
+    "description": "La mairie-école et la maison Huguenin racontent l’école et l’entraide à Aisey-sur-Seine. Une lecture humaine de deux bâtiments de la Grande Rue.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21007-FR",
+    "path": "/conseils-vendeurs/aisy-sous-thil-promenade-memoire-fer/",
+    "title": "Aisy-sous-Thil : sous la promenade, la mémoire du fer",
+    "description": "Des anciennes forges à l’étang de la Voie du fer, Aisy-sous-Thil se découvre aussi par son histoire industrielle. Des repères pour lire le paysage.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21009-FR",
+    "path": "/conseils-vendeurs/allerey-ecoles-hameaux-regroupement-scolaire/",
+    "title": "Allerey : des écoles de hameaux au regroupement scolaire",
+    "description": "À Allerey en Côte-d’Or, les archives scolaires et le regroupement avec Clomot et Jouey racontent deux manières d’organiser la vie des familles.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21013-FR",
+    "path": "/conseils-vendeurs/ancey-patrimoine-collections-dijon/",
+    "title": "Ancey : un patrimoine qui se découvre aussi à Dijon",
+    "description": "Le reliquaire de sainte Brigide relie Ancey au musée d’Art sacré de Dijon. Une autre manière de découvrir l’histoire du village et ses objets.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21021-FR",
+    "path": "/conseils-vendeurs/arc-sur-tille-patrimoine-eau/",
+    "title": "Arc-sur-Tille : trois vies pour le patrimoine de l’eau",
+    "description": "Moulin des Mailly, fontaine Tarnier, anciennes sablières : à Arc-sur-Tille, l’eau raconte le travail, les jardins et les loisirs.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21501-FR",
+    "path": "/conseils-vendeurs/pouilly-en-auxois-maisons-canal-travail/",
+    "title": "Pouilly-en-Auxois : les maisons du canal racontent le travail",
+    "description": "Logements, jardins, bureaux et halle du toueur : à Pouilly-en-Auxois, le canal raconte aussi une manière d’habiter et de travailler.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "BE-021-NL",
+    "path": "/nl/woning-aparte-garage-kopen-bourgondie/",
+    "title": "Een woning met een aparte garage kopen in Bourgondië",
+    "description": "Een garage in een andere straat of mede-eigendom: verbind het verkochte lot met de kosten en de werkelijke route vóór uw aankoop.",
+    "language": "nl",
+    "group": "belgique"
+  },
+  {
+    "id": "BE-022-NL",
+    "path": "/nl/elektriciteitsverslag-gerichte-tweede-bezichtiging/",
+    "title": "Elektriciteitsverslag: gericht opnieuw bezichtigen",
+    "description": "Verbind vaststellingen in het Franse elektriciteitsverslag met de bezochte ruimtes en bereid gerichte vragen voor zonder zelf tests uit te voeren.",
+    "language": "nl",
+    "group": "belgique"
+  },
+  {
+    "id": "BE-023-NL",
+    "path": "/nl/bestaande-vakantiewoning-kopen-wat-neemt-u-over/",
+    "title": "Een bestaande vakantiewoning kopen: wat neemt u over?",
+    "description": "Een bestaande verhuuradvertentie bewijst niet wat u overneemt. Onderzoek de woning, toelatingen, boekingen en uw eigen verhuurplan afzonderlijk.",
+    "language": "nl",
+    "group": "belgique"
+  },
+  {
+    "id": "BE-024-NL",
+    "path": "/nl/tuin-waterput-afwezigheid-droogte-bourgondie/",
+    "title": "Een tuin met put: afwezigheid en droogte voorbereiden",
+    "description": "Een tuin bij uw tweede verblijf: onderscheid beschikbaar water, toegestane besproeiing en haalbaar onderhoud wanneer u niet in Bourgondië bent.",
+    "language": "nl",
+    "group": "belgique"
+  },
+  {
+    "id": "BE-025-NL",
+    "path": "/nl/weekendwoning-afval-voor-vertrek-belgie/",
+    "title": "Weekendwoning: afval regelen vóór u naar België vertrekt",
+    "description": "Stem de afvalophaling bij uw woning in Côte-d’Or af op uw vertrek: containers, sorteren, plaatselijke hulp en grofvuil na de aankoop.",
+    "language": "nl",
+    "group": "belgique"
+  },
+  {
+    "id": "BE-021",
+    "path": "/conseils-vendeurs/acheter-logement-garage-separe-bourgogne/",
+    "title": "Acheter un logement avec un garage séparé en Bourgogne",
+    "description": "Garage dans une autre rue ou une autre copropriété : rapprocher le lot vendu, les frais et le trajet réel avant un achat depuis la Belgique.",
+    "language": "fr",
+    "group": "belgique"
+  },
+  {
+    "id": "BE-022",
+    "path": "/conseils-vendeurs/diagnostic-electrique-anomalies-contre-visite/",
+    "title": "Diagnostic électrique : préparer une contre-visite utile",
+    "description": "Relier les anomalies du diagnostic électrique aux pièces visitées, préparer les questions du professionnel et distinguer constat et réparation.",
+    "language": "fr",
+    "group": "belgique"
+  },
+  {
+    "id": "BE-023",
+    "path": "/conseils-vendeurs/achat-logement-deja-loue-touristes-droits-reprise/",
+    "title": "Logement déjà loué aux touristes : que reprend-on ?",
+    "description": "Une annonce touristique existante ne suffit pas : distinguer le logement acheté, les autorisations, les réservations et votre propre projet.",
+    "language": "fr",
+    "group": "belgique"
+  },
+  {
+    "id": "BE-024",
+    "path": "/conseils-vendeurs/jardin-puits-absences-secheresse-bourgogne/",
+    "title": "Jardin avec puits : prévoir vos absences et la sécheresse",
+    "description": "Pour une maison occupée par séjours, distinguer eau disponible, arrosage autorisé et entretien réellement possible pendant vos absences.",
+    "language": "fr",
+    "group": "belgique"
+  },
+  {
+    "id": "BE-025",
+    "path": "/conseils-vendeurs/maison-week-end-dechets-retour-belgique/",
+    "title": "Maison de week-end : organiser les déchets avant le départ",
+    "description": "À Dijon, Beaune ou ailleurs en Côte-d’Or, confronter la collecte à vos départs : bacs, tri, aide ponctuelle et premiers encombrants.",
+    "language": "fr",
+    "group": "belgique"
   }
 ]
