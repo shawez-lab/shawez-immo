@@ -1,0 +1,244 @@
+{
+ "maj": "2026-10-29T13:25",
+ "regles": {
+  "fenetre": "Trial Reels publiés depuis 14 jours, jugés 24 h après publication",
+  "gagnant": "au moins 1000 vues et au moins 3 fois la médiane",
+  "perdant": "moins de 300 vues ou moins de 2 fois la médiane (le plus haut des deux)",
+  "style_interdit": "dès 2 versions jugées sans aucune gagnante et au moins 2/3 de perdantes ; jamais levé automatiquement",
+  "bien_en_pause": "4 versions jugées sans gagnante ni message privé : pause de 14 jours",
+  "quota_du_jour": "au moins 8 versions sur 10 dans un style gagnant, au plus 2 dans un style à tester, zéro dans un style interdit"
+ },
+ "seuils": {
+  "mediane_vues": 184,
+  "gagnant_des": 1000,
+  "perdant_sous": 368,
+  "versions_jugees": 9,
+  "versions_en_cours": 7
+ },
+ "styles_gagnants": [
+  "chiffre_choc",
+  "lieu_exception",
+  "defi_1pourcent",
+  "question"
+ ],
+ "styles_a_tester": [
+  "revelation",
+  "detail_surprenant",
+  "business"
+ ],
+ "styles_interdits": [
+  "defi_autre",
+  "descriptif",
+  "pov"
+ ],
+ "interdits": {
+  "pov": {
+   "depuis": "2026-10-29",
+   "source": "boss",
+   "raison": "POV château 115 vues et POV loft 125 vues le 28/10, contre 1 194 à 2 109 vues pour le même château dans d’autres styles"
+  },
+  "descriptif": {
+   "depuis": "2026-10-29",
+   "source": "boss",
+   "raison": "loft 112 vues, studio 165 vues ; décision de Shawez du 29/10 : ce qui ne marche pas n’est pas publié"
+  },
+  "defi_autre": {
+   "depuis": "2026-10-29",
+   "source": "boss",
+   "raison": "défis « réflexes de pilote » et « pendant ma chute » à 169 vues chacun, contre 2 551 vues pour « 99 % ratent ce moment »"
+  }
+ },
+ "biens_en_pause": {
+  "483": {
+   "jusqu_au": "2026-11-12",
+   "source": "boss",
+   "raison": "loft : 5 Trial Reels entre 112 et 197 vues, aucun message privé"
+  }
+ },
+ "styles": {
+  "chiffre_choc": {
+   "definition": "le prix ou un chiffre fort dès le premier mot (« 2 500 000 € derrière cette porte », « 18 pièces, 520 m², un étang »)",
+   "statut": "gagnant",
+   "versions_jugees": 1,
+   "gagnants": 1,
+   "perdants": 0,
+   "mediane_vues": 1442,
+   "meilleure": {
+    "id": "TR-2810-438-v4",
+    "vues": 1442
+   }
+  },
+  "lieu_exception": {
+   "definition": "le bien d'exception annoncé d'emblée, en une phrase courte (« Château du XVIIIe à 15 min de Beaune », « Marrakech, en plein centre de Dijon »)",
+   "statut": "gagnant",
+   "versions_jugees": 2,
+   "gagnants": 2,
+   "perdants": 0,
+   "mediane_vues": 1641,
+   "meilleure": {
+    "id": "TR-2810-438-v1",
+    "vues": 2109
+   }
+  },
+  "revelation": {
+   "definition": "une porte, un placard ou une pièce cachée qu'on ouvre (« Tu pensais que c'était un placard ? », « Derrière cette porte… »)",
+   "statut": "a_tester",
+   "versions_jugees": 0,
+   "gagnants": 0,
+   "perdants": 0,
+   "mediane_vues": null,
+   "meilleure": null
+  },
+  "defi_1pourcent": {
+   "definition": "défi pause avec la statistique « Seul 1 % y arrive » ou « 99 % ratent ce moment »",
+   "statut": "gagnant",
+   "versions_jugees": 1,
+   "gagnants": 1,
+   "perdants": 0,
+   "mediane_vues": 2551,
+   "meilleure": {
+    "id": "TR-2810-defi-a",
+    "vues": 2551
+   }
+  },
+  "question": {
+   "definition": "l'accroche est une question posée au spectateur (« Tu choisis quoi ? », « Un week-end ici, tu dis oui ? »)",
+   "statut": "gagnant",
+   "versions_jugees": 2,
+   "gagnants": 1,
+   "perdants": 1,
+   "mediane_vues": 661,
+   "meilleure": {
+    "id": "TR-2810-438-v2",
+    "vues": 1194
+   }
+  },
+  "detail_surprenant": {
+   "definition": "un équipement inattendu (« Une baignoire balnéo dans 19 m², oui c'est possible »)",
+   "statut": "a_tester",
+   "versions_jugees": 0,
+   "gagnants": 0,
+   "perdants": 0,
+   "mediane_vues": null,
+   "meilleure": null
+  },
+  "business": {
+   "definition": "rentabilité ou chiffres d'exploitation (« déjà loué en courte durée », « 1,8 M€ encaissés »)",
+   "statut": "a_tester",
+   "versions_jugees": 1,
+   "gagnants": 0,
+   "perdants": 1,
+   "mediane_vues": 184,
+   "meilleure": {
+    "id": "TR-2810-483-v3",
+    "vues": 184
+   }
+  },
+  "descriptif": {
+   "definition": "visite guidée : « je te montre », « je commence par », « je te propose », liste de pièces ou d'équipements",
+   "statut": "interdit",
+   "versions_jugees": 2,
+   "gagnants": 0,
+   "perdants": 2,
+   "mediane_vues": 138,
+   "meilleure": {
+    "id": "TR-2810-461-v2",
+    "vues": 165
+   }
+  },
+  "pov": {
+   "definition": "« POV : … »",
+   "statut": "interdit",
+   "versions_jugees": 0,
+   "gagnants": 0,
+   "perdants": 0,
+   "mediane_vues": null,
+   "meilleure": null
+  },
+  "defi_autre": {
+   "definition": "défi pause sans la statistique du 1 % (réflexes, chute, pari, « impossible »)",
+   "statut": "interdit",
+   "versions_jugees": 0,
+   "gagnants": 0,
+   "perdants": 0,
+   "mediane_vues": null,
+   "meilleure": null
+  },
+  "autre": {
+   "definition": "rien de ce qui précède",
+   "statut": "a_tester",
+   "versions_jugees": 0,
+   "gagnants": 0,
+   "perdants": 0,
+   "mediane_vues": null,
+   "meilleure": null
+  }
+ },
+ "biens": {
+  "438": {
+   "versions_jugees": 3,
+   "gagnants": 3,
+   "messages_prives": 4,
+   "mediane_vues": 1442,
+   "statut": "fort"
+  },
+  "461": {
+   "versions_jugees": 2,
+   "gagnants": 1,
+   "messages_prives": 0,
+   "mediane_vues": 669,
+   "statut": "fort"
+  },
+  "483": {
+   "versions_jugees": 3,
+   "gagnants": 0,
+   "messages_prives": 0,
+   "mediane_vues": 129,
+   "statut": "en_pause"
+  }
+ },
+ "gagnants_recents": [
+  {
+   "id": "TR-2810-defi-a",
+   "ref": "defi",
+   "style": "defi_1pourcent",
+   "vues": 2551,
+   "url": "https://www.instagram.com/reel/DfCcBUyjTUT/",
+   "date": "2026-10-28"
+  },
+  {
+   "id": "TR-2810-438-v1",
+   "ref": "438",
+   "style": "lieu_exception",
+   "vues": 2109,
+   "url": "https://www.instagram.com/reel/DfB9S2sDohn/",
+   "date": "2026-10-28"
+  },
+  {
+   "id": "TR-2810-438-v4",
+   "ref": "438",
+   "style": "chiffre_choc",
+   "vues": 1442,
+   "url": "https://www.instagram.com/reel/DfC7drrDOFe/",
+   "date": "2026-10-28"
+  },
+  {
+   "id": "TR-2810-438-v2",
+   "ref": "438",
+   "style": "question",
+   "vues": 1194,
+   "url": "https://www.instagram.com/reel/DfCSDAAjCup/",
+   "date": "2026-10-28"
+  },
+  {
+   "id": "TR-2710-461-v1",
+   "ref": "461",
+   "style": "lieu_exception",
+   "vues": 1174,
+   "url": null,
+   "date": "2026-10-27"
+  }
+ ],
+ "consigne_monteur": "Chaque version porte un « style » de la liste. Jamais un style de styles_interdits, jamais un bien de biens_en_pause. Au moins 8 versions sur 10 dans styles_gagnants (sur les biens les plus forts), au plus 2 dans styles_a_tester. Chaque Trial Reel programmé est ajouté à registre.json.",
+ "consigne_codex": "Ne livre plus aucun Trial Reel dans un style de styles_interdits : il sera refusé. Livre d'abord des variantes des gagnants_recents (même accroche, autre musique, autres premiers plans)."
+}
