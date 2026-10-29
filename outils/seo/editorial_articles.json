@@ -510,5 +510,205 @@
     "description": "Organiser les traductions d’un achat en Bourgogne : documents décisifs, versions, questions au notaire et différence entre résumé et acte.",
     "language": "fr",
     "group": "us"
+  },
+  {
+    "id": "COM-21023-FR",
+    "path": "/conseils-vendeurs/arnay-le-duc-maison-recevoir-table/",
+    "title": "Arnay-le-Duc : présenter une maison où recevoir",
+    "description": "À Arnay-le-Duc, préparez un plan de repas pour montrer les pièces de réception, leurs circulations et leurs équipements réels.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21038-FR",
+    "path": "/conseils-vendeurs/auxonne-batiment-vitrine-logement/",
+    "title": "Auxonne : vendre un bâtiment avec vitrine et logement",
+    "description": "À Auxonne, rendez lisibles les accès, le logement et le local d’un bâtiment mixte, avec une fiche des usages et des documents à vérifier.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21087-FR",
+    "path": "/conseils-vendeurs/bligny-sur-ouche-maison-atelier/",
+    "title": "Bligny-sur-Ouche : présenter un atelier avec la maison",
+    "description": "À Bligny-sur-Ouche, montrez un atelier par son parcours de travail, ses dimensions utiles et ses équipements connus, sans promettre une activité.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21292-FR",
+    "path": "/conseils-vendeurs/genlis-maison-velo-rangement/",
+    "title": "Genlis : quelle place pour le vélo dans votre maison ?",
+    "description": "À Genlis, décrivez le parcours et le rangement d’un vélo : passages, encombrement et usages qui restent possibles dans la maison.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21317-FR",
+    "path": "/conseils-vendeurs/is-sur-tille-maison-trajet-gare/",
+    "title": "Is-sur-Tille : expliquer le trajet de la maison au train",
+    "description": "Préparez une fiche porte-à-quai pour vendre à Is-sur-Tille : la gare se trouve à Marcilly-sur-Tille, et chaque trajet mérite une vérification.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21519-FR",
+    "path": "/conseils-vendeurs/recey-sur-ource-age-maison-preuves/",
+    "title": "Recey-sur-Ource : quel âge donner à votre maison ?",
+    "description": "À Recey-sur-Ource, reliez chaque date à un élément et à sa source. Une fiche aide à présenter l’histoire de la maison sans certitude inventée.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21584-FR",
+    "path": "/conseils-vendeurs/saulieu-porte-cochere-stationnement/",
+    "title": "À Saulieu, une porte cochère ne fait pas un garage",
+    "description": "À Saulieu, décrivez une porte cochère par son ouverture, son passage et la place disponible, sans confondre caractère et stationnement.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21607-FR",
+    "path": "/conseils-vendeurs/seurre-maison-jardin-fruitier/",
+    "title": "Seurre : transmettre le jardin fruitier avec la maison",
+    "description": "À Seurre, préparez un carnet des fruitiers : emplacement, variété documentée, observations saisonnières et entretien connu.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21611-FR",
+    "path": "/conseils-vendeurs/sombernon-sols-anciens-vente/",
+    "title": "Sombernon : regarder les sols anciens avant de vendre",
+    "description": "À Sombernon, relevez les zones, raccords et documents des sols anciens avant de décider d’une intervention pour la vente.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21663-FR",
+    "path": "/conseils-vendeurs/venarey-les-laumes-maison-equipements-acces/",
+    "title": "Venarey-les-Laumes : préciser accès et équipements",
+    "description": "Pour vendre à Venarey-les-Laumes, préparez une matrice des accès et équipements d’une maison accolée, avec les documents disponibles.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "LG-001",
+    "path": "/conseils-vendeurs/location-gerance-fonds-murs-materiel/",
+    "title": "Un fonds exploitable ou un local vide : ce que vous mettez réellement en location",
+    "description": "Avant de proposer une location-gérance en Côte-d’Or, identifier le fonds, les murs, le matériel et les documents qui permettent de qualifier le projet.",
+    "language": "fr",
+    "group": "location_fonds"
+  },
+  {
+    "id": "LG-002",
+    "path": "/conseils-vendeurs/location-gerance-clause-exploitation-personnelle-bail/",
+    "title": "Location-gérance à Dijon : relire la clause d’exploitation personnelle du bail",
+    "description": "Repérer la clause d’exploitation personnelle, les accords à obtenir et leur périmètre avant de présenter un fonds en location-gérance à Dijon.",
+    "language": "fr",
+    "group": "location_fonds"
+  },
+  {
+    "id": "LG-003",
+    "path": "/conseils-vendeurs/location-gerance-couple-consentement-propriete-fonds/",
+    "title": "Fonds détenu en couple : qui doit consentir à la location-gérance ?",
+    "description": "Identifier le propriétaire du fonds, la participation du conjoint et les pouvoirs de signature avant de préparer une location-gérance en Côte-d’Or.",
+    "language": "fr",
+    "group": "location_fonds"
+  },
+  {
+    "id": "LG-004",
+    "path": "/conseils-vendeurs/location-gerance-redevance-tableau-paiements/",
+    "title": "Redevance de location-gérance : construire un tableau qui sépare chaque paiement",
+    "description": "Séparer redevance du fonds, occupation des murs, prestations et sommes de départ pour discuter une location-gérance avec un budget lisible.",
+    "language": "fr",
+    "group": "location_fonds"
+  },
+  {
+    "id": "LG-005",
+    "path": "/conseils-vendeurs/location-gerance-redevance-variable-donnees-controle/",
+    "title": "Redevance fixe ou variable : quelles données rendre contrôlables ?",
+    "description": "Avant de retenir une redevance variable, définir la base de calcul, les périodes, les justificatifs et la façon de traiter les écarts.",
+    "language": "fr",
+    "group": "location_fonds"
+  },
+  {
+    "id": "PV-002-EN",
+    "path": "/en/property-film-protecting-occupants-privacy/",
+    "title": "Filming a property without revealing its occupants’ private lives",
+    "description": "A privacy sheet for your property shoot: people, personal objects, reflections and versions to check before a film is released.",
+    "language": "en",
+    "group": "prestige_videos"
+  },
+  {
+    "id": "PV-008-EN",
+    "path": "/en/property-video-sound-surroundings/",
+    "title": "The sound of a place: presenting the surroundings of a beautiful property",
+    "description": "Add a dated listening log to a property film: locations, windows, times and public sources, without confusing video with an acoustic assessment.",
+    "language": "en",
+    "group": "prestige_videos"
+  },
+  {
+    "id": "PV-010-EN",
+    "path": "/en/filming-stairs-older-house-everyday-use/",
+    "title": "The stairs in an older house deserve a proper sequence",
+    "description": "Starting point, steps, landing and rooms served: plan a sequence that explains changes of level before viewing an older house.",
+    "language": "en",
+    "group": "prestige_videos"
+  },
+  {
+    "id": "PV-013-EN",
+    "path": "/en/presenting-garden-winter-seasonal-photographs/",
+    "title": "Presenting a garden in winter without promising a July garden",
+    "description": "Arrange current images and dated archives to explain a garden’s seasons, changes and points to revisit, without making an old photograph a promise.",
+    "language": "en",
+    "group": "prestige_videos"
+  },
+  {
+    "id": "PV-025-EN",
+    "path": "/en/property-film-measure-views-buyer-enquiries/",
+    "title": "Measuring interest in a property film without confusing views and buyers",
+    "description": "Track audience, enquiries, viewings and offers separately, using comparable periods and documented facts to guide marketing decisions.",
+    "language": "en",
+    "group": "prestige_videos"
+  },
+  {
+    "id": "PV-002",
+    "path": "/conseils-vendeurs/film-immobilier-confidentialite-occupants/",
+    "title": "Filmer une propriété sans dévoiler la vie privée de ses occupants",
+    "description": "Une feuille de confidentialité pour préparer le tournage de votre propriété : personnes, objets, reflets et versions à contrôler avant diffusion.",
+    "language": "fr",
+    "group": "prestige_videos"
+  },
+  {
+    "id": "PV-008",
+    "path": "/conseils-vendeurs/video-immobiliere-son-environnement-propriete/",
+    "title": "Le son d’un lieu : présenter aussi les bruits autour d’une belle propriété",
+    "description": "Compléter un film de propriété par un carnet d’écoute daté : lieux, fenêtres, horaires et sources publiques, sans confondre vidéo et mesure acoustique.",
+    "language": "fr",
+    "group": "prestige_videos"
+  },
+  {
+    "id": "PV-010",
+    "path": "/conseils-vendeurs/filmer-escaliers-maison-ancienne-usage/",
+    "title": "Les escaliers d’une maison ancienne méritent une vraie séquence",
+    "description": "Départ, marches, palier et pièces desservies : préparer une séquence qui explique les changements de niveau avant une visite de maison ancienne.",
+    "language": "fr",
+    "group": "prestige_videos"
+  },
+  {
+    "id": "PV-013",
+    "path": "/conseils-vendeurs/presenter-jardin-hiver-photos-saisons/",
+    "title": "Présenter un jardin en hiver sans promettre le jardin de juillet",
+    "description": "Images actuelles et archives datées : organiser une présentation du jardin qui explique la saison, les changements et les points à revoir en visite.",
+    "language": "fr",
+    "group": "prestige_videos"
+  },
+  {
+    "id": "PV-025",
+    "path": "/conseils-vendeurs/mesurer-interet-film-immobilier-vues-acheteurs/",
+    "title": "Mesurer l’intérêt pour un film sans confondre vues et acheteurs",
+    "description": "Un suivi de commercialisation qui distingue audience, demandes, visites et offres, avec des périodes comparables et des décisions fondées sur les faits.",
+    "language": "fr",
+    "group": "prestige_videos"
   }
 ]
