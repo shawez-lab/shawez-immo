@@ -286,5 +286,229 @@
     "description": "À Varennes, Joffre ou la Toison d’Or, préparer une localisation utile : adresse, accès, espaces verts et génération du logement.",
     "language": "fr",
     "group": "quartiers_dijon"
+  },
+  {
+    "id": "COM-21071-FR",
+    "path": "/conseils-vendeurs/beze-maison-riviere-usages/",
+    "title": "À Bèze, vendre une maison près de l’eau en racontant les bonnes choses",
+    "description": "À Bèze, préparer une vente en décrivant la place réelle de la rivière : vues, accès, espaces bas et documents utiles au futur propriétaire.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21579-FR",
+    "path": "/conseils-vendeurs/salives-maison-escaliers-usage/",
+    "title": "Vendre à Salives : la maison se découvre aussi par ses escaliers",
+    "description": "À Salives, faire comprendre une maison ancienne à étages : distribution, marches, pièces traversantes et usages, sans perdre son caractère.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21304-FR",
+    "path": "/conseils-vendeurs/grancey-chateau-neuvelle-adresse-maison/",
+    "title": "Grancey-le-Château-Neuvelle : présenter la bonne adresse, pas seulement le château",
+    "description": "À Grancey-le-Château-Neuvelle, préparer une annonce qui situe vraiment la maison et distingue Grancey, Neuvelle et les repères du quotidien.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21441-FR",
+    "path": "/conseils-vendeurs/mont-saint-jean-propriete-entretien/",
+    "title": "Mont-Saint-Jean : montrer ce qu’une propriété rurale demande vraiment au fil de l’année",
+    "description": "À Mont-Saint-Jean, préparer la vente d’une propriété en expliquant ses usages, les accès et l’entretien réel des extérieurs et dépendances.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21573-FR",
+    "path": "/conseils-vendeurs/saint-seine-abbaye-maison-semaine-quotidienne/",
+    "title": "Saint-Seine-l’Abbaye : préparer une vente à partir d’une semaine ordinaire",
+    "description": "À Saint-Seine-l’Abbaye, présenter une maison avec ses vrais repères de vie : trajets, services, espace de travail et usages de chaque jour.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21373-FR",
+    "path": "/conseils-vendeurs/malain-maison-renovee-chronologie-travaux/",
+    "title": "À Mâlain, une maison rénovée se raconte avec une chronologie précise",
+    "description": "À Mâlain, valoriser une maison rénovée avec une chronologie lisible : état antérieur, interventions documentées, pièces conservées et état actuel.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21008-FR",
+    "path": "/conseils-vendeurs/alise-sainte-reine-photo-ancienne-maison/",
+    "title": "Alise-Sainte-Reine : ce qu’une ancienne photographie peut apporter à votre vente",
+    "description": "À Alise-Sainte-Reine, utiliser une photographie ancienne avec méthode pour raconter une maison : localisation, date, transformations et droits.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21582-FR",
+    "path": "/conseils-vendeurs/santenay-maison-arrivee-sejours/",
+    "title": "Vendre à Santenay : montrer comment la maison accueille une arrivée",
+    "description": "À Santenay, préparer la vente d’une maison avec une notice d’arrivée utile : accès, bagages, pièces prêtes à vivre et repères saisonniers.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21492-FR",
+    "path": "/conseils-vendeurs/pommard-maison-village-viticole-quotidien/",
+    "title": "À Pommard, vendre une maison dans un village qui vit et qui travaille",
+    "description": "À Pommard, présenter une habitation au-delà du nom du vignoble : voisinage, usages, relation à la rue et qualités propres de la maison.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21569-FR",
+    "path": "/conseils-vendeurs/saint-romain-terrain-maison-usages/",
+    "title": "Saint-Romain : donner une forme compréhensible au terrain de votre maison",
+    "description": "À Saint-Romain, montrer un extérieur avec ses usages réels : espaces où l’on s’installe, passages, relief et relation avec les pièces de la maison.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "US-001-EN",
+    "path": "/en/american-buyers-reading-french-floor-plan/",
+    "title": "American buyers: read a French floor plan before booking a viewing",
+    "description": "Match rooms, bedrooms, floor levels and measurements to the photos of a Burgundy property before traveling from the United States.",
+    "language": "en",
+    "group": "us"
+  },
+  {
+    "id": "US-002-EN",
+    "path": "/en/two-days-beaune-property-viewings-united-states/",
+    "title": "Traveling from the United States: plan two days of property viewings in Beaune",
+    "description": "Plan a short property trip to Beaune with a documented shortlist, confirmed appointments, realistic travel and room for a second viewing.",
+    "language": "en",
+    "group": "us"
+  },
+  {
+    "id": "US-003-EN",
+    "path": "/en/selling-us-before-buying-burgundy-timelines/",
+    "title": "Selling in the United States before buying in Burgundy: connect the two timelines",
+    "description": "Connect a US sale and a Burgundy purchase through available funds, confirmed milestones and questions for the professionals handling both transactions.",
+    "language": "en",
+    "group": "us"
+  },
+  {
+    "id": "US-004-EN",
+    "path": "/en/dollar-euro-dated-property-budget/",
+    "title": "Dollar funds and euro prices: build a dated budget for one specific property",
+    "description": "Build a Burgundy purchase budget around a specific home, separating its price, documented costs, currency conversion and available reserves.",
+    "language": "en",
+    "group": "us"
+  },
+  {
+    "id": "US-005-EN",
+    "path": "/en/us-employees-french-bank-document-file/",
+    "title": "US-employed buyers: prepare the documents a French bank actually requests",
+    "description": "Prepare a property finance file using US employment income: the bank’s document list, reporting periods, variable compensation and translations.",
+    "language": "en",
+    "group": "us"
+  },
+  {
+    "id": "US-006-EN",
+    "path": "/en/us-self-employed-income-property-purchase-file/",
+    "title": "Self-employed in the United States: make your French purchase file understandable",
+    "description": "Explain variable US business income without confusing revenue, profit, cash balances and funds available for a property purchase in Burgundy.",
+    "language": "en",
+    "group": "us"
+  },
+  {
+    "id": "US-008-EN",
+    "path": "/en/american-escrow-french-notary-roles/",
+    "title": "From American escrow to a French notary: identify the right person for each task",
+    "description": "Identify the roles in a Burgundy purchase when you know American escrow, without assuming equivalent duties or protections.",
+    "language": "en",
+    "group": "us"
+  },
+  {
+    "id": "US-009-EN",
+    "path": "/en/title-insurance-questions-buying-france/",
+    "title": "Used to title insurance? Questions to ask before buying in France",
+    "description": "Turn expectations from an American purchase into precise questions for the French notary, without assuming equivalent insurance coverage.",
+    "language": "en",
+    "group": "us"
+  },
+  {
+    "id": "US-010-EN",
+    "path": "/en/american-buyers-translation-before-french-signing/",
+    "title": "American buyers: have a translation reviewed before signing in French",
+    "description": "Plan translations for a Burgundy purchase: decisive documents, version control, questions for the notary and the limits of a commercial summary.",
+    "language": "en",
+    "group": "us"
+  },
+  {
+    "id": "US-001",
+    "path": "/conseils-vendeurs/acheteur-americain-relire-plan-francais/",
+    "title": "Acheteur américain : relire un plan français avant de réserver une visite",
+    "description": "Pièces, chambres, étages et surfaces : rapprocher le plan d’un bien bourguignon de ses photos avant de voyager depuis les États-Unis.",
+    "language": "fr",
+    "group": "us"
+  },
+  {
+    "id": "US-002",
+    "path": "/conseils-vendeurs/etats-unis-deux-journees-visites-beaune/",
+    "title": "Depuis les États-Unis : organiser deux journées de visites à Beaune",
+    "description": "Préparer un court séjour immobilier à Beaune : présélection, rendez-vous confirmés, trajets et seconde visite sans multiplier les kilomètres.",
+    "language": "fr",
+    "group": "us"
+  },
+  {
+    "id": "US-003",
+    "path": "/conseils-vendeurs/vente-etats-unis-achat-bourgogne-deux-calendriers/",
+    "title": "Vendre aux États-Unis avant d’acheter en Bourgogne : articuler deux calendriers",
+    "description": "Relier une vente américaine et un achat bourguignon : fonds disponibles, étapes confirmées et questions à faire examiner dans les deux opérations.",
+    "language": "fr",
+    "group": "us"
+  },
+  {
+    "id": "US-004",
+    "path": "/conseils-vendeurs/budget-immobilier-dollars-euros-date/",
+    "title": "Dollars et prix en euros : construire un budget daté pour un bien précis",
+    "description": "Construire un budget d’achat en Bourgogne à partir d’un bien précis, en séparant prix, frais documentés, change et réserves disponibles.",
+    "language": "fr",
+    "group": "us"
+  },
+  {
+    "id": "US-005",
+    "path": "/conseils-vendeurs/salarie-etats-unis-justificatifs-banque-francaise/",
+    "title": "Acheteur américain salarié : préparer les justificatifs que demande une banque française",
+    "description": "Préparer un dossier immobilier avec des revenus salariés américains : demandes de la banque, périodes, rémunération variable et traductions.",
+    "language": "fr",
+    "group": "us"
+  },
+  {
+    "id": "US-006",
+    "path": "/conseils-vendeurs/independant-etats-unis-dossier-acquisition/",
+    "title": "Revenus d’indépendant aux États-Unis : préparer un dossier d’acquisition lisible",
+    "description": "Présenter des revenus professionnels américains variables sans confondre chiffre d’affaires, résultat, trésorerie et fonds mobilisables pour un achat.",
+    "language": "fr",
+    "group": "us"
+  },
+  {
+    "id": "US-008",
+    "path": "/conseils-vendeurs/escrow-americain-notaire-francais-interlocuteurs/",
+    "title": "De l’escrow américain au notaire français : les interlocuteurs à distinguer",
+    "description": "Identifier les rôles dans un achat en Bourgogne lorsqu’on connaît l’escrow américain, sans supposer une équivalence entre professionnels.",
+    "language": "fr",
+    "group": "us"
+  },
+  {
+    "id": "US-009",
+    "path": "/conseils-vendeurs/title-insurance-verifications-achat-france/",
+    "title": "Habitué à la title insurance : quelles vérifications demander en France ?",
+    "description": "Transformer ses attentes de protection américaines en questions précises au notaire français, sans supposer une couverture d’assurance équivalente.",
+    "language": "fr",
+    "group": "us"
+  },
+  {
+    "id": "US-010",
+    "path": "/conseils-vendeurs/acheteur-americain-traduction-avant-signature/",
+    "title": "Acheteur américain : faire relire une traduction avant de signer en français",
+    "description": "Organiser les traductions d’un achat en Bourgogne : documents décisifs, versions, questions au notaire et différence entre résumé et acte.",
+    "language": "fr",
+    "group": "us"
   }
 ]
