@@ -12,6 +12,7 @@ BASE = 'https://shawez-immo.com'
 START = '<!-- editorial-additions -->'
 END = '<!-- /editorial-additions -->'
 GROUPS = {
+    'chateaux': ('Préparer la vente d’un château', 'Preparing a château sale'),
     'communes': ('Vendre en Côte-d’Or, commune par commune', 'Selling in Côte-d’Or, town by town'),
     'location_fonds': ('Préparer une location-gérance', 'Preparing a business lease'),
     'prestige_videos': ('Présenter une propriété en vidéo', 'Presenting a property on film'),
