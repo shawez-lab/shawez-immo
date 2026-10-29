@@ -87,6 +87,8 @@ CREATE TABLE IF NOT EXISTS reglages (
 --   étape 3 : comptes_rendus (visite_le, texte, publie, publie_le), offres (montant, recue_le, conditions, statut),
 --             notaires (nom, coordonnees, etapes en JSON), courriers (e-mails au vendeur gardés entre 21 h et 8 h)
 --             fichiers.libelle (nature d'un document déposé par l'agence : mandat, diagnostics, compromis…)
+--   étape 4 : socle_ombre (B03 d'AIMMO : décision du site et décision du socle AIMMO pour chaque rappel de visite et
+--             chaque e-mail gardé, côte à côte, sans adresse, texte ni nom)
 
 -- Audit du 18/10/2026 : migration à appliquer à la main, après relecture (elle n'est PAS créée automatiquement) :
 --   functions/migrations/2026-10-18-admin.sql
