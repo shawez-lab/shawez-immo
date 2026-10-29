@@ -2174,5 +2174,293 @@
     "description": "Une canalisation proche ne suffit pas à établir le raccordement. Préparer une demande précise pour une parcelle à vendre en Côte-d’Or.",
     "language": "fr",
     "group": "terrain"
+  },
+  {
+    "id": "COM-21223-FR",
+    "path": "/conseils-vendeurs/daix-village-champmoron-bonvaux/",
+    "title": "Daix : du village à Champmoron et Bonvaux",
+    "description": "Champmoron, Bonvaux et le Plain Saint-Laurent racontent des situations différentes. Découvrez Daix avant de choisir comment présenter votre adresse.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21315-FR",
+    "path": "/conseils-vendeurs/hauteville-les-dijon-maison-puits/",
+    "title": "Hauteville-lès-Dijon : vendre une maison avec un puits",
+    "description": "Un puits peut être décoratif, inutilisé ou en service. À Hauteville-lès-Dijon, préparez son dossier sans promettre une ressource permanente.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21481-FR",
+    "path": "/conseils-vendeurs/perrigny-les-dijon-fenetres-volets-vente/",
+    "title": "Perrigny-lès-Dijon : faire le tour des fenêtres",
+    "description": "À Perrigny-lès-Dijon, préparez la vente en distinguant façade, fenêtres, volets et travaux documentés, ouverture par ouverture.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21263-FR",
+    "path": "/conseils-vendeurs/fenay-domois-chevigny-reperes-maison/",
+    "title": "Fénay : situer une maison entre ses trois hameaux",
+    "description": "Fénay, Domois, Chevigny : donnez aux acheteurs les bons repères pour comprendre les déplacements réels depuis votre maison.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21106-FR",
+    "path": "/conseils-vendeurs/breteniere-maison-canal-droits-acces/",
+    "title": "Bretenière : vendre près du canal de Bourgogne",
+    "description": "Le canal donne un cadre à Bretenière. Pour vendre à proximité, distinguez promenade publique, vue, accès et éventuel droit d’amarrage.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21473-FR",
+    "path": "/conseils-vendeurs/ouges-trois-lavoirs-decouvrir-village/",
+    "title": "Ouges : trois lavoirs, trois façons de découvrir le village",
+    "description": "Rue de la Fontaine, place centrale, Petit Ouges : les trois lavoirs ont des caractères différents. Découvrez ce qu’ils racontent du village.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21605-FR",
+    "path": "/conseils-vendeurs/sennecey-les-dijon-facade-pierre-brique/",
+    "title": "Sennecey-lès-Dijon : expliquer une façade pierre et brique",
+    "description": "Une façade mêle parfois pierre, brique et enduit. À Sennecey-lès-Dijon, préparez sa présentation sans confondre décor, réparation et structure.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21370-FR",
+    "path": "/conseils-vendeurs/magny-sur-tille-norges-etangs-abbayotte/",
+    "title": "Magny-sur-Tille : la Norges, les étangs et l’Abbayotte",
+    "description": "Pourquoi la Norges traverse-t-elle Magny-sur-Tille ? Découvrez les noms, les étangs et l’Abbayotte pour comprendre le village sans les confondre.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21105-FR",
+    "path": "/conseils-vendeurs/bressey-sur-tille-maison-abords-chateau/",
+    "title": "Bressey-sur-Tille : vendre près du château, avec quel dossier ?",
+    "description": "La proximité du château de Bressey ne classe pas votre maison. Préparez les documents utiles pour examiner les projets de travaux.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21171-FR",
+    "path": "/conseils-vendeurs/chevigny-saint-sauveur-rez-de-jardin-copropriete/",
+    "title": "Chevigny-Saint-Sauveur : préciser le jardin d’un appartement",
+    "description": "Un rez-de-jardin se présente avec ses usages et ses documents. À Chevigny-Saint-Sauveur, distinguez le jardin privé, la jouissance et le parc voisin.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "BE-006",
+    "path": "/conseils-vendeurs/belgique-comparer-deux-exercices-charges-copropriete/",
+    "title": "Copropriété : comprendre deux années de charges avant d’acheter",
+    "description": "Deux années de charges ne se comparent pas par leur seul total. Une méthode pour repérer les écarts et préparer vos questions sur un appartement français.",
+    "language": "fr",
+    "group": "belgique"
+  },
+  {
+    "id": "BE-007",
+    "path": "/conseils-vendeurs/belgique-representant-remise-cles-achat-france/",
+    "title": "Faire récupérer les clés en France lorsque vous êtes en Belgique",
+    "description": "Vous êtes en Belgique le jour de la remise des clés. Définissez précisément la mission de votre représentant et les points à transmettre au notaire.",
+    "language": "fr",
+    "group": "belgique"
+  },
+  {
+    "id": "BE-008",
+    "path": "/conseils-vendeurs/couple-belgique-france-faits-residence-fiscale/",
+    "title": "Entre Belgique et France : préparer la question de votre résidence fiscale",
+    "description": "Une maison française ne décide pas seule de votre résidence fiscale. Préparez les faits du couple et les questions à adresser aux conseils des deux pays.",
+    "language": "fr",
+    "group": "belgique"
+  },
+  {
+    "id": "BE-009",
+    "path": "/conseils-vendeurs/mur-mitoyen-travaux-documents-avant-achat/",
+    "title": "Mur partagé : les travaux à éclaircir avant l’achat",
+    "description": "Un mur en limite de jardin ne dit pas qui doit payer sa réparation. Rassemblez titres, accords et travaux en cours avant votre achat en Bourgogne.",
+    "language": "fr",
+    "group": "belgique"
+  },
+  {
+    "id": "BE-010",
+    "path": "/conseils-vendeurs/anciennes-photos-annonce-recuperer-fichiers-droits/",
+    "title": "Anciennes photos d’annonce : récupérer les fichiers et les droits",
+    "description": "Vous vendez depuis la Belgique un bien en Bourgogne ? Préparez la demande au photographe ou à l’ancienne agence avant de réutiliser leurs images.",
+    "language": "fr",
+    "group": "belgique"
+  },
+  {
+    "id": "BE-011-NL",
+    "path": "/nl/franse-woningadvertenties-kamers-bijgebouwen/",
+    "title": "Franse woningadvertenties: kamers en bijgebouwen",
+    "description": "Vergelijk Franse woningadvertenties met een praktisch Frans-Nederlands woordenlijstje, een plattegrond en duidelijke vragen over de oppervlakte.",
+    "language": "nl",
+    "group": "belgique"
+  },
+  {
+    "id": "BE-012-NL",
+    "path": "/nl/bezichtiging-bourgondie-laatste-kilometers/",
+    "title": "Bezichtiging in Bourgondië: de laatste kilometers",
+    "description": "Vanuit Antwerpen of Gent naar een bezichtiging: bevestig de juiste toegang, parkeerafspraak en herkenningspunten zonder het adres openbaar te delen.",
+    "language": "nl",
+    "group": "belgique"
+  },
+  {
+    "id": "BE-013-NL",
+    "path": "/nl/franse-offerte-lezen-zonder-inhoud-veranderen/",
+    "title": "Een Franse offerte lezen zonder de inhoud te veranderen",
+    "description": "Lees een Franse bouwofferte in het Nederlands met behoud van regelnummers, eenheden en uitsluitingen. Vergelijk dezelfde werkzaamheden.",
+    "language": "nl",
+    "group": "belgique"
+  },
+  {
+    "id": "BE-014-NL",
+    "path": "/nl/nederlandstalige-inkomstenstukken-franse-lening/",
+    "title": "Nederlandstalige inkomstenstukken voor een Franse lening",
+    "description": "Vraag eerst welke Belgische bewijsstukken, periodes en vertalingen de Franse kredietverstrekker aanvaardt. Houd elke aanvraag apart bij.",
+    "language": "nl",
+    "group": "belgique"
+  },
+  {
+    "id": "BE-015-NL",
+    "path": "/nl/vrij-of-verhuurd-appartement-twee-projecten/",
+    "title": "Een vrij of verhuurd appartement: twee andere projecten",
+    "description": "Vergelijk een vrij en een verhuurd appartement in Bourgondië op gebruik, huurcontract en aantoonbare inkomsten, vóór u een bezoek plant.",
+    "language": "nl",
+    "group": "belgique"
+  },
+  {
+    "id": "BE-011",
+    "path": "/conseils-vendeurs/annonce-francaise-pieces-chambres-dependances/",
+    "title": "Annonce française : pièces, chambres et dépendances",
+    "description": "Un lexique français-néerlandais pour comparer les espaces d’une maison en Bourgogne sans transformer une dépendance en chambre.",
+    "language": "fr",
+    "group": "belgique"
+  },
+  {
+    "id": "BE-012",
+    "path": "/conseils-vendeurs/visite-bourgogne-confirmer-derniers-kilometres/",
+    "title": "Visite en Bourgogne : confirmer les derniers kilomètres",
+    "description": "Depuis Anvers ou Gand, préparez l’arrivée devant le bon accès : point privé confirmé, stationnement et consignes compréhensibles.",
+    "language": "fr",
+    "group": "belgique"
+  },
+  {
+    "id": "BE-013",
+    "path": "/conseils-vendeurs/devis-francais-traduire-sans-perdre-perimetre/",
+    "title": "Devis français : traduire sans perdre le périmètre",
+    "description": "Une relecture bilingue des devis de travaux : conserver les lignes françaises, clarifier les exclusions et comparer les mêmes prestations.",
+    "language": "fr",
+    "group": "belgique"
+  },
+  {
+    "id": "BE-014",
+    "path": "/conseils-vendeurs/revenus-neerlandais-dossier-credit-france/",
+    "title": "Revenus en néerlandais : préparer le dossier de crédit",
+    "description": "Avant de traduire vos justificatifs belges pour une banque française, faites confirmer les pièces, les périodes et les formats attendus.",
+    "language": "fr",
+    "group": "belgique"
+  },
+  {
+    "id": "BE-015",
+    "path": "/conseils-vendeurs/appartement-libre-loue-comparer-deux-projets/",
+    "title": "Appartement libre ou loué : comparer deux projets",
+    "description": "Depuis la Belgique, comparez un appartement libre et un bien loué en Bourgogne : disponibilité réelle, bail, loyers et documents à examiner.",
+    "language": "fr",
+    "group": "belgique"
+  },
+  {
+    "id": "UK-026-EN",
+    "path": "/en/uk-company-french-property-companies-house-record/",
+    "title": "Buying through a UK company: start with its public record",
+    "description": "Match your UK company’s public record, director and PSC verification before a French property purchase, without circulating personal filing codes.",
+    "language": "en",
+    "group": "uk"
+  },
+  {
+    "id": "UK-027-EN",
+    "path": "/en/borrowing-against-uk-home-buying-burgundy/",
+    "title": "Borrowing against a UK home to buy in Burgundy",
+    "description": "Understand further advances, remortgaging and net usable funds before treating equity in your UK home as a Burgundy purchase budget.",
+    "language": "en",
+    "group": "uk"
+  },
+  {
+    "id": "UK-028-EN",
+    "path": "/en/french-right-of-way-private-access-burgundy/",
+    "title": "A French right of way: who can use the access?",
+    "description": "A visible track does not explain the rights over it. Identify the beneficiary, route and permitted use before buying a Burgundy property.",
+    "language": "en",
+    "group": "uk"
+  },
+  {
+    "id": "UK-029-EN",
+    "path": "/en/lost-french-property-deed-copy-from-uk/",
+    "title": "Lost your French property deed? Find the source",
+    "description": "Selling a Burgundy home from the UK with a missing deed? Identify the notaire or land publication service that can provide the right copy.",
+    "language": "en",
+    "group": "uk"
+  },
+  {
+    "id": "UK-030-EN",
+    "path": "/en/england-wales-probate-inherited-home-france/",
+    "title": "UK probate and an inherited home in France",
+    "description": "A grant from England or Wales and French succession documents serve different purposes. Establish what each does before planning a property sale.",
+    "language": "en",
+    "group": "uk"
+  },
+  {
+    "id": "UK-026",
+    "path": "/conseils-vendeurs/societe-britannique-achat-france-companies-house/",
+    "title": "Société britannique : lire son dossier Companies House",
+    "description": "Avant un achat en Bourgogne par une société britannique, distinguez registre public, vérification du dirigeant et code personnel confidentiel.",
+    "language": "fr",
+    "group": "uk"
+  },
+  {
+    "id": "UK-027",
+    "path": "/conseils-vendeurs/emprunt-maison-royaume-uni-achat-bourgogne/",
+    "title": "Financer la Bourgogne avec un emprunt sur sa maison UK",
+    "description": "Further advance ou remortgage : distinguez nouvelle dette, frais et argent réellement disponible pour un achat immobilier en Bourgogne.",
+    "language": "fr",
+    "group": "uk"
+  },
+  {
+    "id": "UK-028",
+    "path": "/conseils-vendeurs/right-of-way-servitude-passage-achat-bourgogne/",
+    "title": "Droit de passage : le faux ami de right of way",
+    "description": "Un chemin visible ne dit pas qui peut l’utiliser. Acheteurs britanniques : vérifiez bénéficiaires et usages d’un passage avant d’acheter en Bourgogne.",
+    "language": "fr",
+    "group": "uk"
+  },
+  {
+    "id": "UK-029",
+    "path": "/conseils-vendeurs/titre-propriete-france-perdu-royaume-uni/",
+    "title": "Titre français perdu : le retrouver depuis le Royaume-Uni",
+    "description": "Vous vendez en Bourgogne depuis le Royaume-Uni et ne retrouvez plus votre acte ? Identifiez le notaire ou le service qui peut délivrer une copie.",
+    "language": "fr",
+    "group": "uk"
+  },
+  {
+    "id": "UK-030",
+    "path": "/conseils-vendeurs/probate-angleterre-galles-maison-heritee-france/",
+    "title": "Probate britannique et maison héritée en France",
+    "description": "Un grant anglais ou gallois et les actes successoraux français ont des fonctions différentes. Préparez leur rapprochement avec le notaire.",
+    "language": "fr",
+    "group": "uk"
+  },
+  {
+    "id": "PV-028",
+    "path": "/conseils-vendeurs/film-longere-pierre-analyse-plans/",
+    "title": "Cour, pierre, volumes : regarder le film d’une longère",
+    "description": "Cour, façades, cheminée et pièce de vie : quatre plans d’un film réel pour préparer la présentation vidéo de votre maison de caractère.",
+    "language": "fr",
+    "group": "prestige_videos"
   }
 ]
