@@ -44,7 +44,7 @@ def dutch_hub_template(source):
     s=re.sub(r'<body data-route="[^"]*">','<body data-route="/nl/gidsen">',s,count=1)
     main='''<main id="main"><section class="route" data-route="/nl/gidsen" id="r-nl-gidsen">
 <div class="page-head shell"><ol class="crumb"><li><a href="/">Home</a></li><li aria-current="page">Nederlandstalige gidsen</li></ol>
-<p class="label">Van België naar Bourgondië</p><h1 class="display d-xl" style="margin-top:14px;max-width:18ch">Een woning in Bourgondië, <em>goed voorbereid.</em></h1>
+<p class="label">Van België naar Bourgondië</p><h1 class="display d-xl" style="margin-top:14px;max-width:18ch;hyphens:none;overflow-wrap:normal">Een woning in Bourgondië, <em style="display:block">goed voorbereid.</em></h1>
 <p class="lede">Praktische gidsen voor uw vastgoedproject vanuit België: documenten begrijpen, bezoeken organiseren en een woning beoordelen. Bij elk artikel vindt u de gebruikte bronnen en een Franse versie.</p>
 <p class="body">De algemene navigatie en contactpagina’s van deze website zijn in het Frans.</p></div>
 <div class="shell" style="padding-bottom:clamp(72px,10vw,136px)"><div class="second rv" style="margin-top:48px">
