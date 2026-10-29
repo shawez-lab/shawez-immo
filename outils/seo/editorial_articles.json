@@ -78,5 +78,213 @@
     "description": "Présenter les extérieurs et dépendances d’une propriété bourguignonne avec des repères concrets, en séparant l’existant des projets à étudier.",
     "language": "fr",
     "group": "prestige_videos"
+  },
+  {
+    "id": "HIST-001",
+    "path": "/conseils-vendeurs/dijon-facade-ancienne-histoire-appartement/",
+    "title": "À Dijon, ce qu’une façade ancienne ne dit pas de votre appartement",
+    "description": "Cour, escalier, lumière, transformations : raconter un appartement ancien à Dijon avec des repères historiques précis et un dossier utile à la vente.",
+    "language": "fr",
+    "group": "histoire"
+  },
+  {
+    "id": "HIST-002",
+    "path": "/conseils-vendeurs/beaune-hotel-particulier-histoire-vie-actuelle/",
+    "title": "Beaune : raconter un hôtel particulier sans effacer sa vie actuelle",
+    "description": "À Beaune, préparer la vente d’un hôtel particulier en reliant histoire, distribution, occupation et images, sans confondre caractère et possibilités.",
+    "language": "fr",
+    "group": "histoire"
+  },
+  {
+    "id": "HIST-003",
+    "path": "/conseils-vendeurs/meursault-maison-vigneronne-cour-histoire/",
+    "title": "Meursault : ce que la cour d’une maison vigneronne raconte au futur acquéreur",
+    "description": "Porche, cour, cave, dépendances : préparer le récit et les images d’une maison à Meursault en distinguant patrimoine, usages et projet de vente.",
+    "language": "fr",
+    "group": "histoire"
+  },
+  {
+    "id": "HIST-004",
+    "path": "/conseils-vendeurs/gevrey-chambertin-vieux-bourg-gare-histoire-maison/",
+    "title": "Gevrey-Chambertin : du vieux bourg à la gare, quelle histoire raconter pour vendre ?",
+    "description": "À Gevrey-Chambertin, situer une maison entre vieux bourg, vignoble et secteur de la gare pour présenter son cadre réel aux futurs acquéreurs.",
+    "language": "fr",
+    "group": "histoire"
+  },
+  {
+    "id": "HIST-005",
+    "path": "/conseils-vendeurs/chateauneuf-maison-village-vue-chateau/",
+    "title": "Châteauneuf : montrer une maison de village au-delà de la vue sur le château",
+    "description": "À Châteauneuf, relier histoire, relief et usage quotidien pour présenter une maison : accès, vues, niveaux, documents et préparation des images.",
+    "language": "fr",
+    "group": "histoire"
+  },
+  {
+    "id": "HIST-006",
+    "path": "/conseils-vendeurs/flavigny-sur-ozerain-maison-remparts-jardin/",
+    "title": "Flavigny-sur-Ozerain : raconter la maison derrière les remparts",
+    "description": "À Flavigny-sur-Ozerain, préparer la vente d’une maison ancienne en montrant son plan, ses accès et son jardin, avec une histoire étayée.",
+    "language": "fr",
+    "group": "histoire"
+  },
+  {
+    "id": "HIST-007",
+    "path": "/conseils-vendeurs/savigny-les-beaune-maison-pierres-jardin-histoire/",
+    "title": "Savigny-lès-Beaune : des pierres gravées au jardin, préparer le récit d’une maison",
+    "description": "À Savigny-lès-Beaune, associer patrimoine, traces du bâti et espaces extérieurs pour préparer une présentation précise de votre maison.",
+    "language": "fr",
+    "group": "histoire"
+  },
+  {
+    "id": "BEAUNE-Q01-FR",
+    "path": "/conseils-vendeurs/beaune-blanches-fleurs-logement-cheminements-vente/",
+    "title": "Blanches-Fleurs à Beaune : montrer comment on rejoint et comment on habite votre logement",
+    "description": "Blanches-Fleurs et secteur des Chilènes : préparer la présentation de votre logement avec ses accès, ses espaces et des repères locaux vérifiés.",
+    "language": "fr",
+    "group": "quartiers_beaune"
+  },
+  {
+    "id": "BEAUNE-Q02-FR",
+    "path": "/conseils-vendeurs/beaune-saint-jacques-appartement-lumiere-espaces/",
+    "title": "Saint-Jacques à Beaune : présenter un appartement avec sa lumière et ses espaces de respiration",
+    "description": "À Saint-Jacques, préparer un dossier d’appartement qui explique la lumière, la distribution et la relation réelle avec les espaces du quartier.",
+    "language": "fr",
+    "group": "quartiers_beaune"
+  },
+  {
+    "id": "BEAUNE-Q03-FR",
+    "path": "/conseils-vendeurs/beaune-bretonniere-vignes-rouges-maison-transformations/",
+    "title": "Bretonnière et Vignes Rouges : du faubourg à la maison transformée, trouver le bon récit de vente",
+    "description": "À Bretonnière et aux Vignes Rouges, mettre en valeur une maison ou un appartement en expliquant ses transformations et sa place dans le quartier.",
+    "language": "fr",
+    "group": "quartiers_beaune"
+  },
+  {
+    "id": "BEAUNE-Q04-FR",
+    "path": "/conseils-vendeurs/beaune-echaliers-route-seurre-lac-presentation-bien/",
+    "title": "Échaliers et route de Seurre : présenter une maison ou un appartement autour du Lac de Beaune",
+    "description": "Le Lac, les Échaliers et la route de Seurre : préparer une annonce précise sur le logement, ses vues, ses accès et ses documents.",
+    "language": "fr",
+    "group": "quartiers_beaune"
+  },
+  {
+    "id": "BEAUNE-Q05-FR",
+    "path": "/conseils-vendeurs/challanges-beaune-maison-hameau-cour-dependances/",
+    "title": "À Challanges, vendre une maison en racontant le hameau et les usages de sa cour",
+    "description": "Cour, dépendances, jardin : préparer la vente d’une maison à Challanges avec une lecture précise du hameau beaunois et de la propriété.",
+    "language": "fr",
+    "group": "quartiers_beaune"
+  },
+  {
+    "id": "BEAUNE-Q06-FR",
+    "path": "/conseils-vendeurs/beaune-saint-martin-montagne-maison-terrain-vue/",
+    "title": "Saint-Martin et la Montagne de Beaune : présenter une maison avec son terrain, pas seulement sa vue",
+    "description": "À Saint-Martin et sur la Montagne de Beaune, préparer une vente attentive aux niveaux, au terrain, à la lumière et au paysage réel.",
+    "language": "fr",
+    "group": "quartiers_beaune"
+  },
+  {
+    "id": "BEAUNE-Q07-FR",
+    "path": "/conseils-vendeurs/beaune-centre-ville-logement-vie-quotidienne-vente/",
+    "title": "Vendre dans le centre-ville de Beaune : raconter une adresse où l’on peut vivre au quotidien",
+    "description": "Accès, courses, rangement, stationnement : préparer la vente d’un logement dans le centre de Beaune avec les informations utiles au quotidien.",
+    "language": "fr",
+    "group": "quartiers_beaune"
+  },
+  {
+    "id": "BEAUNE-Q08-FR",
+    "path": "/conseils-vendeurs/beaune-champagne-saint-nicolas-facade-rue-interieur/",
+    "title": "Champagne et Saint-Nicolas à Beaune : faire dialoguer façade, rue et pièces de vie",
+    "description": "À Champagne et Saint-Nicolas, préparer une annonce qui montre la relation entre la façade, les ouvertures, l’intérieur et les repères du quartier.",
+    "language": "fr",
+    "group": "quartiers_beaune"
+  },
+  {
+    "id": "BEAUNE-Q09-FR",
+    "path": "/conseils-vendeurs/gigny-beaune-maison-hameau-usages-dossier-vente/",
+    "title": "Gigny : transmettre une maison de hameau avec un dossier qui raconte ses usages",
+    "description": "À Gigny, préparer la vente d’une maison en distinguant histoire locale, usage des bâtiments, espaces extérieurs et documents de la propriété.",
+    "language": "fr",
+    "group": "quartiers_beaune"
+  },
+  {
+    "id": "BEAUNE-Q10-FR",
+    "path": "/conseils-vendeurs/beaune-camp-americain-histoire-maison-vente/",
+    "title": "Au Camp Américain de Beaune, raconter l’histoire du quartier sans inventer celle de votre maison",
+    "description": "Au Camp Américain, distinguer mémoire du quartier et histoire de la propriété pour préparer une vente documentée et une vidéo fidèle.",
+    "language": "fr",
+    "group": "quartiers_beaune"
+  },
+  {
+    "id": "DIJON-Q01-FR",
+    "path": "/conseils-vendeurs/bourroches-port-canal-valendons-montagne-sainte-anne-vendre/",
+    "title": "Bourroches, Port du Canal, Valendons : raconter les abords de votre logement",
+    "description": "Canal, rues des Bourroches, Valendons ou Montagne Sainte-Anne : construire une présentation précise du logement et de ses abords à Dijon.",
+    "language": "fr",
+    "group": "quartiers_dijon"
+  },
+  {
+    "id": "DIJON-Q02-FR",
+    "path": "/conseils-vendeurs/centre-ville-dijon-distribution-copropriete-appartement/",
+    "title": "Vendre dans le centre-ville de Dijon : expliquer ce que l’acquéreur pourra vraiment utiliser",
+    "description": "Plan, pièces, annexes et copropriété : préparer une annonce qui explique précisément votre appartement dans le centre-ville de Dijon.",
+    "language": "fr",
+    "group": "quartiers_dijon"
+  },
+  {
+    "id": "DIJON-Q03-FR",
+    "path": "/conseils-vendeurs/chevreul-parc-jardin-balcon-cour-vendre-dijon/",
+    "title": "Chevreul-Parc : votre jardin, votre balcon ou votre cour méritent mieux qu’une photo de parc",
+    "description": "Allées du Parc, Petit-Cîteaux, Jardin des Maraîchers : distinguer le paysage du quartier et les qualités réelles de votre extérieur.",
+    "language": "fr",
+    "group": "quartiers_dijon"
+  },
+  {
+    "id": "DIJON-Q04-FR",
+    "path": "/conseils-vendeurs/fontaine-ouche-larrey-raines-motte-giron-vendre/",
+    "title": "Fontaine d’Ouche, Larrey, Raines, Motte-Giron : vendre sans confondre quatre paysages",
+    "description": "De Fontaine d’Ouche à Motte-Giron, expliquer les accès, les niveaux et le paysage réel de votre maison ou appartement à Dijon.",
+    "language": "fr",
+    "group": "quartiers_dijon"
+  },
+  {
+    "id": "DIJON-Q05-FR",
+    "path": "/conseils-vendeurs/gresilles-dijon-dossier-immeuble-vendre-logement/",
+    "title": "Vendre aux Grésilles : faire parler le dossier de votre immeuble",
+    "description": "Aux Grésilles, présenter les travaux, les équipements et la configuration réelle du logement avec un dossier précis et des images utiles.",
+    "language": "fr",
+    "group": "quartiers_dijon"
+  },
+  {
+    "id": "DIJON-Q06-FR",
+    "path": "/conseils-vendeurs/maladiere-drapeau-clemenceau-trois-histoires-vendre/",
+    "title": "Maladière, Drapeau, Clemenceau : trois histoires, trois façons de préparer une vente",
+    "description": "Maison de la Maladière, adresse du Drapeau ou appartement à Clemenceau : choisir les documents et les images adaptés au bâtiment.",
+    "language": "fr",
+    "group": "quartiers_dijon"
+  },
+  {
+    "id": "DIJON-Q07-FR",
+    "path": "/conseils-vendeurs/montchapet-marmuzots-estimation-maison-differences/",
+    "title": "Montchapet–Marmuzots : une adresse ne suffit pas à expliquer la valeur d’une maison",
+    "description": "Jouvence, Victor-Hugo, Marmuzots : comprendre les différences de bâti et réunir les éléments utiles à l’estimation de votre bien à Dijon.",
+    "language": "fr",
+    "group": "quartiers_dijon"
+  },
+  {
+    "id": "DIJON-Q08-FR",
+    "path": "/conseils-vendeurs/universite-dijon-vendre-maison-appartement-usages/",
+    "title": "Quartier Université à Dijon : présenter un logement sans le réduire à un investissement étudiant",
+    "description": "Porte-Neuve, Montmuzard, Mirande, campus : préparer une vente dans le quartier Université à partir du logement, de son occupation et de ses usages.",
+    "language": "fr",
+    "group": "quartiers_dijon"
+  },
+  {
+    "id": "DIJON-Q09-FR",
+    "path": "/conseils-vendeurs/varennes-toison-or-joffre-dijon-localisation-vendre/",
+    "title": "Varennes, Toison d’Or, Joffre : situer votre bien autrement que par le centre commercial",
+    "description": "À Varennes, Joffre ou la Toison d’Or, préparer une localisation utile : adresse, accès, espaces verts et génération du logement.",
+    "language": "fr",
+    "group": "quartiers_dijon"
   }
 ]
