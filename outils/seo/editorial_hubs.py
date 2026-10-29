@@ -12,6 +12,8 @@ BASE = 'https://shawez-immo.com'
 START = '<!-- editorial-additions -->'
 END = '<!-- /editorial-additions -->'
 GROUPS = {
+    'communes': ('Vendre en Côte-d’Or, commune par commune', 'Selling in Côte-d’Or, town by town'),
+    'location_fonds': ('Préparer une location-gérance', 'Preparing a business lease'),
     'prestige_videos': ('Présenter une propriété en vidéo', 'Presenting a property on film'),
     'histoire': ('Patrimoine et maisons de caractère', 'Heritage and character homes'),
     'us': ('Préparer un achat depuis les États-Unis', 'Preparing a purchase from the United States'),
@@ -80,3 +82,4 @@ def update(root=None):
 
 if __name__ == '__main__':
     print('Editorial hubs:', ', '.join(update()) or 'unchanged')
+
