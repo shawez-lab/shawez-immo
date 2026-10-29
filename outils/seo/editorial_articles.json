@@ -2462,5 +2462,165 @@
     "description": "Cour, façades, cheminée et pièce de vie : quatre plans d’un film réel pour préparer la présentation vidéo de votre maison de caractère.",
     "language": "fr",
     "group": "prestige_videos"
+  },
+  {
+    "id": "BE-016-NL",
+    "path": "/nl/huis-houtkachel-welk-dossier/",
+    "title": "Een huis met een houtkachel: welk dossier vraagt u?",
+    "description": "Een houtkachel op de foto zegt niet alles. Bekijk vóór de aankoop in Bourgondië de installatie, het onderhoud en het gebruik dat u voor ogen hebt.",
+    "language": "nl",
+    "group": "belgique"
+  },
+  {
+    "id": "BE-017-NL",
+    "path": "/nl/fietsenberging-welk-gebruik-koopt-u/",
+    "title": "Fietsenberging: welk gebruik koopt u werkelijk?",
+    "description": "Een fiets in de binnenplaats bewijst geen gebruiksrecht. Controleer de berging, de mede-eigendomsregels en de toegang die bij uw appartement hoort.",
+    "language": "nl",
+    "group": "belgique"
+  },
+  {
+    "id": "BE-018-NL",
+    "path": "/nl/ondertitels-woningvideo-tekst-beeld-afstemmen/",
+    "title": "Ondertitels bij een woningvideo: tekst en beeld afstemmen",
+    "description": "Controleer Nederlandse ondertitels op het definitieve beeld: ruimtenamen, voorbehouden, leesbaarheid en vragen met een exact tijdstip.",
+    "language": "nl",
+    "group": "belgique"
+  },
+  {
+    "id": "BE-019-NL",
+    "path": "/nl/belgische-documenten-andere-naam-frans-dossier/",
+    "title": "Belgische documenten: een andere naam in het Franse dossier",
+    "description": "Een naamverschil in uw aankoopdossier? Zoek uit welk document afwijkt en wie het kan corrigeren, zonder zelf officiële stukken te wijzigen.",
+    "language": "nl",
+    "group": "belgique"
+  },
+  {
+    "id": "BE-020-NL",
+    "path": "/nl/weekendhuis-kosten-tijdens-afwezigheid/",
+    "title": "Een weekendhuis: welke kosten blijven zonder u?",
+    "description": "Maak een budget voor een huis dat u slechts sommige weekends gebruikt: jaarlijkse lasten, werkelijk verbruik en kosten door afwezigheid.",
+    "language": "nl",
+    "group": "belgique"
+  },
+  {
+    "id": "BE-016",
+    "path": "/conseils-vendeurs/acheter-maison-poele-dossier-equipement/",
+    "title": "Acheter une maison avec un poêle : quel dossier ?",
+    "description": "Avant l’achat d’une maison en Bourgogne, distinguez le poêle photographié, son installation documentée et le chauffage adapté à votre usage.",
+    "language": "fr",
+    "group": "belgique"
+  },
+  {
+    "id": "BE-017",
+    "path": "/conseils-vendeurs/local-velos-copropriete-droits-achat/",
+    "title": "Local à vélos : ce que l’achat vous permet réellement",
+    "description": "Un vélo dans une cour ne prouve pas un droit de rangement. Examinez le local, le règlement et l’accès réellement attaché au lot acheté.",
+    "language": "fr",
+    "group": "belgique"
+  },
+  {
+    "id": "BE-018",
+    "path": "/conseils-vendeurs/sous-titres-visite-relire-image-moment/",
+    "title": "Sous-titres de visite : relire la bonne image au bon moment",
+    "description": "Pour une vidéo immobilière sous-titrée en néerlandais, contrôlez les repères du plan, les réserves et la synchronisation du montage final.",
+    "language": "fr",
+    "group": "belgique"
+  },
+  {
+    "id": "BE-019",
+    "path": "/conseils-vendeurs/pieces-belges-nom-different-acte-francais/",
+    "title": "Pièces belges : un nom différent avant l’acte français",
+    "description": "Une différence de nom ou de prénom apparaît dans votre dossier d’achat ? Repérez son origine et adressez la correction au bon interlocuteur.",
+    "language": "fr",
+    "group": "belgique"
+  },
+  {
+    "id": "BE-020",
+    "path": "/conseils-vendeurs/maison-week-end-couts-fixes-absences/",
+    "title": "Maison de week-end : les coûts qui restent sans vous",
+    "description": "Construisez le budget d’une maison utilisée certains week-ends : dépenses annuelles, consommation réelle et interventions liées aux absences.",
+    "language": "fr",
+    "group": "belgique"
+  },
+  {
+    "id": "UK-031-EN",
+    "path": "/en/smart-home-devices-account-handover-france/",
+    "title": "Smart home devices: plan the account handover",
+    "description": "Buying a French home with connected devices? Separate the equipment from its accounts and subscriptions, then plan the handover with its provider.",
+    "language": "en",
+    "group": "uk"
+  },
+  {
+    "id": "UK-032-EN",
+    "path": "/en/unoccupied-french-home-insurance-absence-calendar/",
+    "title": "An empty French home: clarify the insurance clause",
+    "description": "Put your actual pattern of absence to the insurer: how days are counted, what visits mean and which conditions apply between Burgundy stays.",
+    "language": "en",
+    "group": "uk"
+  },
+  {
+    "id": "UK-033-EN",
+    "path": "/en/home-beside-burgundy-vines-work-calendar-questions/",
+    "title": "A home beside vines: questions beyond the view",
+    "description": "A vineyard view also faces a working landscape. Separate what you see from what you know and ask precise questions about the neighbouring activity.",
+    "language": "en",
+    "group": "uk"
+  },
+  {
+    "id": "UK-034-EN",
+    "path": "/en/buying-beaune-out-of-season-property-viewing/",
+    "title": "Buying in Beaune: plan an out-of-season viewing",
+    "description": "Turn a second Beaune visit into a practical comparison: an ordinary day, a market day and the rooms you would use outside summer.",
+    "language": "en",
+    "group": "uk"
+  },
+  {
+    "id": "UK-035-EN",
+    "path": "/en/french-dpe-check-document-listing-ademe/",
+    "title": "French DPE: check the document behind the rating",
+    "description": "Match a Burgundy listing to the DPE report and its ADEME reference. Resolve conflicting versions before comparing homes from the United Kingdom.",
+    "language": "en",
+    "group": "uk"
+  },
+  {
+    "id": "UK-031",
+    "path": "/conseils-vendeurs/maison-connectee-remise-acces-apres-achat/",
+    "title": "Maison connectée : préparer la remise des accès",
+    "description": "Thermostat, portail, caméra : distinguez le matériel vendu des comptes et services, puis préparez une reprise des accès avec les professionnels.",
+    "language": "fr",
+    "group": "uk"
+  },
+  {
+    "id": "UK-032",
+    "path": "/conseils-vendeurs/maison-inoccupee-calendrier-absence-clause-assurance/",
+    "title": "Maison inoccupée : faire préciser la clause d’assurance",
+    "description": "Avant de repartir au Royaume-Uni, confrontez votre calendrier réel d’absence aux conditions d’assurance de votre maison bourguignonne.",
+    "language": "fr",
+    "group": "uk"
+  },
+  {
+    "id": "UK-033",
+    "path": "/conseils-vendeurs/maison-pres-vignes-calendrier-travaux-questions/",
+    "title": "Maison près des vignes : préparer les bonnes questions",
+    "description": "Un tracteur ne dit pas quel travail est effectué. Préparez vos questions sur les parcelles voisines et les périodes d’activité avant d’acheter.",
+    "language": "fr",
+    "group": "uk"
+  },
+  {
+    "id": "UK-034",
+    "path": "/conseils-vendeurs/acheter-beaune-visite-hors-saison-usages/",
+    "title": "Acheter à Beaune : organiser une visite hors saison",
+    "description": "Après une découverte estivale, testez votre futur quotidien à Beaune : jour de marché, trajet ordinaire et logement à une autre période.",
+    "language": "fr",
+    "group": "uk"
+  },
+  {
+    "id": "UK-035",
+    "path": "/conseils-vendeurs/dpe-francais-verifier-document-annonce-ademe/",
+    "title": "DPE français : retrouver le document derrière la lettre",
+    "description": "Depuis le Royaume-Uni, rapprochez l’annonce, le DPE reçu et sa référence ADEME avant de comparer une maison bourguignonne à une autre.",
+    "language": "fr",
+    "group": "uk"
   }
 ]
