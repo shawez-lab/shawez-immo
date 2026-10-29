@@ -1526,5 +1526,293 @@
     "description": "Comprendre les écarts entre ventes, règlements et banque avec un parcours de vérification documenté avant la vente d’un commerce.",
     "language": "fr",
     "group": "vente_fonds"
+  },
+  {
+    "id": "COM-21150-FR",
+    "path": "/conseils-vendeurs/chassagne-montrachet-maison-recente-pre-melin/",
+    "title": "Chassagne-Montrachet : vendre une maison plus récente",
+    "description": "Le Pré-Melin appartient aussi à Chassagne-Montrachet. Présentez une maison récente par son architecture et ses usages, sans la déguiser en demeure ancienne.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21278-FR",
+    "path": "/conseils-vendeurs/fontaine-les-dijon-vendre-rester-dans-la-commune/",
+    "title": "Fontaine-lès-Dijon : vendre pour rester dans la commune",
+    "description": "Changer de maison sans quitter Fontaine : distinguer ce que vous aimez dans votre logement de ce que vous souhaitez garder dans votre vie locale.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21515-FR",
+    "path": "/conseils-vendeurs/quetigny-maison-parc-chateau-architecture/",
+    "title": "Quetigny : reconnaître une maison du Parc du château",
+    "description": "Au Parc du château à Quetigny, l’architecture d’une maison se comprend par son plan et son implantation. Préparer une vente sans se limiter à une étiquette.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21355-FR",
+    "path": "/conseils-vendeurs/longvic-confort-ete-vendre-logement/",
+    "title": "Longvic : parler du confort d’été avant de vendre",
+    "description": "À Longvic, les aménagements des Rives du Bief invitent à parler de chaleur. Comment présenter le confort d’été réel de votre propre logement ?",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21452-FR",
+    "path": "/conseils-vendeurs/neuilly-crimolois-ancien-nom-acte-maison/",
+    "title": "Neuilly-Crimolois : un ancien nom sur l’acte de vente",
+    "description": "Votre acte mentionne Neuilly-lès-Dijon ou Crimolois ? Préparez la présentation du bien et son dossier en tenant compte de la commune créée en 2019.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21107-FR",
+    "path": "/conseils-vendeurs/bretigny-maison-famille-ecoles-norges/",
+    "title": "Bretigny : présenter une maison à une famille",
+    "description": "À Bretigny, les écoles et le périscolaire se lisent avec Norges-la-Ville. Présenter une maison familiale à partir d’une organisation réelle.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21347-FR",
+    "path": "/conseils-vendeurs/levernois-vendre-appartement-residence-tourisme/",
+    "title": "Levernois : vendre en résidence de tourisme",
+    "description": "À Levernois, distinguez la valeur du logement et les conditions de son exploitation touristique avant de préparer la vente d’un appartement.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21086-FR",
+    "path": "/conseils-vendeurs/bligny-les-beaune-maison-terrain-en-longueur/",
+    "title": "Bligny-lès-Beaune : expliquer un terrain en longueur",
+    "description": "Un terrain profond ne se raconte pas par sa surface seule. À Bligny-lès-Beaune, présentez les dimensions et les usages de votre parcelle.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21558-FR",
+    "path": "/conseils-vendeurs/sainte-marie-la-blanche-facade-enduit-avant-vente/",
+    "title": "Sainte-Marie-la-Blanche : faut-il montrer la pierre ?",
+    "description": "Avant de retirer un enduit pour vendre à Sainte-Marie-la-Blanche, regardez la composition de la façade et les prescriptions patrimoniales du bien.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21037-FR",
+    "path": "/conseils-vendeurs/auxey-duresses-vendre-maison-accolee-mitoyennete/",
+    "title": "Auxey-Duresses : vendre une maison accolée",
+    "description": "Une maison accolée à Auxey-Duresses se présente avec ses limites et ses qualités propres. Distinguez disposition visible et propriété des murs.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21186-FR",
+    "path": "/conseils-vendeurs/comblanchien-maison-reconstruction-histoire-vente/",
+    "title": "Comblanchien : raconter une maison de la Reconstruction",
+    "description": "À Comblanchien, une maison reconstruite peut avoir une histoire précise. Préparer son récit de vente sans lui inventer une origine ancienne.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "UK-006-EN",
+    "path": "/en/uk-documents-french-purchase-apostille-translation/",
+    "title": "UK documents in France: apostille or translation?",
+    "description": "Distinguish a UK apostille, certified copy and translation before ordering documents for your notaire and a Burgundy property purchase.",
+    "language": "en",
+    "group": "uk"
+  },
+  {
+    "id": "UK-007-EN",
+    "path": "/en/uk-state-pension-france-four-weeks-not-month/",
+    "title": "UK State Pension in France: four weeks is not a month",
+    "description": "Match the actual UK State Pension payment cycle with monthly bills and annual property expenses before retiring to a Burgundy home.",
+    "language": "en",
+    "group": "uk"
+  },
+  {
+    "id": "UK-008-EN",
+    "path": "/en/moving-uk-burgundy-s1-ghic-healthcare/",
+    "title": "Moving from the UK to Burgundy: S1 or GHIC?",
+    "description": "Distinguish temporary-visit cover, a possible UK-issued S1 and French CPAM registration before relying on a card for your move to Burgundy.",
+    "language": "en",
+    "group": "uk"
+  },
+  {
+    "id": "UK-009-EN",
+    "path": "/en/uk-school-holidays-burgundy-home-real-dates/",
+    "title": "UK school holidays: will your Burgundy home work then?",
+    "description": "Match your school’s holiday dates with Dijon’s calendar and actual activity opening times before choosing a family home in Burgundy.",
+    "language": "en",
+    "group": "uk"
+  },
+  {
+    "id": "UK-010-EN",
+    "path": "/en/keeping-uk-car-moving-burgundy/",
+    "title": "Keeping your UK car when moving to Burgundy",
+    "description": "Before keeping a UK car in Burgundy, separate DVLA export rules, customs, vehicle conformity and French registration requirements.",
+    "language": "en",
+    "group": "uk"
+  },
+  {
+    "id": "UK-006",
+    "path": "/conseils-vendeurs/pieces-britanniques-apostille-copie-traduction/",
+    "title": "Pièces britanniques : apostille, copie ou traduction ?",
+    "description": "Avant un achat en Bourgogne, distinguez apostille britannique, copie certifiée et traduction pour les pièces demandées par le notaire.",
+    "language": "fr",
+    "group": "uk"
+  },
+  {
+    "id": "UK-007",
+    "path": "/conseils-vendeurs/pension-britannique-france-quatre-semaines-budget/",
+    "title": "Pension britannique en France : quatre semaines ou un mois ?",
+    "description": "Pour votre maison en Bourgogne, rapprochez le rythme réel de la UK State Pension des dépenses mensuelles et annuelles du logement.",
+    "language": "fr",
+    "group": "uk"
+  },
+  {
+    "id": "UK-008",
+    "path": "/conseils-vendeurs/installation-royaume-uni-bourgogne-s1-ghic/",
+    "title": "S’installer depuis le Royaume-Uni : S1 ou GHIC ?",
+    "description": "Pour une installation en Bourgogne, distinguez couverture de séjour, formulaire S1 et inscription à la CPAM avant de compter sur une carte.",
+    "language": "fr",
+    "group": "uk"
+  },
+  {
+    "id": "UK-009",
+    "path": "/conseils-vendeurs/maison-bourgogne-vacances-scolaires-britanniques/",
+    "title": "Vacances britanniques : la maison au bon moment",
+    "description": "Comparez les dates de votre école britannique aux vacances de Dijon et aux services ouverts pour choisir une maison vraiment utilisable.",
+    "language": "fr",
+    "group": "uk"
+  },
+  {
+    "id": "UK-010",
+    "path": "/conseils-vendeurs/voiture-britannique-installation-bourgogne/",
+    "title": "Garder sa voiture britannique en s’installant en Bourgogne",
+    "description": "Avant de garder votre voiture britannique en Bourgogne, distinguez exportation UK, douane, conformité et immatriculation française.",
+    "language": "fr",
+    "group": "uk"
+  },
+  {
+    "id": "UK-011-EN",
+    "path": "/en/scottish-home-report-french-sale-file/",
+    "title": "A Scottish Home Report and a French sale file",
+    "description": "Buying in Burgundy after buying in Scotland? Map the questions in a Home Report to French documents without assuming they are equivalent.",
+    "language": "en",
+    "group": "uk"
+  },
+  {
+    "id": "UK-012-EN",
+    "path": "/en/ordering-firewood-burgundy-from-uk/",
+    "title": "Ordering firewood in Burgundy from the UK",
+    "description": "Plan your first Burgundy firewood order from the UK: log length, stated volume, moisture information, delivery and suitable storage.",
+    "language": "en",
+    "group": "uk"
+  },
+  {
+    "id": "UK-013-EN",
+    "path": "/en/post-uk-burgundy-redirection-both-directions/",
+    "title": "Post between the UK and Burgundy: plan both directions",
+    "description": "Keeping UK and French addresses? Plan the two postal routes, international redirection exclusions and letters with important deadlines.",
+    "language": "en",
+    "group": "uk"
+  },
+  {
+    "id": "UK-014-EN",
+    "path": "/en/british-civil-partnership-french-home-purchase/",
+    "title": "British civil partnership: prepare a French home purchase",
+    "description": "Buying in Burgundy as civil partners? Give the notaire the precise UK partnership information and separate relationship status from ownership.",
+    "language": "en",
+    "group": "uk"
+  },
+  {
+    "id": "UK-015-EN",
+    "path": "/en/burgundy-hedges-maintenance-from-uk/",
+    "title": "Burgundy hedges: arrange maintenance from the UK",
+    "description": "Plan hedge work at your Burgundy house from the UK: identify boundaries, timing, the exact scope and useful before-and-after evidence.",
+    "language": "en",
+    "group": "uk"
+  },
+  {
+    "id": "UK-011",
+    "path": "/conseils-vendeurs/home-report-ecossais-dossier-vente-francais/",
+    "title": "Du Home Report écossais au dossier de vente français",
+    "description": "Acheter en Bourgogne après une vente en Écosse : retrouvez les bonnes pièces sans prendre le dossier de diagnostics pour un Home Report.",
+    "language": "fr",
+    "group": "uk"
+  },
+  {
+    "id": "UK-012",
+    "path": "/conseils-vendeurs/commander-bois-bourgogne-depuis-royaume-uni/",
+    "title": "Commander du bois en Bourgogne depuis le Royaume-Uni",
+    "description": "Longueur des bûches, volume livré, humidité et rangement : préparez une commande de bois pour votre maison en Bourgogne depuis le Royaume-Uni.",
+    "language": "fr",
+    "group": "uk"
+  },
+  {
+    "id": "UK-013",
+    "path": "/conseils-vendeurs/courrier-royaume-uni-bourgogne-reexpedition/",
+    "title": "Courrier entre Royaume-Uni et Bourgogne : les deux trajets",
+    "description": "Deux adresses, deux opérateurs : organisez le courrier britannique et français, les exclusions de réexpédition et les échéances importantes.",
+    "language": "fr",
+    "group": "uk"
+  },
+  {
+    "id": "UK-014",
+    "path": "/conseils-vendeurs/civil-partnership-britannique-achat-couple-france/",
+    "title": "Civil partnership britannique : préparer l’achat en couple",
+    "description": "Avant un achat en Bourgogne, présentez votre civil partnership britannique au notaire sans confondre statut du couple et propriété du logement.",
+    "language": "fr",
+    "group": "uk"
+  },
+  {
+    "id": "UK-015",
+    "path": "/conseils-vendeurs/haies-bourgogne-entretien-depuis-royaume-uni/",
+    "title": "Haies en Bourgogne : préparer l’entretien depuis Londres",
+    "description": "Pour votre jardin en Bourgogne, définissez les haies concernées, les limites et le calendrier avant de commander une taille depuis le Royaume-Uni.",
+    "language": "fr",
+    "group": "uk"
+  },
+  {
+    "id": "VF-006",
+    "path": "/conseils-vendeurs/vente-restaurant-livraison-marge-par-canal/",
+    "title": "Restaurant livré : ce que les commandes laissent après les frais",
+    "description": "Préparer la cession d’un restaurant en séparant ventes livrées, frais de plateforme, emballages et travail nécessaire à chaque canal.",
+    "language": "fr",
+    "group": "vente_fonds"
+  },
+  {
+    "id": "VF-007",
+    "path": "/conseils-vendeurs/vendre-commerce-horaires-fermeture-potentiel/",
+    "title": "Deux jours fermés : présenter une possibilité sans inventer du chiffre",
+    "description": "Expliquer les horaires d’un commerce à vendre, les moyens nécessaires pour les élargir et les limites d’un scénario de recettes supplémentaires.",
+    "language": "fr",
+    "group": "vente_fonds"
+  },
+  {
+    "id": "VF-008",
+    "path": "/conseils-vendeurs/cession-commerce-concentration-clientele-confidentialite/",
+    "title": "Un gros client dans le chiffre d’affaires : comment présenter cette dépendance",
+    "description": "Montrer la concentration des ventes, leur récurrence et les contrats à examiner sans exposer les clients dans une annonce de cession.",
+    "language": "fr",
+    "group": "vente_fonds"
+  },
+  {
+    "id": "VF-009",
+    "path": "/conseils-vendeurs/vente-fonds-reservations-acomptes-prestations-futures/",
+    "title": "Réservations après la cession : qui fera le travail déjà commandé ?",
+    "description": "Avant la vente du fonds, relier chaque réservation à son contrat, aux sommes reçues et à la personne qui exécutera la prestation.",
+    "language": "fr",
+    "group": "vente_fonds"
+  },
+  {
+    "id": "VF-010",
+    "path": "/conseils-vendeurs/cession-commerce-bons-cadeaux-non-utilises/",
+    "title": "Bons cadeaux en circulation : préparer leur reprise avant la vente",
+    "description": "Recenser les bons émis, consommés ou prolongés, distinguer l’émetteur du prestataire et organiser leur traitement lors de la cession du fonds.",
+    "language": "fr",
+    "group": "vente_fonds"
   }
 ]
