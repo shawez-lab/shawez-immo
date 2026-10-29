@@ -48,7 +48,7 @@ const MOTS_DEFI = /pause|capture|screen|je l.?ai eu|j.?ai r[ée]ussi|\b1 ?%|d[é
 const DONNEES_DEFI = 'Défi pause : la vidéo du skate de Shawez dit « Seul 1 % arrive à mettre pause pile au bon moment » et promet l’estimation offerte à qui envoie en message privé la capture de la bonne image.';
 // Une ligne du journal ne compte comme « réponse déjà envoyée » que si un message est vraiment parti
 // (hors sujet et refus : rien n'est parti, la personne doit pouvoir être servie au message suivant).
-const ENVOYE = "origine NOT IN ('hors_creneau','hors_sujet') AND origine NOT LIKE 'refus_%'";
+const ENVOYE = "origine NOT IN ('hors_creneau','hors_sujet') AND origine NOT LIKE 'refus_%' AND origine NOT LIKE 'muet_%'";
 // Prénom ManyChat qui n'en est pas un (compte d'entreprise « Les Suites… », « La Maison… ») : on n'écrit pas « Salut Les »
 const PAS_UN_PRENOM = /^(les|la|le|l'|des|du|de|un|une|the|mon|ma|agence|immo|studio|domaine|restaurant|boutique|maison|sas|sarl)$/i;
 const INTERDITS = /\b(mandataire|gratuit|gratuite|gratuitement|ia|robot|automatique|automatiquement|claude|chatgpt|intelligence artificielle)\b/i;
@@ -576,6 +576,17 @@ export async function onRequest({ request, env }) {
       await noter('out', t, '');
       return json(200, { ...blocManyChat(t, null, false), envoyer: 'oui', origine: 'cloture', cout: 0 });
     }
+    // Commentaire « à l'aveugle » : Instagram ne transmet à ManyChat ni le texte du commentaire ni la vidéo commentée.
+    // Impossible d'y répondre de façon logique, donc AUCUN message : ni question au hasard sur les biens du moment, ni défi,
+    // ni bien d'une conversation précédente. Décision de Shawez du 29/10/2026, après des DM hors sujet
+    // (« Toujours pas vendu… » sous le château → message sur la vidéo skate). Seuls les déclencheurs par mot-clé ou par vidéo répondent.
+    const muet = async (motif) => {
+      if (base && !test) await base.prepare('INSERT OR IGNORE INTO dm_instagram VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11)')
+        .bind(evenement, contact, compte, idReel(post), '', jour, `muet_${motif}`, 0, 0, 0, new Date().toISOString()).run().catch(() => {});
+      return sansMessage(`commentaire_${motif}`);
+    };
+    const aveugle = !prive && source !== 'whatsapp' && intention !== 'vendre' && COMMENTAIRE_INCONNU.test(commentaire || '');
+    if (aveugle && !idReel(post)) return muet('inconnu');
     if (/^(story|dm|wa)$/i.test(post || '')) {
       const c = commentaire || '';
       post = /tabac|bilan|chiffre|\bca\b|\bebe\b|compta|fdj|presse|fonds|1[,.]8|million/i.test(c) ? 'story-tabac'
@@ -596,6 +607,15 @@ export async function onRequest({ request, env }) {
       const mc = await motCle(env, request, commentaire);
       if (mc) { bien = await trouverBien(env, request, mc); if (bien) cleBien = mc; }
     }
+    // Vidéo commentée hors registre et texte inconnu : on ne sait pas de quel bien il s'agit, on n'écrit pas
+    if (aveugle && !bien) return muet('inconnu');
+    if (base && !test && bien && bien.ref && !prive && source !== 'whatsapp') {
+      // Même bien déjà envoyé aujourd'hui à ce contact (un même commentaire peut passer par le déclencheur de la vidéo
+      // et par celui du mot-clé) : jamais un second message sur le même bien
+      const memeBien = await base.prepare(`SELECT 1 FROM dm_instagram WHERE contact = ?1 AND ref = ?2 AND jour = ?3 AND ${ENVOYE} AND post NOT IN ('dm','wa') AND post NOT LIKE 'story%' LIMIT 1`)
+        .bind(contact, String(bien.ref), jour).first().catch(() => null);
+      if (memeBien) return sansMessage('doublon_bien');
+    }
     let depense = 0;
     if (base) {
       const r = await base.prepare('SELECT COALESCE(SUM(cout), 0) AS c FROM dm_instagram WHERE jour = ?1').bind(jour).first();
@@ -607,8 +627,7 @@ export async function onRequest({ request, env }) {
     if (depense >= PLAFOND_JOUR_USD) { texte = secours(prenom, bien, source === 'whatsapp'); origine = 'plafond'; }
     else {
       try {
-        const enCours = !bien && intention !== 'vendre' && COMMENTAIRE_INCONNU.test(commentaire || '') ? await videosDuMoment(env, request, jour) : '';
-        ({ texte, usage } = await rediger(env, prenom, commentaire, bien, source || (/^dm$/i.test(post || '') ? 'dm' : ''), fil, intention, enCours, defi,
+        ({ texte, usage } = await rediger(env, prenom, commentaire, bien, source || (/^dm$/i.test(post || '') ? 'dm' : ''), fil, intention, '', defi,
           source === 'whatsapp' || /^wa:/.test(compte || '') ? '' : compte));
         if (/^\W*HORS_SUJET\W*$/i.test(texte)) {
           // Pas une demande immobilière (conversation perso, partenariat…) : aucun message, Shawez reprend à la main
