@@ -1814,5 +1814,365 @@
     "description": "Recenser les bons émis, consommés ou prolongés, distinguer l’émetteur du prestataire et organiser leur traitement lors de la cession du fonds.",
     "language": "fr",
     "group": "vente_fonds"
+  },
+  {
+    "id": "COM-21617-FR",
+    "path": "/conseils-vendeurs/talant-vendre-maison-pieces-irregulieres/",
+    "title": "Talant : vendre une maison aux pièces irrégulières",
+    "description": "Dans le vieux Talant, les proportions d’une pièce ancienne se comprennent par ses usages. Préparer une vente sans chercher à tout rendre rectangulaire.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21099-FR",
+    "path": "/conseils-vendeurs/bouze-les-beaune-grange-maison-sous-meme-toit/",
+    "title": "Bouze-lès-Beaune : garder la grange avant de vendre",
+    "description": "Une ancienne grange sous le même toit que la maison mérite une présentation précise. À Bouze-lès-Beaune, ne programmez pas des travaux pour un acheteur inconnu.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21050-FR",
+    "path": "/conseils-vendeurs/baubigny-orches-maison-deux-rues/",
+    "title": "Baubigny : une maison accessible par deux rues",
+    "description": "À Orches, certaines maisons relient une rue basse et la rue Haute. Une double entrée peut organiser la vie de la maison de plusieurs façons.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21401-FR",
+    "path": "/conseils-vendeurs/meloisey-vendre-maison-vie-village/",
+    "title": "Meloisey : transmettre une maison et ses habitudes",
+    "description": "À Meloisey, le café associatif donne un exemple concret de vie locale. Présenter les habitudes autour de votre maison sans promettre celles de l’acquéreur.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21390-FR",
+    "path": "/conseils-vendeurs/marsannay-champagne-haute-maison-jumelee/",
+    "title": "Marsannay : vendre une maison de la Champagne Haute",
+    "description": "À la Champagne Haute, les maisons jumelées ont une histoire collective. Pour vendre, expliquez aussi les transformations et la situation propres à votre maison.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21428-FR",
+    "path": "/conseils-vendeurs/monthelie-maison-sans-garage-stationnement/",
+    "title": "Monthelie : vendre une maison sans garage",
+    "description": "Une maison au centre de Monthelie peut séduire sans garage. Présentez clairement les arrivées, le stationnement réellement inclus et les habitudes possibles.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21092-FR",
+    "path": "/conseils-vendeurs/bouilland-maison-etages-salles-eau/",
+    "title": "Bouilland : vendre une maison avec deux étages",
+    "description": "À Bouilland, certaines maisons de bourg se développent en hauteur. Chambres, salles d’eau et usages quotidiens doivent être présentés ensemble.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21485-FR",
+    "path": "/conseils-vendeurs/plombieres-les-dijon-jardin-non-attenant/",
+    "title": "Plombières : vendre avec un jardin non attenant",
+    "description": "Un jardin séparé de la maison offre une autre façon de vivre dehors. À Plombières, comment présenter cet ensemble sans le confondre avec une terrasse ?",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21166-FR",
+    "path": "/conseils-vendeurs/chenove-logement-vie-culturelle-cedre/",
+    "title": "Chenôve : un logement près de la vie culturelle",
+    "description": "Spectacles, conservatoire, danse : le Cèdre éclaire plusieurs façons de vivre à Chenôve. Les présenter dans une vente avec des repères concrets.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21540-FR",
+    "path": "/conseils-vendeurs/saint-apollinaire-maison-ville-transformations/",
+    "title": "Saint-Apollinaire : raconter une ville qui se transforme",
+    "description": "Une porte déplacée, un château devenu mairie, un fort devenu parc : trois repères pour situer un logement à Saint-Apollinaire sans récit artificiel.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "BE-001",
+    "path": "/conseils-vendeurs/acheteur-belgique-justificatifs-deux-adresses/",
+    "title": "Acheter en France : des justificatifs entre deux adresses",
+    "description": "Vous habitez en Belgique et préparez un achat en Bourgogne : expliquer les adresses différentes de vos justificatifs sans modifier les documents.",
+    "language": "fr",
+    "group": "belgique"
+  },
+  {
+    "id": "BE-002",
+    "path": "/conseils-vendeurs/bruxelles-visite-bourgogne-retour-meme-jour/",
+    "title": "Bruxelles–Bourgogne : visiter et rentrer le même jour ?",
+    "description": "Construire une journée de visite depuis Bruxelles en partant du retour : trajets locaux, temps sur place et critères pour prévoir une nuit.",
+    "language": "fr",
+    "group": "belgique"
+  },
+  {
+    "id": "BE-003",
+    "path": "/conseils-vendeurs/vendre-bien-bourgogne-depuis-belgique-actes-travaux/",
+    "title": "Vendre depuis la Belgique : retrouver les travaux du bien",
+    "description": "Avant de vendre votre maison en Bourgogne depuis la Belgique, rapprocher le titre, les transformations visibles et les pièces de chaque chantier.",
+    "language": "fr",
+    "group": "belgique"
+  },
+  {
+    "id": "BE-004",
+    "path": "/conseils-vendeurs/belgique-achat-plusieurs-maison-vacances-bourgogne/",
+    "title": "Acheter à plusieurs : organiser la maison de vacances",
+    "description": "À plusieurs depuis la Belgique, discuter de l’usage, des dépenses et d’une éventuelle sortie avant d’acheter une maison de vacances en Bourgogne.",
+    "language": "fr",
+    "group": "belgique"
+  },
+  {
+    "id": "BE-005",
+    "path": "/conseils-vendeurs/belgique-maison-verger-bourgogne-entretien-distance/",
+    "title": "Un verger en Bourgogne : prévoir l’entretien à distance",
+    "description": "Avant d’acheter une maison avec verger depuis la Belgique, comparer les prestations sur le terrain réel : accès, arbres, déchets et comptes rendus.",
+    "language": "fr",
+    "group": "belgique"
+  },
+  {
+    "id": "UK-016-EN",
+    "path": "/en/british-home-office-burgundy-house-power/",
+    "title": "Bringing a British home office to your Burgundy house",
+    "description": "Moving your UK desk equipment to Burgundy? Check appliances, power supplies, sockets and room layout before improvising with adaptors.",
+    "language": "en",
+    "group": "uk"
+  },
+  {
+    "id": "UK-017-EN",
+    "path": "/en/french-flat-purchase-next-works-payment/",
+    "title": "French flat purchase: who pays the next works demand?",
+    "description": "Buying a Dijon flat from the UK? Separate the works vote, payment due dates, the sale agreement and the building’s fonds travaux.",
+    "language": "en",
+    "group": "uk"
+  },
+  {
+    "id": "UK-018-EN",
+    "path": "/en/burgundy-builder-decennale-insurance-evidence/",
+    "title": "Hiring in Burgundy: read the builder’s décennale evidence",
+    "description": "Booking French building work from the UK? Match the quotation to the insured business, declared activity and proposed site-opening date.",
+    "language": "en",
+    "group": "uk"
+  },
+  {
+    "id": "UK-019-EN",
+    "path": "/en/british-garden-plants-burgundy-home/",
+    "title": "Taking British garden plants to a Burgundy home",
+    "description": "Moving plants from Great Britain to a Burgundy garden? Identify each plant and check certificates, entry conditions and transport arrangements.",
+    "language": "en",
+    "group": "uk"
+  },
+  {
+    "id": "UK-020-EN",
+    "path": "/en/uk-driving-licence-settling-burgundy/",
+    "title": "A UK driving licence when settling in Burgundy",
+    "description": "Planning a Burgundy move? Separate your UK licence, residence situation and vehicle registration before relying on the car for everyday life.",
+    "language": "en",
+    "group": "uk"
+  },
+  {
+    "id": "UK-016",
+    "path": "/conseils-vendeurs/bureau-britannique-prises-maison-bourgogne/",
+    "title": "Votre bureau britannique dans une maison en Bourgogne",
+    "description": "Avant d’installer votre bureau britannique en Bourgogne, vérifiez appareils, alimentations, prises et emplacement sans improviser de branchements.",
+    "language": "fr",
+    "group": "uk"
+  },
+  {
+    "id": "UK-017",
+    "path": "/conseils-vendeurs/copropriete-charges-vente-acheteur-britannique/",
+    "title": "Copropriété : qui paie les travaux après votre achat ?",
+    "description": "Un vote de travaux antérieur à votre achat ne règle pas tout : distinguez échéances, accord vendeur-acquéreur et fonds travaux en copropriété.",
+    "language": "fr",
+    "group": "uk"
+  },
+  {
+    "id": "UK-018",
+    "path": "/conseils-vendeurs/artisan-bourgogne-lire-attestation-decennale/",
+    "title": "Artisan en Bourgogne : lire son attestation décennale",
+    "description": "Avant de réserver des travaux depuis le Royaume-Uni, rapprochez devis, entreprise, activité assurée et ouverture de chantier sur l’attestation.",
+    "language": "fr",
+    "group": "uk"
+  },
+  {
+    "id": "UK-019",
+    "path": "/conseils-vendeurs/plantes-grande-bretagne-jardin-bourgogne/",
+    "title": "Vos plantes britanniques dans un jardin bourguignon",
+    "description": "Avant d’emporter vos plantes de Grande-Bretagne vers la Bourgogne, vérifiez espèce, certificat et formalités : un pot personnel reste un végétal.",
+    "language": "fr",
+    "group": "uk"
+  },
+  {
+    "id": "UK-020",
+    "path": "/conseils-vendeurs/permis-britannique-installation-bourgogne/",
+    "title": "Permis britannique et installation en Bourgogne",
+    "description": "Permis, résidence et immatriculation sont trois sujets distincts : préparez la vérification de votre droit de conduire avant une installation en Bourgogne.",
+    "language": "fr",
+    "group": "uk"
+  },
+  {
+    "id": "UK-021-EN",
+    "path": "/en/english-title-plan-french-cadastre-burgundy/",
+    "title": "From an English title plan to a Burgundy plot",
+    "description": "Buying a Burgundy house with land? Separate the title, cadastral plan, visible fences and boundary records before relying on the garden outline.",
+    "language": "en",
+    "group": "uk"
+  },
+  {
+    "id": "UK-022-EN",
+    "path": "/en/burgundy-septic-system-english-buyer/",
+    "title": "A Burgundy septic system is not an English file",
+    "description": "Buying a rural Burgundy house from England? Read the French SPANC report and the actual system instead of importing assumptions from English rules.",
+    "language": "en",
+    "group": "uk"
+  },
+  {
+    "id": "UK-023-EN",
+    "path": "/en/keeping-english-home-council-tax-burgundy-move/",
+    "title": "Keeping an English home when moving to Burgundy",
+    "description": "Keeping your English property after moving to Burgundy? Check its council tax treatment before relying on the old bill in your two-home budget.",
+    "language": "en",
+    "group": "uk"
+  },
+  {
+    "id": "UK-024-EN",
+    "path": "/en/moving-burgundy-uk-overseas-electoral-record/",
+    "title": "Moving to Burgundy: update your UK electoral record",
+    "description": "Keep the UK address linking your overseas registration separate from your new French correspondence address when settling in Burgundy.",
+    "language": "en",
+    "group": "uk"
+  },
+  {
+    "id": "UK-025-EN",
+    "path": "/en/uk-rental-income-burgundy-move-nrl-scheme/",
+    "title": "UK rental income after your move to Burgundy",
+    "description": "Keeping a UK rental when you move to Burgundy? Distinguish HMRC deductions, the payment you receive and your final tax position before budgeting.",
+    "language": "en",
+    "group": "uk"
+  },
+  {
+    "id": "UK-021",
+    "path": "/conseils-vendeurs/title-plan-anglais-cadastre-bornage-bourgogne/",
+    "title": "Du title plan anglais au cadastre bourguignon",
+    "description": "Vous achetez depuis le Royaume-Uni ? Distinguez plan cadastral, titre, clôture et bornage avant de choisir une maison avec terrain en Bourgogne.",
+    "language": "fr",
+    "group": "uk"
+  },
+  {
+    "id": "UK-022",
+    "path": "/conseils-vendeurs/fosse-assainissement-bourgogne-acheteur-anglais/",
+    "title": "Fosse en Bourgogne : quitter les réflexes anglais",
+    "description": "Acheter une maison rurale depuis l’Angleterre : distinguer les règles anglaises, le rapport SPANC français et les travaux réellement à prévoir.",
+    "language": "fr",
+    "group": "uk"
+  },
+  {
+    "id": "UK-023",
+    "path": "/conseils-vendeurs/logement-angleterre-council-tax-depart-bourgogne/",
+    "title": "Garder un logement anglais en partant en Bourgogne",
+    "description": "Vous gardez votre logement en Angleterre après votre départ ? Vérifiez sa situation de council tax avant de fixer le budget de la maison bourguignonne.",
+    "language": "fr",
+    "group": "uk"
+  },
+  {
+    "id": "UK-024",
+    "path": "/conseils-vendeurs/installation-bourgogne-dossier-electoral-britannique/",
+    "title": "S’installer en Bourgogne : votre dossier électoral UK",
+    "description": "Après un déménagement en Bourgogne, distinguez adresse britannique de rattachement, adresse française et démarches pour le vote depuis l’étranger.",
+    "language": "fr",
+    "group": "uk"
+  },
+  {
+    "id": "UK-025",
+    "path": "/conseils-vendeurs/loyer-royaume-uni-depart-bourgogne-nrl/",
+    "title": "Louer votre bien UK après le départ en Bourgogne",
+    "description": "Vous conservez un logement loué au Royaume-Uni après votre installation ? Distinguez retenue HMRC, loyer reçu et impôt final dans votre budget.",
+    "language": "fr",
+    "group": "uk"
+  },
+  {
+    "id": "MP-006",
+    "path": "/conseils-vendeurs/murs-commerciaux-isoler-taxe-fonciere-local-vendu/",
+    "title": "Murs commerciaux : isoler la taxe du local vendu",
+    "description": "Un avis de taxe foncière peut couvrir plus que le local vendu. Préparez les références, le détail fiscal et la quote-part à expliquer à l’acquéreur.",
+    "language": "fr",
+    "group": "murs_professionnels"
+  },
+  {
+    "id": "MP-007",
+    "path": "/conseils-vendeurs/vendre-murs-commerciaux-travaux-toiture-facade/",
+    "title": "Toiture ou façade : vendre des murs avec travaux",
+    "description": "Distinguer chantier évoqué, devis et travaux décidés avant de vendre des murs commerciaux. Qualification des réparations et coût du propriétaire.",
+    "language": "fr",
+    "group": "murs_professionnels"
+  },
+  {
+    "id": "MP-008",
+    "path": "/conseils-vendeurs/vendre-local-commercial-surfaces-vente-reserve/",
+    "title": "Vendre un local : quels mètres carrés sont utilisables ?",
+    "description": "Surface du lot, espace clients, réserve et circulation : présenter un local commercial avec un plan qui explique vraiment son fonctionnement.",
+    "language": "fr",
+    "group": "murs_professionnels"
+  },
+  {
+    "id": "MP-009",
+    "path": "/conseils-vendeurs/vendre-restaurant-copropriete-reglement-activites/",
+    "title": "Restaurant en copropriété : ce que le lot autorise",
+    "description": "Avant de vendre les murs d’un restaurant, confronter règlement de copropriété, bail, activité exercée et projet du futur occupant.",
+    "language": "fr",
+    "group": "murs_professionnels"
+  },
+  {
+    "id": "MP-010",
+    "path": "/conseils-vendeurs/vendre-murs-conduit-extraction-immeuble/",
+    "title": "Vendre des murs avec un conduit d’extraction",
+    "description": "Un conduit visible ne suffit pas : suivre son parcours, retrouver les autorisations et expliquer les accès d’entretien avant la vente du local.",
+    "language": "fr",
+    "group": "murs_professionnels"
+  },
+  {
+    "id": "TE-006",
+    "path": "/conseils-vendeurs/terrain-etude-sol-mission-g1-g2/",
+    "title": "Étude de sol : lire la mission avant de vendre le terrain",
+    "description": "Une étude de sol existe pour votre terrain : vérifiez la mission, le périmètre et le projet étudié avant d’en tirer une conclusion sur la construction.",
+    "language": "fr",
+    "group": "terrain"
+  },
+  {
+    "id": "TE-007",
+    "path": "/conseils-vendeurs/terrain-viabilise-limite-reseaux-branchements/",
+    "title": "Terrain viabilisé : où s’arrêtent les réseaux ?",
+    "description": "Coffret en limite, branchement réalisé, installation prête : distinguer les étapes de viabilisation et les travaux restant à prévoir sur un terrain.",
+    "language": "fr",
+    "group": "terrain"
+  },
+  {
+    "id": "TE-008",
+    "path": "/conseils-vendeurs/terrain-eaux-pluviales-infiltration-exutoire/",
+    "title": "Terrain à vendre : où iront les eaux de pluie ?",
+    "description": "Toiture, accès et jardin changent le parcours de l’eau. Préparer les questions d’infiltration et d’exutoire avant de présenter un terrain à bâtir.",
+    "language": "fr",
+    "group": "terrain"
+  },
+  {
+    "id": "TE-009",
+    "path": "/conseils-vendeurs/terrain-assainissement-collectif-spanc-projet/",
+    "title": "Terrain et assainissement : quelle solution est étudiée ?",
+    "description": "Réseau collectif ou installation autonome : les vérifications d’assainissement à réunir pour présenter un terrain en Côte-d’Or avec précision.",
+    "language": "fr",
+    "group": "terrain"
+  },
+  {
+    "id": "TE-010",
+    "path": "/conseils-vendeurs/terrain-eau-potable-raccordement-distance-capacite/",
+    "title": "Eau potable : faire étudier le raccordement du terrain",
+    "description": "Une canalisation proche ne suffit pas à établir le raccordement. Préparer une demande précise pour une parcelle à vendre en Côte-d’Or.",
+    "language": "fr",
+    "group": "terrain"
   }
 ]
