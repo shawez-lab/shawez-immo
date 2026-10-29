@@ -1876,12 +1876,12 @@ async function rappels(ctx, now = new Date()) {
     const contenu = mailVisite('rappel', { debut: v.debut, adresse: dem.adresse });
     if (v.fixee_le && now.getTime() - Date.parse(v.fixee_le) < 3 * 3600000) {
       await journal(base, dem.id, 'rappel_visite', 'systeme', { envoye: false, raison: 'confirmation_recente' });
-      enOmbre(ctx, base, 'rappel_visite', `visite-${v.id}`, dem, contenu, 'ne_part_pas', 'confirmation_recente');
+      enOmbre(ctx, base, 'rappel_visite', refVisite(v), dem, contenu, 'ne_part_pas', 'confirmation_recente');
       continue;
     }
     const etat = await annoncer(ctx, dem, contenu, 'rappel_visite');
     // gardé pour 8 h : la question au socle partira avec l'e-mail gardé
-    if (etat !== 'differe') enOmbre(ctx, base, 'rappel_visite', `visite-${v.id}`, dem, contenu, etat === 'envoye' ? 'part' : 'ne_part_pas', etat === 'envoye' ? null : 'indisponible');
+    if (etat !== 'differe') enOmbre(ctx, base, 'rappel_visite', refVisite(v), dem, contenu, etat === 'envoye' ? 'part' : 'ne_part_pas', etat === 'envoye' ? null : 'indisponible');
     await journal(base, dem.id, 'rappel_visite', 'systeme', { envoye: etat === 'envoye', debut: v.debut });
     if (etat === 'envoye') n++;
   }
@@ -1898,6 +1898,8 @@ async function taches(ctx) {
 
 /* B03 d'AIMMO, en ombre : la même question posée au socle AIMMO, en tâche de fond. L'envoi du site ne l'attend jamais
    et ne change en rien selon sa réponse ; les deux décisions sont rangées sans donnée personnelle (_lib/socle.js). */
+// une visite déplacée garde sa ligne : la date entre dans la référence, sinon le socle verrait un doublon de sujet
+const refVisite = (v) => `visite-${v.id}-${Math.floor(Date.parse(v.debut) / 60000)}`;
 function enOmbre(ctx, base, automation, ref, demande, contenu, site, siteRaison = null) {
   if (!socleConfigure(ctx.env) || typeof ctx.waitUntil !== 'function') return;
   const tache = (async () => {

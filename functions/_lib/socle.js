@@ -87,8 +87,10 @@ export async function demanderAuSocle(env, { automation, email, ref, texte }, { 
   }
 }
 
-/* accord : les deux décisions sont les mêmes ; ecart : elles diffèrent ; sans_reponse : le socle n'a pas répondu. */
+/* accord : les deux décisions sont les mêmes ; ecart : elles diffèrent ; sans_reponse : le socle n'a pas répondu ;
+   site_seul : le site n'envoie pas, le socle n'est pas interrogé (hors écarts). */
 export function comparer(site, socle) {
+  if (site !== 'part') return 'site_seul';
   if (!socle || socle.statut == null) return 'sans_reponse';
   return socle.statut === site ? 'accord' : 'ecart';
 }
@@ -106,7 +108,11 @@ export async function noterOmbre(base, { automation, site, siteRaison = null, so
 export async function ombre(env, base, { automation, ref, email, contenu, site, siteRaison = null }, options = {}) {
   if (!socleConfigure(env)) return null;
   try {
-    const socle = email
+    // Seul un envoi réel du site est soumis au socle : en essai, un « would_send » y est rangé comme un envoi (sujet gardé,
+    // pression commerciale) ; lui soumettre ce que le site n'envoie pas fausserait ses décisions suivantes.
+    const socle = site !== 'part'
+      ? { statut: null, regle: null, code: null, erreur: null }
+      : email
       ? await demanderAuSocle(env, { automation, email, ref, texte: texteDuCourrier(contenu) }, options)
       : { statut: null, regle: null, code: null, erreur: 'sans_adresse' };
     await noterOmbre(base, { automation, site, siteRaison, socle, quand: options.quand || new Date() });
@@ -136,6 +142,6 @@ export async function rapportOmbre(env, base, { jours = 7, maintenant = new Date
   return {
     actif: socleConfigure(env), jours, depuis,
     total: total(() => true), accords: total((l) => l.resultat === 'accord'), ecarts: total((l) => l.resultat === 'ecart'),
-    sans_reponse: total((l) => l.resultat === 'sans_reponse'), ecarts_par_regle: parRegle, lignes,
+    sans_reponse: total((l) => l.resultat === 'sans_reponse'), site_seul: total((l) => l.resultat === 'site_seul'), ecarts_par_regle: parRegle, lignes,
   };
 }
