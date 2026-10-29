@@ -1271,4 +1271,15 @@
       <video:publication_date>2026-09-21</video:publication_date>
     </video:video>
   </url>
+  <url>
+    <loc>https://shawez-immo.com/videos/longere-en-pierre/</loc>
+    <video:video>
+      <video:thumbnail_loc>https://shawez-immo.com/film-equipe-poster.webp?v=5</video:thumbnail_loc>
+      <video:title>Le film d'un bien : une longère en pierre, du drone aux intérieurs</video:title>
+      <video:description>Film de visite d’une longère en pierre : la cour, les façades vues en hauteur, une cheminée et la pièce de vie.</video:description>
+      <video:content_loc>https://shawez-immo.com/film-equipe.mp4</video:content_loc>
+      <video:duration>42</video:duration>
+      <video:publication_date>2026-09-25</video:publication_date>
+    </video:video>
+  </url>
 </urlset>
