@@ -710,5 +710,285 @@
     "description": "Un suivi de commercialisation qui distingue audience, demandes, visites et offres, avec des périodes comparables et des décisions fondées sur les faits.",
     "language": "fr",
     "group": "prestige_videos"
+  },
+  {
+    "id": "CHT-001",
+    "path": "/conseils-vendeurs/chateau-protection-partielle-perimetre/",
+    "title": "Château protégé en partie : dessiner le bon périmètre",
+    "description": "Avant de vendre un château en Côte-d’Or, rapprocher arrêté, plans et pièces pour décrire précisément sa protection patrimoniale.",
+    "language": "fr",
+    "group": "chateaux"
+  },
+  {
+    "id": "CHT-002",
+    "path": "/conseils-vendeurs/chateau-inscrit-classe-premiere-reunion-travaux/",
+    "title": "Travaux dans un château : préparer la première réunion",
+    "description": "Un dossier de première réunion pour un château inscrit ou classé : localiser le projet, expliquer le besoin et identifier les interlocuteurs.",
+    "language": "fr",
+    "group": "chateaux"
+  },
+  {
+    "id": "CHT-003",
+    "path": "/conseils-vendeurs/vendre-chateau-dossier-aides-restauration/",
+    "title": "Vendre un château : que devient le dossier des aides ?",
+    "description": "Aides demandées, accordées ou versées : préparer leur rapprochement avec les travaux avant la vente d’un château en Côte-d’Or.",
+    "language": "fr",
+    "group": "chateaux"
+  },
+  {
+    "id": "CHT-005",
+    "path": "/conseils-vendeurs/chateau-chauffage-ailes-consommations/",
+    "title": "Château chauffé par ailes : expliquer les vraies consommations",
+    "description": "Pour vendre un château, relier factures, périodes d’occupation et espaces chauffés afin de présenter une consommation compréhensible.",
+    "language": "fr",
+    "group": "chateaux"
+  },
+  {
+    "id": "CHT-006",
+    "path": "/conseils-vendeurs/chateau-charpente-ancienne-dossier-travaux/",
+    "title": "Charpente ancienne : retrouver le fil des interventions",
+    "description": "Plans, études, réparations et réserves : organiser les documents de charpente avant la vente d’un château, sans remplacer un diagnostic.",
+    "language": "fr",
+    "group": "chateaux"
+  },
+  {
+    "id": "US-011-EN",
+    "path": "/en/buying-dijon-family-decisions-time-zones/",
+    "title": "Buying in Dijon: family decisions across time zones",
+    "description": "Keep observations, personal preferences and actual decisions separate when your family is reviewing a Dijon property from the United States.",
+    "language": "en",
+    "group": "us"
+  },
+  {
+    "id": "US-012-EN",
+    "path": "/en/french-property-prepare-us-tax-consultation/",
+    "title": "French property: prepare your US tax consultation",
+    "description": "Separate the house, income, financial accounts and entity interests before asking advisers about your French property purchase.",
+    "language": "en",
+    "group": "us"
+  },
+  {
+    "id": "US-013-EN",
+    "path": "/en/buying-through-us-entity-signing-authority/",
+    "title": "Buying through a US entity: who can sign what?",
+    "description": "Identify the entity, decision-making authority and necessary documents before an offer on a Burgundy home. An LLC is not automatically a French SCI.",
+    "language": "en",
+    "group": "us"
+  },
+  {
+    "id": "US-014-EN",
+    "path": "/en/us-person-french-bank-account-application/",
+    "title": "US person: prepare a French bank account application",
+    "description": "Clarify the service requested, tax-status information, document list and secure submission route before applying to a French bank.",
+    "language": "en",
+    "group": "us"
+  },
+  {
+    "id": "US-015-EN",
+    "path": "/en/burgundy-home-cross-border-family-handover/",
+    "title": "A Burgundy home: prepare a cross-border family handover",
+    "description": "Organize ownership information, document locations, professional contacts and review triggers for a Burgundy property and a US-based family.",
+    "language": "en",
+    "group": "us"
+  },
+  {
+    "id": "US-016-EN",
+    "path": "/en/burgundy-second-home-absence-service-quotes/",
+    "title": "Burgundy second home: price the work during your absence",
+    "description": "Compare caretaking proposals by what each visit includes, callout terms, exclusions and evidence of work, rather than by the headline fee.",
+    "language": "en",
+    "group": "us"
+  },
+  {
+    "id": "US-017-EN",
+    "path": "/en/working-burgundy-us-employer-before-buying/",
+    "title": "Working from Burgundy for a US employer: what to clarify",
+    "description": "Separate employer approval, immigration, social coverage and property requirements before basing a Burgundy purchase on remote work.",
+    "language": "en",
+    "group": "us"
+  },
+  {
+    "id": "US-018-EN",
+    "path": "/en/french-copropriete-minutes-trace-project/",
+    "title": "French copropriété minutes: trace a project over time",
+    "description": "Follow a building project from discussion to vote, funding and completion, then connect the record to the apartment you plan to buy.",
+    "language": "en",
+    "group": "us"
+  },
+  {
+    "id": "US-019-EN",
+    "path": "/en/french-home-condo-spaces-ownership-use/",
+    "title": "French home or condo: which spaces are really yours?",
+    "description": "Match gardens, terraces, courtyards and access to the actual ownership documents instead of importing assumptions from a familiar US condominium.",
+    "language": "en",
+    "group": "us"
+  },
+  {
+    "id": "US-020-EN",
+    "path": "/en/before-offer-scope-french-property-inspection/",
+    "title": "Before an offer: scope a French property inspection",
+    "description": "Turn concerns about a Burgundy house into a defined technical brief covering competence, access, deliverables, exclusions and follow-up.",
+    "language": "en",
+    "group": "us"
+  },
+  {
+    "id": "US-011",
+    "path": "/conseils-vendeurs/acheter-dijon-decider-famille-etats-unis/",
+    "title": "Acheter à Dijon : décider en famille depuis les États-Unis",
+    "description": "Un document commun pour séparer les faits, les préférences et les décisions lorsque les futurs acheteurs vivent aux États-Unis.",
+    "language": "fr",
+    "group": "us"
+  },
+  {
+    "id": "US-012",
+    "path": "/conseils-vendeurs/bien-france-preparer-rendez-vous-fiscal-americain/",
+    "title": "Bien en France : préparer votre rendez-vous fiscal américain",
+    "description": "Maison, revenus, comptes et société : préparer des faits distincts pour une consultation fiscale franco-américaine avant l’achat.",
+    "language": "fr",
+    "group": "us"
+  },
+  {
+    "id": "US-013",
+    "path": "/conseils-vendeurs/acheter-societe-americaine-pouvoirs-signature/",
+    "title": "Acheter via une société américaine : qui signe quoi ?",
+    "description": "Identifier la société, ses pouvoirs et ses documents avant une offre sur une maison bourguignonne, sans assimiler LLC et SCI.",
+    "language": "fr",
+    "group": "us"
+  },
+  {
+    "id": "US-014",
+    "path": "/conseils-vendeurs/us-person-preparer-ouverture-compte-france/",
+    "title": "US person : préparer l’ouverture d’un compte en France",
+    "description": "Poser les bonnes questions à une banque française : service demandé, résidence fiscale, documents et canal sécurisé, avant tout envoi.",
+    "language": "fr",
+    "group": "us"
+  },
+  {
+    "id": "US-015",
+    "path": "/conseils-vendeurs/bien-bourgogne-preparer-transmission-etats-unis/",
+    "title": "Famille aux États-Unis : transmettre un bien bourguignon",
+    "description": "Organiser les informations d’un bien bourguignon pour les conseils et la famille : propriété, documents, contacts et changements à signaler.",
+    "language": "fr",
+    "group": "us"
+  },
+  {
+    "id": "US-016",
+    "path": "/conseils-vendeurs/maison-bourgogne-comparer-devis-absence/",
+    "title": "Maison en Bourgogne : chiffrer les périodes d’absence",
+    "description": "Comparer les devis d’entretien d’une maison occupée quelques semaines : contenu des passages, urgences, exclusions et preuves d’intervention.",
+    "language": "fr",
+    "group": "us"
+  },
+  {
+    "id": "US-017",
+    "path": "/conseils-vendeurs/teletravailler-bourgogne-employeur-americain/",
+    "title": "Télétravailler en Bourgogne pour un employeur américain",
+    "description": "Distinguer accord de l’employeur, séjour, protection sociale et contraintes du logement avant de bâtir un projet de télétravail en Bourgogne.",
+    "language": "fr",
+    "group": "us"
+  },
+  {
+    "id": "US-018",
+    "path": "/conseils-vendeurs/copropriete-suivre-chantier-trois-ans-pv/",
+    "title": "Copropriété : suivre un chantier dans trois ans de PV",
+    "description": "Lire les procès-verbaux comme une chronologie : projet, vote, financement et réalisation, puis rapprocher les informations du lot acheté.",
+    "language": "fr",
+    "group": "us"
+  },
+  {
+    "id": "US-019",
+    "path": "/conseils-vendeurs/maison-copropriete-quels-espaces-achetez-vous/",
+    "title": "Maison ou copropriété : quels espaces achetez-vous ?",
+    "description": "Jardin, terrasse, cour ou accès : relier chaque espace à son statut documentaire, sans importer les habitudes d’un condominium américain.",
+    "language": "fr",
+    "group": "us"
+  },
+  {
+    "id": "US-020",
+    "path": "/conseils-vendeurs/avant-offre-cadrer-inspection-technique-distance/",
+    "title": "Avant l’offre : cadrer une inspection technique à distance",
+    "description": "Transformer une inquiétude sur une maison en mission technique précise : accès, compétence, livrable, exclusions et suite à donner au rapport.",
+    "language": "fr",
+    "group": "us"
+  },
+  {
+    "id": "LG-006",
+    "path": "/conseils-vendeurs/location-gerance-commerce-saisonnier-calendrier/",
+    "title": "Commerce saisonnier : préparer l’année avant la location-gérance",
+    "description": "Un calendrier annuel pour distinguer ouverture, fermeture, dépenses et remise en service avant de confier un fonds saisonnier.",
+    "language": "fr",
+    "group": "location_fonds"
+  },
+  {
+    "id": "LG-007",
+    "path": "/conseils-vendeurs/location-gerance-inventaire-materiel-entree-sortie/",
+    "title": "Matériel du fonds : préparer un inventaire qui servira aussi à la sortie",
+    "description": "Repérer chaque équipement, documenter son état et consigner les désaccords avant la remise du matériel au locataire-gérant.",
+    "language": "fr",
+    "group": "location_fonds"
+  },
+  {
+    "id": "LG-008",
+    "path": "/conseils-vendeurs/location-gerance-stock-initial-comptage-propriete/",
+    "title": "Stock initial : compter ce qui sera réellement remis au nouvel exploitant",
+    "description": "Un relevé de stock daté pour séparer quantités, état, propriété et valeur avant le début de la location-gérance.",
+    "language": "fr",
+    "group": "location_fonds"
+  },
+  {
+    "id": "LG-009",
+    "path": "/conseils-vendeurs/location-gerance-acces-logiciels-telephone-site/",
+    "title": "Logiciels, téléphone, site : qui aura les bons accès le jour de la reprise ?",
+    "description": "Un registre pour préparer les logiciels, la ligne téléphonique et le site du commerce, sans confondre mot de passe et droit d’utilisation.",
+    "language": "fr",
+    "group": "location_fonds"
+  },
+  {
+    "id": "LG-010",
+    "path": "/conseils-vendeurs/location-gerance-fichier-clients-donnees/",
+    "title": "Fichier clients : préparer la continuité sans tout transmettre",
+    "description": "Préparer un plan de transmission limité aux besoins réels : réservations en cours, finalités, accès, information et responsabilités à clarifier.",
+    "language": "fr",
+    "group": "location_fonds"
+  },
+  {
+    "id": "LG-011",
+    "path": "/conseils-vendeurs/location-gerance-personnel-dossier-social/",
+    "title": "Personnel du commerce : préparer les faits avant de conclure sur les contrats",
+    "description": "Rassembler l’organisation et les contrats utiles à l’analyse sociale d’une location-gérance, avec un dossier restreint et des questions précises.",
+    "language": "fr",
+    "group": "location_fonds"
+  },
+  {
+    "id": "LG-012",
+    "path": "/conseils-vendeurs/location-gerance-licence-boissons-permis/",
+    "title": "Reprendre un bar ou un restaurant : remettre les documents de licence dans le bon ordre",
+    "description": "Licence, permis et déclaration : préparer le changement d’exploitant d’un bar ou restaurant avec un calendrier et des pièces bien identifiées.",
+    "language": "fr",
+    "group": "location_fonds"
+  },
+  {
+    "id": "LG-013",
+    "path": "/conseils-vendeurs/location-gerance-terrasse-autorisation-domaine-public/",
+    "title": "Terrasse du commerce : dessiner ce qui est autorisé, pas seulement ce qui se voit",
+    "description": "Une fiche pour vérifier le titulaire, l’emprise et la durée d’une terrasse sur le domaine public avant de présenter le projet de reprise.",
+    "language": "fr",
+    "group": "location_fonds"
+  },
+  {
+    "id": "LG-014",
+    "path": "/conseils-vendeurs/location-gerance-restaurant-hygiene-controles/",
+    "title": "Restaurant en location-gérance : relier chaque contrôle à ce qui a été corrigé",
+    "description": "Rapports, entretien et corrections : préparer un dossier lisible sur l’hygiène du restaurant, avec les points résolus et ceux encore ouverts.",
+    "language": "fr",
+    "group": "location_fonds"
+  },
+  {
+    "id": "LG-015",
+    "path": "/conseils-vendeurs/location-gerance-assurances-proprietaire-exploitant/",
+    "title": "Assurer la reprise : poser les mêmes questions aux bons contrats",
+    "description": "Comparer les rôles du propriétaire et de l’exploitant, puis obtenir des réponses écrites sur les biens, les garanties et les dates de couverture.",
+    "language": "fr",
+    "group": "location_fonds"
   }
 ]
