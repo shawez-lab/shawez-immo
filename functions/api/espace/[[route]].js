@@ -67,6 +67,8 @@
      GET  /api/espace/admin/export.csv?quoi=demandes|comptes&site=…&statut=…
      GET  /api/espace/admin/promesses       les 7 promesses faites au vendeur, sur 7 et 30 jours : tenue / ratée, délai médian
      GET  /api/espace/admin/promesses.csv?jours=7|30   les mêmes mesures, une ligne par mesure
+     GET  /api/espace/admin/ombre?jours=7   B03 d'AIMMO : décisions du site et du socle AIMMO côte à côte, écarts par règle,
+                                            sans donnée personnelle ({ actif: false } tant que le socle n'est pas relié)
      GET  /api/espace/admin/journal-agence  qui a exporté, supprimé, fabriqué un lien, changé un réglage (200 dernières lignes ;
                                             { actif: false } tant que la migration 2026-10-18-admin.sql n'est pas appliquée)
 
@@ -89,6 +91,7 @@ import { envoyer, mailPossible, mailClients, peutEcrire, destinatairesAlerte, ad
 import { deposer, lire as lireFichier, supprimerFichier, fichiersDe, supprimerFichiersDe, TAILLE_MAX } from '../../_lib/fichiers.js';
 import { mesurer, tableau, delaiFr, PROMESSES, PERIODES } from '../../_lib/promesses.js';
 import { agendaOccupe, retirerOccupes, adresseIcsValide } from '../../_lib/agenda.js';
+import { ombre, rapportOmbre, socleConfigure } from '../../_lib/socle.js';
 
 export async function onRequest(context) {
   const { request, env, params } = context;
@@ -160,6 +163,7 @@ const ROUTES = {
   'POST /admin/avis/brouillon': adminAvisBrouillon,
   'POST /admin/avis/valider': adminAvisValider,
   'GET /admin/journal': adminJournal,
+  'GET /admin/ombre': adminOmbre,
   'POST /admin/reglages': adminReglages,
   'GET /admin/suite': adminSuite,
   'POST /admin/compte-rendu': adminCompteRendu,
@@ -174,7 +178,7 @@ const ROUTES = {
 
 /* Version de l'API : les tests sur l'aperçu attendent de la voir avant de commencer (le site met une à deux minutes
    à se mettre à jour après une poussée). À changer à chaque évolution de l'API. */
-const VERSION = '2026-10-27.1';
+const VERSION = '2026-10-29.1';
 
 /* Clé du flux Google Sheet : on ne garde que son empreinte. Celle-ci est la clé de mise en service ; dès qu'un admin
    en génère une nouvelle (/admin/ → « Google Sheet »), c'est l'empreinte en base qui fait foi. */
@@ -1591,12 +1595,18 @@ async function courriersDus(ctx, now = new Date()) {
     if (!pris) continue;
     const dem = await base.prepare('SELECT * FROM demandes WHERE id = ?1').bind(c.demande_id).first();
     const compte = dem && dem.compte_id ? await base.prepare('SELECT * FROM comptes WHERE id = ?1').bind(dem.compte_id).first() : null;
-    if (!dem || !compte || !peutEcrire(env, compte.email)) continue;
     const contenu = lireJson(c.contenu);
+    const ref = `courrier-${c.id}`;
+    if (!dem || !compte || !peutEcrire(env, compte.email)) { enOmbre(ctx, base, 'courrier_vendeur', ref, dem, contenu, 'ne_part_pas', 'indisponible'); continue; }
     if (contenu.controle && contenu.controle.visite) {
       const v = (await visitesDe(base, [dem.id])).get(dem.id);
-      if (!v || v.etat !== 'fixee' || v.debut !== contenu.controle.visite) { await journal(base, dem.id, 'mail', 'systeme', { motif: c.motif, sujet: contenu.sujet, envoye: false, raison: 'perime' }); continue; }
+      if (!v || v.etat !== 'fixee' || v.debut !== contenu.controle.visite) {
+        await journal(base, dem.id, 'mail', 'systeme', { motif: c.motif, sujet: contenu.sujet, envoye: false, raison: 'perime' });
+        enOmbre(ctx, base, 'courrier_vendeur', ref, dem, contenu, 'ne_part_pas', 'perime');
+        continue;
+      }
     }
+    enOmbre(ctx, base, 'courrier_vendeur', ref, dem, contenu, 'part');
     if (await expedier(env, dem, compte, contenu, c.motif, c.origine)) n++;
   }
   if (Math.random() < 0.05) await base.prepare('DELETE FROM courriers WHERE envoye_le IS NOT NULL AND envoye_le < ?1').bind(new Date(now.getTime() - 30 * 86400000).toISOString()).run();
@@ -1863,8 +1873,15 @@ async function rappels(ctx, now = new Date()) {
     const dem = await base.prepare('SELECT * FROM demandes WHERE id = ?1').bind(v.demande_id).first();
     if (!dem || dem.statut !== 'visite') continue;
     // confirmée il y a moins de trois heures : l'e-mail de confirmation vient de partir, pas de doublon
-    if (v.fixee_le && now.getTime() - Date.parse(v.fixee_le) < 3 * 3600000) { await journal(base, dem.id, 'rappel_visite', 'systeme', { envoye: false, raison: 'confirmation_recente' }); continue; }
-    const etat = await annoncer(ctx, dem, mailVisite('rappel', { debut: v.debut, adresse: dem.adresse }), 'rappel_visite');
+    const contenu = mailVisite('rappel', { debut: v.debut, adresse: dem.adresse });
+    if (v.fixee_le && now.getTime() - Date.parse(v.fixee_le) < 3 * 3600000) {
+      await journal(base, dem.id, 'rappel_visite', 'systeme', { envoye: false, raison: 'confirmation_recente' });
+      enOmbre(ctx, base, 'rappel_visite', `visite-${v.id}`, dem, contenu, 'ne_part_pas', 'confirmation_recente');
+      continue;
+    }
+    const etat = await annoncer(ctx, dem, contenu, 'rappel_visite');
+    // gardé pour 8 h : la question au socle partira avec l'e-mail gardé
+    if (etat !== 'differe') enOmbre(ctx, base, 'rappel_visite', `visite-${v.id}`, dem, contenu, etat === 'envoye' ? 'part' : 'ne_part_pas', etat === 'envoye' ? null : 'indisponible');
     await journal(base, dem.id, 'rappel_visite', 'systeme', { envoye: etat === 'envoye', debut: v.debut });
     if (etat === 'envoye') n++;
   }
@@ -1877,6 +1894,23 @@ async function taches(ctx) {
   const faux = String(ctx.env.HORLOGE_TEST || '') === '1' ? new Date(new URL(ctx.request.url).searchParams.get('maintenant') || '') : null;
   const now = faux && !Number.isNaN(faux.getTime()) ? faux : new Date();
   return json(200, { ok: true, rappels: await rappels(ctx, now), courriers: await courriersDus(ctx, now) });
+}
+
+/* B03 d'AIMMO, en ombre : la même question posée au socle AIMMO, en tâche de fond. L'envoi du site ne l'attend jamais
+   et ne change en rien selon sa réponse ; les deux décisions sont rangées sans donnée personnelle (_lib/socle.js). */
+function enOmbre(ctx, base, automation, ref, demande, contenu, site, siteRaison = null) {
+  if (!socleConfigure(ctx.env) || typeof ctx.waitUntil !== 'function') return;
+  const tache = (async () => {
+    const compte = demande && demande.compte_id ? await base.prepare('SELECT email FROM comptes WHERE id = ?1').bind(demande.compte_id).first() : null;
+    await ombre(ctx.env, base, { automation, ref, email: compte && compte.email, contenu, site, siteRaison });
+  })().catch((e) => console.log('ombre', e && e.name));
+  try { ctx.waitUntil(tache); } catch (e) { /* hors requête : la tâche finit d'elle-même */ }
+}
+
+async function adminOmbre({ request, env }) {
+  await exigerAdmin(request, env);
+  const jours = entier(new URL(request.url).searchParams.get('jours'), 1, 90, { nom: 'jours' }) || 7;
+  return json(200, await rapportOmbre(env, await db(env), { jours }));
 }
 
 let dernierPassage = 0;
