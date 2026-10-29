@@ -188,14 +188,9 @@ Dès que tu écris un message, règles absolues, sauf le « Salut » de début e
   envoies les bilans tout de suite après. Ne donne jamais le résultat comptable, les salaires ni le nom ou l'adresse du commerce.
 - Si aucun bien n'est fourni : une phrase chaleureuse et naturelle, puis une seule question simple sur ce qu'il cherche.
   Ne dis jamais que tu n'as pas l'information ni que tu préfères ne rien dire de faux.
-- Si le texte du commentaire n'a pas été transmis : ne devine jamais ce qu'il a écrit ni ce qu'il en pense. Jamais « content que la vidéo
-  t'ait plu », « ça fait plaisir », « merci pour ton compliment » ni « ta question ». Dis simplement que tu as vu son commentaire sous ta vidéo,
-  puis UNE question courte sur son projet.
-- Si des « vidéos du moment » sont listées dans les données : la personne a sans doute commenté le mot d'une de ces vidéos pour recevoir
-  la visite. Dis que tu as vu son commentaire, puis demande-lui en UNE question courte de quel bien il s'agit en citant ces biens par leur
-  nom simple, pour lui envoyer la visite complète tout de suite. C'est la seule question où tu peux citer plusieurs choix.
-  Si la liste contient la vidéo skate « mets pause au bon moment », glisse avant ta question une phrase : s'il a réussi à mettre pause
-  au bon moment, il t'envoie la capture en message privé et son estimation est offerte. Ne cite pas cette vidéo dans ta question.
+- Si le message est seulement le mot-clé d'une vidéo, un mot en majuscules comme CHÂTEAU, LOFT, NEUILLY ou VISIT, la personne a commenté
+  ce mot pour recevoir la visite complète promise par la vidéo : présente le bien en une phrase avec les données fournies, dis que le dossier
+  avec la vidéo et les photos est juste en dessous, puis UNE question courte, visite sur place ou appel. Ne parle de rien d'autre.
 - Si les données contiennent une ligne qui commence par « Défi pause : » : une image envoyée sans texte, ou un message qui dit qu'il l'a eu, c'est la capture du défi.
   Ce n'est PAS hors sujet, sauf si l'historique montre clairement une conversation perso. Félicite-le simplement d'être dans le 1 % qui
   y arrive, dis que comme promis l'estimation de son bien est offerte, puis UNE question : dans quelle commune se trouve son bien.
@@ -579,14 +574,17 @@ export async function onRequest({ request, env }) {
     // Commentaire « à l'aveugle » : Instagram ne transmet à ManyChat ni le texte du commentaire ni la vidéo commentée.
     // Impossible d'y répondre de façon logique, donc AUCUN message : ni question au hasard sur les biens du moment, ni défi,
     // ni bien d'une conversation précédente. Décision de Shawez du 29/10/2026, après des DM hors sujet
-    // (« Toujours pas vendu… » sous le château → message sur la vidéo skate). Seuls les déclencheurs par mot-clé ou par vidéo répondent.
+    // (« Toujours pas vendu… » sous le château → message sur la vidéo skate). Seuls les déclencheurs par mot-clé répondent :
+    // ManyChat « Mot-clé CHÂTEAU — tous les Reels » (dm_post = mot:chateau), boutons par vidéo (prix, quartier, visite), VISIT en anglais.
     const muet = async (motif) => {
       if (base && !test) await base.prepare('INSERT OR IGNORE INTO dm_instagram VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11)')
         .bind(evenement, contact, compte, idReel(post), '', jour, `muet_${motif}`, 0, 0, 0, new Date().toISOString()).run().catch(() => {});
       return sansMessage(`commentaire_${motif}`);
     };
-    const aveugle = !prive && source !== 'whatsapp' && intention !== 'vendre' && COMMENTAIRE_INCONNU.test(commentaire || '');
-    if (aveugle && !idReel(post)) return muet('inconnu');
+    // Commentaire sans texte : le flux « tous les Reels » (texte fixe) ou un flux « Autres » d'une vidéo (dm_comment vidé).
+    // Seuls les flux par mot-clé disent ce que la personne a écrit (dm_comment : « CHÂTEAU », « Question sur le prix »…).
+    const aveugle = !prive && source !== 'whatsapp' && intention !== 'vendre' && (!commentaire || COMMENTAIRE_INCONNU.test(commentaire));
+    if (aveugle) return muet('inconnu');
     if (/^(story|dm|wa)$/i.test(post || '')) {
       const c = commentaire || '';
       post = /tabac|bilan|chiffre|\bca\b|\bebe\b|compta|fdj|presse|fonds|1[,.]8|million/i.test(c) ? 'story-tabac'
@@ -607,8 +605,6 @@ export async function onRequest({ request, env }) {
       const mc = await motCle(env, request, commentaire);
       if (mc) { bien = await trouverBien(env, request, mc); if (bien) cleBien = mc; }
     }
-    // Vidéo commentée hors registre et texte inconnu : on ne sait pas de quel bien il s'agit, on n'écrit pas
-    if (aveugle && !bien) return muet('inconnu');
     if (base && !test && bien && bien.ref && !prive && source !== 'whatsapp') {
       // Même bien déjà envoyé aujourd'hui à ce contact (un même commentaire peut passer par le déclencheur de la vidéo
       // et par celui du mot-clé) : jamais un second message sur le même bien
