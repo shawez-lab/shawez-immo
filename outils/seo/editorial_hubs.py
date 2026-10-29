@@ -12,6 +12,9 @@ BASE = 'https://shawez-immo.com'
 START = '<!-- editorial-additions -->'
 END = '<!-- /editorial-additions -->'
 GROUPS = {
+    'vente_fonds': ('Préparer la vente d’un fonds de commerce', 'Preparing a business sale'),
+    'murs_professionnels': ('Vendre des murs professionnels', 'Selling commercial property'),
+    'uk': ('Préparer un achat depuis le Royaume-Uni', 'Preparing a purchase from the United Kingdom'),
     'terrain': ('Vendre et comprendre un terrain', 'Selling and understanding land'),
     'chateaux': ('Préparer la vente d’un château', 'Preparing a château sale'),
     'communes': ('Vendre en Côte-d’Or, commune par commune', 'Selling in Côte-d’Or, town by town'),
