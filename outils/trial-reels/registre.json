@@ -639,7 +639,27 @@
    "legende": "Un château du XVIIIe à 15 minutes de Beaune, avec une vue dégagée sur la Côte de Beaune 🏰\n\nCommente CHÂTEAU et je t’envo",
    "source": "monteur",
    "uuid": "-7834773699911989180",
-   "statut": "publie"
+   "statut": "publie",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "-4260361849069943374",
+     "url": "",
+     "date": "2026-10-29",
+     "heure": "21:10"
+    },
+    "youtube": {
+     "uuid": "-2983705724007854944",
+     "url": "",
+     "date": "2026-10-30",
+     "heure": "17:50"
+    },
+    "facebook": {
+     "uuid": "-8492419634848970011",
+     "url": "",
+     "date": "2026-10-30",
+     "heure": "18:50"
+    }
+   }
   },
   {
    "id": "TR-2910-438-v2",
@@ -652,7 +672,27 @@
    "legende": "1 600 000 € pour un château du XVIIIe de 520 m² avec étang, à 15 minutes de Beaune 🏰\n\nCommente CHÂTEAU et je t’envoie la",
    "source": "monteur",
    "uuid": "838444845792448354",
-   "statut": "publie"
+   "statut": "publie",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "-7337561038549073866",
+     "url": "",
+     "date": "2026-10-29",
+     "heure": "21:30"
+    },
+    "youtube": {
+     "uuid": "941304084758808429",
+     "url": "",
+     "date": "2026-10-30",
+     "heure": "18:50"
+    },
+    "facebook": {
+     "uuid": "-864355597035156839",
+     "url": "",
+     "date": "2026-10-30",
+     "heure": "19:50"
+    }
+   }
   },
   {
    "id": "TR-2910-438-v3",
@@ -665,7 +705,27 @@
    "legende": "Maison de famille ou lieu de mariages, tu en ferais quoi ? 🏰 18 pièces, 7 chambres, un parc et un étang près de Beaune.\n",
    "source": "monteur",
    "uuid": "-2152423734831922865",
-   "statut": "publie"
+   "statut": "publie",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "-3881939580977656464",
+     "url": "",
+     "date": "2026-10-29",
+     "heure": "22:35"
+    },
+    "youtube": {
+     "uuid": "-3442585348334465583",
+     "url": "",
+     "date": "2026-10-30",
+     "heure": "19:50"
+    },
+    "facebook": {
+     "uuid": "6555258164909391978",
+     "url": "",
+     "date": "2026-10-30",
+     "heure": "20:50"
+    }
+   }
   },
   {
    "id": "TR-2910-438-v4",
