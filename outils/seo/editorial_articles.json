@@ -1270,5 +1270,261 @@
     "description": "Accès du chantier, terrassement, eaux et soutènement : posez les mêmes hypothèses avant de comparer deux terrains ou deux devis.",
     "language": "fr",
     "group": "terrain"
+  },
+  {
+    "id": "CHT-004",
+    "path": "/conseils-vendeurs/chateau-objets-proteges-transmission/",
+    "title": "Vendre un château avec des objets protégés : lesquels restent ?",
+    "description": "Tableaux, décors ou mobilier protégés : rapprocher les pièces, les intentions de vente et les démarches avant de promettre ce qui restera.",
+    "language": "fr",
+    "group": "chateaux"
+  },
+  {
+    "id": "COM-21200-FR",
+    "path": "/conseils-vendeurs/couchey-choisir-ventes-comparables-maison/",
+    "title": "Couchey : quelles ventes comparer à votre maison ?",
+    "description": "Ancien bourg, pavillon, proximité de Dijon : choisir des références cohérentes pour estimer une maison à Couchey, sans mélanger les marchés.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21442-FR",
+    "path": "/conseils-vendeurs/morey-saint-denis-maison-identite-viticole/",
+    "title": "Morey-Saint-Denis : vendre une maison, pas une étiquette",
+    "description": "À Morey-Saint-Denis, racontez le cadre des clos et les bâtiments de votre propriété sans confondre une maison, un domaine et une activité viticole.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21133-FR",
+    "path": "/conseils-vendeurs/chambolle-musigny-maison-grone-eaux-pluie/",
+    "title": "Chambolle-Musigny : une maison et la mémoire du Grône",
+    "description": "La mémoire du Grône aide à poser de bonnes questions à Chambolle-Musigny : distinguer histoire du village, informations de parcelle et état de la maison.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21714-FR",
+    "path": "/conseils-vendeurs/vosne-romanee-vendre-maison-bail-habitation/",
+    "title": "Vosne-Romanée : vendre une maison déjà louée",
+    "description": "Vendre une maison avec un bail d’habitation à Vosne-Romanée : annoncer sa disponibilité réelle et expliquer ce que l’acquéreur reprend.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21461-FR",
+    "path": "/conseils-vendeurs/nolay-maison-histoire-usages-anciens/",
+    "title": "Nolay : retrouver les usages anciens de votre maison",
+    "description": "À Nolay, l’histoire des métiers peut éclairer une maison. Apprenez à relier archives, traces visibles et usages actuels sans inventer son passé.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21698-FR",
+    "path": "/conseils-vendeurs/villers-la-faye-maison-perron-escalier-exterieur/",
+    "title": "Villers-la-Faye : le perron fait partie de la maison",
+    "description": "À Villers-la-Faye, le logis au-dessus du cellier et son escalier extérieur donnent une organisation particulière à expliquer avant la vente.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21541-FR",
+    "path": "/conseils-vendeurs/saint-aubin-maison-chemins-gamay/",
+    "title": "Saint-Aubin : montrer les chemins autour de la maison",
+    "description": "À Saint-Aubin et Gamay, reliez votre maison aux chemins réellement accessibles, en distinguant cadre de promenade, trajet d’approche et espaces privés.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21512-FR",
+    "path": "/conseils-vendeurs/puligny-montrachet-blagny-bourg-situer-maison/",
+    "title": "De Blagny aux places de Puligny : situer votre maison",
+    "description": "Bourg de Puligny, Blagny, places et chemins : donnez des repères précis à l’acquéreur pour qu’il comprenne où se trouve réellement votre maison.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21606-FR",
+    "path": "/conseils-vendeurs/ladoix-serrigny-maison-ambiance-sonore/",
+    "title": "Ladoix-Serrigny : écouter la maison avant sa mise en vente",
+    "description": "Dans une maison à Ladoix-Serrigny, l’ambiance varie entre façade, pièces et jardin. Préparez une visite qui permet de l’apprécier dans des conditions claires.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "UK-001-EN",
+    "path": "/en/selling-england-buying-france-when-bound/",
+    "title": "Selling in England, buying in France: when are you bound?",
+    "description": "Distinguish an accepted offer, exchange of contracts and the French preliminary contract before linking your sale to a Burgundy purchase.",
+    "language": "en",
+    "group": "uk"
+  },
+  {
+    "id": "UK-002-EN",
+    "path": "/en/pounds-euros-who-protects-property-funds/",
+    "title": "Pounds to euros: who protects your property funds?",
+    "description": "Identify a UK payment provider, its permissions and the protection of your funds before comparing currency services for a Burgundy purchase.",
+    "language": "en",
+    "group": "uk"
+  },
+  {
+    "id": "UK-003-EN",
+    "path": "/en/freehold-copropriete-translating-property-rights/",
+    "title": "Freehold and copropriété: translating the rights",
+    "description": "Separate duration, ownership and building management when comparing English property terms with a French copropriété.",
+    "language": "en",
+    "group": "uk"
+  },
+  {
+    "id": "UK-004-EN",
+    "path": "/en/burgundy-home-dog-great-britain-visits/",
+    "title": "A Burgundy home with your dog: plan both border crossings",
+    "description": "Plan documents, the return vet appointment and practical arrangements at your Burgundy home when visiting with a dog from Great Britain.",
+    "language": "en",
+    "group": "uk"
+  },
+  {
+    "id": "UK-005-EN",
+    "path": "/en/solicitor-notaire-agree-advice-scope/",
+    "title": "Solicitor and notaire: agree the scope before you pay",
+    "description": "Read the scope of additional UK legal advice for a Burgundy purchase: the law covered, work delivered, person responsible and costs.",
+    "language": "en",
+    "group": "uk"
+  },
+  {
+    "id": "UK-001",
+    "path": "/conseils-vendeurs/vente-angleterre-achat-france-engagement/",
+    "title": "Vente anglaise et achat français : quand êtes-vous engagé ?",
+    "description": "Offre acceptée, exchange of contracts et compromis : comprendre les engagements avant de relier une vente anglaise à un achat en Bourgogne.",
+    "language": "fr",
+    "group": "uk"
+  },
+  {
+    "id": "UK-002",
+    "path": "/conseils-vendeurs/change-livres-euros-protection-fonds/",
+    "title": "Changer des livres en euros : qui protège les fonds ?",
+    "description": "Avant un achat en Bourgogne, identifier le prestataire britannique, ses permissions et la protection des fonds, au-delà du taux de change.",
+    "language": "fr",
+    "group": "uk"
+  },
+  {
+    "id": "UK-003",
+    "path": "/conseils-vendeurs/freehold-leasehold-copropriete-traduction-droits/",
+    "title": "Freehold ou copropriété : traduire sans changer les droits",
+    "description": "Un appartement français n’est pas un leasehold traduit. Comprendre durée, propriété et gestion avant de comparer les termes anglais et français.",
+    "language": "fr",
+    "group": "uk"
+  },
+  {
+    "id": "UK-004",
+    "path": "/conseils-vendeurs/maison-bourgogne-chien-grande-bretagne-sejours/",
+    "title": "Bourgogne : venir de Grande-Bretagne avec son chien",
+    "description": "Préparer les séjours avec un chien depuis la Grande-Bretagne : documents d’entrée, rendez-vous du retour et accueil dans la maison.",
+    "language": "fr",
+    "group": "uk"
+  },
+  {
+    "id": "UK-005",
+    "path": "/conseils-vendeurs/solicitor-notaire-definir-mission-conseil/",
+    "title": "Solicitor et notaire : définir la mission avant de payer",
+    "description": "Pour un achat en Bourgogne depuis le Royaume-Uni, lire la mission du solicitor : droit couvert, livrable, interlocuteur et coût du conseil.",
+    "language": "fr",
+    "group": "uk"
+  },
+  {
+    "id": "US-007-EN",
+    "path": "/en/us-home-sale-source-of-funds-french-notaire/",
+    "title": "US home sale proceeds: explain the funds to a French notaire",
+    "description": "Use the final settlement statement, bank credit and any Form 1099-S to explain US home sale proceeds for a Burgundy purchase.",
+    "language": "en",
+    "group": "us"
+  },
+  {
+    "id": "US-007",
+    "path": "/conseils-vendeurs/vente-americaine-origine-fonds-notaire/",
+    "title": "Vente américaine : expliquer l’origine des fonds au notaire",
+    "description": "1099-S, décompte final et relevé bancaire : relier le produit d’une vente américaine aux fonds de votre achat en Bourgogne.",
+    "language": "fr",
+    "group": "us"
+  },
+  {
+    "id": "MP-001",
+    "path": "/conseils-vendeurs/vente-murs-loues-priorite-locataire/",
+    "title": "Vendre des murs loués : votre locataire doit-il recevoir une offre en premier ?",
+    "description": "Avant de vendre des murs occupés, qualifier le local et l’opération, préparer les notifications utiles et distinguer les droits de préemption.",
+    "language": "fr",
+    "group": "murs_professionnels"
+  },
+  {
+    "id": "MP-002",
+    "path": "/conseils-vendeurs/vente-murs-etat-locatif-loyers-dus-recus/",
+    "title": "Loyers dus, loyers reçus : l’état locatif qui explique les écarts",
+    "description": "Préparer un état locatif daté qui relie chaque échéance à son règlement, distingue les arriérés et garde les dépôts de garantie à part.",
+    "language": "fr",
+    "group": "murs_professionnels"
+  },
+  {
+    "id": "MP-003",
+    "path": "/conseils-vendeurs/murs-loues-franchise-remise-loyer-vente/",
+    "title": "Une franchise de loyer ne se lit pas dans le seul loyer annuel",
+    "description": "Montrer l’effet d’une franchise ou d’une remise sur les loyers de la période vendue, sans confondre économie contractuelle et impayé.",
+    "language": "fr",
+    "group": "murs_professionnels"
+  },
+  {
+    "id": "MP-004",
+    "path": "/conseils-vendeurs/vente-murs-indexation-loyer-oubliee/",
+    "title": "L’indexation du loyer a été oubliée : que montrer avant de vendre ?",
+    "description": "Retrouver la clause, les indices et l’historique avant de chiffrer une indexation non appliquée ou de présenter un revenu révisé.",
+    "language": "fr",
+    "group": "murs_professionnels"
+  },
+  {
+    "id": "MP-005",
+    "path": "/conseils-vendeurs/vente-murs-commerciaux-charges-refacturees/",
+    "title": "Charges du local commercial : ce que le locataire rembourse vraiment",
+    "description": "Relier les dépenses aux clauses du bail et aux régularisations pour présenter les charges réellement supportées par le propriétaire.",
+    "language": "fr",
+    "group": "murs_professionnels"
+  },
+  {
+    "id": "VF-001",
+    "path": "/conseils-vendeurs/vendre-commerce-apres-cloture-comptes/",
+    "title": "Vendre son commerce après la clôture : ne pas attendre un bilan de plus",
+    "description": "Préparer la vente d’un fonds avec un calendrier de pièces : comptes clos, activité récente et mises à jour clairement datées.",
+    "language": "fr",
+    "group": "vente_fonds"
+  },
+  {
+    "id": "VF-002",
+    "path": "/conseils-vendeurs/prix-fonds-commerce-clientele-materiel-stock/",
+    "title": "Clientèle, matériel, stock : que contient vraiment le prix du fonds ?",
+    "description": "Lire une proposition de prix en séparant les éléments du fonds, le stock et les dépenses de reprise, sans compter deux fois le matériel.",
+    "language": "fr",
+    "group": "vente_fonds"
+  },
+  {
+    "id": "VF-003",
+    "path": "/conseils-vendeurs/vente-fonds-remuneration-dirigeant-resultat/",
+    "title": "Votre rémunération explique-t-elle une partie du résultat du commerce ?",
+    "description": "Faire apparaître le travail du dirigeant et son coût dans la lecture du résultat, avant de comparer deux commerces ou de discuter un prix.",
+    "language": "fr",
+    "group": "vente_fonds"
+  },
+  {
+    "id": "VF-004",
+    "path": "/conseils-vendeurs/vente-fonds-expliquer-annee-inhabituelle/",
+    "title": "Une année inhabituelle dans les comptes : comment l’expliquer au repreneur",
+    "description": "Présenter une fermeture, une grosse commande ou une aide sans réécrire les comptes : faits datés, effets constatés et hypothèses séparées.",
+    "language": "fr",
+    "group": "vente_fonds"
+  },
+  {
+    "id": "VF-005",
+    "path": "/conseils-vendeurs/vente-fonds-rapprocher-caisse-banque-chiffre-affaires/",
+    "title": "Caisse, banque, chiffre d’affaires : suivre le même euro jusqu’aux comptes",
+    "description": "Comprendre les écarts entre ventes, règlements et banque avec un parcours de vérification documenté avant la vente d’un commerce.",
+    "language": "fr",
+    "group": "vente_fonds"
   }
 ]
