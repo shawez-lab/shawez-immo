@@ -58,7 +58,27 @@
    "enregistrements": 2,
    "commentaires": 4,
    "mesure_le": "2026-10-29T13:25",
-   "verdict": "gagnant"
+   "verdict": "gagnant",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "-6562320690249709591",
+     "url": "",
+     "date": "2026-10-29",
+     "heure": "17:50"
+    },
+    "youtube": {
+     "uuid": "9054900003636396038",
+     "url": "",
+     "date": "2026-10-29",
+     "heure": "17:50"
+    },
+    "facebook": {
+     "uuid": "8767191933142518523",
+     "url": "",
+     "date": "2026-10-29",
+     "heure": "17:50"
+    }
+   }
   },
   {
    "id": "TR-2810-483-v2",
@@ -121,7 +141,27 @@
    "enregistrements": 1,
    "commentaires": 0,
    "mesure_le": "2026-10-29T13:25",
-   "verdict": "gagnant"
+   "verdict": "gagnant",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "-1378103029923033347",
+     "url": "",
+     "date": "2026-10-29",
+     "heure": "18:10"
+    },
+    "youtube": {
+     "uuid": "-1271790699746606495",
+     "url": "",
+     "date": "2026-10-29",
+     "heure": "18:50"
+    },
+    "facebook": {
+     "uuid": "-6280628510384111059",
+     "url": "",
+     "date": "2026-10-29",
+     "heure": "18:50"
+    }
+   }
   },
   {
    "id": "TR-2810-483-v3",
@@ -163,7 +203,27 @@
    "enregistrements": 0,
    "commentaires": 2,
    "mesure_le": "2026-10-29T13:25",
-   "verdict": "gagnant"
+   "verdict": "gagnant",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "-8213754864690443752",
+     "url": "",
+     "date": "2026-10-29",
+     "heure": "18:30"
+    },
+    "youtube": {
+     "uuid": "4775245741187485646",
+     "url": "",
+     "date": "2026-10-29",
+     "heure": "19:50"
+    },
+    "facebook": {
+     "uuid": "-3971008832205077928",
+     "url": "",
+     "date": "2026-10-29",
+     "heure": "19:50"
+    }
+   }
   },
   {
    "id": "TR-2810-461-v3",
@@ -184,7 +244,27 @@
    "enregistrements": 0,
    "commentaires": 0,
    "mesure_le": "2026-10-29T13:25",
-   "verdict": "en_cours"
+   "verdict": "en_cours",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "3850015534146928986",
+     "url": "",
+     "date": "2026-10-29",
+     "heure": "18:50"
+    },
+    "youtube": {
+     "uuid": "7906136330278817368",
+     "url": "",
+     "date": "2026-10-29",
+     "heure": "20:50"
+    },
+    "facebook": {
+     "uuid": "7696994137443354648",
+     "url": "",
+     "date": "2026-10-29",
+     "heure": "20:50"
+    }
+   }
   },
   {
    "id": "TR-2810-438-v3",
@@ -268,7 +348,27 @@
    "enregistrements": 0,
    "commentaires": 0,
    "mesure_le": "2026-10-29T13:25",
-   "verdict": "en_cours"
+   "verdict": "en_cours",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "-2638503749886392970",
+     "url": "",
+     "date": "2026-10-29",
+     "heure": "19:10"
+    },
+    "youtube": {
+     "uuid": "-5163519374603366477",
+     "url": "",
+     "date": "2026-10-29",
+     "heure": "21:50"
+    },
+    "facebook": {
+     "uuid": "-3994830245093487890",
+     "url": "",
+     "date": "2026-10-29",
+     "heure": "21:50"
+    }
+   }
   },
   {
    "id": "TR-2810-defi-c",
@@ -310,7 +410,27 @@
    "enregistrements": 1,
    "commentaires": 2,
    "mesure_le": "2026-10-29T13:25",
-   "verdict": "gagnant"
+   "verdict": "gagnant",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "-4983719279739189388",
+     "url": "",
+     "date": "2026-10-29",
+     "heure": "19:30"
+    },
+    "youtube": {
+     "uuid": "3314546980030924269",
+     "url": "",
+     "date": "2026-10-29",
+     "heure": "22:50"
+    },
+    "facebook": {
+     "uuid": "6558980746364797404",
+     "url": "",
+     "date": "2026-10-29",
+     "heure": "22:50"
+    }
+   }
   },
   {
    "id": "TR-2810-483-v5",
@@ -345,7 +465,27 @@
    "source": "boss",
    "statut": "publie",
    "uuid": "1177359474314594583",
-   "url": "https://www.instagram.com/reel/DfElWOpn26j/"
+   "url": "https://www.instagram.com/reel/DfElWOpn26j/",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "6784842438307300752",
+     "url": "",
+     "date": "2026-10-29",
+     "heure": "19:50"
+    },
+    "youtube": {
+     "uuid": "6848776511631148254",
+     "url": "",
+     "date": "2026-10-29",
+     "heure": "23:50"
+    },
+    "facebook": {
+     "uuid": "4565258769312202943",
+     "url": "",
+     "date": "2026-10-29",
+     "heure": "23:50"
+    }
+   }
   },
   {
    "id": "TR-2910-525-a",
@@ -359,7 +499,27 @@
    "source": "boss",
    "statut": "publie",
    "uuid": "-4327795066208566600",
-   "url": "https://www.instagram.com/reel/DfEwPbLklFY/"
+   "url": "https://www.instagram.com/reel/DfEwPbLklFY/",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "-4257173081808616703",
+     "url": "",
+     "date": "2026-10-29",
+     "heure": "20:10"
+    },
+    "youtube": {
+     "uuid": "-2281971393482374437",
+     "url": "",
+     "date": "2026-10-30",
+     "heure": "00:50"
+    },
+    "facebook": {
+     "uuid": "8534757249123500486",
+     "url": "",
+     "date": "2026-10-30",
+     "heure": "00:50"
+    }
+   }
   },
   {
    "id": "TR-2910-525-b",
@@ -373,7 +533,27 @@
    "source": "boss",
    "statut": "publie",
    "uuid": "7828497576474659966",
-   "url": "https://www.instagram.com/reel/DfE2z4Vgeen/"
+   "url": "https://www.instagram.com/reel/DfE2z4Vgeen/",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "-7082639150964847677",
+     "url": "",
+     "date": "2026-10-29",
+     "heure": "20:30"
+    },
+    "youtube": {
+     "uuid": "2110829716607028293",
+     "url": "",
+     "date": "2026-10-30",
+     "heure": "01:50"
+    },
+    "facebook": {
+     "uuid": "-2054167706697121620",
+     "url": "",
+     "date": "2026-10-30",
+     "heure": "13:05"
+    }
+   }
   },
   {
    "id": "TR-2910-527-b",
@@ -400,7 +580,27 @@
    "legende": "Tu vois une façade de cuisine. Pourtant, une porte s’y cache.",
    "source": "boss",
    "statut": "publie",
-   "uuid": "-2728554632010578156"
+   "uuid": "-2728554632010578156",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "5437722352751756006",
+     "url": "",
+     "date": "2026-10-29",
+     "heure": "20:50"
+    },
+    "youtube": {
+     "uuid": "-8230998530323035974",
+     "url": "",
+     "date": "2026-10-30",
+     "heure": "02:50"
+    },
+    "facebook": {
+     "uuid": "1780287766932899287",
+     "url": "",
+     "date": "2026-10-30",
+     "heure": "17:50"
+    }
+   }
   },
   {
    "id": "TR-3010-525-a",
