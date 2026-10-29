@@ -13,9 +13,15 @@ Fichiers :
   outils/trial-reels/registre.json  une entrée par Trial Reel programmé : écrite par le Monteur au moment
                                     de la programmation, complétée par le Juge (adresse, vues, verdict).
   outils/trial-reels/juge.json      le verdict, réécrit à chaque passage du Juge.
-  mesures.tsv (écrit par le Juge à partir de Metricool, une ligne par reel, séparateur tabulation) :
-      cle  vues  duree_moy  partages  enregistrements  commentaires
-      cle = adresse du reel (https://www.instagram.com/reel/XXXX/) ou id du registre (TR-...).
+  mesures.tsv (écrit par le Juge à partir de Metricool, une ligne par vidéo, séparateur tabulation) :
+      cle  vues  duree_moy  partages  enregistrements  commentaires  [reseau]
+      cle = adresse de la vidéo (Instagram, TikTok, YouTube ou Facebook), id du registre (TR-...) ou uuid Metricool
+            de la diffusion ; reseau = instagram (défaut), tiktok, youtube ou facebook.
+  Depuis le 29/10/2026 (Shawez : « 50 réels par jour », impossible sur Instagram seul), chaque Trial Reel est aussi
+  diffusée sur TikTok, YouTube Shorts et Facebook Reels par l'agent Diffuseur, qui note dans l'entrée du registre
+  « diffusions » : {"tiktok": {"uuid", "url", "date", "heure"}, "youtube": {...}, "facebook": {...}}.
+  Le Juge juge chaque réseau avec sa propre médiane : une version est gagnante dès qu'elle gagne sur un réseau,
+  perdante seulement si elle perd partout où elle a été mesurée. Les styles et les biens sont jugés sur ce verdict global.
   leads.tsv (facultatif) : ref  nombre_de_messages_prives   (table D1 dm_instagram, fenêtre de 14 jours)
 
 Rien n'est jamais « dé-interdit » automatiquement : un style interdit le reste tant que Shawez
@@ -41,6 +47,10 @@ GAGNANT_MIN = 1000      # gagnant : au moins 1 000 vues…
 GAGNANT_X = 3           # … et au moins 3 fois la médiane
 PERDANT_MIN = 300       # perdant : moins de 300 vues…
 PERDANT_X = 2           # … ou moins de 2 fois la médiane (le plus haut des deux seuils)
+RESEAUX = ['instagram', 'tiktok', 'youtube', 'facebook']
+MEDIANE_MIN_N = 4        # médiane d'un réseau calculée à partir de 4 vidéos mûres
+MINIMUMS = {             # (gagnant : vues au moins, perdant : vues en dessous) par réseau, en plus de la médiane
+    'instagram': (GAGNANT_MIN, PERDANT_MIN), 'tiktok': (1000, 300), 'youtube': (500, 150), 'facebook': (500, 150)}
 STYLE_BAN_N = 2         # style interdit dès 2 versions jugées sans gagnant, avec 2/3 de perdants
 BIEN_PAUSE_N = 4        # bien en pause après 4 versions jugées sans gagnant ni message privé
 PAUSE_JOURS = 14
@@ -123,20 +133,38 @@ def nombre(x):
     return float(x.replace(',', '.'))
 
 
+def cle_normale(cle, reseau='instagram'):
+    """Ramène une adresse à une forme unique par réseau (même vidéo, même clé)."""
+    cle = (cle or '').strip()
+    m = re.search(r"instagram\.com/reels?/([A-Za-z0-9_-]+)", cle)
+    if m:
+        return 'https://www.instagram.com/reel/%s/' % m.group(1)
+    m = re.search(r"tiktok\.com/.*?/video/(\d+)", cle)
+    if m:
+        return 'tiktok:%s' % m.group(1)
+    m = re.search(r"(?:youtu\.be/|youtube\.com/(?:shorts/|watch\?v=|embed/))([A-Za-z0-9_-]{6,})", cle)
+    if m:
+        return 'youtube:%s' % m.group(1)
+    m = re.search(r"facebook\.com/.*?(?:reel|videos)/(\d+)", cle)
+    if m:
+        return 'facebook:%s' % m.group(1)
+    return cle
+
+
 def lire_mesures(chemin):
-    mesures = {}
+    """{reseau: {cle: mesure}} ; une 7e colonne facultative donne le réseau (instagram par défaut)."""
+    mesures = {r: {} for r in RESEAUX}
     with open(chemin, encoding='utf-8') as f:
         for ligne in f:
             ligne = ligne.rstrip('\n')
             if not ligne.strip() or ligne.startswith('#') or ligne.lower().startswith('cle'):
                 continue
             c = ligne.split('\t')
-            c += [''] * (6 - len(c))
-            cle = c[0].strip()
-            m = re.search(r"instagram\.com/reels?/([A-Za-z0-9_-]+)", cle)
-            if m:
-                cle = 'https://www.instagram.com/reel/%s/' % m.group(1)
-            mesures[cle] = {
+            c += [''] * (7 - len(c))
+            reseau = (c[6].strip().lower() or 'instagram')
+            if reseau not in mesures:
+                continue
+            mesures[reseau][cle_normale(c[0], reseau)] = {
                 'vues': int(nombre(c[1])), 'duree_moy': round(nombre(c[2]), 2), 'partages': int(nombre(c[3])),
                 'enregistrements': int(nombre(c[4])), 'commentaires': int(nombre(c[5])),
             }
@@ -159,6 +187,26 @@ def quand(v):
     return dt.datetime.strptime('%s %s' % (v['date'], v.get('heure', '00:00')), '%Y-%m-%d %H:%M')
 
 
+def quand_reseau(v, reseau):
+    d = (v.get('diffusions') or {}).get(reseau) or {}
+    if reseau == 'instagram' or not d.get('date'):
+        return quand(v)
+    return dt.datetime.strptime('%s %s' % (d['date'], d.get('heure', '00:00')), '%Y-%m-%d %H:%M')
+
+
+def verdict_reseau(vues, age_h, mediane, reseau):
+    g_min, p_min = MINIMUMS[reseau]
+    seuil_g = max(g_min, GAGNANT_X * mediane)
+    seuil_p = max(p_min, PERDANT_X * mediane)
+    if vues >= seuil_g:
+        return 'gagnant'
+    if age_h < AGE_MIN_H:
+        return 'en_cours'
+    if vues < seuil_p:
+        return 'perdant'
+    return 'moyen'
+
+
 def juger(args):
     maintenant = (dt.datetime.strptime(args.maintenant, '%Y-%m-%dT%H:%M') if args.maintenant
                   else dt.datetime.now(ZoneInfo('Europe/Paris')).replace(tzinfo=None, second=0, microsecond=0))
@@ -168,28 +216,61 @@ def juger(args):
     leads = lire_leads(args.leads)
     debut = maintenant - dt.timedelta(days=FENETRE_JOURS)
 
-    # 1. Rattacher les mesures au registre (par id, puis par adresse du reel).
+    # 1. Rattacher les mesures au registre : Instagram par id, uuid ou adresse ; les autres réseaux par
+    #    l'adresse ou l'uuid notés dans « diffusions », ou par l'id du registre.
+    horodatage = maintenant.strftime('%Y-%m-%dT%H:%M')
     for v in registre['versions']:
-        m = mesures.get(v['id']) or (mesures.get(v.get('url')) if v.get('url') else None)
+        mi = mesures['instagram']
+        m = mi.get(v['id']) or (mi.get(cle_normale(v.get('url'))) if v.get('url') else None) or mi.get(str(v.get('uuid', '')))
         if m:
             v.update(m)
-            v['mesure_le'] = maintenant.strftime('%Y-%m-%dT%H:%M')
+            v['mesure_le'] = horodatage
+        for reseau in RESEAUX[1:]:
+            d = (v.get('diffusions') or {}).get(reseau) or {}
+            mr = mesures[reseau]
+            m = (mr.get(cle_normale(d.get('url'), reseau)) if d.get('url') else None) or mr.get(str(d.get('uuid', ''))) or mr.get(v['id'])
+            if m:
+                v.setdefault('reseaux', {})[reseau] = dict(m, mesure_le=horodatage)
+
+    def mesure(v, reseau):
+        if reseau == 'instagram':
+            return v if 'vues' in v else None
+        return (v.get('reseaux') or {}).get(reseau)
 
     jugeables = [v for v in registre['versions']
-                 if v.get('statut', 'publie') == 'publie' and 'vues' in v and debut <= quand(v) <= maintenant]
-    murs = [v for v in jugeables if (maintenant - quand(v)).total_seconds() >= AGE_MIN_H * 3600]
-    mediane = statistics.median([v['vues'] for v in murs]) if murs else 0
+                 if v.get('statut', 'publie') == 'publie' and debut <= quand(v) <= maintenant
+                 and any(mesure(v, r) for r in RESEAUX)]
+    medianes = {}
+    for reseau in RESEAUX:
+        murs = [mesure(v, reseau)['vues'] for v in jugeables if mesure(v, reseau)
+                and (maintenant - quand_reseau(v, reseau)).total_seconds() >= AGE_MIN_H * 3600]
+        # Moins de 4 vidéos mûres sur un réseau : pas de médiane fiable, seuls les minimums comptent.
+        medianes[reseau] = statistics.median(murs) if len(murs) >= MEDIANE_MIN_N else 0
+    mediane = medianes['instagram']
     seuil_g = max(GAGNANT_MIN, GAGNANT_X * mediane)
     seuil_p = max(PERDANT_MIN, PERDANT_X * mediane)
 
-    # 2. Verdict par version.
+    # 2. Verdict par version : par réseau, puis global (gagnant quelque part = gagnant ;
+    #    perdant partout où c'est mûr = perdant ; rien de mûr = en cours).
     for v in jugeables:
-        age_h = (maintenant - quand(v)).total_seconds() / 3600
-        if v['vues'] >= seuil_g:
+        verdicts = {}
+        for reseau in RESEAUX:
+            m = mesure(v, reseau)
+            if not m:
+                continue
+            age_h = (maintenant - quand_reseau(v, reseau)).total_seconds() / 3600
+            verdicts[reseau] = verdict_reseau(m['vues'], age_h, medianes[reseau], reseau)
+            if reseau != 'instagram':
+                m['verdict'] = verdicts[reseau]
+        v['verdicts'] = verdicts
+        v['vues_total'] = sum(mesure(v, r)['vues'] for r in RESEAUX if mesure(v, r))
+        v.setdefault('vues', 0)
+        murs = [x for x in verdicts.values() if x != 'en_cours']
+        if 'gagnant' in verdicts.values():
             v['verdict'] = 'gagnant'
-        elif age_h < AGE_MIN_H:
+        elif not murs:
             v['verdict'] = 'en_cours'
-        elif v['vues'] < seuil_p:
+        elif all(x == 'perdant' for x in murs):
             v['verdict'] = 'perdant'
         else:
             v['verdict'] = 'moyen'
@@ -215,11 +296,11 @@ def juger(args):
             statut = 'a_tester'
         else:
             statut = 'neutre'
-        meilleure = max(vs, key=lambda x: x['vues']) if vs else None
+        meilleure = max(vs, key=lambda x: x.get('vues_total', x['vues'])) if vs else None
         styles[nom] = {
             'definition': definition, 'statut': statut, 'versions_jugees': n, 'gagnants': g, 'perdants': p,
             'mediane_vues': int(statistics.median([x['vues'] for x in vs])) if vs else None,
-            'meilleure': {'id': meilleure['id'], 'vues': meilleure['vues']} if meilleure else None,
+            'meilleure': {'id': meilleure['id'], 'vues': meilleure.get('vues_total', meilleure['vues'])} if meilleure else None,
         }
 
     # 4. Verdict par bien.
@@ -240,7 +321,7 @@ def juger(args):
         }
 
     recents = sorted([v for v in jugeables if v['verdict'] == 'gagnant' and (maintenant - quand(v)).days <= 3],
-                     key=lambda x: -x['vues'])
+                     key=lambda x: -x.get('vues_total', x['vues']))
     gagnants_styles = [s for s, d in styles.items() if d['statut'] == 'gagnant']
     a_tester = [s for s, d in styles.items() if d['statut'] in ('a_tester', 'neutre') and s != 'autre']
 
@@ -255,7 +336,11 @@ def juger(args):
             'quota_du_jour': 'au moins %d %% des versions du jour dans un style gagnant, au plus %d %% dans un style à tester, zéro dans un style interdit ; 15 Trial Reels au plus sur 24 heures glissantes' % (QUOTA_GAGNANTS, TESTS_MAX),
         },
         'seuils': {'mediane_vues': int(mediane), 'gagnant_des': int(seuil_g), 'perdant_sous': int(seuil_p),
-                   'versions_jugees': len(juges), 'versions_en_cours': len(jugeables) - len(juges)},
+                   'versions_jugees': len(juges), 'versions_en_cours': len(jugeables) - len(juges),
+                   'par_reseau': {r: {'mediane_vues': int(medianes[r]),
+                                      'gagnant_des': int(max(MINIMUMS[r][0], GAGNANT_X * medianes[r])),
+                                      'perdant_sous': int(max(MINIMUMS[r][1], PERDANT_X * medianes[r])),
+                                      'versions_mesurees': sum(1 for v in jugeables if mesure(v, r))} for r in RESEAUX}},
         'styles_gagnants': gagnants_styles,
         'styles_a_tester': a_tester,
         'styles_interdits': sorted(interdits),
@@ -264,6 +349,7 @@ def juger(args):
         'styles': styles,
         'biens': biens,
         'gagnants_recents': [{'id': v['id'], 'ref': v.get('ref'), 'style': v.get('style'), 'vues': v['vues'],
+                              'vues_total': v.get('vues_total', v['vues']), 'gagnant_sur': [r for r, x in v.get('verdicts', {}).items() if x == 'gagnant'],
                               'url': v.get('url'), 'date': v['date']} for v in recents],
         'consigne_monteur': ("Chaque version porte un « style » de la liste. Jamais un style de styles_interdits, jamais un bien de biens_en_pause. "
                              "Au moins %d %% des versions du jour dans styles_gagnants (sur les biens les plus forts), au plus %d %% dans styles_a_tester. "
@@ -278,14 +364,20 @@ def juger(args):
     # Résumé lisible, recopié par l'agent dans le doc Croissance pour Codex.
     jj = maintenant.strftime('%d/%m')
     lignes = ['=== JUGE %s ===' % jj,
-              'Médiane des Trial Reels sur %d jours : %d vues. Gagnant dès %d vues, perdant sous %d vues après %d h. %d versions jugées.'
+              'Médiane des Trial Reels Instagram sur %d jours : %d vues. Gagnant dès %d vues, perdant sous %d vues après %d h. %d versions jugées.'
               % (FENETRE_JOURS, mediane, seuil_g, seuil_p, AGE_MIN_H, len(juges))]
+    for r in RESEAUX[1:]:
+        n = sum(1 for v in jugeables if mesure(v, r))
+        if n:
+            lignes.append('%s : %d vidéos mesurées, médiane %d vues, gagnant dès %d, perdant sous %d.' % (
+                r.capitalize(), n, medianes[r], max(MINIMUMS[r][0], GAGNANT_X * medianes[r]), max(MINIMUMS[r][1], PERDANT_X * medianes[r])))
     lignes.append('STYLES GAGNANTS : ' + (', '.join('%s (%d/%d gagnants)' % (s, styles[s]['gagnants'], styles[s]['versions_jugees']) for s in gagnants_styles) or 'aucun encore'))
     lignes.append('À TESTER, 2 par jour au plus : ' + (', '.join(a_tester) or 'aucun'))
     lignes.append('INTERDITS, plus jamais publiés : ' + (', '.join('%s (%s)' % (s, interdits[s]['raison']) for s in sorted(interdits)) or 'aucun'))
     lignes.append('BIENS EN PAUSE : ' + (', '.join('%s jusqu\'au %s' % (r, p['jusqu_au']) for r, p in sorted(pauses.items())) or 'aucun'))
     for v in recents[:5]:
-        lignes.append('GAGNANT %s : %d vues, style %s, %s' % (v['id'], v['vues'], v.get('style'), v.get('url') or ''))
+        lignes.append('GAGNANT %s : %d vues (%s), style %s, %s' % (v['id'], v.get('vues_total', v['vues']),
+                      ', '.join('%s %d' % (r, mesure(v, r)['vues']) for r in RESEAUX if mesure(v, r)), v.get('style'), v.get('url') or ''))
     print('\n'.join(lignes))
 
 
