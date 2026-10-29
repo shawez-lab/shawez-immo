@@ -990,5 +990,285 @@
     "description": "Comparer les rôles du propriétaire et de l’exploitant, puis obtenir des réponses écrites sur les biens, les garanties et les dates de couverture.",
     "language": "fr",
     "group": "location_fonds"
+  },
+  {
+    "id": "COM-21270-FR",
+    "path": "/conseils-vendeurs/flavignerot-maison-lumiere-saisons/",
+    "title": "Flavignerot : raconter la lumière de votre maison",
+    "description": "À Flavignerot, préparez un carnet de lumière pour montrer votre maison au fil de la journée et distinguer soleil observé, ombre et vues végétales.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21192-FR",
+    "path": "/conseils-vendeurs/corcelles-les-monts-vue-maison-cadrage/",
+    "title": "Corcelles-les-Monts : montrer la vue depuis chez vous",
+    "description": "Vendre à Corcelles-les-Monts : distinguez les panoramas de promenade des vues réelles de votre maison, avec une fiche de cadrage pièce par pièce.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21003-FR",
+    "path": "/conseils-vendeurs/ahuy-maison-rue-seuil-intimite/",
+    "title": "Ahuy : présenter une maison qui s’ouvre sur la rue",
+    "description": "À Ahuy, observez le seuil, les ouvertures et les espaces de transition pour présenter honnêtement l’intimité d’une maison donnant sur la rue.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21265-FR",
+    "path": "/conseils-vendeurs/fixin-maison-retour-balade-rangements/",
+    "title": "Fixin : une maison pensée pour les retours de balade",
+    "description": "À Fixin, montrez le trajet du retour de promenade : entrée, chaussures, manteaux et rangement. Un exercice concret pour préparer votre vente.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21110-FR",
+    "path": "/conseils-vendeurs/brochon-maison-plan-points-eau/",
+    "title": "Brochon : préparer le plan des points d’eau de la maison",
+    "description": "À Brochon, préparez un plan simple des points d’eau, équipements et documents connus pour répondre clairement aux questions des futurs acquéreurs.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21010-FR",
+    "path": "/conseils-vendeurs/aloxe-corton-maison-cave-usage-rangement/",
+    "title": "Aloxe-Corton : rendre une cave facile à comprendre",
+    "description": "Une cave à Aloxe-Corton se présente par son accès, son organisation et ses usages constatés. Préparez une fiche claire avant de vendre votre maison.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21480-FR",
+    "path": "/conseils-vendeurs/pernand-vergelesses-piece-creation-maison/",
+    "title": "Pernand-Vergelesses : une pièce pour créer chez soi",
+    "description": "À Pernand-Vergelesses, montrez ce qu’une pièce permet réellement : lire, écrire ou créer, avec deux configurations et des observations précises.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21712-FR",
+    "path": "/conseils-vendeurs/volnay-maison-passage-meubles-demenagement/",
+    "title": "Volnay : préparer l’arrivée des meubles dans la maison",
+    "description": "À Volnay, préparez une fiche de passage pour les meubles : ouvertures, virages et points à vérifier avant de vendre une maison ancienne.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21173-FR",
+    "path": "/conseils-vendeurs/chorey-les-beaune-jardin-acces-maison/",
+    "title": "Chorey-les-Beaune : montrer le jardin derrière la maison",
+    "description": "À Chorey-les-Beaune, reliez les photos du jardin au plan de la maison : accès quotidien, entretien, rangement et passages réellement utilisables.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "COM-21297-FR",
+    "path": "/conseils-vendeurs/gilly-les-citeaux-maison-dependances-usages/",
+    "title": "Gilly-lès-Cîteaux : donner un rôle clair aux dépendances",
+    "description": "À Gilly-lès-Cîteaux, préparez une fiche par dépendance pour distinguer accès, usage actuel, équipements et projets restant à vérifier.",
+    "language": "fr",
+    "group": "communes"
+  },
+  {
+    "id": "US-021-EN",
+    "path": "/en/near-beaune-without-car-test-ordinary-week/",
+    "title": "Near Beaune without a car: test an ordinary week",
+    "description": "Compare homes around Beaune using everyday journeys, return trips, operating days and genuinely available alternatives.",
+    "language": "en",
+    "group": "us"
+  },
+  {
+    "id": "US-022-EN",
+    "path": "/en/insuring-french-home-beyond-premium/",
+    "title": "Insuring a French home: read beyond the premium",
+    "description": "Compare insurance for the same property through declared buildings, contents, exclusions, limits, deductibles and the cover start date.",
+    "language": "en",
+    "group": "us"
+  },
+  {
+    "id": "US-023-EN",
+    "path": "/en/student-home-dijon-actual-study-plan/",
+    "title": "A student home in Dijon: buy for the actual study plan",
+    "description": "Before buying for a student coming from the United States, connect teaching locations, academic dates, occupation arrangements and daily independence.",
+    "language": "en",
+    "group": "us"
+  },
+  {
+    "id": "US-024-EN",
+    "path": "/en/historic-french-home-listed-inventoried-protected/",
+    "title": "Historic French home: what does “listed” really mean?",
+    "description": "Distinguish heritage documentation, monument protection and protected surroundings before drawing conclusions about alterations.",
+    "language": "en",
+    "group": "us"
+  },
+  {
+    "id": "US-025-EN",
+    "path": "/en/first-arrival-burgundy-keys-usable-home/",
+    "title": "First arrival in Burgundy: from keys to a usable home",
+    "description": "Coordinate keys, access, meter records and initial services when completion and your arrival from the United States fall on different dates.",
+    "language": "en",
+    "group": "us"
+  },
+  {
+    "id": "US-026-EN",
+    "path": "/en/remote-repairs-quote-result-invoice/",
+    "title": "Remote repairs: connect the quote, result and invoice",
+    "description": "Follow work on a Burgundy home from the United States without confusing the order, photographs, completion report and invoice.",
+    "language": "en",
+    "group": "us"
+  },
+  {
+    "id": "US-027-EN",
+    "path": "/en/internet-check-home-address-not-town/",
+    "title": "Internet: check the home, not just the town",
+    "description": "Separate network coverage, a commercial offer, installation and room-by-room use before buying a Burgundy home from abroad.",
+    "language": "en",
+    "group": "us"
+  },
+  {
+    "id": "US-028-EN",
+    "path": "/en/us-furniture-entire-delivery-route/",
+    "title": "Shipping US furniture to Burgundy: plan the whole move",
+    "description": "Compare shipping scope, customs documents, insurance, storage and delivery dates before sending your US furniture to a Burgundy home.",
+    "language": "en",
+    "group": "us"
+  },
+  {
+    "id": "US-029-EN",
+    "path": "/en/purchase-power-attorney-understand-authority/",
+    "title": "Purchase power of attorney: understand the authority",
+    "description": "Before signing from the United States, connect the power of attorney to the exact purchase, people, authority limits and final document version.",
+    "language": "en",
+    "group": "us"
+  },
+  {
+    "id": "US-030-EN",
+    "path": "/en/house-sale-clear-bilingual-inclusions-inventory/",
+    "title": "What stays with the house: a clear bilingual inventory",
+    "description": "Answer an American buyer’s questions about included items by separating presentation, agreement, identification and furniture valuation.",
+    "language": "en",
+    "group": "us"
+  },
+  {
+    "id": "US-021",
+    "path": "/conseils-vendeurs/beaune-sans-voiture-tester-semaine-ordinaire/",
+    "title": "Près de Beaune sans voiture : tester une semaine ordinaire",
+    "description": "Comparer deux logements autour de Beaune par les trajets du quotidien, le retour, les jours de desserte et les solutions réellement disponibles.",
+    "language": "fr",
+    "group": "us"
+  },
+  {
+    "id": "US-022",
+    "path": "/conseils-vendeurs/assurer-maison-francaise-au-dela-prix/",
+    "title": "Assurer une maison française : lire au-delà du prix",
+    "description": "Comparer des assurances pour le même logement : bâtiments déclarés, mobilier, exclusions, plafonds, franchises et date de prise d’effet.",
+    "language": "fr",
+    "group": "us"
+  },
+  {
+    "id": "US-023",
+    "path": "/conseils-vendeurs/etudiant-dijon-acheter-logement-adapte/",
+    "title": "Étudiant à Dijon : acheter le logement qui lui convient",
+    "description": "Avant d’acheter pour un étudiant venant des États-Unis, rapprocher lieux d’enseignement, calendrier, occupation et autonomie quotidienne.",
+    "language": "fr",
+    "group": "us"
+  },
+  {
+    "id": "US-024",
+    "path": "/conseils-vendeurs/maison-historique-listed-inventorie-inscrit-classe/",
+    "title": "Maison historique : que veut dire « listed » en France ?",
+    "description": "Inventorié, inscrit, classé ou situé en secteur protégé : comprendre le vocabulaire avant de déduire des droits de travaux.",
+    "language": "fr",
+    "group": "us"
+  },
+  {
+    "id": "US-025",
+    "path": "/conseils-vendeurs/premiere-arrivee-bourgogne-remise-cles/",
+    "title": "Première arrivée en Bourgogne : des clés au logement prêt",
+    "description": "Coordonner remise des clés, accès, compteurs et premiers services lorsque l’achat et l’arrivée depuis les États-Unis ont des dates différentes.",
+    "language": "fr",
+    "group": "us"
+  },
+  {
+    "id": "US-026",
+    "path": "/conseils-vendeurs/travaux-distance-devis-resultat-facture/",
+    "title": "Travaux à distance : relier devis, résultat et facture",
+    "description": "Suivre une intervention dans votre maison bourguignonne depuis les États-Unis, sans confondre commande, photo, fin du travail et facture.",
+    "language": "fr",
+    "group": "us"
+  },
+  {
+    "id": "US-027",
+    "path": "/conseils-vendeurs/internet-verifier-adresse-maison-commune/",
+    "title": "Internet : vérifier la maison, pas seulement la commune",
+    "description": "Distinguer couverture, offre commerciale, raccordement et usage dans les pièces avant d’acheter une maison en Bourgogne depuis l’étranger.",
+    "language": "fr",
+    "group": "us"
+  },
+  {
+    "id": "US-028",
+    "path": "/conseils-vendeurs/meubles-americains-chemin-livraison-maison/",
+    "title": "Meubles États-Unis–Bourgogne : préparer l’expédition",
+    "description": "Devis, douane, assurance, stockage et livraison : préparer l’expédition de vos meubles depuis les États-Unis vers une maison en Bourgogne.",
+    "language": "fr",
+    "group": "us"
+  },
+  {
+    "id": "US-029",
+    "path": "/conseils-vendeurs/procuration-achat-comprendre-pouvoirs-donnes/",
+    "title": "Procuration d’achat : comprendre les pouvoirs donnés",
+    "description": "Avant de signer depuis les États-Unis, rapprocher la procuration de l’achat précis : personne représentée, opération, limites et version finale.",
+    "language": "fr",
+    "group": "us"
+  },
+  {
+    "id": "US-030",
+    "path": "/conseils-vendeurs/vente-maison-liste-bilingue-elements-inclus/",
+    "title": "Ce qui reste dans la maison : une liste bilingue claire",
+    "description": "Répondre à un acheteur américain sur les éléments inclus : distinguer présentation, accord, identification et valorisation du mobilier.",
+    "language": "fr",
+    "group": "us"
+  },
+  {
+    "id": "TE-001",
+    "path": "/conseils-vendeurs/terrain-cote-dor-lire-zone-document-urbanisme/",
+    "title": "Terrain en Côte-d’Or : retrouver la règle derrière la couleur",
+    "description": "Une méthode pour relier la parcelle, la bonne version du règlement et les questions à confirmer avant de présenter un terrain à vendre.",
+    "language": "fr",
+    "group": "terrain"
+  },
+  {
+    "id": "TE-002",
+    "path": "/conseils-vendeurs/certificat-urbanisme-demande-projet-reel/",
+    "title": "Certificat d’urbanisme : décrire le projet avant la demande",
+    "description": "Avant une vente de terrain, préparer les informations utiles au certificat d’urbanisme et distinguer réponse sur le projet et autorisation.",
+    "language": "fr",
+    "group": "terrain"
+  },
+  {
+    "id": "TE-003",
+    "path": "/conseils-vendeurs/terrain-acces-passage-titre-vente/",
+    "title": "Terrain derrière une maison : par où passera vraiment l’acquéreur ?",
+    "description": "Un chemin visible ne répond pas à toutes les questions. Reliez l’accès utilisé, les documents et les besoins du futur projet avant la vente.",
+    "language": "fr",
+    "group": "terrain"
+  },
+  {
+    "id": "TE-004",
+    "path": "/conseils-vendeurs/terrain-etroit-implantation-surface-projet/",
+    "title": "Une parcelle étroite se regarde dans les deux sens",
+    "description": "La surface totale ne montre pas comment une maison pourrait prendre place. Préparez une lecture des dimensions, usages et contraintes du terrain.",
+    "language": "fr",
+    "group": "terrain"
+  },
+  {
+    "id": "TE-005",
+    "path": "/conseils-vendeurs/terrain-pente-comparer-devis-travaux/",
+    "title": "Terrain en pente : ce que deux devis doivent vraiment comparer",
+    "description": "Accès du chantier, terrassement, eaux et soutènement : posez les mêmes hypothèses avant de comparer deux terrains ou deux devis.",
+    "language": "fr",
+    "group": "terrain"
   }
 ]
