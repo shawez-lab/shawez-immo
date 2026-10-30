@@ -1486,6 +1486,12 @@
      "url": "",
      "date": "2026-10-31",
      "heure": "22:50"
+    },
+    "facebook": {
+     "uuid": "4242447265310854649",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "20:50"
     }
    }
   },
@@ -1527,7 +1533,27 @@
    "legende": "15 hectares, 7 chambres et un étang autour d’un château du XVIIIe, à 15 minutes de Beaune 🏰\n\nCommente CHÂTEAU et je t’en",
    "source": "monteur",
    "uuid": "3970699118410286073",
-   "statut": "publie"
+   "statut": "publie",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "8020415788269978749",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "18:50"
+    },
+    "youtube": {
+     "uuid": "-4858081730859351447",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "18:50"
+    },
+    "facebook": {
+     "uuid": "7795890851385722419",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "21:50"
+    }
+   }
   },
   {
    "id": "TR-3010-461-v2",
@@ -1540,7 +1566,27 @@
    "legende": "129 000 € pour ce studio d’architecte inspiration Marrakech, à deux pas du Parc Darcy à Dijon 🫖\n\nCommente MARRAKECH et j",
    "source": "monteur",
    "uuid": "1021347342082130248",
-   "statut": "publie"
+   "statut": "publie",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "-6463174896171858106",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "19:35"
+    },
+    "youtube": {
+     "uuid": "-2846240790850026717",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "19:50"
+    },
+    "facebook": {
+     "uuid": "-382322912618592633",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "22:50"
+    }
+   }
   },
   {
    "id": "TR-3010-438-v2",
@@ -1553,7 +1599,27 @@
    "legende": "Château du XVIIIe à 15 minutes de Beaune, dans un domaine de 15 hectares avec parc et étang 🏰\n\nCommente CHÂTEAU et je t’",
    "source": "monteur",
    "uuid": "-6446444720003857795",
-   "statut": "publie"
+   "statut": "publie",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "-5805940221657658836",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "20:20"
+    },
+    "youtube": {
+     "uuid": "-5897245677357282658",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "20:50"
+    },
+    "facebook": {
+     "uuid": "-8780010317308542280",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "23:50"
+    }
+   }
   },
   {
    "id": "TR-3010-461-v3",
@@ -1566,7 +1632,27 @@
    "legende": "19 m², une balnéo et un rétroprojecteur intégré, dans un studio inspiration Marrakech à Dijon 🫖\n\nCommente MARRAKECH et j",
    "source": "monteur",
    "uuid": "2089247968644255312",
-   "statut": "publie"
+   "statut": "publie",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "2222048081844782416",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "21:05"
+    },
+    "youtube": {
+     "uuid": "2033334256103016513",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "00:50"
+    },
+    "facebook": {
+     "uuid": "1353070244162782288",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "00:50"
+    }
+   }
   },
   {
    "id": "TR-3010-438-v3",
