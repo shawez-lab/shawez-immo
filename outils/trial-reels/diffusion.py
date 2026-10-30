@@ -179,7 +179,7 @@ def main():
     a.add_argument('--a-faire', action='store_true')
     a.add_argument('--existants')
     a.add_argument('--depuis', help='AAAA-MM-JJTHH:MM heure de Paris : pas de diffusion avant')
-    a.add_argument('--reseaux', default='tiktok,youtube,facebook')
+    a.add_argument('--reseaux', default='tiktok,youtube,facebook,threads')
     a.add_argument('--noter', nargs='+', metavar='X', help='TR-id reseau uuid AAAA-MM-JJTHH:MM [url]')
     args = a.parse_args()
     if args.noter:
