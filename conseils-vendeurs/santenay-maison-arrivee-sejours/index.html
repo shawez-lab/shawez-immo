@@ -1097,10 +1097,30 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 #menu .m-alt+.m-alt{margin-top:10px;}
 </style>
 <style id="nav-location">@media(min-width:760px){#nav .brand{flex-shrink:0;}}@media(max-width:1439px){.nav-links{gap:16px;}}@media(max-width:1380px){.nav-links{display:none;} #burger{display:inline-flex;align-items:center;gap:8px;} .nav-cta .btn-primary{display:none;}}</style>
-<style id="editorial-article-style">.article table{width:100%;border-collapse:collapse;margin:20px 0;font-size:.95rem}.article th,.article td{padding:12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line,#ddd)}.article th{background:var(--stone,#f0eee8)}.article li{margin-block:8px}</style></head>
+<style id="editorial-article-style">.article table{width:100%;border-collapse:collapse;margin:20px 0;font-size:.95rem}.article th,.article td{padding:12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line,#ddd)}.article th{background:var(--stone,#f0eee8)}.article li{margin-block:8px}</style><style id="v3-entete">
+/* Vague 3 — action 24 : sur téléphone, « Estimer » + téléphone dans l'en-tête dès le premier écran ; action 30 : lien d'évitement */
+.skip{position:absolute;left:12px;top:-60px;z-index:300;padding:12px 18px;border-radius:999px;background:#0F0E0C;color:#F3EFE6;font-weight:600;text-decoration:none;transition:top .2s;}
+.skip:focus{top:12px;outline:2px solid #E2B33C;outline-offset:3px;}
+.nav-tel-ico{display:none;}
+.brand .lgm{height:34px;width:auto;}
+.cta-court{display:none;}
+@media(min-width:481px){.brand .lgm{display:none!important;}}
+@media(max-width:480px){
+  .brand img:not(.lgm){display:none!important;}
+  #nav .nav-cta{gap:8px;}
+  #nav .nav-cta .btn-primary{display:inline-flex!important;align-items:center;min-height:44px;padding-inline:16px;font-size:.92rem;}
+  #nav .cta-long{display:none;} #nav .cta-court{display:inline;}
+  #nav .nav-tel-ico{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;flex:0 0 auto;border:1px solid currentColor;border-radius:999px;color:inherit;}
+  #nav .nav-compte,#nav #burger{height:44px;} #nav .nav-compte{width:44px;}
+  body[data-route^="/estimer"] #nav .nav-cta .btn-primary{display:none!important;}
+}
+@media(max-width:350px){#nav #burger{padding:0 12px;}}
+</style>
+</head>
 <body data-route="/conseils-vendeurs/santenay-maison-arrivee-sejours">
+<a class="skip" href="#main">Aller au contenu</a>
 <header id="nav">
-  <a class="brand" href="/" aria-label="Shawez Ali — accueil"><img class="lg-ink" src="/assets/logo-horiz-ink.webp" alt="Shawez Ali" width="1259" height="176" decoding="async"><img class="lg-ivory" src="/assets/logo-horiz-ivory.webp" alt="" width="1259" height="176" decoding="async" aria-hidden="true"></a>
+  <a class="brand" href="/" aria-label="Shawez Ali — accueil"><img class="lg-ink" src="/assets/logo-horiz-ink.webp" alt="Shawez Ali" width="1259" height="176" decoding="async"><img class="lg-ivory" src="/assets/logo-horiz-ivory.webp" alt="" width="1259" height="176" decoding="async" aria-hidden="true"><img class="lg-ink lgm" src="/assets/logo-mono-ink.webp" alt="" width="369" height="338" decoding="async" aria-hidden="true"><img class="lg-ivory lgm" src="/assets/logo-mono-ivory.webp" alt="" width="369" height="338" decoding="async" aria-hidden="true"></a>
   <nav aria-label="Navigation principale">
     <ul class="nav-links">
       <li><a href="/vendre-bien-immobilier-dijon/" data-nav="vendre">Vendre</a></li>
@@ -1115,7 +1135,8 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
   </nav>
   <div class="nav-cta">
     <a class="btn nav-tel" href="tel:+33767579228">07 67 57 92 28</a>
-    <a class="nav-compte" href="/mon-espace/" data-compte aria-label="Mon espace : se connecter" title="Mon espace : se connecter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M4.8 20c.9-3.6 3.7-5.6 7.2-5.6s6.300 2 7.200 5.600"/></svg><span class="nc-txt">Connecté</span><span class="nc-dot" aria-hidden="true"></span></a><a class="btn btn-primary" href="/estimer/"><span>Estimer mon bien</span></a>
+    <a class="nav-tel-ico" href="tel:+33767579228" aria-label="Appeler Shawez au 07 67 57 92 28"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.6a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.8.3 1.7.5 2.6.7a2 2 0 0 1 1.7 2z"/></svg></a>
+    <a class="nav-compte" href="/mon-espace/" data-compte aria-label="Mon espace : se connecter" title="Mon espace : se connecter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M4.8 20c.9-3.6 3.7-5.6 7.2-5.6s6.300 2 7.200 5.600"/></svg><span class="nc-txt">Connecté</span><span class="nc-dot" aria-hidden="true"></span></a><a class="btn btn-primary" href="/estimer/" aria-label="Estimer mon bien"><span class="cta-long">Estimer mon bien</span><span class="cta-court">Estimer</span></a>
     <button id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu">Menu</button>
   </div>
 </header>
@@ -1582,5 +1603,6 @@ window.EECompte=function(){var on=/(?:^|;\s*)se_ok=1/.test(document.cookie||'');
 window.EECompte();window.addEventListener('pageshow',window.EECompte);
 </script>
 <script src="/assets/oai-mesure.js" defer></script>
+<script id="mesure-site">(function(){try{if(/[?&]test\b/i.test(location.search)||navigator.webdriver)return;var s=window.sessionStorage,n=!s.getItem("ms-v");s.setItem("ms-v","1");var r="";if(n&&document.referrer){try{var h=new URL(document.referrer).hostname;if(h!==location.hostname)r=h;}catch(e){}}var u=n?(new URLSearchParams(location.search).get("utm_source")||"").slice(0,40):"";fetch("/api/mesure-site",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({p:location.pathname,n:n?1:0,r:r,u:u}),keepalive:true,credentials:"omit"}).catch(function(){});}catch(e){}})();</script>
 </body>
 </html>
