@@ -258,10 +258,25 @@
       envoi=false; bouton(true);
       if(d._status===200||d._status===201){
         var etat={resultat:d.resultat,reference:d.reference,adresse:R.adresse,espace:d.espace||{},email:compte?compte.email:mail.value.trim(),mdp:false,demande:d.demande_id||null,visite:null};
-        memoriser(etat);
-        montrer(etat,true);
-        try{ if(window.beTracker)window.beTracker.t({hash:'33710f67a0c16d7cbb94d1b2ba10e7a8'}); }catch(x){}
-        try{ if(window.oaiLead)window.oaiLead(d.reference); }catch(x){}
+        var finir=function(){
+          memoriser(etat);
+          montrer(etat,true);
+          try{ if(window.beTracker)window.beTracker.t({hash:'33710f67a0c16d7cbb94d1b2ba10e7a8'}); }catch(x){}
+          try{ if(window.oaiLead)window.oaiLead(d.reference); }catch(x){}
+        };
+        /* Hors Côte-d'Or : la demande est enregistrée, la fourchette se calcule ensuite sur les ventes de la commune.
+           Si ce calcul échoue, le résultat dit simplement que l'on rappelle avec une première fourchette. */
+        if(d.resultat&&d.resultat.raison==='calcul'){
+          envoi=true; bouton(false);
+          EE.api('/estimation/fourchette',{body:{cle:CLE,reference:d.reference},delai:40000}).then(function(f){
+            envoi=false; bouton(true);
+            etat.resultat=(f&&f._status===200&&f.resultat)?f.resultat:{fourchette:false,raison:'donnees_indisponibles',donnees_du:d.resultat.donnees_du,annees:d.resultat.annees};
+            if(f&&f.lien==='envoye')etat.espace.lien='envoye';
+            finir();
+          });
+          return;
+        }
+        finir();
         return;
       }
       if(d.error==='champs'&&d.champ){

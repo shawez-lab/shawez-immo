@@ -117,6 +117,7 @@ export async function onRequest(context) {
 const ROUTES = {
   'GET /sante': sante,
   'POST /estimation': estimation,
+  'POST /estimation/fourchette': estimationFourchette,
   'POST /acces': acces,
   'POST /lien': lienDemander,
   'POST /lien/ouvrir': lienOuvrir,
@@ -173,7 +174,7 @@ const ROUTES = {
 
 /* Version de l'API : les tests sur l'aperçu attendent de la voir avant de commencer (le site met une à deux minutes
    à se mettre à jour après une poussée). À changer à chaque évolution de l'API. */
-const VERSION = '2026-10-21.1';
+const VERSION = '2026-10-27.1';
 
 /* Clé du flux Google Sheet : on ne garde que son empreinte. Celle-ci est la clé de mise en service ; dès qu'un admin
    en génère une nouvelle (/admin/ → « Google Sheet »), c'est l'empreinte en base qui fait foi. */
@@ -252,6 +253,12 @@ function antiRobot(d) {
 
 const BOOL = (v) => v === true;
 
+const enFrance = (la, lo) => (la > 41 && la < 52 && lo > -6 && lo < 10)   // métropole et Corse
+  || (la > 14 && la < 18.3 && lo > -63.3 && lo < -60.6)                     // Guadeloupe, Martinique, Saint-Martin, Saint-Barthélemy
+  || (la > 1.5 && la < 6.1 && lo > -55 && lo < -51)                          // Guyane
+  || (la > -21.5 && la < -20.8 && lo > 55.1 && lo < 56)                      // La Réunion
+  || (la > -13.1 && la < -12.5 && lo > 44.9 && lo < 45.4);                   // Mayotte
+
 function lireReponses(d) {
   const type = choix(d.type, ['appartement', 'maison', 'autre'], { requis: true, nom: 'type' });
   const r = {
@@ -267,8 +274,10 @@ function lireReponses(d) {
     message: texte(d.message, 1500, { nom: 'message' }),
   };
   if (r.code_postal && !/^\d{5}$/.test(r.code_postal)) throw new Erreur(400, 'champs', { champ: 'code_postal' });
-  if (r.lat != null && !(r.lat > 41 && r.lat < 52)) throw new Erreur(400, 'champs', { champ: 'lat' });
-  if (r.lon != null && !(r.lon > -6 && r.lon < 10)) throw new Erreur(400, 'champs', { champ: 'lon' });
+  // Toute la France : métropole et Corse, Antilles, Guyane, La Réunion, Mayotte (estimation partout en France, 27/10/2026)
+  if (r.lat != null && !Number.isFinite(r.lat)) throw new Erreur(400, 'champs', { champ: 'lat' });
+  if (r.lon != null && !Number.isFinite(r.lon)) throw new Erreur(400, 'champs', { champ: 'lon' });
+  if (r.lat != null && r.lon != null && !enFrance(r.lat, r.lon)) throw new Erreur(400, 'champs', { champ: 'lat' });
   if (type === 'autre') {
     r.autre_type = choix(d.autre_type, ['commerce', 'murs', 'immeuble', 'terrain', 'autre'], { requis: true, nom: 'autre_type' });
     r.surface = entier(d.surface, 1, 100000, { nom: 'surface' });
@@ -400,7 +409,9 @@ async function estimation(ctx) {
     }
   }
 
-  const res = await estimer(env, request.url, rep);
+  // Hors Côte-d'Or, la fourchette se calcule dans un second appel (POST /estimation/fourchette) : la demande est
+  // toujours enregistrée et l'agence prévenue d'abord, même si la lecture des ventes de la commune échoue ensuite.
+  const res = await estimer(env, request.url, rep, { distant: false });
   const ref = reference();
   let demandeId = null;
   try {
@@ -423,7 +434,8 @@ async function estimation(ctx) {
   if (!suspect) await journal(base, demandeId, 'estimation', 'client', { duree: Math.round(Math.min(Number(d.duree) || 0, 2 * 3600000)), fourchette: !!res.fourchette }).catch((e) => console.log('journal estimation', e && e.message));
   if (nouveau) cookie = await ouvrirSession(env, compte.id);
 
-  const ecrireAuClient = !suspect && peutEcrire(env, contact.email);
+  // fourchette encore en calcul : l'e-mail au client part au second appel, avec la vraie fourchette
+  const ecrireAuClient = !suspect && res.raison !== 'calcul' && peutEcrire(env, contact.email);
   if (!adresseDeTest(contact.email)) ctx.waitUntil(notifier(env, request, ref, rep, contact, res, lieu, suspect).catch((e) => console.log('notification', e && e.message)));
   // L'e-mail au client est attendu (8 s au plus) : la page ne dit « un e-mail vient de partir » que s'il est vraiment parti.
   let mailParti = false;
@@ -443,6 +455,45 @@ async function estimation(ctx) {
 }
 
 /* ---------------------- Connexion ---------------------- */
+
+/* Second temps de l'estimation hors Côte-d'Or (partout en France) : les ventes DVF de la commune et de ses voisines sont
+   lues à la demande (functions/_lib/dvf-france.js), la demande est complétée, puis l'e-mail au client part avec la
+   fourchette. Appelé par la page juste après POST /estimation, avec la clé et la référence de la demande. */
+async function estimationFourchette(ctx) {
+  const { request, env } = ctx;
+  const d = await corps(request);
+  await limiter(env, 'four:' + ip(request), 30, 3600);
+  const cle = typeof d.cle === 'string' && /^[A-Za-z0-9-]{16,64}$/.test(d.cle) ? d.cle : null;
+  const ref = typeof d.reference === 'string' ? d.reference.slice(0, 40) : '';
+  if (!cle || !ref) throw new Erreur(400, 'champs', { champ: 'cle' });
+  const base = await db(env);
+  const dem = await base.prepare('SELECT * FROM demandes WHERE cle = ?1 AND reference = ?2').bind(cle, ref).first();
+  if (!dem) throw new Erreur(404, 'introuvable');
+  let avant = null;
+  try { avant = JSON.parse(dem.resultat || 'null'); } catch (e) { /* ancien format */ }
+  if (!avant || avant.raison !== 'calcul') return json(200, { resultat: avant || { fourchette: false, raison: 'rappel' }, lien: 'indisponible' });
+  let rep = {};
+  try { rep = JSON.parse(dem.reponses || '{}'); } catch (e) { /* réponses illisibles : pas de calcul */ }
+  let res;
+  try { res = await estimer(env, request.url, rep); } catch (e) {
+    console.log('fourchette', e && e.message);
+    res = { fourchette: false, raison: 'donnees_indisponibles', donnees_du: avant.donnees_du || null, annees: avant.annees, source: avant.source };
+  }
+  await base.prepare(
+    'UPDATE demandes SET prix_bas = ?1, prix_haut = ?2, prix_m2 = ?3, comparables = ?4, rayon = ?5, donnees_du = ?6, resultat = ?7 WHERE id = ?8'
+  ).bind(res.fourchette ? res.bas : null, res.fourchette ? res.haut : null, res.fourchette ? res.prix_m2 : null,
+    res.comparables ?? null, res.rayon ?? null, res.donnees_du || null, JSON.stringify(res), dem.id).run();
+  let lien = 'indisponible';
+  let contact = {};
+  try { contact = JSON.parse(dem.contact || '{}'); } catch (e) { /* contact illisible */ }
+  const compte = dem.compte_id ? await base.prepare('SELECT * FROM comptes WHERE id = ?1').bind(dem.compte_id).first() : null;
+  if (compte && !dem.suspect && contact.email && !adresseDeTest(contact.email) && peutEcrire(env, contact.email)) {
+    const envoi = mailResultat(env, request, compte, dem.reference, rep, contact, res, dem.source).catch((e) => { console.log('mail client', e && e.message); return false; });
+    ctx.waitUntil(envoi);
+    if ((await Promise.race([envoi, new Promise((r) => setTimeout(() => r(false), 8000))])) === true) lien = 'envoye';
+  }
+  return json(200, { resultat: res, lien });
+}
 
 async function connexion({ request, env }) {
   const d = await corps(request, 2000);
@@ -1306,7 +1357,7 @@ function fiche(rep) {
 async function notifier(env, request, ref, rep, c, res, lieu, suspect) {
   if (!mailPossible(env)) { await noterAlerte(env, { quand: maintenant(), destinataires: destinatairesAlerte(env).length, partis: 0, voies: [], erreurs: ['aucun service d\'envoi relié au site'] }); return; }
   const nom = [c.civilite, c.prenom, c.nom].filter(Boolean).join(' ');
-  const fourchette = res.fourchette ? `${euros(res.bas)} – ${euros(res.haut)} (${res.comparables} ventes, rayon ${rayonLibelle(res.rayon)})` : 'Pas de fourchette automatique : rappel promis au plus vite';
+  const fourchette = res.fourchette ? `${euros(res.bas)} – ${euros(res.haut)} (${res.comparables} ventes, rayon ${rayonLibelle(res.rayon)})` : res.raison === 'calcul' ? "Hors Côte-d'Or : fourchette calculée dans la foulée sur les ventes DVF de sa commune, à voir dans l'espace agence" : 'Pas de fourchette automatique : rappel promis au plus vite';
   const lignes = [['Contact', nom], ['Téléphone', c.telephone], ['E-mail', c.email], ['Fourchette', fourchette], ...fiche(rep), ['Site', lieu === 'gravelin' ? 'gravelin-immo.com' : 'shawez-immo.com']];
   if (suspect) lignes.unshift(['À vérifier', 'Robot possible (formulaire rempli trop vite ou champ caché rempli)']);
   const tel = 'tel:' + c.telephone.replace(/[^\d+]/g, '');

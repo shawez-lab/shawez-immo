@@ -18,7 +18,7 @@ P = []
 
 # ---------------------------------------------------------------------------------------------- 1. AGENT IMMOBILIER À DIJON
 P.append(dict(
-  id="agent-dijon", path="/agent-immobilier-dijon/", date=DATE, date_fr=DATE_FR,
+  id="agent-dijon", path="/agent-immobilier-dijon/", date="2026-10-26", date_fr="26 octobre 2026",
   service="Agent immobilier à Dijon : vente, estimation et mise en location", service_type="Transaction immobilière", city="Dijon",
   service_desc="Estimation offerte, vente d'appartements, de maisons, de biens de prestige, d'immeubles, de terrains, de fonds de commerce et de murs commerciaux, mise en location sans gestion, à Dijon et en Côte-d'Or.",
   title="Agent immobilier à Dijon : Shawez Ali, GRAVELIN IMMO",
@@ -33,7 +33,10 @@ P.append(dict(
   sections=[
     ("qui-je-suis", "Qui je suis",
      "<p>Je m'appelle Shawez Ali. Je suis agent immobilier, avec le statut d'agent commercial en immobilier, rattaché à l'agence GRAVELIN IMMO (30 rue Bannelier, 21000 Dijon), titulaire de la carte professionnelle. Les mandats sont signés au nom de l'agence ; moi, je suis votre interlocuteur du premier appel jusqu'à la signature chez le notaire. " + L("/shawez-ali-agent-immobilier-dijon/", "En savoir plus sur moi et mon équipe") + ".</p>"
-     "<p>Je fais moi-même l'estimation, les visites et la négociation. Pour présenter votre bien, une équipe prend le relais : Robin, photographe et pilote de drone, Jason, vidéaste, et une équipe de montage et de diffusion. Les acheteurs arrivent en visite en ayant déjà vu le bien.</p>"),
+     "<p>Je fais moi-même l'estimation, les visites et la négociation. Pour présenter votre bien, une équipe prend le relais : Robin, photographe et pilote de drone, Jason, vidéaste, et une équipe de montage et de diffusion. Les acheteurs arrivent en visite en ayant déjà vu le bien.</p>"
+     "<p>Je travaille en français et en anglais, et je parle aussi couramment l'hindi, l'ourdou et le pendjabi, "
+     "très bien le persan, et bien le grec et l'arabe. Acheteurs et vendeurs étrangers&nbsp;: "
+     "<a class=\"link\" href=\"/en/\" lang=\"en\">my page in English</a>.</p>"),
     ("ce-que-je-vends", "Ce que je vends",
      "<ul>"
      "<li><strong>Appartements et maisons</strong> à Dijon et dans la métropole : " + L("/vendre-bien-immobilier-dijon/", "vendre votre bien à Dijon") + ", " + L("/biens-a-vendre-dijon/", "les biens à vendre") + ".</li>"
@@ -51,6 +54,7 @@ P.append(dict(
      "<p><strong>La métropole</strong> : " + L("/prix-immobilier-talant/", "Talant") + ", " + L("/immobilier-fontaine-les-dijon/", "Fontaine-lès-Dijon") + ", " + L("/prix-immobilier-chenove/", "Chenôve") + ", " + L("/prix-immobilier-quetigny/", "Quetigny") + ", " + L("/prix-immobilier-longvic/", "Longvic") + ", " + L("/prix-immobilier-chevigny-saint-sauveur/", "Chevigny-Saint-Sauveur") + ", " + L("/prix-immobilier-saint-apollinaire/", "Saint-Apollinaire") + ", " + L("/prix-immobilier-marsannay-la-cote/", "Marsannay-la-Côte") + ", " + L("/prix-immobilier-plombieres-les-dijon/", "Plombières-lès-Dijon") + ", " + L("/prix-immobilier-neuilly-les-dijon/", "Neuilly-lès-Dijon") + ".</p>"
      "<p><strong>La Côte et le reste de la Côte-d'Or</strong> : " + L("/prix-immobilier-gevrey-chambertin/", "Gevrey-Chambertin") + ", " + L("/immobilier-nuits-saint-georges/", "Nuits-Saint-Georges") + ", " + L("/agent-immobilier-beaune/", "Beaune") + ", et les communes plus éloignées : " + L("/prix-immobilier-cote-d-or/", "les prix commune par commune") + ". Pour une demeure de caractère, je vais plus loin en Bourgogne. " + L("/secteurs-dijon-nuits-saint-georges-beaune/", "Voir mon secteur sur la carte") + ".</p>"),
     ("comment-je-travaille", "Comment se passe une vente avec moi",
+     "<p><strong>Le même service pour tous les biens.</strong> Un studio, un T2, un bureau de tabac, un plateau de bureaux ou un château : chaque bien que l'on me confie a son photographe, son vidéaste, son film monté et son home staging virtuel, quel que soit son prix. Les films sont publiés sur la chaîne YouTube de l'agence GRAVELIN IMMO, ouverte il y a plus de dix ans.</p>"
      "<ol>"
      "<li><strong>L'estimation, chez vous, offerte.</strong> Je visite, puis je compare avec les ventes réellement signées autour de chez vous (base publique DVF). Vous recevez un avis de valeur écrit. " + L("/estimation-immobiliere-dijon/", "Demander l'estimation") + " ou " + L("/estimer/", "obtenir une première fourchette en ligne") + ".</li>"
      "<li><strong>Le mandat</strong>, simple ou exclusif : je vous explique les deux, vous choisissez.</li>"
@@ -63,6 +67,7 @@ P.append(dict(
   ],
   faq=[
     ("Combien coûte une estimation ?", "Rien : l'estimation est offerte et sans engagement. Je viens chez vous, puis je vous remets un avis de valeur écrit, appuyé sur les ventes réelles du secteur."),
+    ("Le service est-il le même pour un petit appartement ?", "Oui. Un studio a droit au même service qu'un château : photographe, vidéaste, film monté, home staging virtuel et diffusion sur les portails et les réseaux. Le drone, lui, sert pour les maisons et les propriétés, et pour un commerce, le film et le dossier sont montrés sous engagement de confidentialité."),
     ("Quels sont vos honoraires ?", "Ce sont ceux du barème de l'agence GRAVELIN IMMO, publiés sur la page <a class=\"link\" href=\"/honoraires/\">Honoraires</a>. Ils ne sont dus que si la vente se réalise."),
     ("Êtes-vous une agence immobilière ?", "Je suis agent immobilier, rattaché à l'agence immobilière GRAVELIN IMMO, 30 rue Bannelier à Dijon, qui détient la carte professionnelle. Vous avez donc une agence derrière vous, et une seule personne en face de vous."),
     ("Faites-vous la gestion locative ?", "Non. Je fais la mise en location : loyer conseillé, annonce, visites, vérification du dossier, bail et état des lieux d'entrée. Ensuite, vous gérez vous-même votre location."),

@@ -1192,6 +1192,12 @@ def construire(etat=None):
     # annonces Hektor + biens hors Hektor (outils/biens/manuels.json, mandat signé ; Hektor l'emporte à référence égale)
     annonces = [a for a in list(etat['annonces'].values()) + list(charge_manuels(etat, medias).values())
                 if a.get('ref') and a.get('type') and a.get('commune')]
+    # annonces retirées à la demande du vendeur (outils/biens/masques.json) : jamais montrées, même si l'agence les affiche
+    try:
+        masques = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'masques.json'), encoding='utf-8')).get('annonces', {})
+    except FileNotFoundError:
+        masques = {}
+    annonces = [dict(a, status='retirée') if str(a['ref']) in masques else a for a in annonces]
     _IDS.clear()
     _IDS.update({a['id']: chemin_fiche(a) for a in annonces if a.get('id') and a['photos']['fichiers']})
     base = gabarit()

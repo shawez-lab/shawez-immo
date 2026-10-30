@@ -57,4 +57,8 @@ jobs:
 
       - name: Envoyer à IndexNow
         if: steps.liste.outputs.vide != '1'
-        run: eval python3 outils/indexnow.py ${{ steps.liste.outputs.args }}
+        # ARGS passé par variable (comme à l'étape « Liste ») : avec ${{ }} écrit en dur, eval recoupait
+        # '25 hours ago' en trois mots et le passage quotidien échouait (« unrecognized arguments: hours ago »).
+        env:
+          ARGS: ${{ steps.liste.outputs.args }}
+        run: eval python3 outils/indexnow.py $ARGS

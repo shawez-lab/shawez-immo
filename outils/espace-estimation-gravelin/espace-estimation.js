@@ -129,7 +129,7 @@ var EE=(function(){
       var r=res&&res.raison;
       h+='<p class="label">Votre demande est enregistrée</p>'+
         '<p class="ee-price ee-price-txt" data-test="rappel">Je vous rappelle <em>au plus vite.</em></p>'+
-        '<p class="ee-m2">'+(r==='peu_de_ventes'?"Il y a eu trop peu de ventes comparables près de chez vous"+(res.comparables!=null?' ('+res.comparables+' seulement)':'')+" pour donner une fourchette fiable. Pas de prix au hasard : "+CONF.conseiller+" étudie votre bien lui-même.":r==='type'?"Pour ce type de bien, l'estimation se fait sur pièces : "+CONF.conseiller+" étudie votre bien lui-même.":r==='hors_zone'?"Ce secteur est hors de la Côte-d'Or : "+CONF.conseiller+" vous dit au téléphone ce qu'il peut faire pour vous.":CONF.conseiller+" étudie votre bien lui-même et vous donne une première fourchette au téléphone.")+'</p>'+
+        '<p class="ee-m2">'+(r==='peu_de_ventes'?"Il y a eu trop peu de ventes comparables près de chez vous"+(res.comparables!=null?' ('+res.comparables+' seulement)':'')+" pour donner une fourchette fiable. Pas de prix au hasard : "+CONF.conseiller+" étudie votre bien lui-même.":r==='type'?"Pour ce type de bien, l'estimation se fait sur pièces : "+CONF.conseiller+" étudie votre bien lui-même.":r==='sans_dvf'?"Dans votre secteur, l'État ne publie pas les prix des ventes (Alsace, Moselle, Mayotte) : pas de prix au hasard, "+CONF.conseiller+" étudie votre bien lui-même.":CONF.conseiller+" étudie votre bien lui-même et vous donne une première fourchette au téléphone.")+'</p>'+
         (res&&res.donnees_du?'<p class="ee-warn"><span>Données des ventes réelles (DVF) à jour de '+mois(res.donnees_du)+'.</span></p>':'');
     }
     if(ref)h+='<ul class="ee-facts ee-ref"><li><span>Référence</span><span data-test="reference">'+esc(ref)+'</span></li></ul>';
@@ -525,10 +525,25 @@ var EE=(function(){
       envoi=false; bouton(true);
       if(d._status===200||d._status===201){
         var etat={resultat:d.resultat,reference:d.reference,adresse:R.adresse,espace:d.espace||{},email:compte?compte.email:mail.value.trim(),mdp:false,demande:d.demande_id||null,visite:null};
-        memoriser(etat);
-        montrer(etat,true);
-        try{ if(window.beTracker)window.beTracker.t({hash:'33710f67a0c16d7cbb94d1b2ba10e7a8'}); }catch(x){}
-        try{ if(window.oaiLead)window.oaiLead(d.reference); }catch(x){}
+        var finir=function(){
+          memoriser(etat);
+          montrer(etat,true);
+          try{ if(window.beTracker)window.beTracker.t({hash:'33710f67a0c16d7cbb94d1b2ba10e7a8'}); }catch(x){}
+          try{ if(window.oaiLead)window.oaiLead(d.reference); }catch(x){}
+        };
+        /* Hors Côte-d'Or : la demande est enregistrée, la fourchette se calcule ensuite sur les ventes de la commune.
+           Si ce calcul échoue, le résultat dit simplement que l'on rappelle avec une première fourchette. */
+        if(d.resultat&&d.resultat.raison==='calcul'){
+          envoi=true; bouton(false);
+          EE.api('/estimation/fourchette',{body:{cle:CLE,reference:d.reference},delai:40000}).then(function(f){
+            envoi=false; bouton(true);
+            etat.resultat=(f&&f._status===200&&f.resultat)?f.resultat:{fourchette:false,raison:'donnees_indisponibles',donnees_du:d.resultat.donnees_du,annees:d.resultat.annees};
+            if(f&&f.lien==='envoye')etat.espace.lien='envoye';
+            finir();
+          });
+          return;
+        }
+        finir();
         return;
       }
       if(d.error==='champs'&&d.champ){

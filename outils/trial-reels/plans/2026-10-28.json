@@ -1,0 +1,715 @@
+{
+ "jour": "2026-10-28",
+ "biens": [
+  {
+   "ref": "483",
+   "src": "assets/biens/483/video.mp4",
+   "mot": "LOFT",
+   "nom": "loft",
+   "versions": [
+    {
+     "id": "v1",
+     "publier": "2026-10-27T23:30",
+     "accroche": "Sauna et jacuzzi privés|dans un loft|en plein centre de Dijon",
+     "legende": "Sauna, jacuzzi balnéo et cheminée dans 42 m², en plein cœur historique de Dijon 🧖\n\nCommente LOFT et je t’envoie la visite complète en privé 📩\n\n#dijon #loft #jacuzzi #sauna #immobilierdijon",
+     "plans": [
+      [
+       3.85,
+       5.0,
+       0.8
+      ],
+      [
+       23.9,
+       25.6,
+       1.0
+      ],
+      [
+       19.6,
+       22.7,
+       1.5,
+       "Sauna privatif"
+      ],
+      [
+       26.15,
+       27.93,
+       1.0,
+       "Jacuzzi balnéo"
+      ],
+      [
+       18.4,
+       19.55,
+       1.0,
+       "Cheminée d’ambiance"
+      ],
+      [
+       12.2,
+       15.65,
+       1.7
+      ],
+      [
+       27.95,
+       31.85,
+       1.6,
+       "Douche à l’italienne"
+      ],
+      [
+       31.9,
+       34.75,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v2",
+     "publier": "2026-10-28T10:00",
+     "accroche": "Tu passerais|ton week-end ici ?",
+     "legende": "Un week-end ici, tu dis oui ? 😏 Loft de 42 m² avec sauna et jacuzzi, au cœur de Dijon.\n\nCommente LOFT et je t’envoie la visite complète en privé 📩\n\n#dijon #loft #spa #weekend #immobilierdijon",
+     "plans": [
+      [
+       0,
+       2.0,
+       1.0
+      ],
+      [
+       3.85,
+       5.0,
+       1.0
+      ],
+      [
+       5.0,
+       7.8,
+       1.6
+      ],
+      [
+       15.7,
+       18.4,
+       1.4
+      ],
+      [
+       19.6,
+       22.7,
+       1.5,
+       "Un sauna"
+      ],
+      [
+       23.9,
+       26.1,
+       1.2,
+       "Un jacuzzi"
+      ],
+      [
+       18.4,
+       19.55,
+       1.0,
+       "Une cheminée"
+      ],
+      [
+       31.9,
+       34.75,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v3",
+     "publier": "2026-10-28T13:00",
+     "accroche": "Un loft & spa|déjà loué en courte durée|en plein Dijon",
+     "legende": "Loft & spa déjà loué en courte durée, déco et équipements inclus. Clé en main, en plein cœur de Dijon.\n\nCommente LOFT et je t’envoie la visite complète en privé 📩\n\n#investissementimmobilier #dijon #locationcourteduree #loft #immobilier",
+     "plans": [
+      [
+       7.85,
+       9.3,
+       1.0
+      ],
+      [
+       12.2,
+       15.65,
+       1.6
+      ],
+      [
+       15.7,
+       18.4,
+       1.5,
+       "Coin nuit cosy"
+      ],
+      [
+       19.6,
+       22.7,
+       1.5,
+       "Sauna"
+      ],
+      [
+       23.9,
+       27.93,
+       1.4,
+       "Jacuzzi balnéo"
+      ],
+      [
+       29.7,
+       31.85,
+       1.2,
+       "Déco et équipements inclus"
+      ],
+      [
+       31.9,
+       34.75,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v4",
+     "publier": "2026-10-28T16:00",
+     "accroche": "POV : ton appart|a son propre spa",
+     "legende": "POV : ton appart a son propre spa 🫧\n\nCommente LOFT et je t’envoie la visite complète en privé 📩\n\n#dijon #loft #jacuzzi #pov #immobilierdijon",
+     "plans": [
+      [
+       22.7,
+       23.9,
+       0.9
+      ],
+      [
+       23.9,
+       26.1,
+       1.0
+      ],
+      [
+       26.15,
+       27.93,
+       1.0
+      ],
+      [
+       11.1,
+       12.2,
+       1.0
+      ],
+      [
+       12.2,
+       15.65,
+       1.7,
+       "En plein centre de Dijon"
+      ],
+      [
+       5.0,
+       7.8,
+       1.5
+      ],
+      [
+       27.95,
+       29.65,
+       1.2
+      ],
+      [
+       31.9,
+       34.75,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v5",
+     "publier": "2026-10-28T19:00",
+     "accroche": "Attends de voir|le fond du loft…",
+     "legende": "Attends la fin 👀 Loft de 42 m² au cœur historique de Dijon.\n\nCommente LOFT et je t’envoie la visite complète en privé 📩\n\n#dijon #loft #sauna #jacuzzi #visite",
+     "plans": [
+      [
+       0,
+       3.8,
+       1.5
+      ],
+      [
+       5.0,
+       7.8,
+       1.5
+      ],
+      [
+       12.2,
+       15.65,
+       1.7
+      ],
+      [
+       15.7,
+       18.4,
+       1.5
+      ],
+      [
+       19.6,
+       22.7,
+       1.3,
+       "Un sauna…"
+      ],
+      [
+       23.9,
+       27.93,
+       1.2,
+       "…et un jacuzzi"
+      ],
+      [
+       31.9,
+       34.75,
+       1.0
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "ref": "461",
+   "src": "assets/biens/461/video.mp4",
+   "mot": "MARRAKECH",
+   "nom": "studio",
+   "versions": [
+    {
+     "id": "v1",
+     "publier": "2026-10-27T23:45",
+     "accroche": "Marrakech…|en plein centre de Dijon",
+     "legende": "Marrakech, en plein centre de Dijon ✨ Studio de 19 m² rénové par un architecte, à deux pas du parc Darcy.\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#dijon #studio #marrakech #deco #immobilierdijon",
+     "plans": [
+      [
+       3.0,
+       5.5,
+       1.0
+      ],
+      [
+       28.0,
+       31.0,
+       1.2
+      ],
+      [
+       13.0,
+       15.8,
+       1.2,
+       "Baignoire balnéo"
+      ],
+      [
+       8.0,
+       11.0,
+       1.4,
+       "Rétroprojecteur intégré"
+      ],
+      [
+       22.0,
+       24.5,
+       1.3
+      ],
+      [
+       31.0,
+       34.0,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v2",
+     "publier": "2026-10-28T11:00",
+     "accroche": "19 m² rénovés|par un architecte.|Regarde.",
+     "legende": "19 m² rénovés par un architecte : cuisine sur mesure, rétroprojecteur, baignoire balnéo 🛁\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#dijon #studio #renovation #architecte #immobilierdijon",
+     "plans": [
+      [
+       0,
+       1.0,
+       1.0
+      ],
+      [
+       1.0,
+       3.0,
+       1.0
+      ],
+      [
+       3.0,
+       7.5,
+       1.5
+      ],
+      [
+       13.0,
+       15.8,
+       1.2,
+       "Baignoire balnéo"
+      ],
+      [
+       8.0,
+       11.0,
+       1.4,
+       "Rétroprojecteur"
+      ],
+      [
+       17.0,
+       19.0,
+       1.0,
+       "Cour intérieure au calme"
+      ],
+      [
+       28.0,
+       31.5,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v3",
+     "publier": "2026-10-28T14:00",
+     "accroche": "Tu as déjà vu|un studio comme ça|à Dijon ?",
+     "legende": "Tu as déjà vu un studio comme ça à Dijon ? 👀 Inspiration Marrakech, à deux pas du parc Darcy.\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#dijon #studio #marrakech #decoration #immobilierdijon",
+     "plans": [
+      [
+       28.0,
+       30.5,
+       1.0
+      ],
+      [
+       3.0,
+       7.5,
+       1.5
+      ],
+      [
+       13.0,
+       15.8,
+       1.1,
+       "Baignoire balnéo"
+      ],
+      [
+       22.0,
+       26.5,
+       1.6
+      ],
+      [
+       31.0,
+       34.0,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v4",
+     "publier": "2026-10-28T17:00",
+     "accroche": "Une baignoire balnéo|dans 19 m²",
+     "legende": "Une baignoire balnéo dans 19 m², oui c’est possible 🛁\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#dijon #studio #balneo #deco #immobilierdijon",
+     "plans": [
+      [
+       13.0,
+       15.8,
+       0.9
+      ],
+      [
+       3.0,
+       6.0,
+       1.2
+      ],
+      [
+       1.0,
+       3.0,
+       1.2,
+       "Cuisine sur mesure"
+      ],
+      [
+       8.0,
+       11.0,
+       1.4,
+       "Rétroprojecteur intégré"
+      ],
+      [
+       19.0,
+       21.5,
+       1.2
+      ],
+      [
+       28.0,
+       31.0,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v5",
+     "publier": "2026-10-28T20:00",
+     "accroche": "POV : ton premier appart|ressemble à ça",
+     "legende": "POV : ton premier appart ressemble à ça 🫖 Studio inspiration Marrakech, au calme d’une cour intérieure, à Dijon.\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#dijon #premierachat #studio #pov #immobilierdijon",
+     "plans": [
+      [
+       0,
+       1.0,
+       1.0
+      ],
+      [
+       1.0,
+       3.0,
+       1.1
+      ],
+      [
+       3.0,
+       7.5,
+       1.5
+      ],
+      [
+       13.0,
+       15.8,
+       1.2,
+       "Baignoire balnéo"
+      ],
+      [
+       22.0,
+       26.5,
+       1.6
+      ],
+      [
+       31.0,
+       34.0,
+       1.0
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "ref": "438",
+   "src": "assets/biens/438/video.mp4",
+   "mot": "CHÂTEAU",
+   "nom": "chateau",
+   "versions": [
+    {
+     "id": "v1",
+     "publier": "2026-10-28T09:00",
+     "accroche": "Un château du XVIIIe|à 15 min de Beaune",
+     "legende": "Château du XVIIIe à 15 minutes de Beaune, avec vue sur la Côte de Beaune 🏰\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#chateau #bourgogne #beaune #chateauavendre #immobilierdeprestige",
+     "plans": [
+      [
+       1.25,
+       3.2,
+       0.9
+      ],
+      [
+       5.25,
+       7.2,
+       1.0,
+       "Vue sur la Côte de Beaune"
+      ],
+      [
+       8.25,
+       11.2,
+       1.4
+      ],
+      [
+       11.25,
+       13.2,
+       1.3
+      ],
+      [
+       13.25,
+       15.15,
+       1.0
+      ],
+      [
+       15.2,
+       19.15,
+       1.5,
+       "Vestibule majestueux"
+      ],
+      [
+       20.2,
+       22.15,
+       1.3,
+       "7 chambres · 520 m²"
+      ],
+      [
+       27.2,
+       30.0,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v2",
+     "publier": "2026-10-28T12:00",
+     "accroche": "Maison de famille|ou lieu de réception :|tu en ferais quoi ?",
+     "legende": "Maison de famille ou lieu de réception, tu choisis quoi ? 🏰 520 m², 7 chambres, un étang et un parc.\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#chateau #bourgogne #mariage #chateauavendre #beaune",
+     "plans": [
+      [
+       5.25,
+       7.2,
+       0.9
+      ],
+      [
+       1.25,
+       3.2,
+       1.0
+      ],
+      [
+       0,
+       1.2,
+       1.0
+      ],
+      [
+       8.25,
+       11.2,
+       1.5,
+       "Un parc et un étang"
+      ],
+      [
+       13.25,
+       15.15,
+       1.0
+      ],
+      [
+       15.2,
+       19.15,
+       1.6,
+       "Trois salons de réception"
+      ],
+      [
+       29.2,
+       30.0,
+       0.8
+      ],
+      [
+       24.2,
+       27.15,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v3",
+     "publier": "2026-10-28T15:00",
+     "accroche": "POV : tu rentres chez toi",
+     "legende": "POV : tu rentres chez toi 🏰 Château du XVIIIe près de Beaune.\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#chateau #bourgogne #pov #chateauavendre #beaune",
+     "plans": [
+      [
+       11.25,
+       13.2,
+       1.0
+      ],
+      [
+       8.25,
+       11.2,
+       1.3
+      ],
+      [
+       13.25,
+       15.15,
+       1.0
+      ],
+      [
+       15.2,
+       19.15,
+       1.4
+      ],
+      [
+       19.2,
+       22.15,
+       1.4
+      ],
+      [
+       29.2,
+       30.0,
+       0.8
+      ],
+      [
+       0,
+       3.2,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v4",
+     "publier": "2026-10-28T18:00",
+     "accroche": "18 pièces, 520 m²,|un étang. Regarde.",
+     "legende": "18 pièces, 520 m², un étang et un parc, à 15 minutes de Beaune 🏰\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#chateau #bourgogne #beaune #chateauavendre #immobilier",
+     "plans": [
+      [
+       3.25,
+       5.2,
+       1.0
+      ],
+      [
+       5.25,
+       7.2,
+       1.0
+      ],
+      [
+       1.25,
+       3.2,
+       1.2,
+       "L’étang"
+      ],
+      [
+       7.25,
+       8.2,
+       1.0
+      ],
+      [
+       8.25,
+       11.2,
+       1.5
+      ],
+      [
+       15.2,
+       19.15,
+       1.5,
+       "Vestibule majestueux"
+      ],
+      [
+       19.2,
+       22.15,
+       1.4
+      ],
+      [
+       27.2,
+       30.0,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v5",
+     "publier": "2026-10-28T21:00",
+     "accroche": "Ce château est à vendre,|près de Beaune",
+     "legende": "Ce château est à vendre, près de Beaune 👀\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#chateauavendre #bourgogne #beaune #immobilierdeprestige #chateau",
+     "plans": [
+      [
+       0,
+       1.2,
+       1.0
+      ],
+      [
+       1.25,
+       3.2,
+       1.0
+      ],
+      [
+       5.25,
+       7.2,
+       1.1,
+       "XVIIIe siècle"
+      ],
+      [
+       8.25,
+       11.2,
+       1.4
+      ],
+      [
+       11.25,
+       13.2,
+       1.4
+      ],
+      [
+       13.25,
+       15.15,
+       1.0
+      ],
+      [
+       15.2,
+       19.15,
+       1.5
+      ],
+      [
+       24.2,
+       27.15,
+       1.0
+      ]
+     ]
+    }
+   ]
+  }
+ ]
+}
