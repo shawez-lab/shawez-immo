@@ -18,7 +18,11 @@
    "enregistrements": 0,
    "commentaires": 0,
    "mesure_le": "2026-10-29T13:25",
-   "verdict": "perdant"
+   "verdict": "perdant",
+   "verdicts": {
+    "instagram": "perdant"
+   },
+   "vues_total": 112
   },
   {
    "id": "TR-2710-461-v1",
@@ -37,7 +41,11 @@
    "enregistrements": 0,
    "commentaires": 4,
    "mesure_le": "2026-10-29T13:25",
-   "verdict": "gagnant"
+   "verdict": "gagnant",
+   "verdicts": {
+    "instagram": "gagnant"
+   },
+   "vues_total": 1174
   },
   {
    "id": "TR-2810-438-v1",
@@ -52,33 +60,59 @@
    "statut": "publie",
    "uuid": "1911933832923269929",
    "url": "https://www.instagram.com/reel/DfB9S2sDohn/",
-   "vues": 2109,
-   "duree_moy": 7.64,
+   "vues": 2783,
+   "duree_moy": 7.84,
    "partages": 7,
-   "enregistrements": 2,
-   "commentaires": 4,
-   "mesure_le": "2026-10-29T13:25",
+   "enregistrements": 3,
+   "commentaires": 6,
+   "mesure_le": "2026-10-30T06:50",
    "verdict": "gagnant",
    "diffusions": {
     "tiktok": {
      "uuid": "-6562320690249709591",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immobilier/video/7702133332435340565",
      "date": "2026-10-29",
      "heure": "17:50"
     },
     "youtube": {
      "uuid": "9054900003636396038",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/uLcElCt4Mms",
      "date": "2026-10-29",
      "heure": "17:50"
     },
     "facebook": {
      "uuid": "8767191933142518523",
-     "url": "",
+     "url": "https://facebook.com/reel/1879699676539400",
      "date": "2026-10-29",
      "heure": "17:50"
     }
-   }
+   },
+   "reseaux": {
+    "tiktok": {
+     "vues": 115,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 5,
+     "commentaires": 1,
+     "mesure_le": "2026-10-30T06:50",
+     "verdict": "en_cours"
+    },
+    "facebook": {
+     "vues": 0,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-10-30T06:50",
+     "verdict": "en_cours"
+    }
+   },
+   "verdicts": {
+    "instagram": "gagnant",
+    "tiktok": "en_cours",
+    "facebook": "en_cours"
+   },
+   "vues_total": 2898
   },
   {
    "id": "TR-2810-483-v2",
@@ -93,13 +127,17 @@
    "statut": "publie",
    "uuid": "-5695006986779013571",
    "url": "https://www.instagram.com/reel/DfCEZmKjssj/",
-   "vues": 129,
-   "duree_moy": 2.95,
+   "vues": 131,
+   "duree_moy": 2.92,
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-10-29T13:25",
-   "verdict": "perdant"
+   "mesure_le": "2026-10-30T06:50",
+   "verdict": "perdant",
+   "verdicts": {
+    "instagram": "perdant"
+   },
+   "vues_total": 131
   },
   {
    "id": "TR-2810-461-v2",
@@ -114,13 +152,17 @@
    "statut": "publie",
    "uuid": "-163110159189848943",
    "url": "https://www.instagram.com/reel/DfCLH68lUg8/",
-   "vues": 165,
-   "duree_moy": 5.28,
-   "partages": 0,
+   "vues": 322,
+   "duree_moy": 6.42,
+   "partages": 1,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-10-29T13:25",
-   "verdict": "perdant"
+   "mesure_le": "2026-10-30T06:50",
+   "verdict": "perdant",
+   "verdicts": {
+    "instagram": "perdant"
+   },
+   "vues_total": 322
   },
   {
    "id": "TR-2810-438-v2",
@@ -135,33 +177,59 @@
    "statut": "publie",
    "uuid": "3867017537591264781",
    "url": "https://www.instagram.com/reel/DfCSDAAjCup/",
-   "vues": 1194,
+   "vues": 1244,
    "duree_moy": 4.74,
    "partages": 1,
    "enregistrements": 1,
    "commentaires": 0,
-   "mesure_le": "2026-10-29T13:25",
+   "mesure_le": "2026-10-30T06:50",
    "verdict": "gagnant",
    "diffusions": {
     "tiktok": {
      "uuid": "-1378103029923033347",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immobilier/video/7702138374278171905",
      "date": "2026-10-29",
      "heure": "18:10"
     },
     "youtube": {
      "uuid": "-1271790699746606495",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/59PzSA1kLYU",
      "date": "2026-10-29",
      "heure": "18:50"
     },
     "facebook": {
      "uuid": "-6280628510384111059",
-     "url": "",
+     "url": "https://facebook.com/reel/962882546467596",
      "date": "2026-10-29",
      "heure": "18:50"
     }
-   }
+   },
+   "reseaux": {
+    "tiktok": {
+     "vues": 95,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 1,
+     "commentaires": 0,
+     "mesure_le": "2026-10-30T06:50",
+     "verdict": "en_cours"
+    },
+    "facebook": {
+     "vues": 1,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-10-30T06:50",
+     "verdict": "en_cours"
+    }
+   },
+   "verdicts": {
+    "instagram": "gagnant",
+    "tiktok": "en_cours",
+    "facebook": "en_cours"
+   },
+   "vues_total": 1340
   },
   {
    "id": "TR-2810-483-v3",
@@ -176,13 +244,17 @@
    "statut": "publie",
    "uuid": "1984184492962759030",
    "url": "https://www.instagram.com/reel/DfCY4-TCKBu/",
-   "vues": 184,
-   "duree_moy": 3.13,
+   "vues": 199,
+   "duree_moy": 3.28,
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-10-29T13:25",
-   "verdict": "perdant"
+   "mesure_le": "2026-10-30T06:50",
+   "verdict": "perdant",
+   "verdicts": {
+    "instagram": "perdant"
+   },
+   "vues_total": 199
   },
   {
    "id": "TR-2810-defi-a",
@@ -197,33 +269,59 @@
    "statut": "publie",
    "uuid": "-7984960517169066251",
    "url": "https://www.instagram.com/reel/DfCcBUyjTUT/",
-   "vues": 2551,
-   "duree_moy": 5.67,
+   "vues": 3068,
+   "duree_moy": 10.97,
    "partages": 1,
    "enregistrements": 0,
-   "commentaires": 2,
-   "mesure_le": "2026-10-29T13:25",
+   "commentaires": 4,
+   "mesure_le": "2026-10-30T06:50",
    "verdict": "gagnant",
    "diffusions": {
     "tiktok": {
      "uuid": "-8213754864690443752",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immobilier/video/7702143941889576212",
      "date": "2026-10-29",
      "heure": "18:30"
     },
     "youtube": {
      "uuid": "4775245741187485646",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/q1nJDz1xYnk",
      "date": "2026-10-29",
      "heure": "19:50"
     },
     "facebook": {
      "uuid": "-3971008832205077928",
-     "url": "",
+     "url": "https://facebook.com/reel/1154884646882356",
      "date": "2026-10-29",
      "heure": "19:50"
     }
-   }
+   },
+   "reseaux": {
+    "tiktok": {
+     "vues": 116,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 1,
+     "commentaires": 0,
+     "mesure_le": "2026-10-30T06:50",
+     "verdict": "en_cours"
+    },
+    "facebook": {
+     "vues": 0,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-10-30T06:50",
+     "verdict": "en_cours"
+    }
+   },
+   "verdicts": {
+    "instagram": "gagnant",
+    "tiktok": "en_cours",
+    "facebook": "en_cours"
+   },
+   "vues_total": 3184
   },
   {
    "id": "TR-2810-461-v3",
@@ -238,33 +336,59 @@
    "statut": "publie",
    "uuid": "8796291933884073685",
    "url": "https://www.instagram.com/reel/DfCf44DgFNG/",
-   "vues": 139,
-   "duree_moy": 3.94,
+   "vues": 144,
+   "duree_moy": 3.98,
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-10-29T13:25",
-   "verdict": "en_cours",
+   "mesure_le": "2026-10-30T06:50",
+   "verdict": "perdant",
    "diffusions": {
     "tiktok": {
      "uuid": "3850015534146928986",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immobilier/video/7702148702508485906",
      "date": "2026-10-29",
      "heure": "18:50"
     },
     "youtube": {
      "uuid": "7906136330278817368",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/JLStoIJ8Xuk",
      "date": "2026-10-29",
      "heure": "20:50"
     },
     "facebook": {
      "uuid": "7696994137443354648",
-     "url": "",
+     "url": "https://facebook.com/reel/39771185789194121",
      "date": "2026-10-29",
      "heure": "20:50"
     }
-   }
+   },
+   "reseaux": {
+    "tiktok": {
+     "vues": 94,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 5,
+     "commentaires": 1,
+     "mesure_le": "2026-10-30T06:50",
+     "verdict": "en_cours"
+    },
+    "facebook": {
+     "vues": 0,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-10-30T06:50",
+     "verdict": "en_cours"
+    }
+   },
+   "verdicts": {
+    "instagram": "perdant",
+    "tiktok": "en_cours",
+    "facebook": "en_cours"
+   },
+   "vues_total": 238
   },
   {
    "id": "TR-2810-438-v3",
@@ -284,8 +408,12 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-10-29T13:25",
-   "verdict": "en_cours"
+   "mesure_le": "2026-10-30T06:50",
+   "verdict": "perdant",
+   "verdicts": {
+    "instagram": "perdant"
+   },
+   "vues_total": 115
   },
   {
    "id": "TR-2810-defi-b",
@@ -300,13 +428,17 @@
    "statut": "publie",
    "uuid": "-4933527723989972465",
    "url": "https://www.instagram.com/reel/DfCp1_PjDjZ/",
-   "vues": 169,
-   "duree_moy": 4.8,
+   "vues": 173,
+   "duree_moy": 4.89,
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-10-29T13:25",
-   "verdict": "en_cours"
+   "mesure_le": "2026-10-30T06:50",
+   "verdict": "perdant",
+   "verdicts": {
+    "instagram": "perdant"
+   },
+   "vues_total": 173
   },
   {
    "id": "TR-2810-483-v4",
@@ -321,13 +453,17 @@
    "statut": "publie",
    "uuid": "-1552011192786664874",
    "url": "https://www.instagram.com/reel/DfCt3F_lHTC/",
-   "vues": 125,
-   "duree_moy": 2.92,
+   "vues": 133,
+   "duree_moy": 2.9,
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-10-29T13:25",
-   "verdict": "en_cours"
+   "mesure_le": "2026-10-30T06:50",
+   "verdict": "perdant",
+   "verdicts": {
+    "instagram": "perdant"
+   },
+   "vues_total": 133
   },
   {
    "id": "TR-2810-461-v4",
@@ -342,33 +478,59 @@
    "statut": "publie",
    "uuid": "1575640400985999767",
    "url": "https://www.instagram.com/reel/DfC0nvWEsT_/",
-   "vues": 135,
-   "duree_moy": 3.98,
+   "vues": 144,
+   "duree_moy": 3.86,
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-10-29T13:25",
-   "verdict": "en_cours",
+   "mesure_le": "2026-10-30T06:50",
+   "verdict": "perdant",
    "diffusions": {
     "tiktok": {
      "uuid": "-2638503749886392970",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immobilier/video/7702153944847355156",
      "date": "2026-10-29",
      "heure": "19:10"
     },
     "youtube": {
      "uuid": "-5163519374603366477",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/sTE9ReVrojo",
      "date": "2026-10-29",
      "heure": "21:50"
     },
     "facebook": {
      "uuid": "-3994830245093487890",
-     "url": "",
+     "url": "https://facebook.com/reel/1777568616852314",
      "date": "2026-10-29",
      "heure": "21:50"
     }
-   }
+   },
+   "reseaux": {
+    "tiktok": {
+     "vues": 63,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 3,
+     "commentaires": 0,
+     "mesure_le": "2026-10-30T06:50",
+     "verdict": "en_cours"
+    },
+    "facebook": {
+     "vues": 0,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-10-30T06:50",
+     "verdict": "en_cours"
+    }
+   },
+   "verdicts": {
+    "instagram": "perdant",
+    "tiktok": "en_cours",
+    "facebook": "en_cours"
+   },
+   "vues_total": 207
   },
   {
    "id": "TR-2810-defi-c",
@@ -388,8 +550,12 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-10-29T13:25",
-   "verdict": "en_cours"
+   "mesure_le": "2026-10-30T06:50",
+   "verdict": "perdant",
+   "verdicts": {
+    "instagram": "perdant"
+   },
+   "vues_total": 169
   },
   {
    "id": "TR-2810-438-v4",
@@ -404,33 +570,59 @@
    "statut": "publie",
    "uuid": "6255332966384095149",
    "url": "https://www.instagram.com/reel/DfC7drrDOFe/",
-   "vues": 1442,
-   "duree_moy": 5.83,
-   "partages": 12,
-   "enregistrements": 1,
+   "vues": 3620,
+   "duree_moy": 6.36,
+   "partages": 24,
+   "enregistrements": 4,
    "commentaires": 2,
-   "mesure_le": "2026-10-29T13:25",
+   "mesure_le": "2026-10-30T06:50",
    "verdict": "gagnant",
    "diffusions": {
     "tiktok": {
      "uuid": "-4983719279739189388",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immobilier/video/7702160245799259444",
      "date": "2026-10-29",
      "heure": "19:30"
     },
     "youtube": {
      "uuid": "3314546980030924269",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/Pz1g9l8h20g",
      "date": "2026-10-29",
      "heure": "22:50"
     },
     "facebook": {
      "uuid": "6558980746364797404",
-     "url": "",
+     "url": "https://facebook.com/reel/1628825942057298",
      "date": "2026-10-29",
      "heure": "22:50"
     }
-   }
+   },
+   "reseaux": {
+    "tiktok": {
+     "vues": 12,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-10-30T06:50",
+     "verdict": "en_cours"
+    },
+    "facebook": {
+     "vues": 0,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-10-30T06:50",
+     "verdict": "en_cours"
+    }
+   },
+   "verdicts": {
+    "instagram": "gagnant",
+    "tiktok": "en_cours",
+    "facebook": "en_cours"
+   },
+   "vues_total": 3632
   },
   {
    "id": "TR-2810-483-v5",
@@ -445,13 +637,17 @@
    "statut": "publie",
    "uuid": "-3004915190646683604",
    "url": "https://www.instagram.com/reel/DfDCJgJitOr/",
-   "vues": 197,
-   "duree_moy": 4.6,
+   "vues": 334,
+   "duree_moy": 5.4,
    "partages": 0,
-   "enregistrements": 0,
+   "enregistrements": 1,
    "commentaires": 0,
-   "mesure_le": "2026-10-29T13:25",
-   "verdict": "en_cours"
+   "mesure_le": "2026-10-30T06:50",
+   "verdict": "perdant",
+   "verdicts": {
+    "instagram": "perdant"
+   },
+   "vues_total": 334
   },
   {
    "id": "TR-2910-527-a",
@@ -469,23 +665,56 @@
    "diffusions": {
     "tiktok": {
      "uuid": "6784842438307300752",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immobilier/video/7702164094127803666",
      "date": "2026-10-29",
      "heure": "19:50"
     },
     "youtube": {
      "uuid": "6848776511631148254",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/CGlwkFijRI8",
      "date": "2026-10-29",
      "heure": "23:50"
     },
     "facebook": {
      "uuid": "4565258769312202943",
-     "url": "",
+     "url": "https://facebook.com/reel/1775841953695410",
      "date": "2026-10-29",
      "heure": "23:50"
     }
-   }
+   },
+   "vues": 1192,
+   "duree_moy": 4.89,
+   "partages": 3,
+   "enregistrements": 2,
+   "commentaires": 0,
+   "mesure_le": "2026-10-30T06:50",
+   "reseaux": {
+    "tiktok": {
+     "vues": 59,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 3,
+     "commentaires": 1,
+     "mesure_le": "2026-10-30T06:50",
+     "verdict": "en_cours"
+    },
+    "facebook": {
+     "vues": 0,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-10-30T06:50",
+     "verdict": "en_cours"
+    }
+   },
+   "verdicts": {
+    "instagram": "gagnant",
+    "tiktok": "en_cours",
+    "facebook": "en_cours"
+   },
+   "vues_total": 1251,
+   "verdict": "gagnant"
   },
   {
    "id": "TR-2910-525-a",
@@ -503,7 +732,7 @@
    "diffusions": {
     "tiktok": {
      "uuid": "-4257173081808616703",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immobilier/video/7702169496236215570",
      "date": "2026-10-29",
      "heure": "20:10"
     },
@@ -519,7 +748,30 @@
      "date": "2026-10-30",
      "heure": "00:50"
     }
-   }
+   },
+   "vues": 155,
+   "duree_moy": 4.09,
+   "partages": 0,
+   "enregistrements": 0,
+   "commentaires": 0,
+   "mesure_le": "2026-10-30T06:50",
+   "reseaux": {
+    "tiktok": {
+     "vues": 77,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 4,
+     "commentaires": 0,
+     "mesure_le": "2026-10-30T06:50",
+     "verdict": "en_cours"
+    }
+   },
+   "verdicts": {
+    "instagram": "en_cours",
+    "tiktok": "en_cours"
+   },
+   "vues_total": 232,
+   "verdict": "en_cours"
   },
   {
    "id": "TR-2910-525-b",
@@ -537,7 +789,7 @@
    "diffusions": {
     "tiktok": {
      "uuid": "-7082639150964847677",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immobilier/video/7702175098622545153",
      "date": "2026-10-29",
      "heure": "20:30"
     },
@@ -553,7 +805,30 @@
      "date": "2026-10-30",
      "heure": "13:05"
     }
-   }
+   },
+   "vues": 1489,
+   "duree_moy": 6.17,
+   "partages": 1,
+   "enregistrements": 0,
+   "commentaires": 0,
+   "mesure_le": "2026-10-30T06:50",
+   "reseaux": {
+    "tiktok": {
+     "vues": 129,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 3,
+     "commentaires": 1,
+     "mesure_le": "2026-10-30T06:50",
+     "verdict": "en_cours"
+    }
+   },
+   "verdicts": {
+    "instagram": "gagnant",
+    "tiktok": "en_cours"
+   },
+   "vues_total": 1618,
+   "verdict": "gagnant"
   },
   {
    "id": "TR-2910-527-b",
@@ -567,7 +842,18 @@
    "source": "boss",
    "statut": "publie",
    "uuid": "8812887982876085541",
-   "url": "https://www.instagram.com/reel/DfE9pbzDht_/"
+   "url": "https://www.instagram.com/reel/DfE9pbzDht_/",
+   "vues": 302,
+   "duree_moy": 4.74,
+   "partages": 0,
+   "enregistrements": 0,
+   "commentaires": 0,
+   "mesure_le": "2026-10-30T06:50",
+   "verdicts": {
+    "instagram": "en_cours"
+   },
+   "vues_total": 302,
+   "verdict": "en_cours"
   },
   {
    "id": "TR-2910-525-c",
@@ -584,7 +870,7 @@
    "diffusions": {
     "tiktok": {
      "uuid": "5437722352751756006",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immobilier/video/7702179615493655826",
      "date": "2026-10-29",
      "heure": "20:50"
     },
@@ -600,7 +886,31 @@
      "date": "2026-10-30",
      "heure": "17:50"
     }
-   }
+   },
+   "url": "https://www.instagram.com/reel/DfFHqKGCBsX/",
+   "vues": 166,
+   "duree_moy": 3.23,
+   "partages": 0,
+   "enregistrements": 0,
+   "commentaires": 0,
+   "mesure_le": "2026-10-30T06:50",
+   "reseaux": {
+    "tiktok": {
+     "vues": 50,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-10-30T06:50",
+     "verdict": "en_cours"
+    }
+   },
+   "verdicts": {
+    "instagram": "en_cours",
+    "tiktok": "en_cours"
+   },
+   "vues_total": 216,
+   "verdict": "en_cours"
   },
   {
    "id": "TR-3010-525-a",
@@ -643,7 +953,7 @@
    "diffusions": {
     "tiktok": {
      "uuid": "-4260361849069943374",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immobilier/video/7702184785212443925",
      "date": "2026-10-29",
      "heure": "21:10"
     },
@@ -659,7 +969,31 @@
      "date": "2026-10-30",
      "heure": "18:50"
     }
-   }
+   },
+   "url": "https://www.instagram.com/reel/DfFn43PkXDO/",
+   "vues": 449,
+   "duree_moy": 4.87,
+   "partages": 1,
+   "enregistrements": 0,
+   "commentaires": 0,
+   "mesure_le": "2026-10-30T06:50",
+   "reseaux": {
+    "tiktok": {
+     "vues": 20,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 2,
+     "commentaires": 0,
+     "mesure_le": "2026-10-30T06:50",
+     "verdict": "en_cours"
+    }
+   },
+   "verdicts": {
+    "instagram": "en_cours",
+    "tiktok": "en_cours"
+   },
+   "vues_total": 469,
+   "verdict": "en_cours"
   },
   {
    "id": "TR-2910-438-v2",
@@ -676,7 +1010,7 @@
    "diffusions": {
     "tiktok": {
      "uuid": "-7337561038549073866",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immobilier/video/7702190497585974549",
      "date": "2026-10-29",
      "heure": "21:30"
     },
@@ -692,7 +1026,31 @@
      "date": "2026-10-30",
      "heure": "19:50"
     }
-   }
+   },
+   "url": "https://www.instagram.com/reel/DfFy3N9jUj5/",
+   "vues": 613,
+   "duree_moy": 4.83,
+   "partages": 2,
+   "enregistrements": 1,
+   "commentaires": 1,
+   "mesure_le": "2026-10-30T06:50",
+   "reseaux": {
+    "tiktok": {
+     "vues": 22,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-10-30T06:50",
+     "verdict": "en_cours"
+    }
+   },
+   "verdicts": {
+    "instagram": "en_cours",
+    "tiktok": "en_cours"
+   },
+   "vues_total": 635,
+   "verdict": "en_cours"
   },
   {
    "id": "TR-2910-438-v3",
@@ -709,7 +1067,7 @@
    "diffusions": {
     "tiktok": {
      "uuid": "-3881939580977656464",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immobilier/video/7702206612538281224",
      "date": "2026-10-29",
      "heure": "22:35"
     },
@@ -725,7 +1083,31 @@
      "date": "2026-10-30",
      "heure": "20:50"
     }
-   }
+   },
+   "url": "https://www.instagram.com/reel/DfF91n7jRKq/",
+   "vues": 127,
+   "duree_moy": 3.57,
+   "partages": 0,
+   "enregistrements": 0,
+   "commentaires": 0,
+   "mesure_le": "2026-10-30T06:50",
+   "reseaux": {
+    "tiktok": {
+     "vues": 18,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-10-30T06:50",
+     "verdict": "en_cours"
+    }
+   },
+   "verdicts": {
+    "instagram": "en_cours",
+    "tiktok": "en_cours"
+   },
+   "vues_total": 145,
+   "verdict": "en_cours"
   },
   {
    "id": "TR-2910-438-v4",
@@ -738,7 +1120,19 @@
    "legende": "18 pièces, 7 chambres et 520 m² habitables dans un château du XVIIIe, à 15 minutes de Beaune 🏰\n\nCommente CHÂTEAU et je t",
    "source": "monteur",
    "uuid": "567512605919364139",
-   "statut": "publie"
+   "statut": "publie",
+   "url": "https://www.instagram.com/reel/DfGJJAMjD50/",
+   "vues": 136,
+   "duree_moy": 3.1,
+   "partages": 2,
+   "enregistrements": 0,
+   "commentaires": 0,
+   "mesure_le": "2026-10-30T06:50",
+   "verdicts": {
+    "instagram": "en_cours"
+   },
+   "vues_total": 136,
+   "verdict": "en_cours"
   },
   {
    "id": "TR-2910-438-v5",
