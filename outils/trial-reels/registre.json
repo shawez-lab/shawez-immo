@@ -1318,6 +1318,12 @@
      "url": "",
      "date": "2026-10-31",
      "heure": "01:50"
+    },
+    "facebook": {
+     "uuid": "-5811305558207738314",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "17:50"
     }
    }
   },
@@ -1345,6 +1351,12 @@
      "url": "",
      "date": "2026-10-31",
      "heure": "02:50"
+    },
+    "facebook": {
+     "uuid": "684987826694213059",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "18:50"
     }
    }
   },
@@ -1366,6 +1378,18 @@
      "url": "",
      "date": "2026-10-30",
      "heure": "19:30"
+    },
+    "youtube": {
+     "uuid": "6710631395234697142",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "17:50"
+    },
+    "facebook": {
+     "uuid": "2576384569259019383",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "19:50"
     }
    }
   },
@@ -1422,7 +1446,21 @@
    "legende": "1 600 000 € pour 18 pièces, un étang et une vue sur la Côte de Beaune 🏰\n\nCommente CHÂTEAU et je t’envoie la visite compl",
    "source": "monteur",
    "uuid": "-140020218679898162",
-   "statut": "publie"
+   "statut": "publie",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "7793675816800634123",
+     "url": "",
+     "date": "2026-10-30",
+     "heure": "20:50"
+    },
+    "youtube": {
+     "uuid": "4842615172333257321",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "21:50"
+    }
+   }
   },
   {
    "id": "TR-2910-438-v15",
@@ -1435,7 +1473,21 @@
    "legende": "Ce château du XVIIIe domine la campagne bourguignonne, à 15 minutes de Beaune 🏰\n\nCommente CHÂTEAU et je t’envoie la visi",
    "source": "monteur",
    "uuid": "-6565565531765783601",
-   "statut": "publie"
+   "statut": "publie",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "-3839667039306038886",
+     "url": "",
+     "date": "2026-10-30",
+     "heure": "21:10"
+    },
+    "youtube": {
+     "uuid": "7027034634565992968",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "22:50"
+    }
+   }
   },
   {
    "id": "TR-3010-461-v1",
@@ -1448,7 +1500,21 @@
    "legende": "Marrakech, en plein cœur de Dijon 🫖 Un studio rénové par architecte, au calme d’une cour intérieure, à deux pas du Parc ",
    "source": "monteur",
    "uuid": "4769261936517988629",
-   "statut": "publie"
+   "statut": "publie",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "-3465484903954824684",
+     "url": "",
+     "date": "2026-10-30",
+     "heure": "21:30"
+    },
+    "youtube": {
+     "uuid": "-4019888482564420199",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "23:50"
+    }
+   }
   },
   {
    "id": "TR-3010-438-v1",
