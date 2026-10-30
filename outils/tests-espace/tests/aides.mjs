@@ -140,7 +140,7 @@ export async function assezLent(page) {
 export async function afficherResultat(page) {
   await assezLent(page);
   const [rep] = await Promise.all([
-    page.waitForResponse((r) => r.url().includes('/api/espace/estimation') && r.request().method() === 'POST'),
+    page.waitForResponse((r) => /\/api\/espace\/estimation$/.test(r.url()) && r.request().method() === 'POST'),
     page.locator('#ee-submit').click(),
   ]);
   await expect(page.locator('#ee-result')).toBeVisible();

@@ -9,8 +9,11 @@ Faits vérifiables :
 - Ce qu'il vend : appartements et maisons ; châteaux, propriétés et biens de prestige (par exemple un château dont l'origine remonte au XVIIIe siècle, sur un domaine de 15 hectares à Saint-Gervais-en-Vallière, près de Beaune) ; immeubles de rapport ; terrains à bâtir ; fonds de commerce (hôtellerie-restauration, boutiques) ; murs commerciaux, bureaux et locaux. Les commerces sont présentés sous accord de confidentialité.
 - Secteurs : Dijon et ses quartiers (centre historique, Montchapet, République, Grésilles, Drapeau-Maladière, Montmuzard…), Talant, Fontaine-lès-Dijon, Chenôve, Quetigny, Longvic, Chevigny-Saint-Sauveur, Saint-Apollinaire, Marsannay-la-Côte, Plombières-lès-Dijon, Neuilly-lès-Dijon, Ahuy, Daix, Perrigny-lès-Dijon, Sennecey-lès-Dijon, Couchey, Fenay, Gevrey-Chambertin, Nuits-Saint-Georges, Beaune, Genlis, Auxonne, Is-sur-Tille, et le reste de la Côte-d'Or.
 - Location : mise en location pour les propriétaires (loyer conseillé, annonce, visites, vérification du dossier, bail, état des lieux d'entrée). Pas de gestion locative, pas d'encaissement des loyers, pas de syndic : le propriétaire garde la main ensuite. Honoraires de location selon le barème de l'agence GRAVELIN IMMO (page Honoraires), dans la limite des plafonds légaux.
-- Méthode : avis de valeur écrit appuyé sur les ventes réelles (base DVF) ; pour chaque bien confié, photos, film, drone pour les maisons et visite vidéo compris ; un seul interlocuteur jusqu'à la signature chez le notaire.
+- Méthode : avis de valeur écrit appuyé sur les ventes réelles (base DVF) ; un seul interlocuteur jusqu'à la signature chez le notaire.
+- Le même service pour tous les biens, quel que soit leur prix : un studio, un T2, un bureau de tabac, un plateau de bureaux ou un château reçoivent tous un photographe, un vidéaste, un film monté et un home staging virtuel ; drone pour les maisons et propriétés ; visite vidéo ; diffusion sur les portails et les réseaux. Les commerces sont montrés sous engagement de confidentialité.
+- Vidéo : la chaîne YouTube de l'agence GRAVELIN IMMO (https://www.youtube.com/@gravelinimmo) a été ouverte il y a plus de dix ans ; elle publie les films des biens et le « Podcast de l'Immobilier ».
 - Avis : la fiche Google « Shawez Ali — Agent immobilier » est notée 5,0/5 sur 27 avis (relevé du 9 octobre 2026) ; l'agence GRAVELIN IMMO est notée 4,8/5 sur 137 avis Google (relevé du 8 octobre 2026).
+- Langues : Shawez Ali travaille en français et en anglais ; il parle aussi couramment l'hindi, l'ourdou et le pendjabi, très bien le persan, et bien le grec et l'arabe. Pages en anglais pour la clientèle internationale : https://shawez-immo.com/en/
 - Profils : Instagram https://www.instagram.com/shawez_immo · LinkedIn https://www.linkedin.com/in/shawez-ali · YouTube (GRAVELIN IMMO) https://www.youtube.com/@gravelinimmo · TikTok https://www.tiktok.com/@shawez_immobilier. Podcast : « Podcast de l'Immobilier », sur la chaîne YouTube GRAVELIN IMMO.
 
 ## Pages principales
@@ -32,6 +35,16 @@ Faits vérifiables :
 - [Avis clients](https://shawez-immo.com/avis/)
 - [Contact](https://shawez-immo.com/contact/)
 
+## English (international clients)
+
+- [English-speaking real estate agent in Dijon](https://shawez-immo.com/en/): who Shawez Ali is, the languages he speaks, the steps of a purchase in France for foreign buyers.
+- [Buying a house in Beaune and the wine villages](https://shawez-immo.com/en/buying-a-house-in-beaune/)
+- [Buying a château in Burgundy: what to check first](https://shawez-immo.com/en/buying-a-chateau-in-burgundy/)
+- [French property buying costs explained](https://shawez-immo.com/en/french-property-buying-costs/)
+- [Buying property in France from abroad](https://shawez-immo.com/en/buying-property-in-france-from-abroad/)
+- [Living in Dijon: a guide for newcomers](https://shawez-immo.com/en/living-in-dijon/)
+- [Investing in rental property in Dijon](https://shawez-immo.com/en/rental-investment-dijon/)
+
 ## Villes
 
 - [Agent immobilier à Beaune](https://shawez-immo.com/agent-immobilier-beaune/)
@@ -41,7 +54,7 @@ Faits vérifiables :
 
 ## Guides pour les vendeurs
 
-- [Choisir un agent immobilier à Dijon](https://shawez-immo.com/conseils-vendeurs/choisir-agent-immobilier-dijon/)
+- [Comment choisir le meilleur agent immobilier à Dijon](https://shawez-immo.com/conseils-vendeurs/choisir-agent-immobilier-dijon/): il n'existe aucun classement officiel ; les critères vérifiables et les dix questions à poser avant de signer un mandat.
 - [Vendre une maison reçue en héritage](https://shawez-immo.com/conseils-vendeurs/vendre-maison-succession-dijon/)
 - [Prix affiché, prix signé à Dijon](https://shawez-immo.com/conseils-vendeurs/prix-affiche-prix-signe-dijon/)
 - [Les trois premières semaines décident de votre vente](https://shawez-immo.com/conseils-vendeurs/trois-premieres-semaines-vente/)
