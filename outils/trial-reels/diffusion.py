@@ -3,11 +3,18 @@
 
 Demande de Shawez (29/10/2026) : « en total je veux que tu publies 50 réels par jour ». Instagram refuse au-delà
 d'environ 16 Trial Reels par 24 h, donc le reste part sur les autres réseaux connectés à Metricool :
-  Instagram  15 Trial Reels / 24 h glissantes   (Monteur, creneaux.py)
-  TikTok     15 vidéos / 24 h, 20 min d'écart au moins   (shawez_immobilier)
-  YouTube    10 Shorts / 24 h, 60 min d'écart au moins   (limite Metricool du compte YouTube)
-  Facebook   10 Reels  / 24 h, 60 min d'écart au moins   (page Facebook)
-Soit 50 publications par jour, sans jamais dépasser une limite (plus jamais d'e-mail d'erreur Metricool).
+  Instagram  12 Trial Reels / 24 h glissantes   (Monteur, creneaux.py)
+  TikTok      8 vidéos / 24 h, 45 min d'écart au moins   (compte shawez_immo)
+  YouTube    10 Shorts  / 24 h, 60 min d'écart au moins   (limite Metricool du compte YouTube)
+  Facebook   10 Reels   / 24 h, 60 min d'écart au moins   (page Facebook)
+  Threads    10 vidéos  / 24 h, 45 min d'écart au moins   (plafond Metricool : 250, large)
+Soit 50 publications par jour, sans jamais dépasser une limite.
+
+PLAFONDS CORRIGÉS LE 30/10/2026, après de vrais refus : Instagram a refusé la 14e Trial Reel de la fenêtre de
+24 h (« You reached maximum number of trial reels that is allowed to be published by Content Publishing API »,
+4 refus entre 12 h et 16 h) ; TikTok a refusé la 8e vidéo du jour (« This TikTok creator has made too many posts
+via OpenAPI in the last 24 hours », 403). Les plafonds ci-dessus gardent une marge sous ces refus réels.
+Ne jamais les remonter : Shawez ne veut plus recevoir un seul e-mail d'erreur Metricool.
 
 Usage :
   python3 outils/trial-reels/diffusion.py --a-faire --existants /tmp/diffuses.txt --depuis 2026-10-29T19:00
@@ -35,9 +42,10 @@ REGISTRE = os.path.join(ICI, 'registre.json')
 JUGE = os.path.join(ICI, 'juge.json')
 JOUR = dt.timedelta(hours=24)
 RESEAUX = {  # plafond sur 24 h glissantes, écart minimal, horizon de diffusion après la Trial Reel
-    'tiktok': {'plafond': 15, 'ecart': dt.timedelta(minutes=20)},
+    'tiktok': {'plafond': 8, 'ecart': dt.timedelta(minutes=45)},
     'youtube': {'plafond': 10, 'ecart': dt.timedelta(minutes=60)},
     'facebook': {'plafond': 10, 'ecart': dt.timedelta(minutes=60)},
+    'threads': {'plafond': 10, 'ecart': dt.timedelta(minutes=45)},
 }
 FENETRE_H = 48
 INSTAGRAM = '@shawez_immo'
@@ -102,6 +110,8 @@ def texte_pour(reseau, v):
     if reseau == 'youtube':
         legende = legende.replace('#', '').strip()
         legende += '\n\nShawez Ali, agent immobilier à Dijon. Estimation offerte sur shawez-immo.com'
+    if reseau == 'threads':
+        legende = legende[:480]
     if reseau == 'tiktok':
         tags = ' '.join(t for t in ('#immobilier', '#dijon', '#maison', '#visite', '#fyp') if t not in legende)
         legende = (legende.rstrip() + '\n' + tags).strip()
