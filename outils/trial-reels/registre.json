@@ -923,7 +923,15 @@
    "legende": "Une porte intégrée à la cuisine, puis une autre pièce derrière.",
    "source": "boss",
    "statut": "publie",
-   "uuid": "-6189122406761414049"
+   "uuid": "-6189122406761414049",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "-7757100384996208922",
+     "url": "",
+     "date": "2026-10-30",
+     "heure": "19:50"
+    }
+   }
   },
   {
    "id": "TR-3110-438-v5",
@@ -1132,7 +1140,27 @@
     "instagram": "en_cours"
    },
    "vues_total": 136,
-   "verdict": "en_cours"
+   "verdict": "en_cours",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "-77644753750965499",
+     "url": "",
+     "date": "2026-10-30",
+     "heure": "09:15"
+    },
+    "youtube": {
+     "uuid": "2476186455693675746",
+     "url": "",
+     "date": "2026-10-30",
+     "heure": "20:50"
+    },
+    "facebook": {
+     "uuid": "8957364421100457131",
+     "url": "",
+     "date": "2026-10-30",
+     "heure": "21:50"
+    }
+   }
   },
   {
    "id": "TR-2910-438-v5",
@@ -1145,7 +1173,27 @@
    "legende": "Un château du XVIIIe avec son parc et son étang, à 15 minutes de Beaune 🏰\n\nCommente CHÂTEAU et je t’envoie la visite com",
    "source": "monteur",
    "uuid": "-435519180842646166",
-   "statut": "publie"
+   "statut": "publie",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "-317117970789874589",
+     "url": "",
+     "date": "2026-10-30",
+     "heure": "09:35"
+    },
+    "youtube": {
+     "uuid": "-4534070685234475145",
+     "url": "",
+     "date": "2026-10-30",
+     "heure": "21:50"
+    },
+    "facebook": {
+     "uuid": "3710819781552326259",
+     "url": "",
+     "date": "2026-10-30",
+     "heure": "22:50"
+    }
+   }
   },
   {
    "id": "TR-2910-438-v6",
@@ -1158,7 +1206,27 @@
    "legende": "Tu te réveilles ici demain matin ? 🏰 Château du XVIIIe avec vue dégagée sur la Côte de Beaune.\n\nCommente CHÂTEAU et je t",
    "source": "monteur",
    "uuid": "-4631676106546526601",
-   "statut": "publie"
+   "statut": "publie",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "-8898967633136563038",
+     "url": "",
+     "date": "2026-10-30",
+     "heure": "17:50"
+    },
+    "youtube": {
+     "uuid": "2941283993332698926",
+     "url": "",
+     "date": "2026-10-30",
+     "heure": "22:50"
+    },
+    "facebook": {
+     "uuid": "-4190433860498272823",
+     "url": "",
+     "date": "2026-10-30",
+     "heure": "23:50"
+    }
+   }
   },
   {
    "id": "TR-2910-438-v7",
@@ -1171,7 +1239,27 @@
    "legende": "Derrière cette porte, un vestibule majestueux et trois salons de réception 🏰 Château du XVIIIe près de Beaune.\n\nCommente",
    "source": "monteur",
    "uuid": "-3817222162734889313",
-   "statut": "publie"
+   "statut": "publie",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "1604037780783251954",
+     "url": "",
+     "date": "2026-10-30",
+     "heure": "18:10"
+    },
+    "youtube": {
+     "uuid": "414674150936561360",
+     "url": "",
+     "date": "2026-10-30",
+     "heure": "23:50"
+    },
+    "facebook": {
+     "uuid": "234085691557889734",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "00:50"
+    }
+   }
   },
   {
    "id": "TR-2910-438-v8",
@@ -1184,7 +1272,27 @@
    "legende": "520 m² et un étang autour d’un château du XVIIIe, à 15 minutes de Beaune 🏰\n\nCommente CHÂTEAU et je t’envoie la visite co",
    "source": "monteur",
    "uuid": "-4241842962660372758",
-   "statut": "publie"
+   "statut": "publie",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "8808728581958750181",
+     "url": "",
+     "date": "2026-10-30",
+     "heure": "18:30"
+    },
+    "youtube": {
+     "uuid": "-2293200260545821629",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "00:50"
+    },
+    "facebook": {
+     "uuid": "-8462810462067080987",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "13:05"
+    }
+   }
   },
   {
    "id": "TR-2910-438-v9",
@@ -1197,7 +1305,21 @@
    "legende": "Un château du XVIIIe à vendre en Bourgogne, avec son parc, son étang et sa vue sur la Côte de Beaune 🏰\n\nCommente CHÂTEAU",
    "source": "monteur",
    "uuid": "-9217244776360358854",
-   "statut": "publie"
+   "statut": "publie",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "-3852791488884748314",
+     "url": "",
+     "date": "2026-10-30",
+     "heure": "18:50"
+    },
+    "youtube": {
+     "uuid": "1757997404951038026",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "01:50"
+    }
+   }
   },
   {
    "id": "TR-2910-438-v10",
@@ -1210,7 +1332,21 @@
    "legende": "Combien vaut un château du XVIIIe avec étang, à 15 minutes de Beaune ? 🏰 Le prix est dans la vidéo.\n\nCommente CHÂTEAU et",
    "source": "monteur",
    "uuid": "-7635133103491496929",
-   "statut": "publie"
+   "statut": "publie",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "4757384116007684293",
+     "url": "",
+     "date": "2026-10-30",
+     "heure": "19:10"
+    },
+    "youtube": {
+     "uuid": "5061979450544636766",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "02:50"
+    }
+   }
   },
   {
    "id": "TR-2910-438-v11",
@@ -1223,7 +1359,15 @@
    "legende": "7 chambres, un parc et un étang autour d’un château du XVIIIe, à 15 minutes de Beaune 🏰\n\nCommente CHÂTEAU et je t’envoie",
    "source": "monteur",
    "uuid": "-3838576438328082119",
-   "statut": "publie"
+   "statut": "publie",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "6331064278086666985",
+     "url": "",
+     "date": "2026-10-30",
+     "heure": "19:30"
+    }
+   }
   },
   {
    "id": "TR-2910-438-v12",
@@ -1236,7 +1380,15 @@
    "legende": "Château du XVIIIe avec vue dégagée sur la Côte de Beaune, à 15 minutes de Beaune 🏰\n\nCommente CHÂTEAU et je t’envoie la v",
    "source": "monteur",
    "uuid": "6029667125028932436",
-   "statut": "publie"
+   "statut": "publie",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "7321322869051051552",
+     "url": "",
+     "date": "2026-10-30",
+     "heure": "20:10"
+    }
+   }
   },
   {
    "id": "TR-2910-438-v13",
@@ -1249,7 +1401,15 @@
    "legende": "Attends de voir l’intérieur 👀 Vestibule majestueux, boiseries et cheminées d’époque dans ce château du XVIIIe près de Be",
    "source": "monteur",
    "uuid": "5119725269619589699",
-   "statut": "publie"
+   "statut": "publie",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "2123843324576483531",
+     "url": "",
+     "date": "2026-10-30",
+     "heure": "20:30"
+    }
+   }
   },
   {
    "id": "TR-2910-438-v14",
