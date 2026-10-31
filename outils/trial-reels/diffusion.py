@@ -100,6 +100,17 @@ def creneau(reseau, heures, depuis, horizon_h=30):
     return None
 
 
+# Les vidéos des biens sont muettes : ni Instagram ni YouTube ne peuvent les doubler, leur traduction
+# automatique ne traduit que des voix. Pour être vu par les acheteurs étrangers que Shawez vise, la
+# seule chose qui marche est d'écrire la légende dans les deux langues. « Complimentary », jamais « free » :
+# c'est l'équivalent anglais d'« offert », le mot que Shawez veut partout.
+SIGNATURE_FR = '\n\nShawez Ali, agent immobilier à Dijon. Estimation offerte sur shawez-immo.com'
+EN_LONG = ('\n\n— English —\nShawez Ali, real estate agent in Dijon, Burgundy, France. '
+           'I also speak English, Hindi, Urdu and Punjabi. '
+           'Complimentary valuation on shawez-immo.com, WhatsApp +33 7 67 57 92 28.')
+EN_COURT = '\n\nReal estate in Burgundy, France. English spoken. shawez-immo.com'
+
+
 def texte_pour(reseau, v):
     legende = v.get('legende_complete') or v.get('legende') or ''
     mot = (v.get('mot') or '').upper()
@@ -110,15 +121,16 @@ def texte_pour(reseau, v):
         legende = legende.rstrip() + '\n' + appel_prive
     if reseau == 'youtube':
         legende = legende.replace('#', '').strip()
-        legende += '\n\nShawez Ali, agent immobilier à Dijon. Estimation offerte sur shawez-immo.com'
+        legende += SIGNATURE_FR + EN_LONG
     if reseau == 'threads':
-        legende = legende[:480]
+        legende = (legende.rstrip() + EN_COURT)[:480]
     if reseau == 'linkedin':
         legende = legende.replace('#', '').strip()
-        legende += '\n\nShawez Ali, agent immobilier à Dijon. Estimation offerte sur shawez-immo.com'
+        legende += SIGNATURE_FR + EN_LONG
     if reseau == 'tiktok':
-        tags = ' '.join(t for t in ('#immobilier', '#dijon', '#maison', '#visite', '#fyp') if t not in legende)
-        legende = (legende.rstrip() + '\n' + tags).strip()
+        tags = ' '.join(t for t in ('#immobilier', '#dijon', '#maison', '#visite', '#fyp',
+                                    '#realestate', '#france', '#burgundy') if t not in legende)
+        legende = (legende.rstrip() + EN_COURT + '\n' + tags).strip()
     return legende[:2000]
 
 
@@ -126,7 +138,8 @@ def titre_pour(v):
     accroche = (v.get('accroche') or '').replace('|', ' ')
     accroche = re.sub(r'\s+', ' ', accroche).strip(' .')
     titre = accroche or (v.get('legende') or '').split('.')[0]
-    return (titre[:95] + ' #Shorts').strip()
+    # Un repère en anglais dans le titre : c'est ce qui fait sortir la vidéo sur les recherches étrangères.
+    return (titre[:78] + ' | Burgundy France #Shorts').strip()
 
 
 def a_faire(args):
