@@ -126,6 +126,12 @@ function budgetDuTexte(texte) {
   return max;
 }
 
+// « 1 600 000 € » -> 1600000. 0 si la fiche n'a pas de prix lisible, pour ne jamais écarter un bien par erreur.
+function prixEnNombre(p) {
+  const n = parseInt(String(p || '').replace(/[^\d]/g, ''), 10);
+  return Number.isFinite(n) ? n : 0;
+}
+
 // Le bien le plus cher qui tient dans le budget, plus un second cité en une ligne. Jamais un bien
 // qui n'est plus « en vente » : sous offre et sous compromis sont écartés.
 async function biensPourBudget(env, request, texte) {
@@ -665,9 +671,18 @@ export async function onRequest({ request, env }) {
       const mc = await motCle(env, request, commentaire);
       if (mc) { bien = await trouverBien(env, request, mc); if (bien) cleBien = mc; }
     }
-    // Toujours aucun bien, mais la personne a annoncé un budget : on lui propose ce qui correspond
-    // au lieu de lui demander ce qu'elle cherche. Demande de Shawez du 31/10/2026.
-    if (!bien && intention !== 'vendre') bien = await biensPourBudget(env, request, commentaire);
+    // La personne a annoncé un budget : on lui propose ce qui correspond au lieu de lui demander ce
+    // qu'elle cherche. Vaut aussi quand un bien est déjà identifié mais qu'il dépasse son budget :
+    // cas réel du 31/10 à 10 h 15, « vous avez la même chose à moins de 600 000 € ? » sous le château
+    // à 1 600 000 €. Le prix du château était seul autorisé, Claude a cité autre chose et controle()
+    // a refusé le message (refus_montant) : la personne n'a RIEN reçu. Demande de Shawez du 31/10/2026.
+    if (intention !== 'vendre') {
+      const budget = budgetDuTexte(commentaire);
+      if (budget && (!bien || prixEnNombre(bien.prix) > budget)) {
+        const mieux = await biensPourBudget(env, request, commentaire);
+        if (mieux) { bien = mieux; cleBien = ''; }
+      }
+    }
     if (base && !test && bien && bien.ref && !prive && source !== 'whatsapp') {
       // Même bien déjà envoyé aujourd'hui à ce contact (un même commentaire peut passer par le déclencheur de la vidéo
       // et par celui du mot-clé) : jamais un second message sur le même bien
