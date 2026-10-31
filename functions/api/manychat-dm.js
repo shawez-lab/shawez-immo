@@ -108,6 +108,46 @@ function ficheDepuisAnnonce(ref, a) {
 // Sert quand le Reel n'est pas dans le registre (Trial Reels, nouvelles versions) : le mot du commentaire dit le bien.
 const sansAccents = (s) => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 
+// Budget annoncé par la personne (« vous avez la même chose à moins de 600 000 € ? », 31/10/2026).
+// Sans ça, le worker n'avait aucun bien à proposer et répondait en demandant ce qu'elle cherchait,
+// alors que le catalogue contient la réponse. Il faut une tournure de budget explicite : un simple
+// prix cité dans une phrase ne déclenche rien.
+const CUE_BUDGET = /\b(moins de|en dessous|au dessous|sous|maxi|maximum|max|budget|jusqu|pas plus de|abordable)\b/i;
+function budgetDuTexte(texte) {
+  const t = sansAccents(texte).replace(/[  ]/g, ' ');
+  if (!CUE_BUDGET.test(t)) return 0;
+  let max = 0;
+  for (const m of t.matchAll(/(\d[\d\s.]{0,12}\d|\d)\s*(k\b|€|euros?\b)?/g)) {
+    let n = parseInt(String(m[1]).replace(/[\s.]/g, ''), 10);
+    if (!Number.isFinite(n)) continue;
+    if (/^k/i.test(m[2] || '')) n *= 1000;
+    if (n >= 20000 && n <= 5000000 && n > max) max = n;
+  }
+  return max;
+}
+
+// Le bien le plus cher qui tient dans le budget, plus un second cité en une ligne. Jamais un bien
+// qui n'est plus « en vente » : sous offre et sous compromis sont écartés.
+async function biensPourBudget(env, request, texte) {
+  const budget = budgetDuTexte(texte);
+  if (!budget) return null;
+  let data = {};
+  try { data = await lireJson(env, request, '/annonces.json'); } catch (e) { return null; }
+  const liste = Object.entries(data.annonces || {})
+    .map(([ref, a]) => ({ ref, a, prix: Number(a.prix) || 0 }))
+    .filter(x => x.a && x.a.status === 'en vente' && x.prix > 0 && x.prix <= budget)
+    .sort((x, y) => y.prix - x.prix);
+  if (!liste.length) return null;
+  const bien = ficheDepuisAnnonce(liste[0].ref, liste[0].a);
+  const second = liste[1];
+  if (second) {
+    const c = second.a.caracteristiques || {};
+    const prix = c.prix_honoraires_inclus || c.prix_vente || '';
+    bien.autre_bien_sous_ce_budget = propre([second.a.type, second.a.commune && `à ${second.a.commune}`, prix].filter(Boolean).join(' '), 120);
+  }
+  return bien;
+}
+
 async function motCle(env, request, texte) {
   let registre = {};
   try { registre = await lireJson(env, request, '/videos-biens.json'); } catch (e) { return ''; }
@@ -186,6 +226,9 @@ Dès que tu écris un message, règles absolues, sauf le « Salut » de début e
   l'argent qui passe en caisse et le chiffre d'affaires comptable), puis dis que pour recevoir les bilans complets il suffit de
   signer l'engagement de confidentialité du bouton « Accès aux bilans » et de le renvoyer avec sa pièce d'identité, et que tu lui
   envoies les bilans tout de suite après. Ne donne jamais le résultat comptable, les salaires ni le nom ou l'adresse du commerce.
+- Si les données contiennent une ligne « autre_bien_sous_ce_budget » : la personne a donné un budget et ces biens y entrent.
+  Présente le bien principal en une phrase avec son prix, cite ce second bien en une phrase, puis UNE seule question pour savoir
+  ce qui compte le plus pour elle. Ne dis jamais que tu n'as rien dans son budget.
 - Si aucun bien n'est fourni : une phrase chaleureuse et naturelle, puis une seule question simple sur ce qu'il cherche.
   Ne dis jamais que tu n'as pas l'information ni que tu préfères ne rien dire de faux.
 - Si le message est seulement le mot-clé d'une vidéo, un mot en majuscules comme CHÂTEAU, LOFT, NEUILLY ou VISIT, la personne a commenté
@@ -622,6 +665,9 @@ export async function onRequest({ request, env }) {
       const mc = await motCle(env, request, commentaire);
       if (mc) { bien = await trouverBien(env, request, mc); if (bien) cleBien = mc; }
     }
+    // Toujours aucun bien, mais la personne a annoncé un budget : on lui propose ce qui correspond
+    // au lieu de lui demander ce qu'elle cherche. Demande de Shawez du 31/10/2026.
+    if (!bien && intention !== 'vendre') bien = await biensPourBudget(env, request, commentaire);
     if (base && !test && bien && bien.ref && !prive && source !== 'whatsapp') {
       // Même bien déjà envoyé aujourd'hui à ce contact (un même commentaire peut passer par le déclencheur de la vidéo
       // et par celui du mot-clé) : jamais un second message sur le même bien
