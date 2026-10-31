@@ -584,7 +584,24 @@ export async function onRequest({ request, env }) {
     // Commentaire sans texte : le flux « tous les Reels » (texte fixe) ou un flux « Autres » d'une vidéo (dm_comment vidé).
     // Seuls les flux par mot-clé disent ce que la personne a écrit (dm_comment : « CHÂTEAU », « Question sur le prix »…).
     const aveugle = !prive && source !== 'whatsapp' && intention !== 'vendre' && (!commentaire || COMMENTAIRE_INCONNU.test(commentaire));
-    if (aveugle) return muet('inconnu');
+    if (aveugle) {
+      // Décision de Shawez du 31/10/2026, qui remplace celle du 29/10 : plus personne ne reste sans réponse.
+      // Instagram ne transmet ni le texte ni la vidéo, donc on n'affirme rien et on ne cite AUCUN bien : on demande
+      // le mot, et la suite repart du mot reçu. C'est la réponse de secours sans bien, pas de rédaction, coût nul.
+      // Une seule demande de ce type par contact et par jour, pour ne jamais tourner en boucle sur ses commentaires.
+      if (base && !test) {
+        const dejaDemande = await base.prepare("SELECT 1 FROM dm_instagram WHERE contact = ?1 AND jour = ?2 AND origine = 'preciser' LIMIT 1")
+          .bind(contact, jour).first().catch(() => null);
+        if (dejaDemande) return muet('inconnu_deja_demande');
+      }
+      const tp = dejaEcrit ? sansSalut(secours(prenom, null)) : secours(prenom, null);
+      if (base && !test) {
+        await base.prepare('INSERT OR IGNORE INTO dm_instagram VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11)')
+          .bind(evenement, contact, compte, idReel(post), '', jour, 'preciser', 0, 0, 0, new Date().toISOString()).run().catch(() => {});
+        await noter('out', tp, '');
+      }
+      return json(200, { ...blocManyChat(tp, null, true), envoyer: 'oui', origine: 'preciser', cout: 0 });
+    }
     if (/^(story|dm|wa)$/i.test(post || '')) {
       const c = commentaire || '';
       post = /tabac|bilan|chiffre|\bca\b|\bebe\b|compta|fdj|presse|fonds|1[,.]8|million/i.test(c) ? 'story-tabac'
