@@ -275,7 +275,21 @@ Règles absolues quand tu écris :
 - Documents, bilans, chiffre d'affaires d'un fonds : chiffres publics fournis seulement, puis l'engagement de confidentialité à signer avec une pièce d'identité.
 Réponds avec le texte du message seul, sans guillemets ni explication : la première ligne est déjà adressée à la personne.`;
 
-async function rediger(env, prenom, commentaire, bien, source, fil = [], intention = '', videosDuMoment = '', defi = false, pseudo = '') {
+// Pourquoi le garde-fou a refusé, dit à Claude pour qu'il se corrige au lieu de laisser la personne sans réponse.
+const RAISONS = {
+  horaire: 'tu as proposé une heure ou un créneau. Seules les heures écrites par la personne elle-même sont permises, ne propose aucune heure',
+  jour: 'tu as parlé du samedi, du dimanche ou du week-end, alors que la personne n’en a pas parlé',
+  questions: 'tu as posé plus d’une question. Garde une seule question, à la toute fin',
+  longueur_suite: 'ton message était trop long pour une conversation en cours. Moins de 320 caractères',
+  longueur: 'ton message était trop long. Moins de 600 caractères',
+  lignes: 'tu as écrit plus de 4 lignes',
+  vocabulaire: 'tu as employé un mot interdit, par exemple mandataire, gratuit, IA, robot ou automatique. Dis « offert » si besoin',
+  parentheses: 'tu as mis des parenthèses, elles sont interdites',
+  adresse: 'tu as donné une adresse ou un nom de rue, c’est interdit',
+  montant: 'tu as cité un montant qui ne figure pas dans les données du bien. N’utilise que les prix fournis, ou ne cite aucun prix',
+};
+
+async function rediger(env, prenom, commentaire, bien, source, fil = [], intention = '', videosDuMoment = '', defi = false, pseudo = '', correction = '') {
   if (!env.ANTHROPIC_API_KEY) throw new Error('cle absente');
   const inconnu = COMMENTAIRE_INCONNU.test(commentaire || '');
   // Mots-clés du flux vendeur (« vendre ma », « je vends », « estimation »…) : la personne parle de SON bien
@@ -298,7 +312,7 @@ async function rediger(env, prenom, commentaire, bien, source, fil = [], intenti
       thinking: { type: 'between_tools' },
       output_config: { effort: 'low' },
       system: source === 'whatsapp' ? CONSIGNES_WA : CONSIGNES,
-      messages: [{ role: 'user', content: `${fil.length ? 'Historique récent de la conversation, du plus ancien au plus récent :\n' + fil.map(m => (m.sens === 'out' ? 'Shawez : ' : 'Client : ') + m.texte).join('\n') + '\n\n' : ''}Type : ${source === 'whatsapp' ? 'message WhatsApp' : source === 'dm' ? 'message privé direct' : /story/i.test(source || '') ? 'réponse à une story' : 'commentaire sous une vidéo'}\nPrénom : ${prenom || '(inconnu)'}${!prenom && pseudo ? `\nPseudo Instagram : ${pseudo}` : ''}\nMessage : ${commentaire || '(vide)'}\n\nDonnées du bien :\n${donnees}` }],
+      messages: [{ role: 'user', content: `${fil.length ? 'Historique récent de la conversation, du plus ancien au plus récent :\n' + fil.map(m => (m.sens === 'out' ? 'Shawez : ' : 'Client : ') + m.texte).join('\n') + '\n\n' : ''}Type : ${source === 'whatsapp' ? 'message WhatsApp' : source === 'dm' ? 'message privé direct' : /story/i.test(source || '') ? 'réponse à une story' : 'commentaire sous une vidéo'}\nPrénom : ${prenom || '(inconnu)'}${!prenom && pseudo ? `\nPseudo Instagram : ${pseudo}` : ''}\nMessage : ${commentaire || '(vide)'}\n\nDonnées du bien :\n${donnees}${correction ? `\n\nTon message précédent a été refusé : ${correction}. Réécris-le entièrement en corrigeant ce point, en respectant toutes les autres règles, sans rien inventer.` : ''}` }],
     }),
   });
   if (!r.ok) throw new Error(`api ${r.status} ${(await r.text()).slice(0, 200)}`);
@@ -716,6 +730,24 @@ export async function onRequest({ request, env }) {
         texte = normaliser(texte.replace(/\s*\(([^()\n]{1,120})\)/g, ', $1,').replace(/,\s*([.!?,])/g, '$1').replace(/,\s*$/gm, ''));
         if (dejaEcrit) texte = sansSalut(texte);
         refus = controle(texte, bien, fil.length > 0 && (source === 'dm' || source === 'whatsapp' || /^story/i.test(source || '')), fil.filter(m => m.sens === 'in').map(m => m.texte).concat(commentaire || '').join('\n'));
+        if (refus && refus !== 'metadiscours' && RAISONS[refus]) {
+          // Une seconde chance avant tout silence : on dit à Claude ce qui n'allait pas et il réécrit.
+          // Avant le 31/10/2026, un refus en pleine conversation ne renvoyait AUCUN message : c'est ce qui
+          // a laissé @bauerbriand sans réponse à 10 h 15 après sa question sur son budget.
+          console.log('manychat-dm refus, seconde tentative', refus, texte);
+          try {
+            const r2 = await rediger(env, prenom, commentaire, bien, source || (/^dm$/i.test(post || '') ? 'dm' : ''), fil, intention, '', defi,
+              source === 'whatsapp' || /^wa:/.test(compte || '') ? '' : compte, RAISONS[refus]);
+            let t2 = normaliser(String(r2.texte || '').replace(/\s*\(([^()\n]{1,120})\)/g, ', $1,').replace(/,\s*([.!?,])/g, '$1').replace(/,\s*$/gm, ''));
+            if (dejaEcrit) t2 = sansSalut(t2);
+            if (t2 && !/^\W*HORS_SUJET\W*$/i.test(t2)) {
+              const refus2 = controle(t2, bien, fil.length > 0 && (source === 'dm' || source === 'whatsapp' || /^story/i.test(source || '')), fil.filter(m => m.sens === 'in').map(m => m.texte).concat(commentaire || '').join('\n'));
+              if (r2.usage && usage) { usage.input_tokens = (usage.input_tokens || 0) + (r2.usage.input_tokens || 0); usage.output_tokens = (usage.output_tokens || 0) + (r2.usage.output_tokens || 0); }
+              if (!refus2) { texte = t2; refus = null; origine = 'claude_2e'; }
+              else console.log('manychat-dm seconde tentative refusée aussi', refus2);
+            }
+          } catch (e) { console.log('manychat-dm seconde tentative', e.message); }
+        }
         if (refus) {
           console.log('manychat-dm refus', refus, texte);
           if (refus === 'metadiscours' || (fil.length && (source === 'dm' || source === 'whatsapp' || /^story/i.test(source || '')))) {
