@@ -42,10 +42,11 @@ REGISTRE = os.path.join(ICI, 'registre.json')
 JUGE = os.path.join(ICI, 'juge.json')
 JOUR = dt.timedelta(hours=24)
 RESEAUX = {  # plafond sur 24 h glissantes, écart minimal, horizon de diffusion après la Trial Reel
-    'tiktok': {'plafond': 8, 'ecart': dt.timedelta(minutes=45)},
-    'youtube': {'plafond': 10, 'ecart': dt.timedelta(minutes=60)},
-    'facebook': {'plafond': 10, 'ecart': dt.timedelta(minutes=60)},
+    'tiktok': {'plafond': 10, 'ecart': dt.timedelta(minutes=45)},
+    'youtube': {'plafond': 20, 'ecart': dt.timedelta(minutes=30)},
+    'facebook': {'plafond': 5, 'ecart': dt.timedelta(minutes=120)},
     'threads': {'plafond': 10, 'ecart': dt.timedelta(minutes=45)},
+    'linkedin': {'plafond': 5, 'ecart': dt.timedelta(minutes=120)},
 }
 FENETRE_H = 48
 INSTAGRAM = '@shawez_immo'
@@ -112,6 +113,9 @@ def texte_pour(reseau, v):
         legende += '\n\nShawez Ali, agent immobilier à Dijon. Estimation offerte sur shawez-immo.com'
     if reseau == 'threads':
         legende = legende[:480]
+    if reseau == 'linkedin':
+        legende = legende.replace('#', '').strip()
+        legende += '\n\nShawez Ali, agent immobilier à Dijon. Estimation offerte sur shawez-immo.com'
     if reseau == 'tiktok':
         tags = ' '.join(t for t in ('#immobilier', '#dijon', '#maison', '#visite', '#fyp') if t not in legende)
         legende = (legende.rstrip() + '\n' + tags).strip()
@@ -179,7 +183,7 @@ def main():
     a.add_argument('--a-faire', action='store_true')
     a.add_argument('--existants')
     a.add_argument('--depuis', help='AAAA-MM-JJTHH:MM heure de Paris : pas de diffusion avant')
-    a.add_argument('--reseaux', default='tiktok,youtube,facebook,threads')
+    a.add_argument('--reseaux', default='tiktok,youtube,threads,facebook,linkedin')
     a.add_argument('--noter', nargs='+', metavar='X', help='TR-id reseau uuid AAAA-MM-JJTHH:MM [url]')
     args = a.parse_args()
     if args.noter:
