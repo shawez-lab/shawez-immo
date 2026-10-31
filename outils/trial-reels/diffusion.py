@@ -138,7 +138,7 @@ def a_faire(args):
     existants = lire_existants(args.existants)
     debut = depuis - dt.timedelta(hours=FENETRE_H)
     versions = sorted([v for v in registre['versions']
-                       if v.get('statut', 'publie') == 'publie' and v.get('uuid') and debut <= heure(v) <= depuis + dt.timedelta(hours=6)
+                       if v.get('statut', 'publie') == 'publie' and (v.get('uuid') or v.get('media')) and debut <= heure(v) <= depuis + dt.timedelta(hours=6)
                        and v.get('style') not in interdits and str(v.get('ref')) not in pauses],
                       key=heure)
     sorties = []
@@ -155,7 +155,7 @@ def a_faire(args):
             if t is None:
                 break
             heures = sorted(heures + [t])
-            sorties.append({'id': v['id'], 'reseau': reseau, 'uuid_instagram': v.get('uuid'), 'ref': v.get('ref'),
+            sorties.append({'id': v['id'], 'reseau': reseau, 'uuid_instagram': v.get('uuid'), 'media': v.get('media', ''), 'ref': v.get('ref'),
                             'style': v.get('style'), 'heure': t.strftime('%Y-%m-%dT%H:%M'),
                             'texte': texte_pour(reseau, v), 'titre': titre_pour(v) if reseau in ('youtube', 'facebook') else ''})
     for s in sorties:
