@@ -954,7 +954,27 @@
    "legende": "Ce château est à vendre, près de Beaune 👀",
    "source": "monteur",
    "statut": "publie",
-   "uuid": "5506004638345936924"
+   "uuid": "5506004638345936924",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "7130301593459904323",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "21:50"
+    },
+    "youtube": {
+     "uuid": "5723438664649098646",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "01:50"
+    },
+    "facebook": {
+     "uuid": "7597076070183682801",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "11:05"
+    }
+   }
   },
   {
    "id": "TR-2910-438-v1",
@@ -1890,7 +1910,27 @@
    "legende": "Le Maroc en plein centre de Dijon 🫖 Un studio inspiration Marrakech, au calme d’une cour intérieure.\n\nCommente MARRAKECH",
    "source": "monteur",
    "uuid": "1557015589827135358",
-   "statut": "publie"
+   "statut": "publie",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "4180063563519968397",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "22:35"
+    },
+    "youtube": {
+     "uuid": "-3622918416329653462",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "02:50"
+    },
+    "facebook": {
+     "uuid": "-6130042535138801182",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "13:05"
+    }
+   }
   },
   {
    "id": "TR-3010-438-v5",
@@ -1903,7 +1943,27 @@
    "legende": "Derrière ces portes, un vestibule majestueux, des boiseries et des cheminées d’époque 🏰 Château du XVIIIe près de Beaune",
    "source": "monteur",
    "uuid": "5769701074635606209",
-   "statut": "publie"
+   "statut": "publie",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "7467783692524537482",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "23:20"
+    },
+    "youtube": {
+     "uuid": "-3748984022153936088",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "17:50"
+    },
+    "facebook": {
+     "uuid": "-6554277675451793198",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "17:50"
+    }
+   }
   },
   {
    "id": "TR-3010-461-v6",
@@ -1916,7 +1976,27 @@
    "legende": "Tu vivrais ici ? 🫖 Studio inspiration Marrakech de 19 m² avec balnéo, à deux pas du Parc Darcy.\n\nCommente MARRAKECH et j",
    "source": "monteur",
    "uuid": "-8167135444658139614",
-   "statut": "publie"
+   "statut": "publie",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "5153795680017007773",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "00:05"
+    },
+    "youtube": {
+     "uuid": "6501371433658434074",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "18:50"
+    },
+    "facebook": {
+     "uuid": "8662292409954551779",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "18:50"
+    }
+   }
   }
  ]
 }
