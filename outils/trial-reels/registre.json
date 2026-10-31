@@ -1695,7 +1695,7 @@
   {
    "id": "TR-3010-461-v1",
    "date": "2026-11-01",
-   "heure": "00:00",
+   "heure": "21:36",
    "ref": "461",
    "mot": "MARRAKECH",
    "style": "lieu_exception",
@@ -1742,8 +1742,8 @@
   },
   {
    "id": "TR-3010-438-v1",
-   "date": "2026-11-01",
-   "heure": "02:24",
+   "date": "2026-11-02",
+   "heure": "00:00",
    "ref": "438",
    "mot": "CHATEAU",
    "style": "chiffre_choc",
