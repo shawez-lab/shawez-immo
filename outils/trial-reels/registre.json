@@ -1509,8 +1509,8 @@
   },
   {
    "id": "TR-2910-438-v12",
-   "date": "2026-10-30",
-   "heure": "12:48",
+   "date": "2026-11-01",
+   "heure": "07:12",
    "ref": "438",
    "mot": "CHATEAU",
    "style": "lieu_exception",
@@ -1543,7 +1543,11 @@
    },
    "vues_total": 547,
    "vues": 0,
-   "verdict": "en_cours"
+   "verdict": "en_cours",
+   "tentatives": [
+    "2026-10-30 12:48 refusée (quota Instagram)"
+   ],
+   "rattrapage": "2026-10-31 11h35 monteur"
   },
   {
    "id": "TR-2910-438-v13",
@@ -1585,8 +1589,8 @@
   },
   {
    "id": "TR-2910-438-v14",
-   "date": "2026-10-30",
-   "heure": "16:00",
+   "date": "2026-10-31",
+   "heure": "21:36",
    "ref": "438",
    "mot": "CHATEAU",
    "style": "chiffre_choc",
@@ -1625,7 +1629,11 @@
    },
    "vues_total": 771,
    "vues": 0,
-   "verdict": "en_cours"
+   "verdict": "en_cours",
+   "tentatives": [
+    "2026-10-30 16:00 refusée (quota Instagram)"
+   ],
+   "rattrapage": "2026-10-31 11h35 monteur"
   },
   {
    "id": "TR-2910-438-v15",
@@ -1686,8 +1694,8 @@
   },
   {
    "id": "TR-3010-461-v1",
-   "date": "2026-10-30",
-   "heure": "20:48",
+   "date": "2026-11-01",
+   "heure": "00:00",
    "ref": "461",
    "mot": "MARRAKECH",
    "style": "lieu_exception",
@@ -1726,12 +1734,16 @@
    },
    "vues_total": 739,
    "vues": 0,
-   "verdict": "en_cours"
+   "verdict": "en_cours",
+   "tentatives": [
+    "2026-10-30 20:48 refusée (quota Instagram)"
+   ],
+   "rattrapage": "2026-10-31 11h35 monteur"
   },
   {
    "id": "TR-3010-438-v1",
-   "date": "2026-10-30",
-   "heure": "22:24",
+   "date": "2026-11-01",
+   "heure": "02:24",
    "ref": "438",
    "mot": "CHATEAU",
    "style": "chiffre_choc",
@@ -1759,12 +1771,16 @@
      "date": "2026-10-31",
      "heure": "21:50"
     }
-   }
+   },
+   "tentatives": [
+    "2026-10-30 22:24 refusée (quota Instagram)"
+   ],
+   "rattrapage": "2026-10-31 11h35 monteur"
   },
   {
    "id": "TR-3010-461-v2",
-   "date": "2026-10-31",
-   "heure": "00:00",
+   "date": "2026-11-01",
+   "heure": "04:48",
    "ref": "461",
    "mot": "MARRAKECH",
    "style": "chiffre_choc",
@@ -1792,12 +1808,16 @@
      "date": "2026-10-31",
      "heure": "22:50"
     }
-   }
+   },
+   "tentatives": [
+    "2026-10-31 00:00 refusée (quota Instagram)"
+   ],
+   "rattrapage": "2026-10-31 11h35 monteur"
   },
   {
    "id": "TR-3010-438-v2",
-   "date": "2026-10-31",
-   "heure": "01:36",
+   "date": "2026-11-01",
+   "heure": "16:48",
    "ref": "438",
    "mot": "CHATEAU",
    "style": "lieu_exception",
@@ -1825,12 +1845,16 @@
      "date": "2026-10-31",
      "heure": "23:50"
     }
-   }
+   },
+   "tentatives": [
+    "2026-10-31 01:36 refusée (quota Instagram)"
+   ],
+   "rattrapage": "2026-10-31 11h35 monteur"
   },
   {
    "id": "TR-3010-461-v3",
-   "date": "2026-10-31",
-   "heure": "03:12",
+   "date": "2026-11-01",
+   "heure": "14:24",
    "ref": "461",
    "mot": "MARRAKECH",
    "style": "chiffre_choc",
@@ -1858,12 +1882,16 @@
      "date": "2026-11-01",
      "heure": "00:50"
     }
-   }
+   },
+   "tentatives": [
+    "2026-10-31 03:12 refusée (quota Instagram)"
+   ],
+   "rattrapage": "2026-10-31 11h35 monteur"
   },
   {
    "id": "TR-3010-438-v3",
-   "date": "2026-10-31",
-   "heure": "04:48",
+   "date": "2026-11-01",
+   "heure": "12:00",
    "ref": "438",
    "mot": "CHATEAU",
    "style": "chiffre_choc",
@@ -1871,7 +1899,11 @@
    "legende": "1 600 000 € pour un château du XVIIIe de 520 m² et son domaine de 15 hectares, près de Beaune 🏰\n\nCommente CHÂTEAU et je ",
    "source": "monteur",
    "uuid": "-8508363940926044719",
-   "statut": "publie"
+   "statut": "publie",
+   "tentatives": [
+    "2026-10-31 04:48 refusée (quota Instagram)"
+   ],
+   "rattrapage": "2026-10-31 11h35 monteur"
   },
   {
    "id": "TR-3010-461-v4",
@@ -1888,8 +1920,8 @@
   },
   {
    "id": "TR-3010-438-v4",
-   "date": "2026-10-31",
-   "heure": "08:00",
+   "date": "2026-11-01",
+   "heure": "19:12",
    "ref": "438",
    "mot": "CHATEAU",
    "style": "lieu_exception",
@@ -1897,12 +1929,16 @@
    "legende": "Un château du XVIIIe avec colombier, écurie, maison d’amis et étang, à 15 minutes de Beaune 🏰\n\nCommente CHÂTEAU et je t’",
    "source": "monteur",
    "uuid": "8550321858532690317",
-   "statut": "publie"
+   "statut": "publie",
+   "tentatives": [
+    "2026-10-31 08:00 refusée (quota Instagram)"
+   ],
+   "rattrapage": "2026-10-31 11h35 monteur"
   },
   {
    "id": "TR-3010-461-v5",
-   "date": "2026-10-31",
-   "heure": "11:12",
+   "date": "2026-11-01",
+   "heure": "09:36",
    "ref": "461",
    "mot": "MARRAKECH",
    "style": "lieu_exception",
@@ -1930,7 +1966,11 @@
      "date": "2026-11-01",
      "heure": "13:05"
     }
-   }
+   },
+   "tentatives": [
+    "2026-10-31 11:12 refusée (quota Instagram)"
+   ],
+   "rattrapage": "2026-10-31 11h35 monteur"
   },
   {
    "id": "TR-3010-438-v5",
