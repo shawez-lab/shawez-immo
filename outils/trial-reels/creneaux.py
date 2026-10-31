@@ -31,8 +31,8 @@ Affiche les créneaux libres retenus, un par ligne, dans l'ordre, ou « AUCUN »
 import argparse
 import datetime as dt
 
-PLAFOND = 8                  # Trial Reels au plus sur 24 heures glissantes (mesuré le 29-31/10/2026)
-PAS = dt.timedelta(minutes=180)
+PLAFOND = 10                 # Trial Reels au plus sur 24 heures glissantes (mesuré le 31/10/2026 : la 11e est refusée)
+PAS = dt.timedelta(minutes=144)
 ECART_MIN = dt.timedelta(minutes=45)
 JOUR = dt.timedelta(hours=24)
 
