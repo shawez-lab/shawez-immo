@@ -224,13 +224,18 @@ ASSETS = [
   ("Shawez Ali chez un fleuriste, un bouquet à la main",
    "Shawez Ali at a florist's, holding a bouquet",
    "Shawez Ali bij een bloemist, met een boeket in de hand"),
-  ['commerce', 'fonds', 'boutique', 'fleuriste', 'local', 'clientele', 'exploitant'], 'Dijon'),
+  ['commerce', 'fonds-de-commerce', 'boutique', 'fleuriste', 'local', 'clientele', 'exploitant'], 'Dijon'),
  ('shawez-ali-hotel-commerce-dijon.webp',
   ("Shawez Ali dans le hall d'un hôtel à Dijon",
    "Shawez Ali in a hotel lobby in Dijon",
    "Shawez Ali in de lobby van een hotel in Dijon"),
-  ['hotel', 'commerce', 'fonds', 'murs', 'professionnel', 'restaurant', 'bail'], 'Dijon'),
+  ['hotel', 'commerce', 'fonds-de-commerce', 'murs', 'professionnel', 'restaurant', 'bail'], 'Dijon'),
  ('shawez-ali-portrait-costume-bleu.webp',
+  ("Shawez Ali, agent immobilier à Dijon",
+   "Shawez Ali, estate agent in Dijon",
+   "Shawez Ali, makelaar in Dijon"),
+  ['agent', 'portrait'], None),
+ ('shawez-ali-portrait-costume-rose.webp',
   ("Shawez Ali, agent immobilier à Dijon",
    "Shawez Ali, estate agent in Dijon",
    "Shawez Ali, makelaar in Dijon"),
@@ -667,13 +672,13 @@ VIDEOS = [
   "La visite d'un restaurant de 135 places proposé à la reprise.",
   "A tour of a 135-seat restaurant offered for take-over.",
   "Een rondleiding door een restaurant met 135 plaatsen dat wordt overgedragen.",
-  ['commerce', 'restaurant', 'fonds', 'reprise', 'exploitant', 'licence', 'hygiene'], 40),
+  ['commerce', 'restaurant', 'fonds-de-commerce', 'reprise', 'exploitant', 'licence', 'hygiene'], 40),
  ('v46', "Un fleuriste au cœur de Dijon", "A florist in the heart of Dijon",
   "Een bloemist in hartje Dijon",
   "La visite d'un commerce de fleurs, en plein centre de Dijon.",
   "A tour of a florist's shop in the centre of Dijon.",
   "Een rondleiding door een bloemenzaak in het centrum van Dijon.",
-  ['commerce', 'fonds', 'boutique', 'clientele', 'dijon', 'local'], 26),
+  ['commerce', 'fonds-de-commerce', 'boutique', 'clientele', 'dijon', 'local'], 26),
  ('v47', "Une boutique près de la place Darcy", "A shop near place Darcy",
   "Een winkel bij de place Darcy",
   "La visite d'une boutique située près de la place Darcy, à Dijon.",
@@ -735,7 +740,7 @@ VIDEOS = [
   "La visite d'un hôtel de 21 chambres, murs et fonds réunis.",
   "A tour of a 21-room hotel, both the walls and the business.",
   "Een rondleiding door een hotel met 21 kamers, muren en handelszaak samen.",
-  ['hotel', 'commerce', 'murs', 'fonds', 'professionnel', 'bail', 'exploitant'], 39),
+  ['hotel', 'commerce', 'murs', 'fonds-de-commerce', 'professionnel', 'bail', 'exploitant'], 39),
  ('v29', "Appartement dans un immeuble ancien", "A flat in an older building",
   "Een appartement in een oud gebouw",
   "La visite d'un appartement situé dans un immeuble ancien.",
@@ -879,3 +884,71 @@ salives santenay saulieu saulon-la-rue savigny-le-sec savigny-les-beaune selonge
 sennecey-les-dijon seurre sombernon talant tart thorey-en-plaine til-chatel varois-et-chaignot
 velars-sur-ouche venarey-les-laumes villers-la-faye villers-les-pots vitteaux volnay vosne-romanee
 """.split()
+
+# ------------------------------------------------- photos écartées à l'œil (31/10/2026)
+# Shawez a ouvert un article et est tombé sur une vieille cuisine fatiguée. Les 206 photos
+# de la banque ont été reprises une par une : on écarte les pièces en travaux, les cuisines
+# et salles de bains datées, les pièces vides, les chauffe-eau et compteurs apparents, le
+# désordre, les cadrages de travers et les images ternes. Mieux vaut une belle photo sur
+# dix articles qu'une photo moche sur un seul.
+ECARTEES_BIENS = {
+ ('383', 1), ('383', 3), ('383', 4),                     # plateau en travaux, toits et antennes
+ ('394', 1), ('394', 5), ('394', 10),                   # façade banale, salle à manger datée, garage
+ ('415', 11),                                           # recoin sous pente, sol terne
+ ('431', 1), ('431', 3), ('431', 5), ('431', 7),        # studio encombré, salle de bains avec chauffe-eau
+ ('433', 1), ('433', 2),                                # terrains en herbe sans intérêt
+ ('438', 7),                                            # chambre de château au papier peint fané
+ ('446', 1), ('446', 4), ('446', 8), ('446', 11),       # pièces vides, cuisine nue, sanitaires
+ ('452IMMEUBLE', 1), ('452IMMEUBLE', 4),                # cadrage de travers, plateau brut
+ ('452IMMEUBLE', 6), ('452IMMEUBLE', 9),                # cloisons ouvertes, couloir décollé
+ ('460', 1), ('464', 1),                                # kitchenettes nues dans une pièce vide
+ ('463', 1),                                            # façade beige sans caractère
+ ('467', 1),                                            # salon au mobilier daté
+ ('474', 1), ('474', 4), ('474', 6), ('474', 9),        # plateau brut, murs arrachés, courette bétonnée
+ ('481', 5), ('481', 8),                                # studio et chambre sans relief
+ ('486', 1),                                            # comble vide
+ ('494', 1), ('494', 9), ('494', 16), ('494', 24),      # bâtisse en ruine, pièces à nu
+ ('501', 10), ('501', 15),                              # buanderie, barre d'immeuble
+ ('506', 1), ('506', 5), ('506', 8),                    # pavillon encombré, cuisine datée, chambre en désordre
+ ('507', 1), ('507', 4),                                # parquet usé, vieille cuisine étroite
+ ('508', 1), ('508', 6), ('508', 11), ('508', 16),      # pièces vides, loggias sales
+ ('509', 10), ('509', 19),                              # cave encombrée, chambre en désordre
+ ('510', 10),                                           # salle de bains quelconque
+ ('512', 1), ('512', 9), ('512', 16), ('512', 24),      # salon daté, cuisine jaune, box de garage
+ ('513', 9),                                            # WC
+ ('519', 1), ('519', 5), ('519', 9), ('519', 13),       # pièce vide, cuisine grise et plate, contre-jour, barre d'immeuble
+ ('525', 25),                                           # garage encombré
+ ('5430963', 1),                                        # plan de division sur fond noir
+ ('Combottes', 5), ('Combottes', 8), ('Combottes', 12), # salon et chambre datés, friche
+ ('Mandat', 7), ('Mandat', 12), ('Mandat', 18),         # mobilier ancien, salle de bains rose
+}
+
+ECARTEES_ASSETS = {
+ 'equipe-04-videaste-materiel-agence',        # sac de matériel ouvert, désordre
+ 'equipe-05-videaste-tournage-exterieur',     # nuque au premier plan
+ 'equipe-06-videaste-trepied-devant-agence',  # trottoir et voitures
+ 'maison-230m2-dressing',                     # penderie encombrée, pièce sombre
+ 'st-bali',                                   # flou, cadrage coupé
+ 'st-terrasse',                               # couloir de terrasse nu, sans vie
+}
+
+# photos où Shawez apparaît : à privilégier sur les articles sans sujet visuel
+AVEC_SHAWEZ = {
+ 'appartement-centre-historique-dijon-salon', 'appartement-centre-historique-dijon-sejour',
+ 'appartement-dijon-couloir-parquet', 'appartement-dijon-cuisine-lumineuse',
+ 'appartement-t3-dijon-cuisine-visite', 'dijon-eglise-saint-michel',
+ 'equipe-01-shawez-videaste-cuisine-pierre', 'equipe-02-shawez-videaste-preparation-tournage',
+ 'equipe-03-shawez-videaste-appartement-trepied',
+ 'ph-balcon', 'ph-chateau', 'ph-cour', 'ph-rose', 'ph-studio',
+ 'shawez-ali-agent-immobilier-dijon-rue', 'shawez-ali-appartement-investissement',
+ 'shawez-ali-conseil-photo-annonce', 'shawez-ali-conseil-vendeur-dijon',
+ 'shawez-ali-conseils-achat-dijon', 'shawez-ali-costume-rose-bras-croises',
+ 'shawez-ali-depart-visite-dijon', 'shawez-ali-devant-agence-gravelin-immo',
+ 'shawez-ali-explique-prix-m2-dijon', 'shawez-ali-fleuriste-commerce-dijon',
+ 'shawez-ali-hotel-commerce-dijon', 'shawez-ali-portrait-costume-bleu',
+ 'shawez-ali-portrait-costume-rose', 'shawez-ali-portrait-exterieur',
+ 'shawez-ali-portrait-sourire-720', 'shawez-ali-portrait-veste-verte',
+ 'shawez-ali-quartiers-dijon', 'shawez-ali-studio-meuble-visite',
+ 'shawez-ali-telephone-costume-bleu', 'shawez-ali-terrain-maison-pierre',
+ 'shawez-ali-trois-verites-acheteurs', 'shawez-ali-verger-maison-pierre',
+}
