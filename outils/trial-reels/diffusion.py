@@ -45,8 +45,8 @@ RESEAUX = {  # plafond sur 24 h glissantes, écart minimal, horizon de diffusion
     'tiktok': {'plafond': 10, 'ecart': dt.timedelta(minutes=45)},
     'youtube': {'plafond': 20, 'ecart': dt.timedelta(minutes=30)},
     'facebook': {'plafond': 5, 'ecart': dt.timedelta(minutes=120)},
-    'threads': {'plafond': 10, 'ecart': dt.timedelta(minutes=45)},
-    'linkedin': {'plafond': 5, 'ecart': dt.timedelta(minutes=120)},
+    'threads': {'plafond': 20, 'ecart': dt.timedelta(minutes=30)},
+    'linkedin': {'plafond': 8, 'ecart': dt.timedelta(minutes=90)},
 }
 FENETRE_H = 48
 INSTAGRAM = '@shawez_immo'
@@ -183,7 +183,7 @@ def main():
     a.add_argument('--a-faire', action='store_true')
     a.add_argument('--existants')
     a.add_argument('--depuis', help='AAAA-MM-JJTHH:MM heure de Paris : pas de diffusion avant')
-    a.add_argument('--reseaux', default='tiktok,youtube,threads,facebook,linkedin')
+    a.add_argument('--reseaux', default='threads,linkedin,tiktok,youtube,facebook')
     a.add_argument('--noter', nargs='+', metavar='X', help='TR-id reseau uuid AAAA-MM-JJTHH:MM [url]')
     args = a.parse_args()
     if args.noter:
