@@ -26,12 +26,13 @@ import argparse, collections, glob, html, json, os, re, struct, subprocess, sys,
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from illustrer_donnees import (ASSETS, SUJETS, BIENS_PHOTOS, BIEN_COMMUNE, VIDEOS,
-                               VIDEOS_BIENS, COMMUNES)
+                               VIDEOS_BIENS, COMMUNES, ECARTEES_BIENS, ECARTEES_ASSETS,
+                               AVEC_SHAWEZ)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 SITE = 'https://shawez-immo.com'
-MAX_PHOTO = 7          # jamais plus de 8 articles sur la même photo
-VISE_PHOTO = 5         # au-delà de 5, la photo devient coûteuse
+MAX_PHOTO = 15         # la banque a été réduite aux belles photos : on accepte 15
+VISE_PHOTO = 4         # au-delà de 4, la photo devient coûteuse
 MAX_VIDEO = 15         # jamais plus de 15 articles sur la même vidéo
 VISE_VIDEO = 8
 SEUIL = 4.0            # en dessous, aucune photo ne colle vraiment
@@ -55,7 +56,7 @@ ALIAS = {
  'boutique': 'shop shops boutique winkel',
  'restaurant': 'restaurant restaurants',
  'hotel': 'hotel hotels',
- 'fonds': 'goodwill business',
+ 'fonds-de-commerce': 'goodwill business-transfer handelsfonds',
  'murs': 'premises freehold',
  'bail': 'lease leases tenancy huurcontract',
  'clientele': 'customers clientele klanten',
@@ -521,12 +522,16 @@ def banque_photos():
     out = []
     for f, desc, tags, com in ASSETS:
         p = '/assets/' + f
+        if f[:-5] in ECARTEES_ASSETS:
+            continue
         if not os.path.exists(os.path.join(ROOT, p.lstrip('/'))):
             continue
-        out.append(Photo(p, p, dict(zip(('fr', 'en', 'nl'), desc)), tags, com, f[:-5],
-                         7.0 if 'chateau' in tags else 0.0))
+        ph = Photo(p, p, dict(zip(('fr', 'en', 'nl'), desc)), tags, com, f[:-5],
+                   7.0 if 'chateau' in tags else 0.0)
+        ph.shawez = f[:-5] in AVEC_SHAWEZ
+        out.append(ph)
     for ref, num, sujet in BIENS_PHOTOS:
-        if sujet not in SUJETS:
+        if sujet not in SUJETS or (ref, num) in ECARTEES_BIENS:
             continue
         p640 = '/assets/biens/%s/%d-640.webp' % (ref, num)
         p1200 = '/assets/biens/%s/%d-1200.webp' % (ref, num)
@@ -543,6 +548,7 @@ def banque_photos():
         ph = Photo(p640, p1200, desc, list(tags), com, '%s-%d' % (ref, num),
                    max(EXIGEANTS.get(sujet, 0.0), 7.0 if 'chateau' in tags else 0.0))
         ph.muet = muet
+        ph.shawez = False
         out.append(ph)
     return out
 
@@ -638,11 +644,15 @@ def attribuer(arts, objets, vise, maxi, seuil):
                 s -= 5.0
             # une page de prix par commune parle de maisons et d'appartements vendus :
             # une visite de logement y a sa place, une boutique beaucoup moins
+            # un article administratif n'a pas de sujet à photographier :
+            # Shawez préfère s'y voir plutôt qu'un intérieur quelconque
+            if getattr(o, 'shawez', False) and getattr(a, 'fam', '') == 'agent':
+                s += 4.0
             if getattr(a, 'commune_page', False):
                 t = set(o.tags)
                 if t & {'maison', 'appartement', 'village', 'prix', 'vendre', 'studio'}:
                     s += 2.0
-                if t & {'commerce', 'boutique', 'hotel', 'restaurant', 'fonds', 'murs'}:
+                if t & {'commerce', 'boutique', 'hotel', 'restaurant', 'fonds-de-commerce', 'murs'}:
                     s -= 5.0
             paires.append((s, a, o))
     paires.sort(key=lambda t: (-t[0], t[1].url, t[2].cle))
@@ -674,7 +684,7 @@ FAM = {
  'interieur': {'sejour', 'salon', 'chambre', 'cuisine', 'couloir', 'entree', 'piece',
                'escalier', 'parquet', 'cheminee', 'studio', 'appartement', 'combles',
                'salle-a-manger', 'cave', 'meuble'},
- 'commerce': {'commerce', 'fonds', 'boutique', 'hotel', 'restaurant', 'murs', 'local',
+ 'commerce': {'commerce', 'fonds-de-commerce', 'boutique', 'hotel', 'restaurant', 'murs', 'local',
               'vitrine', 'bail', 'clientele', 'professionnel', 'exploitant'},
  'agent': {'agent', 'portrait', 'conseil', 'dossier', 'document', 'bureau', 'video',
            'tournage', 'agence', 'telephone', 'visite', 'prix', 'estimation'},
@@ -706,7 +716,7 @@ def famille_voulue(art):
     """Le registre attendu quand rien ne colle précisément."""
     if art.commune and art.commune not in ('dijon', 'beaune'):
         return 'lieu'
-    if art.score_tags(['commerce', 'fonds', 'boutique', 'bail', 'murs', 'restaurant', 'hotel']) >= 6:
+    if art.score_tags(['commerce', 'fonds-de-commerce', 'boutique', 'bail', 'murs', 'restaurant', 'hotel']) >= 6:
         return 'commerce'
     if art.score_tags(['appartement', 'copropriete', 'chambre', 'cuisine', 'piece', 'studio']) >= 6:
         return 'interieur'
@@ -921,6 +931,35 @@ def familles_langues(arts):
     return {a.url: grp[find(a.url)] for a in arts}, conflits
 
 
+def rebalancer(arts, photos, plancher, charge, mini):
+    """Fait servir les photos encore inutilisées en les prenant aux plus sollicitées."""
+    bouges = 0
+    for _ in range(plancher):
+        sous = [o for o in photos if o.n < plancher]
+        if not sous:
+            break
+        pool = [a for a in arts if a.photo is not None and a.photo.n > charge]
+        if not pool:
+            break
+        notes = []
+        for o in sous:
+            for a in pool:
+                notes.append((a.score_tags(o.tags) + commune_match(a, o), a, o))
+        notes.sort(key=lambda t: (-t[0], t[1].url, t[2].cle))
+        pris = set()
+        for sc, a, o in notes:
+            if sc < mini or a.url in pris or o.n >= plancher or a.photo.n <= charge:
+                continue
+            if a.photo is o:
+                continue
+            a.photo.n -= 1
+            o.n += 1
+            a.photo, a.photo_score = o, sc
+            pris.add(a.url)
+            bouges += 1
+    return bouges
+
+
 # ----------------------------------------------------------- poids des photos
 def alleger(blanc):
     """Recompresse en webp qualité 82 les photos de biens au-dessus de 300 Ko.
@@ -984,6 +1023,8 @@ def main():
 
     for o in photos + videos:
         o.familles = familles_de(o.tags)
+    for x in arts:
+        x.fam = famille_voulue(x)
 
     # 1er tour : seuls les rapprochements nets sont retenus
     for art, ph, sc in attribuer(arts, photos, VISE_PHOTO, MAX_PHOTO, SEUIL):
@@ -992,7 +1033,7 @@ def main():
     repli = collections.defaultdict(list)
     for x in arts:
         if x.photo is None:
-            repli[famille_voulue(x)].append(x)
+            repli[x.fam].append(x)
     for fam, lot in repli.items():
         pool = [p for p in photos if p.familles & set(POOLS[fam])] or photos
         for art, ph, sc in attribuer(lot, pool, VISE_PHOTO, MAX_PHOTO, -999.0):
@@ -1001,6 +1042,12 @@ def main():
     obliges = [x for x in arts if x.photo is None and x.doit_changer]
     for art, ph, sc in attribuer(obliges, photos, VISE_PHOTO, MAX_PHOTO, -999.0):
         art.photo, art.photo_score = ph, sc
+    # la banque est faite de belles photos : autant les faire toutes servir plutôt que
+    # d'en saturer quatre. On déplace des articles des photos les plus sollicitées vers
+    # celles qui ne servent pas encore, tant que le rapprochement reste défendable.
+    deplaces = rebalancer(arts, photos, plancher=4, charge=6, mini=1.5)
+    if deplaces:
+        print('articles déplacés pour varier les photos :', deplaces)
     garde = sum(1 for x in arts if x.photo is None)
     replis = sum(len(v) for v in repli.values())
 
@@ -1014,7 +1061,7 @@ def main():
     repliv = collections.defaultdict(list)
     for x in sans:
         if x.video is None:
-            repliv[famille_voulue(x)].append(x)
+            repliv[x.fam].append(x)
     for fam, lot in repliv.items():
         pool = [v for v in videos if v.familles & set(POOLS[fam])] or videos
         for art, vd, sc in attribuer(lot, pool, VISE_VIDEO, MAX_VIDEO, -999.0):
@@ -1040,6 +1087,24 @@ def main():
                 break
     if echanges:
         print('vidéos échangées entre communes voisines :', echanges)
+
+    echph = 0
+    comp = sorted([x for x in arts if x.commune and x.photo], key=lambda x: (x.lang, x.commune))
+    for i in range(1, len(comp)):
+        p_, c = comp[i - 1], comp[i]
+        if p_.lang != c.lang or p_.commune == c.commune or p_.photo is not c.photo:
+            continue
+        for ph in sorted(photos, key=lambda ph: -(c.score_tags(ph.tags) + commune_match(c, ph))):
+            if ph is c.photo or ph.n >= MAX_PHOTO or ph is p_.photo:
+                continue
+            if c.score_tags(ph.tags) + commune_match(c, ph) >= (c.photo_score - 2.5):
+                c.photo.n -= 1
+                ph.n += 1
+                c.photo = ph
+                echph += 1
+            break
+    if echph:
+        print('photos échangées entre communes voisines :', echph)
 
     # écriture
     ecrits = casses = 0
