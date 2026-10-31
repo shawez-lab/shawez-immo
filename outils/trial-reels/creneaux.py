@@ -2,17 +2,17 @@
 """Créneaux des Trial Reels : jour et nuit, sans jamais dépasser le plafond d'Instagram.
 
 Demande de Shawez (29/10/2026, 17 h 06) : publier non-stop, sans heure fixe, le plus possible.
-Plafond réel, mesuré deux fois : Instagram refuse les Trial Reels publiés par l'API au-delà d'une douzaine
-sur 24 heures glissantes (« You reached maximum number of trial reels that is allowed to be published by
-Content Publishing API » : le 28/10 après 16 en 24 h, puis le 30/10 à 12 h, 12 h 48, 14 h 24 et 16 h, alors
-que 13 avaient été publiées dans les 24 h précédentes). On vise donc 12 au plus sur n'importe quelle période
-de 24 heures, pour qu'aucun refus ni e-mail d'erreur Metricool n'arrive jamais à Shawez.
+Plafond : 15 Trial Reels sur 24 heures glissantes (décision de Shawez, 31/10/2026 : « il faut publier
+15 minimum »). Les refus d'Instagram du 28/10 et du 30/10 sont arrivés quand plusieurs agents programmaient
+en même temps, Codex en plus du Monteur, et que la fenêtre de 24 h dépassait 15. Depuis le 31/10, le Monteur
+est le SEUL à programmer des Trial Reels : Codex livre des idées dans le doc Croissance, il ne publie plus rien.
+Un créneau par 96 minutes donne exactement 15 par jour, donc jamais plus de 15 sur une fenêtre de 24 h.
 
-Grille : 12 créneaux par jour, un toutes les 2 heures, heure de Paris :
-00:00 02:00 04:00 06:00 08:00 10:00 12:00 14:00 16:00 18:00 20:00 22:00
+Grille : 15 créneaux par jour, un toutes les 96 minutes, heure de Paris :
+00:00 01:36 03:12 04:48 06:24 08:00 09:36 11:12 12:48 14:24 16:00 17:36 19:12 20:48 22:24
 
 Usage :
-  python3 outils/trial-reels/creneaux.py --existants /tmp/tr.txt --depuis 2026-10-29T17:30 --nombre 12
+  python3 outils/trial-reels/creneaux.py --existants /tmp/tr.txt --depuis 2026-10-29T17:30 --nombre 15
 /tmp/tr.txt : une ligne AAAA-MM-JJTHH:MM (heure de Paris) par Trial Reel déjà publiée ou en attente,
 brouillons exclus, sur les dernières 24 heures et tout ce qui est déjà programmé ensuite.
 Affiche les créneaux libres retenus, un par ligne, dans l'ordre, ou « AUCUN » s'il n'y en a pas.
@@ -20,8 +20,8 @@ Affiche les créneaux libres retenus, un par ligne, dans l'ordre, ou « AUCUN »
 import argparse
 import datetime as dt
 
-PLAFOND = 12                 # Trial Reels au plus sur 24 heures glissantes
-PAS = dt.timedelta(minutes=120)
+PLAFOND = 15                 # Trial Reels au plus sur 24 heures glissantes
+PAS = dt.timedelta(minutes=96)
 ECART_MIN = dt.timedelta(minutes=45)
 JOUR = dt.timedelta(hours=24)
 
@@ -55,7 +55,7 @@ def main():
     a = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     a.add_argument('--existants', required=True)
     a.add_argument('--depuis', required=True, help='AAAA-MM-JJTHH:MM, heure de Paris : pas de créneau avant')
-    a.add_argument('--nombre', type=int, default=12, help='nombre de créneaux voulus')
+    a.add_argument('--nombre', type=int, default=15, help='nombre de créneaux voulus')
     a.add_argument('--horizon', type=int, default=48, help='heures à explorer après --depuis')
     args = a.parse_args()
     heures = lire(args.existants)
