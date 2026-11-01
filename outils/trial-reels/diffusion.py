@@ -60,6 +60,29 @@ RESEAUX = {  # plafond sur 24 h glissantes, écart minimal, horizon de diffusion
     'gmb': {'plafond': 2, 'ecart': dt.timedelta(minutes=240)},
 }
 PINTEREST_TABLEAU = '1143844074049722490'   # « Biens a vendre a Dijon et en Cote-d'Or », compte shawez0180
+
+# FENÊTRES HORAIRES, ajoutées le 01/11/2026 d'après getBestTimeToPostByNetwork de Metricool, heure de Paris.
+# Jusqu'ici une diffusion pouvait tomber à 1 h ou 3 h du matin, et beaucoup y tombaient. Les chiffres réels
+# de l'audience de Shawez, du 01/11 : Instagram 42 à 3 h contre 492 à 19 h ; TikTok 50 à 4 h contre 1 471 à
+# 10 h ; Facebook 900 à 3 h contre 15 500 à 10 h. Soit de dix à vingt fois moins la nuit. Une publication de
+# nuit n'est pas « un peu moins vue », elle est perdue. Chaque réseau a donc sa plage, bornes incluses,
+# centrée sur ses propres pics : TikTok et Facebook culminent à 10 h, midi et 17-18 h, Instagram le soir.
+# Ne jamais élargir ces plages vers la nuit pour « publier plus » : publier plus la nuit ne rapporte rien.
+FENETRES = {
+    'tiktok': (9, 20),
+    'youtube': (9, 21),
+    'facebook': (9, 19),
+    'threads': (8, 22),
+    'linkedin': (8, 19),
+    'pinterest': (8, 22),
+    'bluesky': (8, 22),
+    'gmb': (9, 18),
+}
+
+
+def dans_la_fenetre(reseau, t):
+    debut, fin = FENETRES.get(reseau, (8, 22))
+    return debut <= t.hour <= fin
 FENETRE_H = 48
 INSTAGRAM = '@shawez_immo'
 
@@ -106,7 +129,8 @@ def creneau(reseau, heures, depuis, horizon_h=30):
     t += dt.timedelta(minutes=(5 - t.minute % 5) % 5)
     fin = depuis + dt.timedelta(hours=horizon_h)
     while t < fin:
-        if all(abs(t - h) >= regle['ecart'] for h in heures) and charge_max(heures, t) <= regle['plafond']:
+        if dans_la_fenetre(reseau, t) and all(abs(t - h) >= regle['ecart'] for h in heures) \
+                and charge_max(heures, t) <= regle['plafond']:
             return t
         t += dt.timedelta(minutes=5)
     return None
