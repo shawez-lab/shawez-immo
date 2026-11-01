@@ -1950,6 +1950,18 @@
      "url": "https://www.tiktok.com/@shawez_immo/video/7702540508484095254",
      "date": "2026-10-30",
      "heure": "20:10"
+    },
+    "threads": {
+     "uuid": "1222775713621626364",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "17:25"
+    },
+    "youtube": {
+     "uuid": "-3970219969505967946",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "08:40"
     }
    },
    "reseaux": {
@@ -2009,6 +2021,12 @@
      "url": "",
      "date": "2026-11-02",
      "heure": "00:40"
+    },
+    "facebook": {
+     "uuid": "4054641084582348696",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "13:05"
     }
    },
    "reseaux": {
@@ -2127,6 +2145,12 @@
      "url": "",
      "date": "2026-10-31",
      "heure": "23:25"
+    },
+    "linkedin": {
+     "uuid": "-8186215069639553493",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "02:10"
     }
    },
    "url": "https://www.instagram.com/reel/DfIMyCfEr6a/",
@@ -2296,6 +2320,12 @@
      "url": "https://facebook.com/reel/1433840378242164",
      "date": "2026-10-31",
      "heure": "22:50"
+    },
+    "threads": {
+     "uuid": "7860531121166175177",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "16:40"
     }
    },
    "tentatives": [
@@ -2447,7 +2477,27 @@
    "tentatives": [
     "2026-10-31 04:48 refusée (quota Instagram)"
    ],
-   "rattrapage": "2026-10-31 11h35 monteur"
+   "rattrapage": "2026-10-31 11h35 monteur",
+   "diffusions": {
+    "threads": {
+     "uuid": "5418194680640389781",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "18:25"
+    },
+    "tiktok": {
+     "uuid": "874897316233105303",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "18:50"
+    },
+    "youtube": {
+     "uuid": "-7643428968521774203",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "12:10"
+    }
+   }
   },
   {
    "id": "TR-3010-461-v4",
@@ -2529,6 +2579,12 @@
      "url": "",
      "date": "2026-11-01",
      "heure": "13:05"
+    },
+    "threads": {
+     "uuid": "-3529281293901083613",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "17:55"
     }
    },
    "tentatives": [
@@ -2663,7 +2719,33 @@
     "instagram": "en_cours"
    },
    "vues_total": 134,
-   "verdict": "en_cours"
+   "verdict": "en_cours",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "7629258002958664101",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "08:10"
+    },
+    "youtube": {
+     "uuid": "-2876964267770166000",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "08:10"
+    },
+    "threads": {
+     "uuid": "-4756825009606146880",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "17:25"
+    },
+    "linkedin": {
+     "uuid": "2237009637310940717",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "17:10"
+    }
+   }
   },
   {
    "id": "TR-0111-438-v1",
