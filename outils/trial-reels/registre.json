@@ -1123,6 +1123,18 @@
      "url": "",
      "date": "2026-11-01",
      "heure": "00:25"
+    },
+    "pinterest": {
+     "uuid": "-4064937079422301914",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "13:40"
+    },
+    "bluesky": {
+     "uuid": "446107126924527370",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "13:40"
     }
    },
    "reseaux": {
@@ -1962,6 +1974,18 @@
      "url": "",
      "date": "2026-11-01",
      "heure": "08:40"
+    },
+    "pinterest": {
+     "uuid": "8236865238479619195",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "17:10"
+    },
+    "bluesky": {
+     "uuid": "-8047696122215903635",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "17:10"
     }
    },
    "reseaux": {
@@ -2027,6 +2051,24 @@
      "url": "",
      "date": "2026-11-02",
      "heure": "13:05"
+    },
+    "pinterest": {
+     "uuid": "-4191735154956678261",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "12:10"
+    },
+    "bluesky": {
+     "uuid": "-3366950842148042574",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "12:10"
+    },
+    "gmb": {
+     "uuid": "4283087373872089930",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "09:05"
     }
    },
    "reseaux": {
@@ -2078,6 +2120,18 @@
      "url": "",
      "date": "2026-11-01",
      "heure": "01:55"
+    },
+    "pinterest": {
+     "uuid": "-7944043487733003611",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "16:10"
+    },
+    "bluesky": {
+     "uuid": "-2176155812592267899",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "16:10"
     }
    },
    "reseaux": {
@@ -2151,6 +2205,24 @@
      "url": "",
      "date": "2026-11-02",
      "heure": "02:10"
+    },
+    "pinterest": {
+     "uuid": "-7634342165888676845",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "12:40"
+    },
+    "bluesky": {
+     "uuid": "2232946470475615146",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "12:40"
+    },
+    "gmb": {
+     "uuid": "51779005911221208",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "16:20"
     }
    },
    "url": "https://www.instagram.com/reel/DfIMyCfEr6a/",
@@ -2326,6 +2398,18 @@
      "url": "",
      "date": "2026-11-01",
      "heure": "16:40"
+    },
+    "pinterest": {
+     "uuid": "9194946603242832349",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "16:40"
+    },
+    "bluesky": {
+     "uuid": "9042179692003934913",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "16:40"
     }
    },
    "tentatives": [
@@ -2390,6 +2474,24 @@
      "url": "https://facebook.com/reel/1466729382217677",
      "date": "2026-10-31",
      "heure": "23:50"
+    },
+    "threads": {
+     "uuid": "3758240679937459525",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "08:00"
+    },
+    "pinterest": {
+     "uuid": "6106563614639345569",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "16:10"
+    },
+    "bluesky": {
+     "uuid": "7660459618386135557",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "16:10"
     }
    },
    "tentatives": [
@@ -2496,6 +2598,18 @@
      "url": "",
      "date": "2026-11-01",
      "heure": "12:10"
+    },
+    "pinterest": {
+     "uuid": "-3932059495443513106",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "15:40"
+    },
+    "bluesky": {
+     "uuid": "4594664720762357339",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "15:40"
     }
    }
   },
@@ -2529,6 +2643,24 @@
      "url": "https://www.youtube.com/shorts/ahKHILWs1B4",
      "date": "2026-10-31",
      "heure": "17:10"
+    },
+    "linkedin": {
+     "uuid": "-7150023901876632341",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "17:10"
+    },
+    "pinterest": {
+     "uuid": "6788011881887385999",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "13:10"
+    },
+    "bluesky": {
+     "uuid": "-7352649135995796440",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "13:10"
     }
    }
   },
@@ -2585,6 +2717,18 @@
      "url": "",
      "date": "2026-11-01",
      "heure": "17:55"
+    },
+    "pinterest": {
+     "uuid": "4582691891019531480",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "15:10"
+    },
+    "bluesky": {
+     "uuid": "-8587480909109900200",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "15:10"
     }
    },
    "tentatives": [
@@ -2638,6 +2782,18 @@
      "url": "",
      "date": "2026-11-01",
      "heure": "00:55"
+    },
+    "pinterest": {
+     "uuid": "-6827980740840701238",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "14:10"
+    },
+    "bluesky": {
+     "uuid": "6226762824126581684",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "14:10"
     }
    },
    "reseaux": {
@@ -2694,6 +2850,18 @@
      "url": "",
      "date": "2026-11-01",
      "heure": "01:25"
+    },
+    "pinterest": {
+     "uuid": "-4468655949666892365",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "15:10"
+    },
+    "bluesky": {
+     "uuid": "5274289468779938300",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "14:40"
     }
    }
   },
@@ -2744,6 +2912,18 @@
      "url": "",
      "date": "2026-10-31",
      "heure": "17:10"
+    },
+    "pinterest": {
+     "uuid": "-1456936250287501762",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "15:40"
+    },
+    "bluesky": {
+     "uuid": "-8430780879609772621",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "15:40"
     }
    }
   },
@@ -2774,7 +2954,27 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://0250888e.shawez-immo.pages.dev/trial/2026-11-01/chateau-438-v2.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "2136943383553788082",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "16:10"
+    },
+    "pinterest": {
+     "uuid": "1095221993577858434",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "17:40"
+    },
+    "bluesky": {
+     "uuid": "-5222519006870091739",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "17:40"
+    }
+   }
   },
   {
    "id": "TR-0111-438-v3",
@@ -2803,7 +3003,27 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://0250888e.shawez-immo.pages.dev/trial/2026-11-01/chateau-438-v4.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "1682669898603974621",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "18:55"
+    },
+    "pinterest": {
+     "uuid": "8041452675072412525",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "18:10"
+    },
+    "bluesky": {
+     "uuid": "8440422799600338289",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "18:10"
+    }
+   }
   },
   {
    "id": "TR-0111-438-v5",
@@ -2832,7 +3052,27 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://0250888e.shawez-immo.pages.dev/trial/2026-11-01/chateau-438-v6.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "3535961402132156314",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "19:25"
+    },
+    "pinterest": {
+     "uuid": "-1513820433001396494",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "18:40"
+    },
+    "bluesky": {
+     "uuid": "928112569593512948",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "18:40"
+    }
+   }
   },
   {
    "id": "TR-0111-438-v7",
@@ -2861,7 +3101,27 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://0250888e.shawez-immo.pages.dev/trial/2026-11-01/chateau-438-v8.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "3012632637302853601",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "19:55"
+    },
+    "pinterest": {
+     "uuid": "7523880956921727989",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "19:10"
+    },
+    "bluesky": {
+     "uuid": "-9200462322311282287",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "19:10"
+    }
+   }
   },
   {
    "id": "TR-0111-438-v9",
@@ -2876,7 +3136,27 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://0250888e.shawez-immo.pages.dev/trial/2026-11-01/chateau-438-v9.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "-8125884138944903324",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "20:25"
+    },
+    "pinterest": {
+     "uuid": "-6607514970377205732",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "12:10"
+    },
+    "bluesky": {
+     "uuid": "2028067268458857162",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "12:10"
+    }
+   }
   },
   {
    "id": "TR-0111-438-v10",
@@ -2891,7 +3171,27 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://0250888e.shawez-immo.pages.dev/trial/2026-11-01/chateau-438-v10.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "-805087827591344538",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "20:55"
+    },
+    "pinterest": {
+     "uuid": "-5942168078500478554",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "12:40"
+    },
+    "bluesky": {
+     "uuid": "7632005435741128627",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "12:40"
+    }
+   }
   },
   {
    "id": "TR-0111-438-v11",
@@ -2906,7 +3206,27 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://0250888e.shawez-immo.pages.dev/trial/2026-11-01/chateau-438-v11.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "5294181546894052274",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "21:25"
+    },
+    "pinterest": {
+     "uuid": "-1262103983153198633",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "13:10"
+    },
+    "bluesky": {
+     "uuid": "-8347004541791745053",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "13:10"
+    }
+   }
   },
   {
    "id": "TR-0111-438-v12",
@@ -2921,7 +3241,27 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://0250888e.shawez-immo.pages.dev/trial/2026-11-01/chateau-438-v12.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "-563359294489342297",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "21:55"
+    },
+    "pinterest": {
+     "uuid": "5924461451041065265",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "13:40"
+    },
+    "bluesky": {
+     "uuid": "8249531488391807134",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "13:40"
+    }
+   }
   },
   {
    "id": "TR-0111-438-v13",
@@ -2936,7 +3276,27 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://0250888e.shawez-immo.pages.dev/trial/2026-11-01/chateau-438-v13.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "7969207850160572185",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "22:25"
+    },
+    "pinterest": {
+     "uuid": "3794943356824013370",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "14:10"
+    },
+    "bluesky": {
+     "uuid": "3135526824898874498",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "14:10"
+    }
+   }
   },
   {
    "id": "TR-0111-438-v14",
@@ -2965,7 +3325,27 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://0250888e.shawez-immo.pages.dev/trial/2026-11-01/chateau-438-v15.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "961588561527459182",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "22:55"
+    },
+    "pinterest": {
+     "uuid": "6285746235835500042",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "14:40"
+    },
+    "bluesky": {
+     "uuid": "-4553568841912923856",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "14:40"
+    }
+   }
   }
  ]
 }
