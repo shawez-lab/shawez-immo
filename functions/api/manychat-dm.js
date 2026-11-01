@@ -287,6 +287,7 @@ const RAISONS = {
   parentheses: 'tu as mis des parenthèses, elles sont interdites',
   adresse: 'tu as donné une adresse ou un nom de rue, c’est interdit',
   montant: 'tu as cité un montant qui ne figure pas dans les données du bien. N’utilise que les prix fournis, ou ne cite aucun prix',
+  bien_inconnu: 'tu as décrit un bien alors qu’aucun bien n’est identifié. Ne cite ni type, ni surface, ni nombre de pièces : demande simplement de quel bien il s’agit',
 };
 
 async function rediger(env, prenom, commentaire, bien, source, fil = [], intention = '', videosDuMoment = '', defi = false, pseudo = '', correction = '') {
@@ -395,6 +396,11 @@ function controle(texte, bien, suite = false, client = '') {
   const permis = new Set((source.match(/\d[\d\s.,\u202f]*\s?(€|euros|k€|million)/gi) || []).map(chiffres));
   const montants = (texte.match(/\d[\d\s.,\u202f]*\s?(€|euros|k€|millions?)/gi) || []).map(chiffres);
   for (const m of montants) if (!m || !(permis.has(m) || permis.has(m.replace(/000$/, '')) || [...permis].some(p => p === m + '000'))) return 'montant';
+  // Aucun bien identifié : interdiction absolue d'en décrire un. Le 01/11/2026, l'IA intégrée de ManyChat a
+  // envoyé « un duplex T3 de 92,93 m² à Dijon, vendu 220 000 € » sous un Reel montrant un immeuble à Beaune
+  // à 2 500 000 €. Sans bien en main on ne décrit rien : ni type, ni surface, ni nombre de pièces.
+  if (!bien && (/\b[TF][1-9]\b/.test(texte) || /\b(duplex|studio|loft)\b/i.test(texte)
+    || /\d\s*(m²|m2|mètres? carrés?)/i.test(texte) || /\d\s*(pièces?|chambres?)/i.test(texte))) return 'bien_inconnu';
   if (texte.length > 640) return 'longueur';
   if (texte.split('\n').filter(l => l.trim()).length > 4) return 'lignes';
   return null;
@@ -612,7 +618,7 @@ export async function onRequest({ request, env }) {
     let fil = [];
     if (base && !test && contact) {
       const depuis = new Date(Date.now() - 30 * 864e5).toISOString();
-      const r = await base.prepare('SELECT sens, texte, cle FROM dm_fil WHERE contact = ?1 AND cree > ?2 ORDER BY id DESC LIMIT 8').bind(contact, depuis).all().catch(() => null);
+      const r = await base.prepare('SELECT sens, texte, cle, cree FROM dm_fil WHERE contact = ?1 AND cree > ?2 ORDER BY id DESC LIMIT 8').bind(contact, depuis).all().catch(() => null);
       fil = ((r && r.results) || []).reverse();
     }
     const noter = async (sens, texte, cle) => {
@@ -674,8 +680,12 @@ export async function onRequest({ request, env }) {
         : '';
     }
     if (/^(story|dm|wa)$/i.test(post || '') || post === '') {
-      // Rien de reconnu dans ce message : on reste sur le bien dont on parlait déjà avec ce contact
-      const dernier = [...fil].reverse().find(m => m.cle);
+      // Rien de reconnu dans ce message : on reste sur le bien dont on parlait déjà avec ce contact,
+      // mais seulement si l'échange date de moins de 24 h. Au-delà, la conversation est repartie de zéro
+      // et « ce bien » désigne presque toujours une autre vidéo : on préfère ne citer aucun bien plutôt
+      // que le mauvais. Cas réel du 01/11/2026, commentaire sous l'immeuble de Beaune, réponse sur le T4 des Bourroches.
+      const recent = Date.now() - 864e5;
+      const dernier = [...fil].reverse().find(m => m.cle && Date.parse(m.cree || '') >= recent);
       if (dernier) post = dernier.cle;
     }
     let bien = intention === 'vendre' ? null : await trouverBien(env, request, post);
