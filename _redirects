@@ -24,5 +24,7 @@ https://www.shawez-immo.com/* https://shawez-immo.com/:splat 301
 /realisations /videos-immobilier-dijon/ 301
 /biens /biens-a-vendre-dijon/ 301
 /biens/ /biens-a-vendre-dijon/ 301
+/biens-a-vendre /biens-a-vendre-dijon/ 301
+/biens-a-vendre/ /biens-a-vendre-dijon/ 301
 /simulateur /simulateur-pret-immobilier-dijon/ 301
 /simulateur/ /simulateur-pret-immobilier-dijon/ 301
