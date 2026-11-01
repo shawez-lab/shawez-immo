@@ -19,8 +19,14 @@ Pour publier plus, c'est sur les autres réseaux que ça se joue (diffusion.py),
 Le Monteur reste le SEUL à programmer des Trial Reels : Codex livre des idées dans le doc Croissance.
 Un créneau par 180 minutes donne exactement 8 par jour, donc jamais plus de 8 sur une fenêtre de 24 h.
 
-Grille : 8 créneaux par jour, un toutes les 3 heures, heure de Paris :
-00:00 03:00 06:00 09:00 12:00 15:00 18:00 21:00
+HEURES CORRIGÉES LE 01/11/2026, d'après les chiffres d'audience de Metricool (getBestTimeToPostByNetwork,
+Instagram, semaine du 01/11, heure de Paris). L'ancienne grille d'une publication toutes les 3 heures à
+partir de minuit envoyait la moitié du quota dans le vide : à 3 h du matin l'audience vaut 42 à 73, à 19 h
+elle vaut 464 à 492, soit dix fois plus. Avec seulement 8 Trial Reels possibles par jour, chaque créneau
+de nuit était une vidéo perdue. Les 8 créneaux sont donc tous dans la plage où l'audience est forte.
+
+Grille : 8 créneaux par jour, heure de Paris, tous au-dessus de 350 d'audience :
+08:30 11:00 12:30 15:00 17:00 18:30 20:00 21:30
 
 Usage :
   python3 outils/trial-reels/creneaux.py --existants /tmp/tr.txt --depuis 2026-10-29T17:30 --nombre 8
@@ -32,7 +38,7 @@ import argparse
 import datetime as dt
 
 PLAFOND = 8                  # Trial Reels au plus sur 24 heures glissantes (mesuré : 8 passent, au-delà Instagram refuse)
-PAS = dt.timedelta(minutes=180)
+HEURES = [(8, 30), (11, 0), (12, 30), (15, 0), (17, 0), (18, 30), (20, 0), (21, 30)]
 ECART_MIN = dt.timedelta(minutes=45)
 JOUR = dt.timedelta(hours=24)
 
@@ -55,11 +61,13 @@ def charge_max(heures, t):
 
 
 def grille(depuis, jusqu_a):
-    t = depuis.replace(hour=0, minute=0)
-    while t < jusqu_a:
-        if t >= depuis:
-            yield t
-        t += PAS
+    jour = depuis.replace(hour=0, minute=0, second=0, microsecond=0)
+    while jour < jusqu_a:
+        for h, m in HEURES:
+            t = jour.replace(hour=h, minute=m)
+            if depuis <= t < jusqu_a:
+                yield t
+        jour += dt.timedelta(days=1)
 
 
 def main():
