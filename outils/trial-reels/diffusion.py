@@ -3,7 +3,10 @@
 
 Demande de Shawez (29/10/2026) : « en total je veux que tu publies 50 réels par jour ». Instagram refuse au-delà
 d'environ 16 Trial Reels par 24 h, donc le reste part sur les autres réseaux connectés à Metricool :
-  Instagram  12 Trial Reels / 24 h glissantes   (Monteur, creneaux.py)
+  Instagram   8 Trial Reels / 24 h glissantes   (Monteur, creneaux.py, aux heures de forte audience)
+  Pinterest  15 épingles / 24 h, 30 min d'écart   (tableau « Biens a vendre a Dijon et en Cote-d'Or »)
+  Bluesky    15 posts    / 24 h, 30 min d'écart
+  Google Business 2 photos / 24 h, 4 h d'écart    (met la vidéo dans la galerie de la fiche Google)
   TikTok      8 vidéos / 24 h, 45 min d'écart au moins   (compte shawez_immo)
   YouTube    10 Shorts  / 24 h, 60 min d'écart au moins   (limite Metricool du compte YouTube)
   Facebook   10 Reels   / 24 h, 60 min d'écart au moins   (page Facebook)
@@ -47,7 +50,16 @@ RESEAUX = {  # plafond sur 24 h glissantes, écart minimal, horizon de diffusion
     'facebook': {'plafond': 5, 'ecart': dt.timedelta(minutes=120)},
     'threads': {'plafond': 20, 'ecart': dt.timedelta(minutes=30)},
     'linkedin': {'plafond': 8, 'ecart': dt.timedelta(minutes=90)},
+    # Ajoutés le 01/11/2026 : trois canaux déjà connectés à Metricool et jamais utilisés. Pinterest est un
+    # moteur de recherche, pas un fil : une épingle vidéo avec le lien du site continue d'amener du monde
+    # des mois après, même avec zéro abonné. Google Business de type « photo » met la vidéo dans la galerie
+    # de la fiche Google de l'agence, là où les gens de Dijon cherchent vraiment : on reste à 2 par jour
+    # pour ne pas noyer la galerie. Le tableau Pinterest est « Biens a vendre a Dijon et en Cote-d'Or ».
+    'pinterest': {'plafond': 15, 'ecart': dt.timedelta(minutes=30)},
+    'bluesky': {'plafond': 15, 'ecart': dt.timedelta(minutes=30)},
+    'gmb': {'plafond': 2, 'ecart': dt.timedelta(minutes=240)},
 }
+PINTEREST_TABLEAU = '1143844074049722490'   # « Biens a vendre a Dijon et en Cote-d'Or », compte shawez0180
 FENETRE_H = 48
 INSTAGRAM = '@shawez_immo'
 
@@ -196,7 +208,7 @@ def main():
     a.add_argument('--a-faire', action='store_true')
     a.add_argument('--existants')
     a.add_argument('--depuis', help='AAAA-MM-JJTHH:MM heure de Paris : pas de diffusion avant')
-    a.add_argument('--reseaux', default='threads,linkedin,tiktok,youtube,facebook')
+    a.add_argument('--reseaux', default='threads,linkedin,pinterest,bluesky,gmb,tiktok,youtube,facebook')
     a.add_argument('--noter', nargs='+', metavar='X', help='TR-id reseau uuid AAAA-MM-JJTHH:MM [url]')
     args = a.parse_args()
     if args.noter:
