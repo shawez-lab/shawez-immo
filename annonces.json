@@ -2446,7 +2446,7 @@
     "nbchambres": "3",
     "nbpiecees": "5",
     "nbse": "3",
-    "prix_vente": "370 000 €",
+    "prix_vente": "360 000 €",
     "surf_carrez": "141 m²",
     "terrasse": "OUI",
     "type_chauffage": "TRAD_TYPE_CHAUFF_AIR_EAU",
@@ -3215,6 +3215,7 @@
    "honoraires_texte": null,
    "id": "776",
    "last_seen": "2026-11-01",
+   "lien_complet": false,
    "mentions_agence": [
     "Nouveauté"
    ],
