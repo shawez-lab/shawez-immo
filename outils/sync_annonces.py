@@ -50,7 +50,7 @@ def autorise(url):
         _robots[key] = rp
     return _robots[key].can_fetch(UA, url)
 
-def get(url, verif=True, essais=3):
+def get(url, verif=True, essais=5):
     if verif and not autorise(url):
         raise PermissionError('interdit par robots.txt : ' + url)
     for k in range(essais):
@@ -73,7 +73,7 @@ def get(url, verif=True, essais=3):
             _last[0] = time.time()
             if k == essais - 1:
                 raise
-        time.sleep(5 * (k + 1))
+        time.sleep(min(60, 5 * 2 ** k))   # le serveur de l'agence lâche parfois : 5, 10, 20, 40 s
 
 # ---------------------------------------------------------------- analyse
 T = lambda s: re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', ' ', s or ''))).strip()

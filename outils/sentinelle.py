@@ -33,11 +33,14 @@ def vignette(bloc):
     return m.group(1) if m else ''
 
 
-def releve():
-    """{ref: empreinte} d'après les seules pages de liste. Deux lectures, comme la synchro : l'agence
-    change l'ordre de ses pages d'une requête à l'autre."""
+def releve(passes=1):
+    """{ref: empreinte} d'après les seules pages de liste. L'agence change l'ordre de ses pages d'une
+    requête à l'autre : une seule lecture suffit pour la surveillance courante, et on confirme par une
+    seconde lecture avant de déclencher une synchronisation complète. Lire deux fois à chaque passage
+    revenait à frapper le serveur de l'agence 16 fois toutes les 20 minutes, et il a fini par lâcher
+    (synchronisation en échec le 02/11/2026, « urlopen error timed out »)."""
     vues = {}
-    for _ in range(S.PASSES):
+    for _ in range(passes):
         for url in S.PAGES:
             try:
                 page = S.get(url).decode('utf-8', 'ignore')
@@ -70,8 +73,15 @@ def main():
         print('sentinelle : empreinte posée, %d annonces' % len(actuel))
         return
     avant = ancien.get('annonces', {})
-    changes = ([r for r in actuel if r not in avant] + [r for r in avant if r not in actuel]
-               + [r for r in actuel if r in avant and actuel[r] != avant[r]])
+    ecart = lambda d: ([r for r in d if r not in avant] + [r for r in avant if r not in d]
+                       + [r for r in d if r in avant and d[r] != avant[r]])
+    changes = ecart(actuel)
+    if changes:
+        # Confirmation par une seconde lecture : l'ordre des pages de l'agence varie, et une annonce
+        # peut manquer à une lecture sans avoir bougé. On ne lance la synchronisation complète, qui
+        # coûte 3 à 5 minutes, que si l'écart se confirme.
+        actuel = {**releve(1), **actuel}   # union des deux lectures, la première fait foi
+        changes = ecart(actuel)
     if changes:
         print('sentinelle : %d annonce(s) modifiée(s) chez l\'agence : %s' % (len(changes), ', '.join(sorted(changes)[:12])))
         raise SystemExit(10)
