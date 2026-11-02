@@ -1,2 +1,5 @@
 __pycache__/
 .wrangler/
+
+# Copies de travail temporaires des agents (jamais sur le site)
+.claude/

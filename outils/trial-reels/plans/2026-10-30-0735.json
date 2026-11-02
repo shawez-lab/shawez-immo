@@ -1,0 +1,492 @@
+{
+ "jour": "2026-10-30",
+ "biens": [
+  {
+   "ref": "438",
+   "src": "assets/biens/438/video.mp4",
+   "mot": "CHÂTEAU",
+   "nom": "chateau",
+   "versions": [
+    {
+     "id": "v1",
+     "style": "chiffre_choc",
+     "accroche": "15 hectares,|7 chambres|et un étang",
+     "legende": "15 hectares, 7 chambres et un étang autour d’un château du XVIIIe, à 15 minutes de Beaune 🏰\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#chateauavendre #bourgogne #beaune #domaine #immobilierdeprestige",
+     "plans": [
+      [
+       1.25,
+       3.2,
+       1.0
+      ],
+      [
+       5.25,
+       7.2,
+       1.0,
+       "15 hectares"
+      ],
+      [
+       9.7,
+       11.2,
+       1.0
+      ],
+      [
+       13.25,
+       15.15,
+       1.0
+      ],
+      [
+       15.2,
+       19.15,
+       1.5,
+       "Vestibule majestueux"
+      ],
+      [
+       27.2,
+       29.15,
+       1.0
+      ],
+      [
+       11.25,
+       13.2,
+       0.7
+      ]
+     ],
+     "publier": "2026-10-30T22:24"
+    },
+    {
+     "id": "v2",
+     "style": "lieu_exception",
+     "accroche": "Château du XVIIIe,|à 15 min de Beaune",
+     "legende": "Château du XVIIIe à 15 minutes de Beaune, dans un domaine de 15 hectares avec parc et étang 🏰\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#chateau #bourgogne #beaune #patrimoine #chateauavendre",
+     "plans": [
+      [
+       3.25,
+       5.2,
+       1.0
+      ],
+      [
+       8.25,
+       9.7,
+       1.0
+      ],
+      [
+       0,
+       1.2,
+       1.0,
+       "Parc à la française"
+      ],
+      [
+       13.25,
+       15.15,
+       1.0
+      ],
+      [
+       17.2,
+       19.15,
+       1.0
+      ],
+      [
+       19.2,
+       21.2,
+       1.0,
+       "7 chambres"
+      ],
+      [
+       24.2,
+       27.15,
+       1.0
+      ]
+     ],
+     "publier": "2026-10-31T01:36"
+    },
+    {
+     "id": "v3",
+     "style": "chiffre_choc",
+     "accroche": "1 600 000 €|et 15 hectares|de domaine",
+     "legende": "1 600 000 € pour un château du XVIIIe de 520 m² et son domaine de 15 hectares, près de Beaune 🏰\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#chateauavendre #bourgogne #immobilierdeluxe #beaune #luxuryrealestate",
+     "plans": [
+      [
+       5.25,
+       7.2,
+       1.0
+      ],
+      [
+       1.25,
+       3.2,
+       1.0
+      ],
+      [
+       11.25,
+       13.2,
+       1.2,
+       "520 m²"
+      ],
+      [
+       14.0,
+       15.15,
+       1.0
+      ],
+      [
+       15.2,
+       19.15,
+       1.5
+      ],
+      [
+       19.2,
+       22.15,
+       1.3,
+       "Cuisine équipée"
+      ],
+      [
+       8.25,
+       11.2,
+       1.0
+      ]
+     ],
+     "publier": "2026-10-31T04:48"
+    },
+    {
+     "id": "v4",
+     "style": "lieu_exception",
+     "accroche": "Un château avec|colombier et écurie",
+     "legende": "Un château du XVIIIe avec colombier, écurie, maison d’amis et étang, à 15 minutes de Beaune 🏰\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#chateau #bourgogne #campagne #chateauavendre #maisondefamille",
+     "plans": [
+      [
+       5.25,
+       7.2,
+       1.0
+      ],
+      [
+       3.25,
+       5.2,
+       1.0,
+       "Domaine de 15 hectares"
+      ],
+      [
+       0,
+       1.2,
+       1.0
+      ],
+      [
+       13.25,
+       15.15,
+       1.0
+      ],
+      [
+       15.2,
+       17.2,
+       1.0
+      ],
+      [
+       29.2,
+       30.0,
+       0.8,
+       "Boiseries d’époque"
+      ],
+      [
+       8.25,
+       11.2,
+       1.0
+      ]
+     ],
+     "publier": "2026-10-31T08:00"
+    },
+    {
+     "id": "v5",
+     "style": "revelation",
+     "accroche": "Derrière ces portes,|un château du XVIIIe",
+     "legende": "Derrière ces portes, un vestibule majestueux, des boiseries et des cheminées d’époque 🏰 Château du XVIIIe près de Beaune.\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#chateau #patrimoine #bourgogne #beaune #chateauavendre",
+     "plans": [
+      [
+       13.25,
+       15.15,
+       1.0
+      ],
+      [
+       15.2,
+       19.15,
+       1.3,
+       "Vestibule majestueux"
+      ],
+      [
+       29.2,
+       30.0,
+       0.8,
+       "Boiseries d’époque"
+      ],
+      [
+       19.2,
+       22.15,
+       1.3
+      ],
+      [
+       1.25,
+       3.2,
+       1.0
+      ],
+      [
+       8.25,
+       11.2,
+       1.0
+      ]
+     ],
+     "publier": "2026-10-31T12:48"
+    }
+   ]
+  },
+  {
+   "ref": "461",
+   "src": "assets/biens/461/video.mp4",
+   "mot": "MARRAKECH",
+   "nom": "marrakech",
+   "versions": [
+    {
+     "id": "v1",
+     "style": "lieu_exception",
+     "accroche": "Marrakech,|en plein cœur|de Dijon",
+     "legende": "Marrakech, en plein cœur de Dijon 🫖 Un studio rénové par architecte, au calme d’une cour intérieure, à deux pas du Parc Darcy.\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#dijon #studio #marrakech #immobilierdijon #premierachat",
+     "plans": [
+      [
+       4.0,
+       6.5,
+       1.0
+      ],
+      [
+       1.1,
+       3.0,
+       1.2
+      ],
+      [
+       13.0,
+       15.8,
+       1.2,
+       "Baignoire balnéo"
+      ],
+      [
+       8.0,
+       11.5,
+       1.4,
+       "Rétroprojecteur intégré"
+      ],
+      [
+       17.0,
+       19.0,
+       1.0
+      ],
+      [
+       28.5,
+       33.5,
+       1.6
+      ]
+     ],
+     "publier": "2026-10-30T20:48"
+    },
+    {
+     "id": "v2",
+     "style": "chiffre_choc",
+     "accroche": "129 000 €|pour ce studio|d’architecte",
+     "legende": "129 000 € pour ce studio d’architecte inspiration Marrakech, à deux pas du Parc Darcy à Dijon 🫖\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#dijon #investissementlocatif #studio #immobilierdijon #marrakech",
+     "plans": [
+      [
+       29.0,
+       31.5,
+       1.0
+      ],
+      [
+       13.0,
+       15.8,
+       1.2,
+       "Balnéo"
+      ],
+      [
+       3.0,
+       5.5,
+       1.2
+      ],
+      [
+       8.0,
+       11.5,
+       1.4,
+       "Rétroprojecteur"
+      ],
+      [
+       22.0,
+       24.5,
+       1.2
+      ],
+      [
+       1.1,
+       4.0,
+       1.0
+      ]
+     ],
+     "publier": "2026-10-31T00:00"
+    },
+    {
+     "id": "v3",
+     "style": "chiffre_choc",
+     "accroche": "19 m², balnéo|et rétroprojecteur",
+     "legende": "19 m², une balnéo et un rétroprojecteur intégré, dans un studio inspiration Marrakech à Dijon 🫖\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#dijon #studio #petitespace #immobilierdijon #marrakech",
+     "plans": [
+      [
+       13.5,
+       16.0,
+       1.0
+      ],
+      [
+       8.5,
+       11.8,
+       1.3
+      ],
+      [
+       3.5,
+       6.0,
+       1.2,
+       "19,15 m² Carrez"
+      ],
+      [
+       1.1,
+       3.0,
+       1.2,
+       "Cuisine sur mesure"
+      ],
+      [
+       19.0,
+       21.8,
+       1.2
+      ],
+      [
+       28.0,
+       32.0,
+       1.3
+      ]
+     ],
+     "publier": "2026-10-31T03:12"
+    },
+    {
+     "id": "v4",
+     "style": "revelation",
+     "accroche": "Derrière cette porte,|une balnéo",
+     "legende": "Derrière cette porte, une baignoire balnéo 🫖 Studio inspiration Marrakech, à deux pas du Parc Darcy.\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#dijon #salledebain #studio #marrakech #immobilierdijon",
+     "plans": [
+      [
+       12.0,
+       13.0,
+       0.8
+      ],
+      [
+       13.0,
+       16.0,
+       1.1
+      ],
+      [
+       4.5,
+       7.5,
+       1.3,
+       "Inspiration Marrakech"
+      ],
+      [
+       8.0,
+       11.5,
+       1.4
+      ],
+      [
+       22.0,
+       25.0,
+       1.3,
+       "Cour intérieure"
+      ],
+      [
+       28.0,
+       32.0,
+       1.3
+      ]
+     ],
+     "publier": "2026-10-31T06:24"
+    },
+    {
+     "id": "v5",
+     "style": "lieu_exception",
+     "accroche": "Le Maroc|en plein centre|de Dijon",
+     "legende": "Le Maroc en plein centre de Dijon 🫖 Un studio inspiration Marrakech, au calme d’une cour intérieure.\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#dijon #marrakech #decoration #studio #immobilierdijon",
+     "plans": [
+      [
+       0.0,
+       1.1,
+       1.0
+      ],
+      [
+       3.0,
+       5.5,
+       1.0
+      ],
+      [
+       13.0,
+       15.5,
+       1.2,
+       "Baignoire balnéo"
+      ],
+      [
+       17.0,
+       19.0,
+       1.0
+      ],
+      [
+       8.0,
+       11.5,
+       1.4,
+       "Rétroprojecteur"
+      ],
+      [
+       29.5,
+       33.5,
+       1.3
+      ]
+     ],
+     "publier": "2026-10-31T11:12"
+    },
+    {
+     "id": "v6",
+     "style": "question",
+     "accroche": "Tu vivrais ici ?|Studio Marrakech|à Dijon",
+     "legende": "Tu vivrais ici ? 🫖 Studio inspiration Marrakech de 19 m² avec balnéo, à deux pas du Parc Darcy.\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#dijon #studio #question #marrakech #immobilierdijon",
+     "plans": [
+      [
+       19.0,
+       21.5,
+       1.0
+      ],
+      [
+       13.0,
+       15.8,
+       1.2,
+       "Balnéo"
+      ],
+      [
+       3.5,
+       6.5,
+       1.2
+      ],
+      [
+       8.0,
+       11.5,
+       1.4,
+       "Rétroprojecteur"
+      ],
+      [
+       1.1,
+       3.0,
+       1.0
+      ],
+      [
+       22.5,
+       26.5,
+       1.4
+      ]
+     ],
+     "publier": "2026-10-31T14:24"
+    }
+   ]
+  }
+ ]
+}
