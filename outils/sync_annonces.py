@@ -50,7 +50,7 @@ def autorise(url):
         _robots[key] = rp
     return _robots[key].can_fetch(UA, url)
 
-def get(url, verif=True, essais=3):
+def get(url, verif=True, essais=5):
     if verif and not autorise(url):
         raise PermissionError('interdit par robots.txt : ' + url)
     for k in range(essais):
@@ -73,7 +73,7 @@ def get(url, verif=True, essais=3):
             _last[0] = time.time()
             if k == essais - 1:
                 raise
-        time.sleep(5 * (k + 1))
+        time.sleep(min(60, 5 * 2 ** k))   # le serveur de l'agence lâche parfois : 5, 10, 20, 40 s
 
 # ---------------------------------------------------------------- analyse
 T = lambda s: re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', ' ', s or ''))).strip()
@@ -124,8 +124,12 @@ def fiche(url):
     dossiers = re.findall(r'images/biens/\d+/([0-9a-f]{32})/photo_', zone)
     photos = []
     if dossiers:
-        h = max(set(dossiers), key=dossiers.count)
-        for p in re.findall(r'images/biens/(\d+/%s/photo_[0-9a-f]+\.(?:jpe?g|png|webp))' % h, zone):
+        # L'agence range les photos d'un bien dans un dossier dont le nom change à chaque remplacement.
+        # Quand elle ajoute des photos sans tout refaire, le bien se retrouve avec DEUX dossiers : on les
+        # prend tous les deux, dans l'ordre de la page. Ne garder que le dossier majoritaire, comme avant
+        # le 02/11/2026, faisait silencieusement disparaître les photos ajoutées.
+        gardes = list(dict.fromkeys(dossiers)) if gal else [max(set(dossiers), key=dossiers.count)]
+        for p in re.findall(r'images/biens/(\d+/(?:%s)/photo_[0-9a-f]+\.(?:jpe?g|png|webp))' % '|'.join(gardes), zone):
             if p not in photos:
                 photos.append(p)
     ener = re.search(r"dépenses annuelles d'énergie[^<]*?compris entre\s*([\d\s\xa0]+)\s*€\s*et\s*([\d\s\xa0]+)\s*€", html.unescape(s))

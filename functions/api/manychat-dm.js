@@ -108,6 +108,52 @@ function ficheDepuisAnnonce(ref, a) {
 // Sert quand le Reel n'est pas dans le registre (Trial Reels, nouvelles versions) : le mot du commentaire dit le bien.
 const sansAccents = (s) => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 
+// Budget annoncé par la personne (« vous avez la même chose à moins de 600 000 € ? », 31/10/2026).
+// Sans ça, le worker n'avait aucun bien à proposer et répondait en demandant ce qu'elle cherchait,
+// alors que le catalogue contient la réponse. Il faut une tournure de budget explicite : un simple
+// prix cité dans une phrase ne déclenche rien.
+const CUE_BUDGET = /\b(moins de|en dessous|au dessous|sous|maxi|maximum|max|budget|jusqu|pas plus de|abordable)\b/i;
+function budgetDuTexte(texte) {
+  const t = sansAccents(texte).replace(/[  ]/g, ' ');
+  if (!CUE_BUDGET.test(t)) return 0;
+  let max = 0;
+  for (const m of t.matchAll(/(\d[\d\s.]{0,12}\d|\d)\s*(k\b|€|euros?\b)?/g)) {
+    let n = parseInt(String(m[1]).replace(/[\s.]/g, ''), 10);
+    if (!Number.isFinite(n)) continue;
+    if (/^k/i.test(m[2] || '')) n *= 1000;
+    if (n >= 20000 && n <= 5000000 && n > max) max = n;
+  }
+  return max;
+}
+
+// « 1 600 000 € » -> 1600000. 0 si la fiche n'a pas de prix lisible, pour ne jamais écarter un bien par erreur.
+function prixEnNombre(p) {
+  const n = parseInt(String(p || '').replace(/[^\d]/g, ''), 10);
+  return Number.isFinite(n) ? n : 0;
+}
+
+// Le bien le plus cher qui tient dans le budget, plus un second cité en une ligne. Jamais un bien
+// qui n'est plus « en vente » : sous offre et sous compromis sont écartés.
+async function biensPourBudget(env, request, texte) {
+  const budget = budgetDuTexte(texte);
+  if (!budget) return null;
+  let data = {};
+  try { data = await lireJson(env, request, '/annonces.json'); } catch (e) { return null; }
+  const liste = Object.entries(data.annonces || {})
+    .map(([ref, a]) => ({ ref, a, prix: Number(a.prix) || 0 }))
+    .filter(x => x.a && x.a.status === 'en vente' && x.prix > 0 && x.prix <= budget)
+    .sort((x, y) => y.prix - x.prix);
+  if (!liste.length) return null;
+  const bien = ficheDepuisAnnonce(liste[0].ref, liste[0].a);
+  const second = liste[1];
+  if (second) {
+    const c = second.a.caracteristiques || {};
+    const prix = c.prix_honoraires_inclus || c.prix_vente || '';
+    bien.autre_bien_sous_ce_budget = propre([second.a.type, second.a.commune && `à ${second.a.commune}`, prix].filter(Boolean).join(' '), 120);
+  }
+  return bien;
+}
+
 async function motCle(env, request, texte) {
   let registre = {};
   try { registre = await lireJson(env, request, '/videos-biens.json'); } catch (e) { return ''; }
@@ -186,6 +232,9 @@ Dès que tu écris un message, règles absolues, sauf le « Salut » de début e
   l'argent qui passe en caisse et le chiffre d'affaires comptable), puis dis que pour recevoir les bilans complets il suffit de
   signer l'engagement de confidentialité du bouton « Accès aux bilans » et de le renvoyer avec sa pièce d'identité, et que tu lui
   envoies les bilans tout de suite après. Ne donne jamais le résultat comptable, les salaires ni le nom ou l'adresse du commerce.
+- Si les données contiennent une ligne « autre_bien_sous_ce_budget » : la personne a donné un budget et ces biens y entrent.
+  Présente le bien principal en une phrase avec son prix, cite ce second bien en une phrase, puis UNE seule question pour savoir
+  ce qui compte le plus pour elle. Ne dis jamais que tu n'as rien dans son budget.
 - Si aucun bien n'est fourni : une phrase chaleureuse et naturelle, puis une seule question simple sur ce qu'il cherche.
   Ne dis jamais que tu n'as pas l'information ni que tu préfères ne rien dire de faux.
 - Si le message est seulement le mot-clé d'une vidéo, un mot en majuscules comme CHÂTEAU, LOFT, NEUILLY ou VISIT, la personne a commenté
@@ -226,7 +275,22 @@ Règles absolues quand tu écris :
 - Documents, bilans, chiffre d'affaires d'un fonds : chiffres publics fournis seulement, puis l'engagement de confidentialité à signer avec une pièce d'identité.
 Réponds avec le texte du message seul, sans guillemets ni explication : la première ligne est déjà adressée à la personne.`;
 
-async function rediger(env, prenom, commentaire, bien, source, fil = [], intention = '', videosDuMoment = '', defi = false, pseudo = '') {
+// Pourquoi le garde-fou a refusé, dit à Claude pour qu'il se corrige au lieu de laisser la personne sans réponse.
+const RAISONS = {
+  horaire: 'tu as proposé une heure ou un créneau. Seules les heures écrites par la personne elle-même sont permises, ne propose aucune heure',
+  jour: 'tu as parlé du samedi, du dimanche ou du week-end, alors que la personne n’en a pas parlé',
+  questions: 'tu as posé plus d’une question. Garde une seule question, à la toute fin',
+  longueur_suite: 'ton message était trop long pour une conversation en cours. Moins de 320 caractères',
+  longueur: 'ton message était trop long. Moins de 600 caractères',
+  lignes: 'tu as écrit plus de 4 lignes',
+  vocabulaire: 'tu as employé un mot interdit, par exemple mandataire, gratuit, IA, robot ou automatique. Dis « offert » si besoin',
+  parentheses: 'tu as mis des parenthèses, elles sont interdites',
+  adresse: 'tu as donné une adresse ou un nom de rue, c’est interdit',
+  montant: 'tu as cité un montant qui ne figure pas dans les données du bien. N’utilise que les prix fournis, ou ne cite aucun prix',
+  bien_inconnu: 'tu as décrit un bien alors qu’aucun bien n’est identifié. Ne cite ni type, ni surface, ni nombre de pièces : demande simplement de quel bien il s’agit',
+};
+
+async function rediger(env, prenom, commentaire, bien, source, fil = [], intention = '', videosDuMoment = '', defi = false, pseudo = '', correction = '') {
   if (!env.ANTHROPIC_API_KEY) throw new Error('cle absente');
   const inconnu = COMMENTAIRE_INCONNU.test(commentaire || '');
   // Mots-clés du flux vendeur (« vendre ma », « je vends », « estimation »…) : la personne parle de SON bien
@@ -249,7 +313,7 @@ async function rediger(env, prenom, commentaire, bien, source, fil = [], intenti
       thinking: { type: 'between_tools' },
       output_config: { effort: 'low' },
       system: source === 'whatsapp' ? CONSIGNES_WA : CONSIGNES,
-      messages: [{ role: 'user', content: `${fil.length ? 'Historique récent de la conversation, du plus ancien au plus récent :\n' + fil.map(m => (m.sens === 'out' ? 'Shawez : ' : 'Client : ') + m.texte).join('\n') + '\n\n' : ''}Type : ${source === 'whatsapp' ? 'message WhatsApp' : source === 'dm' ? 'message privé direct' : /story/i.test(source || '') ? 'réponse à une story' : 'commentaire sous une vidéo'}\nPrénom : ${prenom || '(inconnu)'}${!prenom && pseudo ? `\nPseudo Instagram : ${pseudo}` : ''}\nMessage : ${commentaire || '(vide)'}\n\nDonnées du bien :\n${donnees}` }],
+      messages: [{ role: 'user', content: `${fil.length ? 'Historique récent de la conversation, du plus ancien au plus récent :\n' + fil.map(m => (m.sens === 'out' ? 'Shawez : ' : 'Client : ') + m.texte).join('\n') + '\n\n' : ''}Type : ${source === 'whatsapp' ? 'message WhatsApp' : source === 'dm' ? 'message privé direct' : /story/i.test(source || '') ? 'réponse à une story' : 'commentaire sous une vidéo'}\nPrénom : ${prenom || '(inconnu)'}${!prenom && pseudo ? `\nPseudo Instagram : ${pseudo}` : ''}\nMessage : ${commentaire || '(vide)'}\n\nDonnées du bien :\n${donnees}${correction ? `\n\nTon message précédent a été refusé : ${correction}. Réécris-le entièrement en corrigeant ce point, en respectant toutes les autres règles, sans rien inventer.` : ''}` }],
     }),
   });
   if (!r.ok) throw new Error(`api ${r.status} ${(await r.text()).slice(0, 200)}`);
@@ -332,6 +396,11 @@ function controle(texte, bien, suite = false, client = '') {
   const permis = new Set((source.match(/\d[\d\s.,\u202f]*\s?(€|euros|k€|million)/gi) || []).map(chiffres));
   const montants = (texte.match(/\d[\d\s.,\u202f]*\s?(€|euros|k€|millions?)/gi) || []).map(chiffres);
   for (const m of montants) if (!m || !(permis.has(m) || permis.has(m.replace(/000$/, '')) || [...permis].some(p => p === m + '000'))) return 'montant';
+  // Aucun bien identifié : interdiction absolue d'en décrire un. Le 01/11/2026, l'IA intégrée de ManyChat a
+  // envoyé « un duplex T3 de 92,93 m² à Dijon, vendu 220 000 € » sous un Reel montrant un immeuble à Beaune
+  // à 2 500 000 €. Sans bien en main on ne décrit rien : ni type, ni surface, ni nombre de pièces.
+  if (!bien && (/\b[TF][1-9]\b/.test(texte) || /\b(duplex|studio|loft)\b/i.test(texte)
+    || /\d\s*(m²|m2|mètres? carrés?)/i.test(texte) || /\d\s*(pièces?|chambres?)/i.test(texte))) return 'bien_inconnu';
   if (texte.length > 640) return 'longueur';
   if (texte.split('\n').filter(l => l.trim()).length > 4) return 'lignes';
   return null;
@@ -549,7 +618,7 @@ export async function onRequest({ request, env }) {
     let fil = [];
     if (base && !test && contact) {
       const depuis = new Date(Date.now() - 30 * 864e5).toISOString();
-      const r = await base.prepare('SELECT sens, texte, cle FROM dm_fil WHERE contact = ?1 AND cree > ?2 ORDER BY id DESC LIMIT 8').bind(contact, depuis).all().catch(() => null);
+      const r = await base.prepare('SELECT sens, texte, cle, cree FROM dm_fil WHERE contact = ?1 AND cree > ?2 ORDER BY id DESC LIMIT 8').bind(contact, depuis).all().catch(() => null);
       fil = ((r && r.results) || []).reverse();
     }
     const noter = async (sens, texte, cle) => {
@@ -584,7 +653,24 @@ export async function onRequest({ request, env }) {
     // Commentaire sans texte : le flux « tous les Reels » (texte fixe) ou un flux « Autres » d'une vidéo (dm_comment vidé).
     // Seuls les flux par mot-clé disent ce que la personne a écrit (dm_comment : « CHÂTEAU », « Question sur le prix »…).
     const aveugle = !prive && source !== 'whatsapp' && intention !== 'vendre' && (!commentaire || COMMENTAIRE_INCONNU.test(commentaire));
-    if (aveugle) return muet('inconnu');
+    if (aveugle) {
+      // Décision de Shawez du 31/10/2026, qui remplace celle du 29/10 : plus personne ne reste sans réponse.
+      // Instagram ne transmet ni le texte ni la vidéo, donc on n'affirme rien et on ne cite AUCUN bien : on demande
+      // le mot, et la suite repart du mot reçu. C'est la réponse de secours sans bien, pas de rédaction, coût nul.
+      // Une seule demande de ce type par contact et par jour, pour ne jamais tourner en boucle sur ses commentaires.
+      if (base && !test) {
+        const dejaDemande = await base.prepare("SELECT 1 FROM dm_instagram WHERE contact = ?1 AND jour = ?2 AND origine = 'preciser' LIMIT 1")
+          .bind(contact, jour).first().catch(() => null);
+        if (dejaDemande) return muet('inconnu_deja_demande');
+      }
+      const tp = dejaEcrit ? sansSalut(secours(prenom, null)) : secours(prenom, null);
+      if (base && !test) {
+        await base.prepare('INSERT OR IGNORE INTO dm_instagram VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11)')
+          .bind(evenement, contact, compte, idReel(post), '', jour, 'preciser', 0, 0, 0, new Date().toISOString()).run().catch(() => {});
+        await noter('out', tp, '');
+      }
+      return json(200, { ...blocManyChat(tp, null, true), envoyer: 'oui', origine: 'preciser', cout: 0 });
+    }
     if (/^(story|dm|wa)$/i.test(post || '')) {
       const c = commentaire || '';
       post = /tabac|bilan|chiffre|\bca\b|\bebe\b|compta|fdj|presse|fonds|1[,.]8|million/i.test(c) ? 'story-tabac'
@@ -594,8 +680,12 @@ export async function onRequest({ request, env }) {
         : '';
     }
     if (/^(story|dm|wa)$/i.test(post || '') || post === '') {
-      // Rien de reconnu dans ce message : on reste sur le bien dont on parlait déjà avec ce contact
-      const dernier = [...fil].reverse().find(m => m.cle);
+      // Rien de reconnu dans ce message : on reste sur le bien dont on parlait déjà avec ce contact,
+      // mais seulement si l'échange date de moins de 24 h. Au-delà, la conversation est repartie de zéro
+      // et « ce bien » désigne presque toujours une autre vidéo : on préfère ne citer aucun bien plutôt
+      // que le mauvais. Cas réel du 01/11/2026, commentaire sous l'immeuble de Beaune, réponse sur le T4 des Bourroches.
+      const recent = Date.now() - 864e5;
+      const dernier = [...fil].reverse().find(m => m.cle && Date.parse(m.cree || '') >= recent);
       if (dernier) post = dernier.cle;
     }
     let bien = intention === 'vendre' ? null : await trouverBien(env, request, post);
@@ -604,6 +694,18 @@ export async function onRequest({ request, env }) {
       // Reel absent du registre (Trial Reel, nouvelle version) ou message sans bien reconnu : le mot-clé écrit par la personne décide
       const mc = await motCle(env, request, commentaire);
       if (mc) { bien = await trouverBien(env, request, mc); if (bien) cleBien = mc; }
+    }
+    // La personne a annoncé un budget : on lui propose ce qui correspond au lieu de lui demander ce
+    // qu'elle cherche. Vaut aussi quand un bien est déjà identifié mais qu'il dépasse son budget :
+    // cas réel du 31/10 à 10 h 15, « vous avez la même chose à moins de 600 000 € ? » sous le château
+    // à 1 600 000 €. Le prix du château était seul autorisé, Claude a cité autre chose et controle()
+    // a refusé le message (refus_montant) : la personne n'a RIEN reçu. Demande de Shawez du 31/10/2026.
+    if (intention !== 'vendre') {
+      const budget = budgetDuTexte(commentaire);
+      if (budget && (!bien || prixEnNombre(bien.prix) > budget)) {
+        const mieux = await biensPourBudget(env, request, commentaire);
+        if (mieux) { bien = mieux; cleBien = ''; }
+      }
     }
     if (base && !test && bien && bien.ref && !prive && source !== 'whatsapp') {
       // Même bien déjà envoyé aujourd'hui à ce contact (un même commentaire peut passer par le déclencheur de la vidéo
@@ -638,6 +740,24 @@ export async function onRequest({ request, env }) {
         texte = normaliser(texte.replace(/\s*\(([^()\n]{1,120})\)/g, ', $1,').replace(/,\s*([.!?,])/g, '$1').replace(/,\s*$/gm, ''));
         if (dejaEcrit) texte = sansSalut(texte);
         refus = controle(texte, bien, fil.length > 0 && (source === 'dm' || source === 'whatsapp' || /^story/i.test(source || '')), fil.filter(m => m.sens === 'in').map(m => m.texte).concat(commentaire || '').join('\n'));
+        if (refus && refus !== 'metadiscours' && RAISONS[refus]) {
+          // Une seconde chance avant tout silence : on dit à Claude ce qui n'allait pas et il réécrit.
+          // Avant le 31/10/2026, un refus en pleine conversation ne renvoyait AUCUN message : c'est ce qui
+          // a laissé @bauerbriand sans réponse à 10 h 15 après sa question sur son budget.
+          console.log('manychat-dm refus, seconde tentative', refus, texte);
+          try {
+            const r2 = await rediger(env, prenom, commentaire, bien, source || (/^dm$/i.test(post || '') ? 'dm' : ''), fil, intention, '', defi,
+              source === 'whatsapp' || /^wa:/.test(compte || '') ? '' : compte, RAISONS[refus]);
+            let t2 = normaliser(String(r2.texte || '').replace(/\s*\(([^()\n]{1,120})\)/g, ', $1,').replace(/,\s*([.!?,])/g, '$1').replace(/,\s*$/gm, ''));
+            if (dejaEcrit) t2 = sansSalut(t2);
+            if (t2 && !/^\W*HORS_SUJET\W*$/i.test(t2)) {
+              const refus2 = controle(t2, bien, fil.length > 0 && (source === 'dm' || source === 'whatsapp' || /^story/i.test(source || '')), fil.filter(m => m.sens === 'in').map(m => m.texte).concat(commentaire || '').join('\n'));
+              if (r2.usage && usage) { usage.input_tokens = (usage.input_tokens || 0) + (r2.usage.input_tokens || 0); usage.output_tokens = (usage.output_tokens || 0) + (r2.usage.output_tokens || 0); }
+              if (!refus2) { texte = t2; refus = null; origine = 'claude_2e'; }
+              else console.log('manychat-dm seconde tentative refusée aussi', refus2);
+            }
+          } catch (e) { console.log('manychat-dm seconde tentative', e.message); }
+        }
         if (refus) {
           console.log('manychat-dm refus', refus, texte);
           if (refus === 'metadiscours' || (fil.length && (source === 'dm' || source === 'whatsapp' || /^story/i.test(source || '')))) {
