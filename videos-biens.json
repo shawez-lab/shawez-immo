@@ -163,6 +163,9 @@
   "visit": {
    "ref": "527",
    "langue": "en"
+  },
+  "t5": {
+   "ref": "Mandat"
   }
  },
  "commentaires_manychat": [
@@ -205,6 +208,13 @@
    "mot": "CHÂTEAU",
    "ref": "438",
    "libelle": "le château près de Beaune",
+   "depuis": "2026-11-02",
+   "jusqu_au": "2026-11-10"
+  },
+  {
+   "mot": "T5",
+   "ref": "Mandat",
+   "libelle": "la maison T5 de Neuilly-Crimolois",
    "depuis": "2026-11-02",
    "jusqu_au": "2026-11-10"
   }
