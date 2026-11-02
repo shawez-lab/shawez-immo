@@ -1,0 +1,933 @@
+{
+ "jour": "2026-11-02",
+ "biens": [
+  {
+   "ref": "Mandat",
+   "src": "assets/biens/Mandat/video.mp4",
+   "mot": "T5",
+   "nom": "maison-neuilly",
+   "versions": [
+    {
+     "id": "v1",
+     "style": "chiffre_choc",
+     "accroche": "30 m² de séjour|pour recevoir toute la famille",
+     "legende": "30 m² de séjour : la grande tablée du dimanche a enfin sa place 🍽️\n\nCommente T5 et je t’envoie la visite complète en privé 📩\n\n#maisonavendre #sejour #immobilierdijon #cotedor",
+     "plans": [
+      [
+       8.3,
+       8.78,
+       0.72
+      ],
+      [
+       9.05,
+       9.9,
+       0.72,
+       "30 m²"
+      ],
+      [
+       11.45,
+       12.4,
+       0.72
+      ],
+      [
+       13.5,
+       14.9,
+       0.72
+      ],
+      [
+       17.0,
+       17.9,
+       0.72
+      ],
+      [
+       16.0,
+       16.9,
+       0.72
+      ],
+      [
+       23.5,
+       24.8,
+       0.72
+      ],
+      [
+       26.0,
+       26.95,
+       0.72
+      ],
+      [
+       28.0,
+       28.6,
+       0.72
+      ],
+      [
+       10.0,
+       10.55,
+       0.72
+      ],
+      [
+       18.0,
+       18.9,
+       0.327
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v2",
+     "style": "chiffre_choc",
+     "accroche": "3 chambres et des combles|encore à aménager",
+     "legende": "Trois chambres aujourd’hui, et des combles aménageables pour le jour où la famille s’agrandit 🛏️\n\nCommente T5 et je t’envoie la visite complète en privé 📩\n\n#combles #maisonfamiliale #t5 #neuillycrimolois",
+     "plans": [
+      [
+       17.0,
+       17.9,
+       0.72
+      ],
+      [
+       19.0,
+       19.9,
+       0.72,
+       "3 chambres"
+      ],
+      [
+       21.5,
+       22.4,
+       0.72
+      ],
+      [
+       16.0,
+       16.9,
+       0.72
+      ],
+      [
+       10.0,
+       10.55,
+       0.72
+      ],
+      [
+       12.5,
+       13.4,
+       0.72
+      ],
+      [
+       22.5,
+       23.4,
+       0.72
+      ],
+      [
+       27.0,
+       27.9,
+       0.72
+      ],
+      [
+       0.0,
+       0.95,
+       0.72
+      ],
+      [
+       20.3,
+       21.4,
+       0.4
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v3",
+     "style": "chiffre_choc",
+     "accroche": "90 m²|posés sur un sous-sol total",
+     "legende": "90 m² au-dessus, et en dessous un sous-sol complet pour tout ranger 🏠\n\nCommente T5 et je t’envoie la visite complète en privé 📩\n\n#soussol #garage #maisondijon #rangement #immobilier21",
+     "plans": [
+      [
+       23.5,
+       24.8,
+       0.72
+      ],
+      [
+       24.9,
+       25.85,
+       0.72,
+       "sous-sol total"
+      ],
+      [
+       16.0,
+       16.9,
+       0.72
+      ],
+      [
+       8.3,
+       8.78,
+       0.72
+      ],
+      [
+       9.05,
+       9.9,
+       0.72
+      ],
+      [
+       18.0,
+       18.9,
+       0.72
+      ],
+      [
+       13.5,
+       14.9,
+       0.72
+      ],
+      [
+       28.0,
+       28.6,
+       0.72
+      ],
+      [
+       26.0,
+       26.95,
+       0.72
+      ],
+      [
+       11.45,
+       12.4,
+       0.345
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v4",
+     "style": "chiffre_choc",
+     "accroche": "5 pièces, un terrain clos|tout près de Dijon",
+     "legende": "Cinq pièces et un terrain clos et arboré, à proximité immédiate de Dijon 🌳\n\nCommente T5 et je t’envoie la visite complète en privé 📩\n\n#jardin #terrainclos #vivreadijon #maison5pieces",
+     "plans": [
+      [
+       26.0,
+       26.95,
+       0.72
+      ],
+      [
+       28.0,
+       28.6,
+       0.72
+      ],
+      [
+       10.0,
+       10.55,
+       0.72,
+       "5 pièces"
+      ],
+      [
+       19.0,
+       19.9,
+       0.72
+      ],
+      [
+       12.5,
+       13.4,
+       0.72
+      ],
+      [
+       15.0,
+       15.9,
+       0.72
+      ],
+      [
+       21.5,
+       22.4,
+       0.72
+      ],
+      [
+       22.5,
+       23.4,
+       0.72
+      ],
+      [
+       27.0,
+       27.9,
+       0.72
+      ],
+      [
+       13.5,
+       14.9,
+       0.509
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v5",
+     "style": "chiffre_choc",
+     "accroche": "3 niveaux, un garage|et une cuisine d’été",
+     "legende": "Trois niveaux, un garage et une cuisine d’été au sous-sol : ici, chaque étage a son usage 🔑\n\nCommente T5 et je t’envoie la visite complète en privé 📩\n\n#cuisinedete #maisonde3niveaux #garage21 #achatimmobilier",
+     "plans": [
+      [
+       9.05,
+       9.9,
+       0.72
+      ],
+      [
+       16.0,
+       16.9,
+       0.72,
+       "3 niveaux"
+      ],
+      [
+       24.9,
+       25.85,
+       0.72
+      ],
+      [
+       18.0,
+       18.9,
+       0.72
+      ],
+      [
+       11.45,
+       12.4,
+       0.72
+      ],
+      [
+       27.0,
+       27.9,
+       0.72
+      ],
+      [
+       12.5,
+       13.4,
+       0.72
+      ],
+      [
+       8.3,
+       8.78,
+       0.72
+      ],
+      [
+       21.5,
+       22.4,
+       0.72
+      ],
+      [
+       23.5,
+       24.8,
+       0.473
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v6",
+     "style": "chiffre_choc",
+     "accroche": "2 cuisines|dans la même maison",
+     "legende": "Une cuisine indépendante en haut, une cuisine d’été en bas : les repas d’août ne chaufferont plus le salon 🍳\n\nCommente T5 et je t’envoie la visite complète en privé 📩\n\n#cuisine #cuisineindependante #etenbourgogne #maisondefamille",
+     "plans": [
+      [
+       13.5,
+       14.9,
+       0.72
+      ],
+      [
+       23.5,
+       24.8,
+       0.72
+      ],
+      [
+       12.5,
+       13.4,
+       0.72,
+       "cuisine indépendante"
+      ],
+      [
+       10.0,
+       10.55,
+       0.72
+      ],
+      [
+       19.0,
+       19.9,
+       0.72
+      ],
+      [
+       28.0,
+       28.6,
+       0.72
+      ],
+      [
+       15.0,
+       15.9,
+       0.72
+      ],
+      [
+       17.0,
+       17.9,
+       0.72
+      ],
+      [
+       26.0,
+       26.95,
+       0.72
+      ],
+      [
+       22.5,
+       23.4,
+       0.327
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v7",
+     "style": "chiffre_choc",
+     "accroche": "1 garage, 1 cellier|et 1 buanderie en bas",
+     "legende": "Garage, cellier et buanderie au sous-sol : plus rien ne traîne dans les pièces de vie 🧺\n\nCommente T5 et je t’envoie la visite complète en privé 📩\n\n#buanderie #cellier #organisation #maisonpratique",
+     "plans": [
+      [
+       24.9,
+       25.85,
+       0.72
+      ],
+      [
+       22.5,
+       23.4,
+       0.72
+      ],
+      [
+       13.5,
+       14.9,
+       0.72
+      ],
+      [
+       20.3,
+       21.4,
+       0.72,
+       "1 cellier"
+      ],
+      [
+       0.0,
+       0.95,
+       0.72
+      ],
+      [
+       26.0,
+       26.95,
+       0.72
+      ],
+      [
+       16.0,
+       16.9,
+       0.72
+      ],
+      [
+       18.0,
+       18.9,
+       0.72
+      ],
+      [
+       28.0,
+       28.6,
+       0.72
+      ],
+      [
+       9.05,
+       9.9,
+       0.309
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v8",
+     "style": "lieu_exception",
+     "accroche": "Une petite rue calme|à deux pas de Dijon",
+     "legende": "Une petite rue calme, les commerces et les transports tout près, et Dijon à côté 🚶\n\nCommente T5 et je t’envoie la visite complète en privé 📩\n\n#quartiercalme #dijonmaville #bourgogne #viedefamille",
+     "plans": [
+      [
+       27.0,
+       27.9,
+       0.72
+      ],
+      [
+       8.3,
+       8.78,
+       0.72
+      ],
+      [
+       10.0,
+       10.55,
+       0.72
+      ],
+      [
+       21.5,
+       22.4,
+       0.72
+      ],
+      [
+       12.5,
+       13.4,
+       0.72
+      ],
+      [
+       23.5,
+       24.8,
+       0.72
+      ],
+      [
+       28.0,
+       28.6,
+       0.72,
+       "rue calme"
+      ],
+      [
+       15.0,
+       15.9,
+       0.72
+      ],
+      [
+       19.0,
+       19.9,
+       0.72
+      ],
+      [
+       11.45,
+       12.4,
+       0.72
+      ],
+      [
+       26.0,
+       26.95,
+       0.345
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v9",
+     "style": "lieu_exception",
+     "accroche": "Neuilly-Crimolois, côté calme|terrain clos et arboré",
+     "legende": "À Neuilly-Crimolois, une maison au calme sur un terrain clos et arboré 🌿\n\nCommente T5 et je t’envoie la visite complète en privé 📩\n\n#neuilly #terrainarbore #campagneurbaine #immobilierbourgogne",
+     "plans": [
+      [
+       28.0,
+       28.6,
+       0.72
+      ],
+      [
+       27.0,
+       27.9,
+       0.72,
+       "Neuilly-Crimolois"
+      ],
+      [
+       17.0,
+       17.9,
+       0.72
+      ],
+      [
+       9.05,
+       9.9,
+       0.72
+      ],
+      [
+       13.5,
+       14.9,
+       0.72
+      ],
+      [
+       24.9,
+       25.85,
+       0.72
+      ],
+      [
+       22.5,
+       23.4,
+       0.72
+      ],
+      [
+       8.3,
+       8.78,
+       0.72
+      ],
+      [
+       21.5,
+       22.4,
+       0.72
+      ],
+      [
+       10.0,
+       10.55,
+       0.72
+      ],
+      [
+       12.5,
+       13.4,
+       0.327
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v10",
+     "style": "lieu_exception",
+     "accroche": "Maison T5 au calme|aux portes de Dijon",
+     "legende": "Une maison T5 jumelée d’un côté seulement, en bon état général, à finir selon tes goûts 🎨\n\nCommente T5 et je t’envoie la visite complète en privé 📩\n\n#maisonjumelee #arafraichir #primoaccedant #dijon21",
+     "plans": [
+      [
+       0.0,
+       0.95,
+       0.72
+      ],
+      [
+       11.45,
+       12.4,
+       0.72
+      ],
+      [
+       20.3,
+       21.4,
+       0.72
+      ],
+      [
+       16.0,
+       16.9,
+       0.72
+      ],
+      [
+       23.5,
+       24.8,
+       0.72
+      ],
+      [
+       26.0,
+       26.95,
+       0.72,
+       "maison T5"
+      ],
+      [
+       12.5,
+       13.4,
+       0.72
+      ],
+      [
+       18.0,
+       18.9,
+       0.72
+      ],
+      [
+       9.05,
+       9.9,
+       0.72
+      ],
+      [
+       13.5,
+       14.9,
+       0.509
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v11",
+     "style": "lieu_exception",
+     "accroche": "Une terrasse dès l’entrée|de la propriété",
+     "legende": "Le café du matin commence sur la terrasse, juste à l’entrée de la propriété ☕\n\nCommente T5 et je t’envoie la visite complète en privé 📩\n\n#terrasse #cafedumatin #maisonavecterrasse #cotedorimmobilier",
+     "plans": [
+      [
+       15.0,
+       15.9,
+       0.72
+      ],
+      [
+       26.0,
+       26.95,
+       0.72,
+       "terrasse"
+      ],
+      [
+       10.0,
+       10.55,
+       0.72
+      ],
+      [
+       19.0,
+       19.9,
+       0.72
+      ],
+      [
+       24.9,
+       25.85,
+       0.72
+      ],
+      [
+       8.3,
+       8.78,
+       0.72
+      ],
+      [
+       12.5,
+       13.4,
+       0.72
+      ],
+      [
+       28.0,
+       28.6,
+       0.72
+      ],
+      [
+       21.5,
+       22.4,
+       0.72
+      ],
+      [
+       11.45,
+       12.4,
+       0.345
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v12",
+     "style": "defi_1pourcent",
+     "accroche": "99 % ratent cette chambre|mets pause",
+     "legende": "99 % passent à côté de cette chambre sans mettre pause. Trois chambres, à toi de voir laquelle tu prendrais 👀\n\nCommente T5 et je t’envoie la visite complète en privé 📩\n\n#defi #metspause #chambre #maisonavendre21",
+     "plans": [
+      [
+       21.5,
+       22.4,
+       0.72
+      ],
+      [
+       13.5,
+       14.9,
+       0.72
+      ],
+      [
+       18.0,
+       18.9,
+       0.72
+      ],
+      [
+       27.0,
+       27.9,
+       0.72
+      ],
+      [
+       16.0,
+       16.9,
+       0.72
+      ],
+      [
+       10.0,
+       10.55,
+       0.72,
+       "pause"
+      ],
+      [
+       22.5,
+       23.4,
+       0.72
+      ],
+      [
+       23.5,
+       24.8,
+       0.72
+      ],
+      [
+       28.0,
+       28.6,
+       0.72
+      ],
+      [
+       17.0,
+       17.9,
+       0.327
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v13",
+     "style": "defi_1pourcent",
+     "accroche": "Seul 1 % compte juste|combien de chambres ?",
+     "legende": "Seul 1 % arrive à compter les chambres du premier coup. Dis-le-moi en commentaire, puis vérifie 🤓\n\nCommente T5 et je t’envoie la visite complète en privé 📩\n\n#defi1pourcent #onparie #immobilierfun #dijonimmo",
+     "plans": [
+      [
+       19.0,
+       19.9,
+       0.72
+      ],
+      [
+       11.45,
+       12.4,
+       0.72
+      ],
+      [
+       17.0,
+       17.9,
+       0.72
+      ],
+      [
+       24.9,
+       25.85,
+       0.72
+      ],
+      [
+       20.3,
+       21.4,
+       0.72
+      ],
+      [
+       26.0,
+       26.95,
+       0.72,
+       "1 %"
+      ],
+      [
+       0.0,
+       0.95,
+       0.72
+      ],
+      [
+       12.5,
+       13.4,
+       0.72
+      ],
+      [
+       9.05,
+       9.9,
+       0.72
+      ],
+      [
+       23.5,
+       24.8,
+       0.473
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v14",
+     "style": "question",
+     "accroche": "Prix en baisse sur ce T5,|tu regardes ?",
+     "legende": "Le prix est en baisse sur cette maison de 5 pièces, tu la regardes avant les autres ? 👇\n\nCommente T5 et je t’envoie la visite complète en privé 📩\n\n#prixenbaisse #bonneaffaire #acheterdijon #investirimmobilier",
+     "plans": [
+      [
+       11.45,
+       12.4,
+       0.72
+      ],
+      [
+       28.0,
+       28.6,
+       0.72
+      ],
+      [
+       18.0,
+       18.9,
+       0.72
+      ],
+      [
+       12.5,
+       13.4,
+       0.72
+      ],
+      [
+       10.0,
+       10.55,
+       0.72,
+       "prix en baisse"
+      ],
+      [
+       23.5,
+       24.8,
+       0.72
+      ],
+      [
+       15.0,
+       15.9,
+       0.72
+      ],
+      [
+       27.0,
+       27.9,
+       0.72
+      ],
+      [
+       19.0,
+       19.9,
+       0.72
+      ],
+      [
+       9.05,
+       9.9,
+       0.309
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v15",
+     "style": "revelation",
+     "accroche": "Derrière cette porte,|un sous-sol sur toute la maison",
+     "legende": "Derrière la porte de l’escalier, un sous-sol sur toute la surface : garage, buanderie, cuisine d’été, cellier 🚪\n\nCommente T5 et je t’envoie la visite complète en privé 📩\n\n#visiteimmo #soussolamenage #secretdemaison #maisondijonnaise",
+     "plans": [
+      [
+       16.0,
+       16.9,
+       0.72
+      ],
+      [
+       24.9,
+       25.85,
+       0.72
+      ],
+      [
+       8.3,
+       8.78,
+       0.72
+      ],
+      [
+       26.0,
+       26.95,
+       0.72
+      ],
+      [
+       19.0,
+       19.9,
+       0.72
+      ],
+      [
+       23.5,
+       24.8,
+       0.72,
+       "toute la maison"
+      ],
+      [
+       28.0,
+       28.6,
+       0.72
+      ],
+      [
+       21.5,
+       22.4,
+       0.72
+      ],
+      [
+       15.0,
+       15.9,
+       0.72
+      ],
+      [
+       10.0,
+       10.55,
+       0.72
+      ],
+      [
+       13.5,
+       14.9,
+       0.509
+      ]
+     ],
+     "publier": ""
+    }
+   ]
+  }
+ ]
+}
