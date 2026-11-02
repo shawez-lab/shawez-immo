@@ -1,0 +1,695 @@
+{
+ "jour": "2026-11-02",
+ "biens": [
+  {
+   "ref": "438",
+   "src": "assets/biens/438/video.mp4",
+   "mot": "CHÂTEAU",
+   "nom": "chateau",
+   "versions": [
+    {
+     "id": "v1",
+     "style": "chiffre_choc",
+     "accroche": "15 hectares|pour 1 600 000 €",
+     "legende": "15 hectares dont 10 de bois, un étang et un château du XVIIIe, le tout pour 1 600 000 € 🌳\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#domaineprive #chateauavendre #boisetforet #bourgognefrance",
+     "plans": [
+      [
+       5.25,
+       7.15,
+       1.0,
+       "15 hectares"
+      ],
+      [
+       1.25,
+       3.15,
+       1.0
+      ],
+      [
+       20.2,
+       22.1,
+       1.0
+      ],
+      [
+       3.25,
+       5.15,
+       1.0
+      ],
+      [
+       29.25,
+       29.95,
+       1.0,
+       "1 600 000 €"
+      ],
+      [
+       13.25,
+       15.1,
+       1.0
+      ],
+      [
+       8.28,
+       11.15,
+       1.0
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v2",
+     "style": "chiffre_choc",
+     "accroche": "6 parkings, 2 garages|au bout de ce chemin",
+     "legende": "6 places de parking et 2 garages au bout de l’allée : ici, tes invités ne chercheront jamais où se garer 🚗\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#garage #proprieteprivee #chateaufrancais #cotedor #beaunecity",
+     "plans": [
+      [
+       11.25,
+       13.15,
+       1.0,
+       "6 parkings"
+      ],
+      [
+       0,
+       1.15,
+       1.0
+      ],
+      [
+       3.25,
+       5.15,
+       1.0
+      ],
+      [
+       13.25,
+       15.1,
+       1.0
+      ],
+      [
+       27.2,
+       29.15,
+       1.0,
+       "2 garages"
+      ],
+      [
+       5.25,
+       7.15,
+       1.0
+      ],
+      [
+       24.2,
+       27.1,
+       1.0
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v3",
+     "style": "chiffre_choc",
+     "accroche": "520 m² derrière|ces deux battants",
+     "legende": "520 m² habitables commencent derrière ces deux battants blancs, dans un château du XVIIIe près de Beaune 🚪\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#entreedechateau #520m2 #demeureancienne #chateauxdebourgogne",
+     "plans": [
+      [
+       13.25,
+       15.1,
+       1.0,
+       "520 m²"
+      ],
+      [
+       19.2,
+       20.1,
+       1.0
+      ],
+      [
+       22.2,
+       24.1,
+       1.0
+      ],
+      [
+       29.25,
+       29.95,
+       1.0
+      ],
+      [
+       1.25,
+       3.15,
+       1.0
+      ],
+      [
+       7.25,
+       8.2,
+       1.0
+      ],
+      [
+       15.2,
+       19.1,
+       1.0
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v4",
+     "style": "lieu_exception",
+     "accroche": "Ce vestibule majestueux,|près de Beaune",
+     "legende": "Imagine accueillir tes invités dans ce vestibule majestueux, à 15 minutes de Beaune, sous les moulures d’un château du XVIIIe ✨\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#vestibule #moulures #interieurclassique #beaunefrance #chateaulife",
+     "plans": [
+      [
+       15.2,
+       19.1,
+       1.0,
+       "Vestibule majestueux"
+      ],
+      [
+       8.28,
+       11.15,
+       1.0
+      ],
+      [
+       29.25,
+       29.95,
+       1.0
+      ],
+      [
+       27.2,
+       29.15,
+       1.0
+      ],
+      [
+       0,
+       1.15,
+       1.0
+      ],
+      [
+       11.25,
+       13.15,
+       1.0
+      ],
+      [
+       5.25,
+       8.2,
+       1.0
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v5",
+     "style": "chiffre_choc",
+     "accroche": "7 chambres à nourrir|depuis cette cuisine",
+     "legende": "7 chambres dans le château, 2 de plus dans la maison d’amis, et une seule cuisine pour nourrir tout le monde 🍽️\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#tabledefamille #grandefamille #cuisineequipee #vieauchateau",
+     "plans": [
+      [
+       19.2,
+       20.1,
+       1.0,
+       "7 chambres"
+      ],
+      [
+       24.2,
+       27.1,
+       1.0
+      ],
+      [
+       1.25,
+       3.15,
+       1.0
+      ],
+      [
+       3.25,
+       5.15,
+       1.0
+      ],
+      [
+       29.25,
+       29.95,
+       1.0
+      ],
+      [
+       13.25,
+       15.1,
+       1.0
+      ],
+      [
+       8.28,
+       11.15,
+       1.0
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v6",
+     "style": "chiffre_choc",
+     "accroche": "18 pièces,|une seule cuisine",
+     "legende": "18 pièces sur 3 niveaux et une cuisine au centre de la vie de ce château du XVIIIe 🏰\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#18pieces #viedefamille #maisondemaitre #immobilierprestige #cotedorimmo",
+     "plans": [
+      [
+       20.2,
+       22.1,
+       1.0,
+       "18 pièces"
+      ],
+      [
+       7.25,
+       8.2,
+       1.0
+      ],
+      [
+       5.25,
+       7.15,
+       1.0
+      ],
+      [
+       13.25,
+       15.1,
+       1.0
+      ],
+      [
+       22.2,
+       24.1,
+       1.0
+      ],
+      [
+       0,
+       1.15,
+       1.0
+      ],
+      [
+       1.25,
+       5.15,
+       1.0
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v7",
+     "style": "lieu_exception",
+     "accroche": "Un château du XVIIIe|au bout du parc",
+     "legende": "Tu arrives par le parc, l’étang à côté, et le château du XVIIIe apparaît au bout de l’allée 🌿\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#allee #parcdechateau #artdesjardins #chateaudefrance #bourgognetourisme",
+     "plans": [
+      [
+       0,
+       1.15,
+       1.0,
+       "Parc d’agrément"
+      ],
+      [
+       11.25,
+       13.15,
+       1.0
+      ],
+      [
+       7.25,
+       8.2,
+       1.0
+      ],
+      [
+       20.2,
+       22.1,
+       1.0
+      ],
+      [
+       29.25,
+       29.95,
+       1.0
+      ],
+      [
+       15.2,
+       19.1,
+       1.0
+      ],
+      [
+       5.25,
+       8.2,
+       1.0
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v8",
+     "style": "lieu_exception",
+     "accroche": "Un étang au pied|d’un château du XVIIIe",
+     "legende": "Un étang aux abords de la demeure, un parc et un château du XVIIIe, à 15 minutes de Beaune 🦢\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#etang #bordsdeleau #demeuredecharme #burgundyfrance",
+     "plans": [
+      [
+       1.25,
+       3.15,
+       1.0,
+       "Un étang"
+      ],
+      [
+       8.28,
+       11.15,
+       1.0
+      ],
+      [
+       22.2,
+       24.1,
+       1.0
+      ],
+      [
+       29.25,
+       29.95,
+       1.0
+      ],
+      [
+       5.25,
+       7.15,
+       1.0
+      ],
+      [
+       20.2,
+       22.1,
+       1.0
+      ],
+      [
+       11.25,
+       15.1,
+       1.0
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v9",
+     "style": "chiffre_choc",
+     "accroche": "10 hectares de bois,|15 min de Beaune",
+     "legende": "10 hectares de bois et Beaune à 15 minutes : tu vivrais au calme, sans t’éloigner de rien 🌲\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#bois #vienature #calmeabsolu #beaunewine #vivreencampagne",
+     "plans": [
+      [
+       3.25,
+       5.15,
+       1.0,
+       "10 hectares de bois"
+      ],
+      [
+       0,
+       1.15,
+       1.0
+      ],
+      [
+       19.2,
+       20.1,
+       1.0
+      ],
+      [
+       27.2,
+       29.15,
+       1.0
+      ],
+      [
+       5.25,
+       7.15,
+       1.0
+      ],
+      [
+       20.2,
+       22.1,
+       1.0
+      ],
+      [
+       7.25,
+       8.2,
+       1.0
+      ],
+      [
+       24.2,
+       27.1,
+       1.0
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v10",
+     "style": "lieu_exception",
+     "accroche": "Une façade du XVIIIe|en pleine Bourgogne",
+     "legende": "Cette façade a traversé les siècles et la demeure a été entretenue avec soin ces vingt dernières années 🏛️\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#facade #architecturefrancaise #xviiiesiecle #patrimoinefrancais",
+     "plans": [
+      [
+       7.25,
+       8.2,
+       1.0,
+       "XVIIIe siècle"
+      ],
+      [
+       3.25,
+       5.15,
+       1.0
+      ],
+      [
+       15.2,
+       19.1,
+       1.0
+      ],
+      [
+       13.25,
+       15.1,
+       1.0
+      ],
+      [
+       29.25,
+       29.95,
+       1.0
+      ],
+      [
+       11.25,
+       13.15,
+       1.0
+      ],
+      [
+       8.28,
+       11.15,
+       1.0
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v11",
+     "style": "lieu_exception",
+     "accroche": "La Côte de Beaune|vue de ton château",
+     "legende": "Une vue dégagée sur la Côte de Beaune, l’un des paysages viticoles les plus emblématiques de Bourgogne, depuis ton propre domaine 🍇\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#vignes #cotedebeaune #vuepanoramique #bourgognewine #paysagebourguignon",
+     "plans": [
+      [
+       8.28,
+       11.15,
+       1.0,
+       "Vue dégagée"
+      ],
+      [
+       29.25,
+       29.95,
+       1.0
+      ],
+      [
+       20.2,
+       22.1,
+       1.0
+      ],
+      [
+       5.25,
+       7.15,
+       1.0
+      ],
+      [
+       0,
+       1.15,
+       1.0
+      ],
+      [
+       22.2,
+       24.1,
+       1.0
+      ],
+      [
+       1.25,
+       5.15,
+       1.0
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v12",
+     "style": "business",
+     "accroche": "Investir dans un château|pour y recevoir",
+     "legende": "Investir dans un lieu de réceptions, de séminaires ou d’activité touristique, à 15 minutes de Beaune : ce château du XVIIIe s’y prête 🥂\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#investirautrement #evenementielbourgogne #lieudeseminaire #tourismebourgogne",
+     "plans": [
+      [
+       24.2,
+       27.1,
+       1.0,
+       "Réceptions"
+      ],
+      [
+       13.25,
+       15.1,
+       1.0
+      ],
+      [
+       11.25,
+       13.15,
+       1.0
+      ],
+      [
+       0,
+       1.15,
+       1.0
+      ],
+      [
+       20.2,
+       22.1,
+       1.0
+      ],
+      [
+       7.25,
+       8.2,
+       1.0
+      ],
+      [
+       15.2,
+       19.1,
+       1.0
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v13",
+     "style": "chiffre_choc",
+     "accroche": "1 600 000 €,|cuisine comprise",
+     "legende": "1 600 000 € pour le château, le parc, l’étang, la grange, l’écurie… et oui, la cuisine aussi 😄\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#humourimmo #prixdereve #chateauachat #grange #ecurie",
+     "plans": [
+      [
+       27.2,
+       29.15,
+       1.0,
+       "1 600 000 €"
+      ],
+      [
+       5.25,
+       7.15,
+       1.0
+      ],
+      [
+       1.25,
+       3.15,
+       1.0
+      ],
+      [
+       29.25,
+       29.95,
+       1.0
+      ],
+      [
+       19.2,
+       20.1,
+       1.0
+      ],
+      [
+       11.25,
+       13.15,
+       1.0
+      ],
+      [
+       8.28,
+       11.15,
+       1.0
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v14",
+     "style": "defi_1pourcent",
+     "accroche": "99 % ratent|la salle à manger",
+     "legende": "99 % ratent la salle à manger dans ce montage, elle ne passe qu’une fraction de seconde. Toi, tu l’as vue ? 👀\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#99pourcent #defivisuel #salleamanger #chateaufrance #challengereels",
+     "plans": [
+      [
+       22.2,
+       24.1,
+       1.0,
+       "Ouvre l’œil"
+      ],
+      [
+       7.25,
+       8.2,
+       1.0
+      ],
+      [
+       11.25,
+       13.15,
+       1.0
+      ],
+      [
+       1.25,
+       3.15,
+       1.0
+      ],
+      [
+       29.25,
+       29.95,
+       1.0
+      ],
+      [
+       5.25,
+       7.15,
+       1.0
+      ],
+      [
+       24.2,
+       27.1,
+       1.0
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v15",
+     "style": "revelation",
+     "accroche": "Cette salle à manger|cache 3 salons",
+     "legende": "Cette salle à manger n’est qu’un début : le château du XVIIIe compte aussi trois salons de réception et un boudoir 🏰\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#salonsdereception #boudoir #artdevivrealafrancaise #parquetsanciens",
+     "plans": [
+      [
+       29.25,
+       29.95,
+       1.0,
+       "Salle à manger"
+      ],
+      [
+       15.2,
+       19.1,
+       1.0
+      ],
+      [
+       3.25,
+       5.15,
+       1.0
+      ],
+      [
+       27.2,
+       29.15,
+       1.0
+      ],
+      [
+       0,
+       1.15,
+       1.0
+      ],
+      [
+       13.25,
+       15.1,
+       1.0
+      ],
+      [
+       5.25,
+       8.2,
+       1.0
+      ]
+     ],
+     "publier": ""
+    }
+   ]
+  }
+ ]
+}
