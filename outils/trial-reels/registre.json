@@ -5259,6 +5259,63 @@
    "statut": "publie",
    "media": "https://db074fdf.shawez-immo.pages.dev/trial/2026-11-02/maison-neuilly-Mandat-v15.mp4",
    "a_programmer": true
+  },
+  {
+   "id": "TR-0211-461BALI-v1",
+   "date": "2026-11-02",
+   "heure": "19:35",
+   "ref": "461BALI",
+   "mot": "BALI",
+   "style": "chiffre_choc",
+   "accroche": "129 000 € un studio inspiration Bali",
+   "legende": "129 000 € pour un studio d’exception rénové par architecte, avec sa baignoire balnéo 🛁\n\nCommente BALI et je t’envoie la ",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://72695672.shawez-immo.pages.dev/trial/2026-11-02/studio-bali-461BALI-v1.mp4"
+  },
+  {
+   "id": "TR-0211-461BALI-v2",
+   "date": "2026-11-02",
+   "heure": "19:35",
+   "ref": "461BALI",
+   "mot": "BALI",
+   "style": "lieu_exception",
+   "accroche": "Bali, en plein cœur de Dijon",
+   "legende": "Bali, en plein cœur de Dijon : un studio niché au calme d’une cour intérieure, à deux pas du Parc Darcy 🌿\n\nCommente BALI",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://72695672.shawez-immo.pages.dev/trial/2026-11-02/studio-bali-461BALI-v2.mp4",
+   "a_programmer": true
+  },
+  {
+   "id": "TR-0211-461BALI-v3",
+   "date": "2026-11-02",
+   "heure": "19:35",
+   "ref": "461BALI",
+   "mot": "BALI",
+   "style": "chiffre_choc",
+   "accroche": "19 m², 21 % de rendement saisonnier",
+   "legende": "19 m² Carrez et 21 % de rendement locatif saisonnier annoncé pour ce studio clé en main, avec de faibles charges 📈\n\nComm",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://72695672.shawez-immo.pages.dev/trial/2026-11-02/studio-bali-461BALI-v3.mp4"
+  },
+  {
+   "id": "TR-0211-461BALI-v4",
+   "date": "2026-11-02",
+   "heure": "19:35",
+   "ref": "461BALI",
+   "mot": "BALI",
+   "style": "defi_1pourcent",
+   "accroche": "Seul 1 % met pause sur la balnéo",
+   "legende": "Seul 1 % arrive à mettre pause pile quand la baignoire apparaît 🎯 Tu tentes ?\n\nCommente BALI et je t’envoie la visite co",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://72695672.shawez-immo.pages.dev/trial/2026-11-02/studio-bali-461BALI-v4.mp4"
   }
  ]
 }
