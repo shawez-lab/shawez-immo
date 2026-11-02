@@ -1158,6 +1158,12 @@
      "url": "",
      "date": "2026-11-02",
      "heure": "11:05"
+    },
+    "gmb": {
+     "uuid": "-261951513473038648",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "09:05"
     }
    },
    "reseaux": {
@@ -2020,6 +2026,18 @@
      "url": "",
      "date": "2026-11-01",
      "heure": "17:10"
+    },
+    "linkedin": {
+     "uuid": "3781487871134418966",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "14:05"
+    },
+    "facebook": {
+     "uuid": "6844008640444059070",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "13:05"
     }
    },
    "reseaux": {
@@ -2507,6 +2525,12 @@
      "url": "",
      "date": "2026-11-01",
      "heure": "16:40"
+    },
+    "linkedin": {
+     "uuid": "7692205400289526158",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "12:35"
     }
    },
    "tentatives": [
@@ -2667,6 +2691,12 @@
      "url": "https://facebook.com/reel/1441045060757454",
      "date": "2026-11-01",
      "heure": "00:50"
+    },
+    "threads": {
+     "uuid": "-1597441571957092500",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "22:55"
     }
    },
    "tentatives": [
@@ -3138,6 +3168,12 @@
      "url": "",
      "date": "2026-11-01",
      "heure": "14:40"
+    },
+    "linkedin": {
+     "uuid": "-4902279583941377867",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "08:00"
     }
    },
    "url": "https://www.instagram.com/reel/DfLnNytjlJc/",
@@ -3836,7 +3872,33 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://e352d382.shawez-immo.pages.dev/trial/2026-11-01/marrakech-461-v1.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "-730215957265170284",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "10:00"
+    },
+    "pinterest": {
+     "uuid": "-3931302843563095643",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "18:10"
+    },
+    "youtube": {
+     "uuid": "-1826055714257026546",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "09:30"
+    },
+    "tiktok": {
+     "uuid": "3559922770967938767",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "20:20"
+    }
+   }
   },
   {
    "id": "TR-0111-461-v2",
@@ -3851,7 +3913,33 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://e352d382.shawez-immo.pages.dev/trial/2026-11-01/marrakech-461-v2.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "6887571600497657724",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "10:30"
+    },
+    "pinterest": {
+     "uuid": "-7184895014960084901",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "18:40"
+    },
+    "youtube": {
+     "uuid": "-2117191525890635533",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "10:00"
+    },
+    "tiktok": {
+     "uuid": "-5199391913440358485",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "09:00"
+    }
+   }
   },
   {
    "id": "TR-0111-461-v3",
@@ -3866,7 +3954,33 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://e352d382.shawez-immo.pages.dev/trial/2026-11-01/marrakech-461-v3.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "2228764242136285826",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "16:10"
+    },
+    "pinterest": {
+     "uuid": "7177649658343212378",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "19:10"
+    },
+    "youtube": {
+     "uuid": "-603678608010097479",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "10:30"
+    },
+    "tiktok": {
+     "uuid": "-4771747348984215120",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "09:45"
+    }
+   }
   },
   {
    "id": "TR-0111-461-v4",
@@ -3881,7 +3995,33 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://e352d382.shawez-immo.pages.dev/trial/2026-11-01/marrakech-461-v4.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "780964627698175816",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "16:40"
+    },
+    "pinterest": {
+     "uuid": "-4772942470042990193",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "12:10"
+    },
+    "youtube": {
+     "uuid": "-1431692076130023637",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "11:00"
+    },
+    "tiktok": {
+     "uuid": "-1724036225055768101",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "10:30"
+    }
+   }
   },
   {
    "id": "TR-0111-461-v5",
@@ -3896,7 +4036,33 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://e352d382.shawez-immo.pages.dev/trial/2026-11-01/marrakech-461-v5.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "-5266063856541087024",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "17:25"
+    },
+    "pinterest": {
+     "uuid": "1852232078658652657",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "12:40"
+    },
+    "youtube": {
+     "uuid": "3597135555271018770",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "11:30"
+    },
+    "tiktok": {
+     "uuid": "1023081890808744743",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "11:15"
+    }
+   }
   },
   {
    "id": "TR-0111-461-v6",
@@ -3911,7 +4077,33 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://e352d382.shawez-immo.pages.dev/trial/2026-11-01/marrakech-461-v6.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "613235176444544529",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "17:55"
+    },
+    "pinterest": {
+     "uuid": "7747694313938436524",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "13:10"
+    },
+    "youtube": {
+     "uuid": "-5945301313168782742",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "12:00"
+    },
+    "tiktok": {
+     "uuid": "3193885242477986630",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "12:00"
+    }
+   }
   },
   {
    "id": "TR-0111-461-v7",
@@ -3926,7 +4118,33 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://e352d382.shawez-immo.pages.dev/trial/2026-11-01/marrakech-461-v7.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "-4385960172402817048",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "18:25"
+    },
+    "pinterest": {
+     "uuid": "363268847984266996",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "13:40"
+    },
+    "youtube": {
+     "uuid": "5496941152244157429",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "12:30"
+    },
+    "tiktok": {
+     "uuid": "6284331759789754659",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "12:45"
+    }
+   }
   },
   {
    "id": "TR-0111-461-v8",
@@ -3941,7 +4159,33 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://e352d382.shawez-immo.pages.dev/trial/2026-11-01/marrakech-461-v8.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "-5808790122442373542",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "18:55"
+    },
+    "pinterest": {
+     "uuid": "7200119808060442380",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "14:10"
+    },
+    "youtube": {
+     "uuid": "-3437140462597681711",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "13:00"
+    },
+    "tiktok": {
+     "uuid": "-1054408906360994050",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "13:30"
+    }
+   }
   },
   {
    "id": "TR-0111-461-v9",
@@ -3956,7 +4200,21 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://e352d382.shawez-immo.pages.dev/trial/2026-11-01/marrakech-461-v9.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "7820001063483164479",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "19:25"
+    },
+    "youtube": {
+     "uuid": "-8742001381831127295",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "13:30"
+    }
+   }
   },
   {
    "id": "TR-0111-461-v10",
@@ -3971,7 +4229,21 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://e352d382.shawez-immo.pages.dev/trial/2026-11-01/marrakech-461-v10.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "-1115752971905512724",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "19:55"
+    },
+    "youtube": {
+     "uuid": "2402963474559485052",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "14:00"
+    }
+   }
   },
   {
    "id": "TR-0111-461-v11",
@@ -3986,7 +4258,21 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://e352d382.shawez-immo.pages.dev/trial/2026-11-01/marrakech-461-v11.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "4964807281119740899",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "20:25"
+    },
+    "youtube": {
+     "uuid": "6294079408475491279",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "14:30"
+    }
+   }
   },
   {
    "id": "TR-0111-461-v12",
@@ -4001,7 +4287,21 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://e352d382.shawez-immo.pages.dev/trial/2026-11-01/marrakech-461-v12.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "4791142112246121053",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "20:55"
+    },
+    "youtube": {
+     "uuid": "-371917116440623744",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "16:10"
+    }
+   }
   },
   {
    "id": "TR-0111-461-v13",
@@ -4016,7 +4316,21 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://e352d382.shawez-immo.pages.dev/trial/2026-11-01/marrakech-461-v13.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "-3384735720894543154",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "21:25"
+    },
+    "youtube": {
+     "uuid": "2094621862652956543",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "16:40"
+    }
+   }
   },
   {
    "id": "TR-0111-461-v14",
@@ -4031,7 +4345,21 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://e352d382.shawez-immo.pages.dev/trial/2026-11-01/marrakech-461-v14.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "-9066475957556722035",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "21:55"
+    },
+    "youtube": {
+     "uuid": "2684651950728171481",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "17:10"
+    }
+   }
   },
   {
    "id": "TR-0111-461-v15",
@@ -4046,7 +4374,21 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://e352d382.shawez-immo.pages.dev/trial/2026-11-01/marrakech-461-v15.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "5060729149451485475",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "22:25"
+    },
+    "youtube": {
+     "uuid": "-6854896089254638076",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "17:50"
+    }
+   }
   },
   {
    "id": "TR-0211-438-v1",
