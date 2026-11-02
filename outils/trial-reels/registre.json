@@ -2192,6 +2192,18 @@
      "url": "",
      "date": "2026-11-01",
      "heure": "16:10"
+    },
+    "linkedin": {
+     "uuid": "479901658590497793",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "15:35"
+    },
+    "facebook": {
+     "uuid": "6425322705752637935",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "09:00"
     }
    },
    "reseaux": {
@@ -3628,6 +3640,18 @@
      "url": "",
      "date": "2026-11-02",
      "heure": "10:30"
+    },
+    "linkedin": {
+     "uuid": "4290395549113139706",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "18:40"
+    },
+    "facebook": {
+     "uuid": "7790724221792767601",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "19:50"
     }
    }
   },
@@ -4237,6 +4261,12 @@
      "url": "",
      "date": "2026-11-03",
      "heure": "14:40"
+    },
+    "tiktok": {
+     "uuid": "-8290083921939775065",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "18:50"
     }
    }
   },
@@ -4272,6 +4302,12 @@
      "url": "",
      "date": "2026-11-03",
      "heure": "15:10"
+    },
+    "tiktok": {
+     "uuid": "7281277144219207112",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "19:35"
     }
    }
   },
@@ -4307,6 +4343,12 @@
      "url": "",
      "date": "2026-11-03",
      "heure": "15:40"
+    },
+    "tiktok": {
+     "uuid": "1136645830415631895",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "20:20"
     }
    }
   },
@@ -4476,6 +4518,12 @@
      "url": "",
      "date": "2026-11-02",
      "heure": "18:50"
+    },
+    "pinterest": {
+     "uuid": "5997493609729904234",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "18:40"
     }
    }
   },
@@ -4505,6 +4553,12 @@
      "url": "",
      "date": "2026-11-02",
      "heure": "19:50"
+    },
+    "pinterest": {
+     "uuid": "5967286757819502085",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "19:10"
     }
    }
   },
@@ -4760,6 +4814,12 @@
      "url": "",
      "date": "2026-11-03",
      "heure": "12:00"
+    },
+    "threads": {
+     "uuid": "-8468252127735037763",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "18:25"
     }
    }
   },
@@ -4783,6 +4843,12 @@
      "url": "",
      "date": "2026-11-03",
      "heure": "12:30"
+    },
+    "threads": {
+     "uuid": "3467335316013336156",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "18:55"
     }
    }
   },
@@ -4806,6 +4872,12 @@
      "url": "",
      "date": "2026-11-03",
      "heure": "13:00"
+    },
+    "threads": {
+     "uuid": "4038699259444219104",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "19:25"
     }
    }
   },
@@ -4829,6 +4901,12 @@
      "url": "",
      "date": "2026-11-03",
      "heure": "13:30"
+    },
+    "threads": {
+     "uuid": "-691547489922298545",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "19:55"
     }
    }
   },
@@ -4852,6 +4930,12 @@
      "url": "",
      "date": "2026-11-03",
      "heure": "14:00"
+    },
+    "threads": {
+     "uuid": "-6168309117466293495",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "20:25"
     }
    }
   },
@@ -4890,6 +4974,12 @@
      "url": "",
      "date": "2026-11-03",
      "heure": "14:30"
+    },
+    "threads": {
+     "uuid": "-287631272144843682",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "20:55"
     }
    }
   },
@@ -4913,6 +5003,12 @@
      "url": "",
      "date": "2026-11-03",
      "heure": "16:10"
+    },
+    "threads": {
+     "uuid": "-6727751933234624372",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "21:25"
     }
    }
   },
@@ -4936,6 +5032,12 @@
      "url": "",
      "date": "2026-11-03",
      "heure": "16:40"
+    },
+    "threads": {
+     "uuid": "-6841062863636182214",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "21:55"
     }
    }
   },
@@ -4959,6 +5061,12 @@
      "url": "",
      "date": "2026-11-03",
      "heure": "17:10"
+    },
+    "threads": {
+     "uuid": "-6970463123413971154",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "22:25"
     }
    }
   },
@@ -4998,7 +5106,15 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://db074fdf.shawez-immo.pages.dev/trial/2026-11-02/maison-neuilly-Mandat-v7.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "youtube": {
+     "uuid": "-7550374872029838107",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "18:50"
+    }
+   }
   },
   {
    "id": "TR-0211-Mandat-v8",
@@ -5013,7 +5129,15 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://db074fdf.shawez-immo.pages.dev/trial/2026-11-02/maison-neuilly-Mandat-v8.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "youtube": {
+     "uuid": "1970839395428748010",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "19:50"
+    }
+   }
   },
   {
    "id": "TR-0211-Mandat-v9",
@@ -5028,7 +5152,15 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://db074fdf.shawez-immo.pages.dev/trial/2026-11-02/maison-neuilly-Mandat-v9.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "youtube": {
+     "uuid": "6911606174323066960",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "20:50"
+    }
+   }
   },
   {
    "id": "TR-0211-Mandat-v10",
@@ -5043,7 +5175,15 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://db074fdf.shawez-immo.pages.dev/trial/2026-11-02/maison-neuilly-Mandat-v10.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "youtube": {
+     "uuid": "-3942695858038552776",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "21:50"
+    }
+   }
   },
   {
    "id": "TR-0211-Mandat-v11",
