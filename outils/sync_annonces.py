@@ -124,8 +124,12 @@ def fiche(url):
     dossiers = re.findall(r'images/biens/\d+/([0-9a-f]{32})/photo_', zone)
     photos = []
     if dossiers:
-        h = max(set(dossiers), key=dossiers.count)
-        for p in re.findall(r'images/biens/(\d+/%s/photo_[0-9a-f]+\.(?:jpe?g|png|webp))' % h, zone):
+        # L'agence range les photos d'un bien dans un dossier dont le nom change à chaque remplacement.
+        # Quand elle ajoute des photos sans tout refaire, le bien se retrouve avec DEUX dossiers : on les
+        # prend tous les deux, dans l'ordre de la page. Ne garder que le dossier majoritaire, comme avant
+        # le 02/11/2026, faisait silencieusement disparaître les photos ajoutées.
+        gardes = list(dict.fromkeys(dossiers)) if gal else [max(set(dossiers), key=dossiers.count)]
+        for p in re.findall(r'images/biens/(\d+/(?:%s)/photo_[0-9a-f]+\.(?:jpe?g|png|webp))' % '|'.join(gardes), zone):
             if p not in photos:
                 photos.append(p)
     ener = re.search(r"dépenses annuelles d'énergie[^<]*?compris entre\s*([\d\s\xa0]+)\s*€\s*et\s*([\d\s\xa0]+)\s*€", html.unescape(s))
@@ -152,6 +156,16 @@ def extras_fiche(s):
         v = re.search(r'(https://(?:my\.matterport\.com/show/\?m=|[\w.-]*nodalview\.com/|kuula\.co/share/)[^"\'\s<>]+)', s)
         if v:
             out['visite_virtuelle'] = html.unescape(v.group(1))
+        # Vidéo mise en ligne par l'agence sur la fiche. Jusqu'au 02/11/2026 elle n'était jamais reprise :
+        # les vidéos du site de Shawez venaient uniquement de ses Reels Instagram, donc une vidéo ajoutée
+        # par l'agence n'arrivait jamais chez lui (constat de Shawez sur le 527, immeuble de Beaune).
+        m = (re.search(r'<source[^>]+src="([^"]+\.mp4[^"]*)"', s)
+             or re.search(r'<video[^>]+src="([^"]+\.mp4[^"]*)"', s)
+             or re.search(r'(https://[\w.-]*(?:staticlbi|leboncoin)[\w.-]*/[^"\'\s<>]+\.mp4)', s)
+             or re.search(r'(https://(?:www\.)?(?:youtube\.com/(?:embed/|watch\?v=)|youtu\.be/|player\.vimeo\.com/video/|vimeo\.com/)[\w?=&/-]+)', s))
+        if m:
+            u = html.unescape(m.group(1))
+            out['video_agence'] = u if u.startswith('http') else urllib.parse.urljoin(BASE, u)
     except Exception:
         pass
     return out
@@ -431,6 +445,7 @@ def synchronise(etat):
                    'prix': c['prix'], 'surface': surf, 'compo_agence': c['compo'], 'pieces': int(pieces) if pieces else None,
                    'caracteristiques': tab, 'energie': f['energie'], 'dpe': f.get('dpe'), 'ges': f.get('ges'),
                    'honoraires_texte': f.get('honoraires_texte'), 'visite_virtuelle': f.get('visite_virtuelle'),
+                   'video_agence': f.get('video_agence'),
                    'description_expurgee': expurge(f['description']), 'mentions_agence': mentions}
         nouveau['photos'] = photos(ref, f['photos'], (a or {}).get('photos', {}))
         if a is None and not lien_valide(lien_neutre(nouveau)):
