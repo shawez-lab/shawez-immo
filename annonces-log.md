@@ -95,3 +95,8 @@ Chaque passage de `outils/sync_annonces.py` ajoute ici les changements constaté
 ## 2026-10-27
 
 - Annonce 508 : absente des pages de l'agence et fiche hors ligne, sans mention → « retirée ».
+
+## 2026-11-01
+
+- Nouvelle annonce 529 : Maison à Chenôve, 350 000 €.
+- Annonce 509 : prix 370 000 € → 360 000 €.

@@ -147,3 +147,6 @@ def hub_fr():
 if __name__ == '__main__':
     hub_en()
     hub_fr()
+    import editorial_hubs
+    editorial_hubs.update(ROOT)
+

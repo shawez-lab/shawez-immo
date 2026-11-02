@@ -18,6 +18,9 @@ Plan JSON :
   ]
 }
 Le dernier plan porte l'appel à commenter : il doit durer au moins 2,6 s une fois accéléré.
+« appel » (facultatif, par bien) : "prive" → la fin dit « Écris-moi MOT en privé » au lieu de « Commente MOT ».
+ManyChat ne transmet pas le texte d'un commentaire : seul un mot-clé qui a son automatisation (« commentaires_manychat »
+de videos-biens.json) peut être demandé en commentaire ; pour tout autre mot, l'appel se fait en message privé.
 """
 import json
 import os
@@ -123,14 +126,15 @@ def mot_plan(texte, sortie):
     ombre(calque, rayon=10, opacite=70, dy=4).save(sortie)
 
 
-def appel(mot, sortie, ligne2='et je t’envoie la visite complète'):
-    """Fin : « Commente MOT » avec le mot sur pastille jaune, sur un panneau sombre au centre."""
+def appel(mot, sortie, prive=False):
+    """Fin : « Commente MOT » (ou « Écris-moi MOT » en privé) avec le mot sur pastille jaune, sur un panneau sombre au centre."""
     f1 = police(POLICE_FORTE, 70)
     fm = police(POLICE_FORTE, 76)
     f2 = police(POLICE, 46)
     calque = Image.new('RGBA', (W, H), (0, 0, 0, 0))
     d = ImageDraw.Draw(calque)
-    t1 = 'Commente'
+    t1 = 'Écris-moi' if prive else 'Commente'
+    ligne2 = 'en privé, je t’envoie la visite' if prive else 'et je t’envoie la visite complète'
     l1, lm = f1.getlength(t1), fm.getlength(mot)
     total = l1 + 26 + lm + 52
     larg = max(total, f2.getlength(ligne2)) + 110
@@ -151,7 +155,7 @@ def duree_accroche(texte):
     return max(2.4, min(3.4, 1.5 + 0.13 * len(texte.replace('|', ' ').split())))
 
 
-def monter(src, version, mot, sortie, tmp):
+def monter(src, version, mot, sortie, tmp, prive=False):
     plans = version['plans']
     entrees = ['-i', src]
     filtres = []
@@ -185,7 +189,7 @@ def monter(src, version, mot, sortie, tmp):
             mot_plan(p[3], fm)
             calques.append((fm, d0, d1, True))
     fc = os.path.join(tmp, 'appel.png')
-    appel(mot, fc)
+    appel(mot, fc, prive)
     calques.append((fc, total - 2.6, total + 1, True))
 
     courant = 'base'
@@ -210,9 +214,9 @@ def monter(src, version, mot, sortie, tmp):
 
 
 def une_version(args):
-    src, v, mot, sortie = args
+    src, v, mot, sortie, prive = args
     with tempfile.TemporaryDirectory() as tmp:
-        return monter(src, v, mot, sortie, tmp)
+        return monter(src, v, mot, sortie, tmp, prive)
 
 
 def main():
@@ -226,7 +230,7 @@ def main():
         src = os.path.join(RACINE, bien['src'])
         for v in bien['versions']:
             nom = f"{bien['nom']}-{bien['ref']}-{v['id']}.mp4"
-            taches.append((src, v, bien['mot'], os.path.join(dossier, nom)))
+            taches.append((src, v, bien['mot'], os.path.join(dossier, nom), bien.get('appel') == 'prive'))
             infos.append((bien, v, nom))
     with ProcessPoolExecutor(max_workers=max(1, (os.cpu_count() or 2))) as ex:
         durees = list(ex.map(une_version, taches))

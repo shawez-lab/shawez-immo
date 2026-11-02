@@ -4,6 +4,7 @@ Google ne reconnaissait que 2 vidéos du site (Search Console, 23/10/2026) alors
 Ce fichier lui donne la liste complète : titre, vignette, fichier, durée, date. Relancé par outils/build.py.
 """
 import glob, html, json, os, re
+from urllib.parse import urlsplit
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 SITE = 'https://shawez-immo.com'
@@ -32,6 +33,20 @@ def secondes(iso):
     m = re.fullmatch(r'PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?', iso or '')
     return (int(m.group(1) or 0) * 3600 + int(m.group(2) or 0) * 60 + int(m.group(3) or 0)) if m else 0
 
+def miniature(value):
+    """Return one HTTP(S) thumbnail from a schema.org URL or URL array."""
+    candidates = value if isinstance(value, list) else [value]
+    for candidate in candidates:
+        if not isinstance(candidate, str) or any(c.isspace() for c in candidate):
+            continue
+        try:
+            parsed = urlsplit(candidate)
+        except ValueError:
+            continue
+        if parsed.scheme in ('http', 'https') and parsed.hostname:
+            return candidate
+    raise ValueError('thumbnailUrl must contain an absolute HTTP(S) image URL')
+
 def construire():
     e = lambda t: html.escape(str(t)[:2000], quote=False)
     blocs = []
@@ -50,7 +65,7 @@ def construire():
             d = secondes(v.get('duration'))
             items.append('    <video:video>\n      <video:thumbnail_loc>%s</video:thumbnail_loc>\n      <video:title>%s</video:title>\n'
                          '      <video:description>%s</video:description>\n      <video:content_loc>%s</video:content_loc>\n%s%s    </video:video>'
-                         % (e(v['thumbnailUrl']), e(v.get('name') or v.get('description')), e(v.get('description') or v.get('name')),
+                         % (e(miniature(v['thumbnailUrl'])), e(v.get('name') or v.get('description')), e(v.get('description') or v.get('name')),
                             e(v['contentUrl']), ('      <video:duration>%d</video:duration>\n' % d) if d else '',
                             ('      <video:publication_date>%s</video:publication_date>\n' % e(v['uploadDate'])) if v.get('uploadDate') else ''))
         if items:

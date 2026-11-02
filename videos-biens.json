@@ -1,5 +1,5 @@
 {
- "_lisezmoi": "Registre vidéo → bien pour /api/manychat-dm. Clé = identifiant du Reel Instagram (instagram.com/reel/<id>). « ref » = référence dans annonces.json ; « manuel » = bien sans annonce publique (jamais d'adresse exacte ni de nom de vendeur ici, ce fichier est public). Clé « story-… » : réponses aux stories (le flux ManyChat envoie post=story-<sujet>). « motscles » : mot-clé des vidéos (« Commente CHÂTEAU ») → bien, sans accents et en minuscules ; sert quand le Reel n'est pas dans « videos » (Trial Reels, nouvelles versions) et pour WhatsApp. « en_essai » : biens des Trial Reels en cours (jusqu_au inclus) ; quand Instagram ne transmet pas le commentaire, le DM cite ces biens pour que la personne dise lequel.",
+ "_lisezmoi": "Registre vidéo → bien pour /api/manychat-dm. Clé = identifiant du Reel Instagram (instagram.com/reel/<id>). « ref » = référence dans annonces.json ; « manuel » = bien sans annonce publique (jamais d'adresse exacte ni de nom de vendeur ici, ce fichier est public). Clé « story-… » : réponses aux stories (le flux ManyChat envoie post=story-<sujet>). « motscles » : mot-clé des vidéos (« Commente CHÂTEAU ») → bien, sans accents et en minuscules ; sert quand le Reel n'est pas dans « videos » (Trial Reels, nouvelles versions) et pour WhatsApp. « en_essai » : biens des Trial Reels en cours (jusqu_au inclus). « commentaires_manychat » : mots-clés qui ont leur automatisation ManyChat « Mot-clé MOT — tous les Reels » (dm_post = mot:<mot>) ; ManyChat ne transmet ni le texte d'un commentaire ni la vidéo, donc une vidéo ne peut dire « Commente MOT » que si MOT est dans cette liste, sinon elle dit « Écris-moi MOT en privé » (fabriquer.py, \"appel\": \"prive\"). Un commentaire sans mot-clé ne reçoit aucun message (décision de Shawez du 29/10/2026).",
  "videos": {
   "test-chevigny": {
    "ref": "520"
@@ -73,6 +73,66 @@
   "DfDFNQ5tDOO": {
    "ref": "527",
    "langue": "en"
+  },
+  "DfB9S2sDohn": {
+   "ref": "438"
+  },
+  "DfCEZmKjssj": {
+   "ref": "483"
+  },
+  "DfCLH68lUg8": {
+   "ref": "461"
+  },
+  "DfCSDAAjCup": {
+   "ref": "438"
+  },
+  "DfCY4-TCKBu": {
+   "ref": "483"
+  },
+  "DfCf44DgFNG": {
+   "ref": "461"
+  },
+  "DfCm4Q_DOHF": {
+   "ref": "438"
+  },
+  "DfCt3F_lHTC": {
+   "ref": "483"
+  },
+  "DfC0nvWEsT_": {
+   "ref": "461"
+  },
+  "DfC7drrDOFe": {
+   "ref": "438"
+  },
+  "DfDCJgJitOr": {
+   "ref": "483"
+  },
+  "DfElWOpn26j": {
+   "ref": "527"
+  },
+  "DfEwPbLklFY": {
+   "ref": "525"
+  },
+  "DfE2z4Vgeen": {
+   "ref": "525"
+  },
+  "DfE9pbzDht_": {
+   "ref": "527"
+  },
+  "DfFHqKGCBsX": {
+   "ref": "525"
+  },
+  "DfFn43PkXDO": {
+   "ref": "438"
+  },
+  "DfFy3N9jUj5": {
+   "ref": "438"
+  },
+  "DfF91n7jRKq": {
+   "ref": "438"
+  },
+  "DfGJJAMjD50": {
+   "ref": "438"
   }
  },
  "motscles": {
@@ -105,26 +165,19 @@
    "langue": "en"
   }
  },
+ "commentaires_manychat": [
+  "chateau",
+  "loft",
+  "marrakech",
+  "neuilly",
+  "beaune"
+ ],
  "en_essai": [
   {
    "mot": "LOFT",
    "ref": "483",
    "libelle": "le loft avec spa en plein Dijon",
    "depuis": "2026-10-27",
-   "jusqu_au": "2026-11-04"
-  },
-  {
-   "mot": "MARRAKECH",
-   "ref": "461",
-   "libelle": "le studio inspiration Marrakech",
-   "depuis": "2026-10-27",
-   "jusqu_au": "2026-11-04"
-  },
-  {
-   "mot": "CHÂTEAU",
-   "ref": "438",
-   "libelle": "le château près de Beaune",
-   "depuis": "2026-10-28",
    "jusqu_au": "2026-11-04"
   },
   {
@@ -140,6 +193,20 @@
    "libelle": "l’hôtel particulier de Beaune",
    "depuis": "2026-10-29",
    "jusqu_au": "2026-11-06"
+  },
+  {
+   "mot": "MARRAKECH",
+   "ref": "461",
+   "libelle": "le studio inspiration Marrakech",
+   "depuis": "2026-11-01",
+   "jusqu_au": "2026-11-09"
+  },
+  {
+   "mot": "CHÂTEAU",
+   "ref": "438",
+   "libelle": "le château près de Beaune",
+   "depuis": "2026-11-01",
+   "jusqu_au": "2026-11-09"
   }
  ]
 }

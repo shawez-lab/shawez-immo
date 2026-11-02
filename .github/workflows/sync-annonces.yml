@@ -6,7 +6,7 @@ name: Synchronisation des annonces
 # le script vérifie l'heure de Paris. Vidéos Instagram : une fois par heure (premier quart d'heure).
 on:
   schedule:
-    - cron: '*/15 4-21 * * *'
+    - cron: '9 5-21 * * *'
   workflow_dispatch: {}
 
 permissions:

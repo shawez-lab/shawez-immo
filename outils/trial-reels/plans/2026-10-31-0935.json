@@ -1,0 +1,151 @@
+{
+ "jour": "2026-10-31",
+ "biens": [
+  {
+   "ref": "438",
+   "src": "assets/biens/438/video.mp4",
+   "mot": "CHÂTEAU",
+   "nom": "chateau",
+   "versions": [
+    {
+     "id": "v6",
+     "style": "chiffre_choc",
+     "accroche": "18 pièces,|520 m²,|un étang",
+     "legende": "18 pièces, 520 m² et un étang autour d’un château du XVIIIe, à 15 minutes de Beaune 🏰\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#chateauavendre #bourgogne #beaune #demeuredecaractere #immobilierdeprestige",
+     "plans": [
+      [
+       9.7,
+       11.2,
+       1.0
+      ],
+      [
+       5.25,
+       7.2,
+       1.0,
+       "Domaine de 15 hectares"
+      ],
+      [
+       13.25,
+       15.15,
+       1.0
+      ],
+      [
+       19.2,
+       22.15,
+       1.3,
+       "18 pièces"
+      ],
+      [
+       27.2,
+       29.15,
+       1.0
+      ],
+      [
+       1.25,
+       3.2,
+       1.0
+      ],
+      [
+       3.25,
+       5.2,
+       0.7
+      ]
+     ],
+     "publier": "2026-11-01T11:12"
+    },
+    {
+     "id": "v7",
+     "style": "lieu_exception",
+     "accroche": "Un château du XVIIIe|à 15 min de Beaune",
+     "legende": "Un château du XVIIIe avec parc et étang, à 15 minutes de Beaune, avec vue dégagée sur la Côte de Beaune 🏰\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#chateau #bourgogne #cotedebeaune #chateauavendre #patrimoine",
+     "plans": [
+      [
+       0,
+       1.2,
+       1.0
+      ],
+      [
+       11.25,
+       13.2,
+       1.0
+      ],
+      [
+       15.2,
+       19.15,
+       1.5,
+       "Vestibule majestueux"
+      ],
+      [
+       24.2,
+       27.15,
+       1.0,
+       "Cuisine équipée"
+      ],
+      [
+       8.25,
+       9.7,
+       1.0
+      ],
+      [
+       5.25,
+       7.2,
+       1.0
+      ],
+      [
+       1.25,
+       3.2,
+       0.7
+      ]
+     ],
+     "publier": "2026-11-01T12:48"
+    },
+    {
+     "id": "v8",
+     "style": "chiffre_choc",
+     "accroche": "1 600 000 €|pour 18 pièces|et un étang",
+     "legende": "1 600 000 €, 18 pièces et un étang, au cœur d’un domaine de 15 hectares à 15 minutes de Beaune 🏰\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#chateauavendre #bourgogne #luxuryrealestate #beaune #domaine",
+     "plans": [
+      [
+       3.25,
+       5.2,
+       1.0
+      ],
+      [
+       13.25,
+       15.15,
+       1.0
+      ],
+      [
+       15.2,
+       19.15,
+       1.3,
+       "Vestibule majestueux"
+      ],
+      [
+       0,
+       1.2,
+       1.0
+      ],
+      [
+       24.2,
+       27.15,
+       1.2
+      ],
+      [
+       9.7,
+       11.2,
+       1.0,
+       "520 m²"
+      ],
+      [
+       8.25,
+       11.2,
+       1.0
+      ]
+     ],
+     "publier": "2026-11-01T14:24"
+    }
+   ]
+  }
+ ]
+}

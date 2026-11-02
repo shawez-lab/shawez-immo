@@ -1,0 +1,699 @@
+{
+ "jour": "2026-10-29",
+ "biens": [
+  {
+   "ref": "438",
+   "src": "assets/biens/438/video.mp4",
+   "mot": "CHÂTEAU",
+   "nom": "chateau",
+   "versions": [
+    {
+     "id": "v1",
+     "style": "lieu_exception",
+     "publier": "2026-10-29T19:12",
+     "accroche": "Un château du XVIIIe|à 15 min de Beaune",
+     "legende": "Un château du XVIIIe à 15 minutes de Beaune, avec une vue dégagée sur la Côte de Beaune 🏰\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#chateau #bourgogne #beaune #chateauavendre #immobilierdeprestige",
+     "plans": [
+      [
+       11.25,
+       13.2,
+       1.0
+      ],
+      [
+       1.25,
+       3.2,
+       1.0,
+       "Un étang"
+      ],
+      [
+       8.25,
+       11.2,
+       1.4
+      ],
+      [
+       13.25,
+       15.15,
+       1.0
+      ],
+      [
+       15.2,
+       19.15,
+       1.5,
+       "Vestibule majestueux"
+      ],
+      [
+       20.2,
+       22.15,
+       1.3
+      ],
+      [
+       24.2,
+       27.15,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v2",
+     "style": "chiffre_choc",
+     "publier": "2026-10-29T20:48",
+     "accroche": "1 600 000 €|pour ce château|près de Beaune",
+     "legende": "1 600 000 € pour un château du XVIIIe de 520 m² avec étang, à 15 minutes de Beaune 🏰\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#chateauavendre #bourgogne #beaune #immobilierdeluxe #patrimoine",
+     "plans": [
+      [
+       8.25,
+       9.7,
+       1.0
+      ],
+      [
+       3.25,
+       5.2,
+       1.0
+      ],
+      [
+       5.25,
+       7.2,
+       1.0,
+       "Vue sur la Côte de Beaune"
+      ],
+      [
+       13.25,
+       15.15,
+       1.0
+      ],
+      [
+       15.2,
+       19.15,
+       1.5
+      ],
+      [
+       22.2,
+       24.15,
+       1.2,
+       "7 chambres · 520 m²"
+      ],
+      [
+       24.2,
+       27.15,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v3",
+     "style": "question",
+     "publier": "2026-10-29T22:24",
+     "accroche": "Maison de famille|ou lieu de mariages ?",
+     "legende": "Maison de famille ou lieu de mariages, tu en ferais quoi ? 🏰 18 pièces, 7 chambres, un parc et un étang près de Beaune.\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#chateau #mariage #bourgogne #maisondefamille #chateauavendre",
+     "plans": [
+      [
+       7.25,
+       8.2,
+       1.0
+      ],
+      [
+       0,
+       1.2,
+       1.0
+      ],
+      [
+       1.25,
+       3.2,
+       1.0,
+       "Un parc et un étang"
+      ],
+      [
+       11.25,
+       13.2,
+       1.0
+      ],
+      [
+       15.2,
+       19.15,
+       1.5,
+       "Trois salons de réception"
+      ],
+      [
+       29.2,
+       30.0,
+       0.8
+      ],
+      [
+       8.25,
+       11.2,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v4",
+     "style": "chiffre_choc",
+     "publier": "2026-10-30T00:00",
+     "accroche": "18 pièces, 7 chambres,|520 m²|près de Beaune",
+     "legende": "18 pièces, 7 chambres et 520 m² habitables dans un château du XVIIIe, à 15 minutes de Beaune 🏰\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#chateau #bourgogne #beaune #demeuredecaractere #immobilierdeprestige",
+     "plans": [
+      [
+       15.2,
+       17.2,
+       1.0
+      ],
+      [
+       8.25,
+       11.2,
+       1.5
+      ],
+      [
+       1.25,
+       3.2,
+       1.0,
+       "L’étang"
+      ],
+      [
+       13.25,
+       15.15,
+       1.0
+      ],
+      [
+       17.2,
+       19.15,
+       1.0,
+       "Vestibule majestueux"
+      ],
+      [
+       19.2,
+       20.15,
+       1.0
+      ],
+      [
+       27.2,
+       29.15,
+       0.72
+      ]
+     ]
+    },
+    {
+     "id": "v5",
+     "style": "lieu_exception",
+     "publier": "2026-10-30T01:36",
+     "accroche": "Un château avec étang|près de Beaune",
+     "legende": "Un château du XVIIIe avec son parc et son étang, à 15 minutes de Beaune 🏰\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#chateauavendre #bourgogne #beaune #patrimoine #luxuryrealestate",
+     "plans": [
+      [
+       0,
+       1.2,
+       1.0
+      ],
+      [
+       5.25,
+       7.2,
+       1.0
+      ],
+      [
+       11.25,
+       13.2,
+       1.0
+      ],
+      [
+       8.25,
+       11.2,
+       1.3,
+       "XVIIIe siècle"
+      ],
+      [
+       13.25,
+       15.15,
+       1.0
+      ],
+      [
+       15.2,
+       19.15,
+       1.4
+      ],
+      [
+       24.2,
+       27.15,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v6",
+     "style": "question",
+     "publier": "2026-10-30T03:12",
+     "accroche": "Tu te réveilles ici|demain matin ?",
+     "legende": "Tu te réveilles ici demain matin ? 🏰 Château du XVIIIe avec vue dégagée sur la Côte de Beaune.\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#chateau #bourgogne #reve #chateauavendre #beaune",
+     "plans": [
+      [
+       9.7,
+       11.2,
+       1.0
+      ],
+      [
+       5.25,
+       7.2,
+       1.0
+      ],
+      [
+       1.25,
+       3.2,
+       1.0
+      ],
+      [
+       11.25,
+       13.2,
+       1.0,
+       "Vue dégagée"
+      ],
+      [
+       15.2,
+       19.15,
+       1.5
+      ],
+      [
+       20.2,
+       22.15,
+       1.2
+      ],
+      [
+       24.2,
+       27.15,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v7",
+     "style": "revelation",
+     "publier": "2026-10-30T04:48",
+     "accroche": "Derrière cette porte,|un château du XVIIIe",
+     "legende": "Derrière cette porte, un vestibule majestueux et trois salons de réception 🏰 Château du XVIIIe près de Beaune.\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#chateau #bourgogne #beaune #patrimoine #chateauavendre",
+     "plans": [
+      [
+       13.25,
+       15.15,
+       1.0
+      ],
+      [
+       15.2,
+       19.15,
+       1.4,
+       "Vestibule majestueux"
+      ],
+      [
+       29.2,
+       30.0,
+       0.8
+      ],
+      [
+       20.2,
+       22.15,
+       1.2
+      ],
+      [
+       8.25,
+       11.2,
+       1.3
+      ],
+      [
+       5.25,
+       7.2,
+       1.0,
+       "Vue sur la Côte de Beaune"
+      ],
+      [
+       24.2,
+       27.15,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v8",
+     "style": "chiffre_choc",
+     "publier": "2026-10-30T06:24",
+     "accroche": "520 m² et un étang|à 15 min de Beaune",
+     "legende": "520 m² et un étang autour d’un château du XVIIIe, à 15 minutes de Beaune 🏰\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#chateau #bourgogne #beaune #immobilierdeprestige #chateauavendre",
+     "plans": [
+      [
+       17.2,
+       19.15,
+       1.0
+      ],
+      [
+       1.25,
+       3.2,
+       1.0,
+       "Un étang"
+      ],
+      [
+       5.25,
+       7.2,
+       1.0
+      ],
+      [
+       8.25,
+       11.2,
+       1.4
+      ],
+      [
+       13.25,
+       15.15,
+       1.0
+      ],
+      [
+       22.2,
+       24.15,
+       1.2
+      ],
+      [
+       24.2,
+       27.15,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v9",
+     "style": "lieu_exception",
+     "publier": "2026-10-30T08:00",
+     "accroche": "Un château du XVIIIe|à vendre en Bourgogne",
+     "legende": "Un château du XVIIIe à vendre en Bourgogne, avec son parc, son étang et sa vue sur la Côte de Beaune 🏰\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#chateauavendre #bourgogne #patrimoine #beaune #immobilierdeluxe",
+     "plans": [
+      [
+       29.2,
+       30.0,
+       0.8
+      ],
+      [
+       17.2,
+       19.15,
+       1.0
+      ],
+      [
+       5.25,
+       7.2,
+       1.0,
+       "Vue sur la Côte de Beaune"
+      ],
+      [
+       1.25,
+       3.2,
+       1.0
+      ],
+      [
+       11.25,
+       13.2,
+       1.0
+      ],
+      [
+       13.25,
+       15.15,
+       1.0,
+       "18 pièces"
+      ],
+      [
+       8.25,
+       11.2,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v10",
+     "style": "question",
+     "publier": "2026-10-30T09:36",
+     "accroche": "Combien vaut|un château du XVIIIe|en Bourgogne ?",
+     "legende": "Combien vaut un château du XVIIIe avec étang, à 15 minutes de Beaune ? 🏰 Le prix est dans la vidéo.\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#chateau #bourgogne #beaune #prix #chateauavendre",
+     "plans": [
+      [
+       20.2,
+       22.15,
+       1.0
+      ],
+      [
+       0,
+       1.2,
+       1.0
+      ],
+      [
+       3.25,
+       5.2,
+       1.0
+      ],
+      [
+       15.2,
+       17.2,
+       1.0,
+       "Vestibule majestueux"
+      ],
+      [
+       9.7,
+       11.2,
+       1.0
+      ],
+      [
+       5.25,
+       7.2,
+       1.0,
+       "1 600 000 €"
+      ],
+      [
+       24.2,
+       27.15,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v11",
+     "style": "chiffre_choc",
+     "publier": "2026-10-30T11:12",
+     "accroche": "7 chambres,|un parc, un étang",
+     "legende": "7 chambres, un parc et un étang autour d’un château du XVIIIe, à 15 minutes de Beaune 🏰\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#chateau #bourgogne #beaune #maisondefamille #chateauavendre",
+     "plans": [
+      [
+       24.2,
+       27.15,
+       1.2
+      ],
+      [
+       11.25,
+       13.2,
+       1.0
+      ],
+      [
+       1.25,
+       3.2,
+       1.0,
+       "Un étang"
+      ],
+      [
+       8.25,
+       9.7,
+       1.0
+      ],
+      [
+       13.25,
+       15.15,
+       1.0
+      ],
+      [
+       17.2,
+       19.15,
+       1.0,
+       "Trois salons de réception"
+      ],
+      [
+       9.7,
+       11.2,
+       0.55
+      ]
+     ]
+    },
+    {
+     "id": "v12",
+     "style": "lieu_exception",
+     "publier": "2026-10-30T12:48",
+     "accroche": "Château du XVIIIe,|vue sur|la Côte de Beaune",
+     "legende": "Château du XVIIIe avec vue dégagée sur la Côte de Beaune, à 15 minutes de Beaune 🏰\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#chateau #cotedebeaune #bourgogne #chateauavendre #vignoble",
+     "plans": [
+      [
+       12.0,
+       13.2,
+       0.8
+      ],
+      [
+       5.25,
+       7.2,
+       1.0,
+       "Vue dégagée"
+      ],
+      [
+       0,
+       1.2,
+       1.0
+      ],
+      [
+       13.25,
+       15.15,
+       1.0
+      ],
+      [
+       15.2,
+       17.2,
+       1.0,
+       "Vestibule majestueux"
+      ],
+      [
+       20.2,
+       22.15,
+       1.2
+      ],
+      [
+       8.25,
+       11.2,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v13",
+     "style": "revelation",
+     "publier": "2026-10-30T14:24",
+     "accroche": "Attends de voir|l’intérieur",
+     "legende": "Attends de voir l’intérieur 👀 Vestibule majestueux, boiseries et cheminées d’époque dans ce château du XVIIIe près de Beaune.\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#chateau #bourgogne #patrimoine #beaune #chateauavendre",
+     "plans": [
+      [
+       6.0,
+       7.2,
+       0.8
+      ],
+      [
+       8.25,
+       9.7,
+       1.0
+      ],
+      [
+       13.25,
+       15.15,
+       1.0
+      ],
+      [
+       15.2,
+       17.2,
+       1.2,
+       "Vestibule majestueux"
+      ],
+      [
+       17.2,
+       19.15,
+       1.2
+      ],
+      [
+       29.2,
+       30.0,
+       0.8,
+       "Boiseries d’époque"
+      ],
+      [
+       24.2,
+       27.15,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v14",
+     "style": "chiffre_choc",
+     "publier": "2026-10-30T16:00",
+     "accroche": "1 600 000 €,|18 pièces|et un étang",
+     "legende": "1 600 000 € pour 18 pièces, un étang et une vue sur la Côte de Beaune 🏰\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#chateauavendre #bourgogne #beaune #immobilierdeprestige #luxuryrealestate",
+     "plans": [
+      [
+       22.2,
+       24.15,
+       1.0
+      ],
+      [
+       9.7,
+       11.2,
+       1.0
+      ],
+      [
+       1.25,
+       3.2,
+       1.0,
+       "Un étang"
+      ],
+      [
+       11.25,
+       13.2,
+       1.2
+      ],
+      [
+       13.25,
+       15.15,
+       1.0
+      ],
+      [
+       15.2,
+       19.15,
+       1.5,
+       "520 m²"
+      ],
+      [
+       27.2,
+       29.15,
+       0.72
+      ]
+     ]
+    },
+    {
+     "id": "v15",
+     "style": "lieu_exception",
+     "publier": "2026-10-30T19:12",
+     "accroche": "Ce château domine|la campagne|bourguignonne",
+     "legende": "Ce château du XVIIIe domine la campagne bourguignonne, à 15 minutes de Beaune 🏰\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#chateau #bourgogne #campagne #chateauavendre #beaune",
+     "plans": [
+      [
+       16.0,
+       18.0,
+       1.0
+      ],
+      [
+       0,
+       1.2,
+       1.0
+      ],
+      [
+       5.25,
+       7.2,
+       1.0,
+       "Vue sur la Côte de Beaune"
+      ],
+      [
+       1.25,
+       3.2,
+       1.0
+      ],
+      [
+       9.7,
+       11.2,
+       1.0
+      ],
+      [
+       20.2,
+       22.15,
+       1.2
+      ],
+      [
+       24.2,
+       27.15,
+       1.0
+      ]
+     ]
+    }
+   ]
+  }
+ ]
+}
