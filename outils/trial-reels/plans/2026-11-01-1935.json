@@ -1,0 +1,688 @@
+{
+ "jour": "2026-11-01",
+ "biens": [
+  {
+   "ref": "461",
+   "src": "assets/biens/461/video.mp4",
+   "mot": "MARRAKECH",
+   "nom": "marrakech",
+   "versions": [
+    {
+     "id": "v1",
+     "style": "chiffre_choc",
+     "accroche": "129 000 €|à deux pas|du Parc Darcy",
+     "legende": "129 000 € pour un studio d’architecte, à deux pas du Parc Darcy et du centre-ville 🌳\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#parcdarcy #dijoncentre #studioavendre #immobilierdijon #bourgogne",
+     "plans": [
+      [
+       0.0,
+       0.9,
+       1.0,
+       "129 000 €"
+      ],
+      [
+       0.9,
+       3.0,
+       1.0
+      ],
+      [
+       4.0,
+       5.6,
+       1.0
+      ],
+      [
+       19.6,
+       21.4,
+       1.0
+      ],
+      [
+       13.6,
+       15.8,
+       1.0
+      ],
+      [
+       9.0,
+       10.8,
+       1.1
+      ],
+      [
+       24.0,
+       26.8,
+       1.0
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v2",
+     "style": "chiffre_choc",
+     "accroche": "19,15 m²|tout sur mesure",
+     "legende": "19,15 m² Carrez où chaque centimètre compte : cuisine et rangements faits sur mesure 📐\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#petitespace #surmesure #amenagementinterieur #studiodijon #optimisation",
+     "plans": [
+      [
+       0.9,
+       2.9,
+       1.0,
+       "19,15 m² Carrez"
+      ],
+      [
+       5.5,
+       7.2,
+       1.0
+      ],
+      [
+       8.6,
+       10.6,
+       1.1,
+       "Rangements sur mesure"
+      ],
+      [
+       13.6,
+       15.4,
+       1.0
+      ],
+      [
+       16.6,
+       18.6,
+       1.0
+      ],
+      [
+       22.0,
+       23.6,
+       1.0
+      ],
+      [
+       28.0,
+       31.4,
+       1.1
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v3",
+     "style": "chiffre_choc",
+     "accroche": "13 lots seulement,|une cour au calme",
+     "legende": "13 lots seulement dans la copropriété, au calme d’une cour intérieure, loin du bruit de la ville 🤫\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#copropriete #courinterieure #calme #viecitadine #dijonville",
+     "plans": [
+      [
+       27.6,
+       29.0,
+       0.9
+      ],
+      [
+       0.9,
+       2.4,
+       1.0
+      ],
+      [
+       3.4,
+       5.4,
+       1.0,
+       "Cour intérieure calme"
+      ],
+      [
+       13.6,
+       15.4,
+       1.0
+      ],
+      [
+       8.0,
+       10.0,
+       1.1
+      ],
+      [
+       21.6,
+       23.6,
+       1.0
+      ],
+      [
+       31.0,
+       33.8,
+       1.0
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v4",
+     "style": "chiffre_choc",
+     "accroche": "129 000 € et 23 %|de rendement saisonnier",
+     "legende": "129 000 €, et un rendement locatif saisonnier annoncé de 23 % pour ce studio clé en main 📈\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#locationsaisonniere #rendementlocatif #investirdijon #airbnbfrance #immobilierlocatif",
+     "plans": [
+      [
+       16.6,
+       18.4,
+       1.0,
+       "Rendement saisonnier 23 %"
+      ],
+      [
+       1.0,
+       2.8,
+       1.0
+      ],
+      [
+       13.6,
+       15.4,
+       1.0
+      ],
+      [
+       8.0,
+       10.0,
+       1.1
+      ],
+      [
+       24.0,
+       26.0,
+       1.0
+      ],
+      [
+       4.0,
+       5.6,
+       1.0
+      ],
+      [
+       29.0,
+       32.2,
+       1.1
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v5",
+     "style": "chiffre_choc",
+     "accroche": "Ton 1er appart|à 129 000 €",
+     "legende": "Ton premier achat, et il ne ressemble à aucun autre : 129 000 € pour un studio inspiration Marrakech 🔑\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#premierachat #primoaccedant #premierappart #studiocosy #dijonimmo",
+     "plans": [
+      [
+       19.4,
+       21.6,
+       1.0,
+       "Premier achat"
+      ],
+      [
+       4.0,
+       5.6,
+       1.0
+      ],
+      [
+       0.9,
+       2.6,
+       1.0
+      ],
+      [
+       13.4,
+       15.6,
+       1.0
+      ],
+      [
+       9.0,
+       11.0,
+       1.2
+      ],
+      [
+       34.4,
+       35.4,
+       0.8
+      ],
+      [
+       24.2,
+       26.9,
+       1.0
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v6",
+     "style": "lieu_exception",
+     "accroche": "Studio d’exception|en plein centre-ville",
+     "legende": "Studio d’exception en plein centre-ville de Dijon, entièrement rénové avec des finitions haut de gamme ✨\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#studiodexception #centreville #finitions #designinterieur #immobilierdeprestige",
+     "plans": [
+      [
+       21.6,
+       23.6,
+       1.0
+      ],
+      [
+       3.4,
+       5.2,
+       1.0
+      ],
+      [
+       9.0,
+       11.0,
+       1.2
+      ],
+      [
+       13.4,
+       15.6,
+       1.0,
+       "Balnéothérapie"
+      ],
+      [
+       0.9,
+       2.6,
+       1.1
+      ],
+      [
+       34.4,
+       35.4,
+       0.6
+      ],
+      [
+       28.0,
+       31.0,
+       1.0
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v7",
+     "style": "defi_1pourcent",
+     "accroche": "1 % seulement|trouve la kitchenette|du premier essai",
+     "legende": "1 % seulement repère la kitchenette sur mesure du premier essai 👀 Elle est sous tes yeux, à toi de jouer.\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#seul1pourcent #challenge #reelsfrance #defiinstagram #studiodijon",
+     "plans": [
+      [
+       5.5,
+       7.3,
+       1.0
+      ],
+      [
+       0.9,
+       2.8,
+       1.0,
+       "Kitchenette sur mesure"
+      ],
+      [
+       13.6,
+       15.6,
+       1.0
+      ],
+      [
+       24.0,
+       26.0,
+       1.0
+      ],
+      [
+       17.0,
+       18.6,
+       1.0
+      ],
+      [
+       28.5,
+       31.8,
+       1.1
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v8",
+     "style": "defi_1pourcent",
+     "accroche": "Seul 1 %|compte tous les jets",
+     "legende": "Seul 1 % arrive à compter tous les jets de cette baignoire balnéo 🛁 Tu en vois combien ?\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#balneo #baignoire #compteavecmoi #seul1pourcent #salledebainreve",
+     "plans": [
+      [
+       13.5,
+       15.6,
+       0.9
+      ],
+      [
+       16.6,
+       18.4,
+       1.0
+      ],
+      [
+       28.0,
+       30.0,
+       1.0
+      ],
+      [
+       0.9,
+       2.6,
+       1.0,
+       "Baignoire balnéothérapie"
+      ],
+      [
+       8.6,
+       10.6,
+       1.2
+      ],
+      [
+       19.6,
+       21.2,
+       1.0
+      ],
+      [
+       22.0,
+       25.4,
+       1.1
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v9",
+     "style": "lieu_exception",
+     "accroche": "Un pied-à-terre|en plein cœur de Dijon",
+     "legende": "Un pied-à-terre en plein cœur de Dijon, pour tes week-ends ou ta semaine de travail 🌙\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#piedaterre #weekenddijon #citybreak #ambiancemaroc #immobilierfrance",
+     "plans": [
+      [
+       34.4,
+       35.4,
+       0.7
+      ],
+      [
+       19.6,
+       21.4,
+       1.0
+      ],
+      [
+       8.4,
+       10.4,
+       1.1,
+       "Rétroprojecteur intégré"
+      ],
+      [
+       3.4,
+       5.0,
+       1.0
+      ],
+      [
+       13.6,
+       15.4,
+       1.0
+      ],
+      [
+       0.9,
+       2.4,
+       1.0
+      ],
+      [
+       29.4,
+       32.6,
+       1.1
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v10",
+     "style": "defi_1pourcent",
+     "accroche": "Seul 1 %|met pause|sur le thé versé",
+     "legende": "Seul 1 % arrive à mettre pause pile quand le thé coule 🫖 Tu tentes ? Studio inspiration Marrakech à Dijon.\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#defi #theamenthe #reelsinstagram #studiomarrakech #dijon",
+     "plans": [
+      [
+       29.4,
+       31.0,
+       0.8
+      ],
+      [
+       0.0,
+       0.9,
+       1.0
+      ],
+      [
+       13.6,
+       15.4,
+       1.1
+      ],
+      [
+       9.0,
+       11.0,
+       1.2
+      ],
+      [
+       4.0,
+       5.6,
+       1.0
+      ],
+      [
+       24.0,
+       25.6,
+       1.0
+      ],
+      [
+       19.6,
+       23.2,
+       1.2
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v11",
+     "style": "defi_1pourcent",
+     "accroche": "Seul 1 % réussit|à deviner|la pièce cachée",
+     "legende": "Seul 1 % réussit à deviner la pièce cachée derrière cette porte 👀 Indice : on s’y détend.\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#devinette #challengeaccepted #salledebain #detente #studiodijon",
+     "plans": [
+      [
+       12.0,
+       13.0,
+       0.8
+      ],
+      [
+       1.0,
+       2.6,
+       1.0
+      ],
+      [
+       19.6,
+       21.2,
+       1.0
+      ],
+      [
+       6.0,
+       7.3,
+       1.0
+      ],
+      [
+       13.5,
+       15.8,
+       0.9,
+       "Baignoire balnéo"
+      ],
+      [
+       24.2,
+       26.0,
+       1.0
+      ],
+      [
+       31.2,
+       33.8,
+       0.95
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v12",
+     "style": "defi_1pourcent",
+     "accroche": "99 % ratent|l’écran qui descend",
+     "legende": "99 % ratent le moment où l’écran apparaît. Toi, tu l’as vu ? 🎬 Studio inspiration Marrakech à Dijon.\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#99pourcent #ecranprojection #homecinema #regardebien #dijonmaville",
+     "plans": [
+      [
+       7.4,
+       9.0,
+       1.0
+      ],
+      [
+       9.0,
+       11.8,
+       1.2
+      ],
+      [
+       0.9,
+       2.4,
+       1.0
+      ],
+      [
+       27.5,
+       28.6,
+       0.8
+      ],
+      [
+       13.6,
+       15.4,
+       1.0
+      ],
+      [
+       17.0,
+       19.2,
+       1.0
+      ],
+      [
+       28.6,
+       31.4,
+       1.0
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v13",
+     "style": "business",
+     "accroche": "Investissement locatif|à forte attractivité",
+     "legende": "Investissement locatif à étudier : studio clé en main, faibles charges et syndic bénévole 💼\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#investisseur #investissementimmobilier #revenuspassifs #patrimoine #dijoninvest",
+     "plans": [
+      [
+       24.0,
+       26.0,
+       1.0,
+       "Faibles charges"
+      ],
+      [
+       0.0,
+       0.9,
+       1.0
+      ],
+      [
+       2.0,
+       3.0,
+       1.0
+      ],
+      [
+       13.6,
+       15.2,
+       1.0,
+       "Syndic bénévole"
+      ],
+      [
+       4.0,
+       6.0,
+       1.0
+      ],
+      [
+       19.6,
+       21.2,
+       1.0
+      ],
+      [
+       29.0,
+       32.4,
+       1.1
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v14",
+     "style": "detail_surprenant",
+     "accroche": "Un rétroprojecteur|dans 19 m²",
+     "legende": "Un rétroprojecteur intégré dans 19 m², pour tes soirées film au calme d’une cour intérieure 🍿\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#soireefilm #retroprojecteur #cinemamaison #astucedeco #petitstudio",
+     "plans": [
+      [
+       9.6,
+       11.8,
+       1.0,
+       "Rétroprojecteur intégré"
+      ],
+      [
+       27.5,
+       28.8,
+       0.8
+      ],
+      [
+       19.5,
+       21.5,
+       1.0
+      ],
+      [
+       12.0,
+       13.0,
+       1.0
+      ],
+      [
+       14.0,
+       15.8,
+       1.0
+      ],
+      [
+       0.9,
+       2.6,
+       1.0
+      ],
+      [
+       23.8,
+       25.6,
+       1.0
+      ],
+      [
+       30.5,
+       33.6,
+       1.1
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v15",
+     "style": "revelation",
+     "accroche": "Ce que cache|le fond du studio",
+     "legende": "Ce que cache le fond du studio : une porte qui s’ouvre sur un petit coin extérieur 🌿\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#coinexterieur #petitjardin #cocon #studioavecexterieur #dijoncity",
+     "plans": [
+      [
+       4.0,
+       5.6,
+       1.0
+      ],
+      [
+       0.9,
+       2.4,
+       1.0
+      ],
+      [
+       13.6,
+       15.2,
+       1.0
+      ],
+      [
+       9.0,
+       10.6,
+       1.1
+      ],
+      [
+       17.0,
+       18.6,
+       1.0
+      ],
+      [
+       23.0,
+       24.8,
+       1.0
+      ],
+      [
+       33.0,
+       35.4,
+       0.85,
+       "Petit coin extérieur"
+      ]
+     ],
+     "publier": ""
+    }
+   ]
+  }
+ ]
+}

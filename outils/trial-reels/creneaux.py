@@ -2,17 +2,34 @@
 """Créneaux des Trial Reels : jour et nuit, sans jamais dépasser le plafond d'Instagram.
 
 Demande de Shawez (29/10/2026, 17 h 06) : publier non-stop, sans heure fixe, le plus possible.
-Plafond réel : Instagram refuse les Trial Reels publiés par l'API au-delà d'environ 16 sur 24 heures
-glissantes (refus « You reached maximum number of trial reels that is allowed to be published by
-Content Publishing API » le 28/10 à 19 h 31 et 20 h 06, après 16 Trial Reels en 24 h). On vise donc
-15 au plus sur n'importe quelle période de 24 heures, pour qu'aucun refus ni e-mail d'erreur
-Metricool n'arrive jamais à Shawez.
+Plafond : 8 Trial Reels sur 24 heures glissantes. Chiffre mesuré, pas estimé.
 
-Grille : 15 créneaux par jour, un toutes les 96 minutes, heure de Paris :
-00:00 01:36 03:12 04:48 06:24 08:00 09:36 11:12 12:48 14:24 16:00 17:36 19:12 20:48 22:24
+L'explication retenue le 31/10 au matin était fausse : les refus ne venaient pas de Codex programmant en
+parallèle du Monteur. Le 31/10, le Monteur était SEUL à programmer et Instagram a refusé 7 Trial Reels
+d'affilée, de 00:00 à 10:00, avec « You reached maximum number of trial reels that is allowed to be
+published by Content Publishing API » — zéro publiée de la journée alors que 15 étaient programmées.
+
+Ce qui passe réellement, relevé dans Metricool : 29/10, 8 publiées et aucun refus ; 30/10, 8 publiées
+puis le premier refus ; 31/10, 15 programmées et 0 publiée. Au-delà de 8, Instagram ne publie pas :
+programmer davantage ne produit pas une vidéo de plus, cela ne produit que des e-mails d'erreur, et les
+tentatives refusées semblent consommer du quota à leur tour (refus à 10:00 alors que la fenêtre de 24 h
+ne contenait que 2 publications). Descendre à 8 ne réduit donc pas ce qui sort, cela supprime le gâchis.
+Pour publier plus, c'est sur les autres réseaux que ça se joue (diffusion.py), pas en remontant ce nombre.
+
+Le Monteur reste le SEUL à programmer des Trial Reels : Codex livre des idées dans le doc Croissance.
+Un créneau par 180 minutes donne exactement 8 par jour, donc jamais plus de 8 sur une fenêtre de 24 h.
+
+HEURES CORRIGÉES LE 01/11/2026, d'après les chiffres d'audience de Metricool (getBestTimeToPostByNetwork,
+Instagram, semaine du 01/11, heure de Paris). L'ancienne grille d'une publication toutes les 3 heures à
+partir de minuit envoyait la moitié du quota dans le vide : à 3 h du matin l'audience vaut 42 à 73, à 19 h
+elle vaut 464 à 492, soit dix fois plus. Avec seulement 8 Trial Reels possibles par jour, chaque créneau
+de nuit était une vidéo perdue. Les 8 créneaux sont donc tous dans la plage où l'audience est forte.
+
+Grille : 8 créneaux par jour, heure de Paris, tous au-dessus de 350 d'audience :
+08:30 11:00 12:30 15:00 17:00 18:30 20:00 21:30
 
 Usage :
-  python3 outils/trial-reels/creneaux.py --existants /tmp/tr.txt --depuis 2026-10-29T17:30 --nombre 15
+  python3 outils/trial-reels/creneaux.py --existants /tmp/tr.txt --depuis 2026-10-29T17:30 --nombre 8
 /tmp/tr.txt : une ligne AAAA-MM-JJTHH:MM (heure de Paris) par Trial Reel déjà publiée ou en attente,
 brouillons exclus, sur les dernières 24 heures et tout ce qui est déjà programmé ensuite.
 Affiche les créneaux libres retenus, un par ligne, dans l'ordre, ou « AUCUN » s'il n'y en a pas.
@@ -20,8 +37,8 @@ Affiche les créneaux libres retenus, un par ligne, dans l'ordre, ou « AUCUN »
 import argparse
 import datetime as dt
 
-PLAFOND = 15                 # Trial Reels au plus sur 24 heures glissantes
-PAS = dt.timedelta(minutes=96)
+PLAFOND = 8                  # Trial Reels au plus sur 24 heures glissantes (mesuré : 8 passent, au-delà Instagram refuse)
+HEURES = [(8, 30), (11, 0), (12, 30), (15, 0), (17, 0), (18, 30), (20, 0), (21, 30)]
 ECART_MIN = dt.timedelta(minutes=45)
 JOUR = dt.timedelta(hours=24)
 
@@ -44,18 +61,20 @@ def charge_max(heures, t):
 
 
 def grille(depuis, jusqu_a):
-    t = depuis.replace(hour=0, minute=0)
-    while t < jusqu_a:
-        if t >= depuis:
-            yield t
-        t += PAS
+    jour = depuis.replace(hour=0, minute=0, second=0, microsecond=0)
+    while jour < jusqu_a:
+        for h, m in HEURES:
+            t = jour.replace(hour=h, minute=m)
+            if depuis <= t < jusqu_a:
+                yield t
+        jour += dt.timedelta(days=1)
 
 
 def main():
     a = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     a.add_argument('--existants', required=True)
     a.add_argument('--depuis', required=True, help='AAAA-MM-JJTHH:MM, heure de Paris : pas de créneau avant')
-    a.add_argument('--nombre', type=int, default=15, help='nombre de créneaux voulus')
+    a.add_argument('--nombre', type=int, default=8, help='nombre de créneaux voulus')
     a.add_argument('--horizon', type=int, default=48, help='heures à explorer après --depuis')
     args = a.parse_args()
     heures = lire(args.existants)

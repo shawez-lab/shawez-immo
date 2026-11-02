@@ -60,17 +60,17 @@
    "statut": "publie",
    "uuid": "1911933832923269929",
    "url": "https://www.instagram.com/reel/DfB9S2sDohn/",
-   "vues": 2783,
+   "vues": 2965,
    "duree_moy": 7.84,
-   "partages": 7,
+   "partages": 8,
    "enregistrements": 3,
    "commentaires": 6,
-   "mesure_le": "2026-10-30T06:50",
+   "mesure_le": "2026-11-02T06:52",
    "verdict": "gagnant",
    "diffusions": {
     "tiktok": {
      "uuid": "-6562320690249709591",
-     "url": "https://www.tiktok.com/@shawez_immobilier/video/7702133332435340565",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7702133332435340565",
      "date": "2026-10-29",
      "heure": "17:50"
     },
@@ -95,24 +95,34 @@
      "enregistrements": 5,
      "commentaires": 1,
      "mesure_le": "2026-10-30T06:50",
-     "verdict": "en_cours"
+     "verdict": "perdant"
     },
     "facebook": {
-     "vues": 0,
-     "duree_moy": 0.0,
+     "vues": 7,
+     "duree_moy": 1.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-10-30T06:50",
-     "verdict": "en_cours"
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
+    },
+    "youtube": {
+     "vues": 410,
+     "duree_moy": 3.0,
+     "partages": 0,
+     "enregistrements": 1,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
     }
    },
    "verdicts": {
     "instagram": "gagnant",
-    "tiktok": "en_cours",
-    "facebook": "en_cours"
+    "tiktok": "perdant",
+    "youtube": "perdant",
+    "facebook": "perdant"
    },
-   "vues_total": 2898
+   "vues_total": 3497
   },
   {
    "id": "TR-2810-483-v2",
@@ -127,17 +137,17 @@
    "statut": "publie",
    "uuid": "-5695006986779013571",
    "url": "https://www.instagram.com/reel/DfCEZmKjssj/",
-   "vues": 131,
-   "duree_moy": 2.92,
+   "vues": 132,
+   "duree_moy": 2.96,
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-10-30T06:50",
+   "mesure_le": "2026-11-02T06:52",
    "verdict": "perdant",
    "verdicts": {
     "instagram": "perdant"
    },
-   "vues_total": 131
+   "vues_total": 132
   },
   {
    "id": "TR-2810-461-v2",
@@ -152,17 +162,17 @@
    "statut": "publie",
    "uuid": "-163110159189848943",
    "url": "https://www.instagram.com/reel/DfCLH68lUg8/",
-   "vues": 322,
-   "duree_moy": 6.42,
+   "vues": 328,
+   "duree_moy": 6.5,
    "partages": 1,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-10-30T06:50",
+   "mesure_le": "2026-11-02T06:52",
    "verdict": "perdant",
    "verdicts": {
     "instagram": "perdant"
    },
-   "vues_total": 322
+   "vues_total": 328
   },
   {
    "id": "TR-2810-438-v2",
@@ -177,17 +187,17 @@
    "statut": "publie",
    "uuid": "3867017537591264781",
    "url": "https://www.instagram.com/reel/DfCSDAAjCup/",
-   "vues": 1244,
-   "duree_moy": 4.74,
+   "vues": 1252,
+   "duree_moy": 4.73,
    "partages": 1,
    "enregistrements": 1,
    "commentaires": 0,
-   "mesure_le": "2026-10-30T06:50",
+   "mesure_le": "2026-11-02T06:52",
    "verdict": "gagnant",
    "diffusions": {
     "tiktok": {
      "uuid": "-1378103029923033347",
-     "url": "https://www.tiktok.com/@shawez_immobilier/video/7702138374278171905",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7702138374278171905",
      "date": "2026-10-29",
      "heure": "18:10"
     },
@@ -212,24 +222,34 @@
      "enregistrements": 1,
      "commentaires": 0,
      "mesure_le": "2026-10-30T06:50",
-     "verdict": "en_cours"
+     "verdict": "perdant"
     },
     "facebook": {
-     "vues": 1,
-     "duree_moy": 0.0,
+     "vues": 7,
+     "duree_moy": 4.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-10-30T06:50",
-     "verdict": "en_cours"
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
+    },
+    "youtube": {
+     "vues": 963,
+     "duree_moy": 3.0,
+     "partages": 0,
+     "enregistrements": 5,
+     "commentaires": 1,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
     }
    },
    "verdicts": {
     "instagram": "gagnant",
-    "tiktok": "en_cours",
-    "facebook": "en_cours"
+    "tiktok": "perdant",
+    "youtube": "perdant",
+    "facebook": "perdant"
    },
-   "vues_total": 1340
+   "vues_total": 2317
   },
   {
    "id": "TR-2810-483-v3",
@@ -249,7 +269,7 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-10-30T06:50",
+   "mesure_le": "2026-11-02T06:52",
    "verdict": "perdant",
    "verdicts": {
     "instagram": "perdant"
@@ -269,17 +289,17 @@
    "statut": "publie",
    "uuid": "-7984960517169066251",
    "url": "https://www.instagram.com/reel/DfCcBUyjTUT/",
-   "vues": 3068,
+   "vues": 3070,
    "duree_moy": 10.97,
    "partages": 1,
    "enregistrements": 0,
    "commentaires": 4,
-   "mesure_le": "2026-10-30T06:50",
+   "mesure_le": "2026-11-02T06:52",
    "verdict": "gagnant",
    "diffusions": {
     "tiktok": {
      "uuid": "-8213754864690443752",
-     "url": "https://www.tiktok.com/@shawez_immobilier/video/7702143941889576212",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7702143941889576212",
      "date": "2026-10-29",
      "heure": "18:30"
     },
@@ -304,24 +324,34 @@
      "enregistrements": 1,
      "commentaires": 0,
      "mesure_le": "2026-10-30T06:50",
-     "verdict": "en_cours"
+     "verdict": "perdant"
     },
     "facebook": {
-     "vues": 0,
-     "duree_moy": 0.0,
+     "vues": 1,
+     "duree_moy": 1.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-10-30T06:50",
-     "verdict": "en_cours"
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
+    },
+    "youtube": {
+     "vues": 2,
+     "duree_moy": 1.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
     }
    },
    "verdicts": {
     "instagram": "gagnant",
-    "tiktok": "en_cours",
-    "facebook": "en_cours"
+    "tiktok": "perdant",
+    "youtube": "perdant",
+    "facebook": "perdant"
    },
-   "vues_total": 3184
+   "vues_total": 3189
   },
   {
    "id": "TR-2810-461-v3",
@@ -336,17 +366,17 @@
    "statut": "publie",
    "uuid": "8796291933884073685",
    "url": "https://www.instagram.com/reel/DfCf44DgFNG/",
-   "vues": 144,
-   "duree_moy": 3.98,
+   "vues": 145,
+   "duree_moy": 3.96,
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-10-30T06:50",
+   "mesure_le": "2026-11-02T06:52",
    "verdict": "perdant",
    "diffusions": {
     "tiktok": {
      "uuid": "3850015534146928986",
-     "url": "https://www.tiktok.com/@shawez_immobilier/video/7702148702508485906",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7702148702508485906",
      "date": "2026-10-29",
      "heure": "18:50"
     },
@@ -371,24 +401,34 @@
      "enregistrements": 5,
      "commentaires": 1,
      "mesure_le": "2026-10-30T06:50",
-     "verdict": "en_cours"
+     "verdict": "perdant"
     },
     "facebook": {
-     "vues": 0,
-     "duree_moy": 0.0,
+     "vues": 4,
+     "duree_moy": 1.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-10-30T06:50",
-     "verdict": "en_cours"
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
+    },
+    "youtube": {
+     "vues": 1016,
+     "duree_moy": 3.0,
+     "partages": 0,
+     "enregistrements": 2,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
     }
    },
    "verdicts": {
     "instagram": "perdant",
-    "tiktok": "en_cours",
-    "facebook": "en_cours"
+    "tiktok": "perdant",
+    "youtube": "perdant",
+    "facebook": "perdant"
    },
-   "vues_total": 238
+   "vues_total": 1259
   },
   {
    "id": "TR-2810-438-v3",
@@ -408,7 +448,7 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-10-30T06:50",
+   "mesure_le": "2026-11-02T06:52",
    "verdict": "perdant",
    "verdicts": {
     "instagram": "perdant"
@@ -433,7 +473,7 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-10-30T06:50",
+   "mesure_le": "2026-11-02T06:52",
    "verdict": "perdant",
    "verdicts": {
     "instagram": "perdant"
@@ -458,7 +498,7 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-10-30T06:50",
+   "mesure_le": "2026-11-02T06:52",
    "verdict": "perdant",
    "verdicts": {
     "instagram": "perdant"
@@ -478,17 +518,17 @@
    "statut": "publie",
    "uuid": "1575640400985999767",
    "url": "https://www.instagram.com/reel/DfC0nvWEsT_/",
-   "vues": 144,
-   "duree_moy": 3.86,
+   "vues": 149,
+   "duree_moy": 4.08,
    "partages": 0,
-   "enregistrements": 0,
+   "enregistrements": 1,
    "commentaires": 0,
-   "mesure_le": "2026-10-30T06:50",
+   "mesure_le": "2026-11-02T06:52",
    "verdict": "perdant",
    "diffusions": {
     "tiktok": {
      "uuid": "-2638503749886392970",
-     "url": "https://www.tiktok.com/@shawez_immobilier/video/7702153944847355156",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7702153944847355156",
      "date": "2026-10-29",
      "heure": "19:10"
     },
@@ -513,24 +553,34 @@
      "enregistrements": 3,
      "commentaires": 0,
      "mesure_le": "2026-10-30T06:50",
-     "verdict": "en_cours"
+     "verdict": "perdant"
     },
     "facebook": {
-     "vues": 0,
-     "duree_moy": 0.0,
+     "vues": 5,
+     "duree_moy": 2.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-10-30T06:50",
-     "verdict": "en_cours"
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
+    },
+    "youtube": {
+     "vues": 1077,
+     "duree_moy": 5.0,
+     "partages": 0,
+     "enregistrements": 4,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
     }
    },
    "verdicts": {
     "instagram": "perdant",
-    "tiktok": "en_cours",
-    "facebook": "en_cours"
+    "tiktok": "perdant",
+    "youtube": "perdant",
+    "facebook": "perdant"
    },
-   "vues_total": 207
+   "vues_total": 1294
   },
   {
    "id": "TR-2810-defi-c",
@@ -550,7 +600,7 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-10-30T06:50",
+   "mesure_le": "2026-11-02T06:52",
    "verdict": "perdant",
    "verdicts": {
     "instagram": "perdant"
@@ -570,17 +620,17 @@
    "statut": "publie",
    "uuid": "6255332966384095149",
    "url": "https://www.instagram.com/reel/DfC7drrDOFe/",
-   "vues": 3620,
-   "duree_moy": 6.36,
-   "partages": 24,
-   "enregistrements": 4,
-   "commentaires": 2,
-   "mesure_le": "2026-10-30T06:50",
+   "vues": 5180,
+   "duree_moy": 6.69,
+   "partages": 37,
+   "enregistrements": 6,
+   "commentaires": 8,
+   "mesure_le": "2026-11-02T06:52",
    "verdict": "gagnant",
    "diffusions": {
     "tiktok": {
      "uuid": "-4983719279739189388",
-     "url": "https://www.tiktok.com/@shawez_immobilier/video/7702160245799259444",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7702160245799259444",
      "date": "2026-10-29",
      "heure": "19:30"
     },
@@ -605,24 +655,34 @@
      "enregistrements": 0,
      "commentaires": 0,
      "mesure_le": "2026-10-30T06:50",
-     "verdict": "en_cours"
+     "verdict": "perdant"
     },
     "facebook": {
-     "vues": 0,
+     "vues": 1,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-10-30T06:50",
-     "verdict": "en_cours"
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
+    },
+    "youtube": {
+     "vues": 305,
+     "duree_moy": 2.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
     }
    },
    "verdicts": {
     "instagram": "gagnant",
-    "tiktok": "en_cours",
-    "facebook": "en_cours"
+    "tiktok": "perdant",
+    "youtube": "perdant",
+    "facebook": "perdant"
    },
-   "vues_total": 3632
+   "vues_total": 5498
   },
   {
    "id": "TR-2810-483-v5",
@@ -637,17 +697,17 @@
    "statut": "publie",
    "uuid": "-3004915190646683604",
    "url": "https://www.instagram.com/reel/DfDCJgJitOr/",
-   "vues": 334,
-   "duree_moy": 5.4,
+   "vues": 346,
+   "duree_moy": 6.24,
    "partages": 0,
    "enregistrements": 1,
-   "commentaires": 0,
-   "mesure_le": "2026-10-30T06:50",
+   "commentaires": 1,
+   "mesure_le": "2026-11-02T06:52",
    "verdict": "perdant",
    "verdicts": {
     "instagram": "perdant"
    },
-   "vues_total": 334
+   "vues_total": 346
   },
   {
    "id": "TR-2910-527-a",
@@ -665,7 +725,7 @@
    "diffusions": {
     "tiktok": {
      "uuid": "6784842438307300752",
-     "url": "https://www.tiktok.com/@shawez_immobilier/video/7702164094127803666",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7702164094127803666",
      "date": "2026-10-29",
      "heure": "19:50"
     },
@@ -682,12 +742,12 @@
      "heure": "23:50"
     }
    },
-   "vues": 1192,
-   "duree_moy": 4.89,
+   "vues": 1289,
+   "duree_moy": 4.93,
    "partages": 3,
-   "enregistrements": 2,
+   "enregistrements": 3,
    "commentaires": 0,
-   "mesure_le": "2026-10-30T06:50",
+   "mesure_le": "2026-11-02T06:52",
    "reseaux": {
     "tiktok": {
      "vues": 59,
@@ -696,24 +756,34 @@
      "enregistrements": 3,
      "commentaires": 1,
      "mesure_le": "2026-10-30T06:50",
-     "verdict": "en_cours"
+     "verdict": "perdant"
     },
     "facebook": {
-     "vues": 0,
-     "duree_moy": 0.0,
+     "vues": 4,
+     "duree_moy": 6.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-10-30T06:50",
-     "verdict": "en_cours"
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
+    },
+    "youtube": {
+     "vues": 1153,
+     "duree_moy": 4.0,
+     "partages": 0,
+     "enregistrements": 4,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
     }
    },
    "verdicts": {
     "instagram": "gagnant",
-    "tiktok": "en_cours",
-    "facebook": "en_cours"
+    "tiktok": "perdant",
+    "youtube": "perdant",
+    "facebook": "perdant"
    },
-   "vues_total": 1251,
+   "vues_total": 2505,
    "verdict": "gagnant"
   },
   {
@@ -732,29 +802,29 @@
    "diffusions": {
     "tiktok": {
      "uuid": "-4257173081808616703",
-     "url": "https://www.tiktok.com/@shawez_immobilier/video/7702169496236215570",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7702169496236215570",
      "date": "2026-10-29",
      "heure": "20:10"
     },
     "youtube": {
      "uuid": "-2281971393482374437",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/xIEHVv4TINA",
      "date": "2026-10-30",
      "heure": "00:50"
     },
     "facebook": {
      "uuid": "8534757249123500486",
-     "url": "",
+     "url": "https://facebook.com/reel/1766756371288480",
      "date": "2026-10-30",
      "heure": "00:50"
     }
    },
-   "vues": 155,
-   "duree_moy": 4.09,
+   "vues": 168,
+   "duree_moy": 4.17,
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-10-30T06:50",
+   "mesure_le": "2026-11-02T06:52",
    "reseaux": {
     "tiktok": {
      "vues": 77,
@@ -763,15 +833,35 @@
      "enregistrements": 4,
      "commentaires": 0,
      "mesure_le": "2026-10-30T06:50",
-     "verdict": "en_cours"
+     "verdict": "perdant"
+    },
+    "facebook": {
+     "vues": 2,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
+    },
+    "youtube": {
+     "vues": 1105,
+     "duree_moy": 4.0,
+     "partages": 0,
+     "enregistrements": 9,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
     }
    },
    "verdicts": {
-    "instagram": "en_cours",
-    "tiktok": "en_cours"
+    "instagram": "perdant",
+    "tiktok": "perdant",
+    "youtube": "perdant",
+    "facebook": "perdant"
    },
-   "vues_total": 232,
-   "verdict": "en_cours"
+   "vues_total": 1352,
+   "verdict": "perdant"
   },
   {
    "id": "TR-2910-525-b",
@@ -789,29 +879,29 @@
    "diffusions": {
     "tiktok": {
      "uuid": "-7082639150964847677",
-     "url": "https://www.tiktok.com/@shawez_immobilier/video/7702175098622545153",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7702175098622545153",
      "date": "2026-10-29",
      "heure": "20:30"
     },
     "youtube": {
      "uuid": "2110829716607028293",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/DFOWbNtp918",
      "date": "2026-10-30",
      "heure": "01:50"
     },
     "facebook": {
      "uuid": "-2054167706697121620",
-     "url": "",
+     "url": "https://facebook.com/reel/3320589734792517",
      "date": "2026-10-30",
      "heure": "13:05"
     }
    },
-   "vues": 1489,
-   "duree_moy": 6.17,
+   "vues": 1506,
+   "duree_moy": 6.15,
    "partages": 1,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-10-30T06:50",
+   "mesure_le": "2026-11-02T06:52",
    "reseaux": {
     "tiktok": {
      "vues": 129,
@@ -820,14 +910,34 @@
      "enregistrements": 3,
      "commentaires": 1,
      "mesure_le": "2026-10-30T06:50",
-     "verdict": "en_cours"
+     "verdict": "perdant"
+    },
+    "youtube": {
+     "vues": 1125,
+     "duree_moy": 8.0,
+     "partages": 0,
+     "enregistrements": 4,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
+    },
+    "facebook": {
+     "vues": 9,
+     "duree_moy": 20.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
     }
    },
    "verdicts": {
     "instagram": "gagnant",
-    "tiktok": "en_cours"
+    "tiktok": "perdant",
+    "youtube": "perdant",
+    "facebook": "perdant"
    },
-   "vues_total": 1618,
+   "vues_total": 2769,
    "verdict": "gagnant"
   },
   {
@@ -843,17 +953,17 @@
    "statut": "publie",
    "uuid": "8812887982876085541",
    "url": "https://www.instagram.com/reel/DfE9pbzDht_/",
-   "vues": 302,
-   "duree_moy": 4.74,
+   "vues": 355,
+   "duree_moy": 4.78,
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-10-30T06:50",
+   "mesure_le": "2026-11-02T06:52",
    "verdicts": {
-    "instagram": "en_cours"
+    "instagram": "perdant"
    },
-   "vues_total": 302,
-   "verdict": "en_cours"
+   "vues_total": 355,
+   "verdict": "perdant"
   },
   {
    "id": "TR-2910-525-c",
@@ -870,30 +980,30 @@
    "diffusions": {
     "tiktok": {
      "uuid": "5437722352751756006",
-     "url": "https://www.tiktok.com/@shawez_immobilier/video/7702179615493655826",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7702179615493655826",
      "date": "2026-10-29",
      "heure": "20:50"
     },
     "youtube": {
      "uuid": "-8230998530323035974",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/cV151Wr6Yq4",
      "date": "2026-10-30",
      "heure": "02:50"
     },
     "facebook": {
      "uuid": "1780287766932899287",
-     "url": "",
+     "url": "https://facebook.com/reel/4724117334488210",
      "date": "2026-10-30",
      "heure": "17:50"
     }
    },
    "url": "https://www.instagram.com/reel/DfFHqKGCBsX/",
-   "vues": 166,
-   "duree_moy": 3.23,
+   "vues": 179,
+   "duree_moy": 3.25,
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-10-30T06:50",
+   "mesure_le": "2026-11-02T06:52",
    "reseaux": {
     "tiktok": {
      "vues": 50,
@@ -902,15 +1012,35 @@
      "enregistrements": 0,
      "commentaires": 0,
      "mesure_le": "2026-10-30T06:50",
-     "verdict": "en_cours"
+     "verdict": "perdant"
+    },
+    "youtube": {
+     "vues": 732,
+     "duree_moy": 4.0,
+     "partages": 0,
+     "enregistrements": 4,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
+    },
+    "facebook": {
+     "vues": 7,
+     "duree_moy": 1.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
     }
    },
    "verdicts": {
-    "instagram": "en_cours",
-    "tiktok": "en_cours"
+    "instagram": "perdant",
+    "tiktok": "perdant",
+    "youtube": "perdant",
+    "facebook": "perdant"
    },
-   "vues_total": 216,
-   "verdict": "en_cours"
+   "vues_total": 968,
+   "verdict": "perdant"
   },
   {
    "id": "TR-3010-525-a",
@@ -927,11 +1057,52 @@
    "diffusions": {
     "tiktok": {
      "uuid": "-7757100384996208922",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7702535179226664199",
      "date": "2026-10-30",
      "heure": "19:50"
+    },
+    "threads": {
+     "uuid": "-1634844984833325616",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "22:25"
+    },
+    "youtube": {
+     "uuid": "4790614202138708145",
+     "url": "https://www.youtube.com/shorts/9K-VoOsh6f8",
+     "date": "2026-10-31",
+     "heure": "16:10"
+    },
+    "linkedin": {
+     "uuid": "-1851240169760470663",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "23:10"
+    },
+    "facebook": {
+     "uuid": "4112876079778647088",
+     "url": "https://facebook.com/reel/2361480924662279",
+     "date": "2026-11-02",
+     "heure": "00:50"
     }
-   }
+   },
+   "reseaux": {
+    "facebook": {
+     "vues": 0,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "en_cours"
+    }
+   },
+   "verdicts": {
+    "facebook": "en_cours"
+   },
+   "vues_total": 0,
+   "vues": 0,
+   "verdict": "en_cours"
   },
   {
    "id": "TR-3110-438-v5",
@@ -944,7 +1115,85 @@
    "legende": "Ce château est à vendre, près de Beaune 👀",
    "source": "monteur",
    "statut": "publie",
-   "uuid": "5506004638345936924"
+   "uuid": "5506004638345936924",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "7130301593459904323",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7702937253911285014",
+     "date": "2026-10-31",
+     "heure": "21:50"
+    },
+    "youtube": {
+     "uuid": "5723438664649098646",
+     "url": "https://www.youtube.com/shorts/Ve0hXAOXBIY",
+     "date": "2026-11-01",
+     "heure": "01:50"
+    },
+    "facebook": {
+     "uuid": "7597076070183682801",
+     "url": "https://facebook.com/reel/1590147055747832",
+     "date": "2026-11-01",
+     "heure": "11:05"
+    },
+    "threads": {
+     "uuid": "-5246011902363415536",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "00:25"
+    },
+    "pinterest": {
+     "uuid": "-4064937079422301914",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "13:40"
+    },
+    "bluesky": {
+     "uuid": "446107126924527370",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "13:40"
+    },
+    "linkedin": {
+     "uuid": "-2883463899589554879",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "11:05"
+    },
+    "gmb": {
+     "uuid": "-261951513473038648",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "09:05"
+    }
+   },
+   "reseaux": {
+    "tiktok": {
+     "vues": 1073,
+     "duree_moy": 0.0,
+     "partages": 3,
+     "enregistrements": 21,
+     "commentaires": 1,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "gagnant"
+    },
+    "facebook": {
+     "vues": 13,
+     "duree_moy": 125.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "en_cours"
+    }
+   },
+   "verdicts": {
+    "instagram": "perdant",
+    "tiktok": "gagnant",
+    "facebook": "en_cours"
+   },
+   "vues_total": 1086,
+   "vues": 0,
+   "verdict": "gagnant"
   },
   {
    "id": "TR-2910-438-v1",
@@ -961,30 +1210,42 @@
    "diffusions": {
     "tiktok": {
      "uuid": "-4260361849069943374",
-     "url": "https://www.tiktok.com/@shawez_immobilier/video/7702184785212443925",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7702184785212443925",
      "date": "2026-10-29",
      "heure": "21:10"
     },
     "youtube": {
      "uuid": "-2983705724007854944",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/xa1_V71_1cA",
      "date": "2026-10-30",
      "heure": "17:50"
     },
     "facebook": {
      "uuid": "-8492419634848970011",
-     "url": "",
+     "url": "https://facebook.com/reel/1142204294987069",
      "date": "2026-10-30",
      "heure": "18:50"
+    },
+    "threads": {
+     "uuid": "-7267966023159102820",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "16:10"
+    },
+    "linkedin": {
+     "uuid": "-4658307936393869461",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "18:40"
     }
    },
    "url": "https://www.instagram.com/reel/DfFn43PkXDO/",
-   "vues": 449,
-   "duree_moy": 4.87,
-   "partages": 1,
-   "enregistrements": 0,
+   "vues": 1004,
+   "duree_moy": 5.57,
+   "partages": 2,
+   "enregistrements": 2,
    "commentaires": 0,
-   "mesure_le": "2026-10-30T06:50",
+   "mesure_le": "2026-11-02T06:52",
    "reseaux": {
     "tiktok": {
      "vues": 20,
@@ -993,15 +1254,25 @@
      "enregistrements": 2,
      "commentaires": 0,
      "mesure_le": "2026-10-30T06:50",
-     "verdict": "en_cours"
+     "verdict": "perdant"
+    },
+    "facebook": {
+     "vues": 7,
+     "duree_moy": 7.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
     }
    },
    "verdicts": {
-    "instagram": "en_cours",
-    "tiktok": "en_cours"
+    "instagram": "gagnant",
+    "tiktok": "perdant",
+    "facebook": "perdant"
    },
-   "vues_total": 469,
-   "verdict": "en_cours"
+   "vues_total": 1031,
+   "verdict": "gagnant"
   },
   {
    "id": "TR-2910-438-v2",
@@ -1018,30 +1289,42 @@
    "diffusions": {
     "tiktok": {
      "uuid": "-7337561038549073866",
-     "url": "https://www.tiktok.com/@shawez_immobilier/video/7702190497585974549",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7702190497585974549",
      "date": "2026-10-29",
      "heure": "21:30"
     },
     "youtube": {
      "uuid": "941304084758808429",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/d-09hYWTMr8",
      "date": "2026-10-30",
      "heure": "18:50"
     },
     "facebook": {
      "uuid": "-864355597035156839",
-     "url": "",
+     "url": "https://facebook.com/reel/1273338568310933",
      "date": "2026-10-30",
      "heure": "19:50"
+    },
+    "threads": {
+     "uuid": "3288152268904352987",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "16:40"
+    },
+    "linkedin": {
+     "uuid": "-5007402233100417241",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "20:10"
     }
    },
    "url": "https://www.instagram.com/reel/DfFy3N9jUj5/",
-   "vues": 613,
-   "duree_moy": 4.83,
-   "partages": 2,
-   "enregistrements": 1,
-   "commentaires": 1,
-   "mesure_le": "2026-10-30T06:50",
+   "vues": 2335,
+   "duree_moy": 6.46,
+   "partages": 23,
+   "enregistrements": 6,
+   "commentaires": 2,
+   "mesure_le": "2026-11-02T06:52",
    "reseaux": {
     "tiktok": {
      "vues": 22,
@@ -1050,15 +1333,25 @@
      "enregistrements": 0,
      "commentaires": 0,
      "mesure_le": "2026-10-30T06:50",
-     "verdict": "en_cours"
+     "verdict": "perdant"
+    },
+    "facebook": {
+     "vues": 6,
+     "duree_moy": 2.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
     }
    },
    "verdicts": {
-    "instagram": "en_cours",
-    "tiktok": "en_cours"
+    "instagram": "gagnant",
+    "tiktok": "perdant",
+    "facebook": "perdant"
    },
-   "vues_total": 635,
-   "verdict": "en_cours"
+   "vues_total": 2363,
+   "verdict": "gagnant"
   },
   {
    "id": "TR-2910-438-v3",
@@ -1075,30 +1368,42 @@
    "diffusions": {
     "tiktok": {
      "uuid": "-3881939580977656464",
-     "url": "https://www.tiktok.com/@shawez_immobilier/video/7702206612538281224",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7702206612538281224",
      "date": "2026-10-29",
      "heure": "22:35"
     },
     "youtube": {
      "uuid": "-3442585348334465583",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/pQNQjrcQdkg",
      "date": "2026-10-30",
      "heure": "19:50"
     },
     "facebook": {
      "uuid": "6555258164909391978",
-     "url": "",
+     "url": "https://facebook.com/reel/1656801159154735",
      "date": "2026-10-30",
      "heure": "20:50"
+    },
+    "threads": {
+     "uuid": "7998057581961104827",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "17:55"
+    },
+    "linkedin": {
+     "uuid": "-9009308706900589442",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "21:40"
     }
    },
    "url": "https://www.instagram.com/reel/DfF91n7jRKq/",
-   "vues": 127,
-   "duree_moy": 3.57,
+   "vues": 152,
+   "duree_moy": 3.43,
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-10-30T06:50",
+   "mesure_le": "2026-11-02T06:52",
    "reseaux": {
     "tiktok": {
      "vues": 18,
@@ -1107,15 +1412,25 @@
      "enregistrements": 0,
      "commentaires": 0,
      "mesure_le": "2026-10-30T06:50",
-     "verdict": "en_cours"
+     "verdict": "perdant"
+    },
+    "facebook": {
+     "vues": 5,
+     "duree_moy": 2.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
     }
    },
    "verdicts": {
-    "instagram": "en_cours",
-    "tiktok": "en_cours"
+    "instagram": "perdant",
+    "tiktok": "perdant",
+    "facebook": "perdant"
    },
-   "vues_total": 145,
-   "verdict": "en_cours"
+   "vues_total": 175,
+   "verdict": "perdant"
   },
   {
    "id": "TR-2910-438-v4",
@@ -1130,35 +1445,59 @@
    "uuid": "567512605919364139",
    "statut": "publie",
    "url": "https://www.instagram.com/reel/DfGJJAMjD50/",
-   "vues": 136,
-   "duree_moy": 3.1,
+   "vues": 195,
+   "duree_moy": 3.3,
    "partages": 2,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-10-30T06:50",
+   "mesure_le": "2026-11-02T06:52",
    "verdicts": {
-    "instagram": "en_cours"
+    "instagram": "perdant",
+    "facebook": "perdant"
    },
-   "vues_total": 136,
-   "verdict": "en_cours",
+   "vues_total": 199,
+   "verdict": "perdant",
    "diffusions": {
     "tiktok": {
      "uuid": "-77644753750965499",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7702371554134396180",
      "date": "2026-10-30",
      "heure": "09:15"
     },
     "youtube": {
      "uuid": "2476186455693675746",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/Er3V9OXSh1A",
      "date": "2026-10-30",
      "heure": "20:50"
     },
     "facebook": {
      "uuid": "8957364421100457131",
-     "url": "",
+     "url": "https://facebook.com/reel/1703402457983789",
      "date": "2026-10-30",
      "heure": "21:50"
+    },
+    "threads": {
+     "uuid": "5456557083036896892",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "18:25"
+    },
+    "linkedin": {
+     "uuid": "-9175517117877238279",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "23:10"
+    }
+   },
+   "reseaux": {
+    "facebook": {
+     "vues": 4,
+     "duree_moy": 1.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
     }
    }
   },
@@ -1177,21 +1516,57 @@
    "diffusions": {
     "tiktok": {
      "uuid": "-317117970789874589",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7702376701052947732",
      "date": "2026-10-30",
      "heure": "09:35"
     },
     "youtube": {
      "uuid": "-4534070685234475145",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/mLZ9n8_mahc",
      "date": "2026-10-30",
      "heure": "21:50"
     },
     "facebook": {
      "uuid": "3710819781552326259",
-     "url": "",
+     "url": "https://facebook.com/reel/1387303124473833",
      "date": "2026-10-30",
      "heure": "22:50"
+    },
+    "threads": {
+     "uuid": "7954149388438946841",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "18:55"
+    },
+    "linkedin": {
+     "uuid": "-6629386710266067781",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "00:40"
+    }
+   },
+   "url": "https://www.instagram.com/reel/DfGT0eikkHg/",
+   "vues": 116,
+   "duree_moy": 2.63,
+   "partages": 0,
+   "enregistrements": 0,
+   "commentaires": 0,
+   "mesure_le": "2026-11-02T06:52",
+   "verdicts": {
+    "instagram": "perdant",
+    "facebook": "perdant"
+   },
+   "vues_total": 125,
+   "verdict": "perdant",
+   "reseaux": {
+    "facebook": {
+     "vues": 9,
+     "duree_moy": 1.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
     }
    }
   },
@@ -1210,21 +1585,57 @@
    "diffusions": {
     "tiktok": {
      "uuid": "-8898967633136563038",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7702504408365403444",
      "date": "2026-10-30",
      "heure": "17:50"
     },
     "youtube": {
      "uuid": "2941283993332698926",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/B2vXtO_-yyk",
      "date": "2026-10-30",
      "heure": "22:50"
     },
     "facebook": {
      "uuid": "-4190433860498272823",
-     "url": "",
+     "url": "https://facebook.com/reel/29466606542945233",
      "date": "2026-10-30",
      "heure": "23:50"
+    },
+    "threads": {
+     "uuid": "-4099870403218750862",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "19:25"
+    },
+    "linkedin": {
+     "uuid": "476560907543202750",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "02:10"
+    }
+   },
+   "url": "https://www.instagram.com/reel/DfGeydKlb9K/",
+   "vues": 145,
+   "duree_moy": 3.43,
+   "partages": 0,
+   "enregistrements": 1,
+   "commentaires": 0,
+   "mesure_le": "2026-11-02T06:52",
+   "verdicts": {
+    "instagram": "perdant",
+    "facebook": "perdant"
+   },
+   "vues_total": 148,
+   "verdict": "perdant",
+   "reseaux": {
+    "facebook": {
+     "vues": 3,
+     "duree_moy": 8.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
     }
    }
   },
@@ -1243,21 +1654,57 @@
    "diffusions": {
     "tiktok": {
      "uuid": "1604037780783251954",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7702509566344367412",
      "date": "2026-10-30",
      "heure": "18:10"
     },
     "youtube": {
      "uuid": "414674150936561360",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/paKT8rkuSKM",
      "date": "2026-10-30",
      "heure": "23:50"
     },
     "facebook": {
      "uuid": "234085691557889734",
-     "url": "",
+     "url": "https://facebook.com/reel/26804186865945426",
      "date": "2026-10-31",
      "heure": "00:50"
+    },
+    "threads": {
+     "uuid": "-6696261501629480458",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "19:55"
+    },
+    "linkedin": {
+     "uuid": "899651998929407276",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "11:05"
+    }
+   },
+   "url": "https://www.instagram.com/reel/DfGp2iPjQSP/",
+   "vues": 220,
+   "duree_moy": 3.99,
+   "partages": 0,
+   "enregistrements": 0,
+   "commentaires": 0,
+   "mesure_le": "2026-11-02T06:52",
+   "verdicts": {
+    "instagram": "perdant",
+    "facebook": "perdant"
+   },
+   "vues_total": 223,
+   "verdict": "perdant",
+   "reseaux": {
+    "facebook": {
+     "vues": 3,
+     "duree_moy": 3.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
     }
    }
   },
@@ -1276,21 +1723,57 @@
    "diffusions": {
     "tiktok": {
      "uuid": "8808728581958750181",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7702515052686986502",
      "date": "2026-10-30",
      "heure": "18:30"
     },
     "youtube": {
      "uuid": "-2293200260545821629",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/6hreSfk2tGw",
      "date": "2026-10-31",
      "heure": "00:50"
     },
     "facebook": {
      "uuid": "-8462810462067080987",
-     "url": "",
+     "url": "https://facebook.com/reel/1603638917503463",
      "date": "2026-10-31",
      "heure": "13:05"
+    },
+    "threads": {
+     "uuid": "-8434817625158106907",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "20:25"
+    },
+    "linkedin": {
+     "uuid": "-7140243818330373089",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "17:10"
+    }
+   },
+   "url": "https://www.instagram.com/reel/DfG0wuECflT/",
+   "vues": 2933,
+   "duree_moy": 6.09,
+   "partages": 25,
+   "enregistrements": 2,
+   "commentaires": 0,
+   "mesure_le": "2026-11-02T06:52",
+   "verdicts": {
+    "instagram": "gagnant",
+    "facebook": "perdant"
+   },
+   "vues_total": 2945,
+   "verdict": "gagnant",
+   "reseaux": {
+    "facebook": {
+     "vues": 12,
+     "duree_moy": 4.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
     }
    }
   },
@@ -1309,21 +1792,57 @@
    "diffusions": {
     "tiktok": {
      "uuid": "-3852791488884748314",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7702519905257573652",
      "date": "2026-10-30",
      "heure": "18:50"
     },
     "youtube": {
      "uuid": "1757997404951038026",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/zrbAJXM5t_0",
      "date": "2026-10-31",
      "heure": "01:50"
     },
     "facebook": {
      "uuid": "-5811305558207738314",
-     "url": "",
+     "url": "https://facebook.com/reel/29961697146764592",
      "date": "2026-10-31",
      "heure": "17:50"
+    },
+    "threads": {
+     "uuid": "-8288701786863221229",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "20:55"
+    },
+    "linkedin": {
+     "uuid": "-3848500054325050599",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "18:40"
+    }
+   },
+   "url": "https://www.instagram.com/reel/DfHAAR4jzLn/",
+   "vues": 2101,
+   "duree_moy": 7.11,
+   "partages": 14,
+   "enregistrements": 1,
+   "commentaires": 4,
+   "mesure_le": "2026-11-02T06:52",
+   "verdicts": {
+    "instagram": "gagnant",
+    "facebook": "perdant"
+   },
+   "vues_total": 2117,
+   "verdict": "gagnant",
+   "reseaux": {
+    "facebook": {
+     "vues": 16,
+     "duree_moy": 3.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
     }
    }
   },
@@ -1342,21 +1861,57 @@
    "diffusions": {
     "tiktok": {
      "uuid": "4757384116007684293",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7702525084757511444",
      "date": "2026-10-30",
      "heure": "19:10"
     },
     "youtube": {
      "uuid": "5061979450544636766",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/Gd8RPG0jKFA",
      "date": "2026-10-31",
      "heure": "02:50"
     },
     "facebook": {
      "uuid": "684987826694213059",
-     "url": "",
+     "url": "https://facebook.com/reel/1689294136246417",
      "date": "2026-10-31",
      "heure": "18:50"
+    },
+    "threads": {
+     "uuid": "4540298629009917219",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "21:25"
+    },
+    "linkedin": {
+     "uuid": "5875178977977057904",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "20:10"
+    }
+   },
+   "url": "https://www.instagram.com/reel/DfHKu7sDtFN/",
+   "vues": 310,
+   "duree_moy": 4.81,
+   "partages": 1,
+   "enregistrements": 1,
+   "commentaires": 0,
+   "mesure_le": "2026-11-02T06:52",
+   "verdicts": {
+    "instagram": "perdant",
+    "facebook": "perdant"
+   },
+   "vues_total": 316,
+   "verdict": "perdant",
+   "reseaux": {
+    "facebook": {
+     "vues": 6,
+     "duree_moy": 6.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
     }
    }
   },
@@ -1381,22 +1936,58 @@
     },
     "youtube": {
      "uuid": "6710631395234697142",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/b2XaLzemiaI",
      "date": "2026-10-31",
      "heure": "17:50"
     },
     "facebook": {
      "uuid": "2576384569259019383",
-     "url": "",
+     "url": "https://facebook.com/reel/938712909117087",
      "date": "2026-10-31",
      "heure": "19:50"
+    },
+    "threads": {
+     "uuid": "-4549140924057170944",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "21:55"
+    },
+    "linkedin": {
+     "uuid": "1163731593768814231",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "21:40"
+    }
+   },
+   "url": "https://www.instagram.com/reel/DfHVyX6kQ0y/",
+   "vues": 469,
+   "duree_moy": 4.38,
+   "partages": 2,
+   "enregistrements": 0,
+   "commentaires": 2,
+   "mesure_le": "2026-11-02T06:52",
+   "verdicts": {
+    "instagram": "moyen",
+    "facebook": "perdant"
+   },
+   "vues_total": 471,
+   "verdict": "moyen",
+   "reseaux": {
+    "facebook": {
+     "vues": 2,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
     }
    }
   },
   {
    "id": "TR-2910-438-v12",
-   "date": "2026-10-30",
-   "heure": "12:48",
+   "date": "2026-11-01",
+   "heure": "07:12",
    "ref": "438",
    "mot": "CHATEAU",
    "style": "lieu_exception",
@@ -1408,11 +1999,75 @@
    "diffusions": {
     "tiktok": {
      "uuid": "7321322869051051552",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7702540508484095254",
      "date": "2026-10-30",
      "heure": "20:10"
+    },
+    "threads": {
+     "uuid": "1222775713621626364",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "17:25"
+    },
+    "youtube": {
+     "uuid": "-3970219969505967946",
+     "url": "https://www.youtube.com/shorts/wtj1K3mEdJk",
+     "date": "2026-11-01",
+     "heure": "08:40"
+    },
+    "pinterest": {
+     "uuid": "8236865238479619195",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "17:10"
+    },
+    "bluesky": {
+     "uuid": "-8047696122215903635",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "17:10"
+    },
+    "linkedin": {
+     "uuid": "3781487871134418966",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "14:05"
+    },
+    "facebook": {
+     "uuid": "6844008640444059070",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "13:05"
     }
-   }
+   },
+   "reseaux": {
+    "tiktok": {
+     "vues": 967,
+     "duree_moy": 0.0,
+     "partages": 2,
+     "enregistrements": 15,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "moyen"
+    }
+   },
+   "verdicts": {
+    "instagram": "gagnant",
+    "tiktok": "moyen"
+   },
+   "vues_total": 2768,
+   "vues": 1801,
+   "verdict": "gagnant",
+   "tentatives": [
+    "2026-10-30 12:48 refusée (quota Instagram)"
+   ],
+   "rattrapage": "2026-10-31 11h35 monteur",
+   "url": "https://www.instagram.com/reel/DfMD101Dm0f/",
+   "duree_moy": 5.21,
+   "partages": 5,
+   "enregistrements": 2,
+   "commentaires": 11,
+   "mesure_le": "2026-11-02T06:52"
   },
   {
    "id": "TR-2910-438-v13",
@@ -1429,16 +2084,76 @@
    "diffusions": {
     "tiktok": {
      "uuid": "2123843324576483531",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7702546094223314198",
      "date": "2026-10-30",
      "heure": "20:30"
+    },
+    "threads": {
+     "uuid": "2092065877952579772",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "22:55"
+    },
+    "youtube": {
+     "uuid": "8347293003507844716",
+     "url": "https://www.youtube.com/shorts/RCqzyStLavs",
+     "date": "2026-10-31",
+     "heure": "16:40"
+    },
+    "linkedin": {
+     "uuid": "-5400411548071801362",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "00:40"
+    },
+    "facebook": {
+     "uuid": "4054641084582348696",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "13:05"
+    },
+    "pinterest": {
+     "uuid": "-4191735154956678261",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "12:10"
+    },
+    "bluesky": {
+     "uuid": "-3366950842148042574",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "12:10"
+    },
+    "gmb": {
+     "uuid": "4283087373872089930",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "09:05"
     }
-   }
+   },
+   "reseaux": {
+    "tiktok": {
+     "vues": 853,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 11,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "moyen"
+    }
+   },
+   "verdicts": {
+    "instagram": "perdant",
+    "tiktok": "moyen"
+   },
+   "vues_total": 853,
+   "vues": 0,
+   "verdict": "moyen"
   },
   {
    "id": "TR-2910-438-v14",
-   "date": "2026-10-30",
-   "heure": "16:00",
+   "date": "2026-10-31",
+   "heure": "21:36",
    "ref": "438",
    "mot": "CHATEAU",
    "style": "chiffre_choc",
@@ -1450,17 +2165,63 @@
    "diffusions": {
     "tiktok": {
      "uuid": "7793675816800634123",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7702550745144495382",
      "date": "2026-10-30",
      "heure": "20:50"
     },
     "youtube": {
      "uuid": "4842615172333257321",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/L_gPowfKGNA",
      "date": "2026-10-31",
      "heure": "21:50"
+    },
+    "threads": {
+     "uuid": "4690148759545921886",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "01:55"
+    },
+    "pinterest": {
+     "uuid": "-7944043487733003611",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "16:10"
+    },
+    "bluesky": {
+     "uuid": "-2176155812592267899",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "16:10"
     }
-   }
+   },
+   "reseaux": {
+    "tiktok": {
+     "vues": 992,
+     "duree_moy": 0.0,
+     "partages": 3,
+     "enregistrements": 13,
+     "commentaires": 2,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "moyen"
+    }
+   },
+   "verdicts": {
+    "instagram": "perdant",
+    "tiktok": "moyen"
+   },
+   "vues_total": 1361,
+   "vues": 369,
+   "verdict": "moyen",
+   "tentatives": [
+    "2026-10-30 16:00 refusée (quota Instagram)"
+   ],
+   "rattrapage": "2026-10-31 11h35 monteur",
+   "url": "https://www.instagram.com/reel/DfLB75TguEz/",
+   "duree_moy": 3.79,
+   "partages": 1,
+   "enregistrements": 0,
+   "commentaires": 0,
+   "mesure_le": "2026-11-02T06:52"
   },
   {
    "id": "TR-2910-438-v15",
@@ -1477,22 +2238,92 @@
    "diffusions": {
     "tiktok": {
      "uuid": "-3839667039306038886",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7702555885217893654",
      "date": "2026-10-30",
      "heure": "21:10"
     },
     "youtube": {
      "uuid": "7027034634565992968",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/qR4osQyi4rI",
      "date": "2026-10-31",
      "heure": "22:50"
+    },
+    "facebook": {
+     "uuid": "4242447265310854649",
+     "url": "https://facebook.com/reel/1656508556485843",
+     "date": "2026-10-31",
+     "heure": "20:50"
+    },
+    "threads": {
+     "uuid": "940824658625054536",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "23:25"
+    },
+    "linkedin": {
+     "uuid": "-8186215069639553493",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "02:10"
+    },
+    "pinterest": {
+     "uuid": "-7634342165888676845",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "12:40"
+    },
+    "bluesky": {
+     "uuid": "2232946470475615146",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "12:40"
+    },
+    "gmb": {
+     "uuid": "51779005911221208",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "16:20"
     }
-   }
+   },
+   "url": "https://www.instagram.com/reel/DfIMyCfEr6a/",
+   "vues": 593,
+   "duree_moy": 4.75,
+   "partages": 1,
+   "enregistrements": 0,
+   "commentaires": 2,
+   "mesure_le": "2026-11-02T06:52",
+   "reseaux": {
+    "tiktok": {
+     "vues": 1040,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 23,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "gagnant"
+    },
+    "facebook": {
+     "vues": 2,
+     "duree_moy": 1.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
+    }
+   },
+   "verdicts": {
+    "instagram": "moyen",
+    "tiktok": "gagnant",
+    "facebook": "perdant"
+   },
+   "vues_total": 1635,
+   "verdict": "gagnant"
   },
   {
    "id": "TR-3010-461-v1",
-   "date": "2026-10-30",
-   "heure": "20:48",
+   "date": "2026-11-01",
+   "heure": "21:36",
    "ref": "461",
    "mot": "MARRAKECH",
    "style": "lieu_exception",
@@ -1504,22 +2335,63 @@
    "diffusions": {
     "tiktok": {
      "uuid": "-3465484903954824684",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7702561145701305622",
      "date": "2026-10-30",
      "heure": "21:30"
     },
     "youtube": {
      "uuid": "-4019888482564420199",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/2a1dqFRXSfY",
      "date": "2026-10-31",
      "heure": "23:50"
+    },
+    "threads": {
+     "uuid": "1149287082135211069",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "09:00"
+    },
+    "pinterest": {
+     "uuid": "7806108691710299334",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "17:10"
+    },
+    "bluesky": {
+     "uuid": "-621797071533028091",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "17:10"
     }
-   }
+   },
+   "reseaux": {
+    "tiktok": {
+     "vues": 1071,
+     "duree_moy": 0.0,
+     "partages": 2,
+     "enregistrements": 7,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "gagnant"
+    }
+   },
+   "verdicts": {
+    "instagram": "en_cours",
+    "tiktok": "gagnant"
+   },
+   "vues_total": 1071,
+   "vues": 0,
+   "verdict": "gagnant",
+   "tentatives": [
+    "2026-10-30 20:48 refusée (quota Instagram)"
+   ],
+   "rattrapage": "2026-10-31 11h35 monteur",
+   "url": "https://www.instagram.com/reel/DfOZrk-Ezu6/"
   },
   {
    "id": "TR-3010-438-v1",
-   "date": "2026-10-30",
-   "heure": "22:24",
+   "date": "2026-11-02",
+   "heure": "00:00",
    "ref": "438",
    "mot": "CHATEAU",
    "style": "chiffre_choc",
@@ -1527,12 +2399,88 @@
    "legende": "15 hectares, 7 chambres et un étang autour d’un château du XVIIIe, à 15 minutes de Beaune 🏰\n\nCommente CHÂTEAU et je t’en",
    "source": "monteur",
    "uuid": "3970699118410286073",
-   "statut": "publie"
+   "statut": "publie",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "8020415788269978749",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7702890915215559958",
+     "date": "2026-10-31",
+     "heure": "18:50"
+    },
+    "youtube": {
+     "uuid": "-4858081730859351447",
+     "url": "https://www.youtube.com/shorts/WsST_xgus0M",
+     "date": "2026-10-31",
+     "heure": "18:50"
+    },
+    "facebook": {
+     "uuid": "7795890851385722419",
+     "url": "https://facebook.com/reel/3013972935604497",
+     "date": "2026-10-31",
+     "heure": "21:50"
+    },
+    "threads": {
+     "uuid": "-4371900084820163630",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "09:30"
+    },
+    "pinterest": {
+     "uuid": "6146597953821820934",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "17:40"
+    },
+    "bluesky": {
+     "uuid": "-7494799976465150241",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "17:40"
+    }
+   },
+   "tentatives": [
+    "2026-10-30 22:24 refusée (quota Instagram)"
+   ],
+   "rattrapage": "2026-10-31 11h35 monteur",
+   "reseaux": {
+    "tiktok": {
+     "vues": 932,
+     "duree_moy": 0.0,
+     "partages": 1,
+     "enregistrements": 15,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "moyen"
+    },
+    "facebook": {
+     "vues": 9,
+     "duree_moy": 5.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
+    }
+   },
+   "url": "https://www.instagram.com/reel/DfN3fwBik1P/",
+   "vues": 109,
+   "duree_moy": 3.84,
+   "partages": 0,
+   "enregistrements": 0,
+   "commentaires": 0,
+   "mesure_le": "2026-11-02T06:52",
+   "verdicts": {
+    "instagram": "en_cours",
+    "tiktok": "moyen",
+    "facebook": "perdant"
+   },
+   "vues_total": 1050,
+   "verdict": "moyen"
   },
   {
    "id": "TR-3010-461-v2",
-   "date": "2026-10-31",
-   "heure": "00:00",
+   "date": "2026-11-01",
+   "heure": "04:48",
    "ref": "461",
    "mot": "MARRAKECH",
    "style": "chiffre_choc",
@@ -1540,12 +2488,94 @@
    "legende": "129 000 € pour ce studio d’architecte inspiration Marrakech, à deux pas du Parc Darcy à Dijon 🫖\n\nCommente MARRAKECH et j",
    "source": "monteur",
    "uuid": "1021347342082130248",
-   "statut": "publie"
+   "statut": "publie",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "-6463174896171858106",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7702902492719353110",
+     "date": "2026-10-31",
+     "heure": "19:35"
+    },
+    "youtube": {
+     "uuid": "-2846240790850026717",
+     "url": "https://www.youtube.com/shorts/jrMOs6PyMKk",
+     "date": "2026-10-31",
+     "heure": "19:50"
+    },
+    "facebook": {
+     "uuid": "-382322912618592633",
+     "url": "https://facebook.com/reel/1433840378242164",
+     "date": "2026-10-31",
+     "heure": "22:50"
+    },
+    "threads": {
+     "uuid": "7860531121166175177",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "16:40"
+    },
+    "pinterest": {
+     "uuid": "9194946603242832349",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "16:40"
+    },
+    "bluesky": {
+     "uuid": "9042179692003934913",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "16:40"
+    },
+    "linkedin": {
+     "uuid": "7692205400289526158",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "12:35"
+    }
+   },
+   "tentatives": [
+    "2026-10-31 00:00 refusée (quota Instagram)"
+   ],
+   "rattrapage": "2026-10-31 11h35 monteur",
+   "reseaux": {
+    "tiktok": {
+     "vues": 52,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 1,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
+    },
+    "facebook": {
+     "vues": 5,
+     "duree_moy": 1.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
+    }
+   },
+   "verdicts": {
+    "instagram": "perdant",
+    "tiktok": "perdant",
+    "facebook": "perdant"
+   },
+   "vues_total": 281,
+   "vues": 224,
+   "verdict": "perdant",
+   "url": "https://www.instagram.com/reel/DfLzatdAJEh/",
+   "duree_moy": 4.67,
+   "partages": 0,
+   "enregistrements": 0,
+   "commentaires": 0,
+   "mesure_le": "2026-11-02T06:52"
   },
   {
    "id": "TR-3010-438-v2",
-   "date": "2026-10-31",
-   "heure": "01:36",
+   "date": "2026-11-01",
+   "heure": "16:48",
    "ref": "438",
    "mot": "CHATEAU",
    "style": "lieu_exception",
@@ -1553,12 +2583,88 @@
    "legende": "Château du XVIIIe à 15 minutes de Beaune, dans un domaine de 15 hectares avec parc et étang 🏰\n\nCommente CHÂTEAU et je t’",
    "source": "monteur",
    "uuid": "-6446444720003857795",
-   "statut": "publie"
+   "statut": "publie",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "-5805940221657658836",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7702914165043776790",
+     "date": "2026-10-31",
+     "heure": "20:20"
+    },
+    "youtube": {
+     "uuid": "-5897245677357282658",
+     "url": "https://www.youtube.com/shorts/cCGmOewsc1M",
+     "date": "2026-10-31",
+     "heure": "20:50"
+    },
+    "facebook": {
+     "uuid": "-8780010317308542280",
+     "url": "https://facebook.com/reel/1466729382217677",
+     "date": "2026-10-31",
+     "heure": "23:50"
+    },
+    "threads": {
+     "uuid": "3758240679937459525",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "08:00"
+    },
+    "pinterest": {
+     "uuid": "6106563614639345569",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "16:10"
+    },
+    "bluesky": {
+     "uuid": "7660459618386135557",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "16:10"
+    }
+   },
+   "tentatives": [
+    "2026-10-31 01:36 refusée (quota Instagram)"
+   ],
+   "rattrapage": "2026-10-31 11h35 monteur",
+   "reseaux": {
+    "tiktok": {
+     "vues": 36,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 2,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
+    },
+    "facebook": {
+     "vues": 4,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
+    }
+   },
+   "url": "https://www.instagram.com/reel/DfNwjevj52t/",
+   "vues": 159,
+   "duree_moy": 3.04,
+   "partages": 1,
+   "enregistrements": 0,
+   "commentaires": 0,
+   "mesure_le": "2026-11-02T06:52",
+   "verdicts": {
+    "instagram": "en_cours",
+    "tiktok": "perdant",
+    "facebook": "perdant"
+   },
+   "vues_total": 199,
+   "verdict": "perdant"
   },
   {
    "id": "TR-3010-461-v3",
-   "date": "2026-10-31",
-   "heure": "03:12",
+   "date": "2026-11-02",
+   "heure": "03:00",
    "ref": "461",
    "mot": "MARRAKECH",
    "style": "chiffre_choc",
@@ -1566,12 +2672,76 @@
    "legende": "19 m², une balnéo et un rétroprojecteur intégré, dans un studio inspiration Marrakech à Dijon 🫖\n\nCommente MARRAKECH et j",
    "source": "monteur",
    "uuid": "2089247968644255312",
-   "statut": "publie"
+   "statut": "publie",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "2222048081844782416",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7702925694304636182",
+     "date": "2026-10-31",
+     "heure": "21:05"
+    },
+    "youtube": {
+     "uuid": "2033334256103016513",
+     "url": "https://www.youtube.com/shorts/VqBe89Uudbo",
+     "date": "2026-11-01",
+     "heure": "00:50"
+    },
+    "facebook": {
+     "uuid": "1353070244162782288",
+     "url": "https://facebook.com/reel/1441045060757454",
+     "date": "2026-11-01",
+     "heure": "00:50"
+    },
+    "threads": {
+     "uuid": "-1597441571957092500",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "22:55"
+    },
+    "pinterest": {
+     "uuid": "6770310471375864174",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "18:10"
+    }
+   },
+   "tentatives": [
+    "2026-10-31 03:12 refusée (quota Instagram)"
+   ],
+   "rattrapage": "2026-10-31 11h35 monteur",
+   "reseaux": {
+    "tiktok": {
+     "vues": 811,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 1,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "moyen"
+    },
+    "facebook": {
+     "vues": 0,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
+    }
+   },
+   "url": "https://www.instagram.com/reel/DfOL-VIoAJZ/",
+   "verdicts": {
+    "tiktok": "moyen",
+    "facebook": "perdant"
+   },
+   "vues_total": 811,
+   "vues": 0,
+   "verdict": "moyen"
   },
   {
    "id": "TR-3010-438-v3",
-   "date": "2026-10-31",
-   "heure": "04:48",
+   "date": "2026-11-01",
+   "heure": "12:00",
    "ref": "438",
    "mot": "CHATEAU",
    "style": "chiffre_choc",
@@ -1579,7 +2749,67 @@
    "legende": "1 600 000 € pour un château du XVIIIe de 520 m² et son domaine de 15 hectares, près de Beaune 🏰\n\nCommente CHÂTEAU et je ",
    "source": "monteur",
    "uuid": "-8508363940926044719",
-   "statut": "publie"
+   "statut": "publie",
+   "tentatives": [
+    "2026-10-31 04:48 refusée (quota Instagram)"
+   ],
+   "rattrapage": "2026-10-31 11h35 monteur",
+   "diffusions": {
+    "threads": {
+     "uuid": "5418194680640389781",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "18:25"
+    },
+    "tiktok": {
+     "uuid": "874897316233105303",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7703261982354312470",
+     "date": "2026-11-01",
+     "heure": "18:50"
+    },
+    "youtube": {
+     "uuid": "-7643428968521774203",
+     "url": "https://www.youtube.com/shorts/II9GaWOsM50",
+     "date": "2026-11-01",
+     "heure": "12:10"
+    },
+    "pinterest": {
+     "uuid": "-3932059495443513106",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "15:40"
+    },
+    "bluesky": {
+     "uuid": "4594664720762357339",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "15:40"
+    }
+   },
+   "url": "https://www.instagram.com/reel/DfMlNTRgCC1/",
+   "vues": 4951,
+   "duree_moy": 6.17,
+   "partages": 10,
+   "enregistrements": 5,
+   "commentaires": 1,
+   "mesure_le": "2026-11-02T06:52",
+   "reseaux": {
+    "tiktok": {
+     "vues": 21,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 2,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "en_cours"
+    }
+   },
+   "verdicts": {
+    "instagram": "gagnant",
+    "tiktok": "en_cours"
+   },
+   "vues_total": 4972,
+   "verdict": "gagnant"
   },
   {
    "id": "TR-3010-461-v4",
@@ -1592,12 +2822,73 @@
    "legende": "Derrière cette porte, une baignoire balnéo 🫖 Studio inspiration Marrakech, à deux pas du Parc Darcy.\n\nCommente MARRAKECH",
    "source": "monteur",
    "uuid": "4173925076132514912",
-   "statut": "publie"
+   "statut": "publie",
+   "diffusions": {
+    "threads": {
+     "uuid": "7173369019492155963",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "23:55"
+    },
+    "tiktok": {
+     "uuid": "7330764082560452651",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7702983619098250518",
+     "date": "2026-11-01",
+     "heure": "00:50"
+    },
+    "youtube": {
+     "uuid": "3003947607229747069",
+     "url": "https://www.youtube.com/shorts/ahKHILWs1B4",
+     "date": "2026-10-31",
+     "heure": "17:10"
+    },
+    "linkedin": {
+     "uuid": "-7150023901876632341",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "17:10"
+    },
+    "pinterest": {
+     "uuid": "6788011881887385999",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "13:10"
+    },
+    "bluesky": {
+     "uuid": "-7352649135995796440",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "13:10"
+    },
+    "facebook": {
+     "uuid": "3327972829442951690",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "17:50"
+    }
+   },
+   "reseaux": {
+    "tiktok": {
+     "vues": 66,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 2,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
+    }
+   },
+   "verdicts": {
+    "tiktok": "perdant"
+   },
+   "vues_total": 66,
+   "vues": 0,
+   "verdict": "perdant"
   },
   {
    "id": "TR-3010-438-v4",
-   "date": "2026-10-31",
-   "heure": "08:00",
+   "date": "2026-11-01",
+   "heure": "19:12",
    "ref": "438",
    "mot": "CHATEAU",
    "style": "lieu_exception",
@@ -1605,12 +2896,60 @@
    "legende": "Un château du XVIIIe avec colombier, écurie, maison d’amis et étang, à 15 minutes de Beaune 🏰\n\nCommente CHÂTEAU et je t’",
    "source": "monteur",
    "uuid": "8550321858532690317",
-   "statut": "publie"
+   "statut": "publie",
+   "tentatives": [
+    "2026-10-31 08:00 refusée (quota Instagram)"
+   ],
+   "rattrapage": "2026-10-31 11h35 monteur",
+   "diffusions": {
+    "threads": {
+     "uuid": "-7495838367809255508",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "08:30"
+    },
+    "pinterest": {
+     "uuid": "8379808476453359205",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "16:40"
+    },
+    "tiktok": {
+     "uuid": "5924701667506409000",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "19:35"
+    },
+    "youtube": {
+     "uuid": "-9230784846871803",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "09:00"
+    },
+    "bluesky": {
+     "uuid": "930560519327072273",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "16:40"
+    }
+   },
+   "url": "https://www.instagram.com/reel/DfNWQkCE2iY/",
+   "vues": 411,
+   "duree_moy": 4.37,
+   "partages": 4,
+   "enregistrements": 0,
+   "commentaires": 2,
+   "mesure_le": "2026-11-02T06:52",
+   "verdicts": {
+    "instagram": "en_cours"
+   },
+   "vues_total": 411,
+   "verdict": "en_cours"
   },
   {
    "id": "TR-3010-461-v5",
-   "date": "2026-10-31",
-   "heure": "11:12",
+   "date": "2026-11-01",
+   "heure": "09:36",
    "ref": "461",
    "mot": "MARRAKECH",
    "style": "lieu_exception",
@@ -1618,7 +2957,83 @@
    "legende": "Le Maroc en plein centre de Dijon 🫖 Un studio inspiration Marrakech, au calme d’une cour intérieure.\n\nCommente MARRAKECH",
    "source": "monteur",
    "uuid": "1557015589827135358",
-   "statut": "publie"
+   "statut": "publie",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "4180063563519968397",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7702948835424865558",
+     "date": "2026-10-31",
+     "heure": "22:35"
+    },
+    "youtube": {
+     "uuid": "-3622918416329653462",
+     "url": "https://www.youtube.com/shorts/nIufDHQDGtI",
+     "date": "2026-11-01",
+     "heure": "02:50"
+    },
+    "facebook": {
+     "uuid": "-6130042535138801182",
+     "url": "https://facebook.com/reel/1058162960576414",
+     "date": "2026-11-01",
+     "heure": "13:05"
+    },
+    "threads": {
+     "uuid": "-3529281293901083613",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "17:55"
+    },
+    "pinterest": {
+     "uuid": "4582691891019531480",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "15:10"
+    },
+    "bluesky": {
+     "uuid": "-8587480909109900200",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "15:10"
+    }
+   },
+   "tentatives": [
+    "2026-10-31 11:12 refusée (quota Instagram)"
+   ],
+   "rattrapage": "2026-10-31 11h35 monteur",
+   "reseaux": {
+    "tiktok": {
+     "vues": 1303,
+     "duree_moy": 0.0,
+     "partages": 1,
+     "enregistrements": 15,
+     "commentaires": 1,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "gagnant"
+    },
+    "facebook": {
+     "vues": 7,
+     "duree_moy": 3.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "en_cours"
+    }
+   },
+   "url": "https://www.instagram.com/reel/DfMUUpnjKQl/",
+   "vues": 240,
+   "duree_moy": 4.29,
+   "partages": 0,
+   "enregistrements": 0,
+   "commentaires": 0,
+   "mesure_le": "2026-11-02T06:52",
+   "verdicts": {
+    "instagram": "en_cours",
+    "tiktok": "gagnant",
+    "facebook": "en_cours"
+   },
+   "vues_total": 1550,
+   "verdict": "gagnant"
   },
   {
    "id": "TR-3010-438-v5",
@@ -1631,7 +3046,85 @@
    "legende": "Derrière ces portes, un vestibule majestueux, des boiseries et des cheminées d’époque 🏰 Château du XVIIIe près de Beaune",
    "source": "monteur",
    "uuid": "5769701074635606209",
-   "statut": "publie"
+   "statut": "publie",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "7467783692524537482",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7702960437284883734",
+     "date": "2026-10-31",
+     "heure": "23:20"
+    },
+    "youtube": {
+     "uuid": "-3748984022153936088",
+     "url": "https://www.youtube.com/shorts/yVjedBO6B48",
+     "date": "2026-11-01",
+     "heure": "17:50"
+    },
+    "facebook": {
+     "uuid": "-6554277675451793198",
+     "url": "https://facebook.com/reel/2083758165604582",
+     "date": "2026-11-01",
+     "heure": "17:50"
+    },
+    "threads": {
+     "uuid": "2354931776718719975",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "00:55"
+    },
+    "pinterest": {
+     "uuid": "-6827980740840701238",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "14:10"
+    },
+    "bluesky": {
+     "uuid": "6226762824126581684",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "14:10"
+    },
+    "linkedin": {
+     "uuid": "4028391903582572239",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "18:40"
+    }
+   },
+   "reseaux": {
+    "tiktok": {
+     "vues": 50,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 1,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
+    },
+    "facebook": {
+     "vues": 1,
+     "duree_moy": 2.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "en_cours"
+    }
+   },
+   "verdicts": {
+    "instagram": "perdant",
+    "tiktok": "perdant",
+    "facebook": "en_cours"
+   },
+   "vues_total": 252,
+   "vues": 201,
+   "verdict": "perdant",
+   "url": "https://www.instagram.com/reel/DfLSsgnj4ct/",
+   "duree_moy": 3.25,
+   "partages": 0,
+   "enregistrements": 0,
+   "commentaires": 0,
+   "mesure_le": "2026-11-02T06:52"
   },
   {
    "id": "TR-3010-461-v6",
@@ -1644,7 +3137,1988 @@
    "legende": "Tu vivrais ici ? 🫖 Studio inspiration Marrakech de 19 m² avec balnéo, à deux pas du Parc Darcy.\n\nCommente MARRAKECH et j",
    "source": "monteur",
    "uuid": "-8167135444658139614",
-   "statut": "publie"
+   "statut": "publie",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "5153795680017007773",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7702972074695920918",
+     "date": "2026-11-01",
+     "heure": "00:05"
+    },
+    "youtube": {
+     "uuid": "6501371433658434074",
+     "url": "https://www.youtube.com/shorts/9VokzihcqL4",
+     "date": "2026-11-01",
+     "heure": "18:50"
+    },
+    "facebook": {
+     "uuid": "8662292409954551779",
+     "url": "https://facebook.com/reel/1642533234268865",
+     "date": "2026-11-01",
+     "heure": "18:50"
+    },
+    "threads": {
+     "uuid": "7557829596516861510",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "01:25"
+    },
+    "pinterest": {
+     "uuid": "-4468655949666892365",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "15:10"
+    },
+    "bluesky": {
+     "uuid": "5274289468779938300",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "14:40"
+    },
+    "linkedin": {
+     "uuid": "-4902279583941377867",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "08:00"
+    }
+   },
+   "url": "https://www.instagram.com/reel/DfLnNytjlJc/",
+   "vues": 118,
+   "duree_moy": 3.05,
+   "partages": 0,
+   "enregistrements": 0,
+   "commentaires": 0,
+   "mesure_le": "2026-11-02T06:52",
+   "reseaux": {
+    "tiktok": {
+     "vues": 46,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 2,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "perdant"
+    },
+    "facebook": {
+     "vues": 0,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "en_cours"
+    }
+   },
+   "verdicts": {
+    "instagram": "perdant",
+    "tiktok": "perdant",
+    "facebook": "en_cours"
+   },
+   "vues_total": 164,
+   "verdict": "perdant"
+  },
+  {
+   "id": "TR-3110-438-x",
+   "date": "2026-10-31",
+   "heure": "18:00",
+   "ref": "438",
+   "mot": "CHÂTEAU",
+   "style": "chiffre_choc",
+   "legende": "1 600 000 €, 18 pièces, 520 m² et 15 hectares, à 15 minutes de Beaune 🏰\n\nCommente CHÂTEAU et je t’envoie la visite compl",
+   "source": "autre",
+   "uuid": "-1787568100609079543",
+   "url": "https://www.instagram.com/reel/DfKqApskl6R/",
+   "statut": "publie",
+   "vues": 134,
+   "duree_moy": 3.93,
+   "partages": 0,
+   "enregistrements": 0,
+   "commentaires": 0,
+   "mesure_le": "2026-11-02T06:52",
+   "verdicts": {
+    "instagram": "perdant",
+    "tiktok": "en_cours"
+   },
+   "vues_total": 149,
+   "verdict": "perdant",
+   "diffusions": {
+    "tiktok": {
+     "uuid": "7629258002958664101",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7703096966116379926",
+     "date": "2026-11-01",
+     "heure": "08:10"
+    },
+    "youtube": {
+     "uuid": "-2876964267770166000",
+     "url": "https://www.youtube.com/shorts/u5YMSmDdMoI",
+     "date": "2026-11-01",
+     "heure": "08:10"
+    },
+    "threads": {
+     "uuid": "-4756825009606146880",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "17:25"
+    },
+    "linkedin": {
+     "uuid": "2237009637310940717",
+     "url": "",
+     "date": "2026-10-31",
+     "heure": "17:10"
+    },
+    "pinterest": {
+     "uuid": "-1456936250287501762",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "15:40"
+    },
+    "bluesky": {
+     "uuid": "-8430780879609772621",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "15:40"
+    },
+    "facebook": {
+     "uuid": "-2665771907811818195",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "19:50"
+    }
+   },
+   "reseaux": {
+    "tiktok": {
+     "vues": 15,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "en_cours"
+    }
+   }
+  },
+  {
+   "id": "TR-0111-438-v1",
+   "date": "2026-11-03",
+   "heure": "03:00",
+   "ref": "438",
+   "mot": "CHÂTEAU",
+   "style": "chiffre_choc",
+   "accroche": "15 hectares dont 10 de bois",
+   "legende": "10 hectares de bois, un étang et, au milieu, un château du XVIIIe à 15 minutes de Beaune 🌳\n\nCommente CHÂTEAU et je t’env",
+   "source": "monteur",
+   "uuid": "-6284865997831254708",
+   "statut": "publie",
+   "media": "https://0250888e.shawez-immo.pages.dev/trial/2026-11-01/chateau-438-v1.mp4"
+  },
+  {
+   "id": "TR-0111-438-v2",
+   "date": "2026-11-03",
+   "heure": "21:30",
+   "ref": "438",
+   "mot": "CHÂTEAU",
+   "style": "chiffre_choc",
+   "accroche": "520 m² sur 3 niveaux",
+   "legende": "520 m² habitables sur 3 niveaux, dans un château du XVIIIe parfaitement entretenu 🏰\n\nCommente CHÂTEAU et je t’envoie la ",
+   "source": "monteur",
+   "uuid": "-7908776495803773500",
+   "statut": "publie",
+   "media": "https://0250888e.shawez-immo.pages.dev/trial/2026-11-01/chateau-438-v2.mp4",
+   "diffusions": {
+    "threads": {
+     "uuid": "2136943383553788082",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "16:10"
+    },
+    "pinterest": {
+     "uuid": "1095221993577858434",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "17:40"
+    },
+    "bluesky": {
+     "uuid": "-5222519006870091739",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "17:40"
+    },
+    "youtube": {
+     "uuid": "-9204656282135871362",
+     "url": "https://www.youtube.com/shorts/zWoDoJPjPx4",
+     "date": "2026-11-01",
+     "heure": "12:40"
+    },
+    "tiktok": {
+     "uuid": "6991613074706220058",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7703273570960526614",
+     "date": "2026-11-01",
+     "heure": "19:35"
+    }
+   },
+   "reseaux": {
+    "tiktok": {
+     "vues": 47,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "en_cours"
+    }
+   },
+   "verdicts": {
+    "tiktok": "en_cours"
+   },
+   "vues_total": 47,
+   "vues": 0,
+   "verdict": "en_cours"
+  },
+  {
+   "id": "TR-0111-438-v3",
+   "date": "2026-11-02",
+   "heure": "15:00",
+   "ref": "438",
+   "mot": "CHÂTEAU",
+   "style": "chiffre_choc",
+   "accroche": "1 600 000 € avec vue sur la Côte de Beaune",
+   "legende": "1 600 000 € pour une vue dégagée sur la Côte de Beaune, depuis un château du XVIIIe 🍇\n\nCommente CHÂTEAU et je t’envoie l",
+   "source": "monteur",
+   "uuid": "-8351330814274613494",
+   "statut": "publie",
+   "media": "https://0250888e.shawez-immo.pages.dev/trial/2026-11-01/chateau-438-v3.mp4"
+  },
+  {
+   "id": "TR-0111-438-v4",
+   "date": "2026-11-04",
+   "heure": "08:30",
+   "ref": "438",
+   "mot": "CHÂTEAU",
+   "style": "lieu_exception",
+   "accroche": "Un château entretenu depuis 20 ans",
+   "legende": "Un château du XVIIIe entretenu avec soin depuis vingt ans, avec ses boiseries, ses moulures et ses cheminées d’époque ✨\n",
+   "source": "monteur",
+   "uuid": "3056855900051751154",
+   "statut": "publie",
+   "media": "https://0250888e.shawez-immo.pages.dev/trial/2026-11-01/chateau-438-v4.mp4",
+   "diffusions": {
+    "threads": {
+     "uuid": "1682669898603974621",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "18:55"
+    },
+    "pinterest": {
+     "uuid": "8041452675072412525",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "18:10"
+    },
+    "bluesky": {
+     "uuid": "8440422799600338289",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "18:10"
+    },
+    "youtube": {
+     "uuid": "3040598932922319857",
+     "url": "https://www.youtube.com/shorts/F7QvX0TwTks",
+     "date": "2026-11-01",
+     "heure": "13:10"
+    },
+    "tiktok": {
+     "uuid": "407537591214097660",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7703285190059298050",
+     "date": "2026-11-01",
+     "heure": "20:20"
+    }
+   },
+   "reseaux": {
+    "tiktok": {
+     "vues": 46,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 2,
+     "commentaires": 0,
+     "mesure_le": "2026-11-02T06:52",
+     "verdict": "en_cours"
+    }
+   },
+   "verdicts": {
+    "tiktok": "en_cours"
+   },
+   "vues_total": 46,
+   "vues": 0,
+   "verdict": "en_cours"
+  },
+  {
+   "id": "TR-0111-438-v5",
+   "date": "2026-11-02",
+   "heure": "21:00",
+   "ref": "438",
+   "mot": "CHÂTEAU",
+   "style": "defi_1pourcent",
+   "accroche": "Mets pause sur la sculpture, seul 1 % y arrive",
+   "legende": "Arrête la vidéo pile sur la sculpture de la façade, seul 1 % y arrive du premier coup 👀 Château du XVIIIe près de Beaune",
+   "source": "monteur",
+   "uuid": "-4591495983705602280",
+   "statut": "publie",
+   "media": "https://0250888e.shawez-immo.pages.dev/trial/2026-11-01/chateau-438-v5.mp4"
+  },
+  {
+   "id": "TR-0111-438-v6",
+   "date": "2026-11-01",
+   "heure": "07:35",
+   "ref": "438",
+   "mot": "CHÂTEAU",
+   "style": "revelation",
+   "accroche": "Cette porte cache un vestibule majestueux",
+   "legende": "Cette porte cache un vestibule majestueux, l’entrée d’un château du XVIIIe de 18 pièces 🚪\n\nCommente CHÂTEAU et je t’envo",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://0250888e.shawez-immo.pages.dev/trial/2026-11-01/chateau-438-v6.mp4",
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "3535961402132156314",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "19:25"
+    },
+    "pinterest": {
+     "uuid": "-1513820433001396494",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "18:40"
+    },
+    "bluesky": {
+     "uuid": "928112569593512948",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "18:40"
+    },
+    "youtube": {
+     "uuid": "7577019910052791384",
+     "url": "https://www.youtube.com/shorts/E8ce3sdNr20",
+     "date": "2026-11-01",
+     "heure": "13:40"
+    },
+    "tiktok": {
+     "uuid": "7344905563452164023",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "09:00"
+    },
+    "linkedin": {
+     "uuid": "5800576459823924081",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "17:10"
+    },
+    "facebook": {
+     "uuid": "1414167077485035676",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "17:50"
+    }
+   }
+  },
+  {
+   "id": "TR-0111-438-v7",
+   "date": "2026-11-03",
+   "heure": "06:00",
+   "ref": "438",
+   "mot": "CHÂTEAU",
+   "style": "lieu_exception",
+   "accroche": "Ce château a sa propre maison d’amis",
+   "legende": "Ce château du XVIIIe a sa propre maison d’amis d’environ 60 m², avec deux chambres, pour recevoir toute la famille 🏡\n\nCo",
+   "source": "monteur",
+   "uuid": "2317874128848568648",
+   "statut": "publie",
+   "media": "https://0250888e.shawez-immo.pages.dev/trial/2026-11-01/chateau-438-v7.mp4"
+  },
+  {
+   "id": "TR-0111-438-v8",
+   "date": "2026-11-03",
+   "heure": "15:00",
+   "ref": "438",
+   "mot": "CHÂTEAU",
+   "style": "chiffre_choc",
+   "accroche": "7 chambres et 3 salles d’eau",
+   "legende": "7 chambres et 3 salles d’eau sur 3 niveaux, dans un château du XVIIIe près de Beaune 🛏️\n\nCommente CHÂTEAU et je t’envoie",
+   "source": "monteur",
+   "uuid": "-3515148511482395635",
+   "statut": "publie",
+   "media": "https://0250888e.shawez-immo.pages.dev/trial/2026-11-01/chateau-438-v8.mp4",
+   "diffusions": {
+    "threads": {
+     "uuid": "3012632637302853601",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "19:55"
+    },
+    "pinterest": {
+     "uuid": "7523880956921727989",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "19:10"
+    },
+    "bluesky": {
+     "uuid": "-9200462322311282287",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "19:10"
+    },
+    "youtube": {
+     "uuid": "-2016358675440385420",
+     "url": "https://www.youtube.com/shorts/nYad1QVVW5Y",
+     "date": "2026-11-01",
+     "heure": "14:10"
+    },
+    "tiktok": {
+     "uuid": "-1965028231027537075",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "09:45"
+    }
+   }
+  },
+  {
+   "id": "TR-0111-438-v9",
+   "date": "2026-11-01",
+   "heure": "07:35",
+   "ref": "438",
+   "mot": "CHÂTEAU",
+   "style": "question",
+   "accroche": "Ton prochain Noël en famille ici ?",
+   "legende": "Ton prochain Noël en famille, dans la cuisine d’un château du XVIIIe près de Beaune 🎄 Tu dis oui ?\n\nCommente CHÂTEAU et ",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://0250888e.shawez-immo.pages.dev/trial/2026-11-01/chateau-438-v9.mp4",
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "-8125884138944903324",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "20:25"
+    },
+    "pinterest": {
+     "uuid": "-6607514970377205732",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "12:10"
+    },
+    "bluesky": {
+     "uuid": "2028067268458857162",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "12:10"
+    },
+    "youtube": {
+     "uuid": "-1109505418817288163",
+     "url": "https://www.youtube.com/shorts/62lLn0wKtdg",
+     "date": "2026-11-01",
+     "heure": "16:10"
+    },
+    "tiktok": {
+     "uuid": "-6099464418897018086",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "10:30"
+    }
+   }
+  },
+  {
+   "id": "TR-0111-438-v10",
+   "date": "2026-11-03",
+   "heure": "12:30",
+   "ref": "438",
+   "mot": "CHÂTEAU",
+   "style": "lieu_exception",
+   "accroche": "Château du XVIIIe pour recevoir en grand",
+   "legende": "Château du XVIIIe pensé pour recevoir, réceptions, séminaires ou mariages, à 15 minutes de Beaune 🥂\n\nCommente CHÂTEAU et",
+   "source": "monteur",
+   "uuid": "-7810099911347516031",
+   "statut": "publie",
+   "media": "https://0250888e.shawez-immo.pages.dev/trial/2026-11-01/chateau-438-v10.mp4",
+   "diffusions": {
+    "threads": {
+     "uuid": "-805087827591344538",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "20:55"
+    },
+    "pinterest": {
+     "uuid": "-5942168078500478554",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "12:40"
+    },
+    "bluesky": {
+     "uuid": "7632005435741128627",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "12:40"
+    },
+    "youtube": {
+     "uuid": "2991762387442813576",
+     "url": "https://www.youtube.com/shorts/wcJniG0wXx8",
+     "date": "2026-11-01",
+     "heure": "16:40"
+    },
+    "tiktok": {
+     "uuid": "-1208257384766946189",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "11:15"
+    }
+   }
+  },
+  {
+   "id": "TR-0111-438-v11",
+   "date": "2026-11-01",
+   "heure": "07:35",
+   "ref": "438",
+   "mot": "CHÂTEAU",
+   "style": "chiffre_choc",
+   "accroche": "18 pièces et des caves sous tout le château",
+   "legende": "18 pièces sur 520 m², et des caves sous l’ensemble du château 🍷\n\nCommente CHÂTEAU et je t’envoie la visite complète en p",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://0250888e.shawez-immo.pages.dev/trial/2026-11-01/chateau-438-v11.mp4",
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "5294181546894052274",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "21:25"
+    },
+    "pinterest": {
+     "uuid": "-1262103983153198633",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "13:10"
+    },
+    "bluesky": {
+     "uuid": "-8347004541791745053",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "13:10"
+    },
+    "youtube": {
+     "uuid": "6526857736810676879",
+     "url": "https://www.youtube.com/shorts/spLlTznK6Uc",
+     "date": "2026-11-01",
+     "heure": "17:10"
+    },
+    "tiktok": {
+     "uuid": "3197703405534137095",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "12:00"
+    }
+   }
+  },
+  {
+   "id": "TR-0111-438-v12",
+   "date": "2026-11-03",
+   "heure": "08:30",
+   "ref": "438",
+   "mot": "CHÂTEAU",
+   "style": "chiffre_choc",
+   "accroche": "1 600 000 € et 3 salons de réception",
+   "legende": "1 600 000 € pour trois salons de réception, une salle à manger et un boudoir, dans un château du XVIIIe 🏰\n\nCommente CHÂT",
+   "source": "monteur",
+   "uuid": "-8534083357297653081",
+   "statut": "publie",
+   "media": "https://0250888e.shawez-immo.pages.dev/trial/2026-11-01/chateau-438-v12.mp4",
+   "diffusions": {
+    "threads": {
+     "uuid": "-563359294489342297",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "21:55"
+    },
+    "pinterest": {
+     "uuid": "5924461451041065265",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "13:40"
+    },
+    "bluesky": {
+     "uuid": "8249531488391807134",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "13:40"
+    },
+    "youtube": {
+     "uuid": "62582690457143179",
+     "url": "https://www.youtube.com/shorts/rFXn7rDNr2c",
+     "date": "2026-11-01",
+     "heure": "19:50"
+    },
+    "tiktok": {
+     "uuid": "-386299601346933408",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "12:45"
+    }
+   }
+  },
+  {
+   "id": "TR-0111-438-v13",
+   "date": "2026-11-03",
+   "heure": "11:00",
+   "ref": "438",
+   "mot": "CHÂTEAU",
+   "style": "defi_1pourcent",
+   "accroche": "99 % ratent le moment où la porte s’ouvre",
+   "legende": "99 % ratent le moment où la porte s’ouvre. Toi, tu l’as vu ? 👀 Château du XVIIIe près de Beaune.\n\nCommente CHÂTEAU et je",
+   "source": "monteur",
+   "uuid": "3755375102489018683",
+   "statut": "publie",
+   "media": "https://0250888e.shawez-immo.pages.dev/trial/2026-11-01/chateau-438-v13.mp4",
+   "diffusions": {
+    "threads": {
+     "uuid": "7969207850160572185",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "22:25"
+    },
+    "pinterest": {
+     "uuid": "3794943356824013370",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "14:10"
+    },
+    "bluesky": {
+     "uuid": "3135526824898874498",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "14:10"
+    },
+    "youtube": {
+     "uuid": "4623781079842308454",
+     "url": "https://www.youtube.com/shorts/d8XXyvVZxek",
+     "date": "2026-11-01",
+     "heure": "20:50"
+    },
+    "tiktok": {
+     "uuid": "-4625418673583668895",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "13:30"
+    }
+   }
+  },
+  {
+   "id": "TR-0111-438-v14",
+   "date": "2026-11-03",
+   "heure": "00:00",
+   "ref": "438",
+   "mot": "CHÂTEAU",
+   "style": "lieu_exception",
+   "accroche": "Un château et son parc taillé en topiaire",
+   "legende": "Un château du XVIIIe et son parc taillé selon l’art topiaire, avec un étang juste à côté 🌿\n\nCommente CHÂTEAU et je t’env",
+   "source": "monteur",
+   "uuid": "6999638823049907197",
+   "statut": "publie",
+   "media": "https://0250888e.shawez-immo.pages.dev/trial/2026-11-01/chateau-438-v14.mp4"
+  },
+  {
+   "id": "TR-0111-438-v15",
+   "date": "2026-11-01",
+   "heure": "07:35",
+   "ref": "438",
+   "mot": "CHÂTEAU",
+   "style": "lieu_exception",
+   "accroche": "Un château où la faune est chez elle",
+   "legende": "Un château où la faune est chez elle, sur 15 hectares dont 10 de bois, dans le calme près de Beaune 🦌\n\nCommente CHÂTEAU ",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://0250888e.shawez-immo.pages.dev/trial/2026-11-01/chateau-438-v15.mp4",
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "961588561527459182",
+     "url": "",
+     "date": "2026-11-01",
+     "heure": "22:55"
+    },
+    "pinterest": {
+     "uuid": "6285746235835500042",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "14:40"
+    },
+    "bluesky": {
+     "uuid": "-4553568841912923856",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "14:40"
+    },
+    "youtube": {
+     "uuid": "-2657441953456763570",
+     "url": "https://www.youtube.com/shorts/fFLkVklUizY",
+     "date": "2026-11-01",
+     "heure": "21:50"
+    },
+    "tiktok": {
+     "uuid": "5534684729346838362",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "18:50"
+    }
+   }
+  },
+  {
+   "id": "TR-0111-461-v1",
+   "date": "2026-11-01",
+   "heure": "19:35",
+   "ref": "461",
+   "mot": "MARRAKECH",
+   "style": "chiffre_choc",
+   "accroche": "129 000 € à deux pas du Parc Darcy",
+   "legende": "129 000 € pour un studio d’architecte, à deux pas du Parc Darcy et du centre-ville 🌳\n\nCommente MARRAKECH et je t’envoie ",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://e352d382.shawez-immo.pages.dev/trial/2026-11-01/marrakech-461-v1.mp4",
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "-730215957265170284",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "10:00"
+    },
+    "pinterest": {
+     "uuid": "-3931302843563095643",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "18:10"
+    },
+    "youtube": {
+     "uuid": "-1826055714257026546",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "09:30"
+    },
+    "tiktok": {
+     "uuid": "3559922770967938767",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "20:20"
+    }
+   }
+  },
+  {
+   "id": "TR-0111-461-v2",
+   "date": "2026-11-01",
+   "heure": "19:35",
+   "ref": "461",
+   "mot": "MARRAKECH",
+   "style": "chiffre_choc",
+   "accroche": "19,15 m² tout sur mesure",
+   "legende": "19,15 m² Carrez où chaque centimètre compte : cuisine et rangements faits sur mesure 📐\n\nCommente MARRAKECH et je t’envoi",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://e352d382.shawez-immo.pages.dev/trial/2026-11-01/marrakech-461-v2.mp4",
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "6887571600497657724",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "10:30"
+    },
+    "pinterest": {
+     "uuid": "-7184895014960084901",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "18:40"
+    },
+    "youtube": {
+     "uuid": "-2117191525890635533",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "10:00"
+    },
+    "tiktok": {
+     "uuid": "-5199391913440358485",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "09:00"
+    }
+   }
+  },
+  {
+   "id": "TR-0111-461-v3",
+   "date": "2026-11-01",
+   "heure": "19:35",
+   "ref": "461",
+   "mot": "MARRAKECH",
+   "style": "chiffre_choc",
+   "accroche": "13 lots seulement, une cour au calme",
+   "legende": "13 lots seulement dans la copropriété, au calme d’une cour intérieure, loin du bruit de la ville 🤫\n\nCommente MARRAKECH e",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://e352d382.shawez-immo.pages.dev/trial/2026-11-01/marrakech-461-v3.mp4",
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "2228764242136285826",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "16:10"
+    },
+    "pinterest": {
+     "uuid": "7177649658343212378",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "19:10"
+    },
+    "youtube": {
+     "uuid": "-603678608010097479",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "10:30"
+    },
+    "tiktok": {
+     "uuid": "-4771747348984215120",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "09:45"
+    }
+   }
+  },
+  {
+   "id": "TR-0111-461-v4",
+   "date": "2026-11-01",
+   "heure": "19:35",
+   "ref": "461",
+   "mot": "MARRAKECH",
+   "style": "chiffre_choc",
+   "accroche": "129 000 € et 23 % de rendement saisonnier",
+   "legende": "129 000 €, et un rendement locatif saisonnier annoncé de 23 % pour ce studio clé en main 📈\n\nCommente MARRAKECH et je t’e",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://e352d382.shawez-immo.pages.dev/trial/2026-11-01/marrakech-461-v4.mp4",
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "780964627698175816",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "16:40"
+    },
+    "pinterest": {
+     "uuid": "-4772942470042990193",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "12:10"
+    },
+    "youtube": {
+     "uuid": "-1431692076130023637",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "11:00"
+    },
+    "tiktok": {
+     "uuid": "-1724036225055768101",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "10:30"
+    }
+   }
+  },
+  {
+   "id": "TR-0111-461-v5",
+   "date": "2026-11-01",
+   "heure": "19:35",
+   "ref": "461",
+   "mot": "MARRAKECH",
+   "style": "chiffre_choc",
+   "accroche": "Ton 1er appart à 129 000 €",
+   "legende": "Ton premier achat, et il ne ressemble à aucun autre : 129 000 € pour un studio inspiration Marrakech 🔑\n\nCommente MARRAKE",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://e352d382.shawez-immo.pages.dev/trial/2026-11-01/marrakech-461-v5.mp4",
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "-5266063856541087024",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "17:25"
+    },
+    "pinterest": {
+     "uuid": "1852232078658652657",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "12:40"
+    },
+    "youtube": {
+     "uuid": "3597135555271018770",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "11:30"
+    },
+    "tiktok": {
+     "uuid": "1023081890808744743",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "11:15"
+    }
+   }
+  },
+  {
+   "id": "TR-0111-461-v6",
+   "date": "2026-11-01",
+   "heure": "19:35",
+   "ref": "461",
+   "mot": "MARRAKECH",
+   "style": "lieu_exception",
+   "accroche": "Studio d’exception en plein centre-ville",
+   "legende": "Studio d’exception en plein centre-ville de Dijon, entièrement rénové avec des finitions haut de gamme ✨\n\nCommente MARRA",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://e352d382.shawez-immo.pages.dev/trial/2026-11-01/marrakech-461-v6.mp4",
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "613235176444544529",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "17:55"
+    },
+    "pinterest": {
+     "uuid": "7747694313938436524",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "13:10"
+    },
+    "youtube": {
+     "uuid": "-5945301313168782742",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "12:00"
+    },
+    "tiktok": {
+     "uuid": "3193885242477986630",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "12:00"
+    }
+   }
+  },
+  {
+   "id": "TR-0111-461-v7",
+   "date": "2026-11-01",
+   "heure": "19:35",
+   "ref": "461",
+   "mot": "MARRAKECH",
+   "style": "defi_1pourcent",
+   "accroche": "1 % seulement trouve la kitchenette du premier essai",
+   "legende": "1 % seulement repère la kitchenette sur mesure du premier essai 👀 Elle est sous tes yeux, à toi de jouer.\n\nCommente MARR",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://e352d382.shawez-immo.pages.dev/trial/2026-11-01/marrakech-461-v7.mp4",
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "-4385960172402817048",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "18:25"
+    },
+    "pinterest": {
+     "uuid": "363268847984266996",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "13:40"
+    },
+    "youtube": {
+     "uuid": "5496941152244157429",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "12:30"
+    },
+    "tiktok": {
+     "uuid": "6284331759789754659",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "12:45"
+    }
+   }
+  },
+  {
+   "id": "TR-0111-461-v8",
+   "date": "2026-11-01",
+   "heure": "19:35",
+   "ref": "461",
+   "mot": "MARRAKECH",
+   "style": "defi_1pourcent",
+   "accroche": "Seul 1 % compte tous les jets",
+   "legende": "Seul 1 % arrive à compter tous les jets de cette baignoire balnéo 🛁 Tu en vois combien ?\n\nCommente MARRAKECH et je t’env",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://e352d382.shawez-immo.pages.dev/trial/2026-11-01/marrakech-461-v8.mp4",
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "-5808790122442373542",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "18:55"
+    },
+    "pinterest": {
+     "uuid": "7200119808060442380",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "14:10"
+    },
+    "youtube": {
+     "uuid": "-3437140462597681711",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "13:00"
+    },
+    "tiktok": {
+     "uuid": "-1054408906360994050",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "13:30"
+    }
+   }
+  },
+  {
+   "id": "TR-0111-461-v9",
+   "date": "2026-11-01",
+   "heure": "19:35",
+   "ref": "461",
+   "mot": "MARRAKECH",
+   "style": "lieu_exception",
+   "accroche": "Un pied-à-terre en plein cœur de Dijon",
+   "legende": "Un pied-à-terre en plein cœur de Dijon, pour tes week-ends ou ta semaine de travail 🌙\n\nCommente MARRAKECH et je t’envoie",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://e352d382.shawez-immo.pages.dev/trial/2026-11-01/marrakech-461-v9.mp4",
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "7820001063483164479",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "19:25"
+    },
+    "youtube": {
+     "uuid": "-8742001381831127295",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "13:30"
+    },
+    "pinterest": {
+     "uuid": "3931688968114882325",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "14:40"
+    }
+   }
+  },
+  {
+   "id": "TR-0111-461-v10",
+   "date": "2026-11-01",
+   "heure": "19:35",
+   "ref": "461",
+   "mot": "MARRAKECH",
+   "style": "defi_1pourcent",
+   "accroche": "Seul 1 % met pause sur le thé versé",
+   "legende": "Seul 1 % arrive à mettre pause pile quand le thé coule 🫖 Tu tentes ? Studio inspiration Marrakech à Dijon.\n\nCommente MAR",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://e352d382.shawez-immo.pages.dev/trial/2026-11-01/marrakech-461-v10.mp4",
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "-1115752971905512724",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "19:55"
+    },
+    "youtube": {
+     "uuid": "2402963474559485052",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "14:00"
+    },
+    "pinterest": {
+     "uuid": "-5836083969894039021",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "15:10"
+    }
+   }
+  },
+  {
+   "id": "TR-0111-461-v11",
+   "date": "2026-11-01",
+   "heure": "19:35",
+   "ref": "461",
+   "mot": "MARRAKECH",
+   "style": "defi_1pourcent",
+   "accroche": "Seul 1 % réussit à deviner la pièce cachée",
+   "legende": "Seul 1 % réussit à deviner la pièce cachée derrière cette porte 👀 Indice : on s’y détend.\n\nCommente MARRAKECH et je t’en",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://e352d382.shawez-immo.pages.dev/trial/2026-11-01/marrakech-461-v11.mp4",
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "4964807281119740899",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "20:25"
+    },
+    "youtube": {
+     "uuid": "6294079408475491279",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "14:30"
+    },
+    "pinterest": {
+     "uuid": "5352665961819032091",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "15:40"
+    }
+   }
+  },
+  {
+   "id": "TR-0111-461-v12",
+   "date": "2026-11-01",
+   "heure": "19:35",
+   "ref": "461",
+   "mot": "MARRAKECH",
+   "style": "defi_1pourcent",
+   "accroche": "99 % ratent l’écran qui descend",
+   "legende": "99 % ratent le moment où l’écran apparaît. Toi, tu l’as vu ? 🎬 Studio inspiration Marrakech à Dijon.\n\nCommente MARRAKECH",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://e352d382.shawez-immo.pages.dev/trial/2026-11-01/marrakech-461-v12.mp4",
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "4791142112246121053",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "20:55"
+    },
+    "youtube": {
+     "uuid": "-371917116440623744",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "16:10"
+    },
+    "pinterest": {
+     "uuid": "3783532511215501441",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "16:10"
+    }
+   }
+  },
+  {
+   "id": "TR-0111-461-v13",
+   "date": "2026-11-01",
+   "heure": "19:35",
+   "ref": "461",
+   "mot": "MARRAKECH",
+   "style": "business",
+   "accroche": "Investissement locatif à forte attractivité",
+   "legende": "Investissement locatif à étudier : studio clé en main, faibles charges et syndic bénévole 💼\n\nCommente MARRAKECH et je t’",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://e352d382.shawez-immo.pages.dev/trial/2026-11-01/marrakech-461-v13.mp4",
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "-3384735720894543154",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "21:25"
+    },
+    "youtube": {
+     "uuid": "2094621862652956543",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "16:40"
+    },
+    "pinterest": {
+     "uuid": "-1520444118874175643",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "16:40"
+    }
+   }
+  },
+  {
+   "id": "TR-0111-461-v14",
+   "date": "2026-11-01",
+   "heure": "19:35",
+   "ref": "461",
+   "mot": "MARRAKECH",
+   "style": "detail_surprenant",
+   "accroche": "Un rétroprojecteur dans 19 m²",
+   "legende": "Un rétroprojecteur intégré dans 19 m², pour tes soirées film au calme d’une cour intérieure 🍿\n\nCommente MARRAKECH et je ",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://e352d382.shawez-immo.pages.dev/trial/2026-11-01/marrakech-461-v14.mp4",
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "-9066475957556722035",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "21:55"
+    },
+    "youtube": {
+     "uuid": "2684651950728171481",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "17:10"
+    },
+    "pinterest": {
+     "uuid": "67206621615377575",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "17:10"
+    }
+   }
+  },
+  {
+   "id": "TR-0111-461-v15",
+   "date": "2026-11-01",
+   "heure": "19:35",
+   "ref": "461",
+   "mot": "MARRAKECH",
+   "style": "revelation",
+   "accroche": "Ce que cache le fond du studio",
+   "legende": "Ce que cache le fond du studio : une porte qui s’ouvre sur un petit coin extérieur 🌿\n\nCommente MARRAKECH et je t’envoie ",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://e352d382.shawez-immo.pages.dev/trial/2026-11-01/marrakech-461-v15.mp4",
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "5060729149451485475",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "22:25"
+    },
+    "youtube": {
+     "uuid": "-6854896089254638076",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "17:50"
+    },
+    "pinterest": {
+     "uuid": "-7891686384235036255",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "17:40"
+    }
+   }
+  },
+  {
+   "id": "TR-0211-438-v1",
+   "date": "2026-11-02",
+   "heure": "07:35",
+   "ref": "438",
+   "mot": "CHÂTEAU",
+   "style": "chiffre_choc",
+   "accroche": "15 hectares pour 1 600 000 €",
+   "legende": "15 hectares dont 10 de bois, un étang et un château du XVIIIe, le tout pour 1 600 000 € 🌳\n\nCommente CHÂTEAU et je t’envo",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://912527f7.shawez-immo.pages.dev/trial/2026-11-02/chateau-438-v1.mp4",
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "3185493065311014321",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "08:00"
+    },
+    "youtube": {
+     "uuid": "5134582229424948676",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "18:50"
+    }
+   }
+  },
+  {
+   "id": "TR-0211-438-v2",
+   "date": "2026-11-02",
+   "heure": "07:35",
+   "ref": "438",
+   "mot": "CHÂTEAU",
+   "style": "chiffre_choc",
+   "accroche": "6 parkings, 2 garages au bout de ce chemin",
+   "legende": "6 places de parking et 2 garages au bout de l’allée : ici, tes invités ne chercheront jamais où se garer 🚗\n\nCommente CHÂ",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://912527f7.shawez-immo.pages.dev/trial/2026-11-02/chateau-438-v2.mp4",
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "1907747339490574809",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "08:30"
+    },
+    "youtube": {
+     "uuid": "-3229478977980838909",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "19:50"
+    }
+   }
+  },
+  {
+   "id": "TR-0211-438-v3",
+   "date": "2026-11-02",
+   "heure": "07:35",
+   "ref": "438",
+   "mot": "CHÂTEAU",
+   "style": "chiffre_choc",
+   "accroche": "520 m² derrière ces deux battants",
+   "legende": "520 m² habitables commencent derrière ces deux battants blancs, dans un château du XVIIIe près de Beaune 🚪\n\nCommente CHÂ",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://912527f7.shawez-immo.pages.dev/trial/2026-11-02/chateau-438-v3.mp4",
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "7197083620458840787",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "09:00"
+    },
+    "youtube": {
+     "uuid": "5341463463018581156",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "20:50"
+    }
+   }
+  },
+  {
+   "id": "TR-0211-438-v4",
+   "date": "2026-11-02",
+   "heure": "07:35",
+   "ref": "438",
+   "mot": "CHÂTEAU",
+   "style": "lieu_exception",
+   "accroche": "Ce vestibule majestueux, près de Beaune",
+   "legende": "Imagine accueillir tes invités dans ce vestibule majestueux, à 15 minutes de Beaune, sous les moulures d’un château du X",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://912527f7.shawez-immo.pages.dev/trial/2026-11-02/chateau-438-v4.mp4",
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "7756707732814449978",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "09:30"
+    },
+    "youtube": {
+     "uuid": "-8617333454958146822",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "21:50"
+    }
+   }
+  },
+  {
+   "id": "TR-0211-438-v5",
+   "date": "2026-11-02",
+   "heure": "07:35",
+   "ref": "438",
+   "mot": "CHÂTEAU",
+   "style": "chiffre_choc",
+   "accroche": "7 chambres à nourrir depuis cette cuisine",
+   "legende": "7 chambres dans le château, 2 de plus dans la maison d’amis, et une seule cuisine pour nourrir tout le monde 🍽️\n\nComment",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://912527f7.shawez-immo.pages.dev/trial/2026-11-02/chateau-438-v5.mp4",
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "-4655761068755631022",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "10:00"
+    },
+    "youtube": {
+     "uuid": "-4040630314508073017",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "09:00"
+    }
+   }
+  },
+  {
+   "id": "TR-0211-438-v6",
+   "date": "2026-11-02",
+   "heure": "07:35",
+   "ref": "438",
+   "mot": "CHÂTEAU",
+   "style": "chiffre_choc",
+   "accroche": "18 pièces, une seule cuisine",
+   "legende": "18 pièces sur 3 niveaux et une cuisine au centre de la vie de ce château du XVIIIe 🏰\n\nCommente CHÂTEAU et je t’envoie la",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://912527f7.shawez-immo.pages.dev/trial/2026-11-02/chateau-438-v6.mp4",
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "-8325244401433621204",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "10:30"
+    },
+    "youtube": {
+     "uuid": "-5217984588142850469",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "09:30"
+    }
+   }
+  },
+  {
+   "id": "TR-0211-438-v7",
+   "date": "2026-11-02",
+   "heure": "07:35",
+   "ref": "438",
+   "mot": "CHÂTEAU",
+   "style": "lieu_exception",
+   "accroche": "Un château du XVIIIe au bout du parc",
+   "legende": "Tu arrives par le parc, l’étang à côté, et le château du XVIIIe apparaît au bout de l’allée 🌿\n\nCommente CHÂTEAU et je t’",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://912527f7.shawez-immo.pages.dev/trial/2026-11-02/chateau-438-v7.mp4",
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "1540416401143841493",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "16:10"
+    },
+    "youtube": {
+     "uuid": "-193960837983417558",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "10:00"
+    }
+   }
+  },
+  {
+   "id": "TR-0211-438-v8",
+   "date": "2026-11-02",
+   "heure": "07:35",
+   "ref": "438",
+   "mot": "CHÂTEAU",
+   "style": "lieu_exception",
+   "accroche": "Un étang au pied d’un château du XVIIIe",
+   "legende": "Un étang aux abords de la demeure, un parc et un château du XVIIIe, à 15 minutes de Beaune 🦢\n\nCommente CHÂTEAU et je t’e",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://912527f7.shawez-immo.pages.dev/trial/2026-11-02/chateau-438-v8.mp4",
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "-592143681113536729",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "16:40"
+    },
+    "youtube": {
+     "uuid": "-6180037916983277688",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "10:30"
+    }
+   }
+  },
+  {
+   "id": "TR-0211-438-v9",
+   "date": "2026-11-02",
+   "heure": "07:35",
+   "ref": "438",
+   "mot": "CHÂTEAU",
+   "style": "chiffre_choc",
+   "accroche": "10 hectares de bois, 15 min de Beaune",
+   "legende": "10 hectares de bois et Beaune à 15 minutes : tu vivrais au calme, sans t’éloigner de rien 🌲\n\nCommente CHÂTEAU et je t’en",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://912527f7.shawez-immo.pages.dev/trial/2026-11-02/chateau-438-v9.mp4",
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "4904037586143300820",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "17:25"
+    },
+    "youtube": {
+     "uuid": "772693064512195751",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "11:00"
+    }
+   }
+  },
+  {
+   "id": "TR-0211-438-v10",
+   "date": "2026-11-02",
+   "heure": "07:35",
+   "ref": "438",
+   "mot": "CHÂTEAU",
+   "style": "lieu_exception",
+   "accroche": "Une façade du XVIIIe en pleine Bourgogne",
+   "legende": "Cette façade a traversé les siècles et la demeure a été entretenue avec soin ces vingt dernières années 🏛️\n\nCommente CHÂ",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://912527f7.shawez-immo.pages.dev/trial/2026-11-02/chateau-438-v10.mp4",
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "-753489108821390365",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "17:55"
+    },
+    "youtube": {
+     "uuid": "-1203239581911986565",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "11:30"
+    }
+   }
+  },
+  {
+   "id": "TR-0211-438-v11",
+   "date": "2026-11-02",
+   "heure": "07:35",
+   "ref": "438",
+   "mot": "CHÂTEAU",
+   "style": "lieu_exception",
+   "accroche": "La Côte de Beaune vue de ton château",
+   "legende": "Une vue dégagée sur la Côte de Beaune, l’un des paysages viticoles les plus emblématiques de Bourgogne, depuis ton propr",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://912527f7.shawez-immo.pages.dev/trial/2026-11-02/chateau-438-v11.mp4",
+   "a_programmer": true,
+   "diffusions": {
+    "youtube": {
+     "uuid": "-3997044703003063947",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "12:00"
+    }
+   }
+  },
+  {
+   "id": "TR-0211-438-v12",
+   "date": "2026-11-02",
+   "heure": "07:35",
+   "ref": "438",
+   "mot": "CHÂTEAU",
+   "style": "business",
+   "accroche": "Investir dans un château pour y recevoir",
+   "legende": "Investir dans un lieu de réceptions, de séminaires ou d’activité touristique, à 15 minutes de Beaune : ce château du XVI",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://912527f7.shawez-immo.pages.dev/trial/2026-11-02/chateau-438-v12.mp4",
+   "a_programmer": true,
+   "diffusions": {
+    "youtube": {
+     "uuid": "-8027074046142951748",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "12:30"
+    }
+   }
+  },
+  {
+   "id": "TR-0211-438-v13",
+   "date": "2026-11-02",
+   "heure": "07:35",
+   "ref": "438",
+   "mot": "CHÂTEAU",
+   "style": "chiffre_choc",
+   "accroche": "1 600 000 €, cuisine comprise",
+   "legende": "1 600 000 € pour le château, le parc, l’étang, la grange, l’écurie… et oui, la cuisine aussi 😄\n\nCommente CHÂTEAU et je t",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://912527f7.shawez-immo.pages.dev/trial/2026-11-02/chateau-438-v13.mp4",
+   "a_programmer": true,
+   "diffusions": {
+    "youtube": {
+     "uuid": "-4273840068597430065",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "13:00"
+    }
+   }
+  },
+  {
+   "id": "TR-0211-438-v14",
+   "date": "2026-11-02",
+   "heure": "07:35",
+   "ref": "438",
+   "mot": "CHÂTEAU",
+   "style": "defi_1pourcent",
+   "accroche": "99 % ratent la salle à manger",
+   "legende": "99 % ratent la salle à manger dans ce montage, elle ne passe qu’une fraction de seconde. Toi, tu l’as vue ? 👀\n\nCommente ",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://912527f7.shawez-immo.pages.dev/trial/2026-11-02/chateau-438-v14.mp4",
+   "a_programmer": true,
+   "diffusions": {
+    "youtube": {
+     "uuid": "-7550415701275357267",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "13:30"
+    }
+   }
+  },
+  {
+   "id": "TR-0211-438-v15",
+   "date": "2026-11-02",
+   "heure": "07:35",
+   "ref": "438",
+   "mot": "CHÂTEAU",
+   "style": "revelation",
+   "accroche": "Cette salle à manger cache 3 salons",
+   "legende": "Cette salle à manger n’est qu’un début : le château du XVIIIe compte aussi trois salons de réception et un boudoir 🏰\n\nCo",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://912527f7.shawez-immo.pages.dev/trial/2026-11-02/chateau-438-v15.mp4",
+   "a_programmer": true,
+   "diffusions": {
+    "youtube": {
+     "uuid": "8240095497925314751",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "14:00"
+    }
+   }
+  },
+  {
+   "id": "TR-0211-Mandat-v1",
+   "date": "2026-11-04",
+   "heure": "11:00",
+   "ref": "Mandat",
+   "mot": "T5",
+   "style": "chiffre_choc",
+   "accroche": "30 m² de séjour pour recevoir toute la famille",
+   "legende": "30 m² de séjour : la grande tablée du dimanche a enfin sa place 🍽️\n\nCommente T5 et je t’envoie la visite complète en pri",
+   "source": "monteur",
+   "uuid": "-8157888851074527308",
+   "statut": "publie",
+   "media": "https://db074fdf.shawez-immo.pages.dev/trial/2026-11-02/maison-neuilly-Mandat-v1.mp4",
+   "audio": "761736589642441"
+  },
+  {
+   "id": "TR-0211-Mandat-v2",
+   "date": "2026-11-02",
+   "heure": "10:55",
+   "ref": "Mandat",
+   "mot": "T5",
+   "style": "chiffre_choc",
+   "accroche": "3 chambres et des combles encore à aménager",
+   "legende": "Trois chambres aujourd’hui, et des combles aménageables pour le jour où la famille s’agrandit 🛏️\n\nCommente T5 et je t’en",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://db074fdf.shawez-immo.pages.dev/trial/2026-11-02/maison-neuilly-Mandat-v2.mp4",
+   "a_programmer": true,
+   "diffusions": {
+    "youtube": {
+     "uuid": "1595671545406834791",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "14:30"
+    }
+   }
+  },
+  {
+   "id": "TR-0211-Mandat-v3",
+   "date": "2026-11-02",
+   "heure": "10:55",
+   "ref": "Mandat",
+   "mot": "T5",
+   "style": "chiffre_choc",
+   "accroche": "90 m² posés sur un sous-sol total",
+   "legende": "90 m² au-dessus, et en dessous un sous-sol complet pour tout ranger 🏠\n\nCommente T5 et je t’envoie la visite complète en ",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://db074fdf.shawez-immo.pages.dev/trial/2026-11-02/maison-neuilly-Mandat-v3.mp4",
+   "a_programmer": true,
+   "diffusions": {
+    "youtube": {
+     "uuid": "-8067499275707268308",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "16:10"
+    }
+   }
+  },
+  {
+   "id": "TR-0211-Mandat-v4",
+   "date": "2026-11-02",
+   "heure": "10:55",
+   "ref": "Mandat",
+   "mot": "T5",
+   "style": "chiffre_choc",
+   "accroche": "5 pièces, un terrain clos tout près de Dijon",
+   "legende": "Cinq pièces et un terrain clos et arboré, à proximité immédiate de Dijon 🌳\n\nCommente T5 et je t’envoie la visite complèt",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://db074fdf.shawez-immo.pages.dev/trial/2026-11-02/maison-neuilly-Mandat-v4.mp4",
+   "a_programmer": true,
+   "diffusions": {
+    "youtube": {
+     "uuid": "-3799761470298436502",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "16:40"
+    }
+   }
+  },
+  {
+   "id": "TR-0211-Mandat-v5",
+   "date": "2026-11-02",
+   "heure": "10:55",
+   "ref": "Mandat",
+   "mot": "T5",
+   "style": "chiffre_choc",
+   "accroche": "3 niveaux, un garage et une cuisine d’été",
+   "legende": "Trois niveaux, un garage et une cuisine d’été au sous-sol : ici, chaque étage a son usage 🔑\n\nCommente T5 et je t’envoie ",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://db074fdf.shawez-immo.pages.dev/trial/2026-11-02/maison-neuilly-Mandat-v5.mp4",
+   "a_programmer": true,
+   "diffusions": {
+    "youtube": {
+     "uuid": "-6177596141097957444",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "17:10"
+    }
+   }
+  },
+  {
+   "id": "TR-0211-Mandat-v6",
+   "date": "2026-11-02",
+   "heure": "10:55",
+   "ref": "Mandat",
+   "mot": "T5",
+   "style": "chiffre_choc",
+   "accroche": "2 cuisines dans la même maison",
+   "legende": "Une cuisine indépendante en haut, une cuisine d’été en bas : les repas d’août ne chaufferont plus le salon 🍳\n\nCommente T",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://db074fdf.shawez-immo.pages.dev/trial/2026-11-02/maison-neuilly-Mandat-v6.mp4",
+   "a_programmer": true,
+   "diffusions": {
+    "youtube": {
+     "uuid": "6658582912399330418",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "17:50"
+    }
+   }
+  },
+  {
+   "id": "TR-0211-Mandat-v7",
+   "date": "2026-11-02",
+   "heure": "10:55",
+   "ref": "Mandat",
+   "mot": "T5",
+   "style": "chiffre_choc",
+   "accroche": "1 garage, 1 cellier et 1 buanderie en bas",
+   "legende": "Garage, cellier et buanderie au sous-sol : plus rien ne traîne dans les pièces de vie 🧺\n\nCommente T5 et je t’envoie la v",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://db074fdf.shawez-immo.pages.dev/trial/2026-11-02/maison-neuilly-Mandat-v7.mp4",
+   "a_programmer": true
+  },
+  {
+   "id": "TR-0211-Mandat-v8",
+   "date": "2026-11-02",
+   "heure": "10:55",
+   "ref": "Mandat",
+   "mot": "T5",
+   "style": "lieu_exception",
+   "accroche": "Une petite rue calme à deux pas de Dijon",
+   "legende": "Une petite rue calme, les commerces et les transports tout près, et Dijon à côté 🚶\n\nCommente T5 et je t’envoie la visite",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://db074fdf.shawez-immo.pages.dev/trial/2026-11-02/maison-neuilly-Mandat-v8.mp4",
+   "a_programmer": true
+  },
+  {
+   "id": "TR-0211-Mandat-v9",
+   "date": "2026-11-02",
+   "heure": "10:55",
+   "ref": "Mandat",
+   "mot": "T5",
+   "style": "lieu_exception",
+   "accroche": "Neuilly-Crimolois, côté calme terrain clos et arboré",
+   "legende": "À Neuilly-Crimolois, une maison au calme sur un terrain clos et arboré 🌿\n\nCommente T5 et je t’envoie la visite complète ",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://db074fdf.shawez-immo.pages.dev/trial/2026-11-02/maison-neuilly-Mandat-v9.mp4",
+   "a_programmer": true
+  },
+  {
+   "id": "TR-0211-Mandat-v10",
+   "date": "2026-11-02",
+   "heure": "10:55",
+   "ref": "Mandat",
+   "mot": "T5",
+   "style": "lieu_exception",
+   "accroche": "Maison T5 au calme aux portes de Dijon",
+   "legende": "Une maison T5 jumelée d’un côté seulement, en bon état général, à finir selon tes goûts 🎨\n\nCommente T5 et je t’envoie la",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://db074fdf.shawez-immo.pages.dev/trial/2026-11-02/maison-neuilly-Mandat-v10.mp4",
+   "a_programmer": true
+  },
+  {
+   "id": "TR-0211-Mandat-v11",
+   "date": "2026-11-02",
+   "heure": "10:55",
+   "ref": "Mandat",
+   "mot": "T5",
+   "style": "lieu_exception",
+   "accroche": "Une terrasse dès l’entrée de la propriété",
+   "legende": "Le café du matin commence sur la terrasse, juste à l’entrée de la propriété ☕\n\nCommente T5 et je t’envoie la visite comp",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://db074fdf.shawez-immo.pages.dev/trial/2026-11-02/maison-neuilly-Mandat-v11.mp4",
+   "a_programmer": true
+  },
+  {
+   "id": "TR-0211-Mandat-v12",
+   "date": "2026-11-02",
+   "heure": "10:55",
+   "ref": "Mandat",
+   "mot": "T5",
+   "style": "defi_1pourcent",
+   "accroche": "99 % ratent cette chambre mets pause",
+   "legende": "99 % passent à côté de cette chambre sans mettre pause. Trois chambres, à toi de voir laquelle tu prendrais 👀\n\nCommente ",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://db074fdf.shawez-immo.pages.dev/trial/2026-11-02/maison-neuilly-Mandat-v12.mp4",
+   "a_programmer": true
+  },
+  {
+   "id": "TR-0211-Mandat-v13",
+   "date": "2026-11-02",
+   "heure": "10:55",
+   "ref": "Mandat",
+   "mot": "T5",
+   "style": "defi_1pourcent",
+   "accroche": "Seul 1 % compte juste combien de chambres ?",
+   "legende": "Seul 1 % arrive à compter les chambres du premier coup. Dis-le-moi en commentaire, puis vérifie 🤓\n\nCommente T5 et je t’e",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://db074fdf.shawez-immo.pages.dev/trial/2026-11-02/maison-neuilly-Mandat-v13.mp4",
+   "a_programmer": true
+  },
+  {
+   "id": "TR-0211-Mandat-v14",
+   "date": "2026-11-02",
+   "heure": "10:55",
+   "ref": "Mandat",
+   "mot": "T5",
+   "style": "question",
+   "accroche": "Prix en baisse sur ce T5, tu regardes ?",
+   "legende": "Le prix est en baisse sur cette maison de 5 pièces, tu la regardes avant les autres ? 👇\n\nCommente T5 et je t’envoie la v",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://db074fdf.shawez-immo.pages.dev/trial/2026-11-02/maison-neuilly-Mandat-v14.mp4",
+   "a_programmer": true
+  },
+  {
+   "id": "TR-0211-Mandat-v15",
+   "date": "2026-11-02",
+   "heure": "10:55",
+   "ref": "Mandat",
+   "mot": "T5",
+   "style": "revelation",
+   "accroche": "Derrière cette porte, un sous-sol sur toute la maison",
+   "legende": "Derrière la porte de l’escalier, un sous-sol sur toute la surface : garage, buanderie, cuisine d’été, cellier 🚪\n\nComment",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://db074fdf.shawez-immo.pages.dev/trial/2026-11-02/maison-neuilly-Mandat-v15.mp4",
+   "a_programmer": true
   }
  ]
 }
