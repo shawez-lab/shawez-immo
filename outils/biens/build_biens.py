@@ -707,47 +707,28 @@ def sources_video(vref, video):
     return out
 
 
-def video_de_lagence(url):
-    """Vidéo publiée par l'agence sur sa fiche (champ « video_agence » d'annonces.json, rempli par
-    outils/sync_annonces.py depuis le 02/11/2026). Renvoie ('youtube', id) ou ('vimeo', id) si elle est
-    intégrable. Avant cette date, une vidéo ajoutée par l'agence n'arrivait jamais sur le site de Shawez."""
-    if not url:
-        return None
-    m = re.search(r'(?:youtube(?:-nocookie)?\.com/(?:embed/|watch\?v=)|youtu\.be/)([\w-]{6,})', url)
-    if m:
-        return 'youtube', m.group(1)
-    m = re.search(r'vimeo\.com/(?:video/)?(\d{6,})', url)
-    if m:
-        return 'vimeo', m.group(1)
-    return None
-
-
-def integration(ref, medias, agence=None):
-    """Vidéo intégrée du bien : YouTube d'abord (lecture automatique sans le son), sinon le Reel Instagram,
-    sinon la vidéo que l'agence a mise sur sa propre fiche.
+def integration(ref, medias):
+    """Vidéo intégrée du bien : YouTube d'abord (lecture automatique sans le son), sinon le Reel Instagram.
     Champs de medias.json : « youtube » (identifiant, ou fichier outils/biens/youtube.json) et « instagram » (liste de Reels,
-    le premier est affiché). Renvoie ('youtube', id), ('instagram', code), ('vimeo', id) ou None (la vidéo hébergée sert alors de secours)."""
+    le premier est affiché). Renvoie ('youtube', id), ('instagram', code) ou None (la vidéo hébergée sert alors de secours)."""
     m = medias.get(ref) or {}
     for x in (m, medias.get(m.get('video_de')) or {}):
         if x.get('youtube'):
             return 'youtube', x['youtube']
         if x.get('instagram'):
             return 'instagram', x['instagram'][0]
-    return video_de_lagence(agence)
+    return None
 
 
-def a_video(ref, medias, agence=None):
+def a_video(ref, medias):
     m = medias.get(ref) or {}
-    return bool(m.get('video') or m.get('video_de') or integration(ref, medias, agence))
+    return bool(m.get('video') or m.get('video_de') or integration(ref, medias))
 
 
 def bloc_integration(emb, t):
     if emb[0] == 'youtube':
         i = urllib.parse.quote(emb[1])
         src = 'https://www.youtube-nocookie.com/embed/%s?autoplay=1&mute=1&playsinline=1&loop=1&playlist=%s&rel=0&modestbranding=1' % (i, i)
-        allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen'
-    elif emb[0] == 'vimeo':
-        src = 'https://player.vimeo.com/video/%s?autoplay=1&muted=1&loop=1&title=0&byline=0&portrait=0' % urllib.parse.quote(emb[1])
         allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen'
     else:
         src = 'https://www.instagram.com/reel/%s/embed/' % urllib.parse.quote(emb[1])
@@ -763,7 +744,7 @@ def bloc_integration(emb, t):
                 % (ICO['play'], E(src), E(t), allow))
     return ('<div class="bf-video bf-emb bf-emb-%s"><span class="bf-vlab bi-vid">%sVisite en vidéo</span>'
             '<iframe id="bf-emb" data-src="%s" title="Vidéo du bien : %s" allow="%s" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>'
-            % ('ig' if emb[0] == 'instagram' else 'yt', ICO['cam'], E(src), E(t), allow))
+            % ('yt' if emb[0] == 'youtube' else 'ig', ICO['cam'], E(src), E(t), allow))
 
 
 def telephone(ref, vref, video, ig, ph, t):
@@ -790,7 +771,7 @@ def carte(a, ph, medias, eager=False):
     tags = ''
     if st:
         tags += '<span class="bi-st %s">%s</span>' % (cls, E(st))
-    if a_video(a['ref'], medias, a.get('video_agence')):
+    if a_video(a['ref'], medias):
         tags += '<span class="bi-vid">%sVidéo</span>' % ICO['cam']
     at = ', '.join(atouts(a)[:3])
     prix = ('%s €' % fr(a['prix'])) if a.get('prix') else 'Prix sur demande'
@@ -866,10 +847,10 @@ def fiche(a, ph, medias, base, voisins, taux):
     actif = a['status'] in ACTIFS
     video = m.get('video') or (medias.get(m['video_de']) or {}).get('video') if m.get('video_de') else m.get('video')
     vref = m.get('video_de') or ref
-    emb = integration(ref, medias, a.get('video_agence'))
+    emb = integration(ref, medias)
     ig = emb[1] if emb and emb[0] == 'instagram' else None
-    if emb and emb[0] in ('youtube', 'vimeo'):
-        video = None          # lecteur intégré en tête de fiche
+    if emb and emb[0] == 'youtube':
+        video = None          # YouTube en tête de fiche
     elif emb:
         emb = None            # Instagram : la vidéo hébergée (ou les photos) tourne dans l'écran téléphone, le clic ouvre le Reel
     tour = (m.get('visite_virtuelle') or {}).get('url') or a.get('visite_virtuelle')
@@ -1252,7 +1233,7 @@ def construire(etat=None):
     sitemap(plan)
     n = liens_site()
     print('Fiches : %d (dont %d en ligne) · photos : %d biens · vidéos : %d · pages du site mises à jour : %d'
-          % (len(faites), len(plan), len(ph), sum(1 for a in tous if a_video(a['ref'], medias, a.get('video_agence'))), n))
+          % (len(faites), len(plan), len(ph), sum(1 for a in tous if a_video(a['ref'], medias)), n))
 
 
 if __name__ == '__main__':
