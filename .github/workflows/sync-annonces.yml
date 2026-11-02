@@ -1,13 +1,33 @@
 name: Synchronisation des annonces
 
-# Toutes les 15 minutes de 6 h à 23 h (heure de Paris) : une nouvelle annonce de l'agence est en ligne
-# sur shawez-immo.com en moins de 20 minutes (décision de Shawez, 23/10/2026). Tourne sur GitHub,
-# aucun crédit Claude consommé. GitHub ne connaît que l'heure UTC : 4 h-21 h UTC couvre été et hiver,
-# le script vérifie l'heure de Paris. Vidéos Instagram : une fois par heure (premier quart d'heure).
+# Trois passages par heure de 6 h à 23 h (heure de Paris) : une annonce modifiée chez l'agence est en
+# ligne sur shawez-immo.com en moins de 25 minutes (décision de Shawez, 02/11/2026 : « dès qu'une annonce
+# est modifiée sur le site de l'agence, il faut que ça soit fait tout de suite sur mon site »).
+#
+# Pourquoi trois passages sans exploser le compte : chaque passage commence par outils/sentinelle.py, qui
+# lit seulement les pages de liste de l'agence (environ 25 s) et s'arrête net si rien n'a bougé. La
+# synchronisation complète, qui coûte 3 à 5 minutes, ne part que lorsqu'il y a vraiment du nouveau, ou
+# toutes les 4 heures pour rattraper ce qui ne se voit pas depuis la liste.
+#
+# Le 29, 30 et 31 octobre 2026, GitHub a refusé NEUF passages d'affilée : « The job was not started because
+# recent account payments have failed or your spending limit needs to be increased ». Le site de Shawez est
+# donc resté trois jours en retard sans que personne ne le sache, parce qu'un passage refusé ne produit
+# aucun journal. C'est la tâche planifiée « Gardien de la synchronisation » qui surveille ce cas : elle
+# compare l'heure du dernier commit de synchronisation et prévient Shawez si ça dépasse deux heures.
+#
+# GitHub ne connaît que l'heure UTC : 5 h-21 h UTC couvre été et hiver, le script vérifie l'heure de Paris.
+# Vidéos Instagram : une fois par heure, au premier passage.
 on:
   schedule:
-    - cron: '9 5-21 * * *'
-  workflow_dispatch: {}
+    - cron: '6 5-21 * * *'
+    - cron: '26 5-21 * * *'
+    - cron: '46 5-21 * * *'
+  workflow_dispatch:
+    inputs:
+      complet:
+        description: Forcer la synchronisation complète sans passer par la sentinelle (oui / non)
+        required: false
+        default: 'oui'
 
 permissions:
   contents: write
@@ -24,9 +44,8 @@ jobs:
       - name: Heure de Paris
         id: heure
         run: |
-          h=$(TZ=Europe/Paris date +%H)
-          echo "Heure à Paris : $h"
-          m=$(date +%M)
+          h=$(TZ=Europe/Paris date +%H); m=$(date +%M)
+          echo "Heure à Paris : $h h $m"
           if [ "${{ github.event_name }}" = "workflow_dispatch" ] || { [ "$h" -ge 6 ] && [ "$h" -le 23 ]; }; then echo "go=1" >> "$GITHUB_OUTPUT"; else echo "go=0" >> "$GITHUB_OUTPUT"; fi
           if [ "${{ github.event_name }}" = "workflow_dispatch" ] || [ "$m" -lt 15 ]; then echo "reels=1" >> "$GITHUB_OUTPUT"; else echo "reels=0" >> "$GITHUB_OUTPUT"; fi
 
@@ -40,8 +59,28 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Dépendances
+      # La sentinelle n'a besoin de rien : elle ne lit que du texte. Pillow n'est installé que si on
+      # synchronise vraiment, ce qui fait gagner une vingtaine de secondes sur la majorité des passages.
+      - name: Sentinelle — quelque chose a-t-il bougé chez l'agence ?
+        id: veille
         if: steps.heure.outputs.go == '1'
+        env:
+          TZ: Europe/Paris
+        run: |
+          if [ "${{ github.event.inputs.complet }}" = "oui" ]; then
+            echo "Lancement manuel : synchronisation complète demandée."
+            echo "change=1" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          set +e
+          python3 outils/sentinelle.py
+          code=$?
+          set -e
+          if [ "$code" = "10" ]; then echo "change=1" >> "$GITHUB_OUTPUT"
+          elif [ "$code" = "0" ]; then echo "change=0" >> "$GITHUB_OUTPUT"
+          else echo "Sentinelle en échec (code $code) : on synchronise par précaution."; echo "change=1" >> "$GITHUB_OUTPUT"; fi
+
+      - name: Dépendances
+        if: steps.heure.outputs.go == '1' && (steps.veille.outputs.change == '1' || steps.heure.outputs.reels == '1')
         run: pip install --quiet 'pillow>=11.3'   # AVIF compris (photos des fiches /biens/…)
 
       - name: Outils vidéo (vidéos Instagram des biens)
@@ -60,17 +99,25 @@ jobs:
         run: python3 outils/biens/reels.py
 
       - name: Synchronisation
-        if: steps.heure.outputs.go == '1'
+        if: steps.heure.outputs.go == '1' && steps.veille.outputs.change == '1'
         env:
           TZ: Europe/Paris
         run: python3 outils/sync_annonces.py
 
       - name: Construction (flux RSS, balises des pages)
-        if: steps.heure.outputs.go == '1'
+        if: steps.heure.outputs.go == '1' && (steps.veille.outputs.change == '1' || steps.heure.outputs.reels == '1')
         run: python3 outils/build.py
 
+      # Posée seulement après une synchronisation réussie : si la synchro échoue, l'empreinte reste
+      # l'ancienne et le passage suivant réessaie au lieu de croire que tout est à jour.
+      - name: Poser l'empreinte de l'agence
+        if: steps.heure.outputs.go == '1' && steps.veille.outputs.change == '1'
+        env:
+          TZ: Europe/Paris
+        run: python3 outils/sentinelle.py --poser
+
       - name: Commit sur main s'il y a des changements
-        if: steps.heure.outputs.go == '1'
+        if: steps.heure.outputs.go == '1' && (steps.veille.outputs.change == '1' || steps.heure.outputs.reels == '1')
         run: |
           git config user.name "sync-annonces"
           git config user.email "sync-annonces@users.noreply.github.com"
@@ -84,7 +131,7 @@ jobs:
           fi
 
       - name: Alerte si une fiche a été mise de côté ou si la lecture a échoué
-        if: steps.heure.outputs.go == '1'
+        if: steps.heure.outputs.go == '1' && steps.veille.outputs.change == '1'
         run: |
           if [ -f de-claude/alerte-sync.md ]; then
             echo "::error::$(tr '\n' ' ' < de-claude/alerte-sync.md | cut -c1-300)"
