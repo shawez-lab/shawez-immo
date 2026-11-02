@@ -166,6 +166,9 @@
   },
   "t5": {
    "ref": "Mandat"
+  },
+  "bali": {
+   "ref": "461BALI"
   }
  },
  "commentaires_manychat": [
@@ -216,6 +219,13 @@
    "mot": "T5",
    "ref": "Mandat",
    "libelle": "la maison T5 de Neuilly-Crimolois",
+   "depuis": "2026-11-02",
+   "jusqu_au": "2026-11-10"
+  },
+  {
+   "mot": "BALI",
+   "ref": "461BALI",
+   "libelle": "le studio inspiration Bali",
    "depuis": "2026-11-02",
    "jusqu_au": "2026-11-10"
   }

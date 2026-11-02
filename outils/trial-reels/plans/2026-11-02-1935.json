@@ -1,0 +1,198 @@
+{
+ "jour": "2026-11-02",
+ "biens": [
+  {
+   "ref": "461BALI",
+   "src": "assets/biens/461BALI/video.mp4",
+   "mot": "BALI",
+   "nom": "studio-bali",
+   "versions": [
+    {
+     "id": "v1",
+     "style": "chiffre_choc",
+     "instagram": false,
+     "accroche": "129 000 €|un studio inspiration Bali",
+     "legende": "129 000 € pour un studio d’exception rénové par architecte, avec sa baignoire balnéo 🛁\n\nCommente BALI et je t’envoie la visite complète en privé 📩\n\n#studiodijon #immobilierdijon #renovation #premierachat",
+     "plans": [
+      [
+       21.2,
+       23.2,
+       1.0,
+       "129 000 €"
+      ],
+      [
+       8.4,
+       10.2,
+       0.9
+      ],
+      [
+       16.0,
+       17.6,
+       0.9
+      ],
+      [
+       13.0,
+       14.6,
+       0.9
+      ],
+      [
+       10.6,
+       12.2,
+       0.9
+      ],
+      [
+       18.9,
+       20.4,
+       0.9
+      ],
+      [
+       14.6,
+       15.9,
+       0.48
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v2",
+     "style": "lieu_exception",
+     "instagram": true,
+     "accroche": "Bali, en plein|cœur de Dijon",
+     "legende": "Bali, en plein cœur de Dijon : un studio niché au calme d’une cour intérieure, à deux pas du Parc Darcy 🌿\n\nCommente BALI et je t’envoie la visite complète en privé 📩\n\n#dijon #parcdarcy #studio #bali #vivreadijon",
+     "plans": [
+      [
+       8.4,
+       10.4,
+       0.9,
+       "Inspiration Bali"
+      ],
+      [
+       18.9,
+       20.9,
+       0.9
+      ],
+      [
+       21.4,
+       22.8,
+       0.9
+      ],
+      [
+       10.6,
+       12.4,
+       0.9
+      ],
+      [
+       13.2,
+       15.2,
+       0.9
+      ],
+      [
+       16.0,
+       17.2,
+       0.9
+      ],
+      [
+       17.2,
+       18.6,
+       0.52
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v3",
+     "style": "chiffre_choc",
+     "instagram": false,
+     "accroche": "19 m², 21 %|de rendement saisonnier",
+     "legende": "19 m² Carrez et 21 % de rendement locatif saisonnier annoncé pour ce studio clé en main, avec de faibles charges 📈\n\nCommente BALI et je t’envoie la visite complète en privé 📩\n\n#investissementlocatif #rendement #cleenmain #immobilier21",
+     "plans": [
+      [
+       13.0,
+       15.0,
+       0.9,
+       "21 %"
+      ],
+      [
+       16.0,
+       17.8,
+       0.9
+      ],
+      [
+       8.6,
+       10.4,
+       0.9
+      ],
+      [
+       21.2,
+       22.8,
+       0.9
+      ],
+      [
+       10.6,
+       12.4,
+       0.9,
+       "Clé en main"
+      ],
+      [
+       18.9,
+       20.6,
+       0.9
+      ],
+      [
+       15.0,
+       16.0,
+       0.38
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v4",
+     "style": "defi_1pourcent",
+     "instagram": false,
+     "accroche": "Seul 1 %|met pause|sur la balnéo",
+     "legende": "Seul 1 % arrive à mettre pause pile quand la baignoire apparaît 🎯 Tu tentes ?\n\nCommente BALI et je t’envoie la visite complète en privé 📩\n\n#defi #baignoirebalneo #deco #studiodexception",
+     "plans": [
+      [
+       18.9,
+       20.4,
+       1.0
+      ],
+      [
+       20.4,
+       22.6,
+       1.0,
+       "Balnéo"
+      ],
+      [
+       8.4,
+       9.8,
+       0.9
+      ],
+      [
+       11.0,
+       12.4,
+       0.9
+      ],
+      [
+       13.4,
+       15.0,
+       0.9
+      ],
+      [
+       16.2,
+       17.8,
+       0.9
+      ],
+      [
+       22.6,
+       23.3,
+       0.26
+      ]
+     ],
+     "publier": ""
+    }
+   ]
+  }
+ ]
+}
