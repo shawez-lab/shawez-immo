@@ -2697,6 +2697,12 @@
      "url": "",
      "date": "2026-11-02",
      "heure": "22:55"
+    },
+    "pinterest": {
+     "uuid": "6770310471375864174",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "18:10"
     }
    },
    "tentatives": [
@@ -3503,6 +3509,18 @@
      "url": "",
      "date": "2026-11-02",
      "heure": "09:00"
+    },
+    "linkedin": {
+     "uuid": "5800576459823924081",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "17:10"
+    },
+    "facebook": {
+     "uuid": "1414167077485035676",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "17:50"
     }
    }
   },
@@ -4213,6 +4231,12 @@
      "url": "",
      "date": "2026-11-02",
      "heure": "13:30"
+    },
+    "pinterest": {
+     "uuid": "3931688968114882325",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "14:40"
     }
    }
   },
@@ -4242,6 +4266,12 @@
      "url": "",
      "date": "2026-11-02",
      "heure": "14:00"
+    },
+    "pinterest": {
+     "uuid": "-5836083969894039021",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "15:10"
     }
    }
   },
@@ -4271,6 +4301,12 @@
      "url": "",
      "date": "2026-11-02",
      "heure": "14:30"
+    },
+    "pinterest": {
+     "uuid": "5352665961819032091",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "15:40"
     }
    }
   },
@@ -4299,6 +4335,12 @@
      "uuid": "-371917116440623744",
      "url": "",
      "date": "2026-11-02",
+     "heure": "16:10"
+    },
+    "pinterest": {
+     "uuid": "3783532511215501441",
+     "url": "",
+     "date": "2026-11-03",
      "heure": "16:10"
     }
    }
@@ -4329,6 +4371,12 @@
      "url": "",
      "date": "2026-11-02",
      "heure": "16:40"
+    },
+    "pinterest": {
+     "uuid": "-1520444118874175643",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "16:40"
     }
    }
   },
@@ -4357,6 +4405,12 @@
      "uuid": "2684651950728171481",
      "url": "",
      "date": "2026-11-02",
+     "heure": "17:10"
+    },
+    "pinterest": {
+     "uuid": "67206621615377575",
+     "url": "",
+     "date": "2026-11-03",
      "heure": "17:10"
     }
    }
@@ -4387,6 +4441,12 @@
      "url": "",
      "date": "2026-11-02",
      "heure": "17:50"
+    },
+    "pinterest": {
+     "uuid": "-7891686384235036255",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "17:40"
     }
    }
   },
@@ -4403,7 +4463,21 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://912527f7.shawez-immo.pages.dev/trial/2026-11-02/chateau-438-v1.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "3185493065311014321",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "08:00"
+    },
+    "youtube": {
+     "uuid": "5134582229424948676",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "18:50"
+    }
+   }
   },
   {
    "id": "TR-0211-438-v2",
@@ -4418,7 +4492,21 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://912527f7.shawez-immo.pages.dev/trial/2026-11-02/chateau-438-v2.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "1907747339490574809",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "08:30"
+    },
+    "youtube": {
+     "uuid": "-3229478977980838909",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "19:50"
+    }
+   }
   },
   {
    "id": "TR-0211-438-v3",
@@ -4433,7 +4521,21 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://912527f7.shawez-immo.pages.dev/trial/2026-11-02/chateau-438-v3.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "7197083620458840787",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "09:00"
+    },
+    "youtube": {
+     "uuid": "5341463463018581156",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "20:50"
+    }
+   }
   },
   {
    "id": "TR-0211-438-v4",
@@ -4448,7 +4550,21 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://912527f7.shawez-immo.pages.dev/trial/2026-11-02/chateau-438-v4.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "7756707732814449978",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "09:30"
+    },
+    "youtube": {
+     "uuid": "-8617333454958146822",
+     "url": "",
+     "date": "2026-11-02",
+     "heure": "21:50"
+    }
+   }
   },
   {
    "id": "TR-0211-438-v5",
@@ -4463,7 +4579,21 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://912527f7.shawez-immo.pages.dev/trial/2026-11-02/chateau-438-v5.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "-4655761068755631022",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "10:00"
+    },
+    "youtube": {
+     "uuid": "-4040630314508073017",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "09:00"
+    }
+   }
   },
   {
    "id": "TR-0211-438-v6",
@@ -4478,7 +4608,21 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://912527f7.shawez-immo.pages.dev/trial/2026-11-02/chateau-438-v6.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "-8325244401433621204",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "10:30"
+    },
+    "youtube": {
+     "uuid": "-5217984588142850469",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "09:30"
+    }
+   }
   },
   {
    "id": "TR-0211-438-v7",
@@ -4493,7 +4637,21 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://912527f7.shawez-immo.pages.dev/trial/2026-11-02/chateau-438-v7.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "1540416401143841493",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "16:10"
+    },
+    "youtube": {
+     "uuid": "-193960837983417558",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "10:00"
+    }
+   }
   },
   {
    "id": "TR-0211-438-v8",
@@ -4508,7 +4666,21 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://912527f7.shawez-immo.pages.dev/trial/2026-11-02/chateau-438-v8.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "-592143681113536729",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "16:40"
+    },
+    "youtube": {
+     "uuid": "-6180037916983277688",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "10:30"
+    }
+   }
   },
   {
    "id": "TR-0211-438-v9",
@@ -4523,7 +4695,21 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://912527f7.shawez-immo.pages.dev/trial/2026-11-02/chateau-438-v9.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "4904037586143300820",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "17:25"
+    },
+    "youtube": {
+     "uuid": "772693064512195751",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "11:00"
+    }
+   }
   },
   {
    "id": "TR-0211-438-v10",
@@ -4538,7 +4724,21 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://912527f7.shawez-immo.pages.dev/trial/2026-11-02/chateau-438-v10.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "-753489108821390365",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "17:55"
+    },
+    "youtube": {
+     "uuid": "-1203239581911986565",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "11:30"
+    }
+   }
   },
   {
    "id": "TR-0211-438-v11",
@@ -4553,7 +4753,15 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://912527f7.shawez-immo.pages.dev/trial/2026-11-02/chateau-438-v11.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "youtube": {
+     "uuid": "-3997044703003063947",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "12:00"
+    }
+   }
   },
   {
    "id": "TR-0211-438-v12",
@@ -4568,7 +4776,15 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://912527f7.shawez-immo.pages.dev/trial/2026-11-02/chateau-438-v12.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "youtube": {
+     "uuid": "-8027074046142951748",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "12:30"
+    }
+   }
   },
   {
    "id": "TR-0211-438-v13",
@@ -4583,7 +4799,15 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://912527f7.shawez-immo.pages.dev/trial/2026-11-02/chateau-438-v13.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "youtube": {
+     "uuid": "-4273840068597430065",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "13:00"
+    }
+   }
   },
   {
    "id": "TR-0211-438-v14",
@@ -4598,7 +4822,15 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://912527f7.shawez-immo.pages.dev/trial/2026-11-02/chateau-438-v14.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "youtube": {
+     "uuid": "-7550415701275357267",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "13:30"
+    }
+   }
   },
   {
    "id": "TR-0211-438-v15",
@@ -4613,7 +4845,15 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://912527f7.shawez-immo.pages.dev/trial/2026-11-02/chateau-438-v15.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "youtube": {
+     "uuid": "8240095497925314751",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "14:00"
+    }
+   }
   },
   {
    "id": "TR-0211-Mandat-v1",
@@ -4643,7 +4883,15 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://db074fdf.shawez-immo.pages.dev/trial/2026-11-02/maison-neuilly-Mandat-v2.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "youtube": {
+     "uuid": "1595671545406834791",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "14:30"
+    }
+   }
   },
   {
    "id": "TR-0211-Mandat-v3",
@@ -4658,7 +4906,15 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://db074fdf.shawez-immo.pages.dev/trial/2026-11-02/maison-neuilly-Mandat-v3.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "youtube": {
+     "uuid": "-8067499275707268308",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "16:10"
+    }
+   }
   },
   {
    "id": "TR-0211-Mandat-v4",
@@ -4673,7 +4929,15 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://db074fdf.shawez-immo.pages.dev/trial/2026-11-02/maison-neuilly-Mandat-v4.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "youtube": {
+     "uuid": "-3799761470298436502",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "16:40"
+    }
+   }
   },
   {
    "id": "TR-0211-Mandat-v5",
@@ -4688,7 +4952,15 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://db074fdf.shawez-immo.pages.dev/trial/2026-11-02/maison-neuilly-Mandat-v5.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "youtube": {
+     "uuid": "-6177596141097957444",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "17:10"
+    }
+   }
   },
   {
    "id": "TR-0211-Mandat-v6",
@@ -4703,7 +4975,15 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://db074fdf.shawez-immo.pages.dev/trial/2026-11-02/maison-neuilly-Mandat-v6.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "youtube": {
+     "uuid": "6658582912399330418",
+     "url": "",
+     "date": "2026-11-03",
+     "heure": "17:50"
+    }
+   }
   },
   {
    "id": "TR-0211-Mandat-v7",
