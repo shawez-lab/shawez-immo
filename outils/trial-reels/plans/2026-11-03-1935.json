@@ -1,0 +1,430 @@
+{
+ "jour": "2026-11-03",
+ "biens": [
+  {
+   "ref": "Mandat",
+   "src": "assets/biens/Mandat/video.mp4",
+   "mot": "T5",
+   "nom": "maison-neuilly",
+   "versions": [
+    {
+     "id": "v1",
+     "style": "chiffre_choc",
+     "instagram": true,
+     "accroche": "5 pièces|et une cuisine d’été en plus",
+     "legende": "5 pièces à vivre, et au sous-sol une cuisine d’été pour les repas qui durent tout l’été ☀️\n\nCommente T5 et je t’envoie la visite complète en privé 📩\n\n#cuisinedete #maisondefamille #soussol #cotedor",
+     "plans": [
+      [
+       24.9,
+       25.85,
+       0.72,
+       "Cuisine d’été"
+      ],
+      [
+       23.5,
+       24.8,
+       0.72
+      ],
+      [
+       26.0,
+       26.95,
+       0.72
+      ],
+      [
+       9.05,
+       9.9,
+       0.72
+      ],
+      [
+       13.5,
+       14.9,
+       0.72
+      ],
+      [
+       17.0,
+       17.9,
+       0.72
+      ],
+      [
+       21.5,
+       22.4,
+       0.72
+      ],
+      [
+       11.45,
+       12.4,
+       0.72
+      ],
+      [
+       27.0,
+       27.9,
+       0.72
+      ],
+      [
+       18.0,
+       18.9,
+       0.321
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v2",
+     "style": "chiffre_choc",
+     "instagram": false,
+     "accroche": "30 m² de séjour|et une terrasse à l’entrée",
+     "legende": "30 m² de séjour à l’intérieur, et dehors une terrasse pour le premier café du matin ☕\n\nCommente T5 et je t’envoie la visite complète en privé 📩\n\n#terrasse #sejour #maisonneuilly #immobilierdijon",
+     "plans": [
+      [
+       9.05,
+       9.9,
+       0.72,
+       "30 m²"
+      ],
+      [
+       10.0,
+       10.55,
+       0.72
+      ],
+      [
+       11.45,
+       12.4,
+       0.72
+      ],
+      [
+       26.0,
+       26.95,
+       0.72,
+       "Terrasse"
+      ],
+      [
+       28.0,
+       28.6,
+       0.72
+      ],
+      [
+       15.0,
+       15.9,
+       0.72
+      ],
+      [
+       12.5,
+       13.4,
+       0.72
+      ],
+      [
+       22.5,
+       23.4,
+       0.72
+      ],
+      [
+       19.0,
+       19.9,
+       0.72
+      ],
+      [
+       27.0,
+       27.9,
+       0.321
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v3",
+     "style": "chiffre_choc",
+     "instagram": false,
+     "accroche": "3 chambres|et une chaudière de 2014",
+     "legende": "3 chambres, une salle de bains complète et une chaudière récente de 2014 : une maison en bon état général, à rafraîchir selon tes goûts 🔧\n\nCommente T5 et je t’envoie la visite complète en privé 📩\n\n#3chambres #acheterunemaison #primoaccedant #dijonmaison #t5",
+     "plans": [
+      [
+       21.5,
+       22.4,
+       0.72,
+       "3 chambres"
+      ],
+      [
+       20.3,
+       21.4,
+       0.72
+      ],
+      [
+       22.5,
+       23.4,
+       0.72
+      ],
+      [
+       16.0,
+       16.9,
+       0.72
+      ],
+      [
+       0.0,
+       0.95,
+       0.72
+      ],
+      [
+       24.9,
+       25.85,
+       0.72
+      ],
+      [
+       8.3,
+       8.78,
+       0.72
+      ],
+      [
+       13.5,
+       14.9,
+       0.72
+      ],
+      [
+       26.0,
+       26.95,
+       0.72
+      ],
+      [
+       17.0,
+       17.9,
+       0.321
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v4",
+     "style": "defi_1pourcent",
+     "instagram": false,
+     "accroche": "Seul 1 %|compte ces 3 niveaux",
+     "legende": "Seul 1 % arrive à compter les 3 niveaux de cette maison du premier coup. Sous-sol compris, évidemment 👀\n\nCommente T5 et je t’envoie la visite complète en privé 📩\n\n#defi1pourcent #troisniveaux #maisonavendre #bourgogne",
+     "plans": [
+      [
+       27.0,
+       27.9,
+       0.72,
+       "3 niveaux"
+      ],
+      [
+       28.0,
+       28.6,
+       0.72
+      ],
+      [
+       16.0,
+       16.9,
+       0.72
+      ],
+      [
+       9.05,
+       9.9,
+       0.72
+      ],
+      [
+       19.0,
+       19.9,
+       0.72
+      ],
+      [
+       15.0,
+       15.9,
+       0.72
+      ],
+      [
+       23.5,
+       24.8,
+       0.72
+      ],
+      [
+       11.45,
+       12.4,
+       0.72
+      ],
+      [
+       20.3,
+       21.4,
+       0.72
+      ],
+      [
+       24.9,
+       25.85,
+       0.339
+      ]
+     ],
+     "publier": ""
+    }
+   ]
+  },
+  {
+   "ref": "461BALI",
+   "src": "assets/biens/461BALI/video.mp4",
+   "mot": "BALI",
+   "nom": "studio-bali",
+   "appel": "prive",
+   "versions": [
+    {
+     "id": "v1",
+     "style": "chiffre_choc",
+     "instagram": true,
+     "accroche": "129 000 €|à deux pas du Parc Darcy",
+     "legende": "129 000 € à deux pas du Parc Darcy, au calme d’une cour intérieure, à l’abri des regards 🌿\n\nÉcris-moi BALI en privé et je t’envoie la visite complète 📩\n\n#parcdarcy #dijoncentre #courinterieure #studiodijon",
+     "plans": [
+      [
+       0.0,
+       1.3,
+       0.58
+      ],
+      [
+       1.95,
+       2.9,
+       0.58,
+       "129 000 €"
+      ],
+      [
+       3.0,
+       3.9,
+       0.58
+      ],
+      [
+       4.0,
+       5.4,
+       0.58
+      ],
+      [
+       5.5,
+       6.6,
+       0.58
+      ],
+      [
+       6.6,
+       8.2,
+       0.571
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v2",
+     "style": "chiffre_choc",
+     "instagram": false,
+     "accroche": "19 m² Carrez|et une kitchenette sur mesure",
+     "legende": "19 m² Carrez, une kitchenette sur mesure entièrement équipée et des rangements intégrés : ici, chaque centimètre travaille 📐\n\nÉcris-moi BALI en privé et je t’envoie la visite complète 📩\n\n#petitespace #kitchenette #rangement #pieddaterre #dijon",
+     "plans": [
+      [
+       1.95,
+       2.9,
+       0.58
+      ],
+      [
+       0.0,
+       1.3,
+       0.58
+      ],
+      [
+       3.0,
+       3.9,
+       0.58,
+       "Sur mesure"
+      ],
+      [
+       5.5,
+       6.6,
+       0.58
+      ],
+      [
+       6.6,
+       8.2,
+       0.58
+      ],
+      [
+       4.0,
+       5.4,
+       0.5
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v3",
+     "style": "chiffre_choc",
+     "instagram": false,
+     "accroche": "13 lots seulement|et une cour intérieure au calme",
+     "legende": "Une petite copropriété de 13 lots, de faibles charges et le calme d’une cour intérieure, avec un studio rénové par architecte 🤫\n\nÉcris-moi BALI en privé et je t’envoie la visite complète 📩\n\n#copropriete #renovationcomplete #investissementlocatif #immobilier21",
+     "plans": [
+      [
+       4.0,
+       5.4,
+       0.58
+      ],
+      [
+       3.0,
+       3.9,
+       0.58,
+       "13 lots"
+      ],
+      [
+       1.95,
+       2.9,
+       0.58
+      ],
+      [
+       5.5,
+       6.6,
+       0.58
+      ],
+      [
+       6.6,
+       8.2,
+       0.58
+      ],
+      [
+       0.0,
+       1.3,
+       0.464
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v4",
+     "style": "defi_1pourcent",
+     "instagram": false,
+     "accroche": "99 % ratent|le rétroprojecteur intégré",
+     "legende": "99 % ratent le rétroprojecteur intégré de ce studio, il ne passe qu’un instant. Toi, tu l’as vu ? 👀\n\nÉcris-moi BALI en privé et je t’envoie la visite complète 📩\n\n#99pourcent #defivisuel #retroprojecteur #studiodexception",
+     "plans": [
+      [
+       3.0,
+       3.9,
+       0.58
+      ],
+      [
+       0.0,
+       1.3,
+       0.58
+      ],
+      [
+       4.0,
+       5.4,
+       0.58
+      ],
+      [
+       5.5,
+       6.6,
+       0.58
+      ],
+      [
+       6.6,
+       8.2,
+       0.58
+      ],
+      [
+       1.95,
+       2.9,
+       0.339
+      ]
+     ],
+     "publier": ""
+    }
+   ]
+  }
+ ]
+}
