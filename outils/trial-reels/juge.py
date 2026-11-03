@@ -15,8 +15,10 @@ Fichiers :
   outils/trial-reels/juge.json      le verdict, réécrit à chaque passage du Juge.
   mesures.tsv (écrit par le Juge à partir de Metricool, une ligne par vidéo, séparateur tabulation) :
       cle  vues  duree_moy  partages  enregistrements  commentaires  [reseau]
-      cle = adresse de la vidéo (Instagram, TikTok, YouTube ou Facebook), id du registre (TR-...) ou uuid Metricool
-            de la diffusion ; reseau = instagram (défaut), tiktok, youtube ou facebook.
+      cle = adresse de la vidéo, id du registre (TR-...) ou uuid Metricool de la diffusion ;
+            reseau = instagram (défaut), tiktok, youtube, facebook, threads, linkedin, pinterest, bluesky ou gmb.
+      Depuis le 03/11/2026 les NEUF réseaux sont mesurés. Avant, cinq d'entre eux publiaient à l'aveugle :
+      on nourrissait Threads, LinkedIn, Pinterest, Bluesky et la fiche Google sans jamais savoir si ça servait.
   Depuis le 29/10/2026 (Shawez : « 50 réels par jour », impossible sur Instagram seul), chaque Trial Reel est aussi
   diffusée sur TikTok, YouTube Shorts et Facebook Reels par l'agent Diffuseur, qui note dans l'entrée du registre
   « diffusions » : {"tiktok": {"uuid", "url", "date", "heure"}, "youtube": {...}, "facebook": {...}}.
@@ -47,10 +49,16 @@ GAGNANT_MIN = 1000      # gagnant : au moins 1 000 vues…
 GAGNANT_X = 3           # … et au moins 3 fois la médiane
 PERDANT_MIN = 300       # perdant : moins de 300 vues…
 PERDANT_X = 2           # … ou moins de 2 fois la médiane (le plus haut des deux seuils)
-RESEAUX = ['instagram', 'tiktok', 'youtube', 'facebook']
+RESEAUX = ['instagram', 'tiktok', 'youtube', 'facebook',
+           'threads', 'linkedin', 'pinterest', 'bluesky', 'gmb']   # les 9, depuis le 03/11/2026
 MEDIANE_MIN_N = 4        # médiane d'un réseau calculée à partir de 4 vidéos mûres
 MINIMUMS = {             # (gagnant : vues au moins, perdant : vues en dessous) par réseau, en plus de la médiane
-    'instagram': (GAGNANT_MIN, PERDANT_MIN), 'tiktok': (1000, 300), 'youtube': (500, 150), 'facebook': (500, 150)}
+    'instagram': (GAGNANT_MIN, PERDANT_MIN), 'tiktok': (1000, 300), 'youtube': (500, 150), 'facebook': (500, 150),
+    # Cinq comptes neufs, ouverts fin octobre 2026 et partis de zéro abonné. Le seuil « gagnant » est bas parce
+    # qu'une vidéo qui perce sur un compte neuf est une vraie information ; le seuil « perdant » est quasi nul
+    # exprès, pour qu'une audience encore inexistante ne fasse PAS interdire un style qui marche ailleurs.
+    # Seule une vidéo qui n'a vraiment rien fait y est comptée perdante. À relever quand les comptes auront grandi.
+    'threads': (300, 20), 'linkedin': (300, 20), 'pinterest': (200, 10), 'bluesky': (100, 5), 'gmb': (100, 5)}
 STYLE_BAN_N = 2         # style interdit dès 2 versions jugées sans gagnant, avec 2/3 de perdants
 BIEN_PAUSE_N = 4        # bien en pause après 4 versions jugées sans gagnant ni message privé
 PAUSE_JOURS = 14
@@ -148,6 +156,18 @@ def cle_normale(cle, reseau='instagram'):
     m = re.search(r"facebook\.com/.*?(?:reel|videos)/(\d+)", cle)
     if m:
         return 'facebook:%s' % m.group(1)
+    m = re.search(r"threads\.(?:net|com)/@[^/]+/post/([A-Za-z0-9_-]+)", cle)
+    if m:
+        return 'threads:%s' % m.group(1)
+    m = re.search(r"bsky\.app/profile/[^/]+/post/([A-Za-z0-9]+)", cle)
+    if m:
+        return 'bluesky:%s' % m.group(1)
+    m = re.search(r"pinterest\.[a-z.]+/pin/(\d+)", cle)
+    if m:
+        return 'pinterest:%s' % m.group(1)
+    m = re.search(r"linkedin\.com/.*?(?:urn:li:(?:share|ugcPost|activity):)(\d+)", cle)
+    if m:
+        return 'linkedin:%s' % m.group(1)
     return cle
 
 
