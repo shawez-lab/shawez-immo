@@ -1,0 +1,840 @@
+{
+ "jour": "2026-11-03",
+ "biens": [
+  {
+   "ref": "520",
+   "src": "assets/biens/520/video.mp4",
+   "mot": "CHEVIGNY",
+   "nom": "appartement-chevigny",
+   "versions": [
+    {
+     "id": "v1",
+     "style": "chiffre_choc",
+     "instagram": true,
+     "accroche": "200 000 €|terrasse et jardin privatif",
+     "legende": "200 000 € pour ce T3 en rez-de-chaussée, avec sa terrasse et son jardin privatif orienté ouest 🌿\n\nÉcris-moi CHEVIGNY en privé et je t’envoie la visite complète 📩\n\n#chevignysaintsauveur #terrasse #jardinprivatif #appartementavendre #immobilierdijon",
+     "plans": [
+      [
+       19.25,
+       20.25,
+       0.75,
+       "200 000 €"
+      ],
+      [
+       14.4,
+       15.3,
+       0.75
+      ],
+      [
+       17.35,
+       18.25,
+       0.75
+      ],
+      [
+       18.3,
+       19.2,
+       0.75
+      ],
+      [
+       20.3,
+       21.2,
+       0.75
+      ],
+      [
+       22.25,
+       23.25,
+       0.75
+      ],
+      [
+       24.35,
+       25.3,
+       0.75
+      ],
+      [
+       23.3,
+       24.25,
+       0.75
+      ],
+      [
+       13.45,
+       14.35,
+       0.75
+      ],
+      [
+       21.25,
+       22.2,
+       0.35
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v2",
+     "style": "chiffre_choc",
+     "instagram": false,
+     "accroche": "61,49 m²|et un séjour de 25 m²",
+     "legende": "61,49 m² dont une pièce de vie de plus de 25 m² avec cuisine ouverte, dans une résidence récente de 2013 🛋️\n\nÉcris-moi CHEVIGNY en privé et je t’envoie la visite complète 📩\n\n#t3 #residencerecente #cuisineouverte #premierachat #cotedor",
+     "plans": [
+      [
+       13.45,
+       14.35,
+       0.75,
+       "61,49 m²"
+      ],
+      [
+       17.35,
+       18.25,
+       0.75
+      ],
+      [
+       14.4,
+       15.3,
+       0.75,
+       "Cuisine ouverte"
+      ],
+      [
+       25.35,
+       26.3,
+       0.75
+      ],
+      [
+       18.3,
+       19.2,
+       0.75
+      ],
+      [
+       23.3,
+       24.25,
+       0.75
+      ],
+      [
+       19.25,
+       20.25,
+       0.75
+      ],
+      [
+       24.35,
+       25.3,
+       0.75
+      ],
+      [
+       20.3,
+       21.2,
+       0.75
+      ],
+      [
+       22.25,
+       23.25,
+       0.35
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v3",
+     "style": "question",
+     "instagram": false,
+     "accroche": "Ton apéro du soir|sur cette terrasse ?",
+     "legende": "Une terrasse prolongée par un jardin privatif orienté ouest, au rez-de-chaussée d’une résidence sécurisée ☀️\n\nÉcris-moi CHEVIGNY en privé et je t’envoie la visite complète 📩\n\n#vivreadijon #rezdejardin #soleildusoir #chevigny",
+     "plans": [
+      [
+       20.3,
+       21.2,
+       0.75
+      ],
+      [
+       21.25,
+       22.2,
+       0.75
+      ],
+      [
+       19.25,
+       20.25,
+       0.75,
+       "Orienté ouest"
+      ],
+      [
+       22.25,
+       23.25,
+       0.75
+      ],
+      [
+       13.45,
+       14.35,
+       0.75
+      ],
+      [
+       14.4,
+       15.3,
+       0.75
+      ],
+      [
+       23.3,
+       24.25,
+       0.75
+      ],
+      [
+       18.3,
+       19.2,
+       0.75
+      ],
+      [
+       24.35,
+       25.3,
+       0.75
+      ],
+      [
+       17.35,
+       18.25,
+       0.35
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v4",
+     "style": "defi_1pourcent",
+     "instagram": false,
+     "accroche": "Seul 1 %|met pause|sur le garage fermé",
+     "legende": "Seul 1 % met pause au bon moment : ce T3 cache aussi un grand garage fermé en sous-sol 🎯 Tu tentes ?\n\nÉcris-moi CHEVIGNY en privé et je t’envoie la visite complète 📩\n\n#defi #mets_pause #garage #t3dijon #reelsfrance",
+     "plans": [
+      [
+       25.35,
+       26.3,
+       0.75
+      ],
+      [
+       19.25,
+       20.25,
+       0.75,
+       "Terrasse"
+      ],
+      [
+       14.4,
+       15.3,
+       0.75
+      ],
+      [
+       24.35,
+       25.3,
+       0.75
+      ],
+      [
+       13.45,
+       14.35,
+       0.75
+      ],
+      [
+       20.3,
+       21.2,
+       0.75
+      ],
+      [
+       17.35,
+       18.25,
+       0.75
+      ],
+      [
+       18.3,
+       19.2,
+       0.75
+      ],
+      [
+       23.3,
+       24.25,
+       0.75
+      ],
+      [
+       21.25,
+       22.2,
+       0.35
+      ]
+     ],
+     "publier": ""
+    }
+   ],
+   "appel": "prive"
+  },
+  {
+   "ref": "501",
+   "src": "assets/biens/501/video.mp4",
+   "mot": "LUMIÈRE",
+   "nom": "appartement-t3",
+   "versions": [
+    {
+     "id": "v1",
+     "style": "chiffre_choc",
+     "instagram": true,
+     "accroche": "139 000 €|pour un T3 lumineux",
+     "legende": "139 000 € pour 53,62 m² lumineux à Dijon, avec cave et parking collectif ✨\n\nÉcris-moi LUMIÈRE en privé et je t’envoie la visite complète 📩\n\n#t3dijon #appartementdijon #premierachat #immobilierdijon #investir",
+     "plans": [
+      [
+       1.3,
+       3.5,
+       1.0,
+       "139 000 €"
+      ],
+      [
+       16.95,
+       19.0,
+       1.0
+      ],
+      [
+       10.6,
+       12.4,
+       1.0
+      ],
+      [
+       26.6,
+       28.9,
+       1.0
+      ],
+      [
+       8.45,
+       10.1,
+       1.0
+      ],
+      [
+       22.3,
+       24.0,
+       1.0
+      ],
+      [
+       32.8,
+       35.0,
+       0.8
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v2",
+     "style": "chiffre_choc",
+     "instagram": false,
+     "accroche": "53,62 m²|et 2 chambres",
+     "legende": "53,62 m² au premier étage : un salon confortable, 2 chambres et une cuisine séparée déjà meublée 🛏️\n\nÉcris-moi LUMIÈRE en privé et je t’envoie la visite complète 📩\n\n#2chambres #appartementavendre #dijon21 #cuisineequipee",
+     "plans": [
+      [
+       16.95,
+       19.0,
+       1.0,
+       "53,62 m²"
+      ],
+      [
+       22.3,
+       24.0,
+       1.0,
+       "2 chambres"
+      ],
+      [
+       1.3,
+       3.5,
+       1.0
+      ],
+      [
+       12.4,
+       14.2,
+       1.0
+      ],
+      [
+       26.6,
+       28.9,
+       1.0
+      ],
+      [
+       6.1,
+       7.2,
+       1.0
+      ],
+      [
+       35.0,
+       36.6,
+       0.6
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v3",
+     "style": "chiffre_choc",
+     "instagram": false,
+     "accroche": "3 pièces lumineuses|et un gardien",
+     "legende": "3 pièces au premier étage d’une copropriété de 1969 avec gardien, à Dijon 🌞\n\nÉcris-moi LUMIÈRE en privé et je t’envoie la visite complète 📩\n\n#vivreadijon #copropriete #gardien #appartementlumineux",
+     "plans": [
+      [
+       8.45,
+       10.1,
+       1.0,
+       "Avec gardien"
+      ],
+      [
+       19.0,
+       21.05,
+       1.0
+      ],
+      [
+       6.1,
+       7.2,
+       1.0
+      ],
+      [
+       12.4,
+       14.2,
+       1.0
+      ],
+      [
+       26.6,
+       28.9,
+       1.0
+      ],
+      [
+       22.3,
+       24.0,
+       1.0
+      ],
+      [
+       1.3,
+       3.5,
+       0.8
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v4",
+     "style": "question",
+     "instagram": false,
+     "accroche": "Ton premier chez-toi|à Dijon ?",
+     "legende": "Cuisine déjà meublée et équipée, cave privative et parking en placement libre 🔑\n\nÉcris-moi LUMIÈRE en privé et je t’envoie la visite complète 📩\n\n#cleenmain #cave #parking #immo21 #dijonimmobilier",
+     "plans": [
+      [
+       12.4,
+       14.2,
+       1.0,
+       "Cuisine équipée"
+      ],
+      [
+       32.8,
+       35.0,
+       1.0
+      ],
+      [
+       19.0,
+       21.05,
+       1.0
+      ],
+      [
+       26.6,
+       28.9,
+       1.0
+      ],
+      [
+       1.3,
+       3.5,
+       1.0
+      ],
+      [
+       22.3,
+       24.0,
+       1.0
+      ],
+      [
+       8.45,
+       10.1,
+       0.6
+      ]
+     ],
+     "publier": ""
+    }
+   ],
+   "appel": "prive"
+  },
+  {
+   "ref": "461",
+   "src": "assets/biens/461/video.mp4",
+   "mot": "MARRAKECH",
+   "nom": "studio-marrakech",
+   "versions": [
+    {
+     "id": "v1",
+     "style": "chiffre_choc",
+     "instagram": true,
+     "accroche": "129 000 €|une balnéo chez toi",
+     "legende": "129 000 € et ta baignoire balnéothérapie à la maison, dans ce studio d’exception rénové par architecte 🛁\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#balneo #studiodexception #dijon #rendementlocatif #marrakech",
+     "plans": [
+      [
+       13.6,
+       15.6,
+       1.0,
+       "129 000 €"
+      ],
+      [
+       0.9,
+       2.6,
+       1.0
+      ],
+      [
+       19.6,
+       21.4,
+       1.0
+      ],
+      [
+       9.0,
+       10.8,
+       1.1
+      ],
+      [
+       4.0,
+       5.6,
+       1.0
+      ],
+      [
+       24.0,
+       26.0,
+       1.0
+      ],
+      [
+       28.5,
+       31.3,
+       1.0
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v2",
+     "style": "lieu_exception",
+     "instagram": false,
+     "accroche": "Marrakech en plein cœur|de Dijon",
+     "legende": "Marrakech à Dijon, au calme d’une cour intérieure, à deux pas du Parc Darcy 🫖\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#parcdarcy #courinterieure #dijoncentre #inspirationmarrakech",
+     "plans": [
+      [
+       19.6,
+       21.4,
+       1.0
+      ],
+      [
+       0.0,
+       0.9,
+       1.0,
+       "Cour intérieure"
+      ],
+      [
+       13.6,
+       15.4,
+       1.0
+      ],
+      [
+       5.5,
+       7.2,
+       1.0
+      ],
+      [
+       8.6,
+       10.6,
+       1.1
+      ],
+      [
+       22.0,
+       23.6,
+       1.0
+      ],
+      [
+       29.0,
+       32.0,
+       1.0
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v3",
+     "style": "chiffre_choc",
+     "instagram": false,
+     "accroche": "19,15 m²|et 13 lots seulement",
+     "legende": "19,15 m² Carrez dans une petite copropriété de 13 lots, à l’abri de toute nuisance 📐\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#studiodijon #loicarrez #petitecopro #investissementlocatif",
+     "plans": [
+      [
+       0.9,
+       2.6,
+       1.0,
+       "19,15 m²"
+      ],
+      [
+       24.0,
+       26.0,
+       1.0
+      ],
+      [
+       13.6,
+       15.2,
+       1.0
+      ],
+      [
+       4.0,
+       5.6,
+       1.0
+      ],
+      [
+       16.6,
+       18.4,
+       1.0
+      ],
+      [
+       9.0,
+       10.6,
+       1.1
+      ],
+      [
+       30.5,
+       33.6,
+       1.1
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v4",
+     "style": "defi_1pourcent",
+     "instagram": false,
+     "accroche": "Seul 1 %|repère le rétroprojecteur",
+     "legende": "Seul 1 % repère le rétroprojecteur intégré avant la fin de la vidéo 🎯 Toi, tu le vois quand ?\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#defipause #retroprojecteur #studiodeco #seul1pourcent #deco",
+     "plans": [
+      [
+       9.0,
+       11.0,
+       1.0
+      ],
+      [
+       27.5,
+       28.8,
+       1.0
+      ],
+      [
+       0.9,
+       2.4,
+       1.0
+      ],
+      [
+       13.6,
+       15.4,
+       1.0
+      ],
+      [
+       19.6,
+       21.2,
+       1.0
+      ],
+      [
+       24.2,
+       26.0,
+       1.0
+      ],
+      [
+       31.2,
+       33.8,
+       1.0
+      ]
+     ],
+     "publier": ""
+    }
+   ]
+  },
+  {
+   "ref": "438",
+   "src": "assets/biens/438/video.mp4",
+   "mot": "CHÂTEAU",
+   "nom": "chateau",
+   "versions": [
+    {
+     "id": "v1",
+     "style": "chiffre_choc",
+     "instagram": true,
+     "accroche": "1 600 000 €,|un colombier et une écurie",
+     "legende": "1 600 000 € et le domaine vient avec son colombier, sa grange, son écurie et son étable 🏰\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#colombier #domaine #chateauavendre #bourgogne #patrimoine",
+     "plans": [
+      [
+       3.25,
+       5.15,
+       1.0,
+       "Colombier"
+      ],
+      [
+       0,
+       1.15,
+       1.0
+      ],
+      [
+       1.25,
+       3.15,
+       1.0
+      ],
+      [
+       7.25,
+       8.2,
+       1.0
+      ],
+      [
+       11.25,
+       13.15,
+       1.0
+      ],
+      [
+       5.25,
+       7.15,
+       1.0
+      ],
+      [
+       8.28,
+       11.15,
+       1.0
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v2",
+     "style": "chiffre_choc",
+     "instagram": false,
+     "accroche": "18 pièces, cheminées|et parquets d’époque",
+     "legende": "Boiseries, moulures, parquets anciens et cheminées de caractère : tout est resté, à 15 minutes de Beaune 🕯️\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#cheminee #parquetancien #moulures #chateaudefrance",
+     "plans": [
+      [
+       15.2,
+       19.1,
+       1.0,
+       "Parquets anciens"
+      ],
+      [
+       22.2,
+       24.1,
+       1.0
+      ],
+      [
+       20.2,
+       22.1,
+       1.0
+      ],
+      [
+       29.25,
+       29.95,
+       1.0
+      ],
+      [
+       13.25,
+       15.1,
+       1.0
+      ],
+      [
+       7.25,
+       8.2,
+       1.0
+      ],
+      [
+       24.2,
+       27.1,
+       1.0
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v3",
+     "style": "lieu_exception",
+     "instagram": false,
+     "accroche": "Un château pour|ton mariage, parc et étang",
+     "legende": "Réceptions, séminaires, mariages : un château du XVIIIe taillé pour l’événementiel de prestige 💍\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#mariagechateau #lieudereception #seminaire #evenementiel #beaune",
+     "plans": [
+      [
+       0,
+       1.15,
+       1.0
+      ],
+      [
+       5.25,
+       7.15,
+       1.0
+      ],
+      [
+       19.2,
+       20.1,
+       1.0
+      ],
+      [
+       20.2,
+       22.1,
+       1.0
+      ],
+      [
+       13.25,
+       15.1,
+       1.0
+      ],
+      [
+       11.25,
+       13.15,
+       1.0
+      ],
+      [
+       1.25,
+       3.15,
+       0.7
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v4",
+     "style": "defi_1pourcent",
+     "instagram": false,
+     "accroche": "Seul 1 %|compte les 3 salons",
+     "legende": "Seul 1 % compte les trois salons de réception sans mettre pause 🎯 Essaie et dis-moi.\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#defi #99pourcent #salonsdereception #chateauvisite #bourgognefrance",
+     "plans": [
+      [
+       22.2,
+       24.1,
+       1.0
+      ],
+      [
+       27.2,
+       29.15,
+       1.0
+      ],
+      [
+       29.25,
+       29.95,
+       1.0
+      ],
+      [
+       15.2,
+       17.5,
+       1.0,
+       "Trois salons"
+      ],
+      [
+       7.25,
+       8.2,
+       1.0
+      ],
+      [
+       8.28,
+       10.2,
+       1.0
+      ],
+      [
+       3.25,
+       5.15,
+       1.0
+      ],
+      [
+       24.2,
+       27.1,
+       1.0
+      ]
+     ],
+     "publier": ""
+    }
+   ]
+  }
+ ]
+}
