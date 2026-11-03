@@ -53,6 +53,20 @@ const ENVOYE = "origine NOT IN ('hors_creneau','hors_sujet') AND origine NOT LIK
 const PAS_UN_PRENOM = /^(les|la|le|l'|des|du|de|un|une|the|mon|ma|agence|immo|studio|domaine|restaurant|boutique|maison|sas|sarl)$/i;
 const INTERDITS = /\b(mandataire|gratuit|gratuite|gratuitement|ia|robot|automatique|automatiquement|claude|chatgpt|intelligence artificielle)\b/i;
 
+// Tournures qui font immédiatement « écrit par une machine ». Demande de Shawez du 03/11/2026 :
+// « il faut que ça soit impossible de savoir si c'est moi qui ai écrit ou une intelligence artificielle ».
+// Ici seulement les formules toutes faites : le tiret long et le gras sont réparés plus bas sans refus.
+const TOURNURES_IA = /(n['’ ]h[eé]sit|je me permets|au plaisir de|[àa] (votre|ta) (enti[eè]re )?disposition|je reste [àa] (votre|ta)|mon objectif est simple|dans les meilleurs d[eé]lais|je vous prie de|sachez que|il est important de (noter|souligner)|en esp[eé]rant que)/i;
+
+// Deux-points « affirmation : explication » — la signature la plus reconnaissable de toutes.
+// Tolérés : une heure (18:30), et une étiquette technique (WhatsApp : 07…, http://).
+function deuxPointsIA(t) {
+  return [...String(t || '').matchAll(/:/g)].some(m => {
+    const avant = String(t).slice(Math.max(0, m.index - 12), m.index);
+    return !/\d\s?$/.test(avant) && !/(whatsapp|wa|t[eé]l|tel|http|https)\s?$/i.test(avant);
+  });
+}
+
 const json = (status, obj) => new Response(JSON.stringify(obj), {
   status, headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' },
 });
@@ -224,6 +238,7 @@ Dès que tu écris un message, règles absolues, sauf le « Salut » de début e
 - Termine par UNE seule question courte qui ne demande qu'une chose : visite, appel, OU ce qu'il cherche, jamais deux demandes reliées par « et » ou « ou ».
   Exception : si la personne n'a pas de projet, dit non, remercie ou clôt la conversation, réponds en UNE phrase courte et chaleureuse, sans question et sans relancer.
 - Quand la conversation continue (historique non vide), ne commence JAMAIS par « Salut », « Bonjour » ni par le prénom : réponds directement, comme dans une vraie discussion.
+- Personne ne doit pouvoir deviner qu'une machine a écrit ce message. Donc : jamais de tiret long, jamais de gras ni d'italique, jamais une phrase du type « affirmation deux-points explication », jamais d'énumération par trois, jamais « n'hésite pas », « je me permets », « au plaisir de », « je reste à ta disposition ». Mets une phrase très courte de trois ou quatre mots au milieu, « C'est tout. », « Rien d'urgent. », pour casser le rythme. Avant de répondre, relis-toi à voix haute dans ta tête : s'il y a UNE phrase que Shawez n'aurait pas dite comme ça au téléphone, réécris-la.
 - Écris comme Shawez écrit sur son téléphone : phrases simples et naturelles, AUCUNE parenthèse, aucun tiret de liste, aucun deux-points d'énumération, aucune formule administrative (« honoraires à la charge du vendeur », « n'hésitez pas »). Si un détail compte, glisse-le dans une phrase normale.
 - Ne jamais inventer un prix, une surface, un quartier ou une caractéristique. Jamais les mots « mandataire », « gratuit », « IA »,
   « robot », « automatique ». Dis « offert » si besoin.
@@ -262,6 +277,7 @@ Si ce n'est pas le cas, ou si l'auteur semble être un proche, un collègue, un 
 répond visiblement à une conversation que tu ne vois pas, réponds exactement HORS_SUJET et rien d'autre : Shawez répondra lui-même.
 Règles absolues quand tu écris :
 - Vouvoiement. Premier message : « Bonjour <prénom> » (ou « Bonjour » si le prénom est inconnu). Conversation déjà engagée : ni « Bonjour », ni prénom en tête, tu réponds directement.
+- Personne ne doit pouvoir deviner qu'une machine a écrit ce message. Donc : jamais de tiret long, jamais de gras ni d'italique, jamais une phrase du type « affirmation deux-points explication », jamais d'énumération par trois, jamais « n'hésitez pas », « je me permets », « au plaisir de », « je reste à votre disposition ». Une phrase très courte au milieu casse le rythme et fait humain. Relis-toi à voix haute dans ta tête avant de répondre.
 - 2 à 4 lignes courtes, 450 caractères maximum, ton chaleureux et naturel, 1 emoji au plus. Écris comme Shawez sur son téléphone : AUCUNE parenthèse,
   aucun tiret de liste, aucune formule administrative (« n'hésitez pas », « honoraires à la charge du vendeur »).
 - Un mot-clé seul (« Château ») avec un bien fourni : la personne attend ce que la vidéo a promis. Donne-le tout de suite : le bien en une phrase,
@@ -285,6 +301,8 @@ const RAISONS = {
   lignes: 'tu as écrit plus de 4 lignes',
   vocabulaire: 'tu as employé un mot interdit, par exemple mandataire, gratuit, IA, robot ou automatique. Dis « offert » si besoin',
   parentheses: 'tu as mis des parenthèses, elles sont interdites',
+  tournure_ia: 'tu as employé une formule toute faite qu’un agent n’écrit pas sur son téléphone, par exemple « n’hésite pas », « je me permets », « au plaisir de », « je reste à ta disposition ». Dis la même chose avec des mots simples',
+  deux_points: 'tu as écrit une phrase du type « affirmation deux-points explication ». C’est ce qui fait le plus « écrit par une machine ». Fais-en deux phrases normales',
   adresse: 'tu as donné une adresse ou un nom de rue, c’est interdit',
   montant: 'tu as cité un montant qui ne figure pas dans les données du bien. N’utilise que les prix fournis, ou ne cite aucun prix',
   bien_inconnu: 'tu as décrit un bien alors qu’aucun bien n’est identifié. Ne cite ni type, ni surface, ni nombre de pièces : demande simplement de quel bien il s’agit',
@@ -349,7 +367,13 @@ function minutesAvantCreneau(d = new Date()) {
 }
 
 function normaliser(t) {
-  return String(t || '').replace(/\r/g, '').split('\n').map(l => l.trim()).filter(Boolean).join('\n');
+  return String(t || '').replace(/\r/g, '')
+    // Signes qu'aucun agent ne tape sur son téléphone et qui crament un texte : on les répare au lieu de refuser.
+    // Tiret long entre deux mots → virgule ; tiret long en début de ligne → rien ; gras et italique → texte nu.
+    .replace(/\s*[—–]\s*/g, ', ').replace(/^,\s*/gm, '').replace(/,\s*([.!?,])/g, '$1')
+    .replace(/\*\*([^*\n]{1,120})\*\*/g, '$1').replace(/__([^_\n]{1,120})__/g, '$1')
+    .replace(/(^|[\s(])\*([^*\n]{1,120})\*(?=[\s.,!?)]|$)/g, '$1$2')
+    .split('\n').map(l => l.trim()).filter(Boolean).join('\n');
 }
 
 function secours(prenom, bien, wa = false) {
@@ -388,6 +412,8 @@ function controle(texte, bien, suite = false, client = '') {
   if (suite && texte.length > 320) return 'longueur_suite';
   if (INTERDITS.test(texte)) return 'vocabulaire';
   if (/[()]/.test(texte)) return 'parentheses';
+  if (TOURNURES_IA.test(texte)) return 'tournure_ia';
+  if (deuxPointsIA(texte)) return 'deux_points';
   if (/\b\d{1,3}\s?,?\s?(bis|ter)?\s*(rue|avenue|bd|boulevard|place|impasse|allée|chemin|route)\b/i.test(texte)) return 'adresse';
   if (/\b(rue|avenue|boulevard|impasse|allée)\s+[A-ZÉ]/.test(texte)) return 'adresse';
   const chiffres = v => String(v || '').replace(/\D/g, '');
