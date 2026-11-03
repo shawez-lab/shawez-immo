@@ -2844,6 +2844,12 @@
      "url": "",
      "date": "2026-11-02",
      "heure": "16:10"
+    },
+    "linkedin": {
+     "uuid": "4940212630756213565",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "18:40"
     }
    },
    "tentatives": [
@@ -5667,6 +5673,12 @@
      "url": "",
      "date": "2026-11-03",
      "heure": "22:25"
+    },
+    "pinterest": {
+     "uuid": "3496883173537826190",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "19:10"
     }
    }
   },
@@ -5777,6 +5789,12 @@
      "url": "",
      "date": "2026-11-03",
      "heure": "20:50"
+    },
+    "threads": {
+     "uuid": "-5856025008003068051",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "21:25"
     }
    }
   },
@@ -5800,6 +5818,12 @@
      "url": "",
      "date": "2026-11-03",
      "heure": "21:50"
+    },
+    "threads": {
+     "uuid": "7531579709663559680",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "21:55"
     }
    }
   },
@@ -5908,7 +5932,15 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://db074fdf.shawez-immo.pages.dev/trial/2026-11-02/maison-neuilly-Mandat-v15.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "youtube": {
+     "uuid": "8852353435205848581",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "21:50"
+    }
+   }
   },
   {
    "id": "TR-0211-461BALI-v1",
@@ -5947,6 +5979,12 @@
      "url": "",
      "date": "2026-11-04",
      "heure": "17:50"
+    },
+    "tiktok": {
+     "uuid": "8428482923595122832",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "18:50"
     }
    }
   },
@@ -6010,6 +6048,12 @@
      "url": "",
      "date": "2026-11-04",
      "heure": "17:40"
+    },
+    "threads": {
+     "uuid": "-4071777527720292529",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "18:25"
     }
    }
   },
@@ -6032,6 +6076,12 @@
      "url": "",
      "date": "2026-11-04",
      "heure": "13:30"
+    },
+    "threads": {
+     "uuid": "-2347199126085153648",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "19:55"
     }
    }
   },
@@ -6072,6 +6122,18 @@
      "url": "",
      "date": "2026-11-04",
      "heure": "14:30"
+    },
+    "tiktok": {
+     "uuid": "-7329831192625918506",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "19:35"
+    },
+    "facebook": {
+     "uuid": "-8180020304833396708",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "19:50"
     }
    }
   },
@@ -6128,6 +6190,18 @@
      "url": "",
      "date": "2026-11-04",
      "heure": "17:50"
+    },
+    "threads": {
+     "uuid": "-8898192245724721599",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "18:55"
+    },
+    "pinterest": {
+     "uuid": "-3790797737301687844",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "18:10"
     }
    }
   },
@@ -6143,7 +6217,21 @@
    "source": "monteur",
    "uuid": "",
    "statut": "publie",
-   "media": "https://76835f23.shawez-immo.pages.dev/trial/2026-11-03/appartement-chevigny-520-v4.mp4"
+   "media": "https://76835f23.shawez-immo.pages.dev/trial/2026-11-03/appartement-chevigny-520-v4.mp4",
+   "diffusions": {
+    "threads": {
+     "uuid": "-6620671244385238397",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "20:25"
+    },
+    "youtube": {
+     "uuid": "-2405242181081151590",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "19:50"
+    }
+   }
   },
   {
    "id": "TR-0311-501-v1",
@@ -6182,6 +6270,12 @@
      "url": "",
      "date": "2026-11-04",
      "heure": "16:10"
+    },
+    "tiktok": {
+     "uuid": "1039152624645065257",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "20:20"
     }
    }
   },
@@ -6231,7 +6325,27 @@
    "source": "monteur",
    "uuid": "",
    "statut": "publie",
-   "media": "https://76835f23.shawez-immo.pages.dev/trial/2026-11-03/appartement-t3-501-v3.mp4"
+   "media": "https://76835f23.shawez-immo.pages.dev/trial/2026-11-03/appartement-t3-501-v3.mp4",
+   "diffusions": {
+    "threads": {
+     "uuid": "3819781042489999380",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "19:25"
+    },
+    "pinterest": {
+     "uuid": "-937779172282577735",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "18:40"
+    },
+    "youtube": {
+     "uuid": "-3507737922594386153",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "18:50"
+    }
+   }
   },
   {
    "id": "TR-0311-501-v4",
@@ -6245,7 +6359,21 @@
    "source": "monteur",
    "uuid": "",
    "statut": "publie",
-   "media": "https://76835f23.shawez-immo.pages.dev/trial/2026-11-03/appartement-t3-501-v4.mp4"
+   "media": "https://76835f23.shawez-immo.pages.dev/trial/2026-11-03/appartement-t3-501-v4.mp4",
+   "diffusions": {
+    "threads": {
+     "uuid": "-9119124328704094729",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "20:55"
+    },
+    "youtube": {
+     "uuid": "-937609243223636998",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "20:50"
+    }
+   }
   },
   {
    "id": "TR-0311-461-v1",
