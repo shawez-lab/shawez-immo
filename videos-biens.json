@@ -1,250 +1,255 @@
 {
- "_lisezmoi": "Registre vidéo → bien pour /api/manychat-dm. Clé = identifiant du Reel Instagram (instagram.com/reel/<id>). « ref » = référence dans annonces.json ; « manuel » = bien sans annonce publique (jamais d'adresse exacte ni de nom de vendeur ici, ce fichier est public). Clé « story-… » : réponses aux stories (le flux ManyChat envoie post=story-<sujet>). « motscles » : mot-clé des vidéos (« Commente CHÂTEAU ») → bien, sans accents et en minuscules ; sert quand le Reel n'est pas dans « videos » (Trial Reels, nouvelles versions) et pour WhatsApp. « en_essai » : biens des Trial Reels en cours (jusqu_au inclus). « commentaires_manychat » : mots-clés qui ont leur automatisation ManyChat « Mot-clé MOT — tous les Reels » (dm_post = mot:<mot>) ; ManyChat ne transmet ni le texte d'un commentaire ni la vidéo, donc une vidéo ne peut dire « Commente MOT » que si MOT est dans cette liste, sinon elle dit « Écris-moi MOT en privé » (fabriquer.py, \"appel\": \"prive\"). Un commentaire sans mot-clé ne reçoit aucun message (décision de Shawez du 29/10/2026).",
- "videos": {
-  "test-chevigny": {
-   "ref": "520"
+  "_lisezmoi": "Registre vidéo → bien pour /api/manychat-dm. Clé = identifiant du Reel Instagram (instagram.com/reel/<id>). « ref » = référence dans annonces.json ; « manuel » = bien sans annonce publique (jamais d'adresse exacte ni de nom de vendeur ici, ce fichier est public). Clé « story-… » : réponses aux stories (le flux ManyChat envoie post=story-<sujet>). « motscles » : mot-clé des vidéos (« Commente CHÂTEAU ») → bien, sans accents et en minuscules ; sert quand le Reel n'est pas dans « videos » (Trial Reels, nouvelles versions) et pour WhatsApp. « en_essai » : biens des Trial Reels en cours (jusqu_au inclus). « commentaires_manychat » : mots-clés qui ont leur automatisation ManyChat « Mot-clé MOT — tous les Reels » (dm_post = mot:<mot>) ; ManyChat ne transmet ni le texte d'un commentaire ni la vidéo, donc une vidéo ne peut dire « Commente MOT » que si MOT est dans cette liste, sinon elle dit « Écris-moi MOT en privé » (fabriquer.py, \"appel\": \"prive\"). Un commentaire sans mot-clé ne reçoit aucun message (décision de Shawez du 29/10/2026).",
+  "videos": {
+    "test-chevigny": {
+      "ref": "520"
+    },
+    "Dej6eibNLq9": {
+      "manuel": {
+        "ref": "blondel-t4",
+        "lien": "https://shawez-immo.com/biens/519-appartement-dijon/",
+        "type": "Appartement T4",
+        "commune": "Dijon, quartier des Bourroches (à 10 min du centre)",
+        "prix": "139 000 €",
+        "pieces": "4",
+        "exterieur": "2 balcons",
+        "atouts": "2e étage, lumineux, deux balcons"
+      }
+    },
+    "Del8q6GtmLp": {
+      "manuel": {
+        "ref": "blondel-t4",
+        "lien": "https://shawez-immo.com/biens/519-appartement-dijon/",
+        "type": "Appartement T4",
+        "commune": "Dijon, quartier des Bourroches (à 10 min du centre)",
+        "prix": "139 000 €",
+        "pieces": "4",
+        "exterieur": "2 balcons",
+        "atouts": "2e étage, lumineux, deux balcons"
+      }
+    },
+    "DegjteDts7n": {
+      "manuel": {
+        "ref": "blondel-t4",
+        "lien": "https://shawez-immo.com/biens/519-appartement-dijon/",
+        "type": "Appartement T4",
+        "commune": "Dijon, quartier des Bourroches (à 10 min du centre)",
+        "prix": "139 000 €",
+        "pieces": "4",
+        "exterieur": "2 balcons",
+        "atouts": "2e étage, lumineux, deux balcons"
+      }
+    },
+    "DeY_bQeoGA3": {
+      "ref": "520"
+    },
+    "Deb2iRwtCB5": {
+      "ref": "520"
+    },
+    "Deb6gfONsBI": {
+      "ref": "520"
+    },
+    "DecRdsBtZE-": {
+      "ref": "520"
+    },
+    "DdzDuf0uxln": {
+      "ref": "512"
+    },
+    "story-tabac": {
+      "manuel": {
+        "ref": "tabac-521",
+        "lien": "https://shawez-immo.com/biens-a-vendre-dijon/",
+        "confidentialite": "https://shawez-immo.com/assets/docs/engagement-confidentialite.pdf",
+        "type": "Fonds de commerce tabac-presse - FDJ",
+        "commune": "Dijon",
+        "prix": "181 000 € le fonds seul, ou 286 000 € avec les murs",
+        "chiffres": "environ 1,8 million d'euros encaissés par an en caisse, tabac, jeux et presse compris ; la plus grande partie est reversée à l'État et aux fournisseurs, le commerce garde une commission. Chiffre d'affaires comptable du dernier exercice : environ 208 000 €, surtout des commissions.",
+        "documents": "bilans, relevés des Douanes et de la FDJ envoyés après signature de l'engagement de confidentialité et envoi d'une pièce d'identité"
+      }
+    },
+    "DfAapeOirjW": {
+      "ref": "438"
+    },
+    "DfDFNQ5tDOO": {
+      "ref": "527",
+      "langue": "en"
+    },
+    "DfB9S2sDohn": {
+      "ref": "438"
+    },
+    "DfCEZmKjssj": {
+      "ref": "483"
+    },
+    "DfCLH68lUg8": {
+      "ref": "461"
+    },
+    "DfCSDAAjCup": {
+      "ref": "438"
+    },
+    "DfCY4-TCKBu": {
+      "ref": "483"
+    },
+    "DfCf44DgFNG": {
+      "ref": "461"
+    },
+    "DfCm4Q_DOHF": {
+      "ref": "438"
+    },
+    "DfCt3F_lHTC": {
+      "ref": "483"
+    },
+    "DfC0nvWEsT_": {
+      "ref": "461"
+    },
+    "DfC7drrDOFe": {
+      "ref": "438"
+    },
+    "DfDCJgJitOr": {
+      "ref": "483"
+    },
+    "DfElWOpn26j": {
+      "ref": "527"
+    },
+    "DfEwPbLklFY": {
+      "ref": "525"
+    },
+    "DfE2z4Vgeen": {
+      "ref": "525"
+    },
+    "DfE9pbzDht_": {
+      "ref": "527"
+    },
+    "DfFHqKGCBsX": {
+      "ref": "525"
+    },
+    "DfFn43PkXDO": {
+      "ref": "438"
+    },
+    "DfFy3N9jUj5": {
+      "ref": "438"
+    },
+    "DfF91n7jRKq": {
+      "ref": "438"
+    },
+    "DfGJJAMjD50": {
+      "ref": "438"
+    }
   },
-  "Dej6eibNLq9": {
-   "manuel": {
-    "ref": "blondel-t4",
-    "lien": "https://shawez-immo.com/biens/519-appartement-dijon/",
-    "type": "Appartement T4",
-    "commune": "Dijon, quartier des Bourroches (à 10 min du centre)",
-    "prix": "139 000 €",
-    "pieces": "4",
-    "exterieur": "2 balcons",
-    "atouts": "2e étage, lumineux, deux balcons"
-   }
+  "motscles": {
+    "chateau": {
+      "ref": "438"
+    },
+    "chevigny": {
+      "ref": "520"
+    },
+    "architecte": {
+      "ref": "441"
+    },
+    "duplex": {
+      "ref": "415"
+    },
+    "loft": {
+      "ref": "483"
+    },
+    "marrakech": {
+      "ref": "461"
+    },
+    "beaune": {
+      "ref": "527"
+    },
+    "neuilly": {
+      "ref": "525"
+    },
+    "visit": {
+      "ref": "527",
+      "langue": "en"
+    },
+    "t5": {
+      "ref": "Mandat"
+    },
+    "bali": {
+      "ref": "461BALI"
+    },
+    "lumiere": {
+      "ref": "501"
+    }
   },
-  "Del8q6GtmLp": {
-   "manuel": {
-    "ref": "blondel-t4",
-    "lien": "https://shawez-immo.com/biens/519-appartement-dijon/",
-    "type": "Appartement T4",
-    "commune": "Dijon, quartier des Bourroches (à 10 min du centre)",
-    "prix": "139 000 €",
-    "pieces": "4",
-    "exterieur": "2 balcons",
-    "atouts": "2e étage, lumineux, deux balcons"
-   }
-  },
-  "DegjteDts7n": {
-   "manuel": {
-    "ref": "blondel-t4",
-    "lien": "https://shawez-immo.com/biens/519-appartement-dijon/",
-    "type": "Appartement T4",
-    "commune": "Dijon, quartier des Bourroches (à 10 min du centre)",
-    "prix": "139 000 €",
-    "pieces": "4",
-    "exterieur": "2 balcons",
-    "atouts": "2e étage, lumineux, deux balcons"
-   }
-  },
-  "DeY_bQeoGA3": {
-   "ref": "520"
-  },
-  "Deb2iRwtCB5": {
-   "ref": "520"
-  },
-  "Deb6gfONsBI": {
-   "ref": "520"
-  },
-  "DecRdsBtZE-": {
-   "ref": "520"
-  },
-  "DdzDuf0uxln": {
-   "ref": "512"
-  },
-  "story-tabac": {
-   "manuel": {
-    "ref": "tabac-521",
-    "lien": "https://shawez-immo.com/biens-a-vendre-dijon/",
-    "confidentialite": "https://shawez-immo.com/assets/docs/engagement-confidentialite.pdf",
-    "type": "Fonds de commerce tabac-presse - FDJ",
-    "commune": "Dijon",
-    "prix": "181 000 € le fonds seul, ou 286 000 € avec les murs",
-    "chiffres": "environ 1,8 million d'euros encaissés par an en caisse, tabac, jeux et presse compris ; la plus grande partie est reversée à l'État et aux fournisseurs, le commerce garde une commission. Chiffre d'affaires comptable du dernier exercice : environ 208 000 €, surtout des commissions.",
-    "documents": "bilans, relevés des Douanes et de la FDJ envoyés après signature de l'engagement de confidentialité et envoi d'une pièce d'identité"
-   }
-  },
-  "DfAapeOirjW": {
-   "ref": "438"
-  },
-  "DfDFNQ5tDOO": {
-   "ref": "527",
-   "langue": "en"
-  },
-  "DfB9S2sDohn": {
-   "ref": "438"
-  },
-  "DfCEZmKjssj": {
-   "ref": "483"
-  },
-  "DfCLH68lUg8": {
-   "ref": "461"
-  },
-  "DfCSDAAjCup": {
-   "ref": "438"
-  },
-  "DfCY4-TCKBu": {
-   "ref": "483"
-  },
-  "DfCf44DgFNG": {
-   "ref": "461"
-  },
-  "DfCm4Q_DOHF": {
-   "ref": "438"
-  },
-  "DfCt3F_lHTC": {
-   "ref": "483"
-  },
-  "DfC0nvWEsT_": {
-   "ref": "461"
-  },
-  "DfC7drrDOFe": {
-   "ref": "438"
-  },
-  "DfDCJgJitOr": {
-   "ref": "483"
-  },
-  "DfElWOpn26j": {
-   "ref": "527"
-  },
-  "DfEwPbLklFY": {
-   "ref": "525"
-  },
-  "DfE2z4Vgeen": {
-   "ref": "525"
-  },
-  "DfE9pbzDht_": {
-   "ref": "527"
-  },
-  "DfFHqKGCBsX": {
-   "ref": "525"
-  },
-  "DfFn43PkXDO": {
-   "ref": "438"
-  },
-  "DfFy3N9jUj5": {
-   "ref": "438"
-  },
-  "DfF91n7jRKq": {
-   "ref": "438"
-  },
-  "DfGJJAMjD50": {
-   "ref": "438"
-  }
- },
- "motscles": {
-  "chateau": {
-   "ref": "438"
-  },
-  "chevigny": {
-   "ref": "520"
-  },
-  "architecte": {
-   "ref": "441"
-  },
-  "duplex": {
-   "ref": "415"
-  },
-  "loft": {
-   "ref": "483"
-  },
-  "marrakech": {
-   "ref": "461"
-  },
-  "beaune": {
-   "ref": "527"
-  },
-  "neuilly": {
-   "ref": "525"
-  },
-  "visit": {
-   "ref": "527",
-   "langue": "en"
-  },
-  "t5": {
-   "ref": "Mandat"
-  },
-  "bali": {
-   "ref": "461BALI"
-  },
-  "lumiere": {
-   "ref": "501"
-  }
- },
- "commentaires_manychat": [
-  "chateau",
-  "loft",
-  "marrakech",
-  "neuilly",
-  "beaune",
-  "t5"
- ],
- "en_essai": [
-  {
-   "mot": "LOFT",
-   "ref": "483",
-   "libelle": "le loft avec spa en plein Dijon",
-   "depuis": "2026-10-27",
-   "jusqu_au": "2026-11-04"
-  },
-  {
-   "mot": "NEUILLY",
-   "ref": "525",
-   "libelle": "la maison de Neuilly-Crimolois",
-   "depuis": "2026-10-29",
-   "jusqu_au": "2026-11-06"
-  },
-  {
-   "mot": "BEAUNE",
-   "ref": "527",
-   "libelle": "l’hôtel particulier de Beaune",
-   "depuis": "2026-10-29",
-   "jusqu_au": "2026-11-06"
-  },
-  {
-   "mot": "MARRAKECH",
-   "ref": "461",
-   "libelle": "le studio inspiration Marrakech",
-   "depuis": "2026-11-01",
-   "jusqu_au": "2026-11-11"
-  },
-  {
-   "mot": "CHÂTEAU",
-   "ref": "438",
-   "libelle": "le château près de Beaune",
-   "depuis": "2026-11-02",
-   "jusqu_au": "2026-11-11"
-  },
-  {
-   "mot": "T5",
-   "ref": "Mandat",
-   "libelle": "la maison T5 de Neuilly-Crimolois",
-   "depuis": "2026-11-02",
-   "jusqu_au": "2026-11-11"
-  },
-  {
-   "mot": "BALI",
-   "ref": "461BALI",
-   "libelle": "le studio inspiration Bali",
-   "depuis": "2026-11-02",
-   "jusqu_au": "2026-11-11"
-  },
-  {
-   "mot": "CHEVIGNY",
-   "ref": "520",
-   "libelle": "l’appartement T3 avec jardin de Chevigny-Saint-Sauveur",
-   "depuis": "2026-11-03",
-   "jusqu_au": "2026-11-11"
-  },
-  {
-   "mot": "LUMIÈRE",
-   "ref": "501",
-   "libelle": "l’appartement T3 lumineux à Dijon",
-   "depuis": "2026-11-03",
-   "jusqu_au": "2026-11-11"
-  }
- ]
+  "commentaires_manychat": [
+    "chateau",
+    "loft",
+    "marrakech",
+    "neuilly",
+    "beaune",
+    "t5",
+    "bali",
+    "chevigny",
+    "lumiere",
+    "duplex",
+    "architecte"
+  ],
+  "en_essai": [
+    {
+      "mot": "LOFT",
+      "ref": "483",
+      "libelle": "le loft avec spa en plein Dijon",
+      "depuis": "2026-10-27",
+      "jusqu_au": "2026-11-04"
+    },
+    {
+      "mot": "NEUILLY",
+      "ref": "525",
+      "libelle": "la maison de Neuilly-Crimolois",
+      "depuis": "2026-10-29",
+      "jusqu_au": "2026-11-06"
+    },
+    {
+      "mot": "BEAUNE",
+      "ref": "527",
+      "libelle": "l’hôtel particulier de Beaune",
+      "depuis": "2026-10-29",
+      "jusqu_au": "2026-11-06"
+    },
+    {
+      "mot": "MARRAKECH",
+      "ref": "461",
+      "libelle": "le studio inspiration Marrakech",
+      "depuis": "2026-11-01",
+      "jusqu_au": "2026-11-11"
+    },
+    {
+      "mot": "CHÂTEAU",
+      "ref": "438",
+      "libelle": "le château près de Beaune",
+      "depuis": "2026-11-02",
+      "jusqu_au": "2026-11-11"
+    },
+    {
+      "mot": "T5",
+      "ref": "Mandat",
+      "libelle": "la maison T5 de Neuilly-Crimolois",
+      "depuis": "2026-11-02",
+      "jusqu_au": "2026-11-11"
+    },
+    {
+      "mot": "BALI",
+      "ref": "461BALI",
+      "libelle": "le studio inspiration Bali",
+      "depuis": "2026-11-02",
+      "jusqu_au": "2026-11-11"
+    },
+    {
+      "mot": "CHEVIGNY",
+      "ref": "520",
+      "libelle": "l’appartement T3 avec jardin de Chevigny-Saint-Sauveur",
+      "depuis": "2026-11-03",
+      "jusqu_au": "2026-11-11"
+    },
+    {
+      "mot": "LUMIÈRE",
+      "ref": "501",
+      "libelle": "l’appartement T3 lumineux à Dijon",
+      "depuis": "2026-11-03",
+      "jusqu_au": "2026-11-11"
+    }
+  ]
 }
