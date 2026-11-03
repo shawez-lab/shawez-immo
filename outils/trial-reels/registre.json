@@ -3034,6 +3034,12 @@
      "url": "",
      "date": "2026-11-02",
      "heure": "15:40"
+    },
+    "linkedin": {
+     "uuid": "6391909691797162548",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "12:35"
     }
    },
    "url": "https://www.instagram.com/reel/DfMlNTRgCC1/",
@@ -3283,6 +3289,18 @@
      "url": "",
      "date": "2026-11-02",
      "heure": "15:10"
+    },
+    "linkedin": {
+     "uuid": "6972208381473999842",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "09:30"
+    },
+    "gmb": {
+     "uuid": "5118038301415328824",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "13:05"
     }
    },
    "tentatives": [
@@ -3706,7 +3724,21 @@
     "instagram": "gagnant"
    },
    "vues_total": 1298,
-   "verdict": "gagnant"
+   "verdict": "gagnant",
+   "diffusions": {
+    "threads": {
+     "uuid": "-3789187592493381673",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "09:00"
+    },
+    "youtube": {
+     "uuid": "-7026437712515480698",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "10:00"
+    }
+   }
   },
   {
    "id": "TR-0111-438-v4",
@@ -3794,7 +3826,21 @@
     "instagram": "en_cours"
    },
    "vues_total": 163,
-   "verdict": "en_cours"
+   "verdict": "en_cours",
+   "diffusions": {
+    "threads": {
+     "uuid": "-6105964583400485446",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "10:30"
+    },
+    "youtube": {
+     "uuid": "-8056114971259746184",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "11:30"
+    }
+   }
   },
   {
    "id": "TR-0111-438-v6",
@@ -4274,7 +4320,15 @@
     "instagram": "en_cours"
    },
    "vues_total": 118,
-   "verdict": "en_cours"
+   "verdict": "en_cours",
+   "diffusions": {
+    "youtube": {
+     "uuid": "7122069503938284353",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "13:00"
+    }
+   }
   },
   {
    "id": "TR-0111-438-v15",
@@ -4378,6 +4432,12 @@
      "url": "https://www.tiktok.com/@shawez_immo/video/7703656350613540118",
      "date": "2026-11-02",
      "heure": "20:20"
+    },
+    "facebook": {
+     "uuid": "4106787475459687394",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "09:00"
     }
    },
    "reseaux": {
@@ -4840,6 +4900,12 @@
      "url": "",
      "date": "2026-11-03",
      "heure": "16:10"
+    },
+    "tiktok": {
+     "uuid": "7951856508826961050",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "10:30"
     }
    }
   },
@@ -4875,6 +4941,12 @@
      "url": "",
      "date": "2026-11-03",
      "heure": "16:40"
+    },
+    "tiktok": {
+     "uuid": "-1175722561331116196",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "12:45"
     }
    }
   },
@@ -4980,6 +5052,12 @@
      "url": "",
      "date": "2026-11-03",
      "heure": "18:40"
+    },
+    "tiktok": {
+     "uuid": "-1203203203592598156",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "09:00"
     }
    }
   },
@@ -5015,6 +5093,12 @@
      "url": "",
      "date": "2026-11-03",
      "heure": "19:10"
+    },
+    "tiktok": {
+     "uuid": "2309295203474556118",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "11:15"
     }
    }
   },
@@ -5044,6 +5128,18 @@
      "url": "https://www.youtube.com/shorts/nzUixbJgMXY",
      "date": "2026-11-02",
      "heure": "20:50"
+    },
+    "pinterest": {
+     "uuid": "1985826316250794914",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "13:10"
+    },
+    "tiktok": {
+     "uuid": "-372597422257520483",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "13:30"
     }
    }
   },
@@ -5436,6 +5532,30 @@
      "url": "",
      "date": "2026-11-03",
      "heure": "20:55"
+    },
+    "linkedin": {
+     "uuid": "1814509521594041825",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "08:00"
+    },
+    "pinterest": {
+     "uuid": "-2572670539852463134",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "12:40"
+    },
+    "tiktok": {
+     "uuid": "-8667222912585085456",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "09:45"
+    },
+    "facebook": {
+     "uuid": "5330480892154365048",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "13:05"
     }
    }
   },
@@ -5465,6 +5585,18 @@
      "url": "",
      "date": "2026-11-03",
      "heure": "21:25"
+    },
+    "linkedin": {
+     "uuid": "-6539528810676597840",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "14:05"
+    },
+    "tiktok": {
+     "uuid": "-4303782503670593627",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "12:00"
     }
    }
   },
@@ -5575,6 +5707,12 @@
      "url": "",
      "date": "2026-11-03",
      "heure": "18:50"
+    },
+    "threads": {
+     "uuid": "-692677758647711160",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "08:30"
     }
    }
   },
@@ -5598,6 +5736,12 @@
      "url": "",
      "date": "2026-11-03",
      "heure": "19:50"
+    },
+    "threads": {
+     "uuid": "-3377686894124579521",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "10:00"
     }
    }
   },
@@ -5660,7 +5804,15 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://db074fdf.shawez-immo.pages.dev/trial/2026-11-02/maison-neuilly-Mandat-v11.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "youtube": {
+     "uuid": "-36695840580615817",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "09:30"
+    }
+   }
   },
   {
    "id": "TR-0211-Mandat-v12",
@@ -5675,7 +5827,15 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://db074fdf.shawez-immo.pages.dev/trial/2026-11-02/maison-neuilly-Mandat-v12.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "youtube": {
+     "uuid": "-4629934671521954902",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "11:00"
+    }
+   }
   },
   {
    "id": "TR-0211-Mandat-v13",
@@ -5690,7 +5850,15 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://db074fdf.shawez-immo.pages.dev/trial/2026-11-02/maison-neuilly-Mandat-v13.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "youtube": {
+     "uuid": "-3864645663215171276",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "12:30"
+    }
+   }
   },
   {
    "id": "TR-0211-Mandat-v14",
@@ -5705,7 +5873,15 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://db074fdf.shawez-immo.pages.dev/trial/2026-11-02/maison-neuilly-Mandat-v14.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "youtube": {
+     "uuid": "-3568064248340525803",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "14:00"
+    }
+   }
   },
   {
    "id": "TR-0211-Mandat-v15",
@@ -5734,7 +5910,27 @@
    "source": "monteur",
    "uuid": "",
    "statut": "publie",
-   "media": "https://72695672.shawez-immo.pages.dev/trial/2026-11-02/studio-bali-461BALI-v1.mp4"
+   "media": "https://72695672.shawez-immo.pages.dev/trial/2026-11-02/studio-bali-461BALI-v1.mp4",
+   "diffusions": {
+    "threads": {
+     "uuid": "7055310894070055140",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "08:00"
+    },
+    "pinterest": {
+     "uuid": "2128468944465248712",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "13:40"
+    },
+    "youtube": {
+     "uuid": "6554747134767548420",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "09:00"
+    }
+   }
   },
   {
    "id": "TR-0211-461BALI-v2",
@@ -5749,7 +5945,21 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://72695672.shawez-immo.pages.dev/trial/2026-11-02/studio-bali-461BALI-v2.mp4",
-   "a_programmer": true
+   "a_programmer": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "-6532812393086170857",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "09:30"
+    },
+    "youtube": {
+     "uuid": "7029273995807769163",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "10:30"
+    }
+   }
   },
   {
    "id": "TR-0211-461BALI-v3",
@@ -5763,7 +5973,15 @@
    "source": "monteur",
    "uuid": "",
    "statut": "publie",
-   "media": "https://72695672.shawez-immo.pages.dev/trial/2026-11-02/studio-bali-461BALI-v3.mp4"
+   "media": "https://72695672.shawez-immo.pages.dev/trial/2026-11-02/studio-bali-461BALI-v3.mp4",
+   "diffusions": {
+    "youtube": {
+     "uuid": "1257429530283819827",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "12:00"
+    }
+   }
   },
   {
    "id": "TR-0211-461BALI-v4",
@@ -5777,7 +5995,15 @@
    "source": "monteur",
    "uuid": "",
    "statut": "publie",
-   "media": "https://72695672.shawez-immo.pages.dev/trial/2026-11-02/studio-bali-461BALI-v4.mp4"
+   "media": "https://72695672.shawez-immo.pages.dev/trial/2026-11-02/studio-bali-461BALI-v4.mp4",
+   "diffusions": {
+    "youtube": {
+     "uuid": "-5576954932721531855",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "13:30"
+    }
+   }
   },
   {
    "id": "TR-0311-520-v1",
