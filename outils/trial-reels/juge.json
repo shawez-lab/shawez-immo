@@ -1,5 +1,5 @@
 {
- "maj": "2026-11-02T06:52",
+ "maj": "2026-11-03T06:51",
  "regles": {
   "fenetre": "Trial Reels publiés depuis 14 jours, jugés 24 h après publication",
   "gagnant": "au moins 1000 vues et au moins 3 fois la médiane",
@@ -9,35 +9,35 @@
   "quota_du_jour": "au moins 80 % des versions du jour dans un style gagnant, au plus 20 % dans un style à tester, zéro dans un style interdit ; 15 Trial Reels au plus sur 24 heures glissantes"
  },
  "seuils": {
-  "mediane_vues": 210,
+  "mediane_vues": 224,
   "gagnant_des": 1000,
-  "perdant_sous": 421,
-  "versions_jugees": 48,
-  "versions_en_cours": 4,
+  "perdant_sous": 448,
+  "versions_jugees": 51,
+  "versions_en_cours": 7,
   "par_reseau": {
    "instagram": {
-    "mediane_vues": 210,
+    "mediane_vues": 224,
     "gagnant_des": 1000,
-    "perdant_sous": 421,
-    "versions_mesurees": 52
+    "perdant_sous": 448,
+    "versions_mesurees": 58
    },
    "tiktok": {
-    "mediane_vues": 94,
+    "mediane_vues": 77,
     "gagnant_des": 1000,
     "perdant_sous": 300,
-    "versions_mesurees": 31
+    "versions_mesurees": 35
    },
    "youtube": {
-    "mediane_vues": 989,
-    "gagnant_des": 2968,
-    "perdant_sous": 1979,
-    "versions_mesurees": 10
+    "mediane_vues": 441,
+    "gagnant_des": 1323,
+    "perdant_sous": 882,
+    "versions_mesurees": 33
    },
    "facebook": {
     "mediane_vues": 5,
     "gagnant_des": 500,
     "perdant_sous": 150,
-    "versions_mesurees": 31
+    "versions_mesurees": 34
    }
   }
  },
@@ -85,37 +85,37 @@
   "chiffre_choc": {
    "definition": "le prix ou un chiffre fort dès le premier mot (« 2 500 000 € derrière cette porte », « 18 pièces, 520 m², un étang »)",
    "statut": "gagnant",
-   "versions_jugees": 12,
-   "gagnants": 5,
-   "perdants": 3,
-   "mediane_vues": 419,
+   "versions_jugees": 13,
+   "gagnants": 8,
+   "perdants": 2,
+   "mediane_vues": 470,
    "meilleure": {
     "id": "TR-2810-438-v4",
-    "vues": 5498
+    "vues": 5617
    }
   },
   "lieu_exception": {
    "definition": "le bien d'exception annoncé d'emblée, en une phrase courte (« Château du XVIIIe à 15 min de Beaune », « Marrakech, en plein centre de Dijon »)",
    "statut": "gagnant",
-   "versions_jugees": 11,
+   "versions_jugees": 12,
    "gagnants": 9,
-   "perdants": 2,
-   "mediane_vues": 593,
+   "perdants": 1,
+   "mediane_vues": 937,
    "meilleure": {
     "id": "TR-2810-438-v1",
-    "vues": 3497
+    "vues": 3520
    }
   },
   "revelation": {
    "definition": "une porte, un placard ou une pièce cachée qu'on ouvre (« Tu pensais que c'était un placard ? », « Derrière cette porte… »)",
    "statut": "neutre",
-   "versions_jugees": 8,
+   "versions_jugees": 9,
    "gagnants": 1,
-   "perdants": 6,
-   "mediane_vues": 190,
+   "perdants": 4,
+   "mediane_vues": 179,
    "meilleure": {
     "id": "TR-2910-525-b",
-    "vues": 2769
+    "vues": 2989
    }
   },
   "defi_1pourcent": {
@@ -127,7 +127,7 @@
    "mediane_vues": 3070,
    "meilleure": {
     "id": "TR-2810-defi-a",
-    "vues": 3189
+    "vues": 3192
    }
   },
   "question": {
@@ -135,11 +135,11 @@
    "statut": "neutre",
    "versions_jugees": 7,
    "gagnants": 1,
-   "perdants": 6,
-   "mediane_vues": 145,
+   "perdants": 5,
+   "mediane_vues": 146,
    "meilleure": {
     "id": "TR-2810-438-v2",
-    "vues": 2317
+    "vues": 2496
    }
   },
   "detail_surprenant": {
@@ -147,11 +147,11 @@
    "statut": "a_tester",
    "versions_jugees": 1,
    "gagnants": 0,
-   "perdants": 1,
+   "perdants": 0,
    "mediane_vues": 149,
    "meilleure": {
     "id": "TR-2810-461-v4",
-    "vues": 1294
+    "vues": 1322
    }
   },
   "business": {
@@ -175,7 +175,7 @@
    "mediane_vues": 328,
    "meilleure": {
     "id": "TR-2910-527-b",
-    "vues": 355
+    "vues": 356
    }
   },
   "pov": {
@@ -184,10 +184,10 @@
    "versions_jugees": 2,
    "gagnants": 0,
    "perdants": 2,
-   "mediane_vues": 124,
+   "mediane_vues": 125,
    "meilleure": {
     "id": "TR-2810-483-v4",
-    "vues": 133
+    "vues": 135
    }
   },
   "defi_autre": {
@@ -214,31 +214,31 @@
  },
  "biens": {
   "438": {
-   "versions_jugees": 25,
-   "gagnants": 11,
-   "messages_prives": 21,
-   "mediane_vues": 310,
+   "versions_jugees": 27,
+   "gagnants": 14,
+   "messages_prives": 22,
+   "mediane_vues": 593,
    "statut": "fort"
   },
   "461": {
    "versions_jugees": 10,
    "gagnants": 3,
    "messages_prives": 0,
-   "mediane_vues": 147,
+   "mediane_vues": 200,
    "statut": "fort"
   },
   "483": {
    "versions_jugees": 5,
    "gagnants": 0,
    "messages_prives": 1,
-   "mediane_vues": 133,
+   "mediane_vues": 135,
    "statut": "en_pause"
   },
   "525": {
-   "versions_jugees": 3,
+   "versions_jugees": 4,
    "gagnants": 1,
    "messages_prives": 0,
-   "mediane_vues": 179,
+   "mediane_vues": 173,
    "statut": "fort"
   },
   "527": {
@@ -254,8 +254,8 @@
    "id": "TR-3010-438-v3",
    "ref": "438",
    "style": "chiffre_choc",
-   "vues": 4951,
-   "vues_total": 4972,
+   "vues": 5571,
+   "vues_total": 5601,
    "gagnant_sur": [
     "instagram"
    ],
@@ -263,35 +263,11 @@
    "date": "2026-11-01"
   },
   {
-   "id": "TR-2910-438-v8",
-   "ref": "438",
-   "style": "chiffre_choc",
-   "vues": 2933,
-   "vues_total": 2945,
-   "gagnant_sur": [
-    "instagram"
-   ],
-   "url": "https://www.instagram.com/reel/DfG0wuECflT/",
-   "date": "2026-10-30"
-  },
-  {
-   "id": "TR-2910-525-b",
-   "ref": "525",
-   "style": "revelation",
-   "vues": 1506,
-   "vues_total": 2769,
-   "gagnant_sur": [
-    "instagram"
-   ],
-   "url": "https://www.instagram.com/reel/DfE2z4Vgeen/",
-   "date": "2026-10-29"
-  },
-  {
    "id": "TR-2910-438-v12",
    "ref": "438",
    "style": "lieu_exception",
-   "vues": 1801,
-   "vues_total": 2768,
+   "vues": 1904,
+   "vues_total": 2883,
    "gagnant_sur": [
     "instagram"
    ],
@@ -299,59 +275,11 @@
    "date": "2026-11-01"
   },
   {
-   "id": "TR-2910-527-a",
-   "ref": "527",
-   "style": "chiffre_choc",
-   "vues": 1289,
-   "vues_total": 2505,
-   "gagnant_sur": [
-    "instagram"
-   ],
-   "url": "https://www.instagram.com/reel/DfElWOpn26j/",
-   "date": "2026-10-29"
-  },
-  {
-   "id": "TR-2910-438-v2",
-   "ref": "438",
-   "style": "chiffre_choc",
-   "vues": 2335,
-   "vues_total": 2363,
-   "gagnant_sur": [
-    "instagram"
-   ],
-   "url": "https://www.instagram.com/reel/DfFy3N9jUj5/",
-   "date": "2026-10-29"
-  },
-  {
-   "id": "TR-2910-438-v9",
-   "ref": "438",
-   "style": "lieu_exception",
-   "vues": 2101,
-   "vues_total": 2117,
-   "gagnant_sur": [
-    "instagram"
-   ],
-   "url": "https://www.instagram.com/reel/DfHAAR4jzLn/",
-   "date": "2026-10-30"
-  },
-  {
-   "id": "TR-2910-438-v15",
-   "ref": "438",
-   "style": "lieu_exception",
-   "vues": 593,
-   "vues_total": 1635,
-   "gagnant_sur": [
-    "tiktok"
-   ],
-   "url": "https://www.instagram.com/reel/DfIMyCfEr6a/",
-   "date": "2026-10-30"
-  },
-  {
    "id": "TR-3010-461-v5",
    "ref": "461",
    "style": "lieu_exception",
-   "vues": 240,
-   "vues_total": 1550,
+   "vues": 252,
+   "vues_total": 2843,
    "gagnant_sur": [
     "tiktok"
    ],
@@ -362,20 +290,69 @@
    "id": "TR-3110-438-v5",
    "ref": "438",
    "style": "lieu_exception",
-   "vues": 0,
-   "vues_total": 1086,
+   "vues": 1117,
+   "vues_total": 2687,
+   "gagnant_sur": [
+    "instagram",
+    "tiktok"
+   ],
+   "url": "https://www.instagram.com/reel/DfPJ-PviKwm/",
+   "date": "2026-10-31"
+  },
+  {
+   "id": "TR-2910-438-v9",
+   "ref": "438",
+   "style": "lieu_exception",
+   "vues": 2232,
+   "vues_total": 2540,
+   "gagnant_sur": [
+    "instagram"
+   ],
+   "url": "https://www.instagram.com/reel/DfHAAR4jzLn/",
+   "date": "2026-10-30"
+  },
+  {
+   "id": "TR-2910-438-v14",
+   "ref": "438",
+   "style": "chiffre_choc",
+   "vues": 371,
+   "vues_total": 2362,
    "gagnant_sur": [
     "tiktok"
    ],
-   "url": null,
+   "url": "https://www.instagram.com/reel/DfLB75TguEz/",
    "date": "2026-10-31"
+  },
+  {
+   "id": "TR-2910-438-v15",
+   "ref": "438",
+   "style": "lieu_exception",
+   "vues": 593,
+   "vues_total": 1651,
+   "gagnant_sur": [
+    "tiktok"
+   ],
+   "url": "https://www.instagram.com/reel/DfIMyCfEr6a/",
+   "date": "2026-10-30"
+  },
+  {
+   "id": "TR-3010-438-v1",
+   "ref": "438",
+   "style": "chiffre_choc",
+   "vues": 199,
+   "vues_total": 1490,
+   "gagnant_sur": [
+    "tiktok"
+   ],
+   "url": "https://www.instagram.com/reel/DfN3fwBik1P/",
+   "date": "2026-11-02"
   },
   {
    "id": "TR-3010-461-v1",
    "ref": "461",
    "style": "lieu_exception",
-   "vues": 0,
-   "vues_total": 1071,
+   "vues": 213,
+   "vues_total": 1300,
    "gagnant_sur": [
     "tiktok"
    ],
@@ -383,16 +360,16 @@
    "date": "2026-11-01"
   },
   {
-   "id": "TR-2910-438-v1",
+   "id": "TR-0111-438-v3",
    "ref": "438",
-   "style": "lieu_exception",
-   "vues": 1004,
-   "vues_total": 1031,
+   "style": "chiffre_choc",
+   "vues": 1298,
+   "vues_total": 1298,
    "gagnant_sur": [
     "instagram"
    ],
-   "url": "https://www.instagram.com/reel/DfFn43PkXDO/",
-   "date": "2026-10-29"
+   "url": "https://www.instagram.com/reel/DfPe4ijiBQF/",
+   "date": "2026-11-02"
   }
  ],
  "consigne_monteur": "Chaque version porte un « style » de la liste. Jamais un style de styles_interdits, jamais un bien de biens_en_pause. Au moins 80 % des versions du jour dans styles_gagnants (sur les biens les plus forts), au plus 20 % dans styles_a_tester. Chaque Trial Reel programmé est ajouté à registre.json.",
