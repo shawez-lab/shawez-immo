@@ -5597,6 +5597,12 @@
      "url": "",
      "date": "2026-11-04",
      "heure": "12:00"
+    },
+    "pinterest": {
+     "uuid": "-7078536361414603027",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "15:10"
     }
    }
   },
@@ -5626,6 +5632,12 @@
      "url": "",
      "date": "2026-11-03",
      "heure": "21:55"
+    },
+    "pinterest": {
+     "uuid": "-3336796971861259719",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "17:10"
     }
    }
   },
@@ -5929,6 +5941,12 @@
      "url": "",
      "date": "2026-11-04",
      "heure": "09:00"
+    },
+    "facebook": {
+     "uuid": "-3783873083579086706",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "17:50"
     }
    }
   },
@@ -5958,6 +5976,12 @@
      "url": "",
      "date": "2026-11-04",
      "heure": "10:30"
+    },
+    "pinterest": {
+     "uuid": "58492754837982423",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "15:40"
     }
    }
   },
@@ -5980,6 +6004,12 @@
      "url": "",
      "date": "2026-11-04",
      "heure": "12:00"
+    },
+    "pinterest": {
+     "uuid": "-382187307895862907",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "17:40"
     }
    }
   },
@@ -6017,7 +6047,33 @@
    "source": "monteur",
    "uuid": "",
    "statut": "publie",
-   "media": "https://76835f23.shawez-immo.pages.dev/trial/2026-11-03/appartement-chevigny-520-v1.mp4"
+   "media": "https://76835f23.shawez-immo.pages.dev/trial/2026-11-03/appartement-chevigny-520-v1.mp4",
+   "diffusions": {
+    "threads": {
+     "uuid": "-3389301585266915188",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "16:10"
+    },
+    "linkedin": {
+     "uuid": "7235542706197054031",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "15:35"
+    },
+    "pinterest": {
+     "uuid": "-7534631339358991046",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "14:40"
+    },
+    "youtube": {
+     "uuid": "-9129642541373897855",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "14:30"
+    }
+   }
   },
   {
    "id": "TR-0311-520-v2",
@@ -6031,7 +6087,27 @@
    "source": "monteur",
    "uuid": "",
    "statut": "publie",
-   "media": "https://76835f23.shawez-immo.pages.dev/trial/2026-11-03/appartement-chevigny-520-v2.mp4"
+   "media": "https://76835f23.shawez-immo.pages.dev/trial/2026-11-03/appartement-chevigny-520-v2.mp4",
+   "diffusions": {
+    "threads": {
+     "uuid": "-3800561176341823429",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "17:25"
+    },
+    "pinterest": {
+     "uuid": "-6472774143349144492",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "16:10"
+    },
+    "youtube": {
+     "uuid": "7481847971601205306",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "16:40"
+    }
+   }
   },
   {
    "id": "TR-0311-520-v3",
@@ -6045,7 +6121,15 @@
    "source": "monteur",
    "uuid": "",
    "statut": "publie",
-   "media": "https://76835f23.shawez-immo.pages.dev/trial/2026-11-03/appartement-chevigny-520-v3.mp4"
+   "media": "https://76835f23.shawez-immo.pages.dev/trial/2026-11-03/appartement-chevigny-520-v3.mp4",
+   "diffusions": {
+    "youtube": {
+     "uuid": "-481270197320596701",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "17:50"
+    }
+   }
   },
   {
    "id": "TR-0311-520-v4",
@@ -6080,6 +6164,24 @@
      "url": "",
      "date": "2026-11-04",
      "heure": "14:10"
+    },
+    "threads": {
+     "uuid": "-8939491320728565878",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "16:40"
+    },
+    "linkedin": {
+     "uuid": "3750979743646502592",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "17:10"
+    },
+    "youtube": {
+     "uuid": "7669823186512006346",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "16:10"
     }
    }
   },
@@ -6095,7 +6197,27 @@
    "source": "monteur",
    "uuid": "",
    "statut": "publie",
-   "media": "https://76835f23.shawez-immo.pages.dev/trial/2026-11-03/appartement-t3-501-v2.mp4"
+   "media": "https://76835f23.shawez-immo.pages.dev/trial/2026-11-03/appartement-t3-501-v2.mp4",
+   "diffusions": {
+    "threads": {
+     "uuid": "-2496603385400899052",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "17:55"
+    },
+    "pinterest": {
+     "uuid": "3017953889023116297",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "16:40"
+    },
+    "youtube": {
+     "uuid": "1631454003220333906",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "17:10"
+    }
+   }
   },
   {
    "id": "TR-0311-501-v3",
