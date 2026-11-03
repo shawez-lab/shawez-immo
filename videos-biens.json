@@ -169,6 +169,9 @@
   },
   "bali": {
    "ref": "461BALI"
+  },
+  "lumiere": {
+   "ref": "501"
   }
  },
  "commentaires_manychat": [
@@ -206,14 +209,14 @@
    "ref": "461",
    "libelle": "le studio inspiration Marrakech",
    "depuis": "2026-11-01",
-   "jusqu_au": "2026-11-09"
+   "jusqu_au": "2026-11-11"
   },
   {
    "mot": "CHÂTEAU",
    "ref": "438",
    "libelle": "le château près de Beaune",
    "depuis": "2026-11-02",
-   "jusqu_au": "2026-11-10"
+   "jusqu_au": "2026-11-11"
   },
   {
    "mot": "T5",
@@ -228,6 +231,20 @@
    "libelle": "le studio inspiration Bali",
    "depuis": "2026-11-02",
    "jusqu_au": "2026-11-10"
+  },
+  {
+   "mot": "CHEVIGNY",
+   "ref": "520",
+   "libelle": "l’appartement T3 avec jardin de Chevigny-Saint-Sauveur",
+   "depuis": "2026-11-03",
+   "jusqu_au": "2026-11-11"
+  },
+  {
+   "mot": "LUMIÈRE",
+   "ref": "501",
+   "libelle": "l’appartement T3 lumineux à Dijon",
+   "depuis": "2026-11-03",
+   "jusqu_au": "2026-11-11"
   }
  ]
 }
