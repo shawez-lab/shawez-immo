@@ -178,6 +178,30 @@ def titre_pour(v):
     return (titre[:78] + ' | Burgundy France #Shorts').strip()
 
 
+def alterner(versions):
+    """Un bien differe du precedent, tant qu'il reste un autre bien a sortir.
+
+    Ajoute le 03/11/2026. Le tri par anciennete seul sortait les versions bien par bien :
+    le 03/11 au matin, sept « Mandat » a la suite sur Threads, puis BALI, puis le chateau,
+    et le 520 de Chevigny seulement a 18 h. Shawez : « chaque bien, chaque jour. »
+    On garde l'ordre d'anciennete A L'INTERIEUR de chaque bien, et on fait tourner les biens
+    a tour de role. Le bien dont la plus ancienne version attend depuis le plus longtemps
+    ouvre le tour. Aucune version n'est perdue : seul l'ordre change.
+    """
+    groupes = {}
+    for v in versions:
+        groupes.setdefault(str(v.get('ref')), []).append(v)
+    ordre = sorted(groupes, key=lambda r: heure(groupes[r][0]))
+    melange = []
+    i = 0
+    while any(groupes[r][i:] for r in ordre):
+        for r in ordre:
+            if groupes[r][i:]:
+                melange.append(groupes[r][i])
+        i += 1
+    return melange
+
+
 def a_faire(args):
     registre = lire_json(REGISTRE, {'versions': []})
     juge = lire_json(JUGE, {})
@@ -190,6 +214,7 @@ def a_faire(args):
                        if v.get('statut', 'publie') == 'publie' and (v.get('uuid') or v.get('media')) and debut <= heure(v) <= depuis + dt.timedelta(hours=6)
                        and v.get('style') not in interdits and str(v.get('ref')) not in pauses],
                       key=heure)
+    versions = alterner(versions)
     sorties = []
     for reseau in args.reseaux.split(','):
         reseau = reseau.strip()
