@@ -6073,7 +6073,15 @@
    "source": "monteur",
    "uuid": "",
    "statut": "publie",
-   "media": "https://76835f23.shawez-immo.pages.dev/trial/2026-11-03/appartement-t3-501-v1.mp4"
+   "media": "https://76835f23.shawez-immo.pages.dev/trial/2026-11-03/appartement-t3-501-v1.mp4",
+   "diffusions": {
+    "pinterest": {
+     "uuid": "-5562840948804008292",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "14:10"
+    }
+   }
   },
   {
    "id": "TR-0311-501-v2",
