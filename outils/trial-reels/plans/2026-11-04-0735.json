@@ -1,0 +1,900 @@
+{
+ "jour": "2026-11-04",
+ "biens": [
+  {
+   "ref": "415",
+   "src": "assets/biens/415/video.mp4",
+   "mot": "DUPLEX",
+   "nom": "duplex-dijon",
+   "versions": [
+    {
+     "id": "v1",
+     "style": "lieu_exception",
+     "instagram": true,
+     "accroche": "Duplex de 92 m²|en plein cœur de Dijon",
+     "legende": "92 m² au sol, 69 m² Carrez, au dernier étage et avec une pièce de vie de 49 m². Tu t’y vois ? 🏙️\n\nCommente DUPLEX et je t’envoie la visite complète en privé 📩\n\n#dijon #duplex #dernieretage #centredijon #immobilierdijon",
+     "plans": [
+      [
+       2.88,
+       4.6,
+       1,
+       "Cœur de Dijon"
+      ],
+      [
+       10.08,
+       11.9,
+       1,
+       "92 m² au sol"
+      ],
+      [
+       4.68,
+       6.4,
+       1
+      ],
+      [
+       8.25,
+       10,
+       1
+      ],
+      [
+       13.78,
+       14.6,
+       1
+      ],
+      [
+       27.97,
+       30.1,
+       1
+      ],
+      [
+       32.7,
+       34.6,
+       1
+      ],
+      [
+       12.88,
+       13.7,
+       0.8
+      ],
+      [
+       16.52,
+       17.4,
+       0.33
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v2",
+     "style": "revelation",
+     "instagram": false,
+     "accroche": "Ce duplex cache|une chambre avec salle de bains",
+     "legende": "À l’étage, une belle chambre avec sa salle de bains privative. L’autre chambre t’attend en bas, avec ses placards 🛁\n\nCommente DUPLEX et je t’envoie la visite complète en privé 📩\n\n#suiteparentale #appartementdijon #duplexdijon #sallebainprivee",
+     "plans": [
+      [
+       32.7,
+       34.6,
+       1,
+       "À l’étage"
+      ],
+      [
+       31.87,
+       32.65,
+       1
+      ],
+      [
+       13.78,
+       14.6,
+       1
+      ],
+      [
+       4.68,
+       6.4,
+       1
+      ],
+      [
+       8.25,
+       10,
+       1
+      ],
+      [
+       37.33,
+       38.2,
+       1
+      ],
+      [
+       27.97,
+       30.1,
+       1
+      ],
+      [
+       15.6,
+       16.4,
+       1
+      ],
+      [
+       10.08,
+       10.95,
+       0.33
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v3",
+     "style": "detail_surprenant",
+     "instagram": false,
+     "accroche": "Une cheminée qui fonctionne|dans 69 m² Carrez",
+     "legende": "Une cheminée fonctionnelle, en plein Dijon, au dernier étage. Le charme ancien et ta pièce de vie de 49 m² 🔥\n\nCommente DUPLEX et je t’envoie la visite complète en privé 📩\n\n#cheminee #charmeancien #appartementdecaractere #bourgogne #dijonimmo",
+     "plans": [
+      [
+       13.78,
+       14.6,
+       0.6,
+       "Cheminée"
+      ],
+      [
+       14.68,
+       15.5,
+       1
+      ],
+      [
+       1.15,
+       2.8,
+       1
+      ],
+      [
+       10.08,
+       11.9,
+       1
+      ],
+      [
+       6.48,
+       8.15,
+       1
+      ],
+      [
+       38.23,
+       39.1,
+       1
+      ],
+      [
+       34.7,
+       35.5,
+       1
+      ],
+      [
+       2.88,
+       4.6,
+       1
+      ],
+      [
+       28,
+       28.9,
+       0.33
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v4",
+     "style": "chiffre_choc",
+     "instagram": false,
+     "accroche": "220 000 €|pour 92 m² au sol",
+     "legende": "220 000 € pour un duplex en exclusivité, avec une cuisine américaine équipée et 2 chambres 🔑\n\nCommente DUPLEX et je t’envoie la visite complète en privé 📩\n\n#exclusivite #achatappartement #primoaccedant #dijonville",
+     "plans": [
+      [
+       8.25,
+       10,
+       1,
+       "220 000 €"
+      ],
+      [
+       37.33,
+       38.2,
+       1
+      ],
+      [
+       32.7,
+       34.6,
+       1
+      ],
+      [
+       10.08,
+       11.9,
+       1
+      ],
+      [
+       2.88,
+       4.6,
+       1
+      ],
+      [
+       36.43,
+       37.3,
+       1
+      ],
+      [
+       4.68,
+       6.4,
+       1
+      ],
+      [
+       39.2,
+       39.95,
+       1
+      ],
+      [
+       31.87,
+       32.65,
+       0.29
+      ]
+     ],
+     "publier": ""
+    }
+   ]
+  },
+  {
+   "ref": "520",
+   "src": "assets/biens/520/video.mp4",
+   "mot": "CHEVIGNY",
+   "nom": "appartement-chevigny",
+   "versions": [
+    {
+     "id": "v1",
+     "style": "revelation",
+     "instagram": true,
+     "accroche": "Ce rez-de-chaussée cache|un jardin privatif",
+     "legende": "Une terrasse et un jardin privatif orienté Ouest, à Chevigny-Saint-Sauveur. Les soirs d’été sont déjà réservés 🌿\n\nCommente CHEVIGNY et je t’envoie la visite complète en privé 📩\n\n#jardinprivatif #terrasse #chevignysaintsauveur #appartementavecjardin",
+     "plans": [
+      [
+       13.45,
+       14.35,
+       0.75
+      ],
+      [
+       17.35,
+       18.25,
+       0.75
+      ],
+      [
+       14.4,
+       15.3,
+       0.75
+      ],
+      [
+       18.3,
+       19.2,
+       0.75
+      ],
+      [
+       22.25,
+       23.25,
+       0.75
+      ],
+      [
+       25.35,
+       26.3,
+       0.75
+      ],
+      [
+       23.3,
+       24.25,
+       0.75
+      ],
+      [
+       20.3,
+       21.2,
+       0.75,
+       "Jardin privatif"
+      ],
+      [
+       19.25,
+       20.25,
+       0.75,
+       "Orienté Ouest"
+      ],
+      [
+       21.25,
+       22.2,
+       0.35
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v2",
+     "style": "detail_surprenant",
+     "instagram": false,
+     "accroche": "Plus de 25 m² de vie|dans 61 m²",
+     "legende": "Plus de 25 m² de pièce de vie lumineuse avec cuisine ouverte, et 2 chambres avec rangements. Pas mal pour 61 m², non ? 📐\n\nCommente CHEVIGNY et je t’envoie la visite complète en privé 📩\n\n#t3 #cuisineouverte #residencerecente #immobilierdijon #amenagement",
+     "plans": [
+      [
+       13.45,
+       14.35,
+       0.6,
+       "25 m² de vie"
+      ],
+      [
+       17.35,
+       18.25,
+       0.75
+      ],
+      [
+       25.35,
+       26.3,
+       0.75
+      ],
+      [
+       19.25,
+       20.25,
+       0.75
+      ],
+      [
+       24.35,
+       25.3,
+       0.75
+      ],
+      [
+       18.3,
+       19.2,
+       0.75
+      ],
+      [
+       22.25,
+       23.25,
+       0.75
+      ],
+      [
+       21.25,
+       22.2,
+       0.75
+      ],
+      [
+       14.4,
+       15.3,
+       0.33
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v3",
+     "style": "revelation",
+     "instagram": false,
+     "accroche": "Attends de voir|ce jardin privatif",
+     "legende": "Résidence récente de 2013, sécurisée, et ce jardin privatif tout au bout de la pièce de vie 👀\n\nCommente CHEVIGNY et je t’envoie la visite complète en privé 📩\n\n#residencesecurisee #vieenexterieur #dijonmetropole #t3avecjardin",
+     "plans": [
+      [
+       24.35,
+       25.3,
+       0.75
+      ],
+      [
+       23.3,
+       24.25,
+       0.75
+      ],
+      [
+       22.25,
+       23.25,
+       0.75
+      ],
+      [
+       25.35,
+       26.3,
+       0.75
+      ],
+      [
+       18.3,
+       19.2,
+       0.75
+      ],
+      [
+       14.4,
+       15.3,
+       0.75
+      ],
+      [
+       13.45,
+       14.35,
+       0.75
+      ],
+      [
+       20.3,
+       21.2,
+       0.75
+      ],
+      [
+       21.25,
+       22.2,
+       0.75,
+       "Jardin privatif"
+      ],
+      [
+       19.25,
+       20.25,
+       0.35
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v4",
+     "style": "revelation",
+     "instagram": false,
+     "accroche": "Tu pensais qu’un rez-de-chaussée|était sombre ?",
+     "legende": "Ici la pièce de vie est lumineuse et ouvre sur la terrasse. Et un grand garage fermé t’attend en sous-sol ☀️\n\nCommente CHEVIGNY et je t’envoie la visite complète en privé 📩\n\n#garagefermé #pieceeclairee #appartementrdc #chevigny #achatimmobilier",
+     "plans": [
+      [
+       14.4,
+       15.3,
+       0.75,
+       "Pièce lumineuse"
+      ],
+      [
+       13.45,
+       14.35,
+       0.75
+      ],
+      [
+       22.25,
+       23.25,
+       0.75
+      ],
+      [
+       21.25,
+       22.2,
+       0.75
+      ],
+      [
+       17.35,
+       18.25,
+       0.75
+      ],
+      [
+       18.3,
+       19.2,
+       0.75
+      ],
+      [
+       23.3,
+       24.25,
+       0.75
+      ],
+      [
+       24.35,
+       25.3,
+       0.75
+      ],
+      [
+       20.3,
+       21.2,
+       0.33
+      ]
+     ],
+     "publier": ""
+    }
+   ]
+  },
+  {
+   "ref": "501",
+   "src": "assets/biens/501/video.mp4",
+   "mot": "LUMIÈRE",
+   "nom": "appartement-t3",
+   "versions": [
+    {
+     "id": "v1",
+     "style": "detail_surprenant",
+     "instagram": true,
+     "accroche": "Cuisine meublée, 2 chambres|dans 53 m²",
+     "legende": "Cuisine séparée, entièrement meublée et équipée, 2 chambres, tout ça dans 53,62 m² 🍳\n\nCommente LUMIÈRE et je t’envoie la visite complète en privé 📩\n\n#cuisineequipee #appartementdijon #t3dijon #premierachat",
+     "plans": [
+      [
+       10.6,
+       12.4,
+       1,
+       "Cuisine équipée"
+      ],
+      [
+       12.4,
+       14.2,
+       1
+      ],
+      [
+       16.95,
+       19,
+       1
+      ],
+      [
+       22.3,
+       24,
+       1
+      ],
+      [
+       8.45,
+       10.1,
+       1
+      ],
+      [
+       32.8,
+       35,
+       1
+      ],
+      [
+       6.15,
+       7.2,
+       1
+      ],
+      [
+       19.2,
+       20.1,
+       0.33
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v2",
+     "style": "revelation",
+     "instagram": false,
+     "accroche": "Ce T3 cache|une cave et un parking",
+     "legende": "Une cave privative en sous-sol et un parking collectif avec placement libre, ça change tout en ville 🚗\n\nCommente LUMIÈRE et je t’envoie la visite complète en privé 📩\n\n#cave #parking #dijon21 #appartementfamilial #investirdijon",
+     "plans": [
+      [
+       32.8,
+       35,
+       1
+      ],
+      [
+       6.15,
+       7.2,
+       1,
+       "Parking collectif"
+      ],
+      [
+       10.6,
+       12.4,
+       1
+      ],
+      [
+       26.6,
+       28.9,
+       1
+      ],
+      [
+       22.3,
+       24,
+       1
+      ],
+      [
+       16.95,
+       19,
+       1
+      ],
+      [
+       1.3,
+       3.5,
+       1
+      ],
+      [
+       35,
+       35.9,
+       0.33
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v3",
+     "style": "revelation",
+     "instagram": false,
+     "accroche": "Regarde bien|la lumière de ce salon",
+     "legende": "Appartement lumineux au premier étage, avec un salon confortable pour tes soirées posées ☀️\n\nCommente LUMIÈRE et je t’envoie la visite complète en privé 📩\n\n#appartementlumineux #salon #decointerieur #dijonvilledartethistoire",
+     "plans": [
+      [
+       1.3,
+       3.5,
+       1,
+       "Lumineux"
+      ],
+      [
+       32.8,
+       35,
+       1
+      ],
+      [
+       8.45,
+       10.1,
+       1
+      ],
+      [
+       4.8,
+       5.7,
+       1
+      ],
+      [
+       24,
+       25.1,
+       1
+      ],
+      [
+       12.4,
+       14.2,
+       1
+      ],
+      [
+       26.6,
+       28.9,
+       1
+      ],
+      [
+       19.2,
+       20.1,
+       0.33
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v4",
+     "style": "chiffre_choc",
+     "instagram": false,
+     "accroche": "139 000 €|et un gardien dans la résidence",
+     "legende": "139 000 € pour un T3 à Dijon, dans une copropriété de 1969 avec gardien. Tu connais quelqu’un qui cherche ? 🔑\n\nCommente LUMIÈRE et je t’envoie la visite complète en privé 📩\n\n#t3dijon #copropriete #gardien #achatimmobilierdijon",
+     "plans": [
+      [
+       8.45,
+       10.1,
+       1,
+       "139 000 €"
+      ],
+      [
+       16.95,
+       19,
+       1
+      ],
+      [
+       6.15,
+       7.2,
+       1
+      ],
+      [
+       10.6,
+       12.4,
+       1
+      ],
+      [
+       26.6,
+       28.9,
+       1
+      ],
+      [
+       35,
+       36.5,
+       1
+      ],
+      [
+       22.3,
+       24,
+       1
+      ],
+      [
+       1.3,
+       2.2,
+       0.33
+      ]
+     ],
+     "publier": ""
+    }
+   ]
+  },
+  {
+   "ref": "438",
+   "src": "assets/biens/438/video.mp4",
+   "mot": "CHÂTEAU",
+   "nom": "chateau",
+   "versions": [
+    {
+     "id": "v1",
+     "style": "lieu_exception",
+     "instagram": false,
+     "accroche": "Un château dominant|la campagne bourguignonne",
+     "legende": "Un remarquable château dominant la campagne bourguignonne, avec une vue dégagée sur la Côte de Beaune 🏰\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#chateauavendre #cotedebeaune #bourgogne #vuedegagee #patrimoinefrancais",
+     "plans": [
+      [
+       5.25,
+       7.15,
+       1,
+       "Vue dégagée"
+      ],
+      [
+       8.28,
+       11.15,
+       1
+      ],
+      [
+       0,
+       1.15,
+       1
+      ],
+      [
+       3.25,
+       5.15,
+       1
+      ],
+      [
+       13.25,
+       15.1,
+       1
+      ],
+      [
+       15.2,
+       17.2,
+       1
+      ],
+      [
+       29.25,
+       29.95,
+       1
+      ],
+      [
+       11.25,
+       12.2,
+       0.33
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v2",
+     "style": "revelation",
+     "instagram": true,
+     "accroche": "Derrière cette porte,|un vestibule majestueux",
+     "legende": "Une porte, puis ce vestibule d’entrée majestueux, à quinze minutes de Beaune. Tu fais le pas ? 🚪\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#vestibule #escalierdhonneur #demeuredecaractere #beaune",
+     "plans": [
+      [
+       13.25,
+       15.1,
+       1
+      ],
+      [
+       15.2,
+       19.1,
+       1,
+       "Vestibule"
+      ],
+      [
+       20.2,
+       22.1,
+       1
+      ],
+      [
+       29.25,
+       29.95,
+       1
+      ],
+      [
+       24.2,
+       26,
+       1
+      ],
+      [
+       1.25,
+       3.15,
+       1
+      ],
+      [
+       8.28,
+       9.2,
+       0.33
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v3",
+     "style": "revelation",
+     "instagram": false,
+     "accroche": "Regarde bien|la façade de ce château",
+     "legende": "Son origine remonte au XVIIIe siècle, et ce château est parfaitement entretenu depuis vingt ans 👀\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#facade #chateaudefrance #architecture #xviiie #saoneetloire",
+     "plans": [
+      [
+       7.25,
+       8.2,
+       0.7,
+       "XVIIIe"
+      ],
+      [
+       8.28,
+       10.5,
+       1
+      ],
+      [
+       0,
+       1.15,
+       1
+      ],
+      [
+       1.25,
+       3.15,
+       1
+      ],
+      [
+       27.2,
+       29.15,
+       1
+      ],
+      [
+       15.2,
+       17.2,
+       1
+      ],
+      [
+       22.2,
+       24.1,
+       1
+      ],
+      [
+       11.25,
+       12.15,
+       0.33
+      ]
+     ],
+     "publier": ""
+    },
+    {
+     "id": "v4",
+     "style": "lieu_exception",
+     "instagram": false,
+     "accroche": "Un château où la faune|règne sur 15 hectares",
+     "legende": "Un domaine de 15 hectares, dont 10 de bois, où la faune est abondante et le calme total 🌳\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#domaine #bois #naturepreservee #vieaugrandair",
+     "plans": [
+      [
+       1.25,
+       3.15,
+       1,
+       "15 hectares"
+      ],
+      [
+       3.25,
+       5.15,
+       1
+      ],
+      [
+       5.25,
+       7.15,
+       1
+      ],
+      [
+       11.25,
+       13.15,
+       1
+      ],
+      [
+       0,
+       1.15,
+       1
+      ],
+      [
+       27.2,
+       29.15,
+       1
+      ],
+      [
+       17,
+       19.1,
+       1
+      ],
+      [
+       9.2,
+       10.1,
+       0.33
+      ]
+     ],
+     "publier": ""
+    }
+   ]
+  }
+ ]
+}
