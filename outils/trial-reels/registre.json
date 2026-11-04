@@ -4174,7 +4174,15 @@
     "instagram": "perdant"
    },
    "vues_total": 351,
-   "verdict": "perdant"
+   "verdict": "perdant",
+   "diffusions": {
+    "threads": {
+     "uuid": "-3668957619810975255",
+     "url": "",
+     "date": "2026-11-05",
+     "heure": "10:00"
+    }
+   }
   },
   {
    "id": "TR-0111-438-v2",
@@ -4303,6 +4311,24 @@
      "url": "",
      "date": "2026-11-04",
      "heure": "10:00"
+    },
+    "bluesky": {
+     "uuid": "-4214559995530819212",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "09:10"
+    },
+    "linkedin": {
+     "uuid": "-7465137765817628476",
+     "url": "",
+     "date": "2026-11-05",
+     "heure": "08:00"
+    },
+    "pinterest": {
+     "uuid": "-7332019009315322888",
+     "url": "",
+     "date": "2026-11-05",
+     "heure": "12:10"
     }
    }
   },
@@ -4421,6 +4447,24 @@
      "url": "",
      "date": "2026-11-04",
      "heure": "11:30"
+    },
+    "bluesky": {
+     "uuid": "-5659836405670524621",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "12:10"
+    },
+    "linkedin": {
+     "uuid": "101322716477935240",
+     "url": "",
+     "date": "2026-11-05",
+     "heure": "14:05"
+    },
+    "pinterest": {
+     "uuid": "7071990710632926319",
+     "url": "",
+     "date": "2026-11-05",
+     "heure": "13:10"
     }
    }
   },
@@ -5120,6 +5164,24 @@
      "url": "",
      "date": "2026-11-04",
      "heure": "13:00"
+    },
+    "bluesky": {
+     "uuid": "-4844814244306270416",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "15:10"
+    },
+    "threads": {
+     "uuid": "-1016721811992721223",
+     "url": "",
+     "date": "2026-11-05",
+     "heure": "09:00"
+    },
+    "pinterest": {
+     "uuid": "-5131171683137598545",
+     "url": "",
+     "date": "2026-11-05",
+     "heure": "14:10"
     }
    }
   },
@@ -6798,6 +6860,18 @@
      "url": "",
      "date": "2026-11-04",
      "heure": "13:05"
+    },
+    "bluesky": {
+     "uuid": "-2196164307063258396",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "08:40"
+    },
+    "gmb": {
+     "uuid": "1660561905821959778",
+     "url": "",
+     "date": "2026-11-05",
+     "heure": "13:05"
     }
    },
    "reseaux": {
@@ -6862,6 +6936,12 @@
      "url": "",
      "date": "2026-11-04",
      "heure": "15:10"
+    },
+    "bluesky": {
+     "uuid": "-2524304790272457789",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "11:40"
     }
    },
    "reseaux": {
@@ -6914,6 +6994,12 @@
      "url": "",
      "date": "2026-11-04",
      "heure": "17:10"
+    },
+    "bluesky": {
+     "uuid": "3137132353864813418",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "14:40"
     }
    },
    "reseaux": {
@@ -7272,6 +7358,18 @@
      "url": "",
      "date": "2026-11-04",
      "heure": "18:50"
+    },
+    "bluesky": {
+     "uuid": "941305566285679683",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "09:40"
+    },
+    "linkedin": {
+     "uuid": "-5839708831046810083",
+     "url": "",
+     "date": "2026-11-05",
+     "heure": "09:30"
     }
    }
   },
@@ -7307,6 +7405,12 @@
      "url": "",
      "date": "2026-11-04",
      "heure": "15:40"
+    },
+    "bluesky": {
+     "uuid": "-6284076998071268908",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "12:40"
     }
    }
   },
@@ -7341,6 +7445,12 @@
      "url": "",
      "date": "2026-11-04",
      "heure": "18:25"
+    },
+    "bluesky": {
+     "uuid": "5850719323548765634",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "15:40"
     }
    }
   },
@@ -7421,6 +7531,12 @@
      "url": "",
      "date": "2026-11-04",
      "heure": "19:50"
+    },
+    "bluesky": {
+     "uuid": "-5358541326865316228",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "10:10"
     }
    }
   },
@@ -7455,6 +7571,12 @@
      "url": "",
      "date": "2026-11-04",
      "heure": "16:40"
+    },
+    "bluesky": {
+     "uuid": "3595707469852264261",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "13:10"
     }
    }
   },
@@ -7563,6 +7685,12 @@
      "url": "",
      "date": "2026-11-04",
      "heure": "20:20"
+    },
+    "bluesky": {
+     "uuid": "6418861702879201678",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "10:40"
     }
    }
   },
@@ -7597,6 +7725,12 @@
      "url": "",
      "date": "2026-11-04",
      "heure": "17:10"
+    },
+    "bluesky": {
+     "uuid": "-6744821935632465738",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "13:40"
     }
    }
   },
@@ -7674,7 +7808,33 @@
    "source": "monteur",
    "uuid": "",
    "statut": "publie",
-   "media": "https://76835f23.shawez-immo.pages.dev/trial/2026-11-03/studio-marrakech-461-v1.mp4"
+   "media": "https://76835f23.shawez-immo.pages.dev/trial/2026-11-03/studio-marrakech-461-v1.mp4",
+   "diffusions": {
+    "bluesky": {
+     "uuid": "-566465265319458435",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "11:10"
+    },
+    "threads": {
+     "uuid": "6217007810071644995",
+     "url": "",
+     "date": "2026-11-05",
+     "heure": "08:00"
+    },
+    "linkedin": {
+     "uuid": "-7244036626214992652",
+     "url": "",
+     "date": "2026-11-05",
+     "heure": "12:35"
+    },
+    "pinterest": {
+     "uuid": "-5176974223431153861",
+     "url": "",
+     "date": "2026-11-05",
+     "heure": "12:40"
+    }
+   }
   },
   {
    "id": "TR-0311-461-v2",
@@ -7688,7 +7848,27 @@
    "source": "monteur",
    "uuid": "",
    "statut": "publie",
-   "media": "https://76835f23.shawez-immo.pages.dev/trial/2026-11-03/studio-marrakech-461-v2.mp4"
+   "media": "https://76835f23.shawez-immo.pages.dev/trial/2026-11-03/studio-marrakech-461-v2.mp4",
+   "diffusions": {
+    "bluesky": {
+     "uuid": "2464341865343895686",
+     "url": "",
+     "date": "2026-11-04",
+     "heure": "14:10"
+    },
+    "threads": {
+     "uuid": "-6077730716969122863",
+     "url": "",
+     "date": "2026-11-05",
+     "heure": "08:30"
+    },
+    "pinterest": {
+     "uuid": "4028316530032527309",
+     "url": "",
+     "date": "2026-11-05",
+     "heure": "13:40"
+    }
+   }
   },
   {
    "id": "TR-0311-461-v3",
@@ -7702,7 +7882,15 @@
    "source": "monteur",
    "uuid": "",
    "statut": "publie",
-   "media": "https://76835f23.shawez-immo.pages.dev/trial/2026-11-03/studio-marrakech-461-v3.mp4"
+   "media": "https://76835f23.shawez-immo.pages.dev/trial/2026-11-03/studio-marrakech-461-v3.mp4",
+   "diffusions": {
+    "threads": {
+     "uuid": "-8395137513573300988",
+     "url": "",
+     "date": "2026-11-05",
+     "heure": "09:30"
+    }
+   }
   },
   {
    "id": "TR-0311-461-v4",
@@ -7716,7 +7904,15 @@
    "source": "monteur",
    "uuid": "",
    "statut": "publie",
-   "media": "https://76835f23.shawez-immo.pages.dev/trial/2026-11-03/studio-marrakech-461-v4.mp4"
+   "media": "https://76835f23.shawez-immo.pages.dev/trial/2026-11-03/studio-marrakech-461-v4.mp4",
+   "diffusions": {
+    "threads": {
+     "uuid": "-2755166477527724074",
+     "url": "",
+     "date": "2026-11-05",
+     "heure": "10:30"
+    }
+   }
   },
   {
    "id": "TR-0311-438-v1",
