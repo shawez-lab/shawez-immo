@@ -60,12 +60,12 @@
    "statut": "publie",
    "uuid": "1911933832923269929",
    "url": "https://www.instagram.com/reel/DfB9S2sDohn/",
-   "vues": 2982,
+   "vues": 2994,
    "duree_moy": 7.86,
    "partages": 8,
    "enregistrements": 3,
    "commentaires": 6,
-   "mesure_le": "2026-11-03T06:51",
+   "mesure_le": "2026-11-04T06:58",
    "verdict": "gagnant",
    "diffusions": {
     "tiktok": {
@@ -98,21 +98,21 @@
      "verdict": "perdant"
     },
     "facebook": {
-     "vues": 7,
+     "vues": 8,
      "duree_moy": 1.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     },
     "youtube": {
-     "vues": 416,
+     "vues": 417,
      "duree_moy": 3.0,
      "partages": 0,
      "enregistrements": 1,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     }
    },
@@ -122,7 +122,7 @@
     "youtube": "perdant",
     "facebook": "perdant"
    },
-   "vues_total": 3520
+   "vues_total": 3534
   },
   {
    "id": "TR-2810-483-v2",
@@ -142,7 +142,7 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-03T06:51",
+   "mesure_le": "2026-11-04T06:58",
    "verdict": "perdant",
    "verdicts": {
     "instagram": "perdant"
@@ -167,7 +167,7 @@
    "partages": 1,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-03T06:51",
+   "mesure_le": "2026-11-04T06:58",
    "verdict": "perdant",
    "verdicts": {
     "instagram": "perdant"
@@ -192,7 +192,7 @@
    "partages": 1,
    "enregistrements": 1,
    "commentaires": 0,
-   "mesure_le": "2026-11-03T06:51",
+   "mesure_le": "2026-11-04T06:58",
    "verdict": "gagnant",
    "diffusions": {
     "tiktok": {
@@ -230,26 +230,26 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     },
     "youtube": {
-     "vues": 1140,
+     "vues": 1141,
      "duree_moy": 3.0,
      "partages": 0,
      "enregistrements": 6,
      "commentaires": 1,
-     "mesure_le": "2026-11-03T06:51",
-     "verdict": "moyen"
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "gagnant"
     }
    },
    "verdicts": {
     "instagram": "gagnant",
     "tiktok": "perdant",
-    "youtube": "moyen",
+    "youtube": "gagnant",
     "facebook": "perdant"
    },
-   "vues_total": 2496
+   "vues_total": 2497
   },
   {
    "id": "TR-2810-483-v3",
@@ -269,7 +269,7 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-03T06:51",
+   "mesure_le": "2026-11-04T06:58",
    "verdict": "perdant",
    "verdicts": {
     "instagram": "perdant"
@@ -294,7 +294,7 @@
    "partages": 1,
    "enregistrements": 0,
    "commentaires": 4,
-   "mesure_le": "2026-11-03T06:51",
+   "mesure_le": "2026-11-04T06:58",
    "verdict": "gagnant",
    "diffusions": {
     "tiktok": {
@@ -332,7 +332,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     },
     "youtube": {
@@ -341,7 +341,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     }
    },
@@ -371,8 +371,8 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-03T06:51",
-   "verdict": "moyen",
+   "mesure_le": "2026-11-04T06:58",
+   "verdict": "gagnant",
    "diffusions": {
     "tiktok": {
      "uuid": "3850015534146928986",
@@ -409,7 +409,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     },
     "youtube": {
@@ -418,14 +418,14 @@
      "partages": 0,
      "enregistrements": 2,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
-     "verdict": "moyen"
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "gagnant"
     }
    },
    "verdicts": {
     "instagram": "perdant",
     "tiktok": "perdant",
-    "youtube": "moyen",
+    "youtube": "gagnant",
     "facebook": "perdant"
    },
    "vues_total": 1267
@@ -448,7 +448,7 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-03T06:51",
+   "mesure_le": "2026-11-04T06:58",
    "verdict": "perdant",
    "verdicts": {
     "instagram": "perdant"
@@ -473,7 +473,7 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-03T06:51",
+   "mesure_le": "2026-11-04T06:58",
    "verdict": "perdant",
    "verdicts": {
     "instagram": "perdant"
@@ -498,7 +498,7 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-03T06:51",
+   "mesure_le": "2026-11-04T06:58",
    "verdict": "perdant",
    "verdicts": {
     "instagram": "perdant"
@@ -523,8 +523,8 @@
    "partages": 0,
    "enregistrements": 1,
    "commentaires": 0,
-   "mesure_le": "2026-11-03T06:51",
-   "verdict": "moyen",
+   "mesure_le": "2026-11-04T06:58",
+   "verdict": "gagnant",
    "diffusions": {
     "tiktok": {
      "uuid": "-2638503749886392970",
@@ -561,26 +561,26 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     },
     "youtube": {
-     "vues": 1103,
+     "vues": 1106,
      "duree_moy": 5.0,
      "partages": 0,
      "enregistrements": 4,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
-     "verdict": "moyen"
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "gagnant"
     }
    },
    "verdicts": {
     "instagram": "perdant",
     "tiktok": "perdant",
-    "youtube": "moyen",
+    "youtube": "gagnant",
     "facebook": "perdant"
    },
-   "vues_total": 1322
+   "vues_total": 1325
   },
   {
    "id": "TR-2810-defi-c",
@@ -600,7 +600,7 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-03T06:51",
+   "mesure_le": "2026-11-04T06:58",
    "verdict": "perdant",
    "verdicts": {
     "instagram": "perdant"
@@ -620,12 +620,12 @@
    "statut": "publie",
    "uuid": "6255332966384095149",
    "url": "https://www.instagram.com/reel/DfC7drrDOFe/",
-   "vues": 5295,
-   "duree_moy": 6.67,
+   "vues": 5355,
+   "duree_moy": 6.66,
    "partages": 37,
-   "enregistrements": 7,
+   "enregistrements": 8,
    "commentaires": 8,
-   "mesure_le": "2026-11-03T06:51",
+   "mesure_le": "2026-11-04T06:58",
    "verdict": "gagnant",
    "diffusions": {
     "tiktok": {
@@ -663,7 +663,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     },
     "youtube": {
@@ -672,7 +672,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     }
    },
@@ -682,7 +682,7 @@
     "youtube": "perdant",
     "facebook": "perdant"
    },
-   "vues_total": 5617
+   "vues_total": 5677
   },
   {
    "id": "TR-2810-483-v5",
@@ -702,7 +702,7 @@
    "partages": 0,
    "enregistrements": 1,
    "commentaires": 1,
-   "mesure_le": "2026-11-03T06:51",
+   "mesure_le": "2026-11-04T06:58",
    "verdict": "perdant",
    "verdicts": {
     "instagram": "perdant"
@@ -747,7 +747,7 @@
    "partages": 3,
    "enregistrements": 3,
    "commentaires": 0,
-   "mesure_le": "2026-11-03T06:51",
+   "mesure_le": "2026-11-04T06:58",
    "reseaux": {
     "tiktok": {
      "vues": 59,
@@ -764,26 +764,26 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     },
     "youtube": {
-     "vues": 1238,
+     "vues": 1241,
      "duree_moy": 4.0,
      "partages": 0,
      "enregistrements": 5,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
-     "verdict": "moyen"
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "gagnant"
     }
    },
    "verdicts": {
     "instagram": "gagnant",
     "tiktok": "perdant",
-    "youtube": "moyen",
+    "youtube": "gagnant",
     "facebook": "perdant"
    },
-   "vues_total": 2590,
+   "vues_total": 2593,
    "verdict": "gagnant"
   },
   {
@@ -824,7 +824,7 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-03T06:51",
+   "mesure_le": "2026-11-04T06:58",
    "reseaux": {
     "tiktok": {
      "vues": 77,
@@ -841,27 +841,27 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     },
     "youtube": {
-     "vues": 1316,
+     "vues": 1318,
      "duree_moy": 4.0,
      "partages": 0,
      "enregistrements": 9,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
-     "verdict": "moyen"
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "gagnant"
     }
    },
    "verdicts": {
     "instagram": "perdant",
     "tiktok": "perdant",
-    "youtube": "moyen",
+    "youtube": "gagnant",
     "facebook": "perdant"
    },
-   "vues_total": 1563,
-   "verdict": "moyen"
+   "vues_total": 1565,
+   "verdict": "gagnant"
   },
   {
    "id": "TR-2910-525-b",
@@ -901,7 +901,7 @@
    "partages": 1,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-03T06:51",
+   "mesure_le": "2026-11-04T06:58",
    "reseaux": {
     "tiktok": {
      "vues": 129,
@@ -918,7 +918,7 @@
      "partages": 0,
      "enregistrements": 4,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "gagnant"
     },
     "facebook": {
@@ -927,7 +927,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     }
    },
@@ -958,7 +958,7 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-03T06:51",
+   "mesure_le": "2026-11-04T06:58",
    "verdicts": {
     "instagram": "perdant"
    },
@@ -1003,7 +1003,7 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-03T06:51",
+   "mesure_le": "2026-11-04T06:58",
    "reseaux": {
     "tiktok": {
      "vues": 50,
@@ -1015,13 +1015,13 @@
      "verdict": "perdant"
     },
     "youtube": {
-     "vues": 1231,
+     "vues": 1232,
      "duree_moy": 4.0,
      "partages": 0,
      "enregistrements": 8,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
-     "verdict": "moyen"
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "gagnant"
     },
     "facebook": {
      "vues": 7,
@@ -1029,18 +1029,18 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     }
    },
    "verdicts": {
     "instagram": "perdant",
     "tiktok": "perdant",
-    "youtube": "moyen",
+    "youtube": "gagnant",
     "facebook": "perdant"
    },
-   "vues_total": 1467,
-   "verdict": "moyen"
+   "vues_total": 1468,
+   "verdict": "gagnant"
   },
   {
    "id": "TR-3010-525-a",
@@ -1063,7 +1063,7 @@
     },
     "threads": {
      "uuid": "-1634844984833325616",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfLHiXmDDSY",
      "date": "2026-10-31",
      "heure": "22:25"
     },
@@ -1075,7 +1075,7 @@
     },
     "linkedin": {
      "uuid": "-1851240169760470663",
-     "url": "",
+     "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7522782224337981440",
      "date": "2026-11-01",
      "heure": "23:10"
     },
@@ -1088,32 +1088,52 @@
    },
    "reseaux": {
     "facebook": {
-     "vues": 1,
-     "duree_moy": 2.0,
+     "vues": 2,
+     "duree_moy": 1.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     },
     "youtube": {
-     "vues": 1033,
+     "vues": 1047,
      "duree_moy": 4.0,
      "partages": 0,
      "enregistrements": 5,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
-     "verdict": "moyen"
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "gagnant"
+    },
+    "threads": {
+     "vues": 3,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "linkedin": {
+     "vues": 8,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
     }
    },
    "verdicts": {
     "instagram": "perdant",
-    "youtube": "moyen",
-    "facebook": "perdant"
+    "youtube": "gagnant",
+    "facebook": "perdant",
+    "threads": "perdant",
+    "linkedin": "perdant"
    },
-   "vues_total": 1034,
+   "vues_total": 1060,
    "vues": 0,
-   "verdict": "moyen"
+   "verdict": "gagnant"
   },
   {
    "id": "TR-3110-438-v5",
@@ -1148,7 +1168,7 @@
     },
     "threads": {
      "uuid": "-5246011902363415536",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfLVRXZErwY",
      "date": "2026-11-01",
      "heure": "00:25"
     },
@@ -1166,61 +1186,81 @@
     },
     "linkedin": {
      "uuid": "-2883463899589554879",
-     "url": "",
+     "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7522962185703108609",
      "date": "2026-11-02",
      "heure": "11:05"
     },
     "gmb": {
      "uuid": "-261951513473038648",
-     "url": "",
+     "url": "https://maps.google.com/maps?cid=18403966589051072643",
      "date": "2026-11-03",
      "heure": "09:05"
     }
    },
    "reseaux": {
     "tiktok": {
-     "vues": 1111,
+     "vues": 1126,
      "duree_moy": 0.0,
-     "partages": 3,
-     "enregistrements": 24,
+     "partages": 4,
+     "enregistrements": 25,
      "commentaires": 2,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "gagnant"
     },
     "facebook": {
-     "vues": 18,
-     "duree_moy": 92.0,
+     "vues": 36,
+     "duree_moy": 49.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     },
     "youtube": {
-     "vues": 441,
+     "vues": 660,
      "duree_moy": 4.0,
      "partages": 0,
-     "enregistrements": 2,
+     "enregistrements": 7,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "moyen"
+    },
+    "threads": {
+     "vues": 18,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "linkedin": {
+     "vues": 6,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     }
    },
    "verdicts": {
     "instagram": "gagnant",
     "tiktok": "gagnant",
-    "youtube": "perdant",
-    "facebook": "perdant"
+    "youtube": "moyen",
+    "facebook": "perdant",
+    "threads": "perdant",
+    "linkedin": "perdant"
    },
-   "vues_total": 2687,
-   "vues": 1117,
+   "vues_total": 3150,
+   "vues": 1304,
    "verdict": "gagnant",
    "url": "https://www.instagram.com/reel/DfPJ-PviKwm/",
-   "duree_moy": 4.75,
+   "duree_moy": 4.86,
    "partages": 7,
    "enregistrements": 3,
    "commentaires": 0,
-   "mesure_le": "2026-11-03T06:51"
+   "mesure_le": "2026-11-04T06:58"
   },
   {
    "id": "TR-2910-438-v1",
@@ -1255,13 +1295,13 @@
     },
     "threads": {
      "uuid": "-7267966023159102820",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfKcpUOj9vg",
      "date": "2026-10-31",
      "heure": "16:10"
     },
     "linkedin": {
      "uuid": "-4658307936393869461",
-     "url": "",
+     "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7522351936222720002",
      "date": "2026-10-31",
      "heure": "18:40"
     }
@@ -1272,7 +1312,7 @@
    "partages": 2,
    "enregistrements": 2,
    "commentaires": 0,
-   "mesure_le": "2026-11-03T06:51",
+   "mesure_le": "2026-11-04T06:58",
    "reseaux": {
     "tiktok": {
      "vues": 20,
@@ -1284,31 +1324,51 @@
      "verdict": "perdant"
     },
     "facebook": {
-     "vues": 7,
-     "duree_moy": 7.0,
+     "vues": 9,
+     "duree_moy": 5.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     },
     "youtube": {
-     "vues": 844,
+     "vues": 845,
      "duree_moy": 3.0,
      "partages": 0,
      "enregistrements": 3,
      "commentaires": 1,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "moyen"
+    },
+    "threads": {
+     "vues": 126,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "moyen"
+    },
+    "linkedin": {
+     "vues": 3,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     }
    },
    "verdicts": {
     "instagram": "gagnant",
     "tiktok": "perdant",
-    "youtube": "perdant",
-    "facebook": "perdant"
+    "youtube": "moyen",
+    "facebook": "perdant",
+    "threads": "moyen",
+    "linkedin": "perdant"
    },
-   "vues_total": 1875,
+   "vues_total": 2007,
    "verdict": "gagnant"
   },
   {
@@ -1344,24 +1404,24 @@
     },
     "threads": {
      "uuid": "3288152268904352987",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfKgEjjEt8F",
      "date": "2026-10-31",
      "heure": "16:40"
     },
     "linkedin": {
      "uuid": "-5007402233100417241",
-     "url": "",
+     "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7522374561565249536",
      "date": "2026-10-31",
      "heure": "20:10"
     }
    },
    "url": "https://www.instagram.com/reel/DfFy3N9jUj5/",
-   "vues": 2503,
-   "duree_moy": 6.59,
-   "partages": 23,
+   "vues": 2612,
+   "duree_moy": 6.67,
+   "partages": 24,
    "enregistrements": 6,
    "commentaires": 2,
-   "mesure_le": "2026-11-03T06:51",
+   "mesure_le": "2026-11-04T06:58",
    "reseaux": {
     "tiktok": {
      "vues": 22,
@@ -1373,31 +1433,51 @@
      "verdict": "perdant"
     },
     "facebook": {
-     "vues": 6,
+     "vues": 7,
      "duree_moy": 2.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     },
     "youtube": {
-     "vues": 1259,
+     "vues": 1267,
      "duree_moy": 4.0,
      "partages": 2,
      "enregistrements": 3,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "gagnant"
+    },
+    "threads": {
+     "vues": 93,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "moyen"
+    },
+    "linkedin": {
+     "vues": 6,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
     }
    },
    "verdicts": {
     "instagram": "gagnant",
     "tiktok": "perdant",
-    "youtube": "moyen",
-    "facebook": "perdant"
+    "youtube": "gagnant",
+    "facebook": "perdant",
+    "threads": "moyen",
+    "linkedin": "perdant"
    },
-   "vues_total": 3790,
+   "vues_total": 4007,
    "verdict": "gagnant"
   },
   {
@@ -1433,13 +1513,13 @@
     },
     "threads": {
      "uuid": "7998057581961104827",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfKop7gCgL-",
      "date": "2026-10-31",
      "heure": "17:55"
     },
     "linkedin": {
      "uuid": "-9009308706900589442",
-     "url": "",
+     "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7522397207946432512",
      "date": "2026-10-31",
      "heure": "21:40"
     }
@@ -1450,7 +1530,7 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-03T06:51",
+   "mesure_le": "2026-11-04T06:58",
    "reseaux": {
     "tiktok": {
      "vues": 18,
@@ -1467,16 +1547,34 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     },
     "youtube": {
-     "vues": 246,
+     "vues": 248,
      "duree_moy": 3.0,
      "partages": 0,
      "enregistrements": 1,
      "commentaires": 1,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "threads": {
+     "vues": 2,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "linkedin": {
+     "vues": 10,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     }
    },
@@ -1484,9 +1582,11 @@
     "instagram": "perdant",
     "tiktok": "perdant",
     "youtube": "perdant",
-    "facebook": "perdant"
+    "facebook": "perdant",
+    "threads": "perdant",
+    "linkedin": "perdant"
    },
-   "vues_total": 422,
+   "vues_total": 436,
    "verdict": "perdant"
   },
   {
@@ -1507,13 +1607,15 @@
    "partages": 2,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-03T06:51",
+   "mesure_le": "2026-11-04T06:58",
    "verdicts": {
     "instagram": "perdant",
     "youtube": "perdant",
-    "facebook": "perdant"
+    "facebook": "perdant",
+    "threads": "perdant",
+    "linkedin": "perdant"
    },
-   "vues_total": 531,
+   "vues_total": 542,
    "verdict": "perdant",
    "diffusions": {
     "tiktok": {
@@ -1536,13 +1638,13 @@
     },
     "threads": {
      "uuid": "5456557083036896892",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfKsF0UDVs8",
      "date": "2026-10-31",
      "heure": "18:25"
     },
     "linkedin": {
      "uuid": "-9175517117877238279",
-     "url": "",
+     "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7522419843145519104",
      "date": "2026-10-31",
      "heure": "23:10"
     }
@@ -1554,7 +1656,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     },
     "youtube": {
@@ -1563,7 +1665,25 @@
      "partages": 0,
      "enregistrements": 2,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "threads": {
+     "vues": 7,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "linkedin": {
+     "vues": 4,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     }
    }
@@ -1601,13 +1721,13 @@
     },
     "threads": {
      "uuid": "7954149388438946841",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfKvhgeDbZR",
      "date": "2026-10-31",
      "heure": "18:55"
     },
     "linkedin": {
      "uuid": "-6629386710266067781",
-     "url": "",
+     "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7522442473776803840",
      "date": "2026-11-01",
      "heure": "00:40"
     }
@@ -1618,13 +1738,15 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-03T06:51",
+   "mesure_le": "2026-11-04T06:58",
    "verdicts": {
     "instagram": "perdant",
     "youtube": "perdant",
-    "facebook": "perdant"
+    "facebook": "perdant",
+    "threads": "perdant",
+    "linkedin": "perdant"
    },
-   "vues_total": 456,
+   "vues_total": 477,
    "verdict": "perdant",
    "reseaux": {
     "facebook": {
@@ -1633,7 +1755,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     },
     "youtube": {
@@ -1642,7 +1764,25 @@
      "partages": 0,
      "enregistrements": 1,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "threads": {
+     "vues": 17,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "linkedin": {
+     "vues": 4,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     }
    }
@@ -1680,13 +1820,13 @@
     },
     "threads": {
      "uuid": "-4099870403218750862",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfKy9A_iY-4",
      "date": "2026-10-31",
      "heure": "19:25"
     },
     "linkedin": {
      "uuid": "476560907543202750",
-     "url": "",
+     "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7522465156992512001",
      "date": "2026-11-01",
      "heure": "02:10"
     }
@@ -1697,14 +1837,16 @@
    "partages": 0,
    "enregistrements": 1,
    "commentaires": 0,
-   "mesure_le": "2026-11-03T06:51",
+   "mesure_le": "2026-11-04T06:58",
    "verdicts": {
     "instagram": "perdant",
-    "youtube": "perdant",
-    "facebook": "perdant"
+    "youtube": "moyen",
+    "facebook": "perdant",
+    "threads": "perdant",
+    "linkedin": "perdant"
    },
-   "vues_total": 536,
-   "verdict": "perdant",
+   "vues_total": 823,
+   "verdict": "moyen",
    "reseaux": {
     "facebook": {
      "vues": 3,
@@ -1712,16 +1854,34 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     },
     "youtube": {
-     "vues": 387,
-     "duree_moy": 12.0,
+     "vues": 650,
+     "duree_moy": 8.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "moyen"
+    },
+    "threads": {
+     "vues": 19,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "linkedin": {
+     "vues": 5,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     }
    }
@@ -1759,13 +1919,13 @@
     },
     "threads": {
      "uuid": "-6696261501629480458",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfK2Y9ECliC",
      "date": "2026-10-31",
      "heure": "19:55"
     },
     "linkedin": {
      "uuid": "899651998929407276",
-     "url": "",
+     "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7522599770373148672",
      "date": "2026-11-01",
      "heure": "11:05"
     }
@@ -1776,14 +1936,16 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-03T06:51",
+   "mesure_le": "2026-11-04T06:58",
    "verdicts": {
     "instagram": "perdant",
     "youtube": "perdant",
-    "facebook": "perdant"
+    "facebook": "perdant",
+    "threads": "moyen",
+    "linkedin": "perdant"
    },
-   "vues_total": 551,
-   "verdict": "perdant",
+   "vues_total": 686,
+   "verdict": "moyen",
    "reseaux": {
     "facebook": {
      "vues": 3,
@@ -1791,16 +1953,34 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     },
     "youtube": {
-     "vues": 328,
+     "vues": 405,
      "duree_moy": 3.0,
      "partages": 0,
      "enregistrements": 2,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "threads": {
+     "vues": 41,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "moyen"
+    },
+    "linkedin": {
+     "vues": 17,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     }
    }
@@ -1838,49 +2018,69 @@
     },
     "threads": {
      "uuid": "-8434817625158106907",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfK50XxD8dk",
      "date": "2026-10-31",
      "heure": "20:25"
     },
     "linkedin": {
      "uuid": "-7140243818330373089",
-     "url": "",
+     "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7522691659923558400",
      "date": "2026-11-01",
      "heure": "17:10"
     }
    },
    "url": "https://www.instagram.com/reel/DfG0wuECflT/",
-   "vues": 2948,
-   "duree_moy": 6.1,
+   "vues": 2954,
+   "duree_moy": 6.12,
    "partages": 25,
    "enregistrements": 2,
    "commentaires": 0,
-   "mesure_le": "2026-11-03T06:51",
+   "mesure_le": "2026-11-04T06:58",
    "verdicts": {
     "instagram": "gagnant",
-    "youtube": "moyen",
-    "facebook": "perdant"
+    "youtube": "gagnant",
+    "facebook": "perdant",
+    "threads": "perdant",
+    "linkedin": "perdant"
    },
-   "vues_total": 3979,
+   "vues_total": 4009,
    "verdict": "gagnant",
    "reseaux": {
     "facebook": {
-     "vues": 12,
+     "vues": 15,
      "duree_moy": 4.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     },
     "youtube": {
-     "vues": 1019,
+     "vues": 1021,
      "duree_moy": 5.0,
      "partages": 0,
      "enregistrements": 6,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
-     "verdict": "moyen"
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "gagnant"
+    },
+    "threads": {
+     "vues": 12,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "linkedin": {
+     "vues": 7,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
     }
    }
   },
@@ -1917,39 +2117,41 @@
     },
     "threads": {
      "uuid": "-8288701786863221229",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfK9P7JFK5a",
      "date": "2026-10-31",
      "heure": "20:55"
     },
     "linkedin": {
      "uuid": "-3848500054325050599",
-     "url": "",
+     "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7522714302512795648",
      "date": "2026-11-01",
      "heure": "18:40"
     }
    },
    "url": "https://www.instagram.com/reel/DfHAAR4jzLn/",
-   "vues": 2232,
+   "vues": 2234,
    "duree_moy": 7.04,
    "partages": 25,
    "enregistrements": 1,
    "commentaires": 4,
-   "mesure_le": "2026-11-03T06:51",
+   "mesure_le": "2026-11-04T06:58",
    "verdicts": {
     "instagram": "gagnant",
     "youtube": "perdant",
-    "facebook": "perdant"
+    "facebook": "perdant",
+    "threads": "moyen",
+    "linkedin": "perdant"
    },
-   "vues_total": 2540,
+   "vues_total": 2596,
    "verdict": "gagnant",
    "reseaux": {
     "facebook": {
-     "vues": 16,
-     "duree_moy": 3.0,
+     "vues": 26,
+     "duree_moy": 4.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     },
     "youtube": {
@@ -1958,7 +2160,25 @@
      "partages": 0,
      "enregistrements": 3,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "threads": {
+     "vues": 38,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "moyen"
+    },
+    "linkedin": {
+     "vues": 6,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     }
    }
@@ -1996,13 +2216,13 @@
     },
     "threads": {
      "uuid": "4540298629009917219",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfLArWliPvF",
      "date": "2026-10-31",
      "heure": "21:25"
     },
     "linkedin": {
      "uuid": "5875178977977057904",
-     "url": "",
+     "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7522736948390641664",
      "date": "2026-11-01",
      "heure": "20:10"
     }
@@ -2013,14 +2233,16 @@
    "partages": 1,
    "enregistrements": 1,
    "commentaires": 0,
-   "mesure_le": "2026-11-03T06:51",
+   "mesure_le": "2026-11-04T06:58",
    "verdicts": {
     "instagram": "perdant",
-    "youtube": "perdant",
-    "facebook": "perdant"
+    "youtube": "moyen",
+    "facebook": "perdant",
+    "threads": "perdant",
+    "linkedin": "perdant"
    },
-   "vues_total": 1075,
-   "verdict": "perdant",
+   "vues_total": 1128,
+   "verdict": "moyen",
    "reseaux": {
     "facebook": {
      "vues": 7,
@@ -2028,16 +2250,34 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     },
     "youtube": {
-     "vues": 758,
+     "vues": 795,
      "duree_moy": 3.0,
      "partages": 1,
-     "enregistrements": 2,
+     "enregistrements": 3,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "moyen"
+    },
+    "threads": {
+     "vues": 5,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "linkedin": {
+     "vues": 11,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     }
    }
@@ -2075,13 +2315,13 @@
     },
     "threads": {
      "uuid": "-4549140924057170944",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfLEG7Fk0WP",
      "date": "2026-10-31",
      "heure": "21:55"
     },
     "linkedin": {
      "uuid": "1163731593768814231",
-     "url": "",
+     "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7522759591189958656",
      "date": "2026-11-01",
      "heure": "21:40"
     }
@@ -2092,13 +2332,14 @@
    "partages": 2,
    "enregistrements": 0,
    "commentaires": 2,
-   "mesure_le": "2026-11-03T06:51",
+   "mesure_le": "2026-11-04T06:58",
    "verdicts": {
     "instagram": "moyen",
     "youtube": "perdant",
-    "facebook": "perdant"
+    "facebook": "perdant",
+    "linkedin": "perdant"
    },
-   "vues_total": 624,
+   "vues_total": 638,
    "verdict": "moyen",
    "reseaux": {
     "facebook": {
@@ -2107,7 +2348,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     },
     "youtube": {
@@ -2116,7 +2357,16 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "linkedin": {
+     "vues": 14,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     }
    }
@@ -2142,7 +2392,7 @@
     },
     "threads": {
      "uuid": "1222775713621626364",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfNKAs5kzv6",
      "date": "2026-11-01",
      "heure": "17:25"
     },
@@ -2166,45 +2416,75 @@
     },
     "linkedin": {
      "uuid": "3781487871134418966",
-     "url": "",
+     "url": "https://linkedin.com/feed/update/urn:li:ugcPost:7523370011449643008",
      "date": "2026-11-03",
      "heure": "14:05"
     },
     "facebook": {
      "uuid": "6844008640444059070",
-     "url": "",
+     "url": "https://facebook.com/reel/1854802482357407",
      "date": "2026-11-03",
      "heure": "13:05"
     }
    },
    "reseaux": {
     "tiktok": {
-     "vues": 979,
+     "vues": 983,
      "duree_moy": 0.0,
      "partages": 2,
      "enregistrements": 15,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "moyen"
+    },
+    "youtube": {
+     "vues": 147,
+     "duree_moy": 2.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "facebook": {
+     "vues": 4,
+     "duree_moy": 2.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "en_cours"
+    },
+    "threads": {
+     "vues": 5,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
     }
    },
    "verdicts": {
     "instagram": "gagnant",
-    "tiktok": "moyen"
+    "tiktok": "moyen",
+    "youtube": "perdant",
+    "facebook": "en_cours",
+    "threads": "perdant"
    },
-   "vues_total": 2883,
-   "vues": 1904,
+   "vues_total": 3061,
+   "vues": 1922,
    "verdict": "gagnant",
    "tentatives": [
     "2026-10-30 12:48 refusée (quota Instagram)"
    ],
    "rattrapage": "2026-10-31 11h35 monteur",
    "url": "https://www.instagram.com/reel/DfMD101Dm0f/",
-   "duree_moy": 5.27,
+   "duree_moy": 5.33,
    "partages": 5,
    "enregistrements": 2,
    "commentaires": 11,
-   "mesure_le": "2026-11-03T06:51"
+   "mesure_le": "2026-11-04T06:58"
   },
   {
    "id": "TR-2910-438-v13",
@@ -2227,7 +2507,7 @@
     },
     "threads": {
      "uuid": "2092065877952579772",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfLK-PMCHei",
      "date": "2026-10-31",
      "heure": "22:55"
     },
@@ -2239,7 +2519,7 @@
     },
     "linkedin": {
      "uuid": "-5400411548071801362",
-     "url": "",
+     "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7522804870140166144",
      "date": "2026-11-02",
      "heure": "00:40"
     },
@@ -2263,7 +2543,7 @@
     },
     "gmb": {
      "uuid": "4283087373872089930",
-     "url": "",
+     "url": "https://maps.google.com/maps?cid=18403966589051072643",
      "date": "2026-11-02",
      "heure": "09:05"
     }
@@ -2275,37 +2555,57 @@
      "partages": 0,
      "enregistrements": 11,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "moyen"
     },
     "youtube": {
-     "vues": 998,
+     "vues": 1002,
      "duree_moy": 3.0,
      "partages": 0,
      "enregistrements": 7,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
-     "verdict": "moyen"
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "gagnant"
     },
     "facebook": {
-     "vues": 0,
+     "vues": 1,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
-     "verdict": "en_cours"
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "threads": {
+     "vues": 20,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "moyen"
+    },
+    "linkedin": {
+     "vues": 4,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 1,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
     }
    },
    "verdicts": {
     "instagram": "perdant",
     "tiktok": "moyen",
-    "youtube": "moyen",
-    "facebook": "en_cours"
+    "youtube": "gagnant",
+    "facebook": "perdant",
+    "threads": "moyen",
+    "linkedin": "perdant"
    },
-   "vues_total": 1854,
+   "vues_total": 1883,
    "vues": 0,
-   "verdict": "moyen"
+   "verdict": "gagnant"
   },
   {
    "id": "TR-2910-438-v14",
@@ -2334,7 +2634,7 @@
     },
     "threads": {
      "uuid": "4690148759545921886",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfLfksxCMXu",
      "date": "2026-11-01",
      "heure": "01:55"
     },
@@ -2352,55 +2652,75 @@
     },
     "linkedin": {
      "uuid": "479901658590497793",
-     "url": "",
+     "url": "https://linkedin.com/feed/update/urn:li:ugcPost:7523392550896984064",
      "date": "2026-11-03",
      "heure": "15:35"
     },
     "facebook": {
      "uuid": "6425322705752637935",
-     "url": "",
+     "url": "https://facebook.com/reel/1127090309870559",
      "date": "2026-11-03",
      "heure": "09:00"
     }
    },
    "reseaux": {
     "tiktok": {
-     "vues": 1003,
+     "vues": 1007,
      "duree_moy": 0.0,
      "partages": 3,
      "enregistrements": 13,
      "commentaires": 2,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "gagnant"
     },
     "youtube": {
-     "vues": 988,
+     "vues": 993,
      "duree_moy": 3.0,
      "partages": 0,
      "enregistrements": 2,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
-     "verdict": "moyen"
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "gagnant"
+    },
+    "facebook": {
+     "vues": 4,
+     "duree_moy": 66.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "en_cours"
+    },
+    "threads": {
+     "vues": 11,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
     }
    },
    "verdicts": {
     "instagram": "perdant",
     "tiktok": "gagnant",
-    "youtube": "moyen"
+    "youtube": "gagnant",
+    "facebook": "en_cours",
+    "threads": "perdant"
    },
-   "vues_total": 2362,
-   "vues": 371,
+   "vues_total": 2397,
+   "vues": 382,
    "verdict": "gagnant",
    "tentatives": [
     "2026-10-30 16:00 refusée (quota Instagram)"
    ],
    "rattrapage": "2026-10-31 11h35 monteur",
    "url": "https://www.instagram.com/reel/DfLB75TguEz/",
-   "duree_moy": 3.78,
+   "duree_moy": 3.74,
    "partages": 1,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-03T06:51"
+   "mesure_le": "2026-11-04T06:58"
   },
   {
    "id": "TR-2910-438-v15",
@@ -2435,13 +2755,13 @@
     },
     "threads": {
      "uuid": "940824658625054536",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfLOZ_vDkAq",
      "date": "2026-10-31",
      "heure": "23:25"
     },
     "linkedin": {
      "uuid": "-8186215069639553493",
-     "url": "",
+     "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7522827513346048000",
      "date": "2026-11-02",
      "heure": "02:10"
     },
@@ -2459,7 +2779,7 @@
     },
     "gmb": {
      "uuid": "51779005911221208",
-     "url": "",
+     "url": "https://maps.google.com/maps?cid=18403966589051072643",
      "date": "2026-11-02",
      "heure": "16:20"
     }
@@ -2470,15 +2790,15 @@
    "partages": 1,
    "enregistrements": 0,
    "commentaires": 2,
-   "mesure_le": "2026-11-03T06:51",
+   "mesure_le": "2026-11-04T06:58",
    "reseaux": {
     "tiktok": {
-     "vues": 1054,
+     "vues": 1063,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 24,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "gagnant"
     },
     "facebook": {
@@ -2487,16 +2807,34 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     },
     "youtube": {
-     "vues": 2,
-     "duree_moy": 3.0,
+     "vues": 3,
+     "duree_moy": 2.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "threads": {
+     "vues": 11,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "linkedin": {
+     "vues": 11,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 1,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     }
    },
@@ -2504,9 +2842,11 @@
     "instagram": "moyen",
     "tiktok": "gagnant",
     "youtube": "perdant",
-    "facebook": "perdant"
+    "facebook": "perdant",
+    "threads": "perdant",
+    "linkedin": "perdant"
    },
-   "vues_total": 1651,
+   "vues_total": 1683,
    "verdict": "gagnant"
   },
   {
@@ -2536,13 +2876,13 @@
     },
     "threads": {
      "uuid": "1149287082135211069",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfO1RjXCVQV",
      "date": "2026-11-02",
      "heure": "09:00"
     },
     "pinterest": {
      "uuid": "7806108691710299334",
-     "url": "",
+     "url": "https://www.pinterest.es/pin/1143844005392481295",
      "date": "2026-11-02",
      "heure": "17:10"
     },
@@ -2555,42 +2895,52 @@
    },
    "reseaux": {
     "tiktok": {
-     "vues": 1086,
+     "vues": 1102,
      "duree_moy": 0.0,
      "partages": 2,
      "enregistrements": 7,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "gagnant"
     },
     "youtube": {
-     "vues": 1,
+     "vues": 2,
+     "duree_moy": 7.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "threads": {
+     "vues": 2,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     }
    },
    "verdicts": {
     "instagram": "perdant",
     "tiktok": "gagnant",
-    "youtube": "perdant"
+    "youtube": "perdant",
+    "threads": "perdant"
    },
-   "vues_total": 1300,
-   "vues": 213,
+   "vues_total": 1320,
+   "vues": 214,
    "verdict": "gagnant",
    "tentatives": [
     "2026-10-30 20:48 refusée (quota Instagram)"
    ],
    "rattrapage": "2026-10-31 11h35 monteur",
    "url": "https://www.instagram.com/reel/DfOZrk-Ezu6/",
-   "duree_moy": 4.72,
+   "duree_moy": 4.71,
    "partages": 1,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-03T06:51"
+   "mesure_le": "2026-11-04T06:58"
   },
   {
    "id": "TR-3010-438-v1",
@@ -2625,13 +2975,13 @@
     },
     "threads": {
      "uuid": "-4371900084820163630",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfO4d20myb-",
      "date": "2026-11-02",
      "heure": "09:30"
     },
     "pinterest": {
      "uuid": "6146597953821820934",
-     "url": "",
+     "url": "https://www.pinterest.es/pin/1143844005392483341",
      "date": "2026-11-02",
      "heure": "17:40"
     },
@@ -2648,30 +2998,30 @@
    "rattrapage": "2026-10-31 11h35 monteur",
    "reseaux": {
     "tiktok": {
-     "vues": 1004,
+     "vues": 1011,
      "duree_moy": 0.0,
      "partages": 1,
      "enregistrements": 16,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "gagnant"
     },
     "facebook": {
-     "vues": 10,
+     "vues": 12,
      "duree_moy": 4.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     },
     "youtube": {
-     "vues": 277,
+     "vues": 278,
      "duree_moy": 2.0,
      "partages": 0,
      "enregistrements": 1,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     }
    },
@@ -2681,14 +3031,14 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-03T06:51",
+   "mesure_le": "2026-11-04T06:58",
    "verdicts": {
     "instagram": "perdant",
     "tiktok": "gagnant",
     "youtube": "perdant",
     "facebook": "perdant"
    },
-   "vues_total": 1490,
+   "vues_total": 1500,
    "verdict": "gagnant"
   },
   {
@@ -2724,7 +3074,7 @@
     },
     "threads": {
      "uuid": "7860531121166175177",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfNE3NDivIU",
      "date": "2026-11-01",
      "heure": "16:40"
     },
@@ -2742,7 +3092,7 @@
     },
     "linkedin": {
      "uuid": "7692205400289526158",
-     "url": "",
+     "url": "https://linkedin.com/feed/update/urn:li:ugcPost:7523347224114917376",
      "date": "2026-11-03",
      "heure": "12:35"
     }
@@ -2758,7 +3108,7 @@
      "partages": 0,
      "enregistrements": 1,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     },
     "facebook": {
@@ -2767,34 +3117,44 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     },
     "youtube": {
-     "vues": 1034,
+     "vues": 1036,
      "duree_moy": 6.0,
      "partages": 0,
      "enregistrements": 3,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
-     "verdict": "moyen"
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "gagnant"
+    },
+    "threads": {
+     "vues": 8,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
     }
    },
    "verdicts": {
     "instagram": "perdant",
     "tiktok": "perdant",
-    "youtube": "moyen",
-    "facebook": "perdant"
+    "youtube": "gagnant",
+    "facebook": "perdant",
+    "threads": "perdant"
    },
-   "vues_total": 1319,
+   "vues_total": 1329,
    "vues": 228,
-   "verdict": "moyen",
+   "verdict": "gagnant",
    "url": "https://www.instagram.com/reel/DfLzatdAJEh/",
    "duree_moy": 4.69,
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-03T06:51"
+   "mesure_le": "2026-11-04T06:58"
   },
   {
    "id": "TR-3010-438-v2",
@@ -2829,13 +3189,13 @@
     },
     "threads": {
      "uuid": "3758240679937459525",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfOubJiki2x",
      "date": "2026-11-02",
      "heure": "08:00"
     },
     "pinterest": {
      "uuid": "6106563614639345569",
-     "url": "",
+     "url": "https://www.pinterest.es/pin/1143844005392477299",
      "date": "2026-11-02",
      "heure": "16:10"
     },
@@ -2863,7 +3223,7 @@
      "partages": 0,
      "enregistrements": 2,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     },
     "facebook": {
@@ -2872,33 +3232,43 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     },
     "youtube": {
-     "vues": 304,
+     "vues": 306,
      "duree_moy": 2.0,
      "partages": 0,
      "enregistrements": 2,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
+    },
+    "threads": {
+     "vues": 21,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "moyen"
     }
    },
    "url": "https://www.instagram.com/reel/DfNwjevj52t/",
-   "vues": 669,
-   "duree_moy": 6.75,
+   "vues": 683,
+   "duree_moy": 6.9,
    "partages": 1,
-   "enregistrements": 0,
+   "enregistrements": 1,
    "commentaires": 0,
-   "mesure_le": "2026-11-03T06:51",
+   "mesure_le": "2026-11-04T06:58",
    "verdicts": {
     "instagram": "moyen",
     "tiktok": "perdant",
     "youtube": "perdant",
-    "facebook": "perdant"
+    "facebook": "perdant",
+    "threads": "moyen"
    },
-   "vues_total": 1018,
+   "vues_total": 1055,
    "verdict": "moyen"
   },
   {
@@ -2934,13 +3304,13 @@
     },
     "threads": {
      "uuid": "-1597441571957092500",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfQUkRVFCqk",
      "date": "2026-11-02",
      "heure": "22:55"
     },
     "pinterest": {
      "uuid": "6770310471375864174",
-     "url": "",
+     "url": "https://www.pinterest.es/pin/1143844005392572018",
      "date": "2026-11-03",
      "heure": "18:10"
     }
@@ -2956,7 +3326,7 @@
      "partages": 0,
      "enregistrements": 1,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "moyen"
     },
     "facebook": {
@@ -2965,7 +3335,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     },
     "youtube": {
@@ -2974,7 +3344,16 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "threads": {
+     "vues": 1,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     }
    },
@@ -2983,16 +3362,17 @@
     "instagram": "perdant",
     "tiktok": "moyen",
     "youtube": "perdant",
-    "facebook": "perdant"
+    "facebook": "perdant",
+    "threads": "perdant"
    },
-   "vues_total": 1000,
+   "vues_total": 1001,
    "vues": 188,
    "verdict": "moyen",
    "duree_moy": 32.39,
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-03T06:51"
+   "mesure_le": "2026-11-04T06:58"
   },
   {
    "id": "TR-3010-438-v3",
@@ -3013,7 +3393,7 @@
    "diffusions": {
     "threads": {
      "uuid": "5418194680640389781",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfNQ4fSAX7U",
      "date": "2026-11-01",
      "heure": "18:25"
     },
@@ -3031,7 +3411,7 @@
     },
     "pinterest": {
      "uuid": "-3932059495443513106",
-     "url": "",
+     "url": "https://www.pinterest.es/pin/1143844005392474968",
      "date": "2026-11-02",
      "heure": "15:40"
     },
@@ -3049,28 +3429,48 @@
     }
    },
    "url": "https://www.instagram.com/reel/DfMlNTRgCC1/",
-   "vues": 5571,
-   "duree_moy": 6.29,
+   "vues": 5944,
+   "duree_moy": 6.22,
    "partages": 12,
    "enregistrements": 6,
    "commentaires": 2,
-   "mesure_le": "2026-11-03T06:51",
+   "mesure_le": "2026-11-04T06:58",
    "reseaux": {
     "tiktok": {
-     "vues": 30,
+     "vues": 33,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 3,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "youtube": {
+     "vues": 153,
+     "duree_moy": 2.0,
+     "partages": 0,
+     "enregistrements": 1,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "threads": {
+     "vues": 4,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     }
    },
    "verdicts": {
     "instagram": "gagnant",
-    "tiktok": "perdant"
+    "tiktok": "perdant",
+    "youtube": "perdant",
+    "threads": "perdant"
    },
-   "vues_total": 5601,
+   "vues_total": 6134,
    "verdict": "gagnant"
   },
   {
@@ -3088,7 +3488,7 @@
    "diffusions": {
     "threads": {
      "uuid": "7173369019492155963",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfLR1lnjHDh",
      "date": "2026-10-31",
      "heure": "23:55"
     },
@@ -3106,7 +3506,7 @@
     },
     "linkedin": {
      "uuid": "-7150023901876632341",
-     "url": "",
+     "url": "https://linkedin.com/feed/update/urn:li:ugcPost:7523054089040011265",
      "date": "2026-11-02",
      "heure": "17:10"
     },
@@ -3131,12 +3531,12 @@
    },
    "reseaux": {
     "tiktok": {
-     "vues": 68,
+     "vues": 69,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 2,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     },
     "youtube": {
@@ -3145,34 +3545,54 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     },
     "facebook": {
-     "vues": 0,
+     "vues": 2,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
-     "verdict": "en_cours"
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "threads": {
+     "vues": 6,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "linkedin": {
+     "vues": 3,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
     }
    },
    "verdicts": {
     "instagram": "perdant",
     "tiktok": "perdant",
     "youtube": "perdant",
-    "facebook": "en_cours"
+    "facebook": "perdant",
+    "threads": "perdant",
+    "linkedin": "perdant"
    },
-   "vues_total": 224,
-   "vues": 150,
+   "vues_total": 238,
+   "vues": 152,
    "verdict": "perdant",
    "url": "https://www.instagram.com/reel/DfO1StBEXfY/",
-   "duree_moy": 3.74,
+   "duree_moy": 3.79,
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-03T06:51"
+   "mesure_le": "2026-11-04T06:58"
   },
   {
    "id": "TR-3010-438-v4",
@@ -3193,13 +3613,13 @@
    "diffusions": {
     "threads": {
      "uuid": "-7495838367809255508",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfOxm3NAWhC",
      "date": "2026-11-02",
      "heure": "08:30"
     },
     "pinterest": {
      "uuid": "8379808476453359205",
-     "url": "",
+     "url": "https://www.pinterest.es/pin/1143844005392479405",
      "date": "2026-11-02",
      "heure": "16:40"
     },
@@ -3223,27 +3643,37 @@
     }
    },
    "url": "https://www.instagram.com/reel/DfNWQkCE2iY/",
-   "vues": 870,
+   "vues": 874,
    "duree_moy": 4.71,
    "partages": 4,
    "enregistrements": 1,
    "commentaires": 2,
-   "mesure_le": "2026-11-03T06:51",
+   "mesure_le": "2026-11-04T06:58",
    "verdicts": {
     "instagram": "moyen",
-    "tiktok": "en_cours"
+    "tiktok": "perdant",
+    "threads": "moyen"
    },
-   "vues_total": 886,
+   "vues_total": 937,
    "verdict": "moyen",
    "reseaux": {
     "tiktok": {
-     "vues": 16,
+     "vues": 27,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
-     "verdict": "en_cours"
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "threads": {
+     "vues": 36,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "moyen"
     }
    }
   },
@@ -3280,13 +3710,13 @@
     },
     "threads": {
      "uuid": "-3529281293901083613",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfNNcWRE63u",
      "date": "2026-11-01",
      "heure": "17:55"
     },
     "pinterest": {
      "uuid": "4582691891019531480",
-     "url": "",
+     "url": "https://www.pinterest.es/pin/1143844005392492442",
      "date": "2026-11-02",
      "heure": "15:10"
     },
@@ -3315,12 +3745,12 @@
    "rattrapage": "2026-10-31 11h35 monteur",
    "reseaux": {
     "tiktok": {
-     "vues": 1657,
+     "vues": 1701,
      "duree_moy": 0.0,
      "partages": 1,
-     "enregistrements": 21,
+     "enregistrements": 23,
      "commentaires": 2,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "gagnant"
     },
     "facebook": {
@@ -3329,33 +3759,43 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     },
     "youtube": {
-     "vues": 922,
+     "vues": 938,
      "duree_moy": 13.0,
      "partages": 0,
      "enregistrements": 4,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
-     "verdict": "moyen"
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "gagnant"
+    },
+    "threads": {
+     "vues": 3,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
     }
    },
    "url": "https://www.instagram.com/reel/DfMUUpnjKQl/",
-   "vues": 252,
-   "duree_moy": 4.29,
+   "vues": 259,
+   "duree_moy": 4.28,
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-03T06:51",
+   "mesure_le": "2026-11-04T06:58",
    "verdicts": {
     "instagram": "perdant",
     "tiktok": "gagnant",
-    "youtube": "moyen",
-    "facebook": "perdant"
+    "youtube": "gagnant",
+    "facebook": "perdant",
+    "threads": "perdant"
    },
-   "vues_total": 2843,
+   "vues_total": 2913,
    "verdict": "gagnant"
   },
   {
@@ -3391,7 +3831,7 @@
     },
     "threads": {
      "uuid": "2354931776718719975",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfLYtTlCZ_t",
      "date": "2026-11-01",
      "heure": "00:55"
     },
@@ -3409,19 +3849,19 @@
     },
     "linkedin": {
      "uuid": "4028391903582572239",
-     "url": "",
+     "url": "https://linkedin.com/feed/update/urn:li:ugcPost:7523076878350610432",
      "date": "2026-11-02",
      "heure": "18:40"
     }
    },
    "reseaux": {
     "tiktok": {
-     "vues": 54,
+     "vues": 55,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 1,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     },
     "facebook": {
@@ -3430,24 +3870,54 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "youtube": {
+     "vues": 1,
+     "duree_moy": 6.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "threads": {
+     "vues": 21,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "moyen"
+    },
+    "linkedin": {
+     "vues": 6,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     }
    },
    "verdicts": {
     "instagram": "perdant",
     "tiktok": "perdant",
-    "facebook": "perdant"
+    "youtube": "perdant",
+    "facebook": "perdant",
+    "threads": "moyen",
+    "linkedin": "perdant"
    },
-   "vues_total": 259,
+   "vues_total": 288,
    "vues": 204,
-   "verdict": "perdant",
+   "verdict": "moyen",
    "url": "https://www.instagram.com/reel/DfLSsgnj4ct/",
    "duree_moy": 3.25,
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-03T06:51"
+   "mesure_le": "2026-11-04T06:58"
   },
   {
    "id": "TR-3010-461-v6",
@@ -3482,7 +3952,7 @@
     },
     "threads": {
      "uuid": "7557829596516861510",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfLcI1ykSLI",
      "date": "2026-11-01",
      "heure": "01:25"
     },
@@ -3500,18 +3970,18 @@
     },
     "linkedin": {
      "uuid": "-4902279583941377867",
-     "url": "",
+     "url": "https://linkedin.com/feed/update/urn:li:ugcPost:7523278494521270273",
      "date": "2026-11-03",
      "heure": "08:00"
     }
    },
    "url": "https://www.instagram.com/reel/DfLnNytjlJc/",
-   "vues": 119,
-   "duree_moy": 3.02,
+   "vues": 123,
+   "duree_moy": 3.22,
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-03T06:51",
+   "mesure_le": "2026-11-04T06:58",
    "reseaux": {
     "tiktok": {
      "vues": 47,
@@ -3519,25 +3989,45 @@
      "partages": 0,
      "enregistrements": 2,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     },
     "facebook": {
-     "vues": 1,
+     "vues": 2,
+     "duree_moy": 3.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "youtube": {
+     "vues": 3,
+     "duree_moy": 5.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "threads": {
+     "vues": 5,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     }
    },
    "verdicts": {
     "instagram": "perdant",
     "tiktok": "perdant",
-    "facebook": "perdant"
+    "youtube": "perdant",
+    "facebook": "perdant",
+    "threads": "perdant"
    },
-   "vues_total": 167,
+   "vues_total": 180,
    "verdict": "perdant"
   },
   {
@@ -3552,18 +4042,21 @@
    "uuid": "-1787568100609079543",
    "url": "https://www.instagram.com/reel/DfKqApskl6R/",
    "statut": "publie",
-   "vues": 135,
-   "duree_moy": 3.93,
+   "vues": 140,
+   "duree_moy": 4.04,
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-03T06:51",
+   "mesure_le": "2026-11-04T06:58",
    "verdicts": {
     "instagram": "perdant",
     "tiktok": "perdant",
-    "facebook": "en_cours"
+    "youtube": "perdant",
+    "facebook": "perdant",
+    "threads": "perdant",
+    "linkedin": "perdant"
    },
-   "vues_total": 153,
+   "vues_total": 174,
    "verdict": "perdant",
    "diffusions": {
     "tiktok": {
@@ -3580,13 +4073,13 @@
     },
     "threads": {
      "uuid": "-4756825009606146880",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfKlOQOkubH",
      "date": "2026-10-31",
      "heure": "17:25"
     },
     "linkedin": {
      "uuid": "2237009637310940717",
-     "url": "",
+     "url": "https://www.linkedin.com/feed/update/urn:li:ugcPost:7522329324750983170",
      "date": "2026-10-31",
      "heure": "17:10"
     },
@@ -3616,17 +4109,44 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "perdant"
     },
     "facebook": {
-     "vues": 2,
-     "duree_moy": 3.0,
+     "vues": 3,
+     "duree_moy": 2.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
-     "verdict": "en_cours"
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "youtube": {
+     "vues": 2,
+     "duree_moy": 15.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "threads": {
+     "vues": 4,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "linkedin": {
+     "vues": 9,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
     }
    }
   },
@@ -3642,7 +4162,19 @@
    "source": "monteur",
    "uuid": "-6284865997831254708",
    "statut": "publie",
-   "media": "https://0250888e.shawez-immo.pages.dev/trial/2026-11-01/chateau-438-v1.mp4"
+   "media": "https://0250888e.shawez-immo.pages.dev/trial/2026-11-01/chateau-438-v1.mp4",
+   "url": "https://www.instagram.com/reel/DfQwyn0j_5Y/",
+   "vues": 351,
+   "duree_moy": 4.83,
+   "partages": 0,
+   "enregistrements": 0,
+   "commentaires": 2,
+   "mesure_le": "2026-11-04T06:58",
+   "verdicts": {
+    "instagram": "perdant"
+   },
+   "vues_total": 351,
+   "verdict": "perdant"
   },
   {
    "id": "TR-0111-438-v2",
@@ -3660,7 +4192,7 @@
    "diffusions": {
     "threads": {
      "uuid": "2136943383553788082",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfNBbuCEZXT",
      "date": "2026-11-01",
      "heure": "16:10"
     },
@@ -3691,20 +4223,48 @@
    },
    "reseaux": {
     "tiktok": {
-     "vues": 56,
+     "vues": 58,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51"
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "youtube": {
+     "vues": 222,
+     "duree_moy": 2.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "threads": {
+     "vues": 3,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
     }
    },
    "verdicts": {
-    "tiktok": "en_cours"
+    "instagram": "en_cours",
+    "tiktok": "perdant",
+    "youtube": "perdant",
+    "threads": "perdant"
    },
-   "vues_total": 47,
-   "vues": 0,
-   "verdict": "en_cours"
+   "vues_total": 452,
+   "vues": 169,
+   "verdict": "perdant",
+   "url": "https://www.instagram.com/reel/DfSvv4XD6Tb/",
+   "duree_moy": 3.25,
+   "partages": 0,
+   "enregistrements": 0,
+   "commentaires": 0,
+   "mesure_le": "2026-11-04T06:58"
   },
   {
    "id": "TR-0111-438-v3",
@@ -3720,16 +4280,16 @@
    "statut": "publie",
    "media": "https://0250888e.shawez-immo.pages.dev/trial/2026-11-01/chateau-438-v3.mp4",
    "url": "https://www.instagram.com/reel/DfPe4ijiBQF/",
-   "vues": 1298,
-   "duree_moy": 5.1,
+   "vues": 1350,
+   "duree_moy": 5.07,
    "partages": 1,
    "enregistrements": 1,
    "commentaires": 0,
-   "mesure_le": "2026-11-03T06:51",
+   "mesure_le": "2026-11-04T06:58",
    "verdicts": {
     "instagram": "gagnant"
    },
-   "vues_total": 1298,
+   "vues_total": 1350,
    "verdict": "gagnant",
    "diffusions": {
     "threads": {
@@ -3762,7 +4322,7 @@
    "diffusions": {
     "threads": {
      "uuid": "1682669898603974621",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfNUUEgDjBm",
      "date": "2026-11-01",
      "heure": "18:55"
     },
@@ -3793,12 +4353,28 @@
    },
    "reseaux": {
     "tiktok": {
-     "vues": 63,
+     "vues": 64,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 2,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51"
+     "mesure_le": "2026-11-04T06:58"
+    },
+    "youtube": {
+     "vues": 161,
+     "duree_moy": 2.0,
+     "partages": 0,
+     "enregistrements": 1,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58"
+    },
+    "threads": {
+     "vues": 14,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58"
     }
    },
    "verdicts": {
@@ -3822,17 +4398,17 @@
    "statut": "publie",
    "media": "https://0250888e.shawez-immo.pages.dev/trial/2026-11-01/chateau-438-v5.mp4",
    "url": "https://www.instagram.com/reel/DfQHxXdErzT/",
-   "vues": 163,
-   "duree_moy": 4.21,
+   "vues": 1053,
+   "duree_moy": 5.2,
    "partages": 0,
-   "enregistrements": 0,
-   "commentaires": 0,
-   "mesure_le": "2026-11-03T06:51",
+   "enregistrements": 2,
+   "commentaires": 2,
+   "mesure_le": "2026-11-04T06:58",
    "verdicts": {
-    "instagram": "en_cours"
+    "instagram": "gagnant"
    },
-   "vues_total": 163,
-   "verdict": "en_cours",
+   "vues_total": 1053,
+   "verdict": "gagnant",
    "diffusions": {
     "threads": {
      "uuid": "-6105964583400485446",
@@ -3865,7 +4441,7 @@
    "diffusions": {
     "threads": {
      "uuid": "3535961402132156314",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfNXv7Kj7pm",
      "date": "2026-11-01",
      "heure": "19:25"
     },
@@ -3895,34 +4471,65 @@
     },
     "linkedin": {
      "uuid": "5800576459823924081",
-     "url": "",
+     "url": "https://linkedin.com/feed/update/urn:li:ugcPost:7523416551807676416",
      "date": "2026-11-03",
      "heure": "17:10"
     },
     "facebook": {
      "uuid": "1414167077485035676",
-     "url": "",
+     "url": "https://facebook.com/reel/1404469429416753",
      "date": "2026-11-03",
      "heure": "17:50"
     }
    },
    "reseaux": {
     "tiktok": {
-     "vues": 720,
+     "vues": 739,
      "duree_moy": 0.0,
      "partages": 0,
-     "enregistrements": 8,
+     "enregistrements": 9,
      "commentaires": 2,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "moyen"
+    },
+    "youtube": {
+     "vues": 178,
+     "duree_moy": 2.0,
+     "partages": 0,
+     "enregistrements": 1,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "facebook": {
+     "vues": 2,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "en_cours"
+    },
+    "threads": {
+     "vues": 8,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
     }
    },
    "verdicts": {
-    "tiktok": "en_cours"
+    "instagram": "perdant",
+    "tiktok": "moyen",
+    "youtube": "perdant",
+    "facebook": "en_cours",
+    "threads": "perdant"
    },
-   "vues_total": 720,
+   "vues_total": 927,
    "vues": 0,
-   "verdict": "en_cours"
+   "verdict": "moyen"
   },
   {
    "id": "TR-0111-438-v7",
@@ -3936,7 +4543,19 @@
    "source": "monteur",
    "uuid": "2317874128848568648",
    "statut": "publie",
-   "media": "https://0250888e.shawez-immo.pages.dev/trial/2026-11-01/chateau-438-v7.mp4"
+   "media": "https://0250888e.shawez-immo.pages.dev/trial/2026-11-01/chateau-438-v7.mp4",
+   "url": "https://www.instagram.com/reel/DfRFXyXDA-L/",
+   "vues": 910,
+   "duree_moy": 4.24,
+   "partages": 0,
+   "enregistrements": 1,
+   "commentaires": 0,
+   "mesure_le": "2026-11-04T06:58",
+   "verdicts": {
+    "instagram": "moyen"
+   },
+   "vues_total": 910,
+   "verdict": "moyen"
   },
   {
    "id": "TR-0111-438-v8",
@@ -3954,7 +4573,7 @@
    "diffusions": {
     "threads": {
      "uuid": "3012632637302853601",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfNbLpSlQ0v",
      "date": "2026-11-01",
      "heure": "19:55"
     },
@@ -3985,14 +4604,48 @@
    },
    "reseaux": {
     "tiktok": {
-     "vues": 870,
+     "vues": 924,
      "duree_moy": 0.0,
      "partages": 2,
-     "enregistrements": 8,
-     "commentaires": 5,
-     "mesure_le": "2026-11-03T06:51"
+     "enregistrements": 9,
+     "commentaires": 7,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "moyen"
+    },
+    "youtube": {
+     "vues": 172,
+     "duree_moy": 2.0,
+     "partages": 0,
+     "enregistrements": 1,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "threads": {
+     "vues": 2,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
     }
-   }
+   },
+   "url": "https://www.instagram.com/reel/DfSDawYDUM_/",
+   "vues": 138,
+   "duree_moy": 3.07,
+   "partages": 0,
+   "enregistrements": 0,
+   "commentaires": 0,
+   "mesure_le": "2026-11-04T06:58",
+   "verdicts": {
+    "instagram": "en_cours",
+    "tiktok": "moyen",
+    "youtube": "perdant",
+    "threads": "perdant"
+   },
+   "vues_total": 1236,
+   "verdict": "moyen"
   },
   {
    "id": "TR-0111-438-v9",
@@ -4011,13 +4664,13 @@
    "diffusions": {
     "threads": {
      "uuid": "-8125884138944903324",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfNem-iARuI",
      "date": "2026-11-01",
      "heure": "20:25"
     },
     "pinterest": {
      "uuid": "-6607514970377205732",
-     "url": "",
+     "url": "https://www.pinterest.es/pin/1143844005392460706",
      "date": "2026-11-02",
      "heure": "12:10"
     },
@@ -4041,13 +4694,13 @@
     },
     "linkedin": {
      "uuid": "4290395549113139706",
-     "url": "",
+     "url": "https://linkedin.com/feed/update/urn:li:ugcPost:7523439251280146432",
      "date": "2026-11-03",
      "heure": "18:40"
     },
     "facebook": {
      "uuid": "7790724221792767601",
-     "url": "",
+     "url": "https://facebook.com/reel/1489905443077612",
      "date": "2026-11-03",
      "heure": "19:50"
     }
@@ -4059,16 +4712,47 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "youtube": {
+     "vues": 145,
+     "duree_moy": 77.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "facebook": {
+     "vues": 1,
+     "duree_moy": 2.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
      "verdict": "en_cours"
+    },
+    "threads": {
+     "vues": 22,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "moyen"
     }
    },
    "verdicts": {
-    "tiktok": "en_cours"
+    "instagram": "perdant",
+    "tiktok": "perdant",
+    "youtube": "perdant",
+    "facebook": "en_cours",
+    "threads": "moyen"
    },
-   "vues_total": 17,
+   "vues_total": 185,
    "vues": 0,
-   "verdict": "en_cours"
+   "verdict": "moyen"
   },
   {
    "id": "TR-0111-438-v10",
@@ -4086,13 +4770,13 @@
    "diffusions": {
     "threads": {
      "uuid": "-805087827591344538",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfNiDAQAik2",
      "date": "2026-11-01",
      "heure": "20:55"
     },
     "pinterest": {
      "uuid": "-5942168078500478554",
-     "url": "",
+     "url": "https://www.pinterest.es/pin/1143844005392462186",
      "date": "2026-11-02",
      "heure": "12:40"
     },
@@ -4122,9 +4806,43 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51"
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "youtube": {
+     "vues": 8,
+     "duree_moy": 3.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "threads": {
+     "vues": 4,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
     }
-   }
+   },
+   "url": "https://www.instagram.com/reel/DfRx8NmD8o4/",
+   "vues": 124,
+   "duree_moy": 2.4,
+   "partages": 0,
+   "enregistrements": 0,
+   "commentaires": 0,
+   "mesure_le": "2026-11-04T06:58",
+   "verdicts": {
+    "instagram": "en_cours",
+    "tiktok": "perdant",
+    "youtube": "perdant",
+    "threads": "perdant"
+   },
+   "vues_total": 152,
+   "verdict": "perdant"
   },
   {
    "id": "TR-0111-438-v11",
@@ -4143,13 +4861,13 @@
    "diffusions": {
     "threads": {
      "uuid": "5294181546894052274",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfNleVZCJY2",
      "date": "2026-11-01",
      "heure": "21:25"
     },
     "pinterest": {
      "uuid": "-1262103983153198633",
-     "url": "",
+     "url": "https://www.pinterest.es/pin/1143844005392464400",
      "date": "2026-11-02",
      "heure": "13:10"
     },
@@ -4174,21 +4892,32 @@
    },
    "reseaux": {
     "tiktok": {
-     "vues": 35,
+     "vues": 41,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 4,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
-     "verdict": "en_cours"
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "threads": {
+     "vues": 13,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
     }
    },
    "verdicts": {
-    "tiktok": "en_cours"
+    "instagram": "perdant",
+    "tiktok": "perdant",
+    "threads": "perdant"
    },
-   "vues_total": 35,
+   "vues_total": 54,
    "vues": 0,
-   "verdict": "en_cours"
+   "verdict": "perdant"
   },
   {
    "id": "TR-0111-438-v12",
@@ -4206,13 +4935,13 @@
    "diffusions": {
     "threads": {
      "uuid": "-563359294489342297",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfNo50GCe8L",
      "date": "2026-11-01",
      "heure": "21:55"
     },
     "pinterest": {
      "uuid": "5924461451041065265",
-     "url": "",
+     "url": "https://www.pinterest.es/pin/1143844005392466589",
      "date": "2026-11-02",
      "heure": "13:40"
     },
@@ -4237,14 +4966,48 @@
    },
    "reseaux": {
     "tiktok": {
-     "vues": 44,
+     "vues": 51,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 1,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51"
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "youtube": {
+     "vues": 3,
+     "duree_moy": 2.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "threads": {
+     "vues": 2,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
     }
-   }
+   },
+   "url": "https://www.instagram.com/reel/DfRWeVWlXi1/",
+   "vues": 207,
+   "duree_moy": 3.43,
+   "partages": 0,
+   "enregistrements": 0,
+   "commentaires": 1,
+   "mesure_le": "2026-11-04T06:58",
+   "verdicts": {
+    "instagram": "en_cours",
+    "tiktok": "perdant",
+    "youtube": "perdant",
+    "threads": "perdant"
+   },
+   "vues_total": 263,
+   "verdict": "perdant"
   },
   {
    "id": "TR-0111-438-v13",
@@ -4262,13 +5025,13 @@
    "diffusions": {
     "threads": {
      "uuid": "7969207850160572185",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfNsVfgkflU",
      "date": "2026-11-01",
      "heure": "22:25"
     },
     "pinterest": {
      "uuid": "3794943356824013370",
-     "url": "",
+     "url": "https://www.pinterest.es/pin/1143844005392468634",
      "date": "2026-11-02",
      "heure": "14:10"
     },
@@ -4293,14 +5056,38 @@
    },
    "reseaux": {
     "tiktok": {
-     "vues": 34,
+     "vues": 37,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 2,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51"
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "threads": {
+     "vues": 2,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
     }
-   }
+   },
+   "url": "https://www.instagram.com/reel/DfRn7m4gTW-/",
+   "vues": 160,
+   "duree_moy": 3.61,
+   "partages": 0,
+   "enregistrements": 0,
+   "commentaires": 0,
+   "mesure_le": "2026-11-04T06:58",
+   "verdicts": {
+    "instagram": "en_cours",
+    "tiktok": "perdant",
+    "threads": "perdant"
+   },
+   "vues_total": 199,
+   "verdict": "perdant"
   },
   {
    "id": "TR-0111-438-v14",
@@ -4316,17 +5103,17 @@
    "statut": "publie",
    "media": "https://0250888e.shawez-immo.pages.dev/trial/2026-11-01/chateau-438-v14.mp4",
    "url": "https://www.instagram.com/reel/DfQcTQOFdP7/",
-   "vues": 118,
+   "vues": 119,
    "duree_moy": 3.87,
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-03T06:51",
+   "mesure_le": "2026-11-04T06:58",
    "verdicts": {
-    "instagram": "en_cours"
+    "instagram": "perdant"
    },
-   "vues_total": 118,
-   "verdict": "en_cours",
+   "vues_total": 119,
+   "verdict": "perdant",
    "diffusions": {
     "youtube": {
      "uuid": "7122069503938284353",
@@ -4353,13 +5140,13 @@
    "diffusions": {
     "threads": {
      "uuid": "961588561527459182",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfNvxOcAh2m",
      "date": "2026-11-01",
      "heure": "22:55"
     },
     "pinterest": {
      "uuid": "6285746235835500042",
-     "url": "",
+     "url": "https://www.pinterest.es/pin/1143844005392470698",
      "date": "2026-11-02",
      "heure": "14:40"
     },
@@ -4384,21 +5171,42 @@
    },
    "reseaux": {
     "tiktok": {
-     "vues": 6,
+     "vues": 8,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-03T06:51",
-     "verdict": "en_cours"
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "youtube": {
+     "vues": 1,
+     "duree_moy": 7.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    },
+    "threads": {
+     "vues": 33,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "moyen"
     }
    },
    "verdicts": {
-    "tiktok": "en_cours"
+    "instagram": "perdant",
+    "tiktok": "perdant",
+    "youtube": "perdant",
+    "threads": "moyen"
    },
-   "vues_total": 6,
+   "vues_total": 42,
    "vues": 0,
-   "verdict": "en_cours"
+   "verdict": "moyen"
   },
   {
    "id": "TR-0111-461-v1",
@@ -4417,13 +5225,13 @@
    "diffusions": {
     "threads": {
      "uuid": "-730215957265170284",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfO8e-ugh1G",
      "date": "2026-11-02",
      "heure": "10:00"
     },
     "pinterest": {
      "uuid": "-3931302843563095643",
-     "url": "",
+     "url": "https://www.pinterest.es/pin/1143844005392486156",
      "date": "2026-11-02",
      "heure": "18:10"
     },
@@ -4448,21 +5256,22 @@
    },
    "reseaux": {
     "tiktok": {
-     "vues": 73,
+     "vues": 180,
      "duree_moy": 0.0,
      "partages": 0,
-     "enregistrements": 0,
-     "commentaires": 1,
-     "mesure_le": "2026-11-03T06:51",
-     "verdict": "en_cours"
+     "enregistrements": 2,
+     "commentaires": 5,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
     }
    },
    "verdicts": {
-    "tiktok": "en_cours"
+    "instagram": "perdant",
+    "tiktok": "perdant"
    },
-   "vues_total": 73,
+   "vues_total": 180,
    "vues": 0,
-   "verdict": "en_cours"
+   "verdict": "perdant"
   },
   {
    "id": "TR-0111-461-v2",
@@ -4481,7 +5290,7 @@
    "diffusions": {
     "threads": {
      "uuid": "6887571600497657724",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfO_W0sFP7S",
      "date": "2026-11-02",
      "heure": "10:30"
     },
@@ -4499,11 +5308,38 @@
     },
     "tiktok": {
      "uuid": "-5199391913440358485",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7703852635522190595",
      "date": "2026-11-03",
      "heure": "09:00"
     }
-   }
+   },
+   "reseaux": {
+    "tiktok": {
+     "vues": 16,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "en_cours"
+    },
+    "threads": {
+     "vues": 8,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    }
+   },
+   "verdicts": {
+    "tiktok": "en_cours",
+    "threads": "perdant"
+   },
+   "vues_total": 24,
+   "vues": 0,
+   "verdict": "perdant"
   },
   {
    "id": "TR-0111-461-v3",
@@ -4522,13 +5358,13 @@
    "diffusions": {
     "threads": {
      "uuid": "2228764242136285826",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfPmMG4j6AF",
      "date": "2026-11-02",
      "heure": "16:10"
     },
     "pinterest": {
      "uuid": "7177649658343212378",
-     "url": "",
+     "url": "https://www.pinterest.es/pin/1143844005392490672",
      "date": "2026-11-02",
      "heure": "19:10"
     },
@@ -4540,11 +5376,38 @@
     },
     "tiktok": {
      "uuid": "-4771747348984215120",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7703863644286618902",
      "date": "2026-11-03",
      "heure": "09:45"
     }
-   }
+   },
+   "reseaux": {
+    "tiktok": {
+     "vues": 27,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "en_cours"
+    },
+    "threads": {
+     "vues": 16,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    }
+   },
+   "verdicts": {
+    "tiktok": "en_cours",
+    "threads": "perdant"
+   },
+   "vues_total": 43,
+   "vues": 0,
+   "verdict": "perdant"
   },
   {
    "id": "TR-0111-461-v4",
@@ -4563,13 +5426,13 @@
    "diffusions": {
     "threads": {
      "uuid": "780964627698175816",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfPprLAjBFF",
      "date": "2026-11-02",
      "heure": "16:40"
     },
     "pinterest": {
      "uuid": "-4772942470042990193",
-     "url": "",
+     "url": "https://www.pinterest.es/pin/1143844005392546833",
      "date": "2026-11-03",
      "heure": "12:10"
     },
@@ -4581,11 +5444,38 @@
     },
     "tiktok": {
      "uuid": "-1724036225055768101",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7703875437541330198",
      "date": "2026-11-03",
      "heure": "10:30"
     }
-   }
+   },
+   "reseaux": {
+    "tiktok": {
+     "vues": 27,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 1,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "en_cours"
+    },
+    "threads": {
+     "vues": 5,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    }
+   },
+   "verdicts": {
+    "tiktok": "en_cours",
+    "threads": "perdant"
+   },
+   "vues_total": 32,
+   "vues": 0,
+   "verdict": "perdant"
   },
   {
    "id": "TR-0111-461-v5",
@@ -4604,13 +5494,13 @@
    "diffusions": {
     "threads": {
      "uuid": "-5266063856541087024",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfPu0h3lZJY",
      "date": "2026-11-02",
      "heure": "17:25"
     },
     "pinterest": {
      "uuid": "1852232078658652657",
-     "url": "",
+     "url": "https://www.pinterest.es/pin/1143844005392548537",
      "date": "2026-11-03",
      "heure": "12:40"
     },
@@ -4622,11 +5512,28 @@
     },
     "tiktok": {
      "uuid": "1023081890808744743",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7703886884245884163",
      "date": "2026-11-03",
      "heure": "11:15"
     }
-   }
+   },
+   "reseaux": {
+    "tiktok": {
+     "vues": 25,
+     "duree_moy": 0.0,
+     "partages": 1,
+     "enregistrements": 3,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "en_cours"
+    }
+   },
+   "verdicts": {
+    "tiktok": "en_cours"
+   },
+   "vues_total": 25,
+   "vues": 0,
+   "verdict": "en_cours"
   },
   {
    "id": "TR-0111-461-v6",
@@ -4645,13 +5552,13 @@
    "diffusions": {
     "threads": {
      "uuid": "613235176444544529",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfPyQDklK47",
      "date": "2026-11-02",
      "heure": "17:55"
     },
     "pinterest": {
      "uuid": "7747694313938436524",
-     "url": "",
+     "url": "https://www.pinterest.es/pin/1143844005392550118",
      "date": "2026-11-03",
      "heure": "13:10"
     },
@@ -4663,11 +5570,38 @@
     },
     "tiktok": {
      "uuid": "3193885242477986630",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7703899014705548566",
      "date": "2026-11-03",
      "heure": "12:00"
     }
-   }
+   },
+   "reseaux": {
+    "tiktok": {
+     "vues": 37,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 2,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "en_cours"
+    },
+    "threads": {
+     "vues": 2,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    }
+   },
+   "verdicts": {
+    "tiktok": "en_cours",
+    "threads": "perdant"
+   },
+   "vues_total": 39,
+   "vues": 0,
+   "verdict": "perdant"
   },
   {
    "id": "TR-0111-461-v7",
@@ -4686,13 +5620,13 @@
    "diffusions": {
     "threads": {
      "uuid": "-4385960172402817048",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfP1o2OCWXE",
      "date": "2026-11-02",
      "heure": "18:25"
     },
     "pinterest": {
      "uuid": "363268847984266996",
-     "url": "",
+     "url": "https://www.pinterest.es/pin/1143844005392551749",
      "date": "2026-11-03",
      "heure": "13:40"
     },
@@ -4704,11 +5638,28 @@
     },
     "tiktok": {
      "uuid": "6284331759789754659",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7703910100657786134",
      "date": "2026-11-03",
      "heure": "12:45"
     }
-   }
+   },
+   "reseaux": {
+    "tiktok": {
+     "vues": 33,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 1,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "en_cours"
+    }
+   },
+   "verdicts": {
+    "tiktok": "en_cours"
+   },
+   "vues_total": 33,
+   "vues": 0,
+   "verdict": "en_cours"
   },
   {
    "id": "TR-0111-461-v8",
@@ -4727,13 +5678,13 @@
    "diffusions": {
     "threads": {
      "uuid": "-5808790122442373542",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfP5E5KjEvV",
      "date": "2026-11-02",
      "heure": "18:55"
     },
     "pinterest": {
      "uuid": "7200119808060442380",
-     "url": "",
+     "url": "https://www.pinterest.es/pin/1143844005392553450",
      "date": "2026-11-03",
      "heure": "14:10"
     },
@@ -4745,11 +5696,38 @@
     },
     "tiktok": {
      "uuid": "-1054408906360994050",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7703921918952410390",
      "date": "2026-11-03",
      "heure": "13:30"
     }
-   }
+   },
+   "reseaux": {
+    "tiktok": {
+     "vues": 51,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 1,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "en_cours"
+    },
+    "threads": {
+     "vues": 3,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    }
+   },
+   "verdicts": {
+    "tiktok": "en_cours",
+    "threads": "perdant"
+   },
+   "vues_total": 54,
+   "vues": 0,
+   "verdict": "perdant"
   },
   {
    "id": "TR-0111-461-v9",
@@ -4768,7 +5746,7 @@
    "diffusions": {
     "threads": {
      "uuid": "7820001063483164479",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfP8f_OiSgX",
      "date": "2026-11-02",
      "heure": "19:25"
     },
@@ -4780,17 +5758,44 @@
     },
     "pinterest": {
      "uuid": "3931688968114882325",
-     "url": "",
+     "url": "https://www.pinterest.es/pin/1143844005392555843",
      "date": "2026-11-03",
      "heure": "14:40"
     },
     "tiktok": {
      "uuid": "-8290083921939775065",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7704004084067519766",
      "date": "2026-11-03",
      "heure": "18:50"
     }
-   }
+   },
+   "reseaux": {
+    "tiktok": {
+     "vues": 148,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 2,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "en_cours"
+    },
+    "threads": {
+     "vues": 8,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    }
+   },
+   "verdicts": {
+    "tiktok": "en_cours",
+    "threads": "perdant"
+   },
+   "vues_total": 156,
+   "vues": 0,
+   "verdict": "perdant"
   },
   {
    "id": "TR-0111-461-v10",
@@ -4809,7 +5814,7 @@
    "diffusions": {
     "threads": {
      "uuid": "-1115752971905512724",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfP_8GnDwDL",
      "date": "2026-11-02",
      "heure": "19:55"
     },
@@ -4821,17 +5826,34 @@
     },
     "pinterest": {
      "uuid": "-5836083969894039021",
-     "url": "",
+     "url": "https://www.pinterest.es/pin/1143844005392558182",
      "date": "2026-11-03",
      "heure": "15:10"
     },
     "tiktok": {
      "uuid": "7281277144219207112",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7704015777300499734",
      "date": "2026-11-03",
      "heure": "19:35"
     }
-   }
+   },
+   "reseaux": {
+    "tiktok": {
+     "vues": 50,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 1,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "en_cours"
+    }
+   },
+   "verdicts": {
+    "tiktok": "en_cours"
+   },
+   "vues_total": 50,
+   "vues": 0,
+   "verdict": "en_cours"
   },
   {
    "id": "TR-0111-461-v11",
@@ -4850,7 +5872,7 @@
    "diffusions": {
     "threads": {
      "uuid": "4964807281119740899",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfQDXZrE-Aa",
      "date": "2026-11-02",
      "heure": "20:25"
     },
@@ -4862,17 +5884,44 @@
     },
     "pinterest": {
      "uuid": "5352665961819032091",
-     "url": "",
+     "url": "https://www.pinterest.es/pin/1143844005392560336",
      "date": "2026-11-03",
      "heure": "15:40"
     },
     "tiktok": {
      "uuid": "1136645830415631895",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7704027313142304022",
      "date": "2026-11-03",
      "heure": "20:20"
     }
-   }
+   },
+   "reseaux": {
+    "tiktok": {
+     "vues": 43,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 2,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "en_cours"
+    },
+    "threads": {
+     "vues": 24,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 1,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "moyen"
+    }
+   },
+   "verdicts": {
+    "tiktok": "en_cours",
+    "threads": "moyen"
+   },
+   "vues_total": 67,
+   "vues": 0,
+   "verdict": "moyen"
   },
   {
    "id": "TR-0111-461-v12",
@@ -4891,7 +5940,7 @@
    "diffusions": {
     "threads": {
      "uuid": "4791142112246121053",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfQGy3pD2UW",
      "date": "2026-11-02",
      "heure": "20:55"
     },
@@ -4913,7 +5962,24 @@
      "date": "2026-11-04",
      "heure": "10:30"
     }
-   }
+   },
+   "reseaux": {
+    "threads": {
+     "vues": 1,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    }
+   },
+   "verdicts": {
+    "threads": "perdant"
+   },
+   "vues_total": 1,
+   "vues": 0,
+   "verdict": "perdant"
   },
   {
    "id": "TR-0111-461-v13",
@@ -4932,7 +5998,7 @@
    "diffusions": {
     "threads": {
      "uuid": "-3384735720894543154",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfQKRzFDA_w",
      "date": "2026-11-02",
      "heure": "21:25"
     },
@@ -4944,7 +6010,7 @@
     },
     "pinterest": {
      "uuid": "-1520444118874175643",
-     "url": "",
+     "url": "https://www.pinterest.es/pin/1143844005392564797",
      "date": "2026-11-03",
      "heure": "16:40"
     },
@@ -4973,7 +6039,7 @@
    "diffusions": {
     "threads": {
      "uuid": "-9066475957556722035",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfQNtZXAhGr",
      "date": "2026-11-02",
      "heure": "21:55"
     },
@@ -4985,7 +6051,7 @@
     },
     "pinterest": {
      "uuid": "67206621615377575",
-     "url": "",
+     "url": "https://www.pinterest.es/pin/1143844005392567119",
      "date": "2026-11-03",
      "heure": "17:10"
     }
@@ -5008,7 +6074,7 @@
    "diffusions": {
     "threads": {
      "uuid": "5060729149451485475",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfQRImWjeFs",
      "date": "2026-11-02",
      "heure": "22:25"
     },
@@ -5020,11 +6086,28 @@
     },
     "pinterest": {
      "uuid": "-7891686384235036255",
-     "url": "",
+     "url": "https://www.pinterest.es/pin/1143844005392569602",
      "date": "2026-11-03",
      "heure": "17:40"
     }
-   }
+   },
+   "reseaux": {
+    "threads": {
+     "vues": 14,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "perdant"
+    }
+   },
+   "verdicts": {
+    "threads": "perdant"
+   },
+   "vues_total": 14,
+   "vues": 0,
+   "verdict": "perdant"
   },
   {
    "id": "TR-0211-438-v1",
@@ -5043,7 +6126,7 @@
    "diffusions": {
     "threads": {
      "uuid": "3185493065311014321",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfRTLyhBv8s",
      "date": "2026-11-03",
      "heure": "08:00"
     },
@@ -5055,7 +6138,7 @@
     },
     "pinterest": {
      "uuid": "5997493609729904234",
-     "url": "",
+     "url": "https://www.pinterest.es/pin/1143844005392574331",
      "date": "2026-11-03",
      "heure": "18:40"
     },
@@ -5065,7 +6148,24 @@
      "date": "2026-11-04",
      "heure": "09:00"
     }
-   }
+   },
+   "reseaux": {
+    "threads": {
+     "vues": 1,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "en_cours"
+    }
+   },
+   "verdicts": {
+    "threads": "en_cours"
+   },
+   "vues_total": 1,
+   "vues": 0,
+   "verdict": "en_cours"
   },
   {
    "id": "TR-0211-438-v2",
@@ -5084,7 +6184,7 @@
    "diffusions": {
     "threads": {
      "uuid": "1907747339490574809",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfRWaFKxwVH",
      "date": "2026-11-03",
      "heure": "08:30"
     },
@@ -5096,7 +6196,7 @@
     },
     "pinterest": {
      "uuid": "5967286757819502085",
-     "url": "",
+     "url": "https://www.pinterest.es/pin/1143844005392576977",
      "date": "2026-11-03",
      "heure": "19:10"
     },
@@ -5125,7 +6225,7 @@
    "diffusions": {
     "threads": {
      "uuid": "7197083620458840787",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfRaFv_MGjx",
      "date": "2026-11-03",
      "heure": "09:00"
     },
@@ -5147,7 +6247,24 @@
      "date": "2026-11-04",
      "heure": "13:30"
     }
-   }
+   },
+   "reseaux": {
+    "threads": {
+     "vues": 1,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "en_cours"
+    }
+   },
+   "verdicts": {
+    "threads": "en_cours"
+   },
+   "vues_total": 1,
+   "vues": 0,
+   "verdict": "en_cours"
   },
   {
    "id": "TR-0211-438-v4",
@@ -5166,7 +6283,7 @@
    "diffusions": {
     "threads": {
      "uuid": "7756707732814449978",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfRdSSCSzPw",
      "date": "2026-11-03",
      "heure": "09:30"
     },
@@ -5195,17 +6312,34 @@
    "diffusions": {
     "threads": {
      "uuid": "-4655761068755631022",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfRhdzWzxhX",
      "date": "2026-11-03",
      "heure": "10:00"
     },
     "youtube": {
      "uuid": "-4040630314508073017",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/u6rjhYZG_CE",
      "date": "2026-11-03",
      "heure": "09:00"
     }
-   }
+   },
+   "reseaux": {
+    "threads": {
+     "vues": 2,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "en_cours"
+    }
+   },
+   "verdicts": {
+    "threads": "en_cours"
+   },
+   "vues_total": 2,
+   "vues": 0,
+   "verdict": "en_cours"
   },
   {
    "id": "TR-0211-438-v6",
@@ -5224,17 +6358,34 @@
    "diffusions": {
     "threads": {
      "uuid": "-8325244401433621204",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfRkKjovaL9",
      "date": "2026-11-03",
      "heure": "10:30"
     },
     "youtube": {
      "uuid": "-5217984588142850469",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/O9kgL8Gdd0w",
      "date": "2026-11-03",
      "heure": "09:30"
     }
-   }
+   },
+   "reseaux": {
+    "threads": {
+     "vues": 1,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "en_cours"
+    }
+   },
+   "verdicts": {
+    "threads": "en_cours"
+   },
+   "vues_total": 1,
+   "vues": 0,
+   "verdict": "en_cours"
   },
   {
    "id": "TR-0211-438-v7",
@@ -5253,13 +6404,13 @@
    "diffusions": {
     "threads": {
      "uuid": "1540416401143841493",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfSLeKdt6BT",
      "date": "2026-11-03",
      "heure": "16:10"
     },
     "youtube": {
      "uuid": "-193960837983417558",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/mAKkykmd7YI",
      "date": "2026-11-03",
      "heure": "10:00"
     }
@@ -5282,17 +6433,34 @@
    "diffusions": {
     "threads": {
      "uuid": "-592143681113536729",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfSOZ-hR-oc",
      "date": "2026-11-03",
      "heure": "16:40"
     },
     "youtube": {
      "uuid": "-6180037916983277688",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/mRp8hT7F8l8",
      "date": "2026-11-03",
      "heure": "10:30"
     }
-   }
+   },
+   "reseaux": {
+    "threads": {
+     "vues": 6,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "en_cours"
+    }
+   },
+   "verdicts": {
+    "threads": "en_cours"
+   },
+   "vues_total": 6,
+   "vues": 0,
+   "verdict": "en_cours"
   },
   {
    "id": "TR-0211-438-v9",
@@ -5311,17 +6479,34 @@
    "diffusions": {
     "threads": {
      "uuid": "4904037586143300820",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfSTjkQS5zv",
      "date": "2026-11-03",
      "heure": "17:25"
     },
     "youtube": {
      "uuid": "772693064512195751",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/cZitwh9wmXg",
      "date": "2026-11-03",
      "heure": "11:00"
     }
-   }
+   },
+   "reseaux": {
+    "threads": {
+     "vues": 11,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "en_cours"
+    }
+   },
+   "verdicts": {
+    "threads": "en_cours"
+   },
+   "vues_total": 11,
+   "vues": 0,
+   "verdict": "en_cours"
   },
   {
    "id": "TR-0211-438-v10",
@@ -5340,17 +6525,34 @@
    "diffusions": {
     "threads": {
      "uuid": "-753489108821390365",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfSW_c3hEa8",
      "date": "2026-11-03",
      "heure": "17:55"
     },
     "youtube": {
      "uuid": "-1203239581911986565",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/46rcXgfzt-0",
      "date": "2026-11-03",
      "heure": "11:30"
     }
-   }
+   },
+   "reseaux": {
+    "threads": {
+     "vues": 5,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "en_cours"
+    }
+   },
+   "verdicts": {
+    "threads": "en_cours"
+   },
+   "vues_total": 5,
+   "vues": 0,
+   "verdict": "en_cours"
   },
   {
    "id": "TR-0211-438-v11",
@@ -5369,17 +6571,34 @@
    "diffusions": {
     "youtube": {
      "uuid": "-3997044703003063947",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/8EtEtiGCxzY",
      "date": "2026-11-03",
      "heure": "12:00"
     },
     "threads": {
      "uuid": "-8468252127735037763",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfSabt9A8rI",
      "date": "2026-11-03",
      "heure": "18:25"
     }
-   }
+   },
+   "reseaux": {
+    "threads": {
+     "vues": 16,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "en_cours"
+    }
+   },
+   "verdicts": {
+    "threads": "en_cours"
+   },
+   "vues_total": 16,
+   "vues": 0,
+   "verdict": "en_cours"
   },
   {
    "id": "TR-0211-438-v12",
@@ -5398,13 +6617,13 @@
    "diffusions": {
     "youtube": {
      "uuid": "-8027074046142951748",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/0gSk8fvdpw4",
      "date": "2026-11-03",
      "heure": "12:30"
     },
     "threads": {
      "uuid": "3467335316013336156",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfSd3pyu9gI",
      "date": "2026-11-03",
      "heure": "18:55"
     }
@@ -5427,13 +6646,13 @@
    "diffusions": {
     "youtube": {
      "uuid": "-4273840068597430065",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/KUAu6uEezx8",
      "date": "2026-11-03",
      "heure": "13:00"
     },
     "threads": {
      "uuid": "4038699259444219104",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfShT26hXYZ",
      "date": "2026-11-03",
      "heure": "19:25"
     }
@@ -5456,13 +6675,13 @@
    "diffusions": {
     "youtube": {
      "uuid": "-7550415701275357267",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/zDdpQ2pTP0U",
      "date": "2026-11-03",
      "heure": "13:30"
     },
     "threads": {
      "uuid": "-691547489922298545",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfSkvLHsi1l",
      "date": "2026-11-03",
      "heure": "19:55"
     }
@@ -5485,17 +6704,34 @@
    "diffusions": {
     "youtube": {
      "uuid": "8240095497925314751",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/GdrL3Joekfs",
      "date": "2026-11-03",
      "heure": "14:00"
     },
     "threads": {
      "uuid": "-6168309117466293495",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfSoKz_I2HZ",
      "date": "2026-11-03",
      "heure": "20:25"
     }
-   }
+   },
+   "reseaux": {
+    "threads": {
+     "vues": 5,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "en_cours"
+    }
+   },
+   "verdicts": {
+    "threads": "en_cours"
+   },
+   "vues_total": 5,
+   "vues": 0,
+   "verdict": "en_cours"
   },
   {
    "id": "TR-0211-Mandat-v1",
@@ -5529,13 +6765,13 @@
    "diffusions": {
     "youtube": {
      "uuid": "1595671545406834791",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/bwpvjRnBBuQ",
      "date": "2026-11-03",
      "heure": "14:30"
     },
     "threads": {
      "uuid": "-287631272144843682",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfSrmeKh52J",
      "date": "2026-11-03",
      "heure": "20:55"
     },
@@ -5563,7 +6799,24 @@
      "date": "2026-11-04",
      "heure": "13:05"
     }
-   }
+   },
+   "reseaux": {
+    "threads": {
+     "vues": 2,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "en_cours"
+    }
+   },
+   "verdicts": {
+    "threads": "en_cours"
+   },
+   "vues_total": 2,
+   "vues": 0,
+   "verdict": "en_cours"
   },
   {
    "id": "TR-0211-Mandat-v3",
@@ -5582,13 +6835,13 @@
    "diffusions": {
     "youtube": {
      "uuid": "-8067499275707268308",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/NHvrV_dL-jY",
      "date": "2026-11-03",
      "heure": "16:10"
     },
     "threads": {
      "uuid": "-6727751933234624372",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfSvFCkSKXk",
      "date": "2026-11-03",
      "heure": "21:25"
     },
@@ -5610,7 +6863,24 @@
      "date": "2026-11-04",
      "heure": "15:10"
     }
-   }
+   },
+   "reseaux": {
+    "threads": {
+     "vues": 7,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "en_cours"
+    }
+   },
+   "verdicts": {
+    "threads": "en_cours"
+   },
+   "vues_total": 7,
+   "vues": 0,
+   "verdict": "en_cours"
   },
   {
    "id": "TR-0211-Mandat-v4",
@@ -5629,13 +6899,13 @@
    "diffusions": {
     "youtube": {
      "uuid": "-3799761470298436502",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/MdiLphrcIU8",
      "date": "2026-11-03",
      "heure": "16:40"
     },
     "threads": {
      "uuid": "-6841062863636182214",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfSygbzBaIA",
      "date": "2026-11-03",
      "heure": "21:55"
     },
@@ -5645,7 +6915,24 @@
      "date": "2026-11-04",
      "heure": "17:10"
     }
-   }
+   },
+   "reseaux": {
+    "threads": {
+     "vues": 1,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-04T06:58",
+     "verdict": "en_cours"
+    }
+   },
+   "verdicts": {
+    "threads": "en_cours"
+   },
+   "vues_total": 1,
+   "vues": 0,
+   "verdict": "en_cours"
   },
   {
    "id": "TR-0211-Mandat-v5",
@@ -5664,13 +6951,13 @@
    "diffusions": {
     "youtube": {
      "uuid": "-6177596141097957444",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/qD-Fu1abxvk",
      "date": "2026-11-03",
      "heure": "17:10"
     },
     "threads": {
      "uuid": "-6970463123413971154",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfS17pKpV04",
      "date": "2026-11-03",
      "heure": "22:25"
     },
@@ -5699,13 +6986,13 @@
    "diffusions": {
     "youtube": {
      "uuid": "6658582912399330418",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/depZBtnL5Fk",
      "date": "2026-11-03",
      "heure": "17:50"
     },
     "threads": {
      "uuid": "-4670034804148452879",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/DfS5XYoBJRa",
      "date": "2026-11-03",
      "heure": "22:55"
     }
@@ -5728,7 +7015,7 @@
    "diffusions": {
     "youtube": {
      "uuid": "-7550374872029838107",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/bkTVBEn8IRo",
      "date": "2026-11-03",
      "heure": "18:50"
     },
@@ -5757,7 +7044,7 @@
    "diffusions": {
     "youtube": {
      "uuid": "1970839395428748010",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/Mkp3HJEB56Q",
      "date": "2026-11-03",
      "heure": "19:50"
     },
@@ -5786,7 +7073,7 @@
    "diffusions": {
     "youtube": {
      "uuid": "6911606174323066960",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/BbS8ZB0qJTs",
      "date": "2026-11-03",
      "heure": "20:50"
     },
@@ -5815,7 +7102,7 @@
    "diffusions": {
     "youtube": {
      "uuid": "-3942695858038552776",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/AsCsDX1psV8",
      "date": "2026-11-03",
      "heure": "21:50"
     },
