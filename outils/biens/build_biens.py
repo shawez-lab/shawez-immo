@@ -491,7 +491,14 @@ CSS_LISTE_SEUL = """
 .bl-bar label{display:flex;flex-direction:column;gap:6px;font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);}
 .bl-bar select,.bl-bar input{min-height:48px;width:100%;padding:0 14px;border:1px solid var(--line-strong);border-radius:var(--r-m);background:var(--surface);color:var(--ink);font:500 .98rem var(--font-text);letter-spacing:0;text-transform:none;}
 .bl-bar button{min-height:48px;border-radius:var(--r-m);border:1px solid var(--line-strong);background:transparent;color:var(--ink);font:600 .92rem var(--font-text);cursor:pointer;}
-.bl-n{margin:0 0 22px;font-size:.95rem;color:var(--muted);}
+.bl-n{margin:0 0 10px;font-size:.95rem;color:var(--muted);}
+.bl-racc{margin:0 0 22px;}
+.bl-racc p{margin:0 0 10px;font-size:.95rem;color:var(--muted);max-width:72ch;line-height:1.55;}
+.bl-racc ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px;}
+.bl-racc a{display:inline-block;padding:8px 14px;border:1px solid var(--line-strong);border-radius:var(--r-pill);color:inherit;text-decoration:none;font:500 .92rem var(--font-text);transition:border-color .2s,background .2s;}
+.bl-racc a:hover{border-color:var(--ink);background:var(--surface);}
+.bl-racc a b{font-weight:600;}
+.bl-racc a i{font-style:normal;color:var(--muted);}
 .bl-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,2.4vw,32px);}
 .bl-card a{display:flex;flex-direction:column;height:100%;color:inherit;text-decoration:none;}
 .bl-card a:focus-visible{outline:3px solid #E3B341;outline-offset:4px;border-radius:var(--r-l);}
@@ -1052,6 +1059,41 @@ def fiche(a, ph, medias, base, voisins, taux):
 
 
 # ------------------------------------------------------------------------------------------------ page des biens
+def raccourcis(liste):
+    """Liens directs vers les selections qui ont du stock, avec leur compteur, ecrits dans le HTML.
+
+    Les filtres de la page lisent deja ?type= et ?commune= : il manquait juste des liens que Google
+    puisse suivre et un chiffre visible pour « biens a vendre a Dijon ». Un raccourci n'apparait qu'a
+    partir de deux biens, sinon on promet une selection qui tient dans une seule carte.
+    """
+    import collections
+    par_type = collections.Counter(a['type'] for a, _ in liste if a['commune'] == 'Dijon')
+    dijon = sum(par_type.values())
+    if not dijon:
+        return ''
+    accord = {'Appartement': 'Appartements', 'Studio': 'Studios', 'Maison': 'Maisons', 'Duplex': 'Duplex',
+              'Immeuble': 'Immeubles', 'Loft': 'Lofts', 'Propriete': 'Proprietes', 'Propriété': 'Propriétés',
+              'Château': 'Châteaux', 'Terrain': 'Terrains', 'Terrain à bâtir': 'Terrains à bâtir', 'Viager': 'Viagers'}
+    liens = ['<li><a href="/biens-a-vendre-dijon/?commune=Dijon"><b>Tout Dijon</b> <i>%d</i></a></li>' % dijon]
+    for t, n in sorted(par_type.items(), key=lambda x: (-x[1], x[0])):
+        if n < 2:
+            continue
+        liens.append('<li><a href="/biens-a-vendre-dijon/?type=%s&amp;commune=Dijon"><b>%s à Dijon</b> <i>%d</i></a></li>'
+                     % (urllib.parse.quote(t), E(accord.get(t, t + 's')), n))
+    autres = collections.Counter(a['commune'] for a, _ in liste if a['commune'] != 'Dijon')
+    for c, n in sorted(autres.items(), key=lambda x: (-x[1], x[0])):
+        if n < 2:
+            continue
+        liens.append('<li><a href="/biens-a-vendre-dijon/?commune=%s"><b>%s</b> <i>%d</i></a></li>'
+                     % (urllib.parse.quote(c), E(c), n))
+    gros = [(accord.get(t, t + 's').lower(), n) for t, n in sorted(par_type.items(), key=lambda x: -x[1]) if n >= 2]
+    detail = (', dont ' + ' et '.join('%d %s' % (n, nom) for nom, n in gros[:2])) if gros else ''
+    phrase = ('%d bien%s à vendre à Dijon (21000) aujourd\'hui%s. Les autres sont dans les communes autour.'
+              % (dijon, 's' if dijon > 1 else '', detail))
+    return ('    <nav class="bl-racc" aria-label="Raccourcis"><p>%s</p><ul>%s</ul></nav>\n'
+            % (phrase, ''.join(liens)))
+
+
 def page_liste(base, liste, vendus, medias):
     types = sorted({a['type'] for a, _ in liste})
     communes = sorted({a['commune'] for a, _ in liste})
@@ -1076,13 +1118,14 @@ def page_liste(base, liste, vendus, medias):
             '<label>Trier<select id="bl-tri"><option value="recent">Plus récents</option><option value="prix-asc">Prix croissant</option>'
             '<option value="prix-desc">Prix décroissant</option><option value="surface">Plus grands</option></select></label></form>\n'
             '    <p class="bl-n" id="bl-n" aria-live="polite">%d biens à vendre</p>\n'
+            '%s'
             '    <ul class="bl-grid" id="bl-grid">%s</ul>\n'
             '    <p class="bl-empty" id="bl-vide" hidden>Aucun bien ne correspond à ces critères. <button type="button" class="btn" id="bl-reset">Tout afficher</button></p>\n%s'
             '    <p class="bl-note">Biens de l\'agence GRAVELIN IMMO, présentés par Shawez Ali, agent immobilier. Prix indiqués tels qu\'annoncés ; '
             'la répartition des honoraires, le diagnostic de performance énergétique et les informations sur les risques figurent sur la fiche de chaque bien. '
             '<a class="link" href="/honoraires/">Barème des honoraires</a>.</p>\n'
             '  </div>\n</section>'
-            % (opt(types), opt(communes), len(liste), cartes,
+            % (opt(types), opt(communes), len(liste), raccourcis(liste), cartes,
                ('    <details class="bl-sold"><summary>Vendus récemment (%d)</summary><ul class="bl-grid">%s</ul></details>\n'
                 % (len(vendus), ''.join('<li class="bl-card">%s</li>' % carte(a, ph, medias) for a, ph in vendus))) if vendus else ''))
     items = []
