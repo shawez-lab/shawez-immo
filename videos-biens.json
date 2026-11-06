@@ -184,6 +184,18 @@
     },
     "jardin": {
       "ref": "394"
+    },
+    "beze": {
+      "ref": "Combottes"
+    },
+    "etudiant": {
+      "ref": "481"
+    },
+    "montchapet": {
+      "ref": "446"
+    },
+    "potentiel": {
+      "ref": "507"
     }
   },
   "commentaires_manychat": [
@@ -201,7 +213,11 @@
     "couchey",
     "bistro",
     "chenove",
-    "jardin"
+    "jardin",
+    "beze",
+    "etudiant",
+    "montchapet",
+    "potentiel"
   ],
   "en_essai": [
     {
@@ -292,6 +308,34 @@
       "mot": "JARDIN",
       "ref": "394",
       "libelle": "la maison dijonnaise et son terrain de 773 m²",
+      "depuis": "2026-11-06",
+      "jusqu_au": "2026-12-06"
+    },
+    {
+      "mot": "BEZE",
+      "ref": "Combottes",
+      "libelle": "la maison de 1850 avec piscine à Bèze",
+      "depuis": "2026-11-06",
+      "jusqu_au": "2026-12-06"
+    },
+    {
+      "mot": "ETUDIANT",
+      "ref": "481",
+      "libelle": "le T2 dijonnais déjà loué en résidence étudiante",
+      "depuis": "2026-11-06",
+      "jusqu_au": "2026-12-06"
+    },
+    {
+      "mot": "MONTCHAPET",
+      "ref": "446",
+      "libelle": "le T2 de 45 m² du bas Montchapet",
+      "depuis": "2026-11-06",
+      "jusqu_au": "2026-12-06"
+    },
+    {
+      "mot": "POTENTIEL",
+      "ref": "507",
+      "libelle": "le T2 de 44 m² à rafraîchir",
       "depuis": "2026-11-06",
       "jusqu_au": "2026-12-06"
     }
