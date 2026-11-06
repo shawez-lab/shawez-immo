@@ -465,6 +465,7 @@
    "honoraires_texte": null,
    "id": "739",
    "last_seen": "2026-11-06",
+   "lien_complet": false,
    "mentions_agence": [
     "Sous-offre",
     "Coup de coeur"
@@ -3827,7 +3828,7 @@
    "pieces": 3,
    "prix": 220000.0,
    "ref": "PREF",
-   "status": "retirée",
+   "status": "sous offre",
    "status_changed": "2026-11-06",
    "surface": 92.93,
    "type": "Duplex",
