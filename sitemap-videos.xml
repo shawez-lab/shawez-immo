@@ -133,17 +133,6 @@
     </video:video>
   </url>
   <url>
-    <loc>https://shawez-immo.com/biens/mandat-maison-neuilly-crimolois/</loc>
-    <video:video>
-      <video:thumbnail_loc>https://shawez-immo.com/assets/biens/Mandat/video-poster.jpg</video:thumbnail_loc>
-      <video:title>Visite en vidéo : Maison 5 pièces, 90 m² à Neuilly-Crimolois</video:title>
-      <video:description>Visite en vidéo : Maison 5 pièces, 90 m² à Neuilly-Crimolois</video:description>
-      <video:content_loc>https://shawez-immo.com/assets/biens/Mandat/video.mp4</video:content_loc>
-      <video:duration>30</video:duration>
-      <video:publication_date>2026-09-28</video:publication_date>
-    </video:video>
-  </url>
-  <url>
     <loc>https://shawez-immo.com/conseils-vendeurs/achat-logement-deja-loue-touristes-droits-reprise/</loc>
     <video:video>
       <video:thumbnail_loc>https://shawez-immo.com/assets/biens/461/video-poster.webp</video:thumbnail_loc>
