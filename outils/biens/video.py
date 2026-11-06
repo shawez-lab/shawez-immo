@@ -78,15 +78,48 @@ def encode_hd(src, dst, debut, duree, haut, crf):
     subprocess.run(cmd, check=True)
 
 
+def deja_bon(source, haut):
+    """La source est-elle déjà un master utilisable tel quel ? H.264, yuv420p, au plus 1080 de large, pas de recadrage.
+
+    Ajouté le 06/11/2026 après une erreur de ma part : j'avais ré-encodé une source Instagram de 7,2 Mo, déjà
+    propre en 1080x1920, et j'en avais fait un « master » de 21,9 Mo. Trois fois plus lourd pour exactement la
+    même image, en moins bon, puisqu'un ré-encodage ne peut que perdre. Quand la source va déjà bien, on la copie
+    telle quelle : c'est la seule façon d'avoir un master parfait, et le dépôt ne gonfle pas pour rien.
+    """
+    if haut:
+        return False
+    try:
+        out = subprocess.run(['ffprobe', '-v', 'error', '-select_streams', 'v:0', '-show_entries',
+                              'stream=codec_name,width,pix_fmt', '-of', 'csv=p=0', source],
+                             capture_output=True, text=True, check=True).stdout.strip().split(',')
+    except Exception:
+        return False
+    codec, larg, pix = out[0], int(out[1]), out[2]
+    # Peu importe le codec tant que ffmpeg sait le lire : le montage ré-encode de toute façon en H.264.
+    # Les sources Instagram arrivent souvent en VP9, et les ré-encoder en H.264 triplait le poids pour rien.
+    return codec in ('h264', 'hevc', 'vp9', 'av1') and larg <= 1080 and pix == 'yuv420p'
+
+
 def master_hd(ref, source, debut=0, duree=0, haut=0):
     """Écrit assets/biens/<ref>/video-hd.mp4 depuis la vidéo d'origine. Renvoie (largeur, hauteur, octets)."""
     dossier = P('assets', 'biens', ref)
     os.makedirs(dossier, exist_ok=True)
     dst = os.path.join(dossier, 'video-hd.mp4')
-    for crf in (20, 22, 24):
-        encode_hd(source, dst, debut, duree, haut, crf)
-        if os.path.getsize(dst) <= LIMITE_HD:
-            break
+    if deja_bon(source, haut):
+        # Copie des flux, sans ré-encoder : image identique au bit près, et on ne coupe que si on nous le demande.
+        cmd = ['ffmpeg', '-v', 'error', '-y']
+        if debut:
+            cmd += ['-ss', str(debut)]
+        cmd += ['-i', source]
+        if duree:
+            cmd += ['-t', str(duree)]
+        cmd += ['-c', 'copy', '-movflags', '+faststart', dst]
+        subprocess.run(cmd, check=True)
+    else:
+        for crf in (20, 22, 24):
+            encode_hd(source, dst, debut, duree, haut, crf)
+            if os.path.getsize(dst) <= LIMITE_HD:
+                break
     info = sonde(dst)
     v = [s for s in info['streams'] if s['codec_type'] == 'video'][0]
     octets = os.path.getsize(dst)
