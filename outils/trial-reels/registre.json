@@ -10408,7 +10408,21 @@
    "uuid": "-4288053492365832933",
    "statut": "publie",
    "media": "https://aba9644e.shawez-immo.pages.dev/trial/2026-11-06/bistro-494-v1.mp4",
-   "instagram": true
+   "instagram": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "1818595353766742108",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "13:40"
+    },
+    "youtube": {
+     "uuid": "-305552245694249672",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "14:00"
+    }
+   }
   },
   {
    "id": "TR-0611-494-v2",
@@ -10423,7 +10437,39 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://aba9644e.shawez-immo.pages.dev/trial/2026-11-06/bistro-494-v2.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "-5669661613793851999",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "20:15"
+    },
+    "youtube": {
+     "uuid": "-6479762424459671001",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "20:15"
+    },
+    "pinterest": {
+     "uuid": "-601286449779291144",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "10:10"
+    },
+    "bluesky": {
+     "uuid": "-1828406217147265510",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "10:10"
+    },
+    "tiktok": {
+     "uuid": "-3135229673092133919",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "10:30"
+    }
+   }
   },
   {
    "id": "TR-0611-494-v3",
@@ -10438,7 +10484,33 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://aba9644e.shawez-immo.pages.dev/trial/2026-11-06/bistro-494-v3.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "-5666179037244996879",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "09:40"
+    },
+    "pinterest": {
+     "uuid": "4671102201944165037",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "12:10"
+    },
+    "bluesky": {
+     "uuid": "-6226238920988998976",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "12:10"
+    },
+    "youtube": {
+     "uuid": "5566794281055110419",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "10:00"
+    }
+   }
   },
   {
    "id": "TR-0611-494-v4",
@@ -10453,7 +10525,33 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://aba9644e.shawez-immo.pages.dev/trial/2026-11-06/bistro-494-v4.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "943802898408099800",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "11:40"
+    },
+    "pinterest": {
+     "uuid": "2706167908448750435",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "14:10"
+    },
+    "bluesky": {
+     "uuid": "-5707354803484671246",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "14:10"
+    },
+    "youtube": {
+     "uuid": "-8757939230068946747",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "12:00"
+    }
+   }
   },
   {
    "id": "TR-0611-481-v1",
@@ -10483,7 +10581,39 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://aba9644e.shawez-immo.pages.dev/trial/2026-11-06/t2-etudiant-481-v2.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "youtube": {
+     "uuid": "7045979349329526891",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "20:45"
+    },
+    "threads": {
+     "uuid": "-4628240000873314828",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "08:10"
+    },
+    "pinterest": {
+     "uuid": "-8512628558779758319",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "10:40"
+    },
+    "bluesky": {
+     "uuid": "-5469848409728922942",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "10:40"
+    },
+    "tiktok": {
+     "uuid": "6669886189113135066",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "15:45"
+    }
+   }
   },
   {
    "id": "TR-0611-481-v3",
@@ -10498,7 +10628,33 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://aba9644e.shawez-immo.pages.dev/trial/2026-11-06/t2-etudiant-481-v3.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "437842329989891397",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "10:10"
+    },
+    "pinterest": {
+     "uuid": "-4522176886705337162",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "12:40"
+    },
+    "bluesky": {
+     "uuid": "9016330576275196621",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "12:40"
+    },
+    "youtube": {
+     "uuid": "-7455666563997218823",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "10:30"
+    }
+   }
   },
   {
    "id": "TR-0611-481-v4",
@@ -10513,7 +10669,33 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://aba9644e.shawez-immo.pages.dev/trial/2026-11-06/t2-etudiant-481-v4.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "-5866159863234475254",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "12:10"
+    },
+    "pinterest": {
+     "uuid": "-6347312672268138974",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "14:40"
+    },
+    "bluesky": {
+     "uuid": "2095157321558804422",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "14:40"
+    },
+    "youtube": {
+     "uuid": "2084366527150178485",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "12:30"
+    }
+   }
   },
   {
    "id": "TR-0611-446-v1",
@@ -10543,7 +10725,33 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://aba9644e.shawez-immo.pages.dev/trial/2026-11-06/t2-montchapet-446-v2.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "412556480383175449",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "08:40"
+    },
+    "pinterest": {
+     "uuid": "-8275056026305737508",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "11:10"
+    },
+    "bluesky": {
+     "uuid": "3034182304787089232",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "11:10"
+    },
+    "youtube": {
+     "uuid": "5063405472506530113",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "09:00"
+    }
+   }
   },
   {
    "id": "TR-0611-446-v3",
@@ -10558,7 +10766,33 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://aba9644e.shawez-immo.pages.dev/trial/2026-11-06/t2-montchapet-446-v3.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "8925375425255392191",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "10:40"
+    },
+    "pinterest": {
+     "uuid": "-1000982092700102905",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "13:10"
+    },
+    "bluesky": {
+     "uuid": "5048464032364448379",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "13:10"
+    },
+    "youtube": {
+     "uuid": "4365755724501632957",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "11:00"
+    }
+   }
   },
   {
    "id": "TR-0611-446-v4",
@@ -10573,7 +10807,33 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://aba9644e.shawez-immo.pages.dev/trial/2026-11-06/t2-montchapet-446-v4.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "-6842821205218671206",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "12:40"
+    },
+    "pinterest": {
+     "uuid": "2465119357346204611",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "20:10"
+    },
+    "bluesky": {
+     "uuid": "5350670186431006923",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "15:10"
+    },
+    "youtube": {
+     "uuid": "7108037125533157758",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "13:00"
+    }
+   }
   },
   {
    "id": "TR-0611-507-v1",
@@ -10603,7 +10863,33 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://aba9644e.shawez-immo.pages.dev/trial/2026-11-06/t2-potentiel-507-v2.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "4608468211055477763",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "09:10"
+    },
+    "pinterest": {
+     "uuid": "5988195485546008303",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "11:40"
+    },
+    "bluesky": {
+     "uuid": "-8395378002080805523",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "11:40"
+    },
+    "youtube": {
+     "uuid": "7105844892042218866",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "09:30"
+    }
+   }
   },
   {
    "id": "TR-0611-507-v3",
@@ -10618,7 +10904,33 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://aba9644e.shawez-immo.pages.dev/trial/2026-11-06/t2-potentiel-507-v3.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "5004160393918629901",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "11:10"
+    },
+    "pinterest": {
+     "uuid": "-2333847087612018091",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "13:40"
+    },
+    "bluesky": {
+     "uuid": "4712916529893688826",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "13:40"
+    },
+    "youtube": {
+     "uuid": "-1112176224210039421",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "11:30"
+    }
+   }
   },
   {
    "id": "TR-0611-507-v4",
@@ -10633,7 +10945,21 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://aba9644e.shawez-immo.pages.dev/trial/2026-11-06/t2-potentiel-507-v4.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "-5185538598912242276",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "13:10"
+    },
+    "youtube": {
+     "uuid": "1908931663354938083",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "13:30"
+    }
+   }
   }
  ]
 }
