@@ -281,10 +281,22 @@ def master(src):
         larg, haut = (int(x) for x in out.split(',')[:2])
     except Exception:
         return choisi
+    ref = os.path.basename(os.path.dirname(choisi))
+    # Plancher dur, 06/11/2026. Shawez : « la qualité des vidéos publiées sur TikTok est pourrie ».
+    # En dessous de 720 de large, agrandir en 1080 ne donne pas une vidéo moyenne, ça donne une bouillie
+    # que le spectateur quitte en une seconde, et la publier abîme la chaîne pour rien. Le duplex 415
+    # partait en 360x640, soit neuf fois moins de pixels qu'Instagram n'en attend, et il est parti sur
+    # TikTok. Mieux vaut une vidéo de moins qu'une vidéo illisible : on s'arrête, et le trou se voit.
+    if larg < 720:
+        raise SystemExit(
+            "%s : la source fait %dx%d, c'est trop peu pour un Reel et on ne monte pas. "
+            "L'original en 1080 existe presque toujours dans « GRAVELIN IMMO - Médias site » : "
+            "outils/biens/masters_originaux.sh le retrouve et écrit video-hd.mp4." % (ref, larg, haut))
     if larg < W or haut < H:
         print("ATTENTION %s : source en %dx%d, on monte en %dx%d. Les pixels manquants ne s'inventent pas, "
-              "la vidéo sera molle. Refais le master avec outils/biens/video.py --hd depuis le fichier d'origine."
-              % (os.path.basename(os.path.dirname(choisi)), larg, haut, W, H), file=sys.stderr)
+              "la vidéo sera molle. Refais le master avec outils/biens/video.py --hd depuis le fichier "
+              "d'origine, ou lance outils/biens/masters_originaux.sh sur le Mac."
+              % (ref, larg, haut, W, H), file=sys.stderr)
     return choisi
 
 
