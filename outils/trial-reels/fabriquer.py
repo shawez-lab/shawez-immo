@@ -261,6 +261,17 @@ def master(src):
             print("ATTENTION %s : master.txt renvoie vers %s, introuvable. On retombe sur le dépôt."
                   % (os.path.basename(dossier), ligne), file=sys.stderr)
             break
+    # Un Reel deja monte a partir des photos de l'annonce n'est pas une source. Il porte deja
+    # son accroche, ses lignes et sa pastille « Commente MOT ». Le recouper reviendrait a
+    # empiler deux accroches et deux pastilles sur la meme image, et ca partirait tel quel.
+    # Vu le 06/11/2026, quand six biens jamais filmes ont recu leur Reel photo.
+    if os.path.exists(os.path.join(dossier, 'diaporama.json')):
+        raise SystemExit(
+            "%s : video.mp4 est un Reel fini fabrique par outils/biens/diaporama.py, pas un rush. "
+            "On ne le remonte pas, on le publie tel quel. Pour d'autres versions, relance "
+            "diaporama.py avec une autre accroche et un autre ordre de photos."
+            % os.path.basename(dossier))
+
     hd = os.path.join(dossier, 'video-hd.mp4')
     choisi = hd if os.path.exists(hd) else src
     try:
