@@ -1,0 +1,6 @@
+# Viager occupe d'Arceau. Source d'origine : le Reel Instagram de l'agence du 07/09/2026,
+# en 1440x2560, 99 s, 54 Mo, sur le Mac de Shawez :
+~/Desktop/GRAVELIN IMMO - Médias site/instagram-gravelin_immo/videos/3981096911715449827.mp4
+# Le video-hd.mp4 du depot est ce meme plan ramene en 1080x1920 et a 1,8 Mbit/s pour tenir
+# sous les 25 Mio de Cloudflare Pages. Quand le montage tourne sur le Mac, le fichier ci-dessus
+# est meilleur et c'est lui qui est pris. Depuis un conteneur, c'est video-hd.mp4.

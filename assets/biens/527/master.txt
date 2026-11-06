@@ -1,4 +1,6 @@
-# Master social de l'hôtel particulier de Beaune (527), 1080x1920, 84,7 s, 52 Mo.
-# Il ne peut pas vivre dans le dépôt : Cloudflare Pages refuse tout fichier de plus de 25 Mio.
-# Le fichier du site, video.mp4, est en 720 : ne t'en sers jamais comme master Instagram.
+# Hotel particulier de Beaune. Master d'origine 1080x1920, 84,7 s, 52 Mo, sur le Mac de Shawez :
 ~/TrialReels-Studio/inputs/Dew_FiqtKYj.mp4
+# Le video-hd.mp4 du depot est ce meme plan a 2,05 Mbit/s pour tenir sous les 25 Mio de
+# Cloudflare Pages. Quand le montage tourne sur le Mac, le fichier ci-dessus est meilleur et
+# c'est lui qui est pris. Depuis un conteneur, c'est video-hd.mp4. Ne monte jamais depuis
+# video.mp4, qui est la version 720 du site.
