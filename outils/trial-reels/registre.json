@@ -4489,6 +4489,24 @@
      "url": "https://www.tiktok.com/@shawez_immo/video/7703285190059298050",
      "date": "2026-11-01",
      "heure": "20:20"
+    },
+    "linkedin": {
+     "uuid": "-282645416773530425",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "08:10"
+    },
+    "facebook": {
+     "uuid": "6385171477436255101",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "09:00"
+    },
+    "gmb": {
+     "uuid": "6262948044669469884",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "09:05"
     }
    },
    "reseaux": {
@@ -9152,7 +9170,57 @@
     "instagram": "perdant"
    },
    "vues_total": 122,
-   "verdict": "perdant"
+   "verdict": "perdant",
+   "diffusions": {
+    "threads": {
+     "uuid": "-6264725106291421842",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "08:10"
+    },
+    "pinterest": {
+     "uuid": "-6286181030648723437",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "08:10"
+    },
+    "bluesky": {
+     "uuid": "4578164486950634590",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "08:10"
+    },
+    "tiktok": {
+     "uuid": "5867366660111223496",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "09:00"
+    },
+    "youtube": {
+     "uuid": "-6567628131621384581",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "09:00"
+    },
+    "linkedin": {
+     "uuid": "-3951298808417664922",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "12:35"
+    },
+    "gmb": {
+     "uuid": "8028582733772899432",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "13:05"
+    },
+    "facebook": {
+     "uuid": "7805311337721840031",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "13:05"
+    }
+   }
   },
   {
    "id": "TR-0411-415-v2",
@@ -9224,7 +9292,57 @@
     "instagram": "perdant"
    },
    "vues_total": 122,
-   "verdict": "perdant"
+   "verdict": "perdant",
+   "diffusions": {
+    "threads": {
+     "uuid": "7556675069882418844",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "08:40"
+    },
+    "pinterest": {
+     "uuid": "-4490822996840004288",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "08:40"
+    },
+    "bluesky": {
+     "uuid": "8675981628406122258",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "08:40"
+    },
+    "youtube": {
+     "uuid": "-3601942002456967218",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "09:30"
+    },
+    "tiktok": {
+     "uuid": "1557168706323172251",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "09:45"
+    },
+    "linkedin": {
+     "uuid": "5954280481051987694",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "14:05"
+    },
+    "facebook": {
+     "uuid": "-8943109919517556464",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "15:05"
+    },
+    "gmb": {
+     "uuid": "3610232472666786457",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "13:05"
+    }
+   }
   },
   {
    "id": "TR-0411-520-v2",
@@ -9296,7 +9414,51 @@
     "instagram": "perdant"
    },
    "vues_total": 122,
-   "verdict": "perdant"
+   "verdict": "perdant",
+   "diffusions": {
+    "threads": {
+     "uuid": "6428162892099895919",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "09:10"
+    },
+    "pinterest": {
+     "uuid": "6869296529386523725",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "09:10"
+    },
+    "bluesky": {
+     "uuid": "4126019654124717303",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "09:10"
+    },
+    "youtube": {
+     "uuid": "2578490916579066575",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "10:00"
+    },
+    "tiktok": {
+     "uuid": "-2318644819932397452",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "10:30"
+    },
+    "linkedin": {
+     "uuid": "-1047479034457274927",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "15:35"
+    },
+    "facebook": {
+     "uuid": "5580720341037827993",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "17:05"
+    }
+   }
   },
   {
    "id": "TR-0411-501-v2",
@@ -9416,7 +9578,39 @@
    "uuid": "-4093981384065266582",
    "statut": "publie",
    "media": "https://fbfa525a.shawez-immo.pages.dev/trial/2026-11-06/chateau-438-v1.mp4",
-   "instagram": true
+   "instagram": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "-5562523538858228796",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "15:40"
+    },
+    "youtube": {
+     "uuid": "5847196405102759745",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "16:30"
+    },
+    "pinterest": {
+     "uuid": "-1701882842411348738",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "08:10"
+    },
+    "bluesky": {
+     "uuid": "425372496759572918",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "08:10"
+    },
+    "tiktok": {
+     "uuid": "8162818572206620895",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "12:45"
+    }
+   }
   },
   {
    "id": "TR-0611-438-v2",
@@ -9431,7 +9625,51 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://fbfa525a.shawez-immo.pages.dev/trial/2026-11-06/chateau-438-v2.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "-2089267044650954778",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "09:40"
+    },
+    "pinterest": {
+     "uuid": "-1827702640439704472",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "09:40"
+    },
+    "bluesky": {
+     "uuid": "587658056051541351",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "09:40"
+    },
+    "youtube": {
+     "uuid": "6670647078869421755",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "10:30"
+    },
+    "tiktok": {
+     "uuid": "3676224832541314471",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "11:15"
+    },
+    "linkedin": {
+     "uuid": "8267509263992245153",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "17:05"
+    },
+    "facebook": {
+     "uuid": "-9082752821190442397",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "09:00"
+    }
+   }
   },
   {
    "id": "TR-0611-438-v3",
@@ -9446,7 +9684,45 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://fbfa525a.shawez-immo.pages.dev/trial/2026-11-06/chateau-438-v3.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "-8131479268474470121",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "11:40"
+    },
+    "pinterest": {
+     "uuid": "6847252884849641811",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "11:40"
+    },
+    "bluesky": {
+     "uuid": "-5072267390302140965",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "11:40"
+    },
+    "youtube": {
+     "uuid": "4885081689192091180",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "12:30"
+    },
+    "tiktok": {
+     "uuid": "1029401009169646985",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "14:15"
+    },
+    "linkedin": {
+     "uuid": "-7881992726663249712",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "12:35"
+    }
+   }
   },
   {
    "id": "TR-0611-438-v4",
@@ -9461,7 +9737,39 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://fbfa525a.shawez-immo.pages.dev/trial/2026-11-06/chateau-438-v4.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "-2943562501715508162",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "13:40"
+    },
+    "pinterest": {
+     "uuid": "1216232757129724800",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "13:40"
+    },
+    "bluesky": {
+     "uuid": "7181435972428253031",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "13:40"
+    },
+    "youtube": {
+     "uuid": "-3418019995768631673",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "14:30"
+    },
+    "tiktok": {
+     "uuid": "-3236335984389697690",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "09:45"
+    }
+   }
   },
   {
    "id": "TR-0611-415-v1",
@@ -9476,7 +9784,39 @@
    "uuid": "5618689101416120601",
    "statut": "publie",
    "media": "https://fbfa525a.shawez-immo.pages.dev/trial/2026-11-06/duplex-dijon-415-v1.mp4",
-   "instagram": true
+   "instagram": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "-6395383366759200385",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "16:10"
+    },
+    "youtube": {
+     "uuid": "9212268925676306965",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "17:00"
+    },
+    "pinterest": {
+     "uuid": "525964625657021649",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "08:40"
+    },
+    "bluesky": {
+     "uuid": "-5675548632253707589",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "08:40"
+    },
+    "tiktok": {
+     "uuid": "6029303472546594969",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "13:30"
+    }
+   }
   },
   {
    "id": "TR-0611-415-v2",
@@ -9491,7 +9831,51 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://fbfa525a.shawez-immo.pages.dev/trial/2026-11-06/duplex-dijon-415-v2.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "5687334710380415630",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "10:10"
+    },
+    "pinterest": {
+     "uuid": "8932094459570572291",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "10:10"
+    },
+    "bluesky": {
+     "uuid": "4928654101189316413",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "10:10"
+    },
+    "youtube": {
+     "uuid": "8559343947857281845",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "11:00"
+    },
+    "tiktok": {
+     "uuid": "5641266978465728621",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "12:00"
+    },
+    "linkedin": {
+     "uuid": "6989349964093933641",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "18:35"
+    },
+    "facebook": {
+     "uuid": "-7422979059807402443",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "13:05"
+    }
+   }
   },
   {
    "id": "TR-0611-415-v3",
@@ -9506,7 +9890,45 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://fbfa525a.shawez-immo.pages.dev/trial/2026-11-06/duplex-dijon-415-v3.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "2715005878213363612",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "12:10"
+    },
+    "pinterest": {
+     "uuid": "2681015480152181379",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "12:10"
+    },
+    "bluesky": {
+     "uuid": "7592329187453521494",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "12:10"
+    },
+    "youtube": {
+     "uuid": "1149320145118643050",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "13:00"
+    },
+    "tiktok": {
+     "uuid": "-7359378387790443805",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "15:00"
+    },
+    "linkedin": {
+     "uuid": "521048197805329871",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "14:05"
+    }
+   }
   },
   {
    "id": "TR-0611-415-v4",
@@ -9521,7 +9943,39 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://fbfa525a.shawez-immo.pages.dev/trial/2026-11-06/duplex-dijon-415-v4.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "4978553840583197174",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "14:10"
+    },
+    "pinterest": {
+     "uuid": "-669725289747364807",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "14:10"
+    },
+    "bluesky": {
+     "uuid": "-3352418642144246293",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "14:10"
+    },
+    "youtube": {
+     "uuid": "-3250305985248214331",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "15:00"
+    },
+    "tiktok": {
+     "uuid": "5595696110836993213",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "10:30"
+    }
+   }
   },
   {
    "id": "TR-0611-520-v1",
@@ -9551,7 +10005,45 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://fbfa525a.shawez-immo.pages.dev/trial/2026-11-06/appartement-chevigny-520-v2.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "-2108914570838456845",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "10:40"
+    },
+    "pinterest": {
+     "uuid": "-1014748901562170923",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "10:40"
+    },
+    "bluesky": {
+     "uuid": "2501411612984559972",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "10:40"
+    },
+    "youtube": {
+     "uuid": "-7414996636278111255",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "11:30"
+    },
+    "tiktok": {
+     "uuid": "7321526836739785669",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "12:45"
+    },
+    "linkedin": {
+     "uuid": "1431673625405965350",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "08:00"
+    }
+   }
   },
   {
    "id": "TR-0611-520-v3",
@@ -9566,7 +10058,39 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://fbfa525a.shawez-immo.pages.dev/trial/2026-11-06/appartement-chevigny-520-v3.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "-3414579936197656187",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "12:40"
+    },
+    "pinterest": {
+     "uuid": "5796800800852100059",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "12:40"
+    },
+    "bluesky": {
+     "uuid": "1827746411881647409",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "12:40"
+    },
+    "youtube": {
+     "uuid": "-5611573055792856499",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "13:30"
+    },
+    "tiktok": {
+     "uuid": "6766102537176566442",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "15:45"
+    }
+   }
   },
   {
    "id": "TR-0611-520-v4",
@@ -9581,7 +10105,39 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://fbfa525a.shawez-immo.pages.dev/trial/2026-11-06/appartement-chevigny-520-v4.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "4116719570747673861",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "14:40"
+    },
+    "pinterest": {
+     "uuid": "3272248266415358932",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "14:40"
+    },
+    "bluesky": {
+     "uuid": "3867249403997605630",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "14:40"
+    },
+    "youtube": {
+     "uuid": "-8042283128412877282",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "15:30"
+    },
+    "tiktok": {
+     "uuid": "5369488828773450180",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "11:15"
+    }
+   }
   },
   {
    "id": "TR-0611-501-v1",
@@ -9611,7 +10167,45 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://fbfa525a.shawez-immo.pages.dev/trial/2026-11-06/appartement-t3-501-v2.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "301663707150303239",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "11:10"
+    },
+    "pinterest": {
+     "uuid": "1336000216249225149",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "11:10"
+    },
+    "bluesky": {
+     "uuid": "-495731240266085503",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "11:10"
+    },
+    "youtube": {
+     "uuid": "3538245844823851412",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "12:00"
+    },
+    "tiktok": {
+     "uuid": "4137648910416498625",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "13:30"
+    },
+    "linkedin": {
+     "uuid": "3930920713014234434",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "09:30"
+    }
+   }
   },
   {
    "id": "TR-0611-501-v3",
@@ -9626,7 +10220,39 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://fbfa525a.shawez-immo.pages.dev/trial/2026-11-06/appartement-t3-501-v3.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "9086107976222460699",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "13:10"
+    },
+    "pinterest": {
+     "uuid": "3736339385947671220",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "13:10"
+    },
+    "bluesky": {
+     "uuid": "4913322808298785835",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "13:10"
+    },
+    "youtube": {
+     "uuid": "782587188702955290",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "14:00"
+    },
+    "tiktok": {
+     "uuid": "3883042199734404229",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "09:00"
+    }
+   }
   },
   {
    "id": "TR-0611-501-v4",
@@ -9641,7 +10267,39 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://fbfa525a.shawez-immo.pages.dev/trial/2026-11-06/appartement-t3-501-v4.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "6306368979886163016",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "15:10"
+    },
+    "bluesky": {
+     "uuid": "-4160132130297393406",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "15:10"
+    },
+    "youtube": {
+     "uuid": "-8684413617484182903",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "16:00"
+    },
+    "pinterest": {
+     "uuid": "6685331488195954085",
+     "url": "",
+     "date": "2026-11-06",
+     "heure": "20:10"
+    },
+    "tiktok": {
+     "uuid": "6080589980609562449",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "12:00"
+    }
+   }
   }
  ]
 }
