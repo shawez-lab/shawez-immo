@@ -25,6 +25,7 @@ ManyChat ne transmet pas le texte d'un commentaire : seul un mot-clé qui a son 
 de videos-biens.json) peut être demandé en commentaire ; pour tout autre mot, l'appel se fait en message privé.
 """
 import json
+import io
 import os
 import subprocess
 import sys
@@ -242,7 +243,25 @@ def master(src):
     était en 360x640, soit neuf fois moins de pixels que ce qu'Instagram attend.
     video-hd.mp4 est le master social, écrit par video.py en même temps que la version du site.
     """
-    hd = os.path.join(os.path.dirname(src), 'video-hd.mp4')
+    dossier = os.path.dirname(src)
+    # master.txt : un chemin vers le vrai master, hors du dépôt.
+    # Pourquoi (06/11/2026) : Cloudflare Pages refuse tout fichier au-delà de 25 Mio, donc un master de
+    # 85 s en 1080 ne peut pas vivre dans le site. Celui de l'hôtel particulier de Beaune (527) pèse 52 Mo.
+    # Plutôt que de le dégrader à 2,4 Mbit/s pour qu'il rentre, on laisse le fichier d'origine dans
+    # TrialReels-Studio et on écrit ici où le trouver. Une ligne, un chemin, ~ accepté.
+    pointeur = os.path.join(dossier, 'master.txt')
+    if os.path.exists(pointeur):
+        for ligne in io.open(pointeur, encoding='utf-8').read().splitlines():
+            ligne = ligne.strip()
+            if not ligne or ligne.startswith('#'):
+                continue
+            cible = os.path.expanduser(ligne)
+            if os.path.exists(cible):
+                return cible
+            print("ATTENTION %s : master.txt renvoie vers %s, introuvable. On retombe sur le dépôt."
+                  % (os.path.basename(dossier), ligne), file=sys.stderr)
+            break
+    hd = os.path.join(dossier, 'video-hd.mp4')
     choisi = hd if os.path.exists(hd) else src
     try:
         out = subprocess.run(['ffprobe', '-v', 'error', '-select_streams', 'v:0',
