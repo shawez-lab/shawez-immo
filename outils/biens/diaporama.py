@@ -36,6 +36,7 @@ import fabriquer as tr  # accroche(), mot_plan(), appel(), duree_accroche() : le
 
 W, H = tr.W, tr.H
 PAR_PHOTO = 2.7          # secondes par photo : assez pour lire, assez court pour ne pas lasser
+DUREE_MINI = 15.0        # en dessous, un Reel n'a pas le temps d'accrocher : on tient chaque photo plus longtemps
 MAX_PHOTOS = 8           # au-delà le Reel traîne et la rétention tombe
 SUR_ECHANTILLON = 2      # on monte à 2x avant le zoom, sinon zoompan rend une image molle
 
@@ -84,13 +85,17 @@ def plaque(src, sortie):
     fond.save(sortie, quality=95)
 
 
-def monter(ref, mot, texte_accroche, lignes, sortie, tmp, prive=False):
+def monter(ref, mot, texte_accroche, lignes, sortie, tmp, prive=False, par_photo=None):
     src = photos(ref)
     if not src:
         raise SystemExit("Aucune photo en 1200 px pour le bien %s : rien à monter." % ref)
     src = src[:MAX_PHOTOS]
     n = len(src)
-    total = n * PAR_PHOTO
+    # Un bien avec peu de photos aurait un Reel de huit secondes, trop court pour accrocher
+    # et trop court pour que la fin « Commente MOT » ait le temps d'exister. On tient alors
+    # chaque photo plus longtemps plutôt que d'inventer des images.
+    par_photo = par_photo or max(PAR_PHOTO, DUREE_MINI / n if n else PAR_PHOTO)
+    total = n * par_photo
 
     entrees, filtres = [], []
     for i, p in enumerate(src):
@@ -100,13 +105,13 @@ def monter(ref, mot, texte_accroche, lignes, sortie, tmp, prive=False):
         # Avec -loop 1 -t 2.7 il en recevait 81 et en sortait 81x81, si bien que la première photo
         # occupait toute la vidéo et que les sept autres ne passaient jamais. Vu le 06/11/2026.
         entrees += ['-i', pl]
-        img = int(PAR_PHOTO * 30)
+        img = int(par_photo * 30)
         # Un mouvement par photo, alterné : on zoome, puis on dézoome. Deux photos qui bougent
         # pareil de suite donnent une impression de diaporama de vacances.
         if i % 2 == 0:
-            z = "min(1.001+0.00085*on,1.075)"
+            z = "min(1.001+%.5f*on,1.075)" % (0.074 / max(1, img))
         else:
-            z = "max(1.075-0.00085*on,1.001)"
+            z = "max(1.075-%.5f*on,1.001)" % (0.074 / max(1, img))
         filtres.append(
             "[%d:v]scale=%d:%d:flags=lanczos,"
             "zoompan=z='%s':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=%d:s=%dx%d:fps=30,"
@@ -124,8 +129,8 @@ def monter(ref, mot, texte_accroche, lignes, sortie, tmp, prive=False):
     for i, ligne in enumerate(lignes[:max(0, n - 1)]):
         if not ligne:
             continue
-        d0 = (i + 1) * PAR_PHOTO + 0.15
-        d1 = min((i + 2) * PAR_PHOTO - 0.15, total - 2.75)
+        d0 = (i + 1) * par_photo + 0.15
+        d1 = min((i + 2) * par_photo - 0.15, total - 2.75)
         if d1 - d0 < 0.6:
             continue
         fm = os.path.join(tmp, 'mot%d.png' % i)
@@ -175,11 +180,12 @@ def main():
     a.add_argument('--lignes', nargs='*', default=[], help="Une ligne courte par photo, à partir de la 2e")
     a.add_argument('--sortie')
     a.add_argument('--prive', action='store_true')
+    a.add_argument('--par-photo', type=float, dest='par_photo', help="Secondes par photo ; sinon calcule pour tenir au moins %d s" % DUREE_MINI)
     o = a.parse_args()
     sortie = o.sortie or os.path.join(RACINE, 'assets', 'biens', o.ref, 'video.mp4')
     os.makedirs(os.path.dirname(sortie), exist_ok=True)
     with tempfile.TemporaryDirectory() as tmp:
-        total, n, couv = monter(o.ref, o.mot, o.accroche, o.lignes, sortie, tmp, o.prive)
+        total, n, couv = monter(o.ref, o.mot, o.accroche, o.lignes, sortie, tmp, o.prive, o.par_photo)
     print('%s : %d photos, %.1f s, %.1f Mo' % (sortie, n, total, os.path.getsize(sortie) / 1048576))
     print('couverture : %s' % couv)
 

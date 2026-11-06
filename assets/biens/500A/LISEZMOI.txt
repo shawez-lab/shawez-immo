@@ -1,0 +1,13 @@
+Allerey-sur-Saone, propriete 206 m2 avec parc, piscine et dependance, Coup de coeur.
+
+L'annonce n'a que TROIS photos, et les trois sont exterieures : une vue aerienne, une
+serre, un portail. Le Reel monte le 06/11/2026 a partir de ces trois photos est dans
+video-brouillon.mp4. Il est techniquement correct et commercialement faible : on y voit
+une serre pendant qu'un texte annonce 206 m2 habitables, et pas une seule piece.
+
+Il n'est donc pas nomme video.mp4, pour que choisir.py ne le prenne pas, et il n'a pas
+de mot-cle ManyChat. Des qu'il y a des photos d'interieur dans l'annonce, relancer :
+
+    python3 outils/biens/diaporama.py 500A --mot <MOT> --accroche "..." --lignes "..." ...
+
+et creer l'automatisation ManyChat du mot-cle avant la premiere diffusion.
