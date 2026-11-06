@@ -43,6 +43,8 @@ npm ci
 npm run test:node     # lance son propre site local (port 8893, base D1 neuve) et sa fausse boîte d'envoi
 ```
 
+`node/compteur.test.mjs` : le compteur « visiteurs → demandes → RDV » (/api/mesure-site, /admin/stats/) : aucun cookie,
+robots et essais « TEST » jamais comptés, pages privées regroupées, résultats réservés à l'agence (401/403), taux exacts.
 `node/unitaires.test.mjs` (règles de `functions/_lib/base.js` et des pages privées) et `node/auth-droits.test.mjs` :
 origine des requêtes, cookie de session, un client ne voit jamais l'agence ni les données d'un autre client, adresse de
 l'agence sans preuve par e-mail, lien à usage unique, trop d'essais de mot de passe, déconnexion de tous les appareils,

@@ -1211,13 +1211,43 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 .hq-list i{grid-row:1 / span 2;grid-column:2;align-self:center;font-style:normal;color:var(--accent-text);}
 .hq-list a:hover b{text-decoration:underline;text-underline-offset:4px;}
 </style>
+<style id="v3-a11y">
+.hero-pause{position:absolute;z-index:3;right:var(--gutter,20px);top:calc(var(--nav-h,64px) + env(safe-area-inset-top,0px) + 12px);width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.45);background:rgba(15,14,12,.55);color:#fff;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0;}
+.hero-pause[hidden]{display:none;}
+.hero-pause:hover{background:rgba(15,14,12,.8);}
+.hero-pause:focus-visible{outline:2px solid #E3B341;outline-offset:3px;}
+.hero-pause svg{fill:currentColor;}
+.hero-pause .ic-play{display:none;}
+.hero-pause[aria-pressed="true"] .ic-play{display:inline;}
+.hero-pause[aria-pressed="true"] .ic-pause{display:none;}
+</style>
+<style id="v3-entete">
+/* Vague 3 — action 24 : sur téléphone, « Estimer » + téléphone dans l'en-tête dès le premier écran ; action 30 : lien d'évitement */
+.skip{position:absolute;left:12px;top:-60px;z-index:300;padding:12px 18px;border-radius:999px;background:#0F0E0C;color:#F3EFE6;font-weight:600;text-decoration:none;transition:top .2s;}
+.skip:focus{top:12px;outline:2px solid #E2B33C;outline-offset:3px;}
+.nav-tel-ico{display:none;}
+.brand .lgm{height:34px;width:auto;}
+.cta-court{display:none;}
+@media(min-width:481px){.brand .lgm{display:none!important;}}
+@media(max-width:480px){
+  .brand img:not(.lgm){display:none!important;}
+  #nav .nav-cta{gap:8px;}
+  #nav .nav-cta .btn-primary{display:inline-flex!important;align-items:center;min-height:44px;padding-inline:16px;font-size:.92rem;}
+  #nav .cta-long{display:none;} #nav .cta-court{display:inline;}
+  #nav .nav-tel-ico{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;flex:0 0 auto;border:1px solid currentColor;border-radius:999px;color:inherit;}
+  #nav .nav-compte,#nav #burger{height:44px;} #nav .nav-compte{width:44px;}
+  body[data-route^="/estimer"] #nav .nav-cta .btn-primary{display:none!important;}
+}
+@media(max-width:350px){#nav #burger{padding:0 12px;}}
+</style>
 </head>
 <body data-route="/">
 <script>try{if(!matchMedia('(prefers-reduced-motion:reduce)').matches){document.documentElement.classList.add('hero-wait');if(!sessionStorage.getItem('intro'))document.documentElement.classList.add('curtain-on');}}catch(e){}</script>
 <div id="curtain" aria-hidden="true"><div class="c-in"><svg class="c-mono" viewBox="0 0 738.000000 676.000000" role="presentation"><g transform="translate(0.000000,676.000000) scale(1.000000,-1.000000)"><path pathLength="1" d="M200 673 c-17 -3 -35 -8 -44 -12 -9 -4 -28 -13 -33 -17 -2 -1 -3 -2 -4 -2 -1 0 -1 0 -1 -1 0 0 -1 -1 -3 -2 -2 -1 -4 -3 -4 -3 -1 -1 -4 -4 -7 -6 -7 -6 -14 -13 -20 -20 -2 -3 -5 -6 -5 -6 0 0 -3 -5 -7 -9 -5 -9 -8 -15 -12 -24 -1 -3 -3 -5 -3 -6 -1 -1 -1 -3 -1 -4 0 -1 0 -2 -1 -2 -1 -1 -1 -2 -1 -4 0 -2 0 -3 -1 -3 -1 -1 -1 -3 -1 -5 0 -1 0 -4 -1 -5 -3 -9 -3 -36 0 -53 3 -17 6 -24 13 -40 6 -12 23 -37 30 -44 1 -1 4 -5 8 -9 8 -9 22 -23 33 -33 5 -4 9 -8 10 -9 1 -1 4 -4 7 -6 3 -2 6 -5 6 -5 0 0 2 -2 4 -3 2 -2 5 -4 6 -5 1 -1 6 -5 11 -9 5 -3 9 -7 9 -7 0 0 2 -2 4 -3 2 -1 4 -3 4 -3 0 0 2 -2 4 -3 2 -1 4 -3 4 -3 0 0 2 -2 4 -3 2 -1 4 -3 4 -3 0 0 3 -3 7 -5 3 -2 7 -5 8 -6 3 -2 11 -8 27 -19 8 -6 16 -12 16 -12 0 0 2 -2 4 -3 2 -1 4 -3 4 -3 0 0 2 -2 4 -3 2 -1 4 -3 4 -3 0 0 2 -2 4 -3 2 -2 4 -4 5 -4 1 -1 4 -4 8 -7 17 -14 30 -32 36 -47 1 -1 1 -3 2 -4 7 -18 6 -43 -1 -58 -1 -2 -2 -4 -2 -4 0 -4 -18 -26 -25 -32 -3 -1 -5 -3 -5 -3 -1 -2 -10 -7 -16 -10 -4 -2 -8 -4 -9 -4 -1 -1 -3 -1 -3 -1 -1 0 -3 0 -4 -1 -2 -1 -8 -3 -14 -4 -3 0 -8 -1 -11 -2 -5 -1 -156 -2 -156 -1 0 1 13 20 14 22 0 0 1 2 2 3 1 1 2 3 3 4 0 0 2 3 3 5 4 6 7 11 8 12 1 0 1 1 1 1 0 1 5 9 8 12 0 0 1 2 2 3 0 1 1 2 1 2 1 0 1 1 1 1 0 1 3 6 7 11 3 4 6 9 6 9 0 1 1 1 1 2 1 1 13 18 26 38 13 20 25 37 25 37 1 0 1 1 1 1 0 1 3 5 6 9 11 16 12 14 -2 24 -5 3 -9 6 -9 7 -1 0 -4 2 -6 4 -3 2 -7 4 -8 6 -2 1 -4 2 -4 1 -1 0 -7 -9 -7 -10 0 0 -14 -21 -31 -47 -17 -25 -32 -47 -32 -49 -1 -1 -2 -2 -2 -2 -1 0 -1 0 -1 -1 0 -1 -7 -12 -16 -25 -9 -14 -17 -25 -17 -26 -5 -9 -11 -18 -12 -18 -1 0 -1 -1 -1 -1 0 -1 -10 -17 -23 -36 -13 -19 -23 -34 -23 -35 0 0 -6 -9 -7 -10 -1 0 -1 -1 -1 -1 0 -1 -6 -10 -7 -11 -1 -1 -1 -1 -1 -2 2 -1 289 -1 297 1 14 3 33 8 37 10 1 1 2 1 3 1 5 0 41 20 45 25 0 0 2 2 5 3 4 4 21 21 25 26 1 2 3 4 3 4 3 3 14 23 19 34 14 32 15 78 3 109 -1 1 -1 3 -2 4 -4 11 -22 42 -26 45 0 0 -3 3 -5 6 -6 7 -23 24 -32 32 -4 4 -8 7 -8 7 0 0 -4 4 -9 7 -5 4 -9 8 -10 8 -1 1 -3 3 -5 4 -2 1 -4 3 -4 3 0 0 -3 2 -5 4 -5 3 -13 9 -16 11 -1 1 -5 4 -8 6 -4 2 -7 5 -7 5 0 0 -3 3 -7 5 -4 2 -7 5 -7 5 0 0 -3 3 -7 5 -4 2 -7 5 -7 5 0 0 -3 2 -5 4 -5 3 -13 9 -16 11 -1 1 -5 4 -8 6 -4 2 -7 5 -7 5 0 0 -2 2 -4 3 -2 1 -4 3 -5 4 -1 0 -5 4 -10 8 -56 44 -75 86 -56 127 2 4 4 7 4 7 1 0 1 1 1 2 0 1 17 18 21 20 13 7 13 7 20 9 2 1 5 2 7 2 3 2 170 3 170 1 0 -1 -5 -11 -8 -15 -1 -2 -2 -3 -2 -3 0 -1 -2 -4 -4 -8 -2 -3 -5 -8 -6 -10 -1 -1 -3 -5 -4 -6 -1 -2 -4 -7 -6 -10 -2 -4 -4 -7 -4 -8 0 0 -1 -1 -2 -3 -1 -1 -3 -4 -4 -6 -1 -2 -3 -5 -4 -7 -1 -2 -5 -9 -9 -15 -4 -7 -8 -14 -9 -15 -5 -9 -8 -15 -10 -17 -1 -1 -3 -4 -4 -6 -2 -4 -5 -9 -8 -14 -1 -2 -4 -7 -7 -12 -3 -4 -5 -8 -5 -9 0 0 -1 -2 -2 -3 -3 -3 -3 -4 1 -6 2 -1 4 -3 4 -3 1 -1 4 -3 7 -5 4 -3 12 -9 15 -11 1 -1 5 -4 8 -6 4 -2 7 -5 7 -5 1 -1 5 -3 6 -3 2 0 2 0 16 22 7 9 13 18 13 18 1 0 1 1 1 1 0 1 1 2 2 4 1 1 6 7 10 15 5 7 10 13 10 13 1 0 3 -4 6 -8 2 -5 8 -16 12 -25 19 -36 26 -51 40 -77 7 -15 17 -33 20 -39 7 -13 23 -45 47 -93 9 -17 18 -35 21 -40 3 -6 12 -23 20 -38 7 -16 18 -37 24 -48 6 -11 17 -34 26 -51 8 -17 16 -31 16 -32 2 -1 118 -2 119 0 1 1 -1 4 -10 21 -2 4 -8 15 -12 23 -3 7 -9 18 -11 23 -3 4 -8 14 -12 22 -6 12 -10 18 -24 45 -3 6 -9 18 -14 28 -8 16 -14 27 -23 44 -5 9 -17 33 -39 76 -6 12 -16 30 -21 40 -5 10 -16 31 -24 48 -9 17 -20 40 -26 51 -6 11 -19 37 -29 58 -11 20 -23 45 -28 54 -14 26 -46 89 -58 115 l-12 24 -95 0 c-52 0 -97 -1 -99 -1z"/></g></svg><p class="c-name"><span style="--i:0">S</span><span style="--i:1">H</span><span style="--i:2">A</span><span style="--i:3">W</span><span style="--i:4">E</span><span style="--i:5">Z</span><span style="--i:6">&nbsp;</span><span style="--i:7">A</span><span style="--i:8">L</span><span style="--i:9">I</span></p></div></div>
 
+<a class="skip" href="#main">Aller au contenu</a>
 <header id="nav">
-  <a class="brand" href="/" aria-label="Shawez Ali — accueil"><img class="lg-ink" src="/assets/logo-horiz-ink.webp" alt="Shawez Ali" width="1259" height="176" decoding="async"><img class="lg-ivory" src="/assets/logo-horiz-ivory.webp" alt="" width="1259" height="176" decoding="async" aria-hidden="true"></a>
+  <a class="brand" href="/" aria-label="Shawez Ali — accueil"><img class="lg-ink" src="/assets/logo-horiz-ink.webp" alt="Shawez Ali" width="1259" height="176" decoding="async"><img class="lg-ivory" src="/assets/logo-horiz-ivory.webp" alt="" width="1259" height="176" decoding="async" aria-hidden="true"><img class="lg-ink lgm" src="/assets/logo-mono-ink.webp" alt="" width="369" height="338" decoding="async" aria-hidden="true"><img class="lg-ivory lgm" src="/assets/logo-mono-ivory.webp" alt="" width="369" height="338" decoding="async" aria-hidden="true"></a>
   <nav aria-label="Navigation principale">
     <ul class="nav-links">
       <li><a href="/vendre-bien-immobilier-dijon/" data-nav="vendre">Vendre</a></li>
@@ -1232,7 +1262,8 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
   </nav>
   <div class="nav-cta">
     <a class="btn nav-tel" href="tel:+33767579228">07 67 57 92 28</a>
-    <a class="nav-compte" href="/mon-espace/" data-compte aria-label="Mon espace : se connecter" title="Mon espace : se connecter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M4.8 20c.9-3.6 3.7-5.6 7.2-5.6s6.300 2 7.200 5.600"/></svg><span class="nc-txt">Connecté</span><span class="nc-dot" aria-hidden="true"></span></a><a class="btn btn-primary" href="/estimer/"><span>Estimer mon bien</span></a>
+    <a class="nav-tel-ico" href="tel:+33767579228" aria-label="Appeler Shawez au 07 67 57 92 28"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.6a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.8.3 1.7.5 2.6.7a2 2 0 0 1 1.7 2z"/></svg></a>
+    <a class="nav-compte" href="/mon-espace/" data-compte aria-label="Mon espace : se connecter" title="Mon espace : se connecter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M4.8 20c.9-3.6 3.7-5.6 7.2-5.6s6.300 2 7.200 5.600"/></svg><span class="nc-txt">Connecté</span><span class="nc-dot" aria-hidden="true"></span></a><a class="btn btn-primary" href="/estimer/" aria-label="Estimer mon bien"><span class="cta-long">Estimer mon bien</span><span class="cta-court">Estimer</span></a>
     <button id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu">Menu</button>
   </div>
 </header>
@@ -1270,9 +1301,10 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
   <!-- HERO : vidéo plein écran (16:9 sur ordinateur, verticale sur téléphone) -->
   <div id="hero" class="tone-dark" data-tone="dark">
     <div class="hero-media" aria-hidden="true">
-      <video id="hero-video" class="hv hv-main" autoplay muted playsinline loop preload="auto" poster="/hero-poster.webp?v=5" data-poster-m="/hero-poster.webp?v=5" data-poster-d="/film-equipe-bg-poster.webp?v=5" width="720" height="1280"><source data-for="m" data-src="/hero.mp4?v=5" data-src-lent="/hero-720.mp4" type="video/mp4"><source data-for="d" data-src="/film-equipe-bg.mp4?v=hd2" type="video/mp4"></video>
+      <video id="hero-video" class="hv hv-main" autoplay muted playsinline loop preload="auto" poster="/hero-poster.webp?v=5" data-poster-m="/hero-poster.webp?v=5" data-poster-d="/film-equipe-bg-poster.webp?v=5" width="720" height="1280"><source data-for="m" data-src="/hero-540.mp4?v=1" type="video/mp4"><source data-for="d" data-src="/film-equipe-bg.mp4?v=hd2" type="video/mp4"></video>
     </div>
     <div class="hero-veil" aria-hidden="true"></div>
+    <button type="button" class="hero-pause" id="hero-pause" aria-pressed="false" aria-label="Mettre la vidéo en pause" hidden><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path class="ic-pause" d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/><path class="ic-play" d="M8 5.5v13l10.5-6.5z"/></svg></button>
     <div class="hero-in">
       <div class="hero-txt">
         <h1 class="display d-xxl fade"><span class="label hero-kicker h1-kicker">Agent immobilier à Dijon · Côte de Nuits · Beaune</span> Vendez <em>au meilleur prix.</em></h1>
@@ -1720,6 +1752,9 @@ $$('[data-reels-prev],[data-reels-next]').forEach(function(b){ b.addEventListene
 /* hero : lecture automatique (iPhone : muted posé en JS, relances) */
 var heroV=$('#hero-video');
 var heroSides=[];
+/* bouton pause de la vidéo d'accueil (accessibilité : toute vidéo qui bouge plus de 5 s peut être arrêtée) */
+var heroStop=false, heroBtn=$('#hero-pause');
+if(heroBtn&&heroV&&AUTOPLAY){ heroBtn.hidden=false; heroBtn.addEventListener('click',function(){ heroStop=!heroStop; heroBtn.setAttribute('aria-pressed',String(heroStop)); heroBtn.setAttribute('aria-label',heroStop?'Relancer la vidéo':'Mettre la vidéo en pause'); if(heroStop){ heroV.pause(); } else { ensurePlay(heroV); } }); }
 /* deux <source> : la bonne est choisie par matchMedia (l'attribut media sur <source> est mal suivi) */
 var heroMQ=matchMedia('(min-width:900px)');
 function heroPick(){ if(!heroV)return; var want=heroMQ.matches?'d':'m'; if(heroV.getAttribute('data-kind')===want)return;
@@ -1734,7 +1769,7 @@ if(heroMQ.addEventListener){heroMQ.addEventListener('change',function(){heroPick
 if(heroV&&!AUTOPLAY){ heroV.removeAttribute('autoplay'); heroV.pause(); }
 function kickVideos(){
   if(!AUTOPLAY||document.hidden)return;
-  if(current==='/'){ if(heroV)ensurePlay(heroV); heroSides.forEach(function(v){ if(v.getAttribute('src'))playMuted(v); }); }
+  if(current==='/'&&!heroStop){ if(heroV)ensurePlay(heroV); heroSides.forEach(function(v){ if(v.getAttribute('src'))playMuted(v); }); }
   $$('.reel').forEach(function(fig){ if(fig.dataset.vis==='1'&&!fig.closest('[hidden]')){ var v=$('video',fig); if(v&&v.paused)ensurePlay(v); } });
 }
 kickVideos();
@@ -1996,5 +2031,6 @@ window.EECompte();window.addEventListener('pageshow',window.EECompte);
 </script>
 <script src="/assets/rdv.js?v=3" defer></script>
 <script src="/assets/oai-mesure.js" defer></script>
+<script id="mesure-site">(function(){try{if(/[?&]test\b/i.test(location.search)||navigator.webdriver)return;var s=window.sessionStorage,n=!s.getItem("ms-v");s.setItem("ms-v","1");var r="";if(n&&document.referrer){try{var h=new URL(document.referrer).hostname;if(h!==location.hostname)r=h;}catch(e){}}var u=n?(new URLSearchParams(location.search).get("utm_source")||"").slice(0,40):"";fetch("/api/mesure-site",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({p:location.pathname,n:n?1:0,r:r,u:u}),keepalive:true,credentials:"omit"}).catch(function(){});}catch(e){}})();</script>
 </body>
 </html>

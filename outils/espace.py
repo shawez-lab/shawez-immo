@@ -125,6 +125,9 @@ window.EECompte=function(){var on=/(?:^|;\\s*)se_ok=1/.test(document.cookie||'')
 window.EECompte();window.addEventListener('pageshow',window.EECompte);
 """
 CTA = '<a class="btn btn-primary" href="/estimer/"><span>Estimer mon bien</span></a>'
+# en-tête vague 3 (outils/entete.py) : même bouton, avec « Estimer » court sur téléphone
+CTA_V3 = ('<a class="btn btn-primary" href="/estimer/" aria-label="Estimer mon bien"><span class="cta-long">Estimer mon bien</span>'
+          '<span class="cta-court">Estimer</span></a>')
 MENU = '<a class="m-alt" href="/estimation-immobiliere-dijon/">Estimation chez vous, offerte</a>'
 MENU_ESPACE = '<a class="m-alt" href="/mon-espace/" data-compte><span data-compte-txt>Mon espace</span></a>'
 PIED = '<li><a href="/contact/">Contact</a></li>'
@@ -144,10 +147,11 @@ def pictogramme():
         t = s
         # en-tête : le pictogramme juste avant le bouton « Estimer mon bien »
         t = re.sub(r'<a class="nav-compte".*?</a>', '', t, flags=re.S)
-        if CTA not in t:
+        cta = CTA_V3 if CTA_V3 in t else CTA
+        if cta not in t:
             print(f'  {rel} : bouton « Estimer mon bien » de l\'en-tête introuvable, pictogramme non posé')
             continue
-        t = t.replace(CTA, PICTO + CTA, 1)
+        t = t.replace(cta, PICTO + cta, 1)
         # menu mobile et pied de page
         t = t.replace(MENU_ESPACE, '')
         if MENU in t:
@@ -370,6 +374,14 @@ def page(nom, conf, gabarit, css, commun):
     s = re.sub(r'<body data-route="[^"]*"', f'<body data-route="{conf["route"]}"', s, count=1)
     main = lire(os.path.join(SRC, f'{nom}.html'))
     s = re.sub(r'<main id="main">.*?</main>', lambda m: f'<main id="main">\n{main}</main>', s, count=1, flags=re.S)
+    # blocs de preuve sociale (photo + note Google datée), posés par outils/avis.py depuis avis.json : gardés d'une construction à l'autre
+    cible_av = os.path.join(RACINE, dossier, 'index.html')
+    if os.path.exists(cible_av):
+        avant = lire(cible_av)
+        for tag in re.findall(r'<!-- avis:([\w-]+) -->', s):
+            m = re.search(r'<!-- avis:%s -->.*?<!-- /avis:%s -->' % (re.escape(tag), re.escape(tag)), avant, flags=re.S)
+            if m:
+                s = re.sub(r'<!-- avis:%s -->.*?<!-- /avis:%s -->' % (re.escape(tag), re.escape(tag)), lambda _: m.group(0), s, count=1, flags=re.S)
     js = lire(os.path.join(SRC, f'{nom}.js'))
     s = re.sub(r'<script id="espace-js">.*?</script>\n?', '', s, flags=re.S)
     s = s.replace('</body>', f'<script id="espace-js">\n{commun}\n{js}</script>\n</body>', 1)
