@@ -21,6 +21,7 @@ nom de vendeur, c'est public.
         --lignes "Entièrement rénovées" "Au cœur du village viticole" "141 m² habitables"
 """
 import argparse
+import io
 import json
 import os
 import subprocess
@@ -163,6 +164,19 @@ def monter(ref, mot, texte_accroche, lignes, sortie, tmp, prive=False, par_photo
         '-t', '%.3f' % total, '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '19',
         '-profile:v', 'high', '-level', '4.2', '-maxrate', '9M', '-bufsize', '18M', '-g', '60',
         '-r', '30', '-c:a', 'aac', '-b:a', '128k', '-movflags', '+faststart', sortie], check=True)
+
+    # Marqueur : ce video.mp4 n'est pas un rush, c'est un Reel fini, textes incrustes compris.
+    # Sans lui, le Monteur le prendrait pour une source et recouperait dedans en rajoutant
+    # SES propres incrustations par-dessus les miennes. Deux accroches et deux pastilles
+    # jaunes sur la meme image : ce serait illisible et ca partirait tout seul.
+    marque = os.path.join(os.path.dirname(sortie), 'diaporama.json')
+    with io.open(marque, 'w', encoding='utf-8') as f:
+        json.dump({'fabrique_le': __import__('datetime').date.today().isoformat(),
+                   'outil': 'outils/biens/diaporama.py',
+                   'photos': n, 'duree': round(total, 2), 'mot': mot,
+                   'pourquoi': "Reel deja monte a partir des photos de l'annonce, textes incrustes. "
+                               "Ne pas le remonter : publie-le tel quel."},
+                  f, ensure_ascii=False, indent=2)
 
     couv = os.path.splitext(sortie)[0] + '-cover.jpg'
     subprocess.run(['ffmpeg', '-v', 'error', '-y', '-ss', '0.5', '-i', sortie,
