@@ -1,0 +1,349 @@
+{
+ "jour": "2026-11-06",
+ "outil": "outils/biens/diaporama.py (les quatre biens n'ont qu'un Reel photo fini, fabriquer.py refuse de le recouper : chaque version est un nouveau diaporama, autre accroche, autre ordre de photos)",
+ "ecartes": {
+  "452IMMEUBLE": "video : Shawez face caméra avec sous-titres incrustés",
+  "425": "video : Shawez face caméra avec sous-titres incrustés (et sujet SCI, sans rapport avec le bien)",
+  "513": "video : Shawez face caméra avec sous-titres incrustés (et sujet immeuble de 8 appartements, sans rapport avec le studio)",
+  "403": "video : Shawez face caméra avec sous-titres incrustés",
+  "431": "video : Shawez face caméra avec sous-titres incrustés"
+ },
+ "biens": [
+  {
+   "ref": "494",
+   "src": "assets/biens/494/video.mp4",
+   "mot": "BISTRO",
+   "nom": "bistro",
+   "versions": [
+    {
+     "id": "v1",
+     "style": "revelation",
+     "instagram": true,
+     "accroche": "Derrière cette façade,|une salle de bal",
+     "photos": [
+      2,
+      7,
+      12,
+      4,
+      18,
+      22
+     ],
+     "lignes": [
+      "Ancienne salle de bal",
+      "340 m² en tout"
+     ],
+     "legende": "Un ancien bistro de Bragny-sur-Saône qui cache encore sa salle de bal d’origine, sur environ 340 m² 🎶\n\nCommente BISTRO et je t’envoie la visite complète en privé 📩\n\n#salledebal #ancienbistro #saoneetloire #bienatypique #patrimoinerural"
+    },
+    {
+     "id": "v2",
+     "style": "question",
+     "instagram": false,
+     "accroche": "Tu en fais quoi|de cet ancien bistro ?",
+     "photos": [
+      1,
+      4,
+      10,
+      6,
+      14,
+      3
+     ],
+     "lignes": [
+      "Chambres d’hôtes ?",
+      "Maison de famille ?"
+     ],
+     "legende": "Chambres d’hôtes, grande maison de famille ou projet touristique : cet ancien bistro attend son idée 💡\n\nCommente BISTRO et je t’envoie la visite complète en privé 📩\n\n#chambresdhotes #projetimmobilier #bourgogne #maisonavendre #areinventer"
+    },
+    {
+     "id": "v3",
+     "style": "chiffre_choc",
+     "instagram": false,
+     "accroche": "Tu signes pour 340 m²|à 120 000 € ?",
+     "photos": [
+      3,
+      6,
+      23,
+      12,
+      8,
+      22
+     ],
+     "lignes": [
+      "Garage d’environ 96 m²",
+      "543 m² de terrain"
+     ],
+     "legende": "120 000 € pour un ensemble d’environ 340 m² avec dépendances, garage et 543 m² de terrain 🔑\n\nCommente BISTRO et je t’envoie la visite complète en privé 📩\n\n#grandvolume #investissementimmobilier #immobilierbourgogne #dependances #bragnysursaone"
+    },
+    {
+     "id": "v4",
+     "style": "revelation",
+     "instagram": false,
+     "accroche": "Tu pensais voir une grange ?|Pousse la porte",
+     "photos": [
+      22,
+      5,
+      13,
+      15,
+      4,
+      12
+     ],
+     "lignes": [
+      "Trois niveaux",
+      "Chargé d’histoire"
+     ],
+     "legende": "Trois niveaux d’habitation, une ancienne salle de bal et des dépendances : un bien rare, chargé d’histoire 🏚️\n\nCommente BISTRO et je t’envoie la visite complète en privé 📩\n\n#maisondecaractere #histoirelocale #renovation #immobilierancien #valdesaone"
+    }
+   ]
+  },
+  {
+   "ref": "481",
+   "src": "assets/biens/481/video.mp4",
+   "mot": "ETUDIANT",
+   "nom": "t2-etudiant",
+   "versions": [
+    {
+     "id": "v1",
+     "style": "question",
+     "instagram": true,
+     "accroche": "Ton premier appart,|tu le prends ici ?",
+     "photos": [
+      1,
+      4,
+      8,
+      10,
+      2,
+      9
+     ],
+     "lignes": [
+      "28,66 m²",
+      "Chambre séparée"
+     ],
+     "legende": "Un T2 de 28,66 m² avec chambre séparée, dans une résidence étudiante à Dijon, affiché 66 900 € 🎓\n\nCommente ETUDIANT et je t’envoie la visite complète en privé 📩\n\n#premierachat #dijon #residenceetudiante #appartementt2 #immobilierdijon"
+    },
+    {
+     "id": "v2",
+     "style": "revelation",
+     "instagram": false,
+     "accroche": "Derrière cette porte,|un T2 de 28,66 m²",
+     "photos": [
+      11,
+      7,
+      4,
+      8,
+      10,
+      3
+     ],
+     "lignes": [
+      "Kitchenette",
+      "Salle d’eau"
+     ],
+     "legende": "Une entrée, une pièce principale avec kitchenette, une chambre séparée et une salle d’eau 🚪\n\nCommente ETUDIANT et je t’envoie la visite complète en privé 📩\n\n#petitesurface #t2dijon #viedetudiant #appartementavendre #bourgogne"
+    },
+    {
+     "id": "v3",
+     "style": "question",
+     "instagram": false,
+     "accroche": "Salle de sport en bas,|tu dis oui ?",
+     "photos": [
+      3,
+      2,
+      5,
+      9,
+      7,
+      12
+     ],
+     "lignes": [
+      "Salle de détente",
+      "Wi-Fi inclus"
+     ],
+     "legende": "Salle de sport, salle de détente, Wi-Fi et accueil inclus dans la résidence. Il ne manque que toi 🏋️\n\nCommente ETUDIANT et je t’envoie la visite complète en privé 📩\n\n#sallesport #residenceservices #etudiantdijon #immobilier #cotedor"
+    },
+    {
+     "id": "v4",
+     "style": "detail_surprenant",
+     "instagram": false,
+     "accroche": "Une vraie chambre séparée,|oui c'est possible",
+     "photos": [
+      9,
+      6,
+      4,
+      10,
+      1,
+      8
+     ],
+     "lignes": [
+      "Résidence étudiante",
+      "À Dijon"
+     ],
+     "legende": "Pas un studio : une vraie chambre séparée, avec la pièce principale et la kitchenette à côté 🛏️\n\nCommente ETUDIANT et je t’envoie la visite complète en privé 📩\n\n#chambreseparee #optimisation #logementetudiant #dijonville #achatimmobilier"
+    }
+   ]
+  },
+  {
+   "ref": "446",
+   "src": "assets/biens/446/video.mp4",
+   "mot": "MONTCHAPET",
+   "nom": "t2-montchapet",
+   "versions": [
+    {
+     "id": "v1",
+     "style": "revelation",
+     "instagram": true,
+     "accroche": "Ouvre cette porte :|26 m² de séjour",
+     "photos": [
+      6,
+      1,
+      2,
+      3,
+      7,
+      10
+     ],
+     "lignes": [
+      "Cuisine ouverte",
+      "Chambre de 14 m²"
+     ],
+     "legende": "Derrière l’entrée, un séjour d’environ 26 m² avec cuisine ouverte équipée, dans un T2 entièrement rénové ✨\n\nCommente MONTCHAPET et je t’envoie la visite complète en privé 📩\n\n#montchapet #dijon #appartementrenove #cuisineouverte #immobilierdijon"
+    },
+    {
+     "id": "v2",
+     "style": "question",
+     "instagram": false,
+     "accroche": "Premier achat à Dijon,|tu visites ?",
+     "photos": [
+      2,
+      3,
+      8,
+      4,
+      11,
+      1
+     ],
+     "lignes": [
+      "Entièrement rénové",
+      "Bas Montchapet"
+     ],
+     "legende": "Un T2 de 45,20 m² en rez-de-chaussée d’une petite copropriété, prêt à habiter 🏠\n\nCommente MONTCHAPET et je t’envoie la visite complète en privé 📩\n\n#premierachat #t2 #petitecopropriete #dijonimmobilier #bourgogne"
+    },
+    {
+     "id": "v3",
+     "style": "revelation",
+     "instagram": false,
+     "accroche": "Regarde derrière|la porte de la chambre",
+     "photos": [
+      1,
+      8,
+      7,
+      10,
+      9,
+      2
+     ],
+     "lignes": [
+      "Parquet chêne",
+      "Salle d’eau"
+     ],
+     "legende": "Une belle chambre séparée de 14 m² en parquet chêne, et une salle d’eau avec douche juste à côté 🪵\n\nCommente MONTCHAPET et je t’envoie la visite complète en privé 📩\n\n#parquetchene #chambre #renovationcomplete #appartementavendre #cotedor"
+    },
+    {
+     "id": "v4",
+     "style": "question",
+     "instagram": false,
+     "accroche": "Rien à refaire,|tu emménages quand ?",
+     "photos": [
+      3,
+      9,
+      2,
+      7,
+      11,
+      6
+     ],
+     "lignes": [
+      "Appartement fibré",
+      "Cave et grenier"
+     ],
+     "legende": "Double vitrage, chaudière à condensation, fibre, et une cave accessible depuis le logement. Tu poses tes cartons 📦\n\nCommente MONTCHAPET et je t’envoie la visite complète en privé 📩\n\n#pretahabiter #demenagement #dijon #investissementlocatif #immo"
+    }
+   ]
+  },
+  {
+   "ref": "507",
+   "src": "assets/biens/507/video.mp4",
+   "mot": "POTENTIEL",
+   "nom": "t2-potentiel",
+   "versions": [
+    {
+     "id": "v1",
+     "style": "revelation",
+     "instagram": true,
+     "accroche": "Une cave voûtée cachée|sous cet appartement",
+     "photos": [
+      1,
+      3,
+      8,
+      2,
+      11,
+      10
+     ],
+     "lignes": [
+      "Deux cheminées",
+      "Chambre de 20 m²"
+     ],
+     "legende": "Un T2 au charme de l’ancien, et en dessous une grande cave voûtée de plus de 15 m² 🧱\n\nCommente POTENTIEL et je t’envoie la visite complète en privé 📩\n\n#cavevoutee #charmedelancien #dijon #immobilierancien #t2avendre"
+    },
+    {
+     "id": "v2",
+     "style": "question",
+     "instagram": false,
+     "accroche": "Deux belles cheminées,|tu allumes laquelle ?",
+     "photos": [
+      8,
+      3,
+      1,
+      2,
+      4,
+      9
+     ],
+     "lignes": [
+      "Charme de l’ancien",
+      "Premier étage"
+     ],
+     "legende": "Deux belles cheminées en bon état, un parquet et des volumes d’ancien, au premier étage à Dijon 🔥\n\nCommente POTENTIEL et je t’envoie la visite complète en privé 📩\n\n#cheminee #appartementancien #dijoncentre #decoration #bourgognefranchecomte"
+    },
+    {
+     "id": "v3",
+     "style": "question",
+     "instagram": false,
+     "accroche": "Tu oses rafraîchir|ce T2 de 44 m² ?",
+     "photos": [
+      2,
+      1,
+      5,
+      7,
+      10,
+      3
+     ],
+     "lignes": [
+      "Parquet",
+      "Cave de 15 m²"
+     ],
+     "legende": "44,30 m² Carrez, un rafraîchissement global à prévoir, et tout le charme de l’ancien à garder 🎨\n\nCommente POTENTIEL et je t’envoie la visite complète en privé 📩\n\n#arenover #rafraichissement #projetdeco #immobilierdijon #avantapres"
+    },
+    {
+     "id": "v4",
+     "style": "question",
+     "instagram": false,
+     "accroche": "Une chambre de 20 m²,|tu y mets quoi ?",
+     "photos": [
+      2,
+      3,
+      4,
+      6,
+      9,
+      1
+     ],
+     "lignes": [
+      "Séjour de 15 m²",
+      "Cave voûtée"
+     ],
+     "legende": "Une grande chambre de 20 m² avec parquet, un séjour de 15 m² et une cave voûtée, dans une copropriété ancienne 🛋️\n\nCommente POTENTIEL et je t’envoie la visite complète en privé 📩\n\n#grandechambre #t2 #dijon #parquetancien #achatappartement"
+    }
+   ]
+  }
+ ]
+}
