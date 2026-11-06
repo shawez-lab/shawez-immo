@@ -1,0 +1,29 @@
+LOGO SHAWEZ ALI IMMOBILIER
+Refait en vectoriel le 6 novembre 2026, à partir des fichiers du site.
+
+QUOI PRENDRE, SELON L'USAGE
+
+  Imprimeur, enseigne, kakémono, flocage      ->  PDF/  (vectoriel, s'agrandit sans limite)
+  Site, Canva, PowerPoint, Word, mail          ->  SVG/  (vectoriel aussi, net partout)
+  Réseaux sociaux, photo de profil, montage    ->  PNG/  (3000 px de large, fond transparent)
+
+LES QUATRE VERSIONS
+
+  vertical                   le logo complet, monogramme au-dessus du nom. Le principal.
+  horizontal                 monogramme à gauche, nom à droite, avec IMMOBILIER.
+                             Pour un bandeau, un en-tête de document, une signature de mail.
+  horizontal-sans-baseline   le même, sans IMMOBILIER. Quand la place manque en hauteur.
+  monogramme                 le SA seul. Photo de profil, tampon, filigrane, favicon.
+
+LES TROIS TEINTES
+
+  encre    #14140F   sur fond clair. C'est la version par défaut.
+  ivoire   #F7F4EF   sur fond sombre. Légèrement chaud, pas un blanc d'écran.
+  blanc    #FFFFFF   sur photo ou fond coloré, quand il faut du contraste pur.
+
+Les PNG ont un fond transparent : le logo blanc n'apparaît pas sur une page blanche,
+c'est normal, posez-le sur une image ou un aplat sombre.
+
+Le fichier d'origine était en 1030 px de large, ce qui ne suffisait pas pour l'impression.
+Le tracé a été refait à partir de ce fichier, sans rien redessiner : les contours sont
+maintenant des courbes, donc utilisables en grand format.
