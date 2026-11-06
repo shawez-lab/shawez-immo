@@ -113,3 +113,7 @@ Chaque passage de `outils/sync_annonces.py` ajoute ici les changements constaté
 - Nouvelle annonce 469 : Maison à Neuilly-Crimolois, 235 000 €.
 - Annonce Combottes : absente des pages de l'agence et fiche hors ligne, sans mention → « retirée ».
 - Annonce PREF : absente des pages de l'agence et fiche hors ligne, sans mention → « retirée ».
+
+## 2026-11-06
+
+- Annonce PREF : statut « retirée » → « sous offre » (mention de l'agence : Sous-offre, Coup de coeur).
