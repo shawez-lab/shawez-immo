@@ -172,6 +172,18 @@
     },
     "lumiere": {
       "ref": "501"
+    },
+    "couchey": {
+      "ref": "509"
+    },
+    "bistro": {
+      "ref": "494"
+    },
+    "chenove": {
+      "ref": "529"
+    },
+    "jardin": {
+      "ref": "394"
     }
   },
   "commentaires_manychat": [
@@ -185,7 +197,11 @@
     "chevigny",
     "lumiere",
     "duplex",
-    "architecte"
+    "architecte",
+    "couchey",
+    "bistro",
+    "chenove",
+    "jardin"
   ],
   "en_essai": [
     {
@@ -250,6 +266,34 @@
       "libelle": "le duplex en plein cœur de Dijon",
       "depuis": "2026-11-04",
       "jusqu_au": "2026-11-15"
+    },
+    {
+      "mot": "COUCHEY",
+      "ref": "509",
+      "libelle": "les deux maisons de Couchey",
+      "depuis": "2026-11-06",
+      "jusqu_au": "2026-12-06"
+    },
+    {
+      "mot": "BISTRO",
+      "ref": "494",
+      "libelle": "l’ancien bistro de Bragny-sur-Saône",
+      "depuis": "2026-11-06",
+      "jusqu_au": "2026-12-06"
+    },
+    {
+      "mot": "CHENOVE",
+      "ref": "529",
+      "libelle": "la maison traversante de Chenôve",
+      "depuis": "2026-11-06",
+      "jusqu_au": "2026-12-06"
+    },
+    {
+      "mot": "JARDIN",
+      "ref": "394",
+      "libelle": "la maison dijonnaise et son terrain de 773 m²",
+      "depuis": "2026-11-06",
+      "jusqu_au": "2026-12-06"
     }
   ]
 }
