@@ -189,13 +189,6 @@
   ],
   "en_essai": [
     {
-      "mot": "LOFT",
-      "ref": "483",
-      "libelle": "le loft avec spa en plein Dijon",
-      "depuis": "2026-10-27",
-      "jusqu_au": "2026-11-04"
-    },
-    {
       "mot": "NEUILLY",
       "ref": "525",
       "libelle": "la maison de Neuilly-Crimolois",
@@ -221,7 +214,7 @@
       "ref": "438",
       "libelle": "le château près de Beaune",
       "depuis": "2026-11-02",
-      "jusqu_au": "2026-11-13"
+      "jusqu_au": "2026-11-15"
     },
     {
       "mot": "T5",
@@ -242,21 +235,21 @@
       "ref": "520",
       "libelle": "l’appartement T3 avec jardin de Chevigny-Saint-Sauveur",
       "depuis": "2026-11-03",
-      "jusqu_au": "2026-11-13"
+      "jusqu_au": "2026-11-15"
     },
     {
       "mot": "LUMIÈRE",
       "ref": "501",
       "libelle": "l’appartement T3 lumineux à Dijon",
       "depuis": "2026-11-03",
-      "jusqu_au": "2026-11-13"
+      "jusqu_au": "2026-11-15"
     },
     {
       "mot": "DUPLEX",
       "ref": "415",
       "libelle": "le duplex en plein cœur de Dijon",
       "depuis": "2026-11-04",
-      "jusqu_au": "2026-11-13"
+      "jusqu_au": "2026-11-15"
     }
   ]
 }
