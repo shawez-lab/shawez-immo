@@ -1,0 +1,4 @@
+# Master social de l'hôtel particulier de Beaune (527), 1080x1920, 84,7 s, 52 Mo.
+# Il ne peut pas vivre dans le dépôt : Cloudflare Pages refuse tout fichier de plus de 25 Mio.
+# Le fichier du site, video.mp4, est en 720 : ne t'en sers jamais comme master Instagram.
+~/TrialReels-Studio/inputs/Dew_FiqtKYj.mp4
