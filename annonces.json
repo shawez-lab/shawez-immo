@@ -425,6 +425,91 @@
    "type": "Duplex",
    "visite_virtuelle": null
   },
+  "415A": {
+   "caracteristiques": {
+    "balcon": "NON",
+    "cave": "OUI",
+    "copropriete": "OUI",
+    "copropriete_lot": "28",
+    "copropriete_nb_lot": "12",
+    "copropriete_plan_sauvegarde": "NON",
+    "copropriete_quote_part": "2 184 €",
+    "copropriete_statut_syndicat": "pas de procédure en cours",
+    "cp": "21000",
+    "cuisine": "Américaine",
+    "format_chauffage": "Individuel, Individuel",
+    "interphone": "OUI",
+    "mode_chauffage": "Gaz, Bois",
+    "nbchambres": "2",
+    "nbetage": "2",
+    "nbniveaux": "2",
+    "nbpiecees": "3",
+    "nbsdb": "1",
+    "nbse": "1",
+    "prix_honoraires_inclus": "220 000 €",
+    "surf_carrez": "69,89 m²",
+    "terrasse": "NON",
+    "type_chauffage": "Radiateur, Poêle",
+    "type_cuisine": "Equipée",
+    "visiophone": "NON"
+   },
+   "chemin": "/vente/1-dijon/duplex/t3/739-bien/",
+   "commune": "Dijon",
+   "compo_agence": "3 pièces - 92,93 m²",
+   "cp": "21000",
+   "description_expurgee": "En plein coeur de Dijon, superbe duplex de 92m2 au sol (69m2 loi carrez) 2ème et dernier étage sans ascenseur, ce duplex vous séduira par sa belle pièce de vie avec cuisine amércaine de 49m2, une salle d'eau avec wc et une chambre avec placards. A l'étage une belle chambre avec sa salle de bains privative. Charme et authenticité pour cet appartement avec sa cheminée fonctionnelle. Chauffage individuel et production d'eau chaude au gaz. Risques consultables sur : georisques.gouv.fr 2.16.1.2",
+   "dpe": null,
+   "energie": "entre 1 300 € et 1 810 €",
+   "first_seen": "2026-11-06",
+   "ges": null,
+   "honoraires_texte": null,
+   "id": "739",
+   "last_seen": "2026-11-06",
+   "mentions_agence": [
+    "Sous-offre",
+    "Coup de coeur"
+   ],
+   "photos": {
+    "fichiers": [
+     "1.jpg",
+     "2.jpg",
+     "3.jpg",
+     "4.jpg",
+     "5.jpg",
+     "6.jpg",
+     "7.jpg",
+     "8.jpg",
+     "9.jpg",
+     "10.jpg",
+     "11.jpg",
+     "12.jpg",
+     "13.jpg"
+    ],
+    "sources": {
+     "1/efe223b795d54f8f458e2053cbb959dd/photo_0f168e18da7c472b53055d31026b4454.jpg": "8.jpg",
+     "1/efe223b795d54f8f458e2053cbb959dd/photo_1d7ef535547e5d708bc978562b931b90.jpg": "4.jpg",
+     "1/efe223b795d54f8f458e2053cbb959dd/photo_2964f9492e4926311a939bf1987c734d.jpg": "2.jpg",
+     "1/efe223b795d54f8f458e2053cbb959dd/photo_34ddccf5dac0c3e1bb5e47c2b3dd65d2.jpg": "1.jpg",
+     "1/efe223b795d54f8f458e2053cbb959dd/photo_3885f431edac240b62505c67569294c2.jpg": "13.jpg",
+     "1/efe223b795d54f8f458e2053cbb959dd/photo_42b4790ac0a549720fcf37d55a6fa95e.jpg": "7.jpg",
+     "1/efe223b795d54f8f458e2053cbb959dd/photo_57147554c0755a3a5a33aab43e189fdd.jpg": "10.jpg",
+     "1/efe223b795d54f8f458e2053cbb959dd/photo_7244b6fc22d25460408807efb06af8ae.jpg": "12.jpg",
+     "1/efe223b795d54f8f458e2053cbb959dd/photo_91786cd647116cb8f4249028beca9d9a.jpg": "6.jpg",
+     "1/efe223b795d54f8f458e2053cbb959dd/photo_9c36a51a24aca6b0daaa4bbd0af19da6.jpg": "9.jpg",
+     "1/efe223b795d54f8f458e2053cbb959dd/photo_c2fea8ccbbd7de7d17a669841b733719.jpg": "11.jpg",
+     "1/efe223b795d54f8f458e2053cbb959dd/photo_cacf90ad1b776ef2878503e6b5030bf9.jpg": "3.jpg",
+     "1/efe223b795d54f8f458e2053cbb959dd/photo_f78226a2541db3aba1da04c902b334ec.jpg": "5.jpg"
+    }
+   },
+   "pieces": 3,
+   "prix": 220000.0,
+   "ref": "415A",
+   "status": "sous offre",
+   "status_changed": "2026-11-06",
+   "surface": 92.93,
+   "type": "Duplex",
+   "visite_virtuelle": null
+  },
   "425": {
    "caracteristiques": {
     "balcon": "NON",
@@ -1456,6 +1541,94 @@
    "status_changed": "2026-10-10",
    "surface": 44.57,
    "type": "Appartement"
+  },
+  "469": {
+   "caracteristiques": {
+    "copropriete": "NON",
+    "cp": "21800",
+    "cuisine": "Séparée",
+    "format_chauffage": "Individuel",
+    "honoraires_vendeur": "",
+    "mode_chauffage": "Fioul",
+    "nb_garage": "1",
+    "nbchambres": "3",
+    "nbniveaux": "3",
+    "nbpiecees": "5",
+    "nbsdb": "1",
+    "prix_vente": "235 000 €",
+    "surf_carrez": "90,32 m²",
+    "surfterrn": "352 m²",
+    "terrain_arbore": "OUI",
+    "terrasse": "OUI",
+    "type_chauffage": "Chaudière",
+    "type_cuisine": "Equipée",
+    "vue": "rue et cour"
+   },
+   "chemin": "/vente/494-neuilly-crimolois/maison/t5/672-bien/",
+   "commune": "Neuilly-Crimolois",
+   "compo_agence": "5 pièces - 90 m²",
+   "cp": "21800",
+   "description_expurgee": "Située dans une petite rue calme de Neuilly-lès-Dijon, à proximité immédiate de Dijon, des commerces et des transports, cette belle maison T5 jumelée d'un côté seulement vous offre un hall d'entrée, un vaste séjour/salon de 30m², une cuisine indépendante, 3 chambres, une salle de bains complète et des combles aménageables, le tout sur un sous-sol total comprenant garage, buanderie, cuisine d'été et cellier. Le bien est posé sur un terrain clos et arboré de 339m², très calme, et dispose d'une agréable terrasse en entrée de propriété. En bon état général, à rafraîchir selon vos goûts, avec une chaudière fioul récente de 2014. Informations sur les risques : georisques.gouv.fr Les informations sur les risques auxquels ce bien est exposé sont disponibles sur le site Géorisques",
+   "dpe": null,
+   "energie": "entre 2 330 € et 3 180 €",
+   "first_seen": "2026-11-06",
+   "ges": null,
+   "honoraires_texte": null,
+   "id": "672",
+   "last_seen": "2026-11-06",
+   "mentions_agence": [
+    "Prix en baisse"
+   ],
+   "photos": {
+    "fichiers": [
+     "1.jpg",
+     "2.jpg",
+     "3.jpg",
+     "4.jpg",
+     "5.jpg",
+     "6.jpg",
+     "7.jpg",
+     "8.jpg",
+     "9.jpg",
+     "10.jpg",
+     "11.jpg",
+     "12.jpg",
+     "13.jpg",
+     "14.jpg",
+     "15.jpg",
+     "16.jpg",
+     "17.jpg",
+     "18.jpg"
+    ],
+    "sources": {
+     "1/176590dff4056c0273d4184f74c8a067/photo_07a10eb0a92711669a2463a49ec2c3c2.jpg": "15.jpg",
+     "1/176590dff4056c0273d4184f74c8a067/photo_116d3d657bad74cca02ef76101e6525a.jpg": "16.jpg",
+     "1/176590dff4056c0273d4184f74c8a067/photo_15375409c350f824dd687e7017b7f4bb.jpg": "10.jpg",
+     "1/176590dff4056c0273d4184f74c8a067/photo_1763e728314c0ffa00b9fc348e6e461e.jpg": "5.jpg",
+     "1/176590dff4056c0273d4184f74c8a067/photo_19dcc4372fe0cf80ae57493499d4c553.png": "3.jpg",
+     "1/176590dff4056c0273d4184f74c8a067/photo_2f3ba60b01a08d1236208c07aa7ec0f9.jpg": "7.jpg",
+     "1/176590dff4056c0273d4184f74c8a067/photo_4a576fdc21c63b5bdd6d9cce21e63a02.jpg": "13.jpg",
+     "1/176590dff4056c0273d4184f74c8a067/photo_574ea1e797eefcc2e81d35b17e5ac7e5.png": "1.jpg",
+     "1/176590dff4056c0273d4184f74c8a067/photo_5b0f196f4931e383e1d00813c0da8b3d.jpg": "2.jpg",
+     "1/176590dff4056c0273d4184f74c8a067/photo_78c4eda9df6e977231968485295abfca.jpg": "9.jpg",
+     "1/176590dff4056c0273d4184f74c8a067/photo_8ec22f2f8518cec7eb7314fbb0f4a6a2.jpg": "6.jpg",
+     "1/176590dff4056c0273d4184f74c8a067/photo_a13b191e9eaa3d2daecefa014ede689f.jpg": "17.jpg",
+     "1/176590dff4056c0273d4184f74c8a067/photo_a23410318a7e4833be7881030bfae76b.jpg": "14.jpg",
+     "1/176590dff4056c0273d4184f74c8a067/photo_a6a37feb6ccda9bdce9510598b76eb48.jpg": "11.jpg",
+     "1/176590dff4056c0273d4184f74c8a067/photo_a7464e3c13a106a4c7895ab5b5037cf1.jpg": "4.jpg",
+     "1/176590dff4056c0273d4184f74c8a067/photo_c0f2615877f45d7ea15b9011d2b05228.jpg": "12.jpg",
+     "1/176590dff4056c0273d4184f74c8a067/photo_c932eab03548429371042e101ab67bce.jpg": "8.jpg",
+     "1/176590dff4056c0273d4184f74c8a067/photo_d2f79649a5148520aa181ac6d6f4d321.jpg": "18.jpg"
+    }
+   },
+   "pieces": 5,
+   "prix": 235000.0,
+   "ref": "469",
+   "status": "en vente",
+   "status_changed": "2026-11-06",
+   "surface": 90.0,
+   "type": "Maison",
+   "visite_virtuelle": null
   },
   "471": {
    "caracteristiques": {
@@ -3479,8 +3652,8 @@
    "pieces": 6,
    "prix": null,
    "ref": "Combottes",
-   "status": "en vente",
-   "status_changed": "2026-09-28",
+   "status": "retirée",
+   "status_changed": "2026-11-06",
    "surface": 132.37,
    "type": "Maison",
    "visite_virtuelle": null
@@ -3654,8 +3827,8 @@
    "pieces": 3,
    "prix": 220000.0,
    "ref": "PREF",
-   "status": "sous offre",
-   "status_changed": "2026-10-17",
+   "status": "retirée",
+   "status_changed": "2026-11-06",
    "surface": 92.93,
    "type": "Duplex",
    "visite_virtuelle": null
@@ -4154,6 +4327,20 @@
    "titre": "Maison 5 pièces, 153 m² à Plombières-lès-Dijon"
   },
   {
+   "action": "publier",
+   "cle": "publier",
+   "date": "2026-11-06",
+   "lien": "https://shawez-immo.com/biens/469-maison-neuilly-crimolois/",
+   "photos": [
+    "https://shawez-immo.com/annonces/469/1.jpg",
+    "https://shawez-immo.com/annonces/469/2.jpg",
+    "https://shawez-immo.com/annonces/469/3.jpg"
+   ],
+   "ref": "469",
+   "texte": "Maison de 5 pièces, 90 m², à Neuilly-Crimolois.\n\nPrix : 235 000 €, honoraires inclus.\n\n• Terrain de 352 m², arboré\n• Terrasse\n• Garage\n\nDépenses annuelles d'énergie estimées entre 2 330 € et 3 180 € (usage standard).\n\nRéférence 469, GRAVELIN IMMO. Visites et informations : Shawez Ali, 07 67 57 92 28.",
+   "titre": "Maison 5 pièces, 90 m² à Neuilly-Crimolois"
+  },
+  {
    "action": "mettre à jour",
    "cle": "prix-115000",
    "date": "2026-11-06",
@@ -4166,6 +4353,20 @@
    "ref": "446",
    "texte": "Appartement de 2 pièces, 45,2 m², à Dijon.\n\nPrix : 115 000 €, honoraires inclus.\n\n• Cave\n• 1 chambre\n• Cuisine équipée\n\nDépenses annuelles d'énergie estimées entre 950 € et 1 330 € (usage standard).\n\nRéférence 446, GRAVELIN IMMO. Visites et informations : Shawez Ali, 07 67 57 92 28.",
    "titre": "Appartement 2 pièces, 45 m² à Dijon"
+  },
+  {
+   "action": "mettre à jour",
+   "cle": "retiree",
+   "date": "2026-11-06",
+   "lien": "https://shawez-immo.com/biens/pref-duplex-dijon/",
+   "photos": [
+    "https://shawez-immo.com/annonces/PREF/1.jpg",
+    "https://shawez-immo.com/annonces/PREF/2.jpg",
+    "https://shawez-immo.com/annonces/PREF/3.jpg"
+   ],
+   "ref": "PREF",
+   "texte": "N'est plus disponible",
+   "titre": "Duplex 3 pièces, 93 m² à Dijon"
   },
   {
    "action": "publier",
@@ -4264,20 +4465,6 @@
    "ref": "394",
    "texte": "Maison de 5 pièces, 95 m², à Dijon.\n\nPrix : 259 000 €, honoraires inclus.\n\n• Terrain de 773 m², arboré\n• Terrasse\n• Garage\n\nDépenses annuelles d'énergie estimées entre 2 500 € et 3 440 € (usage standard).\n\nRéférence 394, GRAVELIN IMMO. Visites et informations : Shawez Ali, 07 67 57 92 28.",
    "titre": "Maison 5 pièces, 95 m² à Dijon"
-  },
-  {
-   "action": "publier",
-   "cle": "publier",
-   "date": "2026-11-23",
-   "lien": "https://shawez-immo.com/biens/combottes-maison-beze/",
-   "photos": [
-    "https://shawez-immo.com/annonces/Combottes/1.jpg",
-    "https://shawez-immo.com/annonces/Combottes/2.jpg",
-    "https://shawez-immo.com/annonces/Combottes/3.jpg"
-   ],
-   "ref": "Combottes",
-   "texte": "Maison de 6 pièces, 132,37 m², à Bèze.\n\n• Terrain de 856 m², arboré\n• Terrasse\n• Cave\n\nDépenses annuelles d'énergie estimées entre 1 880 € et 2 570 € (usage standard).\n\nRéférence Combottes, GRAVELIN IMMO. Visites et informations : Shawez Ali, 07 67 57 92 28.",
-   "titre": "Maison 6 pièces, 132 m² à Bèze"
   },
   {
    "action": "publier",

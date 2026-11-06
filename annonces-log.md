@@ -106,3 +106,10 @@ Chaque passage de `outils/sync_annonces.py` ajoute ici les changements constaté
 - Annonce 415A : visible dans la liste de l'agence mais sa fiche ne s'ouvre pas ; non reprise.
 - Annonce 469 : visible dans la liste de l'agence mais sa fiche ne s'ouvre pas ; non reprise.
 - Nouvelle annonce 349A : Maison à Bèze, prix non affiché par l'agence.
+
+## 2026-11-06
+
+- Nouvelle annonce 415A : Duplex à Dijon, 220 000 €.
+- Nouvelle annonce 469 : Maison à Neuilly-Crimolois, 235 000 €.
+- Annonce Combottes : absente des pages de l'agence et fiche hors ligne, sans mention → « retirée ».
+- Annonce PREF : absente des pages de l'agence et fiche hors ligne, sans mention → « retirée ».
