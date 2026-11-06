@@ -2,7 +2,9 @@
 """Trial Reels : monte plusieurs versions d'une vidéo de bien (accroche, plans, mots, appel à commenter).
 
 Usage : python3 outils/trial-reels/fabriquer.py outils/trial-reels/plans/<jour>.json
-Sortie : trial/<jour>/<fichier>.mp4 (1080x1920, H.264 CRF 24, environ 5 Mo, AAC muet) + trial/<jour>/manifest.json
+Sortie : trial/<jour>/<fichier>.mp4 (1080x1920, H.264 CRF 19 preset medium, AAC muet) + trial/<jour>/manifest.json
+Le fichier source : si assets/biens/<ref>/video-hd.mp4 existe, c'est LUI qui est monté, pas video.mp4.
+video.mp4 est la version allégée du site, bridée à 720 px de large : elle n'a jamais dû servir de master Instagram.
 Le manifest donne pour chaque version l'adresse publique, la légende et l'heure de publication prévue :
 c'est lui que l'agent qui programme dans Metricool (type TRIAL_REEL) lit.
 
@@ -206,8 +208,19 @@ def monter(src, version, mot, sortie, tmp, prive=False):
     audio = len(calques) + 1
     cmd = ['ffmpeg', '-v', 'error', '-y'] + entrees + [
         '-filter_complex', ';'.join(filtres), '-map', '[v]', '-map', f'{audio}:a',
-        '-t', f'{total:.3f}', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '24',
-        '-profile:v', 'high', '-level', '4.1', '-maxrate', '6M', '-bufsize', '12M', '-g', '60',
+        # Réglages du 06/11/2026. Avant : CRF 24, soit 2,5 Mbps. Shawez : « la qualité est complètement
+        # éclatée ». Instagram recompresse TOUT ce qu'on lui envoie : lui donner un fichier déjà écrasé,
+        # c'est deux compressions l'une sur l'autre, et ça se voit sur les visages et les cheveux.
+        # Mesuré sur le bien 438, 10 s montées en 1080x1920, sur la machine des agents :
+        #   veryfast CRF 24 = 2,5 Mbps en 6,9 s      (l'ancien réglage)
+        #   veryfast CRF 19 = 6,6 Mbps en 8,2 s      (celui-ci)
+        #   medium   CRF 20 = 6,5 Mbps en 17,9 s
+        #   slow     CRF 18 = 4,5 Mbps en 20,3 s sur une vraie source 1080p
+        # On garde veryfast exprès : le Monteur fabrique seize versions par passage et a un temps limité.
+        # Tout le gain vient du CRF, pas du preset — même débit que medium, pour le tiers du temps.
+        # Ne remonte pas le CRF pour alléger les fichiers : c'est exactement l'erreur d'avant.
+        '-t', f'{total:.3f}', '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '19',
+        '-profile:v', 'high', '-level', '4.2', '-maxrate', '9M', '-bufsize', '18M', '-g', '60',
         '-r', '30', '-c:a', 'aac', '-b:a', '128k', '-movflags', '+faststart', sortie]
     subprocess.run(cmd, check=True)
     return total
@@ -219,6 +232,32 @@ def une_version(args):
         return monter(src, v, mot, sortie, tmp, prive)
 
 
+def master(src):
+    """Le fichier à monter : video-hd.mp4 s'il existe, sinon video.mp4, et on dit ce qu'on a sous la main.
+
+    Pourquoi (06/11/2026) : assets/biens/<ref>/video.mp4 est fabriqué par outils/biens/video.py POUR LE SITE,
+    bridé à 720 px de large et jusqu'à CRF 33 pour que les pages chargent vite. C'est le bon fichier pour une
+    fiche, c'est le pire possible comme master Instagram : on l'agrandissait en 1080x1920 et Instagram
+    recompressait par-dessus. Mesuré ce jour-là : 14 des 18 biens étaient sous 1080 de large, et le duplex 415
+    était en 360x640, soit neuf fois moins de pixels que ce qu'Instagram attend.
+    video-hd.mp4 est le master social, écrit par video.py en même temps que la version du site.
+    """
+    hd = os.path.join(os.path.dirname(src), 'video-hd.mp4')
+    choisi = hd if os.path.exists(hd) else src
+    try:
+        out = subprocess.run(['ffprobe', '-v', 'error', '-select_streams', 'v:0',
+                              '-show_entries', 'stream=width,height', '-of', 'csv=p=0', choisi],
+                             capture_output=True, text=True, check=True).stdout.strip()
+        larg, haut = (int(x) for x in out.split(',')[:2])
+    except Exception:
+        return choisi
+    if larg < W or haut < H:
+        print("ATTENTION %s : source en %dx%d, on monte en %dx%d. Les pixels manquants ne s'inventent pas, "
+              "la vidéo sera molle. Refais le master avec outils/biens/video.py --hd depuis le fichier d'origine."
+              % (os.path.basename(os.path.dirname(choisi)), larg, haut, W, H), file=sys.stderr)
+    return choisi
+
+
 def main():
     from concurrent.futures import ProcessPoolExecutor
     plan = json.load(open(sys.argv[1]))
@@ -227,7 +266,7 @@ def main():
     os.makedirs(dossier, exist_ok=True)
     taches, infos = [], []
     for bien in plan['biens']:
-        src = os.path.join(RACINE, bien['src'])
+        src = master(os.path.join(RACINE, bien['src']))
         for v in bien['versions']:
             nom = f"{bien['nom']}-{bien['ref']}-{v['id']}.mp4"
             taches.append((src, v, bien['mot'], os.path.join(dossier, nom), bien.get('appel') == 'prive'))
