@@ -1,5 +1,86 @@
 {
  "annonces": {
+  "349A": {
+   "caracteristiques": {
+    "balcon": "NON",
+    "cave": "OUI",
+    "copropriete": "NON",
+    "cp": "21310",
+    "cuisine": "Séparée",
+    "format_chauffage": "Individuel, Individuel",
+    "interphone": "NON",
+    "loggia": "NON",
+    "mitoyens": "1",
+    "mode_chauffage": "Electrique, Electrique",
+    "nbchambres": "4",
+    "nbniveaux": "2",
+    "nbpiecees": "6",
+    "nbsdb": "1",
+    "nbse": "1",
+    "surf_carrez": "132,37 m²",
+    "surfterrn": "856 m²",
+    "terrain_arbore": "OUI",
+    "terrain_piscinable": "OUI",
+    "terrasse": "OUI",
+    "type_chauffage": "Radiateur, Radiateur",
+    "type_cuisine": "Equipée",
+    "visiophone": "NON"
+   },
+   "chemin": "/vente/301-beze/maison/t6/454-bien/",
+   "commune": "Bèze",
+   "compo_agence": "6 pièces - 132,37 m²",
+   "cp": "21310",
+   "description_expurgee": "Vous recherchez une maison de caractère, avec un grand potentiel et des espaces de vie agréables ? Cette maison accolée des années 1850, située dans le village de Bèze, vous offre une belle opportunité. Points forts de la propriété : Terrain de la maison 427m2 + Terrain parking privé en face de la maison 254m2 Piscine pour profiter pendant la saison estivale Cuisine d'été à terminer selon vos envies Grande cuisine dinatoire pour vos repas en famille Séjour lumineux idéal pour recevoir (fenêtres à remplacer) Bureau pour un espace de travail ou de loisirs Chambre au rez-de-chaussée avec salle d'eau attenante, donnant sur la terrasse ensoleillée et la piscine À l'étage, 3 chambres supplémentaires, salle de bains , buanderie et WC séparés Des travaux de rafraîchissement et de rénovation de la toiture sont à prévoir, mais ce bien saura séduire les amateurs de maisons de caractère et ceux qui souhaitent personnaliser leur futur chez-soi. Maison avec dépendances. TERRAINS et PISCINE de 8m/4m avec toboggan. N'attendez plus pour découvrir cette belle propriété avec un fort potentiel, à quelques pas du centre de Bèze, charmant village bourguignon. Les risques auxquels sont exposés le biens sont visibles sur georisques.gouv.fr",
+   "dpe": null,
+   "energie": "entre 1 880 € et 2 570 €",
+   "first_seen": "2026-11-06",
+   "ges": null,
+   "honoraires_texte": null,
+   "id": "454",
+   "last_seen": "2026-11-06",
+   "mentions_agence": [
+    "Exclusivité",
+    "Coup de coeur"
+   ],
+   "photos": {
+    "fichiers": [
+     "1.jpg",
+     "2.jpg",
+     "3.jpg",
+     "4.jpg",
+     "5.jpg",
+     "6.jpg",
+     "7.jpg",
+     "8.jpg",
+     "9.jpg",
+     "10.jpg",
+     "11.jpg",
+     "12.jpg"
+    ],
+    "sources": {
+     "1/ca3fa077e61a5119dc0cb2eb65717bd9/photo_07f355043661fa59264af4f3d8f251dc.jpg": "11.jpg",
+     "1/ca3fa077e61a5119dc0cb2eb65717bd9/photo_0a466cf5df1aa895d0dacfd2e10ae4ed.jpg": "2.jpg",
+     "1/ca3fa077e61a5119dc0cb2eb65717bd9/photo_39cfe922a969996137fbe8b79da10e5f.jpg": "10.jpg",
+     "1/ca3fa077e61a5119dc0cb2eb65717bd9/photo_4dc683b6e423940b97bce836139722ba.jpg": "9.jpg",
+     "1/ca3fa077e61a5119dc0cb2eb65717bd9/photo_56a2ac98fb9f3bd80ce615090f5d1c54.jpg": "5.jpg",
+     "1/ca3fa077e61a5119dc0cb2eb65717bd9/photo_656c01551ae7e14978d610150d063f61.jpg": "4.jpg",
+     "1/ca3fa077e61a5119dc0cb2eb65717bd9/photo_9392194511d3ab5710d47e9c950f4d45.jpg": "8.jpg",
+     "1/ca3fa077e61a5119dc0cb2eb65717bd9/photo_944b12d270390c2f91223a9ac5008825.jpg": "3.jpg",
+     "1/ca3fa077e61a5119dc0cb2eb65717bd9/photo_98db8092d64a26751d8a39de1bef669f.jpg": "6.jpg",
+     "1/ca3fa077e61a5119dc0cb2eb65717bd9/photo_a8e480421b43adcd3ae74d67cc114df3.jpg": "12.jpg",
+     "1/ca3fa077e61a5119dc0cb2eb65717bd9/photo_b8e44689399b9da2e1f56d025612cdd3.jpg": "7.jpg",
+     "1/ca3fa077e61a5119dc0cb2eb65717bd9/photo_ef3fbdc1d6792695a09dce58436c53fd.jpg": "1.jpg"
+    }
+   },
+   "pieces": 6,
+   "prix": null,
+   "ref": "349A",
+   "status": "en vente",
+   "status_changed": "2026-11-06",
+   "surface": 132.37,
+   "type": "Maison",
+   "visite_virtuelle": null
+  },
   "383": {
    "caracteristiques": {
     "copropriete": "OUI",
@@ -4043,6 +4124,20 @@
    "ref": "446",
    "texte": "Appartement de 2 pièces, 45,2 m², à Dijon.\n\nPrix : 115 000 €, honoraires inclus.\n\n• Cave\n• 1 chambre\n• Cuisine équipée\n\nDépenses annuelles d'énergie estimées entre 950 € et 1 330 € (usage standard).\n\nRéférence 446, GRAVELIN IMMO. Visites et informations : Shawez Ali, 07 67 57 92 28.",
    "titre": "Appartement 2 pièces, 45 m² à Dijon"
+  },
+  {
+   "action": "publier",
+   "cle": "publier",
+   "date": "2026-11-06",
+   "lien": "https://shawez-immo.com/biens/349a-maison-beze/",
+   "photos": [
+    "https://shawez-immo.com/annonces/349A/1.jpg",
+    "https://shawez-immo.com/annonces/349A/2.jpg",
+    "https://shawez-immo.com/annonces/349A/3.jpg"
+   ],
+   "ref": "349A",
+   "texte": "Maison de 6 pièces, 132,37 m², à Bèze.\n\n• Terrain de 856 m², arboré\n• Terrasse\n• Cave\n\nDépenses annuelles d'énergie estimées entre 1 880 € et 2 570 € (usage standard).\n\nRéférence 349A, GRAVELIN IMMO. Visites et informations : Shawez Ali, 07 67 57 92 28.",
+   "titre": "Maison 6 pièces, 132 m² à Bèze"
   },
   {
    "action": "publier",

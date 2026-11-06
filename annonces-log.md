@@ -100,3 +100,9 @@ Chaque passage de `outils/sync_annonces.py` ajoute ici les changements constaté
 
 - Nouvelle annonce 529 : Maison à Chenôve, 350 000 €.
 - Annonce 509 : prix 370 000 € → 360 000 €.
+
+## 2026-11-06
+
+- Annonce 415A : visible dans la liste de l'agence mais sa fiche ne s'ouvre pas ; non reprise.
+- Annonce 469 : visible dans la liste de l'agence mais sa fiche ne s'ouvre pas ; non reprise.
+- Nouvelle annonce 349A : Maison à Bèze, prix non affiché par l'agence.
