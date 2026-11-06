@@ -191,7 +191,8 @@ def honoraires(a):
 
 
 PHRASES_HORS = re.compile(r'\[adresse|\[nom|contact|conatct|renseignement|visites?\s*:|PATOUILLET|Clément|Gogneau|Marion|'
-                          r'\b0\s?[67]\b|\+\s?3\s?3|(?:\d\s?){10}|\bO\s?6\b|agent commercial|mandataire|gratuit', re.I)
+                          r'\b0\s?[67]\b|\+\s?3\s?3|(?:\d\s?){10}|\bO\s?6\b|agent commercial|mandataire|gratuit|'
+                          r'N\s?°\s?1\b|num[ée]ro\s?(?:1|un)\b|\bleader\b', re.I)   # « N°1 de… » : classement non vérifié, phrase retirée
 
 
 def description(a):
