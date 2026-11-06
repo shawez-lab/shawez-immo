@@ -1577,6 +1577,7 @@
    "honoraires_texte": null,
    "id": "672",
    "last_seen": "2026-11-06",
+   "lien_complet": false,
    "mentions_agence": [
     "Prix en baisse"
    ],
@@ -3653,7 +3654,7 @@
    "pieces": 6,
    "prix": null,
    "ref": "Combottes",
-   "status": "retirée",
+   "status": "en vente",
    "status_changed": "2026-11-06",
    "surface": 132.37,
    "type": "Maison",
@@ -4340,6 +4341,20 @@
    "ref": "469",
    "texte": "Maison de 5 pièces, 90 m², à Neuilly-Crimolois.\n\nPrix : 235 000 €, honoraires inclus.\n\n• Terrain de 352 m², arboré\n• Terrasse\n• Garage\n\nDépenses annuelles d'énergie estimées entre 2 330 € et 3 180 € (usage standard).\n\nRéférence 469, GRAVELIN IMMO. Visites et informations : Shawez Ali, 07 67 57 92 28.",
    "titre": "Maison 5 pièces, 90 m² à Neuilly-Crimolois"
+  },
+  {
+   "action": "publier",
+   "cle": "publier",
+   "date": "2026-11-06",
+   "lien": "https://shawez-immo.com/biens/combottes-maison-beze/",
+   "photos": [
+    "https://shawez-immo.com/annonces/Combottes/1.jpg",
+    "https://shawez-immo.com/annonces/Combottes/2.jpg",
+    "https://shawez-immo.com/annonces/Combottes/3.jpg"
+   ],
+   "ref": "Combottes",
+   "texte": "Maison de 6 pièces, 132,37 m², à Bèze.\n\n• Terrain de 856 m², arboré\n• Terrasse\n• Cave\n\nDépenses annuelles d'énergie estimées entre 1 880 € et 2 570 € (usage standard).\n\nRéférence Combottes, GRAVELIN IMMO. Visites et informations : Shawez Ali, 07 67 57 92 28.",
+   "titre": "Maison 6 pièces, 132 m² à Bèze"
   },
   {
    "action": "mettre à jour",

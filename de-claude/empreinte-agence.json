@@ -1,5 +1,6 @@
 {
  "annonces": {
+  "349A": "None|6 pièces - 132,37 m²|Bèze|21310|Coup de coeur,Exclusivité|1/ca3fa077e61a5119dc0cb2eb65717bd9/photo_ef3fbdc1d6792695a09dce58436c53fd",
   "383": "53000.0|1 pièces - 15 m²|Dijon|21000|Sous-compromis|1/316e8f4bcae12c7a9f1081e44fa91888/photo_c3f44a3a2536da7468f2d9236b23e53c",
   "394": "259000.0|5 pièces - 95 m²|Dijon|21000|Sous-offre|1/84789780fe6b955698120a32174c50e4/photo_28fa54a8a8165387bde587a2225663d6",
   "403": "97000.0||Arceau|21310|Nouveauté|1/ce5bfebeeb7c734424f469c30ee710a1/photo_d1a89c02d11db2221b0eda4de2e54fc2",
@@ -14,6 +15,7 @@
   "461": "129000.0|1 pièces - 20 m²|Dijon|21000|Exclusivité,Nouveauté|1/60018fc86523a998ac9d3ef8f1d7fb46/photo_f344f300419d1fda0a236b878eb53036",
   "461BALI": "129000.0|1 pièces - 20 m²|Dijon|21000|Exclusivité|1/c1dcdca2228e09e6a04fba8d5ebca300/photo_80216dde907c5b90c5c58b56e89e406d",
   "463": "392000.0|3 pièces - 60 m²|Dijon|21000|Accord,Sous-offre|1/33853c7d4126394fd724af51f2ffff75/photo_2346fb49ff9808e9477ba22d09a3f22b",
+  "469": "235000.0|5 pièces - 90 m²|Neuilly-Crimolois|21800|Prix en baisse|1/176590dff4056c0273d4184f74c8a067/photo_574ea1e797eefcc2e81d35b17e5ac7e5",
   "474": "79800.0|2 pièces - 26 m²|Dijon|21000|Accord,Nouveauté|1/fb0c8b1d1c0b43c1938b94c2e33e855a/photo_d2fb827183d71f93ef6305270e1053b5",
   "481": "66900.0|2 pièces - 28,66 m²|Dijon|21000|Exclusivité|1/9b4f6590a21f89441b3e8bd898884d0c/photo_01b8055f4c0af6bf757bbff8282b66db",
   "483": "178500.0|1 pièces - 42 m²|Dijon|21000|Coup de coeur,Exclusivité|1/3a57db80b25af3b2c739b15bc641ed02/photo_9b08415437f4529863df7b524068daa4",
@@ -32,9 +34,7 @@
   "527": "2500000.0|360 m²|Beaune|21200|Coup de coeur|1/9cc11ff81b41d66b9c9fcf406f458368/photo_76584b82d6050fc63b6161c0579b97ca",
   "529": "350000.0|6 pièces - 100 m²|Chenôve|21300|Accord,Nouveauté|1/52cff47999440b008b670b612e2a6d7c/photo_3e93ae69518ba56f1446b621ace7b02d",
   "5430963": "70500.0|1 500 m²|Bligny-sur-Ouche|21360||1/20751541d9a754f8c59f6b09f9e70751/photo_1b088b5357b4e79d1d26ed0e19f6e57d",
-  "Combottes": "None|6 pièces - 132,37 m²|Bèze|21310|Coup de coeur,Exclusivité|1/ca3fa077e61a5119dc0cb2eb65717bd9/photo_ef3fbdc1d6792695a09dce58436c53fd",
-  "Mandat": "235000.0|5 pièces - 90 m²|Neuilly-Crimolois|21800|Prix en baisse|1/176590dff4056c0273d4184f74c8a067/photo_574ea1e797eefcc2e81d35b17e5ac7e5",
   "PREF": "220000.0|3 pièces - 92,93 m²|Dijon|21000|Coup de coeur,Sous-offre|1/efe223b795d54f8f458e2053cbb959dd/photo_34ddccf5dac0c3e1bb5e47c2b3dd65d2"
  },
- "maj": "2026-11-06T21:00:54+01:00"
+ "maj": "2026-11-06T21:06:19+01:00"
 }

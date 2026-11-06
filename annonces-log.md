@@ -117,3 +117,7 @@ Chaque passage de `outils/sync_annonces.py` ajoute ici les changements constaté
 ## 2026-11-06
 
 - Annonce PREF : statut « retirée » → « sous offre » (mention de l'agence : Sous-offre, Coup de coeur).
+
+## 2026-11-06
+
+- Annonce Combottes : statut « retirée » → « en vente » (mention de l'agence : Exclusivité, Coup de coeur).
