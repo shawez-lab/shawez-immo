@@ -1,0 +1,528 @@
+{
+ "jour": "2026-11-07",
+ "biens": [
+  {
+   "ref": "494",
+   "src": "assets/biens/494/video.mp4",
+   "mot": "BISTRO",
+   "nom": "bistro",
+   "mode": "photos",
+   "versions": [
+    {
+     "id": "v1",
+     "style": "revelation",
+     "instagram": true,
+     "accroche": "Derrière ces volets,|une salle de bal",
+     "photos": [
+      2,
+      7,
+      12,
+      18,
+      10,
+      22
+     ],
+     "lignes": [
+      "Ancienne salle de bal",
+      "",
+      "",
+      "340 m² en tout"
+     ],
+     "legende": "Derrière cette façade de village se cache encore l’ancienne salle de bal du bistro, au cœur d’un ensemble d’environ 340 m² 🎶\n\nCommente BISTRO et je t’envoie la visite complète en privé 📩\n\n#salledebal #bistrodevillage #bourgogneimmobilier #biendecaractere #saoneetloire"
+    },
+    {
+     "id": "v2",
+     "style": "question",
+     "instagram": false,
+     "accroche": "Une salle de bal à toi,|tu en fais quoi ?",
+     "photos": [
+      7,
+      12,
+      2,
+      16,
+      23,
+      22
+     ],
+     "lignes": [
+      "Lieu d’événements ?",
+      "Chambres d’hôtes ?"
+     ],
+     "legende": "Activité événementielle, restauration, chambres d’hôtes ou grande maison de famille : avec ses volumes, cet ancien bistro laisse tout ouvert 💡\n\nCommente BISTRO et je t’envoie la visite complète en privé 📩\n\n#projetatypique #evenementiel #grandvolume #maisonareinventer #immobilierrural"
+    },
+    {
+     "id": "v3",
+     "style": "question",
+     "instagram": false,
+     "accroche": "Tu y mets quoi|sur 543 m² de terrain ?",
+     "photos": [
+      1,
+      3,
+      14,
+      21,
+      11,
+      2
+     ],
+     "lignes": [
+      "543 m² de terrain",
+      "Garage d’environ 96 m²"
+     ],
+     "legende": "543 m² de terrain, des dépendances et un garage d’environ 96 m², autour d’un ancien bistro affiché 120 000 € 🌿\n\nCommente BISTRO et je t’envoie la visite complète en privé 📩\n\n#terrain #dependances #garage #achatimmobilier #bragnysursaone"
+    },
+    {
+     "id": "v4",
+     "style": "revelation",
+     "instagram": false,
+     "accroche": "Derrière la porte|de cet ancien bistro",
+     "photos": [
+      22,
+      10,
+      14,
+      18,
+      23,
+      7
+     ],
+     "lignes": [
+      "Trois niveaux"
+     ],
+     "legende": "Un bâtiment d’habitation sur trois niveaux, une ancienne salle de bal et des dépendances : un bien rare, chargé d’histoire 🏚️\n\nCommente BISTRO et je t’envoie la visite complète en privé 📩\n\n#chargedhistoire #anciencommerce #renovationmaison #bienrare #valdesaone"
+    }
+   ]
+  },
+  {
+   "ref": "527",
+   "src": "assets/biens/527/video.mp4",
+   "mot": "BEAUNE",
+   "nom": "hotel-particulier-beaune",
+   "versions": [
+    {
+     "id": "v1",
+     "style": "revelation",
+     "instagram": false,
+     "accroche": "Cette galerie cache|une cour du XVIIe",
+     "plans": [
+      [
+       38.5,
+       40.5,
+       1.0
+      ],
+      [
+       47.5,
+       49.5,
+       1.0
+      ],
+      [
+       42.0,
+       44.0,
+       1.0,
+       "Cour intérieure"
+      ],
+      [
+       30.0,
+       32.0,
+       1.0
+      ],
+      [
+       44.0,
+       46.0,
+       1.0
+      ],
+      [
+       27.0,
+       30.0,
+       1.0
+      ]
+     ],
+     "legende": "Une galerie en bois, puis la cour intérieure autour de laquelle s’organise tout un hôtel particulier du XVIIe siècle 🏛️\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#galerieenbois #courinterieure #beauneimmobilier #maisonhistorique #bourgognepatrimoine"
+    },
+    {
+     "id": "v2",
+     "style": "question",
+     "instagram": false,
+     "accroche": "Une cour à toi|en plein Beaune ?",
+     "plans": [
+      [
+       27.0,
+       29.0,
+       1.0
+      ],
+      [
+       0.0,
+       2.0,
+       1.0
+      ],
+      [
+       9.0,
+       11.0,
+       1.0,
+       "Espaces de jardin"
+      ],
+      [
+       43.0,
+       45.0,
+       1.0
+      ],
+      [
+       31.0,
+       33.0,
+       1.0
+      ],
+      [
+       45.0,
+       48.0,
+       1.0
+      ]
+     ],
+     "legende": "Une terrasse, des espaces de jardin et un garage, en plein cœur historique de Beaune. Tu t’y vois ? 🌿\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#jardinenville #beaunecentre #terrasse #viedechateau #cotedorimmobilier"
+    },
+    {
+     "id": "v3",
+     "style": "revelation",
+     "instagram": false,
+     "accroche": "Regarde bien|cet étage rénové en 2025",
+     "plans": [
+      [
+       50.5,
+       52.5,
+       1.0
+      ],
+      [
+       54.0,
+       56.0,
+       1.0
+      ],
+      [
+       59.0,
+       61.0,
+       1.0,
+       "Rénové en 2025"
+      ],
+      [
+       66.0,
+       68.0,
+       1.0
+      ],
+      [
+       73.0,
+       75.0,
+       1.0
+      ],
+      [
+       78.0,
+       81.0,
+       1.0
+      ]
+     ],
+     "legende": "Au deuxième étage, 117,03 m² Carrez entièrement rénovés en 2025, avec des poutres anciennes et une pompe à chaleur réversible 🪵\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#poutresapparentes #renovation2025 #appartementdecaractere #beaune #dpeb"
+    },
+    {
+     "id": "v4",
+     "style": "chiffre_choc",
+     "instagram": false,
+     "accroche": "2 500 000 €,|trois appartements et un local",
+     "plans": [
+      [
+       1.0,
+       2.5,
+       1.0
+      ],
+      [
+       12.0,
+       14.0,
+       1.0
+      ],
+      [
+       18.0,
+       20.0,
+       1.0,
+       "Monopropriété"
+      ],
+      [
+       33.0,
+       35.0,
+       1.0
+      ],
+      [
+       61.0,
+       63.0,
+       1.0
+      ],
+      [
+       76.0,
+       78.0,
+       1.0
+      ],
+      [
+       79.0,
+       82.0,
+       1.0
+      ]
+     ],
+     "legende": "Trois appartements indépendants et un local professionnel de 58,08 m², en monopropriété au cœur de Beaune, affiché 2 500 000 € 🔑\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#investissementpatrimonial #monopropriete #immeubledecaractere #beaunehistorique #immobilierprestige"
+    }
+   ]
+  },
+  {
+   "ref": "501",
+   "src": "assets/biens/501/video.mp4",
+   "mot": "LUMIÈRE",
+   "nom": "appartement-t3",
+   "versions": [
+    {
+     "id": "v1",
+     "style": "question",
+     "instagram": false,
+     "accroche": "Ton premier T3,|ce serait ici ?",
+     "plans": [
+      [
+       1.3,
+       3.4,
+       1.0
+      ],
+      [
+       8.0,
+       10.0,
+       1.0,
+       "2 chambres"
+      ],
+      [
+       17.2,
+       19.2,
+       1.0
+      ],
+      [
+       22.4,
+       24.0,
+       1.0
+      ],
+      [
+       10.6,
+       12.4,
+       1.0
+      ],
+      [
+       32.6,
+       35.6,
+       1.0
+      ]
+     ],
+     "legende": "Deux chambres, un salon confortable et une cuisine séparée équipée, dans un T3 de 53,62 m² au premier étage à Dijon 🏡\n\nCommente LUMIÈRE et je t’envoie la visite complète en privé 📩\n\n#premierachat #t3dijon #appartementfamilial #dijonimmobilier #nouveauchezsoi"
+    },
+    {
+     "id": "v2",
+     "style": "revelation",
+     "instagram": false,
+     "accroche": "Derrière cette porte,|une cuisine déjà équipée",
+     "plans": [
+      [
+       10.4,
+       12.6,
+       1.0
+      ],
+      [
+       12.6,
+       14.4,
+       1.0,
+       "Meublée et équipée"
+      ],
+      [
+       0.0,
+       1.3,
+       1.0
+      ],
+      [
+       8.4,
+       10.0,
+       1.0
+      ],
+      [
+       19.0,
+       20.6,
+       1.0
+      ],
+      [
+       26.4,
+       28.6,
+       1.0
+      ],
+      [
+       33.0,
+       36.0,
+       1.0
+      ]
+     ],
+     "legende": "Une cuisine séparée, entièrement meublée et équipée, au premier étage d’une copropriété avec gardien à Dijon 🍳\n\nCommente LUMIÈRE et je t’envoie la visite complète en privé 📩\n\n#cuisineequipee #cuisinemeublee #appartementdijon #pretaemmenager #t3lumineux"
+    },
+    {
+     "id": "v3",
+     "style": "detail_surprenant",
+     "instagram": false,
+     "accroche": "Cave, parking et gardien,|oui c'est possible",
+     "plans": [
+      [
+       0.0,
+       1.5,
+       1.0
+      ],
+      [
+       15.0,
+       16.6,
+       1.0,
+       "Cave privative"
+      ],
+      [
+       1.5,
+       3.5,
+       1.0
+      ],
+      [
+       20.0,
+       21.6,
+       1.0
+      ],
+      [
+       24.0,
+       25.6,
+       1.0
+      ],
+      [
+       29.0,
+       31.0,
+       1.0
+      ],
+      [
+       33.5,
+       36.5,
+       1.0
+      ]
+     ],
+     "legende": "Une copropriété avec gardien, une cave privative en sous-sol et un parking collectif en placement libre, pour 139 000 € 🔑\n\nCommente LUMIÈRE et je t’envoie la visite complète en privé 📩\n\n#copropriete #gardien #caveprivative #parking #budgetimmo"
+    },
+    {
+     "id": "v4",
+     "style": "question",
+     "instagram": false,
+     "accroche": "Deux chambres,|tu prends laquelle ?",
+     "plans": [
+      [
+       17.0,
+       19.0,
+       1.0
+      ],
+      [
+       22.2,
+       24.2,
+       1.0,
+       "53,62 m²"
+      ],
+      [
+       19.2,
+       21.0,
+       1.0
+      ],
+      [
+       24.2,
+       25.6,
+       1.0
+      ],
+      [
+       2.0,
+       3.8,
+       1.0
+      ],
+      [
+       8.6,
+       10.0,
+       1.0
+      ],
+      [
+       33.8,
+       36.8,
+       1.0
+      ]
+     ],
+     "legende": "Deux chambres séparées et une salle de bains avec WC, dans un T3 lumineux de 53,62 m² affiché 139 000 € 🛏️\n\nCommente LUMIÈRE et je t’envoie la visite complète en privé 📩\n\n#deuxchambres #colocation #appartementt3 #dijon21000 #immobilierbourgogne"
+    }
+   ]
+  },
+  {
+   "ref": "481",
+   "src": "assets/biens/481/video.mp4",
+   "mot": "ETUDIANT",
+   "nom": "t2-etudiant",
+   "mode": "photos",
+   "versions": [
+    {
+     "id": "v1",
+     "style": "chiffre_choc",
+     "instagram": false,
+     "accroche": "66 900 € pour un T2|à Dijon",
+     "photos": [
+      1,
+      4,
+      8,
+      10,
+      3,
+      12
+     ],
+     "lignes": [
+      "28,66 m²"
+     ],
+     "legende": "Un T2 de 28,66 m² dans une résidence étudiante avec Wi-Fi, accueil et salle de sport, affiché 66 900 € à Dijon 🎓\n\nCommente ETUDIANT et je t’envoie la visite complète en privé 📩\n\n#residenceetudiante #petitbudget #t2 #dijoncentre #immobilierdijon"
+    },
+    {
+     "id": "v2",
+     "style": "revelation",
+     "instagram": false,
+     "accroche": "Ouvre cette porte,|une vraie chambre",
+     "photos": [
+      7,
+      8,
+      9,
+      4,
+      10,
+      1
+     ],
+     "lignes": [
+      "Chambre séparée"
+     ],
+     "legende": "Derrière la porte, une chambre séparée de la pièce principale, avec une salle d’eau et des toilettes 🚪\n\nCommente ETUDIANT et je t’envoie la visite complète en privé 📩\n\n#chambreseparee #petitappartement #etudiantdijon #t2dijon #logementfonctionnel"
+    },
+    {
+     "id": "v3",
+     "style": "question",
+     "instagram": false,
+     "accroche": "Un coach sportif en bas,|tu t’inscris ?",
+     "photos": [
+      3,
+      2,
+      5,
+      6,
+      9,
+      11
+     ],
+     "lignes": [
+      "Salle de sport"
+     ],
+     "legende": "Salle de sport, coach sportif, baby-foot et salle de détente, tout est inclus dans la résidence 🏋️\n\nCommente ETUDIANT et je t’envoie la visite complète en privé 📩\n\n#salledesport #coachsportif #babyfoot #viedetudiant #residenceservices"
+    },
+    {
+     "id": "v4",
+     "style": "question",
+     "instagram": false,
+     "accroche": "Tu vivrais|dans 28,66 m² ?",
+     "photos": [
+      5,
+      4,
+      7,
+      8,
+      10,
+      12
+     ],
+     "lignes": [
+      "Kitchenette"
+     ],
+     "legende": "Une entrée, une pièce principale avec kitchenette, une chambre séparée : 28,66 m² bien pensés à Dijon 📐\n\nCommente ETUDIANT et je t’envoie la visite complète en privé 📩\n\n#petitesurface #optimisation #studentlife #appartementdijon #cotedor"
+    }
+   ]
+  }
+ ]
+}
