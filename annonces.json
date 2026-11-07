@@ -3830,8 +3830,8 @@
    "pieces": 3,
    "prix": 220000.0,
    "ref": "PREF",
-   "status": "sous offre",
-   "status_changed": "2026-11-06",
+   "status": "retirée",
+   "status_changed": "2026-11-07",
    "surface": 92.93,
    "type": "Duplex",
    "visite_virtuelle": null

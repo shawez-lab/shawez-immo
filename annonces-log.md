@@ -126,3 +126,7 @@ Chaque passage de `outils/sync_annonces.py` ajoute ici les changements constaté
 
 - Annonce Combottes : absente des pages de l'agence et fiche hors ligne, sans mention → « retirée ».
 - Annonce Mandat : absente des pages de l'agence et fiche hors ligne, sans mention → « retirée ».
+
+## 2026-11-07
+
+- Annonce PREF : absente des pages de l'agence et fiche hors ligne, sans mention → « retirée ».
