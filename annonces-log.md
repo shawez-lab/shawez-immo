@@ -121,3 +121,8 @@ Chaque passage de `outils/sync_annonces.py` ajoute ici les changements constaté
 ## 2026-11-06
 
 - Annonce Combottes : statut « retirée » → « en vente » (mention de l'agence : Exclusivité, Coup de coeur).
+
+## 2026-11-07
+
+- Annonce Combottes : absente des pages de l'agence et fiche hors ligne, sans mention → « retirée ».
+- Annonce Mandat : absente des pages de l'agence et fiche hors ligne, sans mention → « retirée ».
