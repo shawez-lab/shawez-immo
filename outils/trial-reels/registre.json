@@ -11470,6 +11470,19 @@
    },
    "vues_total": 0,
    "verdict": "en_cours"
+  },
+  {
+   "id": "TR-1011-525-x",
+   "date": "2026-11-10",
+   "heure": "12:00",
+   "ref": "525",
+   "mot": "NEUILLY",
+   "style": "descriptif",
+   "legende": "Ouvre cette porte, la visite continue.\n\n149 m² habitables sur un terrain de 429 m², construite en 2018 dans un lotisseme",
+   "source": "autre",
+   "uuid": "-722381562014970611",
+   "url": "",
+   "statut": "brouillon_juge"
   }
  ]
 }
