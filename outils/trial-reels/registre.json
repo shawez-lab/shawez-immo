@@ -11920,16 +11920,16 @@
    "instagram": true,
    "diffusions": {
     "threads": {
-     "uuid": "7493551077300455357",
+     "uuid": "-6547860241807749809",
      "url": "",
      "date": "2026-11-08",
-     "heure": "13:40"
+     "heure": "14:40"
     },
     "youtube": {
-     "uuid": "2106859275723231103",
+     "uuid": "-5162102739075710752",
      "url": "",
      "date": "2026-11-08",
-     "heure": "14:00"
+     "heure": "15:30"
     }
    }
   },
@@ -12356,7 +12356,21 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://fa129e69.shawez-immo.pages.dev/trial/2026-11-07/chateau-438-v2.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "3730418545816718397",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "15:10"
+    },
+    "youtube": {
+     "uuid": "-7961106443819463365",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "16:00"
+    }
+   }
   },
   {
    "id": "TR-0711-438-v3",
@@ -12371,7 +12385,21 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://fa129e69.shawez-immo.pages.dev/trial/2026-11-07/chateau-438-v3.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "-6487298564486903935",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "17:10"
+    },
+    "youtube": {
+     "uuid": "-9150340336788025795",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "18:00"
+    }
+   }
   },
   {
    "id": "TR-0711-438-v4",
@@ -12416,7 +12444,21 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://fa129e69.shawez-immo.pages.dev/trial/2026-11-07/duplex-dijon-415-v2.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "7106189961556872516",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "15:40"
+    },
+    "youtube": {
+     "uuid": "-8322181132620971363",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "16:30"
+    }
+   }
   },
   {
    "id": "TR-0711-415-v3",
@@ -12431,7 +12473,21 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://fa129e69.shawez-immo.pages.dev/trial/2026-11-07/duplex-dijon-415-v3.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "-2980276596922170553",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "20:15"
+    },
+    "youtube": {
+     "uuid": "3600497773337856627",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "20:15"
+    }
+   }
   },
   {
    "id": "TR-0711-415-v4",
@@ -12476,7 +12532,21 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://fa129e69.shawez-immo.pages.dev/trial/2026-11-07/appartement-chevigny-520-v2.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "2801296962429733633",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "16:10"
+    },
+    "youtube": {
+     "uuid": "3556369931710581333",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "17:00"
+    }
+   }
   },
   {
    "id": "TR-0711-520-v3",
@@ -12491,7 +12561,15 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://fa129e69.shawez-immo.pages.dev/trial/2026-11-07/appartement-chevigny-520-v3.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "youtube": {
+     "uuid": "7436499041994754897",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "20:45"
+    }
+   }
   },
   {
    "id": "TR-0711-520-v4",
@@ -12521,7 +12599,21 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://fa129e69.shawez-immo.pages.dev/trial/2026-11-07/appartement-t3-501-v1.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "-6527007899527263979",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "16:40"
+    },
+    "youtube": {
+     "uuid": "8375880145973628806",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "17:30"
+    }
+   }
   },
   {
    "id": "TR-0711-501-v2",
