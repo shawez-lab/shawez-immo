@@ -96,7 +96,7 @@
     {
      "id": "v1",
      "style": "revelation",
-     "instagram": false,
+     "instagram": true,
      "accroche": "Cette galerie cache|une cour du XVIIe",
      "plans": [
       [
@@ -309,7 +309,7 @@
     {
      "id": "v2",
      "style": "revelation",
-     "instagram": false,
+     "instagram": true,
      "accroche": "Derrière cette porte,|une cuisine déjà équipée",
      "plans": [
       [
@@ -471,7 +471,7 @@
     {
      "id": "v2",
      "style": "revelation",
-     "instagram": false,
+     "instagram": true,
      "accroche": "Ouvre cette porte,|une vraie chambre",
      "photos": [
       7,
