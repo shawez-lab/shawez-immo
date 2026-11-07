@@ -1,0 +1,564 @@
+{
+ "jour": "2026-11-07",
+ "outil": "461 et 527 : outils/trial-reels/fabriquer.py (vraies vidéos, video-hd.mp4). 509 et Combottes : outils/biens/diaporama.py, photo par photo (leur video.mp4 est un Reel photo déjà fini, on ne le recoupe pas), une sélection et un ordre de photos différents par version.",
+ "ecartes": {
+  "452IMMEUBLE": "video : Shawez face caméra avec sous-titres incrustés (revu le 07/11)",
+  "425": "video : Shawez face caméra avec sous-titres incrustés, sujet SCI (revu le 07/11)",
+  "513": "video : Shawez face caméra avec sous-titres incrustés, sujet immeuble (revu le 07/11)",
+  "403": "video : Shawez face caméra avec sous-titres incrustés (revu le 07/11)",
+  "431": "video : Shawez face caméra avec sous-titres incrustés (revu le 07/11)"
+ },
+ "biens": [
+  {
+   "ref": "509",
+   "src": "assets/biens/509/video.mp4",
+   "mot": "COUCHEY",
+   "nom": "deux-maisons-couchey",
+   "diaporama": true,
+   "versions": [
+    {
+     "id": "v1",
+     "style": "revelation",
+     "instagram": true,
+     "accroche": "Derrière cette porte,|une cave voûtée",
+     "photos": [
+      9,
+      10,
+      1,
+      4,
+      15,
+      28
+     ],
+     "lignes": [
+      "Cave voûtée",
+      "",
+      "Poutres apparentes",
+      "",
+      ""
+     ],
+     "legende": "Deux maisons rénovées dans un village viticole de la côte des vins, et sous chacune, une cave voûtée 🍷\n\nCommente COUCHEY et je t’envoie la visite complète en privé 📩\n\n#cavevoutee #cotedesvins #maisonrenovee #villageviticole #bourgogne"
+    },
+    {
+     "id": "v2",
+     "style": "question",
+     "instagram": false,
+     "accroche": "Deux maisons pour une,|tu habites laquelle ?",
+     "photos": [
+      26,
+      1,
+      13,
+      3,
+      19,
+      25
+     ],
+     "lignes": [
+      "Entièrement rénovées",
+      "",
+      "141 m² en tout",
+      "",
+      ""
+     ],
+     "legende": "Deux maisons vendues ensemble, l’une en face de l’autre dans une petite impasse au calme, 141 m² en tout 🏡\n\nCommente COUCHEY et je t’envoie la visite complète en privé 📩\n\n#deuxmaisons #immobilierbourgogne #cotedor #maisonavendre #projetfamilial"
+    },
+    {
+     "id": "v3",
+     "style": "revelation",
+     "instagram": false,
+     "accroche": "Cette façade cache|des poutres partout",
+     "photos": [
+      9,
+      5,
+      6,
+      7,
+      2,
+      27
+     ],
+     "lignes": [
+      "",
+      "Chambre sous les toits",
+      "",
+      "Cuisine ouverte",
+      ""
+     ],
+     "legende": "Une façade toute simple, et derrière, une grande chambre sous une charpente apparente avec sa salle d’eau 🪵\n\nCommente COUCHEY et je t’envoie la visite complète en privé 📩\n\n#charpente #poutresapparentes #renovation #maisondecaractere #dijonetalentours"
+    },
+    {
+     "id": "v4",
+     "style": "question",
+     "instagram": false,
+     "accroche": "Ta famille dans l’une,|tes amis dans l’autre ?",
+     "photos": [
+      25,
+      12,
+      8,
+      23,
+      15,
+      26
+     ],
+     "lignes": [
+      "Deux maisons",
+      "",
+      "",
+      "Balcon privatif",
+      ""
+     ],
+     "legende": "Une maison pour toi, une autre juste en face pour recevoir : deux maisons rénovées vendues en une seule 🔑\n\nCommente COUCHEY et je t’envoie la visite complète en privé 📩\n\n#recevoir #maisondefamille #immobiliercotedor #achatimmobilier #vignoble"
+    }
+   ]
+  },
+  {
+   "ref": "Combottes",
+   "src": "assets/biens/Combottes/video.mp4",
+   "mot": "BEZE",
+   "nom": "maison-1850-beze",
+   "diaporama": true,
+   "versions": [
+    {
+     "id": "v1",
+     "style": "revelation",
+     "instagram": true,
+     "accroche": "Le secret de ce salon :|sa piscine",
+     "photos": [
+      6,
+      1,
+      3,
+      8,
+      10,
+      2
+     ],
+     "lignes": [
+      "Piscine 8 x 4 m",
+      "",
+      "Chambre côté piscine",
+      "",
+      ""
+     ],
+     "legende": "Un séjour lumineux, et juste derrière, une piscine de 8 m sur 4 avec son toboggan 🏊\n\nCommente BEZE et je t’envoie la visite complète en privé 📩\n\n#piscine #maisonavecpiscine #toboggan #immobiliercotedor #bourgogne"
+    },
+    {
+     "id": "v2",
+     "style": "question",
+     "instagram": false,
+     "accroche": "Une maison de 1850 avec piscine,|tu plonges ?",
+     "photos": [
+      2,
+      4,
+      5,
+      9,
+      11,
+      1
+     ],
+     "lignes": [
+      "Cuisine dînatoire",
+      "",
+      "4 chambres",
+      "",
+      ""
+     ],
+     "legende": "Une maison de caractère des années 1850, quatre chambres, et une piscine pour l’été ☀️\n\nCommente BEZE et je t’envoie la visite complète en privé 📩\n\n#maisonancienne #maisondecaractere #piscine #villagebourguignon #achatmaison"
+    },
+    {
+     "id": "v3",
+     "style": "question",
+     "instagram": false,
+     "accroche": "Quatre chambres et un bureau,|tu t’installes ?",
+     "photos": [
+      7,
+      9,
+      10,
+      8,
+      3,
+      1
+     ],
+     "lignes": [
+      "Un bureau",
+      "",
+      "132 m²",
+      "",
+      ""
+     ],
+     "legende": "132 m², quatre chambres dont une au rez-de-chaussée avec salle d’eau, et un bureau pour travailler au calme 💻\n\nCommente BEZE et je t’envoie la visite complète en privé 📩\n\n#grandemaison #famillenombreuse #teletravail #maisonavendre #cotedor"
+    },
+    {
+     "id": "v4",
+     "style": "question",
+     "instagram": false,
+     "accroche": "Des dépendances et du terrain,|tu imagines quoi ?",
+     "photos": [
+      1,
+      3,
+      6,
+      12,
+      4,
+      2
+     ],
+     "lignes": [
+      "",
+      "Parking privé en face",
+      "",
+      "Cuisine d’été",
+      ""
+     ],
+     "legende": "Une maison de 1850 au village, sa piscine, des dépendances et un terrain de parking privé juste en face 🌳\n\nCommente BEZE et je t’envoie la visite complète en privé 📩\n\n#maisonde1850 #potentiel #dependances #renovationmaison #campagnebourguignonne"
+    }
+   ]
+  },
+  {
+   "ref": "461",
+   "src": "assets/biens/461/video.mp4",
+   "mot": "MARRAKECH",
+   "nom": "studio-marrakech",
+   "versions": [
+    {
+     "id": "v1",
+     "style": "revelation",
+     "instagram": true,
+     "accroche": "Tu pensais voir une douche ?|Une balnéo",
+     "plans": [
+      [
+       12.0,
+       13.4,
+       1.0
+      ],
+      [
+       13.4,
+       15.6,
+       1.0,
+       "Balnéothérapie"
+      ],
+      [
+       3.0,
+       5.0,
+       1.0
+      ],
+      [
+       17.0,
+       18.8,
+       1.0
+      ],
+      [
+       9.0,
+       10.8,
+       1.0,
+       "Rétroprojecteur"
+      ],
+      [
+       28.5,
+       31.6,
+       1.0
+      ]
+     ],
+     "legende": "Tu ouvres la porte de la salle de bains, et c’est une vraie baignoire balnéo qui t’attend, dans un studio de 19,15 m² ✨\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#balneo #studiodijon #renovationarchitecte #petitesurface #immobilierdijon"
+    },
+    {
+     "id": "v2",
+     "style": "question",
+     "instagram": false,
+     "accroche": "Un rétroprojecteur chez toi,|tu regardes quoi ?",
+     "plans": [
+      [
+       8.6,
+       10.8,
+       1.0
+      ],
+      [
+       27.0,
+       28.4,
+       1.0
+      ],
+      [
+       3.5,
+       5.2,
+       1.0,
+       "19,15 m²"
+      ],
+      [
+       13.6,
+       15.2,
+       1.0
+      ],
+      [
+       22.0,
+       24.0,
+       1.0
+      ],
+      [
+       19.6,
+       21.0,
+       1.0
+      ],
+      [
+       29.0,
+       32.0,
+       1.0
+      ]
+     ],
+     "legende": "Un rétroprojecteur intégré, une kitchenette sur mesure et des rangements partout, dans 19,15 m² rénovés par architecte 🎬\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#soireecinema #studio #amenagementpetitespace #dijon #decointerieure"
+    },
+    {
+     "id": "v3",
+     "style": "revelation",
+     "instagram": false,
+     "accroche": "Au fond de cette cour,|un secret à Dijon",
+     "plans": [
+      [
+       0.0,
+       1.6,
+       1.0
+      ],
+      [
+       1.6,
+       3.0,
+       1.0
+      ],
+      [
+       4.0,
+       5.6,
+       1.0,
+       "Cour intérieure"
+      ],
+      [
+       14.0,
+       15.4,
+       1.0
+      ],
+      [
+       24.0,
+       26.0,
+       1.0
+      ],
+      [
+       19.6,
+       21.2,
+       1.0
+      ],
+      [
+       30.5,
+       33.6,
+       1.0
+      ]
+     ],
+     "legende": "Au calme d’une cour intérieure, à deux pas du parc Darcy, un studio entièrement rénové à neuf 🌿\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#courinterieure #centredijon #studiorenove #piedaterre #bourgogne"
+    },
+    {
+     "id": "v4",
+     "style": "chiffre_choc",
+     "instagram": false,
+     "accroche": "129 000 €|pour Marrakech à Dijon",
+     "plans": [
+      [
+       4.5,
+       6.5,
+       1.0
+      ],
+      [
+       13.6,
+       15.0,
+       1.0
+      ],
+      [
+       9.0,
+       10.6,
+       1.0,
+       "Rénové par architecte"
+      ],
+      [
+       1.0,
+       2.6,
+       1.0
+      ],
+      [
+       22.5,
+       24.5,
+       1.0
+      ],
+      [
+       17.0,
+       18.6,
+       1.0
+      ],
+      [
+       31.0,
+       34.0,
+       1.0
+      ]
+     ],
+     "legende": "129 000 € pour un studio inspiration Marrakech, clé en main, avec balnéo et rétroprojecteur 🧡\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#premierachat #inspirationmarrakech #studioavendre #clesenmain #dijoncentre"
+    }
+   ]
+  },
+  {
+   "ref": "527",
+   "src": "assets/biens/527/video.mp4",
+   "mot": "BEAUNE",
+   "nom": "hotel-particulier-beaune",
+   "versions": [
+    {
+     "id": "v1",
+     "style": "revelation",
+     "instagram": true,
+     "accroche": "Passe cette porte cochère,|un hôtel particulier",
+     "plans": [
+      [
+       0.0,
+       2.0,
+       1.0
+      ],
+      [
+       27.0,
+       29.0,
+       1.0,
+       "Cour intérieure"
+      ],
+      [
+       38.5,
+       40.5,
+       1.0
+      ],
+      [
+       59.0,
+       61.0,
+       1.0
+      ],
+      [
+       66.0,
+       68.0,
+       1.0
+      ],
+      [
+       43.0,
+       46.5,
+       1.0
+      ]
+     ],
+     "legende": "Derrière la porte cochère, une cour intérieure autour de laquelle s’organise tout un hôtel particulier du XVIIe siècle 🏛️\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#hotelparticulier #beaune #patrimoinebourguignon #courinterieure #demeuredecaractere"
+    },
+    {
+     "id": "v2",
+     "style": "question",
+     "instagram": false,
+     "accroche": "Trois appartements, un local,|tu en fais quoi ?",
+     "plans": [
+      [
+       3.0,
+       5.0,
+       1.0
+      ],
+      [
+       18.0,
+       20.0,
+       1.0,
+       "3 appartements"
+      ],
+      [
+       12.0,
+       14.0,
+       1.0
+      ],
+      [
+       54.5,
+       56.5,
+       1.0
+      ],
+      [
+       30.0,
+       32.0,
+       1.0
+      ],
+      [
+       44.0,
+       47.5,
+       1.0
+      ]
+     ],
+     "legende": "Trois appartements indépendants et un local professionnel, en monopropriété, au cœur historique de Beaune. Affiché 2 500 000 € 🔑\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#monopropriete #beauneimmobilier #immeubleancien #patrimoine #capitaledesvins"
+    },
+    {
+     "id": "v3",
+     "style": "revelation",
+     "instagram": false,
+     "accroche": "Un jardin caché|en plein Beaune",
+     "plans": [
+      [
+       25.8,
+       27.0,
+       1.0
+      ],
+      [
+       27.0,
+       29.5,
+       1.0
+      ],
+      [
+       9.0,
+       11.0,
+       1.0,
+       "Terrasse et jardin"
+      ],
+      [
+       29.5,
+       31.5,
+       1.0
+      ],
+      [
+       32.0,
+       34.0,
+       1.0
+      ],
+      [
+       44.5,
+       47.5,
+       1.0
+      ]
+     ],
+     "legende": "En plein centre de Beaune, tu pousses une porte et tu tombes sur des espaces de jardin et une terrasse 🌿\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#jardinsecret #beaune #pierreetbois #vieuxbeaune #bourgognefrance"
+    },
+    {
+     "id": "v4",
+     "style": "lieu_exception",
+     "instagram": false,
+     "accroche": "Un hôtel particulier du XVIIe|au cœur de Beaune",
+     "plans": [
+      [
+       1.0,
+       2.5,
+       1.0
+      ],
+      [
+       34.0,
+       36.0,
+       1.0
+      ],
+      [
+       5.0,
+       7.0,
+       1.0,
+       "Poutres anciennes"
+      ],
+      [
+       61.0,
+       63.0,
+       1.0
+      ],
+      [
+       50.5,
+       52.5,
+       1.0
+      ],
+      [
+       78.0,
+       80.0,
+       1.0
+      ],
+      [
+       81.6,
+       84.5,
+       1.0
+      ]
+     ],
+     "legende": "La pierre, les poutres et une cave voûtée d’environ 60 m², dans la capitale des grands vins de Bourgogne 🍷\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#xviiesiecle #maisondemaitre #cavevoutee #beaunecentre #immobilierdeprestige"
+    }
+   ]
+  }
+ ]
+}
