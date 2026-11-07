@@ -11142,6 +11142,12 @@
      "url": "",
      "date": "2026-11-08",
      "heure": "12:35"
+    },
+    "facebook": {
+     "uuid": "3129639473149133369",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "15:05"
     }
    }
   },
@@ -11324,6 +11330,12 @@
      "url": "",
      "date": "2026-11-08",
      "heure": "10:30"
+    },
+    "facebook": {
+     "uuid": "-1341160015395929370",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "17:05"
     }
    }
   },
@@ -11428,7 +11440,21 @@
    "uuid": "-5337373199860674682",
    "statut": "publie",
    "media": "https://aba9644e.shawez-immo.pages.dev/trial/2026-11-06/t2-potentiel-507-v1.mp4",
-   "instagram": true
+   "instagram": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "6303638074563708331",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "12:10"
+    },
+    "youtube": {
+     "uuid": "8779352408179164671",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "12:30"
+    }
+   }
   },
   {
    "id": "TR-0611-507-v2",
@@ -11474,6 +11500,12 @@
      "url": "",
      "date": "2026-11-08",
      "heure": "11:15"
+    },
+    "linkedin": {
+     "uuid": "712590588625505020",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "15:35"
     }
    }
   },
@@ -11721,7 +11753,21 @@
    "uuid": "-3998756191429244701",
    "statut": "publie",
    "media": "https://db31d2b4.shawez-immo.pages.dev/trial/2026-11-07/deux-maisons-couchey-509-v1.mp4",
-   "instagram": true
+   "instagram": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "-3422797103580364549",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "12:40"
+    },
+    "youtube": {
+     "uuid": "1536039884719211260",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "13:00"
+    }
+   }
   },
   {
    "id": "TR-0711-509-v2",
@@ -11736,7 +11782,45 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://db31d2b4.shawez-immo.pages.dev/trial/2026-11-07/deux-maisons-couchey-509-v2.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "-935757844841804333",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "16:10"
+    },
+    "linkedin": {
+     "uuid": "-4097345283417748795",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "17:05"
+    },
+    "pinterest": {
+     "uuid": "-2133058522406105213",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "11:10"
+    },
+    "bluesky": {
+     "uuid": "4180426609060039201",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "11:10"
+    },
+    "tiktok": {
+     "uuid": "8153887932124057329",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "14:15"
+    },
+    "youtube": {
+     "uuid": "3143558312703181991",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "17:00"
+    }
+   }
   },
   {
    "id": "TR-0711-509-v3",
@@ -11751,7 +11835,33 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://db31d2b4.shawez-immo.pages.dev/trial/2026-11-07/deux-maisons-couchey-509-v3.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "-6441054261335405274",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "08:10"
+    },
+    "pinterest": {
+     "uuid": "-4362733021076960178",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "13:10"
+    },
+    "bluesky": {
+     "uuid": "-4548609404376101337",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "13:10"
+    },
+    "youtube": {
+     "uuid": "8088336306334158475",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "20:45"
+    }
+   }
   },
   {
    "id": "TR-0711-509-v4",
@@ -11766,7 +11876,27 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://db31d2b4.shawez-immo.pages.dev/trial/2026-11-07/deux-maisons-couchey-509-v4.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "-1854925403177268188",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "10:10"
+    },
+    "bluesky": {
+     "uuid": "7351392273116449850",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "15:10"
+    },
+    "youtube": {
+     "uuid": "8377501910418475664",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "10:30"
+    }
+   }
   },
   {
    "id": "TR-0711-Combottes-v1",
@@ -11796,7 +11926,39 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://db31d2b4.shawez-immo.pages.dev/trial/2026-11-07/maison-1850-beze-Combottes-v2.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "4943337929062895424",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "16:40"
+    },
+    "pinterest": {
+     "uuid": "1638908307483214461",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "11:40"
+    },
+    "bluesky": {
+     "uuid": "-5877119591624127948",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "11:40"
+    },
+    "tiktok": {
+     "uuid": "1875748473965200090",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "15:00"
+    },
+    "youtube": {
+     "uuid": "7155685733944544806",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "17:30"
+    }
+   }
   },
   {
    "id": "TR-0711-Combottes-v3",
@@ -11811,7 +11973,33 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://db31d2b4.shawez-immo.pages.dev/trial/2026-11-07/maison-1850-beze-Combottes-v3.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "-7315368354605871585",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "08:40"
+    },
+    "pinterest": {
+     "uuid": "-1463515679547503814",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "13:40"
+    },
+    "bluesky": {
+     "uuid": "-1363661393612290892",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "13:40"
+    },
+    "youtube": {
+     "uuid": "5739553469292626210",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "09:00"
+    }
+   }
   },
   {
    "id": "TR-0711-Combottes-v4",
@@ -11826,7 +12014,21 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://db31d2b4.shawez-immo.pages.dev/trial/2026-11-07/maison-1850-beze-Combottes-v4.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "-8135005641072492486",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "10:40"
+    },
+    "youtube": {
+     "uuid": "596394141945054764",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "11:00"
+    }
+   }
   },
   {
    "id": "TR-0711-461-v1",
@@ -11856,7 +12058,39 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://db31d2b4.shawez-immo.pages.dev/trial/2026-11-07/studio-marrakech-461-v2.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "-1531284736331396835",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "17:10"
+    },
+    "pinterest": {
+     "uuid": "754430607772172946",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "12:10"
+    },
+    "bluesky": {
+     "uuid": "5451238330158106658",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "12:10"
+    },
+    "tiktok": {
+     "uuid": "-2970972381295722228",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "15:45"
+    },
+    "youtube": {
+     "uuid": "7036606792232095472",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "18:00"
+    }
+   }
   },
   {
    "id": "TR-0711-461-v3",
@@ -11871,7 +12105,33 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://db31d2b4.shawez-immo.pages.dev/trial/2026-11-07/studio-marrakech-461-v3.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "-6267833522564084702",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "09:10"
+    },
+    "pinterest": {
+     "uuid": "-6413991964432511153",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "14:10"
+    },
+    "bluesky": {
+     "uuid": "1372066138294338710",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "14:10"
+    },
+    "youtube": {
+     "uuid": "8272513703241469849",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "09:30"
+    }
+   }
   },
   {
    "id": "TR-0711-461-v4",
@@ -11886,7 +12146,21 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://db31d2b4.shawez-immo.pages.dev/trial/2026-11-07/studio-marrakech-461-v4.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "-3218345540900076584",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "11:10"
+    },
+    "youtube": {
+     "uuid": "-2065605081790460041",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "11:30"
+    }
+   }
   },
   {
    "id": "TR-0711-527-v1",
@@ -11901,7 +12175,33 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://db31d2b4.shawez-immo.pages.dev/trial/2026-11-07/hotel-particulier-beaune-527-v1.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "4790072418902559433",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "20:15"
+    },
+    "pinterest": {
+     "uuid": "4298269939874942178",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "12:40"
+    },
+    "bluesky": {
+     "uuid": "-8918851215439019547",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "12:40"
+    },
+    "youtube": {
+     "uuid": "8092222124792498730",
+     "url": "",
+     "date": "2026-11-07",
+     "heure": "20:15"
+    }
+   }
   },
   {
    "id": "TR-0711-527-v2",
@@ -11916,7 +12216,33 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://db31d2b4.shawez-immo.pages.dev/trial/2026-11-07/hotel-particulier-beaune-527-v2.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "4897408977310794328",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "09:40"
+    },
+    "pinterest": {
+     "uuid": "-5238154396960143047",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "14:40"
+    },
+    "bluesky": {
+     "uuid": "-2903896876649657736",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "14:40"
+    },
+    "youtube": {
+     "uuid": "7131020775598082335",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "10:00"
+    }
+   }
   },
   {
    "id": "TR-0711-527-v3",
@@ -11931,7 +12257,21 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://db31d2b4.shawez-immo.pages.dev/trial/2026-11-07/hotel-particulier-beaune-527-v3.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "-7935349258841472077",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "11:40"
+    },
+    "youtube": {
+     "uuid": "6852545358536524919",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "12:00"
+    }
+   }
   },
   {
    "id": "TR-0711-527-v4",
@@ -11946,7 +12286,21 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://db31d2b4.shawez-immo.pages.dev/trial/2026-11-07/hotel-particulier-beaune-527-v4.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "-5756336874854134245",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "13:10"
+    },
+    "youtube": {
+     "uuid": "-4665868341865789715",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "13:30"
+    }
+   }
   }
  ]
 }
