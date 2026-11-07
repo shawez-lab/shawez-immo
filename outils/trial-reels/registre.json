@@ -11895,6 +11895,12 @@
      "url": "",
      "date": "2026-11-08",
      "heure": "10:30"
+    },
+    "pinterest": {
+     "uuid": "-3615035781174179152",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "20:10"
     }
    }
   },
@@ -11911,7 +11917,21 @@
    "uuid": "6801926780442331749",
    "statut": "publie",
    "media": "https://db31d2b4.shawez-immo.pages.dev/trial/2026-11-07/maison-1850-beze-Combottes-v1.mp4",
-   "instagram": true
+   "instagram": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "7493551077300455357",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "13:40"
+    },
+    "youtube": {
+     "uuid": "2106859275723231103",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "14:00"
+    }
+   }
   },
   {
    "id": "TR-0711-Combottes-v2",
@@ -11957,6 +11977,12 @@
      "url": "",
      "date": "2026-11-07",
      "heure": "17:30"
+    },
+    "linkedin": {
+     "uuid": "-6135482999602002321",
+     "url": "",
+     "date": "2026-11-08",
+     "heure": "18:35"
     }
    }
   },
