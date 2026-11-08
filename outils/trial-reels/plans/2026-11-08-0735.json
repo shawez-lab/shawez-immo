@@ -1,0 +1,97 @@
+{
+ "jour": "2026-11-08",
+ "outil": "527 : outils/trial-reels/fabriquer.py (vraie vidéo, video-hd.mp4). 481, 446 et 507 : outils/biens/diaporama.py (monter), photo par photo, dans l'ordre de « photos » de chaque version (leur video.mp4 est un Reel photo fini, on ne le recoupe pas).",
+ "ecartes": {
+  "452IMMEUBLE": "video : Shawez face caméra avec sous-titres incrustés (revu le 08/11, planche)",
+  "425": "video : Shawez face caméra avec sous-titres incrustés, sujet SCI (revu le 08/11, planche)",
+  "513": "video : Shawez face caméra avec sous-titres incrustés, sujet immeuble (revu le 08/11, planche)",
+  "403": "video : Shawez face caméra avec sous-titres incrustés (revu le 08/11, planche)",
+  "431": "video : Shawez face caméra avec sous-titres incrustés (revu le 08/11, planche)"
+ },
+ "biens": [
+  {
+   "ref": "527", "src": "assets/biens/527/video.mp4", "mot": "BEAUNE", "nom": "hotel-particulier-beaune",
+   "versions": [
+    {"id": "v1", "style": "lieu_exception", "instagram": true,
+     "accroche": "Le XVIIe siècle|en plein cœur de Beaune",
+     "plans": [[0.0, 2.0, 1.0], [29.0, 31.0, 1.0, "Cœur historique"], [45.0, 47.0, 1.0], [62.0, 64.0, 1.0], [9.0, 11.0, 1.0], [43.0, 46.0, 1.0]],
+     "legende": "Une adresse à soi dans le cœur historique de Beaune : la pierre, les poutres et une cour intérieure autour de laquelle tout s’organise 🏰\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#beaune #hotelparticulier #patrimoinebourguignon #demeuredecaractere #immobilierdeprestige"},
+    {"id": "v2", "style": "chiffre_choc", "instagram": false,
+     "accroche": "2 500 000 €|et trois cuisines équipées",
+     "plans": [[54.0, 56.0, 1.0], [18.0, 20.0, 1.0, "3 cuisines comprises"], [56.0, 58.0, 1.0], [12.0, 14.0, 1.0], [59.0, 61.0, 1.0], [66.0, 69.0, 1.0]],
+     "legende": "2 500 000 € pour un hôtel particulier en monopropriété, avec ses trois cuisines équipées comprises dans la vente 🍷\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#cuisineequipee #monopropriete #beauneimmobilier #vinsdebourgogne #maisonancienne"},
+    {"id": "v3", "style": "question", "instagram": false,
+     "accroche": "Recevoir ici,|tu commences par où ?",
+     "plans": [[66.0, 68.0, 1.0], [58.0, 60.0, 1.0], [3.0, 5.0, 1.0, "L’art de recevoir"], [51.0, 53.0, 1.0], [27.0, 29.0, 1.0], [44.0, 47.0, 1.0]],
+     "legende": "Séjour, salle à manger, cuisine équipée : au premier étage, les pièces de réception donnent toute sa place à l’art de recevoir. Tu invites qui en premier ? 🥂\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#artderecevoir #pieceadevivre #cotedor #belledemeure #bourgogne"},
+    {"id": "v4", "style": "revelation", "instagram": false,
+     "accroche": "Ce qui se cache|sous ces poutres du XVIIe",
+     "plans": [[5.0, 7.0, 1.0], [50.0, 52.0, 1.0], [73.0, 75.0, 1.0, "Pompe à chaleur"], [76.0, 78.0, 1.0], [61.0, 63.0, 1.0], [79.0, 82.0, 1.0]],
+     "legende": "Sous les poutres anciennes, un étage entièrement rénové en 2025 avec une pompe à chaleur réversible indépendante 🪵\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#poutresanciennes #renovationreussie #ancienetmoderne #xviiesiecle #immobilierbeaune"}
+   ]
+  },
+  {
+   "ref": "481", "src": "assets/biens/481/video.mp4", "mot": "ETUDIANT", "nom": "t2-etudiant", "mode": "photos",
+   "versions": [
+    {"id": "v1", "style": "chiffre_choc", "instagram": true,
+     "accroche": "66 900 €,|le baby-foot est en bas",
+     "photos": [2, 4, 8, 10, 3, 12], "lignes": ["", "Chambre séparée", "", "", "28,66 m²"],
+     "legende": "66 900 € pour un T2 de 28,66 m² dans une résidence étudiante à Dijon, avec baby-foot, salle de détente et salle de sport en bas ⚽\n\nCommente ETUDIANT et je t’envoie la visite complète en privé 📩\n\n#residenceetudiante #dijon #premierappart #babyfoot #t2dijon"},
+    {"id": "v2", "style": "question", "instagram": false,
+     "accroche": "Ton enfant étudie|à Dijon l’an prochain ?",
+     "photos": [1, 5, 9, 7, 11, 3], "lignes": ["Résidence étudiante", "", "Kitchenette"],
+     "legende": "Une chambre séparée, une kitchenette, l’accueil et le Wi-Fi inclus dans la résidence : de quoi partir étudier l’esprit tranquille 🎓\n\nCommente ETUDIANT et je t’envoie la visite complète en privé 📩\n\n#etudesadijon #logementetudiant #universitedijon #rentreeetudiante #parentsetudiants"},
+    {"id": "v3", "style": "revelation", "instagram": false,
+     "accroche": "La chambre cachée|au fond du T2",
+     "photos": [7, 4, 8, 9, 10, 2], "lignes": ["", "Chambre séparée"],
+     "legende": "On entre par la pièce principale avec sa kitchenette, et au fond, une vraie chambre séparée avec sa propre porte 🛏️\n\nCommente ETUDIANT et je t’envoie la visite complète en privé 📩\n\n#chambreseparee #petitesurface #appartementt2 #viedetudiant #immobilierdijon"},
+    {"id": "v4", "style": "detail_surprenant", "instagram": false,
+     "accroche": "Le Wi-Fi et le coach inclus,|oui c’est possible",
+     "photos": [3, 2, 11, 6, 8, 1], "lignes": ["Salle de sport", "", "", "Exposition Est-Ouest"],
+     "legende": "Wi-Fi, coach sportif, salle de sport et réception des colis font partie des services inclus de la résidence 💪\n\nCommente ETUDIANT et je t’envoie la visite complète en privé 📩\n\n#coachsportif #wifiinclus #sallesport #residenceservices #studentlife"}
+   ]
+  },
+  {
+   "ref": "446", "src": "assets/biens/446/video.mp4", "mot": "MONTCHAPET", "nom": "t2-montchapet", "mode": "photos",
+   "versions": [
+    {"id": "v1", "style": "chiffre_choc", "instagram": true,
+     "accroche": "45,20 m² entièrement rénovés,|tu poses tes cartons",
+     "photos": [2, 3, 7, 10, 6, 1], "lignes": ["Cuisine équipée", "Parquet chêne"],
+     "legende": "Entièrement rénové et prêt à habiter : tu n’as plus qu’à poser tes cartons dans ce T2 du bas Montchapet 📦\n\nCommente MONTCHAPET et je t’envoie la visite complète en privé 📩\n\n#pretahabiter #appartementrenove #montchapet #dijonimmobilier #demenagement"},
+    {"id": "v2", "style": "detail_surprenant", "instagram": false,
+     "accroche": "Cave et grenier|pour un T2, oui c’est possible",
+     "photos": [5, 8, 4, 11, 2, 1], "lignes": ["", "", "Appartement fibré"],
+     "legende": "En plus de ses 45 m², ce T2 a une cave accessible depuis le logement et un grenier. De la place pour tout ranger 🧳\n\nCommente MONTCHAPET et je t’envoie la visite complète en privé 📩\n\n#rangement #caveetgrenier #petitecopropriete #t2renove #vivreadijon"},
+    {"id": "v3", "style": "question", "instagram": false,
+     "accroche": "Parquet chêne dans la chambre,|tu valides ?",
+     "photos": [8, 7, 1, 3, 9, 2], "lignes": ["Chambre de 14 m²"],
+     "legende": "Une belle chambre séparée de 14 m² en parquet chêne, à côté d’un séjour avec cuisine ouverte d’environ 26 m². Tu valides ? 🌳\n\nCommente MONTCHAPET et je t’envoie la visite complète en privé 📩\n\n#parquetchene #chambrecosy #decointerieure #premierachat #cotedorimmo"},
+    {"id": "v4", "style": "revelation", "instagram": false,
+     "accroche": "Regarde bien|cette salle d’eau rénovée",
+     "photos": [10, 11, 6, 4, 2, 8], "lignes": ["Douche et WC"],
+     "legende": "Une salle d’eau d’environ 5 m² avec douche, WC et lave-main, dans un logement entièrement rénové avec chaudière à condensation 🚿\n\nCommente MONTCHAPET et je t’envoie la visite complète en privé 📩\n\n#salledeau #renovationcomplete #doublevitrage #appartementdijon #rezdechaussee"}
+   ]
+  },
+  {
+   "ref": "507", "src": "assets/biens/507/video.mp4", "mot": "POTENTIEL", "nom": "t2-potentiel", "mode": "photos",
+   "versions": [
+    {"id": "v1", "style": "detail_surprenant", "instagram": true,
+     "accroche": "Deux cheminées dans 44,30 m²,|oui c’est possible",
+     "photos": [8, 1, 3, 2, 10, 11], "lignes": ["Deux cheminées", "", "", "Cave voûtée"],
+     "legende": "Deux belles cheminées en bon état dans un T2 de 44,30 m² Carrez, au premier étage d’une copropriété ancienne 🔥\n\nCommente POTENTIEL et je t’envoie la visite complète en privé 📩\n\n#cheminee #charmedelancien #t2dijon #appartementancien #hiveracozy"},
+    {"id": "v2", "style": "chiffre_choc", "instagram": false,
+     "accroche": "47,70 m² au sol,|le charme de l’ancien",
+     "photos": [1, 2, 3, 9, 5, 11], "lignes": ["Parquet", "", "Premier étage"],
+     "legende": "47,70 m² au sol, une chambre de 20 m² avec parquet et un séjour de 15 m² : l’ancien comme on l’aime à Dijon 🏛️\n\nCommente POTENTIEL et je t’envoie la visite complète en privé 📩\n\n#ancien #parquetancien #grandechambre #dijoncentre #immobilierancien"},
+    {"id": "v3", "style": "revelation", "instagram": false,
+     "accroche": "Le secret de ce T2 :|sa cave voûtée",
+     "photos": [11, 9, 10, 1, 8, 3], "lignes": ["", "Plus de 15 m²"],
+     "legende": "Sous ce T2 en copropriété ancienne, une grande cave voûtée de plus de 15 m² complète le bien 🕯️\n\nCommente POTENTIEL et je t’envoie la visite complète en privé 📩\n\n#cavevoutee #pierreancienne #rangementmalin #bienatypique #bourgogneimmo"},
+    {"id": "v4", "style": "question", "instagram": false,
+     "accroche": "Un coup de frais,|tu le fais comment ?",
+     "photos": [2, 3, 4, 6, 7, 1], "lignes": ["Rafraîchissement à prévoir"],
+     "legende": "Un rafraîchissement global est à prévoir, mais le double vitrage, les volets roulants et la chaudière d’environ 10 ans sont déjà là 🎨\n\nCommente POTENTIEL et je t’envoie la visite complète en privé 📩\n\n#apersonnaliser #travauxdeco #renovationappartement #premierachat #coupdefrais"}
+   ]
+  }
+ ]
+}
