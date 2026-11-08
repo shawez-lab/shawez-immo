@@ -1,5 +1,5 @@
 {
- "maj": "2026-11-07T06:54",
+ "maj": "2026-11-08T06:55",
  "regles": {
   "fenetre": "Trial Reels publiés depuis 14 jours, jugés 24 h après publication",
   "gagnant": "au moins 1000 vues et au moins 3 fois la médiane",
@@ -12,20 +12,20 @@
   "mediane_vues": 122,
   "gagnant_des": 1000,
   "perdant_sous": 300,
-  "versions_jugees": 117,
-  "versions_en_cours": 18,
+  "versions_jugees": 135,
+  "versions_en_cours": 13,
   "par_reseau": {
    "instagram": {
     "mediane_vues": 122,
     "gagnant_des": 1000,
     "perdant_sous": 300,
-    "versions_mesurees": 135
+    "versions_mesurees": 148
    },
    "tiktok": {
     "mediane_vues": 56,
     "gagnant_des": 1000,
     "perdant_sous": 300,
-    "versions_mesurees": 71
+    "versions_mesurees": 81
    },
    "youtube": {
     "mediane_vues": 148,
@@ -37,13 +37,13 @@
     "mediane_vues": 4,
     "gagnant_des": 500,
     "perdant_sous": 150,
-    "versions_mesurees": 46
+    "versions_mesurees": 50
    },
    "threads": {
     "mediane_vues": 5,
     "gagnant_des": 300,
     "perdant_sous": 20,
-    "versions_mesurees": 86
+    "versions_mesurees": 96
    },
    "linkedin": {
     "mediane_vues": 7,
@@ -71,14 +71,13 @@
    }
   }
  },
- "styles_gagnants": [
-  "revelation",
-  "question"
- ],
+ "styles_gagnants": [],
  "styles_a_tester": [
   "chiffre_choc",
   "lieu_exception",
+  "revelation",
   "defi_1pourcent",
+  "question",
   "detail_surprenant"
  ],
  "styles_interdits": [
@@ -124,19 +123,34 @@
    "jusqu_au": "2026-11-20",
    "source": "juge",
    "raison": "9 versions jugées, aucune gagnante, aucun message privé"
+  },
+  "415": {
+   "jusqu_au": "2026-11-22",
+   "source": "juge",
+   "raison": "4 versions jugées, aucune gagnante, aucun message privé"
+  },
+  "501": {
+   "jusqu_au": "2026-11-22",
+   "source": "juge",
+   "raison": "6 versions jugées, aucune gagnante, aucun message privé"
+  },
+  "520": {
+   "jusqu_au": "2026-11-22",
+   "source": "juge",
+   "raison": "7 versions jugées, aucune gagnante, aucun message privé"
   }
  },
  "styles": {
   "chiffre_choc": {
    "definition": "le prix ou un chiffre fort dès le premier mot (« 2 500 000 € derrière cette porte », « 18 pièces, 520 m², un étang »)",
    "statut": "neutre",
-   "versions_jugees": 43,
+   "versions_jugees": 44,
    "gagnants": 9,
-   "perdants": 24,
+   "perdants": 25,
    "mediane_vues": 0,
    "meilleure": {
     "id": "TR-3010-438-v3",
-    "vues": 6310
+    "vues": 6317
    }
   },
   "lieu_exception": {
@@ -144,19 +158,19 @@
    "statut": "neutre",
    "versions_jugees": 29,
    "gagnants": 9,
-   "perdants": 14,
+   "perdants": 13,
    "mediane_vues": 122,
    "meilleure": {
     "id": "TR-2810-438-v1",
-    "vues": 3575
+    "vues": 3593
    }
   },
   "revelation": {
    "definition": "une porte, un placard ou une pièce cachée qu'on ouvre (« Tu pensais que c'était un placard ? », « Derrière cette porte… »)",
-   "statut": "gagnant",
-   "versions_jugees": 13,
+   "statut": "neutre",
+   "versions_jugees": 21,
    "gagnants": 5,
-   "perdants": 4,
+   "perdants": 10,
    "mediane_vues": 152,
    "meilleure": {
     "id": "TR-2910-525-b",
@@ -177,11 +191,11 @@
   },
   "question": {
    "definition": "l'accroche est une question posée au spectateur (« Tu choisis quoi ? », « Un week-end ici, tu dis oui ? »)",
-   "statut": "gagnant",
-   "versions_jugees": 9,
+   "statut": "neutre",
+   "versions_jugees": 17,
    "gagnants": 4,
-   "perdants": 3,
-   "mediane_vues": 145,
+   "perdants": 9,
+   "mediane_vues": 0,
    "meilleure": {
     "id": "TR-2810-438-v2",
     "vues": 2497
@@ -190,13 +204,13 @@
   "detail_surprenant": {
    "definition": "un équipement inattendu (« Une baignoire balnéo dans 19 m², oui c'est possible »)",
    "statut": "neutre",
-   "versions_jugees": 3,
+   "versions_jugees": 4,
    "gagnants": 1,
-   "perdants": 2,
-   "mediane_vues": 122,
+   "perdants": 3,
+   "mediane_vues": 61,
    "meilleure": {
     "id": "TR-2810-461-v4",
-    "vues": 1336
+    "vues": 1338
    }
   },
   "business": {
@@ -208,7 +222,7 @@
    "mediane_vues": 0,
    "meilleure": {
     "id": "TR-2810-483-v3",
-    "vues": 199
+    "vues": 200
    }
   },
   "descriptif": {
@@ -259,17 +273,17 @@
  },
  "biens": {
   "415": {
-   "versions_jugees": 1,
+   "versions_jugees": 4,
    "gagnants": 0,
    "messages_prives": 0,
-   "mediane_vues": 122,
-   "statut": "actif"
+   "mediane_vues": 61,
+   "statut": "en_pause"
   },
   "438": {
-   "versions_jugees": 55,
+   "versions_jugees": 59,
    "gagnants": 18,
-   "messages_prives": 25,
-   "mediane_vues": 178,
+   "messages_prives": 26,
+   "mediane_vues": 153,
    "statut": "fort"
   },
   "461": {
@@ -293,32 +307,39 @@
    "mediane_vues": 135,
    "statut": "en_pause"
   },
+  "494": {
+   "versions_jugees": 2,
+   "gagnants": 0,
+   "messages_prives": 0,
+   "mediane_vues": 118,
+   "statut": "actif"
+  },
   "501": {
-   "versions_jugees": 3,
+   "versions_jugees": 6,
    "gagnants": 0,
    "messages_prives": 0,
    "mediane_vues": 0,
-   "statut": "actif"
+   "statut": "en_pause"
   },
   "520": {
-   "versions_jugees": 3,
+   "versions_jugees": 7,
    "gagnants": 0,
    "messages_prives": 0,
    "mediane_vues": 0,
-   "statut": "actif"
+   "statut": "en_pause"
   },
   "525": {
-   "versions_jugees": 4,
+   "versions_jugees": 5,
    "gagnants": 4,
    "messages_prives": 0,
-   "mediane_vues": 173,
+   "mediane_vues": 168,
    "statut": "fort"
   },
   "527": {
-   "versions_jugees": 2,
+   "versions_jugees": 3,
    "gagnants": 1,
    "messages_prives": 0,
-   "mediane_vues": 823,
+   "mediane_vues": 356,
    "statut": "fort"
   },
   "Mandat": {
