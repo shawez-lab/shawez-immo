@@ -12786,7 +12786,7 @@
    "legende": "2e et dernier étage en plein cœur de Dijon : 92 m² au sol, une pièce de vie de 49 m² et une cheminée qui fonctionne 🏠\n\nC",
    "source": "monteur",
    "uuid": "252385651714248608",
-   "statut": "publie",
+   "statut": "brouillon_juge",
    "media": "https://fa129e69.shawez-immo.pages.dev/trial/2026-11-07/duplex-dijon-415-v1.mp4",
    "instagram": true
   },
@@ -12809,13 +12809,15 @@
      "uuid": "7106189961556872516",
      "url": "",
      "date": "2026-11-08",
-     "heure": "15:40"
+     "heure": "15:40",
+     "brouillon_juge": true
     },
     "youtube": {
      "uuid": "-8322181132620971363",
      "url": "",
      "date": "2026-11-08",
-     "heure": "16:30"
+     "heure": "16:30",
+     "brouillon_juge": true
     }
    }
   },
@@ -12838,13 +12840,15 @@
      "uuid": "-2980276596922170553",
      "url": "",
      "date": "2026-11-08",
-     "heure": "20:15"
+     "heure": "20:15",
+     "brouillon_juge": true
     },
     "youtube": {
      "uuid": "3600497773337856627",
      "url": "",
      "date": "2026-11-08",
-     "heure": "20:15"
+     "heure": "20:15",
+     "brouillon_juge": true
     }
    }
   },
@@ -12874,7 +12878,7 @@
    "legende": "Au rez-de-chaussée d’une résidence récente et sécurisée, la pièce de vie s’ouvre sur une terrasse et un jardin privatif ",
    "source": "monteur",
    "uuid": "-4610538144010255816",
-   "statut": "publie",
+   "statut": "brouillon_juge",
    "media": "https://fa129e69.shawez-immo.pages.dev/trial/2026-11-07/appartement-chevigny-520-v1.mp4",
    "instagram": true
   },
@@ -12897,13 +12901,15 @@
      "uuid": "2801296962429733633",
      "url": "",
      "date": "2026-11-08",
-     "heure": "16:10"
+     "heure": "16:10",
+     "brouillon_juge": true
     },
     "youtube": {
      "uuid": "3556369931710581333",
      "url": "",
      "date": "2026-11-08",
-     "heure": "17:00"
+     "heure": "17:00",
+     "brouillon_juge": true
     }
    }
   },
@@ -12926,7 +12932,8 @@
      "uuid": "7436499041994754897",
      "url": "",
      "date": "2026-11-08",
-     "heure": "20:45"
+     "heure": "20:45",
+     "brouillon_juge": true
     }
    }
   },
@@ -12964,13 +12971,15 @@
      "uuid": "-6527007899527263979",
      "url": "",
      "date": "2026-11-08",
-     "heure": "16:40"
+     "heure": "16:40",
+     "brouillon_juge": true
     },
     "youtube": {
      "uuid": "8375880145973628806",
      "url": "",
      "date": "2026-11-08",
-     "heure": "17:30"
+     "heure": "17:30",
+     "brouillon_juge": true
     }
    }
   },
