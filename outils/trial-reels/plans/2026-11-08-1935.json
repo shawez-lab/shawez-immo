@@ -1,0 +1,99 @@
+{
+ "jour": "2026-11-08",
+ "outil": "438, 461 et 527 : outils/trial-reels/fabriquer.py (vraies vidéos, video-hd.mp4). 509 : outils/biens/diaporama.py (monter), photo par photo, dans l'ordre de « photos » de chaque version (son video.mp4 est un Reel photo fini, on ne le recoupe pas). 527 : versions v5 à v8, v1 à v4 existent déjà au passage de 07h35.",
+ "choisir": "choisir.py a rendu 452IMMEUBLE 425 513 403 ; vivier : 452IMMEUBLE 425 513 403 431 509 Combottes 527 438 461 494 481 446 507 525",
+ "ecartes": {
+  "452IMMEUBLE": "video : Shawez face caméra avec sous-titres incrustés (planche revue le 08/11 19h35)",
+  "425": "video : Shawez face caméra avec sous-titres incrustés, sujet SCI (planche revue le 08/11 19h35)",
+  "513": "video : Shawez face caméra avec sous-titres incrustés (planche revue le 08/11 19h35)",
+  "403": "video : Shawez face caméra avec sous-titres incrustés (planche revue le 08/11 19h35)",
+  "431": "video : Shawez face caméra avec sous-titres incrustés (planche revue le 08/11 19h35)",
+  "Combottes": "annonce RETIRÉE de la vente le 07/11 (status « retirée », plus de prix, plus vue depuis le 06/11) : on ne fait pas la publicité d'un bien qui n'est plus à vendre"
+ },
+ "biens": [
+  {
+   "ref": "509", "src": "assets/biens/509/video.mp4", "mot": "COUCHEY", "nom": "deux-maisons-couchey", "mode": "photos",
+   "versions": [
+    {"id": "v1", "style": "chiffre_choc", "instagram": true,
+     "accroche": "141 m² répartis|sur deux maisons rénovées",
+     "photos": [9, 1, 2, 11, 4, 15], "lignes": ["Entièrement rénovées", "", "Seconde maison"],
+     "legende": "Deux maisons entièrement rénovées, l’une en face de l’autre dans une petite impasse au calme : 141 m² en tout, à vivre comme tu l’entends 🏡\n\nCommente COUCHEY et je t’envoie la visite complète en privé 📩\n\n#deuxmaisons #maisonrenovee #cotedesvins #bourgognemaison #grandefamille"},
+    {"id": "v2", "style": "detail_surprenant", "instagram": false,
+     "accroche": "Une cave voûtée par maison,|oui c’est possible",
+     "photos": [10, 1, 3, 5, 12, 9], "lignes": ["Pompe à chaleur 2021"],
+     "legende": "Sous la première maison, une cave voûtée de 25 m² ; sous la seconde, une autre de 30 m² sur 2,30 m de hauteur. Le vin a de la place 🍷\n\nCommente COUCHEY et je t’envoie la visite complète en privé 📩\n\n#cavevoutee #pierreancienne #amateurdevin #maisonancienne #villageviticole"},
+    {"id": "v3", "style": "question", "instagram": false,
+     "accroche": "La seconde maison,|tu en fais quoi ?",
+     "photos": [11, 12, 13, 16, 14, 15], "lignes": ["63 m² indépendants", "Chambre de 22,5 m²"],
+     "legende": "Une seconde maison de 63 m², totalement indépendante, avec salon, cuisine ouverte équipée et une chambre de 22,5 m². Tu la loues, tu y loges tes parents ? 🤔\n\nCommente COUCHEY et je t’envoie la visite complète en privé 📩\n\n#maisonindependante #logementdamis #projetimmobilier #bourgogne #maisondevillage"},
+    {"id": "v4", "style": "lieu_exception", "instagram": false,
+     "accroche": "Deux maisons en plein cœur|d’un village viticole",
+     "photos": [9, 15, 1, 6, 3, 8], "lignes": ["Terrasse", "Cuisine ouverte"],
+     "legende": "Au calme du bourg historique d’un village viticole de la côte des vins, une propriété ancienne refaite à neuf 🍇\n\nCommente COUCHEY et je t’envoie la visite complète en privé 📩\n\n#vignoblebourguignon #bourghistorique #proprieteancienne #routedesvins #viedevillage"}
+   ]
+  },
+  {
+   "ref": "527", "src": "assets/biens/527/video.mp4", "mot": "BEAUNE", "nom": "hotel-particulier-beaune",
+   "versions": [
+    {"id": "v5", "style": "question", "instagram": false,
+     "accroche": "Pied-à-terre ou placement,|pourquoi choisir ?",
+     "plans": [[43.0, 45.0, 1.0], [27.0, 29.0, 1.0], [60.0, 62.0, 1.0, "Trois appartements"], [9.0, 11.0, 1.0], [54.0, 56.0, 1.0], [66.0, 69.0, 1.0]],
+     "legende": "Un pied-à-terre bourguignon pour toi, et les autres lots pour ton patrimoine, dans le respect des baux en cours. Tu gardes quel étage ? 🗝️\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#piedaterre #patrimoineimmobilier #hotelparticulier #grandsvins #bourgognevibes"},
+    {"id": "v6", "style": "chiffre_choc", "instagram": true,
+     "accroche": "58 m² de local pro|au cœur de Beaune",
+     "plans": [[1.0, 3.0, 1.0], [12.0, 14.0, 1.0, "Local vacant"], [30.0, 32.0, 1.0], [3.0, 5.0, 1.0], [51.0, 53.0, 1.0], [38.0, 41.0, 1.0]],
+     "legende": "Un local professionnel indépendant de 58,08 m², actuellement vacant, dans un hôtel particulier du XVIIe : vivre et travailler à la même adresse 💼\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#localprofessionnel #vivreettravailler #beaunecentre #professionliberale #pierredetaille"},
+    {"id": "v7", "style": "lieu_exception", "instagram": false,
+     "accroche": "Un hôtel particulier|avec terrasse et garage",
+     "plans": [[44.0, 46.0, 1.0], [28.0, 30.0, 1.0, "Terrasse et jardin"], [0.0, 1.5, 1.0], [47.0, 49.0, 1.0], [70.0, 72.0, 1.0], [29.0, 32.0, 1.0]],
+     "legende": "En plein centre, la terrasse, les espaces de jardin et le garage prolongent la cour intérieure. Rare dans le cœur historique 🌿\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#jardinenville #terrasse #garage #demeurehistorique #coeurdeville"},
+    {"id": "v8", "style": "chiffre_choc", "instagram": false,
+     "accroche": "3 appartements,|chacun ses compteurs",
+     "plans": [[18.0, 20.0, 1.0], [24.0, 26.0, 1.0], [56.0, 58.0, 1.0, "Compteurs individuels"], [73.0, 75.0, 1.0], [20.0, 22.0, 1.0], [81.5, 84.5, 1.0]],
+     "legende": "Trois appartements indépendants, et chacun a ses compteurs individuels d’eau et d’électricité. Les rénovations récentes ont repris la couverture, les menuiseries et l’isolation 🔧\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#compteursindividuels #immeubleancien #renovationrecente #monopropriete #beaunemaville"}
+   ]
+  },
+  {
+   "ref": "438", "src": "assets/biens/438/video.mp4", "mot": "CHÂTEAU", "nom": "chateau",
+   "versions": [
+    {"id": "v1", "style": "chiffre_choc", "instagram": true,
+     "accroche": "7 chambres, 3 salons|et un boudoir",
+     "plans": [[15.0, 17.5, 1.0], [29.0, 30.0, 1.0, "3 salons"], [1.0, 3.0, 1.0], [5.0, 7.0, 1.0, "7 chambres"], [19.0, 21.0, 1.0], [8.3, 11.2, 1.0]],
+     "legende": "Sept chambres, trois salons de réception, une salle à manger et un boudoir : la place de recevoir toute la famille, et bien plus 🏰\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#grandefamille #salonsdereception #chateaufrancais #vieillespierres #demeuredexception"},
+    {"id": "v2", "style": "detail_surprenant", "instagram": false,
+     "accroche": "Un colombier dans ton parc,|oui c’est possible",
+     "plans": [[5.0, 7.2, 1.0], [0.0, 1.2, 1.0, "Colombier et grange"], [3.0, 5.0, 1.0], [11.2, 13.0, 1.0], [24.0, 26.0, 1.0], [7.2, 8.2, 1.0], [8.3, 11.2, 1.0]],
+     "legende": "Colombier, grange, écurie et étable : autour du château, les dépendances racontent encore la vie d’un domaine bourguignon 🕊️\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#colombier #ecurie #dependances #domainebourguignon #patrimoinerural"},
+    {"id": "v3", "style": "question", "instagram": false,
+     "accroche": "Maison d’amis de 60 m²,|tu invites qui ?",
+     "plans": [[19.0, 21.5, 1.0], [24.0, 27.0, 1.1, "Maison d’amis"], [29.0, 30.0, 1.0], [13.0, 15.0, 1.0], [3.0, 5.0, 1.0], [5.2, 8.2, 1.0]],
+     "legende": "À côté du château, une maison d’amis d’environ 60 m² avec séjour, cuisine, salon et deux chambres. Les week-ends prennent une autre dimension 🥂\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#maisondamis #weekendentreamis #recevoir #chateaudebourgogne #famillenombreuse"},
+    {"id": "v4", "style": "revelation", "instagram": false,
+     "accroche": "Ce que cache|le sous-sol de ce château",
+     "plans": [[13.0, 15.0, 1.0], [14.0, 15.2, 1.0], [15.2, 18.0, 1.1, "Caves sous la bâtisse"], [27.0, 29.0, 1.0], [1.0, 3.0, 1.0], [8.3, 11.2, 1.0]],
+     "legende": "Sous toute la bâtisse principale s’étendent des caves, et au-dessus, un grenier. Un château du XVIIIe se visite de la cave au grenier 🕯️\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#cavesanciennes #xviiiesiecle #grenier #chateauhistorique #cotedebeaune"}
+   ]
+  },
+  {
+   "ref": "461", "src": "assets/biens/461/video.mp4", "mot": "MARRAKECH", "nom": "studio-marrakech",
+   "versions": [
+    {"id": "v1", "style": "detail_surprenant", "instagram": true,
+     "accroche": "Tout est sur mesure|dans 19 m²",
+     "plans": [[3.0, 5.0, 1.0], [13.0, 15.0, 1.0, "Balnéo"], [8.0, 10.5, 1.0], [1.0, 3.0, 1.0, "Kitchenette sur mesure"], [22.0, 24.0, 1.0], [28.0, 31.0, 1.0]],
+     "legende": "Kitchenette sur mesure, rangements intégrés, balnéo et rétroprojecteur : chaque centimètre de ces 19,15 m² a été pensé par un architecte ✨\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#surmesure #petitespaces #studiodarchitecte #optimisation #decomarocaine"},
+    {"id": "v2", "style": "question", "instagram": false,
+     "accroche": "Faibles charges, syndic bénévole,|tu attends quoi ?",
+     "plans": [[0.0, 2.0, 1.0], [17.0, 19.0, 1.0], [1.0, 3.0, 1.0, "Faibles charges"], [13.5, 15.0, 1.0], [5.0, 7.0, 1.0], [27.0, 28.0, 1.0], [22.0, 25.0, 1.0]],
+     "legende": "Une petite copropriété de 13 lots avec syndic bénévole et faibles charges, dans une cour intérieure au calme. Le genre de détail qui compte 🔑\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#chargesfaibles #petitecopropriete #courinterieure #achatmalin #dijonstudio"},
+    {"id": "v3", "style": "question", "instagram": false,
+     "accroche": "Premier achat|ou pied-à-terre ?",
+     "plans": [[28.0, 30.0, 1.0], [3.0, 5.0, 1.0, "19,15 m²"], [13.0, 15.0, 1.0], [8.0, 10.0, 1.0], [0.0, 1.5, 1.0], [19.0, 22.0, 1.0]],
+     "legende": "Entièrement rénové, clé en main, à deux pas du parc Darcy : il coche les cases d’un premier achat comme d’un pied-à-terre. Toi, tu le prends pour quoi ? 🏙️\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#premierachat #piedaterre #parcdarcy #cleenmain #jeuneacheteur"},
+    {"id": "v4", "style": "revelation", "instagram": false,
+     "accroche": "Regarde bien|ces placards blancs",
+     "plans": [[8.0, 10.5, 1.0], [10.5, 12.0, 1.0, "Rangements sur mesure"], [1.0, 3.0, 1.0], [27.0, 28.0, 1.0], [13.0, 15.0, 1.0], [30.0, 33.0, 1.0]],
+     "legende": "Derrière les façades blanches, des rangements intégrés réalisés sur mesure et un rétroprojecteur. Rien ne dépasse, tout se range 🤫\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#rangementsurmesure #gaindeplace #homecinema #studiorenove #vivrepetit"}
+   ]
+  }
+ ]
+}
