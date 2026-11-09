@@ -1,0 +1,603 @@
+{
+ "jour": "2026-11-09",
+ "outil": "438, 461 et 527 : outils/trial-reels/fabriquer.py. 494 : outils/biens/diaporama.py (monter), photo par photo dans l’ordre de « photos » (photos 4, 6 et 8 de l’annonce écartées : aménagement virtuel).",
+ "choisir": "choisir.py a rendu 452IMMEUBLE 425 513 403 ; vivier : 452IMMEUBLE 425 513 403 431 Combottes 527 438 461 494 481 446 507 509 525",
+ "ecartes": {
+  "452IMMEUBLE": "Shawez face caméra avec sous-titres incrustés (planche revue 09/11 07h35)",
+  "425": "face caméra avec sous-titres incrustés (revu 08/11 19h35)",
+  "513": "face caméra avec sous-titres incrustés (revu 08/11 19h35)",
+  "403": "Shawez face caméra avec sous-titres incrustés (planche revue 09/11 07h35)",
+  "431": "face caméra avec sous-titres incrustés (revu 08/11 19h35)",
+  "Combottes": "annonce retirée de la vente le 07/11"
+ },
+ "biens": [
+  {
+   "ref": "438",
+   "src": "assets/biens/438/video.mp4",
+   "mot": "CHÂTEAU",
+   "nom": "chateau",
+   "versions": [
+    {
+     "id": "v1",
+     "style": "defi_1pourcent",
+     "instagram": false,
+     "accroche": "99 % ratent|la statue au bord de l’eau",
+     "legende": "Une statue au bord de l’eau, un parc, puis 18 pièces sur 520 m² : tu l’avais repérée dès la première seconde ? 👀\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#chateauavendre #oeilaffute #parcetjardin #bourgogneimmo #demeureancienne",
+     "plans": [
+      [
+       3.0,
+       4.5,
+       1.0
+      ],
+      [
+       1.0,
+       3.0,
+       1.0
+      ],
+      [
+       11.0,
+       13.0,
+       1.0
+      ],
+      [
+       15.0,
+       17.0,
+       1.0,
+       "18 pièces"
+      ],
+      [
+       24.0,
+       26.0,
+       1.0
+      ],
+      [
+       8.3,
+       11.2,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v2",
+     "style": "chiffre_choc",
+     "instagram": true,
+     "accroche": "1,59 ha autour|d’un château du XVIIIe",
+     "legende": "Un château du XVIIIe posé sur 1,59 ha, avec une vue dégagée tout autour et 6 places de parking pour recevoir 🌳\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#chateaufrancais #grandparc #vuedegagee #proprietedexception #saoneetloire",
+     "plans": [
+      [
+       5.0,
+       7.2,
+       1.0
+      ],
+      [
+       0.0,
+       1.5,
+       1.0
+      ],
+      [
+       12.0,
+       13.5,
+       1.0
+      ],
+      [
+       16.0,
+       18.0,
+       1.0,
+       "Vue dégagée"
+      ],
+      [
+       27.0,
+       29.0,
+       1.0
+      ],
+      [
+       8.3,
+       11.2,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v3",
+     "style": "question",
+     "instagram": false,
+     "accroche": "Ta cuisine de chef,|tu l’imagines ici ?",
+     "legende": "Une cuisine équipée avec îlot central, sous une grande hauteur, dans un château de 7 chambres. Tu cuisines quoi en premier ? 🍳\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#cuisinedechef #ilotcentral #grandefamille #maisondereception #artdevivre",
+     "plans": [
+      [
+       24.0,
+       26.0,
+       1.0
+      ],
+      [
+       19.0,
+       21.0,
+       1.0,
+       "Cuisine équipée"
+      ],
+      [
+       27.0,
+       29.0,
+       1.0
+      ],
+      [
+       29.0,
+       30.0,
+       1.0
+      ],
+      [
+       13.0,
+       15.0,
+       1.0
+      ],
+      [
+       5.2,
+       8.2,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v4",
+     "style": "lieu_exception",
+     "instagram": false,
+     "accroche": "Un château du XVIIIe|au bout de cette allée",
+     "legende": "Au bout de l’allée, une demeure du XVIIIe de 520 m² sur trois niveaux, entre parc et dépendances 🏰\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#allee #chateauduXVIIIe #patrimoinebourguignon #viedechateau #bienrare",
+     "plans": [
+      [
+       11.0,
+       13.0,
+       1.0
+      ],
+      [
+       13.0,
+       14.5,
+       1.0
+      ],
+      [
+       14.0,
+       15.2,
+       1.0
+      ],
+      [
+       15.2,
+       18.0,
+       1.0,
+       "Trois niveaux"
+      ],
+      [
+       22.0,
+       24.0,
+       1.0
+      ],
+      [
+       8.3,
+       11.2,
+       1.0
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "ref": "461",
+   "src": "assets/biens/461/video.mp4",
+   "mot": "MARRAKECH",
+   "nom": "studio-marrakech",
+   "versions": [
+    {
+     "id": "v1",
+     "style": "chiffre_choc",
+     "instagram": true,
+     "accroche": "19,15 m²|et une balnéo",
+     "legende": "19,15 m² rénovés et une baignoire balnéo : à 129 000 €, le studio qui ne ressemble à aucun autre à Dijon 🛁\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#balneo #studiodijon #petitesurface #renovationdeco #investirdijon",
+     "plans": [
+      [
+       13.0,
+       15.0,
+       1.0
+      ],
+      [
+       3.0,
+       5.0,
+       1.0
+      ],
+      [
+       8.5,
+       10.5,
+       1.0,
+       "Rétroprojecteur"
+      ],
+      [
+       17.0,
+       19.0,
+       1.0
+      ],
+      [
+       24.0,
+       26.0,
+       1.0
+      ],
+      [
+       29.0,
+       32.0,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v2",
+     "style": "lieu_exception",
+     "instagram": false,
+     "accroche": "Ton coin de Marrakech|en plein centre de Dijon",
+     "legende": "Une ambiance Marrakech au calme d’une cour intérieure, à deux pas du parc Darcy, rénovée clé en main 🌴\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#parcdarcy #dijoncentre #decomarocaine #courinterieure #clefenmain",
+     "plans": [
+      [
+       0.0,
+       2.0,
+       1.0
+      ],
+      [
+       5.0,
+       7.0,
+       1.0,
+       "Clé en main"
+      ],
+      [
+       19.0,
+       21.0,
+       1.0
+      ],
+      [
+       13.5,
+       15.0,
+       1.0
+      ],
+      [
+       22.0,
+       24.0,
+       1.0
+      ],
+      [
+       29.0,
+       32.0,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v3",
+     "style": "revelation",
+     "instagram": false,
+     "accroche": "Ce mur blanc|cache un écran",
+     "legende": "Un rétroprojecteur intégré, une kitchenette sur mesure, des rangements partout : ici chaque mur a un rôle 🎬\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#soireecinema #amenagementmalin #rangementsurmesure #studiodesign #dijonimmo",
+     "plans": [
+      [
+       8.0,
+       9.0,
+       1.0
+      ],
+      [
+       9.0,
+       11.0,
+       1.0,
+       "Rétroprojecteur"
+      ],
+      [
+       1.0,
+       3.0,
+       1.0
+      ],
+      [
+       13.0,
+       15.0,
+       1.0
+      ],
+      [
+       20.0,
+       22.0,
+       1.0
+      ],
+      [
+       29.5,
+       32.5,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v4",
+     "style": "detail_surprenant",
+     "instagram": false,
+     "accroche": "Une pompe à chaleur|dans 19 m²",
+     "legende": "Pompe à chaleur, petite copropriété de 13 lots, terrasse sur cour : le confort d’un grand dans 19,15 m² 🌿\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#pompeachaleur #premierachat #coproprietecalme #studioterrasse #bourgogne",
+     "plans": [
+      [
+       19.0,
+       21.0,
+       1.0
+      ],
+      [
+       17.0,
+       18.5,
+       1.0
+      ],
+      [
+       1.0,
+       3.0,
+       1.0,
+       "13 lots"
+      ],
+      [
+       13.0,
+       15.0,
+       1.0
+      ],
+      [
+       3.0,
+       5.0,
+       1.0
+      ],
+      [
+       30.0,
+       33.0,
+       1.0
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "ref": "527",
+   "src": "assets/biens/527/video.mp4",
+   "mot": "BEAUNE",
+   "nom": "hotel-particulier-beaune",
+   "versions": [
+    {
+     "id": "v1",
+     "style": "chiffre_choc",
+     "instagram": true,
+     "accroche": "360 m² de pierre|au cœur de Beaune",
+     "legende": "Un hôtel particulier du XVIIe de 360 m² en plein cœur historique de Beaune, avec cour, jardin et garage 🍇\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#beaunecentre #hotelparticulier #pierreancienne #monopropriete #cotedor",
+     "plans": [
+      [
+       0.0,
+       2.0,
+       1.0
+      ],
+      [
+       27.0,
+       29.0,
+       1.0
+      ],
+      [
+       38.0,
+       40.0,
+       1.0,
+       "Cour et galerie"
+      ],
+      [
+       60.0,
+       62.0,
+       1.0
+      ],
+      [
+       54.0,
+       56.0,
+       1.0
+      ],
+      [
+       66.0,
+       69.0,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v2",
+     "style": "revelation",
+     "instagram": false,
+     "accroche": "Ce porche cache|une cour et un jardin",
+     "legende": "Passe le porche : une cour pavée, un jardin et une galerie en bois, à quelques pas des rues commerçantes 🌿\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#jardinsecret #courpavee #beaunebourgogne #XVIIesiecle #immobilierdeprestige",
+     "plans": [
+      [
+       1.0,
+       3.0,
+       1.0
+      ],
+      [
+       9.0,
+       11.0,
+       1.0
+      ],
+      [
+       27.0,
+       29.0,
+       1.0,
+       "Jardin"
+      ],
+      [
+       42.0,
+       44.0,
+       1.0
+      ],
+      [
+       31.0,
+       33.0,
+       1.0
+      ],
+      [
+       43.0,
+       46.0,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v3",
+     "style": "question",
+     "instagram": false,
+     "accroche": "Cet escalier à vis,|tu le montes ?",
+     "legende": "Un escalier ancien, des cheminées, des parquets : chaque étage de cet hôtel particulier a gardé son caractère. Tu commences par lequel ? 🗝️\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#escalierancien #cheminee #parquetancien #caractere #beaune",
+     "plans": [
+      [
+       82.0,
+       84.0,
+       1.0
+      ],
+      [
+       34.0,
+       36.0,
+       1.0
+      ],
+      [
+       38.0,
+       40.0,
+       1.0
+      ],
+      [
+       60.0,
+       62.0,
+       1.0,
+       "Cheminées"
+      ],
+      [
+       67.0,
+       69.0,
+       1.0
+      ],
+      [
+       75.0,
+       78.0,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v4",
+     "style": "detail_surprenant",
+     "instagram": false,
+     "accroche": "Poutres du XVIIe et cuisine neuve,|oui c’est possible",
+     "legende": "Les poutres du XVIIe d’un côté, une cuisine équipée neuve de l’autre : l’ancien et le confort d’aujourd’hui sous le même toit 🍷\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#poutresapparentes #cuisineequipee #ancienrenove #patrimoineetconfort #bourgognevignoble",
+     "plans": [
+      [
+       5.0,
+       7.0,
+       1.0
+      ],
+      [
+       18.0,
+       20.0,
+       1.0,
+       "Cuisine équipée"
+      ],
+      [
+       54.0,
+       56.0,
+       1.0
+      ],
+      [
+       38.0,
+       40.0,
+       1.0
+      ],
+      [
+       61.0,
+       63.0,
+       1.0
+      ],
+      [
+       79.0,
+       82.0,
+       1.0
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "ref": "494",
+   "src": "assets/biens/494/video.mp4",
+   "mot": "BISTRO",
+   "nom": "bistro",
+   "mode": "photos",
+   "versions": [
+    {
+     "id": "v1",
+     "style": "chiffre_choc",
+     "instagram": true,
+     "accroche": "120 000 €|pour 340 m²",
+     "legende": "120 000 € pour un ancien bistro d’environ 340 m² sur 543 m² de terrain, avec garage et dépendances 🏚️\n\nCommente BISTRO et je t’envoie la visite complète en privé 📩\n\n#ancienbistro #grandvolume #petitprix #immobilierrural #bourgogne",
+     "photos": [
+      2,
+      12,
+      7,
+      18,
+      1,
+      22
+     ],
+     "lignes": [
+      "340 m²",
+      "",
+      "",
+      "543 m² de terrain"
+     ]
+    },
+    {
+     "id": "v2",
+     "style": "defi_1pourcent",
+     "instagram": false,
+     "accroche": "99 % ratent|ce que cachait cette salle",
+     "legende": "Avant, on y dansait : c’est l’ancienne salle de bal du bistro. Tu l’avais deviné ? 💃\n\nCommente BISTRO et je t’envoie la visite complète en privé 📩\n\n#salledebal #devinette #histoiredelieu #biendecaractere #valdesaone",
+     "photos": [
+      12,
+      7,
+      10,
+      14,
+      2,
+      22
+     ],
+     "lignes": [
+      "Ancienne salle de bal"
+     ]
+    },
+    {
+     "id": "v3",
+     "style": "question",
+     "instagram": false,
+     "accroche": "Bistro, gîte ou maison,|tu en fais quoi ?",
+     "legende": "Un ancien bistro de village avec sa salle de bal, son garage et ses dépendances, à faire revivre à ta façon 🍻\n\nCommente BISTRO et je t’envoie la visite complète en privé 📩\n\n#bistrodevillage #projetrenovation #maisonareinventer #campagnebourguignonne #achatimmo",
+     "photos": [
+      22,
+      2,
+      11,
+      5,
+      18,
+      1
+     ],
+     "lignes": [
+      "Ancien bistro"
+     ]
+    },
+    {
+     "id": "v4",
+     "style": "revelation",
+     "instagram": false,
+     "accroche": "Ce que cache|cette vieille charpente",
+     "legende": "Des charpentes anciennes, de grands volumes bruts et 543 m² de terrain : ici tu pars d’une page blanche ✏️\n\nCommente BISTRO et je t’envoie la visite complète en privé 📩\n\n#charpente #volumesbruts #pageblanche #renovation #saoneetloire",
+     "photos": [
+      18,
+      20,
+      21,
+      23,
+      13,
+      3
+     ],
+     "lignes": [
+      "Dépendances"
+     ]
+    }
+   ]
+  }
+ ]
+}
