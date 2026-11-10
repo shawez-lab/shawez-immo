@@ -1,0 +1,601 @@
+{
+ "jour": "2026-11-10",
+ "outil": "527, 438 et 461 : outils/trial-reels/fabriquer.py. 509 : outils/biens/diaporama.py (monter), photo par photo dans l’ordre de « photos » (son video.mp4 est un Reel photo fini).",
+ "choisir": "choisir.py a rendu 452IMMEUBLE 425 513 403 ; vivier : 452IMMEUBLE 425 513 403 431 509 527 438 461 507 525",
+ "ecartes": {
+  "452IMMEUBLE": "Shawez face caméra avec sous-titres incrustés (planche revue 10/11 19h35)",
+  "425": "face caméra avec sous-titres incrustés, sujet SCI (planche revue 10/11 19h35)",
+  "513": "Shawez face caméra avec sous-titres incrustés (planche revue 10/11 19h35)",
+  "403": "Shawez face caméra avec sous-titres incrustés (planche revue 10/11 19h35)",
+  "431": "face caméra avec sous-titres incrustés (planche revue 10/11 19h35)"
+ },
+ "remplacants": "les 4 biens rendus et le suivant 431 sont face caméra : remplacés par les suivants du vivier, dans l’ordre de choisir.py : 509 527 438 461.",
+ "metricool": "Limite du compte Metricool atteinte (« You have reached your Metricool account limit » sur toutes les publications depuis le 09/11 19:05) : aucune publication créée ce passage, les 16 versions partent par le Diffuseur.",
+ "biens": [
+  {
+   "ref": "509",
+   "src": "assets/biens/509/video.mp4",
+   "mot": "COUCHEY",
+   "nom": "deux-maisons-couchey",
+   "mode": "photos",
+   "versions": [
+    {
+     "id": "v1",
+     "style": "defi_1pourcent",
+     "instagram": true,
+     "accroche": "99 % ratent|la cave voûtée de 30 m²",
+     "legende": "Sous la seconde maison, une cave voûtée de 30 m² et 2,30 m de haut, et une autre de 25 m² sous la première. Tu l’as vue avant la fin ? 🍷\n\nCommente COUCHEY et je t’envoie la visite complète en privé 📩\n\n#cavevoutee #couchey #cotedesvins #defivisuel #maisonrenovee",
+     "photos": [
+      28,
+      1,
+      9,
+      26,
+      4,
+      15
+     ],
+     "lignes": [
+      "Cave voûtée"
+     ]
+    },
+    {
+     "id": "v2",
+     "style": "defi_1pourcent",
+     "instagram": false,
+     "accroche": "Mets pause :|1 % voit le balcon",
+     "legende": "Au deuxième étage, une chambre de près de 14 m² avec son balcon privatif, dans une maison entièrement rénovée du village. Tu l’as repéré ? 👀\n\nCommente COUCHEY et je t’envoie la visite complète en privé 📩\n\n#balconprivatif #villageviticole #oeildelynx #bourgogne #immobiliercotedor",
+     "photos": [
+      26,
+      13,
+      4,
+      1,
+      9,
+      25
+     ],
+     "lignes": [
+      "Balcon privatif"
+     ]
+    },
+    {
+     "id": "v3",
+     "style": "defi_1pourcent",
+     "instagram": false,
+     "accroche": "Seul 1 % y arrive :|compter les maisons",
+     "legende": "Deux maisons entièrement rénovées, l’une en face de l’autre dans une petite impasse, vendues en une seule. Tu en as compté combien ? 🏡\n\nCommente COUCHEY et je t’envoie la visite complète en privé 📩\n\n#deuxmaisons #investissementlocatif #jeudobservation #couchey #immobilierdijon",
+     "photos": [
+      9,
+      27,
+      1,
+      11,
+      17,
+      25
+     ],
+     "lignes": [
+      "2 maisons"
+     ]
+    },
+    {
+     "id": "v4",
+     "style": "defi_1pourcent",
+     "instagram": false,
+     "accroche": "99 % ratent|la troisième chambre",
+     "legende": "141 m² en tout, trois chambres, pompe à chaleur air/eau de 2021 : regarde bien, la troisième passe très vite 🛏️\n\nCommente COUCHEY et je t’envoie la visite complète en privé 📩\n\n#troischambres #pompeachaleur #cotedor #defipause #maisondevillage",
+     "photos": [
+      4,
+      13,
+      19,
+      1,
+      6,
+      28
+     ],
+     "lignes": [
+      "3 chambres"
+     ]
+    }
+   ]
+  },
+  {
+   "ref": "527",
+   "src": "assets/biens/527/video.mp4",
+   "mot": "BEAUNE",
+   "nom": "hotel-particulier-beaune",
+   "versions": [
+    {
+     "id": "v5",
+     "style": "defi_1pourcent",
+     "instagram": true,
+     "accroche": "99 % ratent|la terrasse de Beaune",
+     "legende": "Une terrasse au cœur historique de Beaune, dans un hôtel particulier du XVIIe à 2 500 000 €. Mets pause avant la fin pour la voir 🌇\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#terrasse #beaune #hotelparticulier #defivisuel #immobilierdeprestige",
+     "plans": [
+      [
+       0.0,
+       2.0,
+       1.0
+      ],
+      [
+       9.0,
+       11.0,
+       1.0
+      ],
+      [
+       38.0,
+       40.0,
+       1.0
+      ],
+      [
+       18.0,
+       20.0,
+       1.0
+      ],
+      [
+       43.0,
+       45.0,
+       1.0,
+       "Terrasse"
+      ],
+      [
+       45.0,
+       47.8,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v6",
+     "style": "defi_1pourcent",
+     "instagram": false,
+     "accroche": "Mets pause :|1 % voit l’appartement de 2025",
+     "legende": "Au deuxième étage, un quatre pièces entièrement rénové en 2025 : 117,03 m² Carrez, poutres anciennes et pompe à chaleur réversible. Tu l’avais repéré ? ✨\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#renovation2025 #poutresanciennes #beaunecentre #oeildelynx #bourgogne",
+     "plans": [
+      [
+       18.0,
+       20.0,
+       1.0
+      ],
+      [
+       3.0,
+       5.0,
+       1.0
+      ],
+      [
+       20.0,
+       22.0,
+       1.0,
+       "Rénové en 2025"
+      ],
+      [
+       24.0,
+       26.0,
+       1.0
+      ],
+      [
+       13.0,
+       15.0,
+       1.0
+      ],
+      [
+       9.0,
+       11.8,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v7",
+     "style": "defi_1pourcent",
+     "instagram": false,
+     "accroche": "Seul 1 % y arrive :|voir le porche du XVIIe",
+     "legende": "On pousse le porche et tout s’organise autour de la cour : pierre, poutres, jardin et cave voûtée. Tu as tenu jusqu’à la dernière image ? 🗝️\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#XVIIesiecle #pierredebourgogne #capitaledesvins #jeudobservation #demeurehistorique",
+     "plans": [
+      [
+       1.0,
+       3.0,
+       1.0
+      ],
+      [
+       2.0,
+       4.0,
+       1.0
+      ],
+      [
+       10.0,
+       12.0,
+       1.0
+      ],
+      [
+       29.0,
+       31.0,
+       1.0,
+       "XVIIe siècle"
+      ],
+      [
+       39.0,
+       41.0,
+       1.0
+      ],
+      [
+       45.0,
+       47.8,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v8",
+     "style": "chiffre_choc",
+     "instagram": false,
+     "accroche": "2 500 000 €,|3 appartements,|1 local",
+     "legende": "Un seul titre, trois appartements indépendants et un local professionnel en monopropriété, au cœur de Beaune. Pied-à-terre, patrimoine locatif, ou les deux ? 🏛️\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#monopropriete #patrimoine #beaune #investissementimmobilier #cotedor",
+     "plans": [
+      [
+       0.0,
+       2.0,
+       1.0
+      ],
+      [
+       5.0,
+       7.0,
+       1.0,
+       "Monopropriété"
+      ],
+      [
+       16.0,
+       18.0,
+       1.0
+      ],
+      [
+       31.0,
+       33.0,
+       1.0
+      ],
+      [
+       38.0,
+       40.0,
+       1.0
+      ],
+      [
+       43.0,
+       45.8,
+       1.0
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "ref": "438",
+   "src": "assets/biens/438/video.mp4",
+   "mot": "CHÂTEAU",
+   "nom": "chateau",
+   "versions": [
+    {
+     "id": "v5",
+     "style": "defi_1pourcent",
+     "instagram": true,
+     "accroche": "99 % ratent|les 10 hectares de bois",
+     "legende": "Un domaine d’environ 15 hectares dont 10 de bois, et au milieu un château du XVIIIe de 520 m². Mets pause dès la vue du ciel 🌲\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#domaine #chateauavendre #foret #defivisuel #bourgogne",
+     "plans": [
+      [
+       5.0,
+       7.0,
+       1.0
+      ],
+      [
+       11.0,
+       13.0,
+       1.0
+      ],
+      [
+       8.0,
+       10.0,
+       1.0,
+       "15 hectares"
+      ],
+      [
+       15.0,
+       17.0,
+       1.0
+      ],
+      [
+       29.0,
+       30.0,
+       1.0
+      ],
+      [
+       0.0,
+       3.0,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v6",
+     "style": "defi_1pourcent",
+     "instagram": false,
+     "accroche": "Mets pause :|1 % voit la salle à manger",
+     "legende": "Vestibule, trois salons de réception, salle à manger, boudoir : 18 pièces dans ce château près de Beaune. Tu l’as vue passer ? 🍽️\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#salleamanger #artdevivre #chateaufrancais #oeildelynx #cotedebeaune",
+     "plans": [
+      [
+       13.0,
+       15.0,
+       1.0
+      ],
+      [
+       14.0,
+       16.0,
+       1.0
+      ],
+      [
+       16.0,
+       18.0,
+       1.0
+      ],
+      [
+       24.0,
+       26.0,
+       1.0
+      ],
+      [
+       29.0,
+       30.0,
+       1.0,
+       "Salle à manger"
+      ],
+      [
+       8.0,
+       11.0,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v7",
+     "style": "defi_1pourcent",
+     "instagram": false,
+     "accroche": "Seul 1 % y arrive :|tout voir du ciel",
+     "legende": "Vu d’en haut : le parc topiaire, l’allée, la campagne bourguignonne et une vue dégagée sur la Côte de Beaune. Tu as tout vu ? 🚁\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#vueduciel #chateau #campagnebourguignonne #jeudobservation #demeuredexception",
+     "plans": [
+      [
+       5.0,
+       7.0,
+       1.0
+      ],
+      [
+       3.0,
+       5.0,
+       1.0
+      ],
+      [
+       1.0,
+       3.0,
+       1.0
+      ],
+      [
+       17.0,
+       19.0,
+       1.0,
+       "520 m²"
+      ],
+      [
+       27.0,
+       29.0,
+       1.0
+      ],
+      [
+       9.0,
+       12.0,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v8",
+     "style": "chiffre_choc",
+     "instagram": false,
+     "accroche": "1 600 000 €|pour 520 m²|et un étang",
+     "legende": "Château remanié aux XVIIIe et XIXe siècles, 7 chambres, un étang et un parc d’agrément à quinze minutes de Beaune 🦢\n\nCommente CHÂTEAU et je t’envoie la visite complète en privé 📩\n\n#chateaudexception #etang #septchambres #immobilierdeluxe #beaune",
+     "plans": [
+      [
+       3.0,
+       5.0,
+       1.0
+      ],
+      [
+       8.0,
+       10.0,
+       1.0
+      ],
+      [
+       15.0,
+       17.0,
+       1.0,
+       "7 chambres"
+      ],
+      [
+       20.0,
+       22.0,
+       1.0
+      ],
+      [
+       27.0,
+       29.0,
+       1.0
+      ],
+      [
+       10.0,
+       13.0,
+       1.0
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "ref": "461",
+   "src": "assets/biens/461/video.mp4",
+   "mot": "MARRAKECH",
+   "nom": "studio-marrakech",
+   "versions": [
+    {
+     "id": "v5",
+     "style": "defi_1pourcent",
+     "instagram": true,
+     "accroche": "99 % ratent|le prix de ce studio",
+     "legende": "Studio rénové par architecte à deux pas du Parc Darcy, au calme d’une cour intérieure : 129 000 €. Tu l’as vu passer ? 🔑\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#studiodijon #premierachat #parcdarcy #defivisuel #dijon",
+     "plans": [
+      [
+       3.0,
+       5.0,
+       1.0
+      ],
+      [
+       1.0,
+       3.0,
+       1.0
+      ],
+      [
+       4.0,
+       6.0,
+       1.0,
+       "129 000 €"
+      ],
+      [
+       13.0,
+       15.0,
+       1.0
+      ],
+      [
+       22.0,
+       24.0,
+       1.0
+      ],
+      [
+       29.0,
+       32.0,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v6",
+     "style": "defi_1pourcent",
+     "instagram": false,
+     "accroche": "Mets pause :|1 % voit la kitchenette",
+     "legende": "Une kitchenette sur mesure entièrement équipée, cachée dans 19,15 m² inspiration Marrakech. Tu l’as trouvée du premier coup ? 🍳\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#kitchenette #surmesure #petitespace #oeildelynx #immobilierdijon",
+     "plans": [
+      [
+       1.0,
+       3.0,
+       1.0
+      ],
+      [
+       8.0,
+       10.0,
+       1.0
+      ],
+      [
+       2.0,
+       4.0,
+       1.0,
+       "Kitchenette"
+      ],
+      [
+       17.0,
+       19.0,
+       1.0
+      ],
+      [
+       14.0,
+       16.0,
+       1.0
+      ],
+      [
+       30.0,
+       33.0,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v7",
+     "style": "defi_1pourcent",
+     "instagram": false,
+     "accroche": "Seul 1 % y arrive :|tout voir en 19 m²",
+     "legende": "Kitchenette, balnéo, rétroprojecteur, rangements : 19,15 m² Loi Carrez et pas un centimètre perdu. Tu as tout repéré ? 🧩\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#optimisation #studiorenove #pieddaterre #jeudobservation #dijoncentre",
+     "plans": [
+      [
+       0.0,
+       2.0,
+       1.0
+      ],
+      [
+       3.0,
+       5.0,
+       1.0
+      ],
+      [
+       17.0,
+       19.0,
+       1.0,
+       "19,15 m²"
+      ],
+      [
+       10.0,
+       12.0,
+       1.0
+      ],
+      [
+       13.0,
+       15.0,
+       1.0
+      ],
+      [
+       28.0,
+       31.0,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v8",
+     "style": "revelation",
+     "instagram": false,
+     "accroche": "Derrière cette porte,|une baignoire balnéo",
+     "legende": "Tu pousses une porte et tu tombes sur une baignoire balnéothérapie, dans un studio rénové de 19,15 m² près du Parc Darcy 🛁\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#balneotherapie #studiodexception #inspirationmarrakech #investissementlocatif #dijon",
+     "plans": [
+      [
+       12.0,
+       13.5,
+       1.0
+      ],
+      [
+       13.5,
+       15.5,
+       1.0,
+       "Balnéo"
+      ],
+      [
+       19.0,
+       21.0,
+       1.0
+      ],
+      [
+       5.0,
+       7.0,
+       1.0
+      ],
+      [
+       23.0,
+       25.0,
+       1.0
+      ],
+      [
+       31.0,
+       34.0,
+       1.0
+      ]
+     ]
+    }
+   ]
+  }
+ ]
+}
