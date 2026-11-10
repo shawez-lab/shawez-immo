@@ -232,21 +232,21 @@
       "ref": "527",
       "libelle": "l’hôtel particulier de Beaune",
       "depuis": "2026-10-29",
-      "jusqu_au": "2026-11-21"
+      "jusqu_au": "2026-12-10"
     },
     {
       "mot": "MARRAKECH",
       "ref": "461",
       "libelle": "le studio inspiration Marrakech",
       "depuis": "2026-11-01",
-      "jusqu_au": "2026-11-21"
+      "jusqu_au": "2026-12-10"
     },
     {
       "mot": "CHÂTEAU",
       "ref": "438",
       "libelle": "le château près de Beaune",
       "depuis": "2026-11-02",
-      "jusqu_au": "2026-11-22"
+      "jusqu_au": "2026-12-10"
     },
     {
       "mot": "T5",
@@ -337,7 +337,7 @@
       "ref": "507",
       "libelle": "le T2 de 44 m² à rafraîchir",
       "depuis": "2026-11-06",
-      "jusqu_au": "2026-12-06"
+      "jusqu_au": "2026-12-10"
     }
   ]
 }
