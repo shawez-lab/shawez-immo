@@ -11,6 +11,174 @@
  },
  "biens": [
   {
+   "ref": "527",
+   "src": "assets/biens/527/video.mp4",
+   "mot": "BEAUNE",
+   "nom": "hotel-particulier-beaune",
+   "versions": [
+    {
+     "id": "v1",
+     "style": "defi_1pourcent",
+     "instagram": true,
+     "accroche": "99 % ratent|les poutres du XVIIe",
+     "legende": "Lève les yeux : la pierre, les poutres et la cave voûtée font l’identité de cet hôtel particulier de 360 m² au cœur de Beaune. Tu les as vues ? 🪵\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#poutresapparentes #hotelparticulier #beaune #defivisuel #pierreancienne",
+     "plans": [
+      [
+       5.0,
+       7.0,
+       1.0
+      ],
+      [
+       0.0,
+       2.0,
+       1.0
+      ],
+      [
+       14.0,
+       16.0,
+       1.0,
+       "Poutres anciennes"
+      ],
+      [
+       38.0,
+       40.0,
+       1.0
+      ],
+      [
+       60.0,
+       62.0,
+       1.0
+      ],
+      [
+       66.0,
+       69.0,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v2",
+     "style": "defi_1pourcent",
+     "instagram": false,
+     "accroche": "Mets pause :|1 % voit le jardin caché",
+     "legende": "Derrière la façade du centre historique, une cour, des espaces de jardin et une terrasse. Si tu l’as vu avant la fin, chapeau 🌿\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#jardinsecret #beaunecentre #courinterieure #oeildelynx #bourgogne",
+     "plans": [
+      [
+       9.0,
+       11.0,
+       1.0
+      ],
+      [
+       27.0,
+       29.0,
+       1.0,
+       "Jardin"
+      ],
+      [
+       1.0,
+       3.0,
+       1.0
+      ],
+      [
+       43.0,
+       45.0,
+       1.0
+      ],
+      [
+       54.0,
+       56.0,
+       1.0
+      ],
+      [
+       60.0,
+       63.0,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v3",
+     "style": "defi_1pourcent",
+     "instagram": false,
+     "accroche": "Seul 1 % y arrive :|compter les appartements",
+     "legende": "Trois appartements indépendants et un local professionnel, en monopropriété, à 2 500 000 €. Tu en as compté combien ? 🔑\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#monopropriete #patrimoineimmobilier #beaune #jeudobservation #immobilierdeprestige",
+     "plans": [
+      [
+       0.0,
+       2.0,
+       1.0
+      ],
+      [
+       3.0,
+       5.0,
+       1.0,
+       "3 appartements"
+      ],
+      [
+       18.0,
+       20.0,
+       1.0
+      ],
+      [
+       51.0,
+       53.0,
+       1.0
+      ],
+      [
+       29.0,
+       31.0,
+       1.0
+      ],
+      [
+       43.0,
+       46.0,
+       1.0
+      ]
+     ]
+    },
+    {
+     "id": "v4",
+     "style": "defi_1pourcent",
+     "instagram": false,
+     "accroche": "99 % ratent ce moment|dans la cour du XVIIe",
+     "legende": "Une cour intérieure autour de laquelle s’organise toute la propriété, un hôtel particulier du XVIIe en plein Beaune. Regarde bien la troisième seconde 👀\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#XVIIesiecle #courpavee #capitaledesvins #cotedor #demeurehistorique",
+     "plans": [
+      [
+       28.0,
+       30.0,
+       1.0
+      ],
+      [
+       38.0,
+       40.0,
+       1.0
+      ],
+      [
+       31.0,
+       33.0,
+       1.0,
+       "Cour intérieure"
+      ],
+      [
+       82.0,
+       84.0,
+       1.0
+      ],
+      [
+       66.0,
+       68.0,
+       1.0
+      ],
+      [
+       9.0,
+       12.0,
+       1.0
+      ]
+     ]
+    }
+   ]
+  },
+  {
    "ref": "438",
    "src": "assets/biens/438/video.mp4",
    "mot": "CHÂTEAU",
@@ -347,174 +515,6 @@
    ]
   },
   {
-   "ref": "527",
-   "src": "assets/biens/527/video.mp4",
-   "mot": "BEAUNE",
-   "nom": "hotel-particulier-beaune",
-   "versions": [
-    {
-     "id": "v1",
-     "style": "defi_1pourcent",
-     "instagram": true,
-     "accroche": "99 % ratent|les poutres du XVIIe",
-     "legende": "Lève les yeux : la pierre, les poutres et la cave voûtée font l’identité de cet hôtel particulier de 360 m² au cœur de Beaune. Tu les as vues ? 🪵\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#poutresapparentes #hotelparticulier #beaune #defivisuel #pierreancienne",
-     "plans": [
-      [
-       5.0,
-       7.0,
-       1.0
-      ],
-      [
-       0.0,
-       2.0,
-       1.0
-      ],
-      [
-       14.0,
-       16.0,
-       1.0,
-       "Poutres anciennes"
-      ],
-      [
-       38.0,
-       40.0,
-       1.0
-      ],
-      [
-       60.0,
-       62.0,
-       1.0
-      ],
-      [
-       66.0,
-       69.0,
-       1.0
-      ]
-     ]
-    },
-    {
-     "id": "v2",
-     "style": "defi_1pourcent",
-     "instagram": false,
-     "accroche": "Mets pause :|1 % voit le jardin caché",
-     "legende": "Derrière la façade du centre historique, une cour, des espaces de jardin et une terrasse. Si tu l’as vu avant la fin, chapeau 🌿\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#jardinsecret #beaunecentre #courinterieure #oeildelynx #bourgogne",
-     "plans": [
-      [
-       9.0,
-       11.0,
-       1.0
-      ],
-      [
-       27.0,
-       29.0,
-       1.0,
-       "Jardin"
-      ],
-      [
-       1.0,
-       3.0,
-       1.0
-      ],
-      [
-       43.0,
-       45.0,
-       1.0
-      ],
-      [
-       54.0,
-       56.0,
-       1.0
-      ],
-      [
-       60.0,
-       63.0,
-       1.0
-      ]
-     ]
-    },
-    {
-     "id": "v3",
-     "style": "defi_1pourcent",
-     "instagram": false,
-     "accroche": "Seul 1 % y arrive :|compter les appartements",
-     "legende": "Trois appartements indépendants et un local professionnel, en monopropriété, à 2 500 000 €. Tu en as compté combien ? 🔑\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#monopropriete #patrimoineimmobilier #beaune #jeudobservation #immobilierdeprestige",
-     "plans": [
-      [
-       0.0,
-       2.0,
-       1.0
-      ],
-      [
-       3.0,
-       5.0,
-       1.0,
-       "3 appartements"
-      ],
-      [
-       18.0,
-       20.0,
-       1.0
-      ],
-      [
-       51.0,
-       53.0,
-       1.0
-      ],
-      [
-       29.0,
-       31.0,
-       1.0
-      ],
-      [
-       43.0,
-       46.0,
-       1.0
-      ]
-     ]
-    },
-    {
-     "id": "v4",
-     "style": "defi_1pourcent",
-     "instagram": false,
-     "accroche": "99 % ratent ce moment|dans la cour du XVIIe",
-     "legende": "Une cour intérieure autour de laquelle s’organise toute la propriété, un hôtel particulier du XVIIe en plein Beaune. Regarde bien la troisième seconde 👀\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#XVIIesiecle #courpavee #capitaledesvins #cotedor #demeurehistorique",
-     "plans": [
-      [
-       28.0,
-       30.0,
-       1.0
-      ],
-      [
-       38.0,
-       40.0,
-       1.0
-      ],
-      [
-       31.0,
-       33.0,
-       1.0,
-       "Cour intérieure"
-      ],
-      [
-       82.0,
-       84.0,
-       1.0
-      ],
-      [
-       66.0,
-       68.0,
-       1.0
-      ],
-      [
-       9.0,
-       12.0,
-       1.0
-      ]
-     ]
-    }
-   ]
-  },
-  {
    "ref": "507",
    "src": "assets/biens/507/video.mp4",
    "mot": "POTENTIEL",
@@ -606,5 +606,6 @@
     }
    ]
   }
- ]
+ ],
+ "remplacants": "les 4 biens rendus (452IMMEUBLE 425 513 403) et le suivant 431 sont face caméra : remplacés par les suivants du vivier, dans l’ordre de choisir.py : 527 438 461 507. 527 sans créneau Instagram (BEAUNE déjà programmé le 10/11 à 19:00) : Diffuseur seulement."
 }
