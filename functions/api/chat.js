@@ -200,7 +200,7 @@ export async function onRequestPost({ request, env }) {
 
   // Règle 9 : on ne répond pas automatiquement, et on ne garde rien de plus.
   if (regle9(nomsExclus, message, etat.prenom || '')) {
-    return json(200, { reponse: `Je préfère que Shawez vous réponde lui-même. Écrivez-lui depuis shawez-immo.com/contact/.`, fin: true });
+    return json(200, { reponse: '', fin: true });
   }
   if (fil.length >= MAX_TOURS) {
     return json(200, { reponse: `On a bien avancé. Le plus simple maintenant, c'est que Shawez vous réponde lui-même : demandez votre estimation offerte sur shawez-immo.com/estimer/.`, fin: true });
