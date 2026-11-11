@@ -150,14 +150,17 @@ async function prevenir(env, etat, fil) {
     etat.secteur && `Secteur : ${etat.secteur}`, etat.budget && `Budget : ${etat.budget}`,
     etat.echeance && `Échéance : ${etat.echeance}`, etat.page && `Page : ${etat.page}`].filter(Boolean);
   const conv = fil.slice(-10).map((m) => `${m.sens === 'out' ? 'Assistant' : 'Visiteur'} : ${esc(m.texte)}`).join('<br>');
-  await envoyer(env, {
-    to: destinatairesAlerte(env),
+  const courrier = {
     subject: `Contact sérieux sur le site${etat.secteur ? ' — ' + etat.secteur : ''}`,
     html: gabarit('Un contact sérieux vient de se qualifier sur le site', [
       paragraphe(lignes.map(esc).join('<br>')),
       paragraphe(`<b>La conversation</b><br>${conv}`),
     ], 'https://shawez-immo.com'),
-  }, { origine: 'chat' }).catch(() => {});
+  };
+  // envoyer attend une seule adresse et construit la liste propre à son transport.
+  for (const to of destinatairesAlerte(env)) {
+    await envoyer(env, { ...courrier, to }, { origine: 'chat' }).catch(() => {});
+  }
 }
 
 export async function onRequestGet() {
