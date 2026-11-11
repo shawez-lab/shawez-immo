@@ -15203,7 +15203,57 @@
    "uuid": "-6116303744067616119",
    "statut": "publie",
    "media": "https://cc57f947.shawez-immo.pages.dev/trial/2026-11-09/chateau-438-v2.mp4",
-   "instagram": true
+   "instagram": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "1766290852346544622",
+     "url": "",
+     "date": "2026-11-11",
+     "heure": "16:20"
+    },
+    "linkedin": {
+     "uuid": "-3790336012061555961",
+     "url": "",
+     "date": "2026-11-11",
+     "heure": "16:25"
+    },
+    "pinterest": {
+     "uuid": "3489468056689527733",
+     "url": "",
+     "date": "2026-11-11",
+     "heure": "16:30"
+    },
+    "bluesky": {
+     "uuid": "7762433706448865591",
+     "url": "",
+     "date": "2026-11-11",
+     "heure": "16:35"
+    },
+    "gmb": {
+     "uuid": "2597855311220983535",
+     "url": "",
+     "date": "2026-11-11",
+     "heure": "16:45"
+    },
+    "tiktok": {
+     "uuid": "768230116335633648",
+     "url": "",
+     "date": "2026-11-11",
+     "heure": "16:50"
+    },
+    "youtube": {
+     "uuid": "6097742231271261093",
+     "url": "",
+     "date": "2026-11-11",
+     "heure": "16:55"
+    },
+    "facebook": {
+     "uuid": "-621510098703400199",
+     "url": "",
+     "date": "2026-11-11",
+     "heure": "17:00"
+    }
+   }
   },
   {
    "id": "TR-0911-438-v3",
@@ -15551,7 +15601,45 @@
    "statut": "publie",
    "media": "https://064de39d.shawez-immo.pages.dev/trial/2026-11-09/t2-potentiel-507-v1.mp4",
    "instagram": true,
-   "note": "non programmé sur Instagram : limite du compte Metricool atteinte le 09/11"
+   "note": "non programmé sur Instagram : limite du compte Metricool atteinte le 09/11",
+   "diffusions": {
+    "threads": {
+     "uuid": "-1929186924748127113",
+     "url": "",
+     "date": "2026-11-11",
+     "heure": "16:40"
+    },
+    "linkedin": {
+     "uuid": "-2648557042554287047",
+     "url": "",
+     "date": "2026-11-11",
+     "heure": "17:40"
+    },
+    "pinterest": {
+     "uuid": "7748633552732441883",
+     "url": "",
+     "date": "2026-11-11",
+     "heure": "17:00"
+    },
+    "bluesky": {
+     "uuid": "-3835380139186697418",
+     "url": "",
+     "date": "2026-11-11",
+     "heure": "17:05"
+    },
+    "tiktok": {
+     "uuid": "9035266148315252085",
+     "url": "",
+     "date": "2026-11-11",
+     "heure": "17:35"
+    },
+    "youtube": {
+     "uuid": "-1439035972838930617",
+     "url": "",
+     "date": "2026-11-11",
+     "heure": "17:25"
+    }
+   }
   },
   {
    "id": "TR-0911-507-v2",
@@ -15612,7 +15700,33 @@
    "statut": "publie",
    "media": "https://064de39d.shawez-immo.pages.dev/trial/2026-11-09/deux-maisons-couchey-509-v1.mp4",
    "instagram": true,
-   "note": "non programmé sur Instagram : limite du compte Metricool atteinte le 09/11"
+   "note": "non programmé sur Instagram : limite du compte Metricool atteinte le 09/11",
+   "diffusions": {
+    "threads": {
+     "uuid": "-5124916864115914890",
+     "url": "",
+     "date": "2026-11-11",
+     "heure": "17:10"
+    },
+    "linkedin": {
+     "uuid": "-8695817344407090231",
+     "url": "",
+     "date": "2026-11-11",
+     "heure": "19:10"
+    },
+    "pinterest": {
+     "uuid": "3272428007316474264",
+     "url": "",
+     "date": "2026-11-11",
+     "heure": "17:30"
+    },
+    "bluesky": {
+     "uuid": "5704909503286954204",
+     "url": "",
+     "date": "2026-11-11",
+     "heure": "17:35"
+    }
+   }
   },
   {
    "id": "TR-0911-509-v2",
@@ -15672,7 +15786,27 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://8afd7981.shawez-immo.pages.dev/trial/2026-11-10/hotel-particulier-beaune-527-v1.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "-770234349879670090",
+     "url": "",
+     "date": "2026-11-11",
+     "heure": "17:40"
+    },
+    "pinterest": {
+     "uuid": "5825898957878805944",
+     "url": "",
+     "date": "2026-11-11",
+     "heure": "18:00"
+    },
+    "bluesky": {
+     "uuid": "1133798171267514838",
+     "url": "",
+     "date": "2026-11-11",
+     "heure": "18:05"
+    }
+   }
   },
   {
    "id": "TR-1011-527-v2",
@@ -15747,7 +15881,27 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://8afd7981.shawez-immo.pages.dev/trial/2026-11-10/chateau-438-v2.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "-6040807149351908087",
+     "url": "",
+     "date": "2026-11-11",
+     "heure": "18:40"
+    },
+    "pinterest": {
+     "uuid": "4533595019205954632",
+     "url": "",
+     "date": "2026-11-11",
+     "heure": "19:00"
+    },
+    "bluesky": {
+     "uuid": "1507965309705539386",
+     "url": "",
+     "date": "2026-11-11",
+     "heure": "19:05"
+    }
+   }
   },
   {
    "id": "TR-1011-438-v3",
@@ -15807,7 +15961,27 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://8afd7981.shawez-immo.pages.dev/trial/2026-11-10/studio-marrakech-461-v2.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "6816150102227111651",
+     "url": "",
+     "date": "2026-11-11",
+     "heure": "18:10"
+    },
+    "pinterest": {
+     "uuid": "412077305221366508",
+     "url": "",
+     "date": "2026-11-11",
+     "heure": "18:30"
+    },
+    "bluesky": {
+     "uuid": "-6030420098282009929",
+     "url": "",
+     "date": "2026-11-11",
+     "heure": "18:35"
+    }
+   }
   },
   {
    "id": "TR-1011-461-v3",
