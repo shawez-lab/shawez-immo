@@ -163,7 +163,7 @@ test('qualification sérieuse : le module mail réel appelle une seule fois le t
   const f = fixture(t, { ...MODEL_ANSWER, secteur: 'Ville fictive', echeance: 'Au printemps', serieux: true });
   await call(f); await call(f);
   assert.equal(f.mails.length, 1); assert.match(f.mails[0].subject, /Contact sérieux/);
-  assert.deepEqual(f.mails[0].to, ['agency@example.invalid']);
+  assert.equal(f.mails[0].to, 'agency@example.invalid');
   assert.equal(f.sqlite.prepare('SELECT notifie FROM chat_sessions').get().notifie, 1);
 });
 
@@ -192,5 +192,30 @@ for (const suffix of ['', '?test=1']) {
     assert.equal(response.status, 405); assert.equal(response.headers.get('allow'), 'POST');
     assert.deepEqual(await response.json(), { erreur: 'methode' });
     assert.equal(f.model.length, 0); assert.equal(f.mails.length, 0);
+  });
+}
+
+// Le caller transmet une adresse scalaire : mail.js produit alors la liste plate attendue par Resend.
+for (const partialFailure of [false, true]) {
+  test(`plusieurs destinataires Resend : payload plat, sans répétition${partialFailure ? ' même après échec partiel' : ''}`, async t => {
+    const f = fixture(t, { ...MODEL_ANSWER, secteur: 'Ville fictive', echeance: 'Au printemps', serieux: true });
+    const destinations = ['agency-one@example.invalid', 'agency-two@example.invalid'];
+    f.env.NOTIFY_EMAILS = destinations.join(',');
+    f.env.RESEND_API_KEY = 'local-synthetic-mail-key';
+    f.env.RESEND_API_URL = 'https://mail.example.invalid/emails';
+    delete f.env.MAILER;
+    const payloads = [];
+    const modelFetch = globalThis.fetch;
+    t.mock.method(globalThis, 'fetch', async (url, options) => {
+      if (String(url) !== f.env.RESEND_API_URL) return modelFetch(url, options);
+      payloads.push(JSON.parse(options.body));
+      if (partialFailure && payloads.length === 2) return new Response('synthetic refusal', { status: 500 });
+      return Response.json({ id: 'local-accepted' });
+    });
+    assert.equal((await call(f)).status, 200);
+    assert.deepEqual(payloads.map(payload => payload.to), destinations.map(address => [address]));
+    assert.ok(payloads.every(payload => payload.to.every(address => typeof address === 'string')));
+    assert.equal((await call(f)).status, 200);
+    assert.equal(payloads.length, 2, 'aucun destinataire déjà contacté ne reçoit une nouvelle alerte');
   });
 }
