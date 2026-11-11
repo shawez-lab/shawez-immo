@@ -1,5 +1,5 @@
 {
- "maj": "2026-11-10T06:54",
+ "maj": "2026-11-11T06:52",
  "regles": {
   "fenetre": "Trial Reels publiés depuis 14 jours, jugés 24 h après publication",
   "gagnant": "au moins 1000 vues et au moins 3 fois la médiane",
@@ -9,20 +9,20 @@
   "quota_du_jour": "au moins 80 % des versions du jour dans un style gagnant, au plus 20 % dans un style à tester, zéro dans un style interdit ; 15 Trial Reels au plus sur 24 heures glissantes"
  },
  "seuils": {
-  "mediane_vues": 108,
+  "mediane_vues": 0,
   "gagnant_des": 1000,
   "perdant_sous": 300,
-  "versions_jugees": 175,
+  "versions_jugees": 173,
   "versions_en_cours": 0,
   "par_reseau": {
    "instagram": {
-    "mediane_vues": 108,
+    "mediane_vues": 0,
     "gagnant_des": 1000,
     "perdant_sous": 300,
-    "versions_mesurees": 175
+    "versions_mesurees": 173
    },
    "tiktok": {
-    "mediane_vues": 53,
+    "mediane_vues": 54,
     "gagnant_des": 1000,
     "perdant_sous": 300,
     "versions_mesurees": 82
@@ -46,7 +46,7 @@
     "versions_mesurees": 99
    },
    "linkedin": {
-    "mediane_vues": 7,
+    "mediane_vues": 8,
     "gagnant_des": 300,
     "perdant_sous": 20,
     "versions_mesurees": 45
@@ -162,23 +162,23 @@
    "statut": "neutre",
    "versions_jugees": 50,
    "gagnants": 9,
-   "perdants": 30,
+   "perdants": 29,
    "mediane_vues": 0,
    "meilleure": {
     "id": "TR-3010-438-v3",
-    "vues": 6348
+    "vues": 6350
    }
   },
   "lieu_exception": {
    "definition": "le bien d'exception annoncé d'emblée, en une phrase courte (« Château du XVIIIe à 15 min de Beaune », « Marrakech, en plein centre de Dijon »)",
    "statut": "neutre",
-   "versions_jugees": 31,
-   "gagnants": 9,
+   "versions_jugees": 30,
+   "gagnants": 8,
    "perdants": 11,
-   "mediane_vues": 120,
+   "mediane_vues": 118,
    "meilleure": {
     "id": "TR-2810-438-v1",
-    "vues": 3604
+    "vues": 3608
    }
   },
   "revelation": {
@@ -244,10 +244,10 @@
   "descriptif": {
    "definition": "visite guidée : « je te montre », « je commence par », « je te propose », liste de pièces ou d'équipements",
    "statut": "interdit",
-   "versions_jugees": 3,
+   "versions_jugees": 2,
    "gagnants": 0,
-   "perdants": 1,
-   "mediane_vues": 329,
+   "perdants": 0,
+   "mediane_vues": 342,
    "meilleure": {
     "id": "TR-2910-527-b",
     "vues": 356
@@ -313,8 +313,8 @@
    "statut": "en_pause"
   },
   "461": {
-   "versions_jugees": 31,
-   "gagnants": 8,
+   "versions_jugees": 30,
+   "gagnants": 7,
    "messages_prives": 0,
    "mediane_vues": 0,
    "statut": "fort"
@@ -334,10 +334,10 @@
    "statut": "en_pause"
   },
   "483": {
-   "versions_jugees": 5,
+   "versions_jugees": 4,
    "gagnants": 0,
    "messages_prives": 1,
-   "mediane_vues": 135,
+   "mediane_vues": 167,
    "statut": "en_pause"
   },
   "494": {
@@ -416,42 +416,6 @@
    ],
    "url": "https://www.instagram.com/reel/DfeOYW9ILO4/",
    "date": "2026-11-08"
-  },
-  {
-   "id": "TR-0611-507-v2",
-   "ref": "507",
-   "style": "question",
-   "vues": 0,
-   "vues_total": 713,
-   "gagnant_sur": [
-    "youtube"
-   ],
-   "url": null,
-   "date": "2026-11-06"
-  },
-  {
-   "id": "TR-0611-438-v3",
-   "ref": "438",
-   "style": "question",
-   "vues": 0,
-   "vues_total": 701,
-   "gagnant_sur": [
-    "youtube"
-   ],
-   "url": null,
-   "date": "2026-11-06"
-  },
-  {
-   "id": "TR-0611-501-v2",
-   "ref": "501",
-   "style": "question",
-   "vues": 0,
-   "vues_total": 567,
-   "gagnant_sur": [
-    "youtube"
-   ],
-   "url": null,
-   "date": "2026-11-06"
   }
  ],
  "consigne_monteur": "Chaque version porte un « style » de la liste. Jamais un style de styles_interdits, jamais un bien de biens_en_pause. Au moins 80 % des versions du jour dans styles_gagnants (sur les biens les plus forts), au plus 20 % dans styles_a_tester. Chaque Trial Reel programmé est ajouté à registre.json.",
