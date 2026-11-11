@@ -29,6 +29,9 @@ METRICOOL = ('<script>function loadScript(a){var b=document.getElementsByTagName
              'b.appendChild(c)}loadScript(function(){beTracker.t({hash:"33710f67a0c16d7cbb94d1b2ba10e7a8"})});</script>')
 
 OAI = '<script src="/assets/oai-mesure.js" defer></script>'
+# 5. Assistant du site, bulle en bas a droite : /assets/chat/chat.js, branche sur /api/chat.
+#    Jamais sur les pages privees (admin/, mon-espace/).
+CHAT = '<script src="/assets/chat/chat.js" defer></script>'
 
 PRIVEES = ('admin/', 'mon-espace/')
 SANS_PARAM = ('estimer/',)
@@ -145,6 +148,12 @@ def patch(s, f=''):
         i = s.rfind('</body>')
         if i >= 0:
             s = s[:i] + OAI + '\n' + s[i:]
+    if f.startswith(PRIVEES):
+        s = s.replace(CHAT + '\n', '').replace(CHAT, '')
+    elif CHAT not in s:
+        i = s.rfind('</body>')
+        if i >= 0:
+            s = s[:i] + CHAT + '\n' + s[i:]
     return s
 
 if __name__ == '__main__':
