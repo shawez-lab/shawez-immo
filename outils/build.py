@@ -148,6 +148,10 @@ def patch(s, f=''):
         i = s.rfind('</body>')
         if i >= 0:
             s = s[:i] + OAI + '\n' + s[i:]
+    return patch_chat(s, f)
+
+def patch_chat(s, f=''):
+    """Bulle seule : aucune modification des mesures, du RSS, des liens ni des pages métier."""
     if f.startswith(PRIVEES):
         s = s.replace(CHAT + '\n', '').replace(CHAT, '')
     elif CHAT not in s:
@@ -157,6 +161,20 @@ def patch(s, f=''):
     return s
 
 if __name__ == '__main__':
+    # Cloudflare Pages peut activer la bulle sans dépendre du workflow GitHub Actions.
+    # Ce mode ne lance aucune des autres transformations du site.
+    if sys.argv[1:] == ['--chat-only']:
+        if not os.path.isfile(P('assets', 'chat', 'chat.js')):
+            raise SystemExit('Assistant : fichier assets/chat/chat.js absent.')
+        total = 0
+        for f in pages():
+            if f.startswith(('.git/', '.wrangler/', 'node_modules/')):
+                continue
+            s = open(P(f), encoding='utf-8').read(); n = patch_chat(s, f)
+            if n != s:
+                open(P(f), 'w', encoding='utf-8').write(n); total += 1
+        print('Assistant :', total, 'pages mises à jour.')
+        raise SystemExit(0)
     os.makedirs(P('conseils'), exist_ok=True)
     x = flux()
     if not os.path.exists(P(FEED)) or open(P(FEED), encoding='utf-8').read() != x:
