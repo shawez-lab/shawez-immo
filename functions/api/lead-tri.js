@@ -1,3 +1,5 @@
+import { listePrivee } from '../_lib/exclusions-privees.js';
+
 /* /api/lead-tri — Étape 2 du cahier des charges API : tri et première réponse des leads (mails de portails, formulaires).
 
    Appelé par le script Gmail (Apps Script) du compte shawez@gravelin-immo.com, jamais par le public.
@@ -30,9 +32,8 @@ const NON_PROUVES = /\b(rare|unique|exceptionnel(le)?|id[ée]al(e)?|incroyable)\
 const INTERDITS = /\b(mandataire|gratuit|gratuite|gratuitement|ia|robot|automatique|automatiquement|claude|chatgpt|intelligence artificielle)\b/i;
 
 // Règle 9 : personnes à ne jamais contacter (noms et adresses connues), et dossiers de Marion.
-const JAMAIS_ADRESSES = ['contact-retire@exemple.fr', 'contact-retire@exemple.fr'];
-const JAMAIS_NOMS = ['***', '***', '***', '***', '***', '***', '***', '***', '***',
-  '***', '***', '***', '***'];
+
+
 
 const json = (status, obj) => new Response(JSON.stringify(obj), {
   status, headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' },
@@ -48,10 +49,10 @@ function egal(a, b) {
 const propre = (v, n) => String(v || '').replace(/\u0000/g, '').trim().slice(0, n);
 const sansAccents = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 
-function regle9(...champs) {
+function regle9(exclusions, ...champs) {
   const t = sansAccents(champs.join(' '));
-  if (JAMAIS_ADRESSES.some(a => t.includes(a))) return true;
-  return JAMAIS_NOMS.some(n => new RegExp(`\\b${sansAccents(n)}\\b`).test(t));
+  if (exclusions.adresses.some(a => t.includes(a))) return true;
+  return exclusions.noms.some(n => new RegExp(`\\b${sansAccents(n)}\\b`).test(t));
 }
 
 // Créneau d'envoi : lundi-samedi, 8 h-20 h, heure de Paris
@@ -183,6 +184,17 @@ export async function onRequest({ request, env }) {
   try {
     if (!egal(request.headers.get('X-Boss-Token') || '', env.MANYCHAT_TOKEN || '')) return json(401, { error: 'acces' });
 
+    let exclusions;
+    try {
+      exclusions = {
+        adresses: listePrivee(env, 'REGLE9_LEAD_ADRESSES'),
+        noms: listePrivee(env, 'REGLE9_LEAD_NOMS', { motifs: true }),
+      };
+    } catch {
+      return json(503, { error: 'configuration_exclusions', decision: 'rien', reponse: null, notification: '' });
+    }
+
+
     let mail, test = false;
     if (request.method === 'GET') {
       const u = new URL(request.url);
@@ -238,7 +250,7 @@ export async function onRequest({ request, env }) {
     }
 
     // Règle 9 avant tout appel
-    if (regle9(mail.de, mail.nom_expediteur, mail.corps.slice(-400))) {
+    if (regle9(exclusions, mail.de, mail.nom_expediteur, mail.corps.slice(-400))) {
       if (base && !test) await base.prepare('INSERT OR IGNORE INTO leads_tri (id, recu, de, decision, raison, origine, cout, jour, cree) VALUES (?1,?2,?3,?4,?5,?6,0,?7,?8)')
         .bind(mail.id, mail.recu, mail.de, 'rien', 'regle9', 'regle9', jour, new Date().toISOString()).run();
       return json(200, { decision: 'rien', raison_decision: 'regle9', categorie: null, reponse: null, notification: '' });

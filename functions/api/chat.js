@@ -1,3 +1,5 @@
+import { listePrivee } from '../_lib/exclusions-privees.js';
+
 /* /api/chat — l'assistant du site, visible en bas à droite de shawez-immo.com.
 
    Widget (/assets/chat/chat.js) → cette fonction → Claude (clé ANTHROPIC_API_KEY) → réponse + qualification.
@@ -37,13 +39,12 @@ const INTERDITS = /\b(mandataire|gratuit|gratuite|gratuitement|ia|robot|intellig
 // Métadiscours : le modèle explique ce qu'il fait au lieu de parler au visiteur.
 const META = /\b(le visiteur|la personne (semble|demande|veut)|consignes?|historique|qualification|json|r[eè]gles? absolues?)\b/i;
 // Règle 9 : personnes à qui on ne répond jamais automatiquement.
-const JAMAIS_NOMS = ['***', '***', '***', '***', '***', '***', '***', '***',
-  '***', '***', '***', '***', '***', 'rion', '***', 'rade'];
+
 
 const sansAccents = (s) => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
-const regle9 = (...champs) => {
+const regle9 = (noms, ...champs) => {
   const t = sansAccents(champs.join(' '));
-  return JAMAIS_NOMS.some((n) => new RegExp(`\\b${n}\\b`).test(t));
+  return noms.some((n) => new RegExp(`\\b${n}\\b`).test(t));
 };
 
 const jourParis = (d = new Date()) => new Intl.DateTimeFormat('fr-CA', { timeZone: 'Europe/Paris' }).format(d);
@@ -162,6 +163,8 @@ async function prevenir(env, etat, fil) {
 export async function onRequestGet({ request, env }) {
   const u = new URL(request.url);
   if (u.searchParams.get('test') !== '1') return json(405, { erreur: 'methode' });
+  try { listePrivee(env, 'REGLE9_CHAT_NOMS', { motifs: true }); }
+  catch { return json(503, { erreur: 'configuration_exclusions', reponse: '', fin: true }); }
   try {
     const r = await appelClaude(env, [], 'Bonjour, je voudrais vendre ma maison à Chevigny, vers 250 000 euros, au printemps.',
       { page: '/estimer/' }, null);
@@ -171,6 +174,9 @@ export async function onRequestGet({ request, env }) {
 
 export async function onRequestPost({ request, env }) {
   if (!verifierOrigine(request)) return json(403, { erreur: 'origine' });
+  let nomsExclus;
+  try { nomsExclus = listePrivee(env, 'REGLE9_CHAT_NOMS', { motifs: true }); }
+  catch { return json(503, { erreur: 'configuration_exclusions', reponse: '', fin: true }); }
   const c = await corps(request, 8000);
   const session = texte(c.session, 64, { requis: true, nom: 'session' }).replace(/[^A-Za-z0-9_-]/g, '');
   const message = texte(c.message, 2000, { requis: true, nom: 'message' });
@@ -193,8 +199,8 @@ export async function onRequestPost({ request, env }) {
     .bind(session, 'in', message, maintenant()).run().catch(() => {});
 
   // Règle 9 : on ne répond pas automatiquement, et on ne garde rien de plus.
-  if (regle9(message, etat.prenom || '')) {
-    return json(200, { reponse: `Je préfère que Shawez vous réponde lui-même. Écrivez-lui depuis shawez-immo.com/contact/.`, fin: true });
+  if (regle9(nomsExclus, message, etat.prenom || '')) {
+    return json(200, { reponse: '', fin: true });
   }
   if (fil.length >= MAX_TOURS) {
     return json(200, { reponse: `On a bien avancé. Le plus simple maintenant, c'est que Shawez vous réponde lui-même : demandez votre estimation offerte sur shawez-immo.com/estimer/.`, fin: true });

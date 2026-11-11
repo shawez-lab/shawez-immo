@@ -151,7 +151,10 @@ font:15px/1.4 inherit;color:#2F2A24;background:#fff;max-height:110px;min-height:
       body: JSON.stringify({ session: session, message: t, page: location.pathname }),
     }).then(function (r) { return r.json(); }).then(function (d) {
       attente.remove();
+      // Une fin sans texte est volontaire : ne pas créer de réponse de secours.
+      if (!(d.fin === true && d.reponse === '')) {
       dire(d.reponse || 'Je n’ai pas pu répondre. Écrivez à Shawez depuis shawez-immo.com/contact/.', 'eux');
+      }
       if (d.whatsapp) whatsapp(d.whatsapp);
       if (d.fin) { fini = true; champ.disabled = true; champ.placeholder = 'Conversation terminée'; }
     }).catch(function () {
