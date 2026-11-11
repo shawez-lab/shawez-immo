@@ -1,3 +1,5 @@
+import { listePrivee } from '../_lib/exclusions-privees.js';
+
 /* /api/manychat-dm — DM Instagram personnalisé quand quelqu'un commente une vidéo d'un bien (étape 1 du
    cahier des charges API Claude).
 
@@ -23,11 +25,11 @@ const WHATSAPP = '07 67 57 92 28';
 const PLAFOND_JOUR_USD = 0.5;              // au-delà : message de secours, aucun appel à Claude
 const PRIX_ENTREE = 2 / 1e6, PRIX_SORTIE = 10 / 1e6;   // Sonnet 5.5 : 2 $ / 10 $ par million de jetons (entrée / sortie), pour le plafond
 // Mode test : tant que DM_MODE n'est pas « live » (variable Cloudflare), seuls ces comptes reçoivent un DM.
-const COMPTES_TEST = ['gravelin_immo', 'shawez_immo'];
+
 // Règle 9 du Cerveau : comptes Instagram à qui on n'écrit jamais (en minuscules, sans @).
-const JAMAIS_BASE = ['***'];
+
 // Liste complétable sans code : variable Cloudflare JAMAIS_IG = « compte1,compte2 » (minuscules, sans @).
-const jamais = (env, cpt) => JAMAIS_BASE.concat(String(env.JAMAIS_IG || '').toLowerCase().split(/[\s,;]+/).filter(Boolean).map(x => x.replace(/^@/, ''))).includes(cpt);
+const jamais = (basePrivee, env, cpt) => basePrivee.concat(String(env.JAMAIS_IG || '').toLowerCase().split(/[\s,;]+/).filter(Boolean).map(x => x.replace(/^@/, ''))).includes(cpt);
 const STOP = /^\s*(stop|arr[eê]te[rz]?|d[ée]sinscri|ne m'[ée]cri(s|vez) plus)/i;
 // WhatsApp par ManyChat (numéro de Shawez en coexistence). Vide = pas en service : aucune réponse automatique sur WhatsApp.
 // À la mise en service, date ISO : seuls les contacts créés APRÈS cette date sont servis ; les conversations d'avant restent à Shawez.
@@ -530,6 +532,15 @@ export async function onRequest({ request, env }) {
   try {
     if (!egal(request.headers.get('X-Boss-Token') || '', env.MANYCHAT_TOKEN || '')) return json(401, { error: 'acces' });
 
+    let exclusionsIg, comptesTest;
+    try {
+      exclusionsIg = listePrivee(env, 'REGLE9_IG_BASE');
+      comptesTest = listePrivee(env, 'DM_COMPTES_TEST');
+    } catch {
+      return sansMessage('configuration_exclusions', { a_reprendre: true });
+    }
+
+
     let prenom, commentaire, post, contact, compte, evenement, source = '', test = false, waContactExistant = false, intention = '';
     if (request.method === 'GET') {
       const u = new URL(request.url);
@@ -548,7 +559,7 @@ export async function onRequest({ request, env }) {
       }
       if (!u.searchParams.get('test')) return json(200, { ready: !!env.ANTHROPIC_API_KEY, mode: env.DM_MODE === 'live' ? 'live' : 'test' });
       test = true; prenom = 'Test'; commentaire = u.searchParams.get('c') || 'Il est dans quel quartier ?';
-      post = u.searchParams.get('post') || 'test-chevigny'; compte = 'gravelin_immo'; contact = 'test'; evenement = `test-${Date.now()}`;
+      post = u.searchParams.get('post') || 'test-chevigny'; compte = comptesTest[0] || comptesTest[0]; contact = 'test'; evenement = `test-${Date.now()}`;
       intention = /^vend/i.test(u.searchParams.get('intention') || '') ? 'vendre' : '';
       if (intention) post = 'vendre';
     } else if (request.method === 'POST') {
@@ -558,11 +569,11 @@ export async function onRequest({ request, env }) {
         // Conversation Starters, mentions en story) : règle 9, mode test, horaires de Paris, fenêtre Instagram de 24 h.
         const cpt = propre(c.ig_username || c.username, 60).toLowerCase().replace(/^@/, '');
         const source = propre(c.source, 40);
-        if (jamais(env, cpt)) return sansMessage('regle9', { source });
+        if (jamais(exclusionsIg, env, cpt)) return sansMessage('regle9', { source });
         const ctc = propre(c.contact_id || c.user_id, 80);
         if (STOP.test(propre(c.comment || c.commentaire, 500))) { await memoriserStop(env, ctc, cpt, 'stop'); return sansMessage('stop', { source, a_reprendre: true }); }
         if (await estStoppe(env, ctc, cpt)) return sansMessage('stop', { source, a_reprendre: true });
-        if (env.DM_MODE !== 'live' && !COMPTES_TEST.includes(cpt)) return sansMessage('mode_test', { compte: cpt, source });
+        if (env.DM_MODE !== 'live' && !comptesTest.includes(cpt)) return sansMessage('mode_test', { compte: cpt, source });
         // Décision de Shawez du 24/10/2026 : quand c'est le client qui écrit en premier, on répond tout de suite,
         // y compris le soir et le dimanche (au-delà de 24 h, Meta n'autorise plus la réponse automatique).
         return json(200, { envoyer: 'oui', raison: 'ok', source });
@@ -597,11 +608,11 @@ export async function onRequest({ request, env }) {
     } else return json(405, { error: 'methode' });
 
     // 1. Filtres : règle 9, mode test, doublons
-    if (jamais(env, compte)) return sansMessage('regle9');
+    if (jamais(exclusionsIg, env, compte)) return sansMessage('regle9');
     // La personne demande d'arrêter : aucune réponse automatique, à traiter par Shawez (tag ManyChat « stop »).
     if (STOP.test(commentaire || '')) { if (!test) await memoriserStop(env, contact, compte, 'stop'); return sansMessage('stop', { a_reprendre: true }); }
     if (!test && await estStoppe(env, contact, compte)) return sansMessage('stop', { a_reprendre: true });
-    if (env.DM_MODE !== 'live' && !COMPTES_TEST.includes(compte)) return sansMessage('mode_test', { compte });
+    if (env.DM_MODE !== 'live' && !comptesTest.includes(compte)) return sansMessage('mode_test', { compte });
     // Décision de Shawez du 24/10/2026 : le client qui écrit en premier reçoit sa réponse tout de suite, à toute heure,
     // dimanche compris. Seuls les envois à l'initiative du réseau (relances, alertes) restent du lundi au samedi, 8 h-20 h.
     if (!evenement) {
