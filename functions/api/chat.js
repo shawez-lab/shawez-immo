@@ -21,10 +21,10 @@ import { listePrivee } from '../_lib/exclusions-privees.js';
    Le WhatsApp de Shawez n'est donné qu'à un contact sérieux : projet clair, secteur, et budget ou échéance,
    ou une vraie question de prix, de travaux ou de financement. Les curieux sont servis jusqu'au bout sans le déranger.
 
-   GET /api/chat?test=1 → essai complet sur un faux visiteur vendeur, rien n'est écrit ni notifié.
+   POST uniquement : aucun essai public ne peut appeler le modèle en dehors des gardes et plafonds.
 */
 
-import { json, corps, texte, limiter, ip, maintenant, verifierOrigine } from '../_lib/base.js';
+import { json, corps, texte, limiter, ip, maintenant, verifierOrigine, Erreur } from '../_lib/base.js';
 import { envoyer, destinatairesAlerte, gabarit, paragraphe, esc, mailPossible } from '../_lib/mail.js';
 
 const MODELE = 'claude-sonnet-5-5';
@@ -150,30 +150,42 @@ async function prevenir(env, etat, fil) {
     etat.secteur && `Secteur : ${etat.secteur}`, etat.budget && `Budget : ${etat.budget}`,
     etat.echeance && `Échéance : ${etat.echeance}`, etat.page && `Page : ${etat.page}`].filter(Boolean);
   const conv = fil.slice(-10).map((m) => `${m.sens === 'out' ? 'Assistant' : 'Visiteur'} : ${esc(m.texte)}`).join('<br>');
-  await envoyer(env, {
-    to: destinatairesAlerte(env),
+  const courrier = {
     subject: `Contact sérieux sur le site${etat.secteur ? ' — ' + etat.secteur : ''}`,
     html: gabarit('Un contact sérieux vient de se qualifier sur le site', [
       paragraphe(lignes.map(esc).join('<br>')),
       paragraphe(`<b>La conversation</b><br>${conv}`),
     ], 'https://shawez-immo.com'),
-  }, { origine: 'chat' }).catch(() => {});
+  };
+  // envoyer attend une seule adresse et construit la liste propre à son transport.
+  for (const to of destinatairesAlerte(env)) {
+    await envoyer(env, { ...courrier, to }, { origine: 'chat' }).catch(() => {});
+  }
 }
 
-export async function onRequestGet({ request, env }) {
-  const u = new URL(request.url);
-  if (u.searchParams.get('test') !== '1') return json(405, { erreur: 'methode' });
-  try { listePrivee(env, 'REGLE9_CHAT_NOMS', { motifs: true }); }
-  catch { return json(503, { erreur: 'configuration_exclusions', reponse: '', fin: true }); }
+export async function onRequestGet() {
+  return json(405, { erreur: 'methode' }, { Allow: 'POST' });
+}
+
+export async function onRequestPost(contexte) {
   try {
-    const r = await appelClaude(env, [], 'Bonjour, je voudrais vendre ma maison à Chevigny, vers 250 000 euros, au printemps.',
-      { page: '/estimer/' }, null);
-    return json(200, { essai: true, ...r, refus: controle(r.reponse, true) });
-  } catch (e) { return json(500, { essai: true, erreur: e.message }); }
+    return await traiterMessage(contexte);
+  } catch (e) {
+    if (e instanceof Erreur) {
+      const erreur = { erreur: e.code };
+      if (typeof e.extra?.champ === 'string') erreur.champ = e.extra.champ;
+      // Un plafond ne déclenche pas de réponse de secours avant le contrôle des exclusions.
+      if (e.status === 429) Object.assign(erreur, { reponse: '', fin: true });
+      return json(e.status, erreur);
+    }
+    console.log('chat', 'erreur_interne');
+    return json(500, { erreur: 'serveur', reponse: '', fin: true });
+  }
 }
 
-export async function onRequestPost({ request, env }) {
-  if (!verifierOrigine(request)) return json(403, { erreur: 'origine' });
+async function traiterMessage({ request, env }) {
+  // Ces gardes réussissent sans valeur et lèvent Erreur en cas de refus.
+  verifierOrigine(request);
   let nomsExclus;
   try { nomsExclus = listePrivee(env, 'REGLE9_CHAT_NOMS', { motifs: true }); }
   catch { return json(503, { erreur: 'configuration_exclusions', reponse: '', fin: true }); }
@@ -185,8 +197,8 @@ export async function onRequestPost({ request, env }) {
 
   // Garde-fous : par visiteur et par adresse, avant tout appel au modèle.
   const adresse = ip(request);
-  if (!(await limiter(env, `chat:s:${session}`, 40, 3600))) return json(429, { reponse: 'Vous avez atteint le nombre de messages possibles ici. Demandez votre estimation offerte sur shawez-immo.com/estimer/, Shawez vous répond lui-même.', fin: true });
-  if (!(await limiter(env, `chat:ip:${adresse}`, 80, 3600))) return json(429, { erreur: 'trop de demandes' });
+  await limiter(env, `chat:s:${session}`, 40, 3600);
+  await limiter(env, `chat:ip:${adresse}`, 80, 3600);
 
   const db = await base(env);
   const etat = (await db.prepare('SELECT * FROM chat_sessions WHERE session = ?1').bind(session).first().catch(() => null))
@@ -219,7 +231,7 @@ export async function onRequestPost({ request, env }) {
     refus = controle(r.reponse, premier);
     if (refus) { const r2 = await appelClaude(env, fil, message, { ...etat, page: page || etat.page }, refus); const f2 = controle(r2.reponse, premier); if (!f2) { r = { ...r2, cout: r.cout + r2.cout }; refus = null; } else { r.cout += r2.cout; } }
   } catch (e) {
-    console.log('chat', e.message);
+    console.log('chat', 'modele_indisponible');
   }
 
   await db.prepare('INSERT INTO leads_couts VALUES (?1, ?2, ?3, ?4, ?5)')
