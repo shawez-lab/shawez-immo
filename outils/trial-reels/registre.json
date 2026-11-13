@@ -16407,6 +16407,18 @@
    },
    "vues_total": 108,
    "verdict": "en_cours"
+  },
+  {
+   "id": "TR-1611-estimation-x",
+   "date": "2026-11-16",
+   "heure": "12:00",
+   "ref": "",
+   "mot": "ESTIMATION",
+   "style": "descriptif",
+   "legende": "Tu as 30 secondes pour qu'un acheteur ait envie de visiter. Pas plus.  Commente ESTIMATION et on prépare la vente de ton",
+   "source": "autre",
+   "uuid": "7031972041282635072",
+   "statut": "brouillon_juge"
   }
  ]
 }
