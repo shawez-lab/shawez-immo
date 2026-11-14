@@ -16872,6 +16872,66 @@
    },
    "vues_total": 113,
    "verdict": "en_cours"
+  },
+  {
+   "id": "TR-1411-estimation-x",
+   "date": "2026-11-14",
+   "heure": "12:00",
+   "ref": "estimation",
+   "mot": "ESTIMATION",
+   "style": "autre",
+   "legende": "Trois choses qu'aucun agent ne te dira avant que tu signes.",
+   "source": "autre",
+   "uuid": "-6254681799637906243",
+   "statut": "brouillon_juge"
+  },
+  {
+   "id": "TR-1411-estimation-x2",
+   "date": "2026-11-14",
+   "heure": "19:00",
+   "ref": "estimation",
+   "mot": "ESTIMATION",
+   "style": "autre",
+   "legende": "Une offre bien en dessous du prix affiché. Tu refuses, ou tu discutes ?",
+   "source": "autre",
+   "uuid": "-1638390007775344326",
+   "statut": "brouillon_juge"
+  },
+  {
+   "id": "TR-1511-estimation-x",
+   "date": "2026-11-15",
+   "heure": "12:00",
+   "ref": "estimation",
+   "mot": "ESTIMATION",
+   "style": "autre",
+   "legende": "La maison que personne n'a vue passer. Voilà pourquoi.",
+   "source": "autre",
+   "uuid": "-4134686003081031912",
+   "statut": "brouillon_juge"
+  },
+  {
+   "id": "TR-1511-estimation-x2",
+   "date": "2026-11-15",
+   "heure": "19:00",
+   "ref": "estimation",
+   "mot": "ESTIMATION",
+   "style": "autre",
+   "legende": "Le site où tous les prix de vente sont écrits, et que presque personne ne regarde.",
+   "source": "autre",
+   "uuid": "-1754437820777935278",
+   "statut": "brouillon_juge"
+  },
+  {
+   "id": "TR-1611-estimation-x2",
+   "date": "2026-11-16",
+   "heure": "19:00",
+   "ref": "estimation",
+   "mot": "ESTIMATION",
+   "style": "autre",
+   "legende": "La première offre arrive. Tu dis oui tout de suite ?",
+   "source": "autre",
+   "uuid": "-3890572650267851436",
+   "statut": "brouillon_juge"
   }
  ]
 }
