@@ -16689,7 +16689,8 @@
    "legende": "Tu as 30 secondes pour qu'un acheteur ait envie de visiter. Pas plus.  Commente ESTIMATION et on prépare la vente de ton",
    "source": "autre",
    "uuid": "7031972041282635072",
-   "statut": "brouillon_juge"
+   "statut": "brouillon_juge",
+   "note_juge": "16/11 : retrouvée en draft false (programmée 16/11 12:00), remise en brouillon par le Juge (style descriptif interdit, bien estimation en pause)"
   },
   {
    "id": "TR-1311-estimation-x",
@@ -16858,7 +16859,8 @@
    "legende": "La maison que personne n'a vue passer. Voilà pourquoi.",
    "source": "autre",
    "uuid": "-4134686003081031912",
-   "statut": "brouillon_juge"
+   "statut": "brouillon_juge",
+   "note_juge": "16/11 : retrouvée en draft false (programmée 17/11 12:00), remise en brouillon par le Juge (style autre interdit, bien estimation en pause)"
   },
   {
    "id": "TR-1511-estimation-x2",
@@ -16884,7 +16886,8 @@
    "legende": "La première offre arrive. Tu dis oui tout de suite ?",
    "source": "autre",
    "uuid": "-3890572650267851436",
-   "statut": "brouillon_juge"
+   "statut": "brouillon_juge",
+   "note_juge": "16/11 : retrouvée en draft false (programmée 16/11 19:00), remise en brouillon par le Juge (style autre interdit, bien estimation en pause)"
   }
  ]
 }
