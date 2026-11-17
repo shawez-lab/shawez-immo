@@ -28,22 +28,24 @@ export async function init(DB) {
 }
 export async function historyName(id) {const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(id));return 'reels_h_'+Array.from(new Uint8Array(digest),b=>b.toString(16).padStart(2,'0')).join('');}
 export function tableName(name) {if(!/^reels_h_[a-f0-9]{64}$/.test(name))throw new Error('table_invalide');return name;}
-export async function persist(DB, reels, observed, report, versions=[]) {
- // Tout valider avant la première écriture ; pas de suppression des Reels absents du fournisseur.
+export async function persist(DB, reels, observed, report, versions=[], after=[]) {
  if(!Number.isFinite(Date.parse(observed))||!/^\d{4}-\d\d-\d\d$/.test(report))throw new Error('date_invalide');
- for(const reel of reels) {
- const table=await historyName(reel.id);
- await DB.prepare(`CREATE TABLE IF NOT EXISTS ${table} (observe_le TEXT PRIMARY KEY, rapport_jour TEXT NOT NULL, mesures TEXT NOT NULL, brut TEXT NOT NULL, meta TEXT NOT NULL)`).run();
- const old=await DB.prepare('SELECT * FROM reels_registre WHERE id=?').bind(reel.id).first();
- // Le registre du Monteur décrit explicitement chaque Trial Reel ; correspondance par URL exacte seulement.
- const matches=versions.filter(v=>v.url?.replace(/\/$/,'')===reel.url.replace(/\/$/,''));
+ const existing=new Map((await DB.prepare('SELECT * FROM reels_registre').all()).results.map(r=>[r.id,r]));
+ const entries=await Promise.all(reels.map(async reel=>({reel,table:await historyName(reel.id)})));
+ // Deux batches D1 : création additive, puis toutes les données ET l'acquittement dans une même transaction.
+ // Un batch compte comme un seul appel D1, même avec des centaines de Reels sur le forfait gratuit.
+ if(entries.length)await DB.batch(entries.map(({table})=>DB.prepare(`CREATE TABLE IF NOT EXISTS ${table} (observe_le TEXT PRIMARY KEY, rapport_jour TEXT NOT NULL, mesures TEXT NOT NULL, brut TEXT NOT NULL, meta TEXT NOT NULL)`)));
+ const commands=[];
+ for(const {reel,table} of entries) {
+ const old=existing.get(reel.id);
+ const matches=versions.filter(v=>typeof v?.url==='string'&&v.url.replace(/\/$/,'')===reel.url.replace(/\/$/,''));
  const version=matches.length===1?matches[0]:null;
  const meta={accroche:old?.accroche||version?.accroche||null,type:old?.type&&old.type!=='inconnu'?old.type:version?'essai':'inconnu',mot_cle:old?.mot_cle||version?.mot||null,duree:old?.duree??null};
- await DB.batch([
+ commands.push(
  DB.prepare(`INSERT INTO reels_registre(id,url,publie,contenu,historique,mesures,observe_le,rapport_jour,type,accroche,mot_cle) VALUES(?,?,?,?,?,?,?,?,?,?,?) ON CONFLICT(id) DO UPDATE SET url=excluded.url,publie=excluded.publie,contenu=excluded.contenu,mesures=excluded.mesures,observe_le=excluded.observe_le,rapport_jour=excluded.rapport_jour,type=excluded.type,accroche=excluded.accroche,mot_cle=excluded.mot_cle WHERE excluded.observe_le>=reels_registre.observe_le`).bind(reel.id,reel.url,reel.published,reel.content,table,JSON.stringify(reel.metrics),observed,report,meta.type,meta.accroche,meta.mot_cle),
- DB.prepare(`INSERT OR IGNORE INTO ${table}(observe_le,rapport_jour,mesures,brut,meta) VALUES(?,?,?,?,?)`).bind(observed,report,JSON.stringify(reel.metrics),JSON.stringify(reel.raw),JSON.stringify(meta))
- ]);
+ DB.prepare(`INSERT OR IGNORE INTO ${table}(observe_le,rapport_jour,mesures,brut,meta) VALUES(?,?,?,?,?)`).bind(observed,report,JSON.stringify(reel.metrics),JSON.stringify(reel.raw),JSON.stringify(meta)));
  }
+ if(commands.length||after.length)await DB.batch([...commands,...after]);
 }
 export function rank(rows) {return rows.filter(r=>r.mesures.reelsSkipRate!=null).sort((a,b)=>a.mesures.reelsSkipRate-b.mesures.reelsSkipRate || (b.mesures.views??0)-(a.mesures.views??0));}
 export function briefing(rows, report) {
@@ -53,37 +55,68 @@ export function briefing(rows, report) {
 export async function keywordLeads(DB) {
  try {const rows=await DB.prepare(`SELECT lower(substr(post,5)) AS mot_cle, COUNT(DISTINCT contact) AS contacts FROM dm_instagram WHERE post LIKE 'mot:%' AND contact IS NOT NULL AND contact<>'' GROUP BY lower(substr(post,5)) ORDER BY contacts DESC`).all();return {disponible:true,definition:'Contacts ManyChat distincts enregistrés, tous historiques, par mot-clé ; ni leads qualifiés ni attribution par Reel.',lignes:rows.results};}catch{return {disponible:false,definition:'Source dm_instagram indisponible ; aucun chiffre estimé.',lignes:[]};}
 }
-export async function collect(env, now=new Date()) {
- if(!env.METRICOOL_API_TOKEN)throw new Error('metricool_non_configure');
- await init(env.DB); const done=await env.DB.prepare("SELECT id FROM reels_collectes WHERE statut='ok' AND rapport_jour=? LIMIT 1").bind(yesterday(now)).first(); if(done)return {deja_collecte:true}; const id=crypto.randomUUID(), observed=now.toISOString(), report=yesterday(now);
- const lease=await env.DB.prepare(`INSERT INTO reels_collectes(id,debut,statut,rapport_jour) SELECT ?,?,'en_cours',? WHERE NOT EXISTS(SELECT 1 FROM reels_collectes WHERE statut='en_cours' AND debut>?) RETURNING id`).bind(id,observed,report,new Date(now.getTime()-15*60000).toISOString()).first();
- if(!lease)return {deja_en_cours:true};
+// Contrat du dépôt Claude dans metricool_import. Les colonnes sont résolues par code, jamais par position supposée.
+export const IMPORT_COLUMNS=['IGRE02','IGRE04','IGRE06','IGRE03','IGRE23','IGRE11','IGRE10','IGRE07','IGRE12','IGRE21','IGRE24','IGRE27','IGRE28','IGRE30','IGRE26'];
+export function decodeImport(row) {
+ const payload=typeof row.donnees==='string'?JSON.parse(row.donnees):row.donnees;
+ if(!payload||typeof payload!=='object')throw new Error('import_format_invalide');
+ let stamp=String(row.recu_le||'').replace(' ','T');
+ if(!/(?:Z|[+-]\d\d:\d\d)$/.test(stamp))stamp+='Z';
+ if(!Number.isFinite(Date.parse(stamp)))throw new Error('import_date_invalide');
+ const observed=new Date(stamp).toISOString();
+ if(typeof payload.erreur==='string')return {sourceError:payload.erreur.slice(0,500),observed};
+ if(!Array.isArray(payload.colonnes)||IMPORT_COLUMNS.some(c=>!payload.colonnes.includes(c)))throw new Error('import_colonnes_incompletes');
+ const reels=decodeDataset({rows:payload.lignes},payload.colonnes);
+ if(new Set(reels.map(r=>r.id)).size!==reels.length)throw new Error('import_reels_dupliques');
+ const end=String(row.periode_fin||'').slice(0,10);
+ if(!/^\d{4}-\d\d-\d\d$/.test(end)||!Number.isFinite(Date.parse(end+'T12:00:00Z')))throw new Error('import_periode_invalide');
+ return {reels,observed,report:end<yesterday(observed)?end:yesterday(observed)};
+}
+export function importWindow(now) {
+ const hour=Number(new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Paris',hour:'2-digit',hourCycle:'h23'}).format(now));
+ return hour>=7&&hour<=9;
+}
+export async function importStatus(DB) {
  try {
- const url=new URL('https://app.metricool.com/api/v2/analytics/reels/instagram');
- // Toute la période depuis le démarrage de la marque est relue : aucun Reel ne sort de l'historique après 90 jours.
- for(const [k,v] of Object.entries({userId:'5583508',blogId:'7212231',from:'2026-10-01T00:00:00',to:report+'T23:59:59',timezone:'Europe/Paris'}))url.searchParams.set(k,v);
- const response=await fetch(url,{headers:{'X-Mc-Auth':env.METRICOOL_API_TOKEN},signal:AbortSignal.timeout(90000)});
- if(!response.ok)throw new Error('metricool_http_'+response.status);
- const payload=await response.json(); if(!Array.isArray(payload.data))throw new Error('metricool_format');
- if(payload.page?.next || payload.page?.hasNext)throw new Error('metricool_pagination_a_adapter');
- let reels=payload.data.map(normalize); if(!reels.length)throw new Error('metricool_reponse_vide');
- // Le catalogue Data Studio expose IGRE27/28 absents du contrat REST actuel.
- // Le contrat de paramètres doit être confirmé avec la clé de production ; échec visible, jamais silencieux.
- let complement='rest_seul';
- if(env.REELS_DATASTUDIO_ACTIVE==='1') {
-   const fields=Object.keys(FIELDS).filter(k=>!['IGRE13','IGRE15'].includes(k));
-   const dataset=new URL('https://app.metricool.com/api/datastudio/datasets');
-   for(const [k,v] of Object.entries({userId:'5583508',blogId:'7212231',start:'20261001',end:report.replaceAll('-',''),fields:fields.join(',')}))dataset.searchParams.set(k,v);
-   const data=await fetch(dataset,{headers:{'X-Mc-Auth':env.METRICOOL_API_TOKEN},signal:AbortSignal.timeout(90000)});
-   if(!data.ok)throw new Error('metricool_dataset_http_'+data.status);
-   const values=decodeDataset(await data.json(),fields);
-   if(!values.length || values.length!==reels.length || values.some(r=>!reels.some(x=>x.id===r.id)))throw new Error('metricool_dataset_incomplet');
-   reels=values;complement='datastudio';
+ const pending=await DB.prepare("SELECT COUNT(*) AS n FROM metricool_import WHERE reseau='instagram' AND connecteur='reels' AND traite_le IS NULL").first();
+ const latest=await DB.prepare("SELECT id,recu_le,periode_debut,periode_fin,traite_le FROM metricool_import WHERE reseau='instagram' AND connecteur='reels' ORDER BY recu_le DESC,id DESC LIMIT 1").first();
+ return {disponible:true,en_attente:pending.n,dernier_import:latest||null};
+ }catch{return {disponible:false,en_attente:0,dernier_import:null};}
+}
+export async function processImports(env, now=new Date()) {
+ const DB=env.DB;if(!DB)throw new Error('base_absente');await init(DB);
+ let rows;
+ try {rows=(await DB.prepare("SELECT id,recu_le,periode_debut,periode_fin,donnees FROM metricool_import WHERE reseau='instagram' AND connecteur='reels' AND traite_le IS NULL ORDER BY recu_le,id LIMIT 3").all()).results;}
+ catch{return {etat:'source_absente',traites:0};}
+ if(!rows.length)return {etat:'sans_import',traites:0};
+ const lockId='d1-traitement:'+crypto.randomUUID(),started=now.toISOString();
+ const lease=await DB.prepare(`INSERT INTO reels_collectes(id,debut,statut) SELECT ?,?,'en_cours' WHERE NOT EXISTS(SELECT 1 FROM reels_collectes WHERE statut='en_cours' AND debut>?) RETURNING id`).bind(lockId,started,new Date(now.getTime()-15*60000).toISOString()).first();
+ if(!lease)return {etat:'deja_en_cours',traites:0};
+ let traites=0,erreurs=0,versions=[];
+ // Le registre existant est un asset du site ; aucune API Metricool ni requête GitHub.
+ if(env.ASSETS)try {const r=await env.ASSETS.fetch('https://shawez-immo.com/outils/trial-reels/registre.json');if(r.ok){const data=await r.json();if(Array.isArray(data.versions))versions=data.versions;}}catch{}
+ try {
+ for(const row of rows) {
+ const runId='metricool-import:'+row.id;
+ try {
+ const parsed=decodeImport(row);
+ const end=new Date().toISOString();
+ const failedSource=Object.hasOwn(parsed,'sourceError');
+ const status=failedSource?'erreur_source':parsed.reels.length?'ok':'vide';
+ const count=parsed.reels?.length||0;
+ const journal=DB.prepare(`INSERT INTO reels_collectes(id,debut,fin,statut,erreur,nombre,rapport_jour) VALUES(?,?,?,?,?,?,?) ON CONFLICT(id) DO UPDATE SET fin=excluded.fin,statut=excluded.statut,erreur=excluded.erreur,nombre=excluded.nombre,rapport_jour=excluded.rapport_jour`).bind(runId,parsed.observed,end,status,parsed.sourceError||null,count,parsed.report||null);
+ const acknowledge=DB.prepare('UPDATE metricool_import SET traite_le=? WHERE id=? AND traite_le IS NULL').bind(end,row.id);
+ if(failedSource){await DB.batch([journal,acknowledge]);erreurs++;}
+ else await persist(DB,parsed.reels,parsed.observed,parsed.report,versions,[journal,acknowledge]);
+ traites++;
+ }catch(e){
+ // Une ligne invalide ou une panne D1 n'est jamais acquittée ; les données brutes restent réparables.
+ erreurs++;
+ const code=/^(import_|mesure_|taux_|champs_|colonnes_|reel_|date_|url_)/.test(e.message)?e.message:'import_traitement_echec';
+ await DB.prepare(`INSERT INTO reels_collectes(id,debut,fin,statut,erreur) VALUES(?,?,?,'erreur_import',?) ON CONFLICT(id) DO UPDATE SET fin=excluded.fin,statut=excluded.statut,erreur=excluded.erreur`).bind(runId,started,new Date().toISOString(),code).run();
  }
- let versions=[],registre='indisponible';
- try {const response=await fetch('https://raw.githubusercontent.com/shawez-lab/shawez-immo/main/outils/trial-reels/registre.json',{signal:AbortSignal.timeout(15000)}); if(response.ok){const source=await response.json();if(!Array.isArray(source.versions))throw new Error();versions=source.versions;registre='ok';}}catch{}
- await persist(env.DB,reels,observed,report,versions);
- await env.DB.prepare("UPDATE reels_collectes SET fin=?,statut='ok',nombre=? WHERE id=?").bind(new Date().toISOString(),reels.length,id).run();
- return {ok:true,nombre:reels.length,rapport_jour:report,source:complement,registre_programmation:registre,limite:'IGRE27 et IGRE28 restent indisponibles si absents de la réponse REST. Import Data Studio accepté séparément.'};
- }catch(e){const code=/^(metricool_|mesure_|reel_|url_|date_|taux_)/.test(e.message)?e.message:'collecte_echec';await env.DB.prepare("UPDATE reels_collectes SET fin=?,statut='erreur',erreur=? WHERE id=?").bind(new Date().toISOString(),code,id).run();throw new Error(code);}
+ }
+ }finally{await DB.prepare("UPDATE reels_collectes SET fin=?,statut=?,nombre=? WHERE id=?").bind(new Date().toISOString(),erreurs?'termine_avec_erreurs':'termine',traites,lockId).run();}
+ const pending=await DB.prepare("SELECT COUNT(*) AS n FROM metricool_import WHERE reseau='instagram' AND connecteur='reels' AND traite_le IS NULL").first();
+ return {etat:erreurs?'erreurs':'ok',traites,en_attente:pending.n};
 }

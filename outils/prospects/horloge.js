@@ -1,7 +1,9 @@
+import reelsHorloge from '../reels/horloge.js';
 // Worker Cloudflare shawez-prospects-horloge. Aucun secret ni accès à D1.
 // Cron UTC : 7 3 * * * = 08:07 dans le fuseau actuel du compte, Asia/Karachi.
 export default {
-  async scheduled() {
+  async scheduled(controller) {
+    if (controller?.cron === '15 5,6,7 * * *') return reelsHorloge.scheduled(controller);
     const r = await fetch('https://shawez-immo.com/api/prospects?job=1', {
       signal: AbortSignal.timeout(90000), redirect: 'error',
       headers: { Accept: 'application/json' },
