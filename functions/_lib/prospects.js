@@ -56,11 +56,12 @@ export async function veille(ctx,now=new Date()){
  compteurs.google={mesures:derniere?{jour:derniere.jour,collecte_le:derniere.collecte_le,source:derniere.source,donnees:lire(derniere.donnees)}:null,fiche,precision:'Les vues, clics et avis ne sont pas des vendeurs identifiés. Aucun auteur d’avis n’est ajouté comme prospect.'};
  const traites=new Set((await b.prepare('SELECT cle FROM veille_actions').all()).results.map(x=>x.cle));
  const liste=actions.filter(x=>!traites.has(x.cle)).sort((a,b)=>a.priorite-b.priorite||a.date.localeCompare(b.date));
+ let attribution_reels=null;if(tables.has('dm_reels_attribution')&&tables.has('demandes_reels_attribution'))attribution_reels=(await b.prepare('SELECT a.media_id,COUNT(DISTINCT a.evenement) interactions,COUNT(DISTINCT d.demande_id) demandes FROM dm_reels_attribution a LEFT JOIN demandes_reels_attribution d ON d.token=a.token GROUP BY a.media_id').all()).results;
  const erreurs=Object.values(etats).filter(x=>/erreur|bloque/.test(x.etat));
- return {mode:'entrants_uniquement',controles_drive:drive.public,periode:{debut:since,fin:now.toISOString(),jours:90},sources:etats,compteurs,actions:liste,postaux:postalValides.map(p=>({...p,demande_recue:convertis.some(x=>x.id===p.id)})),etat:erreurs.length?'partiel':'ok',limites:['Aucun import depuis un portail immobilier. Aucune collecte de coordonnées externes.','Les compteurs portent sur les 90 derniers jours et les limites indiquées par source.','Un lien personnel créé ne prouve ni l’envoi d’un courrier ni sa réception. Un scan ne vaut pas demande d’estimation.','Une demande entrante autorise une réponse à cette demande, pas une séquence commerciale sur tous les canaux.','Aucun appel, SMS, DM ou e-mail envoyé par ce tableau.']};
+ return {mode:'entrants_uniquement',controles_drive:drive.public,attribution_reels,periode:{debut:since,fin:now.toISOString(),jours:90},sources:etats,compteurs,actions:liste,postaux:postalValides.map(p=>({...p,demande_recue:convertis.some(x=>x.id===p.id)})),etat:erreurs.length?'partiel':'ok',limites:['Aucun import depuis un portail immobilier. Aucune collecte de coordonnées externes.','Les compteurs portent sur les 90 derniers jours et les limites indiquées par source.','Un lien personnel créé ne prouve ni l’envoi d’un courrier ni sa réception. Un scan ne vaut pas demande d’estimation.','Une demande entrante autorise une réponse à cette demande, pas une séquence commerciale sur tous les canaux.','Aucun appel, SMS, DM ou e-mail envoyé par ce tableau.']};
 }
 export async function quotidien(ctx,force=false,now=new Date()){
- exclusions(ctx.env);if(force){await veille(ctx,now);return {etat:'actualise',mode:'entrants_uniquement'};}const zone=ctx.env.PROSPECTS_TIMEZONE||'Asia/Karachi';
+ exclusions(ctx.env);if(force){await veille(ctx,now);return {etat:'actualise',mode:'entrants_uniquement'};}const zone='Europe/Paris';
  const p=Object.fromEntries(new Intl.DateTimeFormat('en-CA',{timeZone:zone,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',hourCycle:'h23'}).formatToParts(now).map(x=>[x.type,x.value]));
  if(!force&&Number(p.hour)<8)return {etat:'avant_8h',mode:'entrants_uniquement'};
  const jour=`${p.year}-${p.month}-${p.day}`,b=ctx.env.DB;
@@ -68,3 +69,4 @@ export async function quotidien(ctx,force=false,now=new Date()){
  if(!claim)return {etat:'deja_execute',mode:'entrants_uniquement'};
  try{const v=await veille(ctx,now);const resume={mode:v.mode,periode:v.periode,sources:v.sources,compteurs:{...v.compteurs,google:{mesures_disponibles:!!v.compteurs.google.mesures}},actions:v.actions.length};await b.prepare('UPDATE veille_executions SET fin=?,etat=?,resume=? WHERE jour=?').bind(new Date().toISOString(),v.etat,JSON.stringify(resume),jour).run();return {etat:v.etat,mode:v.mode};}catch{await b.prepare("UPDATE veille_executions SET etat='erreur',fin=? WHERE jour=?").bind(new Date().toISOString(),jour).run();throw Error('veille_indisponible');}
 }
+

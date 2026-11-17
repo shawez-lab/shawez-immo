@@ -1,44 +1,29 @@
-# Veille des entrants
+# Traitements Cloudflare de la relation entrante
 
-La mission est réorientée le 18 novembre 2026 : données internes uniquement. Aucun flux de pige, import d'annonces, extraction de portail ou prospection à froid. L'ancienne configuration `PROSPECTS_SOURCES_JSON` est ignorée et le code d'import a été supprimé. Aucun abonnement acheté.
+Horaires métier Europe/Paris, changement d’heure inclus : lecture des trois feuilles privées à 07:40, veille à 08:07, avis Google chaque heure entre 08:00 et 20:00. Le Worker natif conserve également les passages Reels existants. Aucun ordinateur, navigateur ou tâche Codex n’est nécessaire au traitement serveur.
 
-## Sources et données
+## Accès Google permanent indispensable
 
-La page `/admin/prospects/` et son API lisent les dossiers `demandes`, les mails vendeurs de `leads_tri`, les derniers messages de `dm_fil` et les commentaires de `ig_commentaires`. Les STOP de `dm_stop` et les exclusions privées de la règle 9 s'appliquent avant affichage. Le tableau ne recopie pas les coordonnées dans une nouvelle base de prospects. Il n'envoie aucun message et n'appelle aucun numéro.
+Le code lit uniquement les trois liens déjà configurés dans la table privée veille_drive_controles. Aucun lien privé ni export brut ne doit être committé. Deux configurations serveur possibles dans les secrets Pages : GOOGLE_SHEETS_SERVICE_ACCOUNT avec le JSON du compte de service autorisé à lire ces trois fichiers, ou GOOGLE_SHEETS_CLIENT_ID, GOOGLE_SHEETS_CLIENT_SECRET et GOOGLE_SHEETS_REFRESH_TOKEN pour une autorisation OAuth hors ligne. Le scope utilisé pour le compte de service est spreadsheets.readonly. Les requêtes Sheets de cette application sont exclusivement GET. Ne pas rendre les feuilles publiques. Ne jamais reprendre un cookie ou un jeton du navigateur. La création de l’identité Google, son autorisation et la pose du secret sont un raccordement distinct à effectuer dans les consoles autorisées.
 
-Les demandes explicites dans le dernier message ou le commentaire sont repérées par des mots liés à la vente ou à l'estimation. Ce repérage est conservateur : il ne détecte pas tous les projets et ne permet pas de décider d'une séquence commerciale. Un message automatique enregistré ne prouve pas une prise en charge humaine. La marque « Traitement vérifié » porte sur un message ou une demande précise ; un nouveau DM reste visible.
+Les métadonnées et tous les onglets sont lus avant un remplacement atomique des trois index. Un refus Google, une source vide, un en-tête inconnu ou une couverture dépassant les limites bloque la mise à jour et conserve le relevé précédent. veille_drive_passages trace le résultat sans coordonnées ni jeton. Les index restent des données personnelles pseudonymisées dans D1, protégées par l’accès agence. Le relevé devient incomplet après 48 heures ; les STOP connus restent bloquants. Les appels publics des tâches ne renvoient aucun contact.
 
-Les sources absentes ou au schéma incompatible sont signalées, jamais remplacées par un zéro. La lecture couvre 90 jours, avec un plafond indiqué par source. Le résumé quotidien ne conserve que des compteurs et des états, sans nom, adresse ou contenu de conversation.
+## Avis Google
 
-## Courriers
+Lien et QR existants conservés dans assets/avis-google. Le lien utilisé est celui de LISEZMOI.txt. Le premier passage initialise le curseur des événements sans relancer l’historique. Les changements de statut mandat/compromis/acte servent de déclarations de signature. Une visite doit être explicitement confirmée avec le dossier de la personne accompagnée dans l’admin. Un rendez-vous prévu ou un compte rendu au vendeur n’est pas une preuve de visite de l’acquéreur.
 
-La table D1 `courriers` est l'unique registre des courriers papier, à partir de zéro. Il n'existe aucun fichier historique à chercher ou importer. Chaque envoi futur est confirmé dans le tableau et rattaché à un dossier interne existant, avec une référence d'envoi ou de lot et sa date réelle. Ses retours sont enregistrés dans la même ligne. Aucun champ d'annonce ni nouvelle coordonnée n'est accepté par l'API.
+Le traitement prépare la file même lorsque l’envoi est arrêté. L’envoi exige AVIS_GOOGLE_ACTIF=1, un transport existant qui peut réellement écrire aux clients et des contrôles Drive à jour. La liaison Email Routing actuelle ne permet pas d’envoyer à des adresses non vérifiées ; CLIENT_MAIL=1 ne débloque pas à lui seul cette limite fournisseur. Aucune dépense ou souscription n’est créée.
 
-La table sert aussi aux e-mails différés : une colonne `canal` distingue `postal` et `email`. Les lignes déjà existantes sont classées comme e-mails. Le traitement et la purge des e-mails ne sélectionnent que leur canal ; ils ne peuvent ni envoyer une lettre par e-mail ni effacer l'historique postal après 30 jours. Aucun ancien e-mail n'est compté comme un envoi papier. Aucune double saisie dans une table postale séparée.
+Une seule demande par e-mail sur 30 jours, aucune nouvelle demande après avis reçu. Une seule relance à J+3, même heure civile de Paris, puis arrêt. Pas de relance après opposition ou avis déclaré reçu. Un clic sur le lien Google ne prouve jamais un avis publié. Envoi ambigu ou interrompu : a_verifier, aucune reprise automatique pouvant doubler le message. Les messages acceptent les avis positifs ou critiques et n’offrent aucune contrepartie.
 
-Créer une page ou un QR ne prouve pas l'envoi d'une lettre. Les demandes volontaires du module postal, lorsqu'il est publié, sont rapprochées par référence de page ou de dossier, uniquement avec un envoi antérieur. En cas de plusieurs envois, un retour ne compte que pour le plus récent correspondant. Les retours sans envoi connu restent distincts. Une opposition postale bloque la déclaration d'un nouvel envoi vers le même dossier.
+## Attribution des Reels
 
-## Fiche Google
+La requête externe ManyChat doit envoyer media_id sous forme de chaîne contenant le vrai identifiant natif présent dans le registre, y compris sa forme numérique composite avec suffixe de compte, séparément de post qui conserve la clé de contenu. Pas de conversion depuis un nombre JavaScript ni de déduction à partir d’un mot-clé. Les variables non résolues et les shortcodes sont refusés comme media_id. Les automatismes « tous les Reels » qui ne fournissent pas cet identifiant restent sans attribution précise.
 
-La page utilise le relevé public déjà conservé dans `avis.json`, avec sa date. Il n'est pas présenté comme une mesure actuelle. Si le module Google alimente `google_mesures`, ses relevés sont lus. Les auteurs d'avis ne sont pas convertis en prospects. Les demandes d'avis et la relance J+3 restent un module distinct et ne sont jamais déclenchées par cette veille.
+Quand le média est transmis, le lien d’estimation contient un jeton opaque valable 30 jours. La demande déposée est rattachée dans demandes_reels_attribution, sans nom, adresse ou identifiant Instagram dans l’URL. Un commentaire, une interaction et une demande déposée restent trois mesures distinctes. Le premier rattachement d’une demande est conservé lors des reprises. Les flux ManyChat doivent être vérifiés dans leur interface avant publication ; aucune variable média disponible n’est supposée.
 
-## Courrier et consentement
+## Vérifications
 
-Le courrier postal est une voie à tester si l'origine des coordonnées est licite, l'information et l'opposition assurées. Un QR personnel doit reposer sur un jeton opaque et expirable, sans nom ni adresse dans l'URL. Une demande volontaire permet d'y répondre dans son objet ; elle ne vaut pas accord commercial général sur tous les canaux. Les séquences commerciales doivent conserver leurs consentements distincts, leur preuve et leur retrait.
+node outils/prospects/test.mjs lance les contrôles historiques puis test-autonomie.mjs. Le passage complet simulé couvre les trois sources, l’atomicité et les erreurs Google, les horaires été/hiver, les déclencheurs d’avis et leur destinataire, l’arrêt des relances et l’attribution jusqu’au lead. Aucun message réel n’est envoyé par les tests. Un test simulé ne vaut pas validation d’un accès Google réel ni d’une livraison client réelle.
 
-Références : https://www.cnil.fr/fr/la-prospection-commerciale et https://www.economie.gouv.fr/dgccrf/actualites-dgccrf/le-demarchage-telephonique-desormais-interdit-si-vous-ny-avez-pas-consenti . Aucun mécanisme Bloctel n'est utilisé pour autoriser un appel.
-
-## Exploitation et tests
-
-Le Worker `shawez-prospects-horloge` appelle toujours `/api/prospects?job=1`, mais la route ne lit plus que nos sources. Passage vers 08 h 07 dans le fuseau actuel du compte Asia/Karachi. Il ne dépend pas de l'ordinateur de Shawez. Le job est idempotent ; les erreurs et interruptions peuvent être reprises après 30 minutes.
-
-`node outils/prospects/test.mjs`, Node 24 et SQLite natif : accès agence, origine, exclusions, STOP, zéro accès réseau externe même si une ancienne configuration de pige existe, demande explicite, attribution postale sans double comptage, nouveau DM après traitement et résumé quotidien sans coordonnées.
-
-
-## Contrôles privés des courriers avec Drive
-
-Trois sources internes : repertoire, relances et acquereurs. Leur configuration privée ne doit pas être committée. Lecture seulement, aucun partage ou changement d’autorisation. Les exports passent dans lire-exports-drive.py puis indexer-drive.mjs. N’exécuter le SQL que si les deux commandes réussissent et si tous les onglets ont été exportés. La table veille_drive_controles conserve uniquement des empreintes SHA-256 de rapprochement, des numéros de ligne, le lien de la source, la mention d’opposition et la date de lecture. Ces empreintes restent des données personnelles pseudonymisées dans D1, protégées par la session agence. Aucun export brut ni SQL produit ne doit être publié dans GitHub.
-
-L’admin affiche la couverture datée et les lignes sans identifiant rapprochable. Le contrôle postal refuse de présenter comme préparables les oppositions, dossiers déjà suivis, courriers déjà enregistrés, identités insuffisantes et lectures absentes ou dépassant 48 heures. Une absence de correspondance exacte n’est jamais une autorisation de prospection. Les STOP persistent comme blocage même si la lecture est périmée. Les envois réels restent tracés dans courriers ; aucune ligne Drive n’est transformée en envoi ni en lead vendeur.
-
-L’actualisation de ces empreintes utilise le navigateur déjà connecté au compte autorisé, car le connecteur Sheets retourne 403 sur ces trois sources. Elle dépend d’une session Google et d’une session Cloudflare accessibles. Aucun cookie ni jeton n’est extrait. Le traitement Cloudflare de 08:07 ne possède pas de droit Google et ne prétend pas lire les feuilles en direct. En cas d’échec de l’actualisation, conserver le dernier relevé et laisser son état vieillir vers contrôle incomplet.
+Le diagnostic ManyChat action=controle_attribution vérifie le media_id reçu contre reels_registre, sans écrire de conversation ni envoyer de message. Il utilise l’authentification habituelle du webhook.

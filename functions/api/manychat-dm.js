@@ -1,3 +1,4 @@
+import { mediaId,noterMedia,attacherMedia } from '../_lib/attribution-reels.js';
 import { listePrivee } from '../_lib/exclusions-privees.js';
 
 /* /api/manychat-dm — DM Instagram personnalisé quand quelqu'un commente une vidéo d'un bien (étape 1 du
@@ -541,6 +542,7 @@ export async function onRequest({ request, env }) {
     }
 
 
+    let mediaNatif=null,attributionToken=null;
     let prenom, commentaire, post, contact, compte, evenement, source = '', test = false, waContactExistant = false, intention = '';
     if (request.method === 'GET') {
       const u = new URL(request.url);
@@ -564,6 +566,7 @@ export async function onRequest({ request, env }) {
       if (intention) post = 'vendre';
     } else if (request.method === 'POST') {
       const c = await request.json().catch(() => ({}));
+      if(c.action==='controle_attribution'){const id=mediaId(c.media_id);if(!id)return json(400,{error:'media_id_invalide'});const reel=await env.DB.prepare('SELECT id,url FROM reels_registre WHERE id=?').bind(id).first();return json(200,{media_id_recu:id,registre_confirme:!!reel,lien_reel:reel?.url||null,ecriture:false,message_envoye:false});}
       if (c.action === 'garde') {
         // Garde-fou sans appel à Claude, pour les flux ManyChat non personnalisés (réponses aux stories,
         // Conversation Starters, mentions en story) : règle 9, mode test, horaires de Paris, fenêtre Instagram de 24 h.
@@ -579,6 +582,7 @@ export async function onRequest({ request, env }) {
         return json(200, { envoyer: 'oui', raison: 'ok', source });
       }
       source = propre(c.source, 40);
+      mediaNatif=mediaId(c.media_id);
       prenom = propre(c.first_name || c.prenom, 40);
       // « GRAVELIN » ou « gravelin » → « Gravelin »
       if (/[{}]/.test(prenom || '')) prenom = '';   // variable ManyChat non remplacée (« {{first_name}} »)
@@ -619,10 +623,11 @@ export async function onRequest({ request, env }) {
       // DM et stories sans identifiant d'événement : même texte du même contact à 2 minutes près = même événement (relance ManyChat),
       // au-delà c'est un nouveau message (plusieurs « oui » dans une conversation). Commentaires : un par jour et par Reel.
       const fenetre = (source === 'dm' || source === 'whatsapp' || /^(story|dm|wa)/i.test(post || '')) ? `m${Math.floor(Date.now() / 120000)}` : jourParis();
-      const brut = new TextEncoder().encode(`${contact}|${idReel(post)}|${commentaire}|${fenetre}`);
+      const brut = new TextEncoder().encode(`${contact}|${mediaNatif||idReel(post)}|${commentaire}|${fenetre}`);
       evenement = [...new Uint8Array(await crypto.subtle.digest('SHA-256', brut))].slice(0, 12).map(b => b.toString(16).padStart(2, '0')).join('');
     }
     const base = await journal(env).catch(e => { console.log('journal', e.message); return null; });
+    if(base&&!test&&source!=='whatsapp'&&mediaNatif)attributionToken=await noterMedia(base,evenement,mediaNatif,post);
     const jour = jourParis();
     // Image seule en message privé : repère court à la place du lien signé d'Instagram.
     // Pendant le défi pause, une image seule ou « je l'ai eu » en privé, c'est sans doute la capture promise par la vidéo.
@@ -635,7 +640,7 @@ export async function onRequest({ request, env }) {
       // Stories et DM directs : antidoublon par message seulement (décision de Shawez du 20/10 : plus de limite d'une réponse par jour)
       const story = /^(story|dm|wa)/i.test(post || '') || source === 'dm' || source === 'whatsapp';
       const deja = await base.prepare(`SELECT 1 FROM dm_instagram WHERE (evenement = ?1 AND origine <> 'hors_creneau') OR (?5 = 0 AND contact = ?2 AND post = ?3 AND jour = ?4 AND ${ENVOYE}) LIMIT 1`)
-        .bind(evenement, contact, idReel(post), jour, story ? 1 : 0).first();
+        .bind(evenement, contact, mediaNatif||idReel(post), jour, story ? 1 : 0).first();
       if (deja) return sansMessage('doublon');
       // Déclencheur « tous les Reels » (source=reel_tous) : il passe 1 minute après les déclencheurs par Reel.
       // Si ce contact a déjà reçu une réponse à un COMMENTAIRE dans les 15 dernières minutes, c'est le même commentaire : on ne répond pas deux fois.
@@ -684,7 +689,7 @@ export async function onRequest({ request, env }) {
     // ManyChat « Mot-clé CHÂTEAU — tous les Reels » (dm_post = mot:chateau), boutons par vidéo (prix, quartier, visite), VISIT en anglais.
     const muet = async (motif) => {
       if (base && !test) await base.prepare('INSERT OR IGNORE INTO dm_instagram VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11)')
-        .bind(evenement, contact, compte, idReel(post), '', jour, `muet_${motif}`, 0, 0, 0, new Date().toISOString()).run().catch(() => {});
+        .bind(evenement, contact, compte, mediaNatif||idReel(post), '', jour, `muet_${motif}`, 0, 0, 0, new Date().toISOString()).run().catch(() => {});
       return sansMessage(`commentaire_${motif}`);
     };
     // Commentaire sans texte : le flux « tous les Reels » (texte fixe) ou un flux « Autres » d'une vidéo (dm_comment vidé).
@@ -703,10 +708,10 @@ export async function onRequest({ request, env }) {
       const tp = dejaEcrit ? sansSalut(secours(prenom, null)) : secours(prenom, null);
       if (base && !test) {
         await base.prepare('INSERT OR IGNORE INTO dm_instagram VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11)')
-          .bind(evenement, contact, compte, idReel(post), '', jour, 'preciser', 0, 0, 0, new Date().toISOString()).run().catch(() => {});
+          .bind(evenement, contact, compte, mediaNatif||idReel(post), '', jour, 'preciser', 0, 0, 0, new Date().toISOString()).run().catch(() => {});
         await noter('out', tp, '');
       }
-      return json(200, { ...blocManyChat(tp, null, true), envoyer: 'oui', origine: 'preciser', cout: 0 });
+      return json(200, { ...attacherMedia(blocManyChat(tp, null, true),attributionToken), envoyer: 'oui', origine: 'preciser', cout: 0 });
     }
     if (/^(story|dm|wa)$/i.test(post || '')) {
       const c = commentaire || '';
@@ -768,7 +773,7 @@ export async function onRequest({ request, env }) {
           // Pas une demande immobilière (conversation perso, partenariat…) : aucun message, Shawez reprend à la main
           const coutHs = usage ? (usage.input_tokens || 0) * PRIX_ENTREE + (usage.output_tokens || 0) * PRIX_SORTIE : 0;
           if (base) await base.prepare('INSERT OR IGNORE INTO dm_instagram VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11)')
-            .bind(evenement, contact, compte, source === 'dm' ? 'dm' : idReel(post), '', jour, 'hors_sujet',
+            .bind(evenement, contact, compte, source === 'dm' ? 'dm' : mediaNatif||idReel(post), '', jour, 'hors_sujet',
               usage ? usage.input_tokens || 0 : 0, usage ? usage.output_tokens || 0 : 0, coutHs, new Date().toISOString()).run().catch(() => {});
           await noter('in', commentaire, '');
           return sansMessage('hors_sujet', { a_reprendre: true });
@@ -801,7 +806,7 @@ export async function onRequest({ request, env }) {
             // Pas de message de secours au milieu d'une conversation : Shawez reprend à la main
             const coutR = usage ? (usage.input_tokens || 0) * PRIX_ENTREE + (usage.output_tokens || 0) * PRIX_SORTIE : 0;
             if (base) await base.prepare('INSERT OR IGNORE INTO dm_instagram VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11)')
-              .bind(evenement, contact, compte, source === 'dm' ? 'dm' : idReel(post), bien ? bien.ref || '' : '', jour, `refus_${refus}`,
+              .bind(evenement, contact, compte, source === 'dm' ? 'dm' : mediaNatif||idReel(post), bien ? bien.ref || '' : '', jour, `refus_${refus}`,
                 usage ? usage.input_tokens || 0 : 0, usage ? usage.output_tokens || 0 : 0, coutR, new Date().toISOString()).run().catch(() => {});
             await noter('in', commentaire, cleBien);
             return sansMessage(`refus_${refus}`, { a_reprendre: true });
@@ -825,7 +830,7 @@ export async function onRequest({ request, env }) {
 
     if (base) {
       await base.prepare('INSERT OR IGNORE INTO dm_instagram VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11)')
-        .bind(evenement, contact, compte, source === 'dm' ? 'dm' : idReel(post), bien ? bien.ref || '' : '', jour, origine,
+        .bind(evenement, contact, compte, source === 'dm' ? 'dm' : mediaNatif||idReel(post), bien ? bien.ref || '' : '', jour, origine,
           usage ? usage.input_tokens || 0 : 0, usage ? usage.output_tokens || 0 : 0, cout, new Date().toISOString())
         .run().catch(e => console.log('journal insert', e.message));
     }
@@ -835,9 +840,10 @@ export async function onRequest({ request, env }) {
     // Boutons seulement au premier message (ou quand un bien est en jeu) : pas à chaque réponse d'une conversation
     const bloc = blocManyChat(texte, bien, !dejaEcrit || !!bien, source === 'whatsapp', anglais);
     if (intention === 'vendre') bloc.fiche_url = ESTIMER;
-    return json(200, { ...bloc, envoyer: 'oui', origine, cout: Math.round(cout * 1e5) / 1e5, depense_jour: Math.round((depense + cout) * 1e4) / 1e4 });
+    return json(200, { ...attacherMedia(bloc,attributionToken), media_id_recu:mediaNatif, attribution:mediaNatif?'media_id_declare':'media_id_absent', envoyer: 'oui', origine, cout: Math.round(cout * 1e5) / 1e5, depense_jour: Math.round((depense + cout) * 1e4) / 1e4 });
   } catch (e) {
     console.log('manychat-dm', e && e.stack);
     return json(500, { error: 'serveur' });
   }
 }
+

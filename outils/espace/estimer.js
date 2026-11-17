@@ -251,7 +251,7 @@
     // tout le parcours doit être complet (au cas où l'on arrive ici par un état incomplet)
     var seq=sequence();
     for(var i=0;i<seq.length-1;i++){ if(!valider(seq[i])){aller(seq[i]);return;} }
-    var corps={reponses:reponses(),consentement:true,ee_hp:$('#ee-hp').value,duree:Date.now()-T0,cle:CLE,site:EE.CONF.site||undefined,
+    var corps={reel_source:new URLSearchParams(location.search).get('reel_source')||undefined,reponses:reponses(),consentement:true,ee_hp:$('#ee-hp').value,duree:Date.now()-T0,cle:CLE,site:EE.CONF.site||undefined,
       contact:compte?{telephone:tel.value.trim()}:{civilite:civ,prenom:$('#ee-prenom').value.trim(),nom:$('#ee-nom').value.trim(),email:mail.value.trim(),telephone:tel.value.trim()}};
     envoi=true; bouton(false);
     EE.api('/estimation',{body:corps,delai:45000}).then(function(d){
@@ -397,3 +397,4 @@
     var q=new URLSearchParams(location.search).get('adresse'); if(q){inp.value=q;chercher(q);}
   }
 })();
+
