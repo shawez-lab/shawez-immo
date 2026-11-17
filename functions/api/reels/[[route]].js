@@ -23,7 +23,7 @@ export async function onRequest({request,env,params}) {
  if(method==='POST'&&route==='/import') {
  const b=await corps(request,4000000);if(b.brandId!=='7212231'||b.timezone!=='Europe/Paris')throw new Erreur(400,'marque_invalide');
  const observed=b.observed_at;if(!observed||!Number.isFinite(Date.parse(observed))||Date.parse(observed)>Date.now()+60000)throw new Erreur(400,'date_invalide');
- const reels=decodeDataset(b,b.metrics);const report=b.report_date||yesterday(observed);await persist(DB,reels,observed,report);
+ const reels=decodeDataset(b,b.metrics);const report=b.report_date||yesterday(observed);if(b.programmations!=null&&(!Array.isArray(b.programmations)||b.programmations.length>5000))throw new Erreur(400,'programmations');await persist(DB,reels,observed,report,b.programmations||[]);
  await DB.prepare('INSERT OR IGNORE INTO reels_collectes(id,debut,fin,statut,nombre,rapport_jour) VALUES(?,?,?,\'import\',?,?)').bind('import:'+observed,observed,new Date().toISOString(),reels.length,report).run();return json(200,{ok:true,nombre:reels.length});
  }
  if(method==='POST'&&route==='/meta') {
