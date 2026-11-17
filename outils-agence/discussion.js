@@ -21,14 +21,14 @@
 
   var css = '\
 .sec-ouvrir{position:fixed;right:18px;bottom:18px;z-index:2147483000;display:flex;align-items:center;gap:9px;\
-border:0;border-radius:999px;padding:13px 19px 13px 15px;cursor:pointer;font:600 15px/1.2 'Source Sans 3',system-ui,sans-serif;\
+border:0;border-radius:999px;padding:13px 19px 13px 15px;cursor:pointer;font:600 15px/1.2 "Source Sans 3",system-ui,sans-serif;\
 background:#1F376A;color:#fff;box-shadow:0 8px 28px rgba(12,23,48,.3);transition:transform .16s,box-shadow .16s}\
 .sec-ouvrir:hover{transform:translateY(-2px);box-shadow:0 12px 34px rgba(47,42,36,.34)}\
 .sec-ouvrir svg{width:19px;height:19px;flex:none}\
 .sec-pan{position:fixed;right:18px;bottom:18px;z-index:2147483001;width:min(382px,calc(100vw - 28px));\
 max-height:min(620px,calc(100vh - 36px));display:none;flex-direction:column;overflow:hidden;\
 background:#FFFDFB;border:1px solid #E6DFD5;border-radius:18px;box-shadow:0 18px 56px rgba(47,42,36,.26);\
-font:16px/1.5 'Source Sans 3',system-ui,sans-serif;color:#0F1B33}\
+font:16px/1.5 "Source Sans 3",system-ui,sans-serif;color:#0F1B33}\
 .sec-pan[data-on]{display:flex}\
 .sec-tete{display:flex;align-items:center;gap:11px;padding:14px 15px;border-bottom:1px solid #EFE9E1;background:#F3F4F1}\
 .sec-pt{width:38px;height:38px;border-radius:50%;flex:none;background:#0F1B33;color:#F3F4F1;\
@@ -50,7 +50,7 @@ background:#7A1E3D;color:#fff;padding:9px 14px;border-radius:999px;font-weight:6
 @keyframes sec-b{0%,60%,100%{opacity:.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}\
 .sec-bas{display:flex;gap:8px;padding:11px;border-top:1px solid #EFE9E1;background:#F3F4F1}\
 .sec-bas textarea{flex:1;resize:none;border:1px solid #E2DACE;border-radius:12px;padding:10px 12px;\
-font:16px/1.4 'Source Sans 3',system-ui,sans-serif;color:#0F1B33;background:#fff;max-height:110px;min-height:42px}\
+font:16px/1.4 "Source Sans 3",system-ui,sans-serif;color:#0F1B33;background:#fff;max-height:110px;min-height:42px}\
 .sec-bas textarea:focus{outline:2px solid #0F1B33;outline-offset:-1px;border-color:#0F1B33}\
 .sec-env{border:0;border-radius:12px;width:42px;flex:none;cursor:pointer;background:#0F1B33;color:#F3F4F1;display:grid;place-items:center}\
 .sec-env:disabled{opacity:.42;cursor:default}\
