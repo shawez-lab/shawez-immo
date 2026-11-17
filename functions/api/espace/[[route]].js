@@ -1,3 +1,4 @@
+import { rattacherDemande } from '../../_lib/attribution-reels.js';
 /* API de l'espace estimation — /api/espace/*  (Cloudflare Pages Functions + D1, liaison DB)
 
    Le même code sert les deux sites (shawez-immo.com et le site de l'agence) : même base, « site » noté sur chaque demande.
@@ -433,6 +434,7 @@ async function estimation(ctx) {
     if (r) return r;
     throw e;
   }
+  if(!suspect&&d.reel_source)await rattacherDemande(base,demandeId,d.reel_source).catch(()=>{});
   // promesse n° 1 (la fourchette en 2 minutes) : la durée du parcours, telle que le navigateur l'a comptée, notée au
   // journal avec la demande (une demande d'essai supprimée dans la seconde ne laisse ainsi rien derrière elle)
   if (!suspect) await journal(base, demandeId, 'estimation', 'client', { duree: Math.round(Math.min(Number(d.duree) || 0, 2 * 3600000)), fourchette: !!res.fourchette }).catch((e) => console.log('journal estimation', e && e.message));
@@ -2379,3 +2381,4 @@ async function adminPromessesCsv(ctx) {
     },
   });
 }
+

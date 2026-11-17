@@ -5,7 +5,7 @@ import { veille,quotidien,qualification,exclusions } from '../../functions/_lib/
 import { sha256,SQL_COURRIERS_DUS,SQL_COURRIERS_NETTOYAGE } from '../../functions/_lib/base.js';
 const sql=new DatabaseSync(':memory:');
 const DB={prepare(q){return {a:[],bind(...a){this.a=a;return this},async run(){const r=sql.prepare(q).run(...this.a);return {meta:{changes:Number(r.changes)}}},async all(){return {results:sql.prepare(q).all(...this.a)}},async first(){return sql.prepare(q).get(...this.a)||null}}},async batch(qs){sql.exec('BEGIN');try{const r=[];for(const q of qs)r.push(await q.run());sql.exec('COMMIT');return r}catch(e){sql.exec('ROLLBACK');throw e}}};
-const now=new Date('2026-11-18T04:00:00Z');
+const now=new Date('2026-11-18T08:00:00Z');
 const env={DB,REGLE9_LEAD_NOMS:'["Exclu Test"]',REGLE9_LEAD_ADRESSES:'["refus@example.invalid"]',ADMIN_EMAILS:'agency@example.invalid',PROSPECTS_SOURCES_JSON:'[{"flux":"https://www.pap.fr"}]',ASSETS:{fetch:async()=>Response.json({fiche:{nom:'Fiche de test',note:5,nombre:1,releve_le:'2026-10-01',lien_avis:'https://example.invalid'}})}};
 globalThis.fetch=()=>{throw Error('Aucun accès réseau externe autorisé dans la veille')};
 await schema(env);
@@ -90,3 +90,6 @@ assert.equal((await controlesDrive(DB,new Date(+now+49*3600000))).public.etat,'c
 sql.prepare('DELETE FROM veille_drive_controles WHERE source_id=?').run('acquereurs');assert.equal((await controlesDrive(DB,now)).public.etat,'controle_incomplet');
 assert(!sql.prepare('SELECT index_json FROM veille_drive_controles LIMIT 1').get().index_json.includes('lucie'));
 console.log('OK : contrôles Drive privés, STOP prioritaire, doublons, normalisation, sources manquantes ou périmées et identité insuffisante.');
+
+const {spawnSync}=await import('node:child_process');
+assert.equal(spawnSync(process.execPath,[new URL('./test-autonomie.mjs',import.meta.url).pathname],{stdio:'inherit'}).status,0);
