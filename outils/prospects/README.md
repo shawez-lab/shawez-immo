@@ -12,11 +12,11 @@ Les sources absentes ou au schéma incompatible sont signalées, jamais remplac�
 
 ## Courriers
 
-`veille_postal` enregistre uniquement des envois réellement effectués rattachés à nos dossiers, avec une référence de registre, une date et un retour déclaré. Aucun champ d'annonce n'est accepté par l'API. Le fichier historique des courriers envoyés n'a pas été retrouvé ; son lien est demandé au responsable. Le registre vide ne signifie pas qu'aucun courrier n'a jamais été envoyé.
+La table D1 `courriers` est l'unique registre des courriers papier, à partir de zéro. Il n'existe aucun fichier historique à chercher ou importer. Chaque envoi futur est confirmé dans le tableau et rattaché à un dossier interne existant, avec une référence d'envoi ou de lot et sa date réelle. Ses retours sont enregistrés dans la même ligne. Aucun champ d'annonce ni nouvelle coordonnée n'est accepté par l'API.
 
-La table existante `courriers` contient les e-mails différés du site, pas des courriers papier : elle est volontairement exclue du calcul. Créer un lien personnel, imprimer une lettre ou scanner un QR ne prouve pas un envoi ni une demande d'estimation.
+La table sert aussi aux e-mails différés : une colonne `canal` distingue `postal` et `email`. Les lignes déjà existantes sont classées comme e-mails. Le traitement et la purge des e-mails ne sélectionnent que leur canal ; ils ne peuvent ni envoyer une lettre par e-mail ni effacer l'historique postal après 30 jours. Aucun ancien e-mail n'est compté comme un envoi papier. Aucune double saisie dans une table postale séparée.
 
-Si le module postal est publié, les demandes volontaires de `avis_prospects_demandes` sont rapprochées des envois par référence interne exacte. Seul le plus récent envoi antérieur à une demande reçoit cette attribution. Aucun rapprochement d'identité externe. Les demandes QR non rapprochées sont comptées séparément. Une opposition postale enregistrée empêche la déclaration d'un nouvel envoi vers le même dossier.
+Créer une page ou un QR ne prouve pas l'envoi d'une lettre. Les demandes volontaires du module postal, lorsqu'il est publié, sont rapprochées par référence de page ou de dossier, uniquement avec un envoi antérieur. En cas de plusieurs envois, un retour ne compte que pour le plus récent correspondant. Les retours sans envoi connu restent distincts. Une opposition postale bloque la déclaration d'un nouvel envoi vers le même dossier.
 
 ## Fiche Google
 

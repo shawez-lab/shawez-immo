@@ -76,7 +76,7 @@
    prolongées au plus une fois par jour. Toute requête qui modifie doit venir du site lui-même (en-tête Origin).
 */
 import {
-  db, json, Erreur, corps, texte, entier, choix, email as lireEmail, telephone, motDePasse, verifierOrigine,
+  SQL_COURRIERS_DUS, SQL_COURRIERS_NETTOYAGE, db, json, Erreur, corps, texte, entier, choix, email as lireEmail, telephone, motDePasse, verifierOrigine,
   ip, limiter, hacher, verifierMdp, jeton, sha256, ouvrirSession, cookieEfface, temoinPresent, compteSession, fermerSession,
   estAdmin, admins, comptepublic, maintenant, STATUTS, STATUTS_CLIENT, PARCOURS, SORTIES, reglerHachage,
   fermerSessions, renouvellement, verifierLeurre,
@@ -1587,7 +1587,7 @@ async function courriersDus(ctx, now = new Date()) {
   if (heuresCalmes(now)) return 0;
   const { env } = ctx;
   const base = await db(env);
-  const r = await base.prepare('SELECT * FROM courriers WHERE envoye_le IS NULL ORDER BY id LIMIT 25').all();
+  const r = await base.prepare(SQL_COURRIERS_DUS).all();
   let n = 0;
   for (const c of r.results) {
     // on réserve l'envoi avant de le faire : deux passages en même temps n'en font qu'un
@@ -1609,7 +1609,7 @@ async function courriersDus(ctx, now = new Date()) {
     enOmbre(ctx, base, 'courrier_vendeur', ref, dem, contenu, 'part');
     if (await expedier(env, dem, compte, contenu, c.motif, c.origine)) n++;
   }
-  if (Math.random() < 0.05) await base.prepare('DELETE FROM courriers WHERE envoye_le IS NOT NULL AND envoye_le < ?1').bind(new Date(now.getTime() - 30 * 86400000).toISOString()).run();
+  if (Math.random() < 0.05) await base.prepare(SQL_COURRIERS_NETTOYAGE).bind(new Date(now.getTime() - 30 * 86400000).toISOString()).run();
   return n;
 }
 
