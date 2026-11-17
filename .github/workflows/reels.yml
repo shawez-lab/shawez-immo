@@ -1,0 +1,49 @@
+name: Relevé quotidien des Reels
+on:
+  push:
+    paths: ['functions/_lib/reels.js', 'functions/api/reels/**', 'assets/admin-reels.*', 'admin/reels/**', 'outils/reels/**', '.github/workflows/reels.yml']
+  pull_request:
+    paths: ['functions/_lib/reels.js', 'functions/api/reels/**', 'assets/admin-reels.*', 'admin/reels/**', 'outils/reels/**', '.github/workflows/reels.yml']
+  schedule:
+    - cron: '15 5,6,7 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: reels-collecte
+  cancel-in-progress: false
+jobs:
+  collecter:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Collecter le matin en heure de Paris, avec reprise après échec
+        env:
+          REELS_SYNC_TOKEN: ${{ secrets.REELS_SYNC_TOKEN }}
+          MANUEL: ${{ github.event_name == 'workflow_dispatch' && '1' || '' }}
+        run: |
+          python3 - <<'PY'
+          import os, json, urllib.request, datetime
+          from zoneinfo import ZoneInfo
+          heure = datetime.datetime.now(ZoneInfo('Europe/Paris')).hour
+          if not os.environ['MANUEL'] and heure not in (7,8,9):
+              print('Hors créneau de collecte Paris'); raise SystemExit(0)
+          token = os.environ.get('REELS_SYNC_TOKEN', '')
+          if len(token) < 32:
+              raise SystemExit('Configurer REELS_SYNC_TOKEN dans GitHub et Cloudflare Pages.')
+          req = urllib.request.Request('https://shawez-immo.com/api/reels/collect', data=b'{}', method='POST', headers={'Content-Type':'application/json','X-Reels-Sync':token})
+          with urllib.request.urlopen(req, timeout=180) as response:
+              result=json.load(response)
+          if not (result.get('ok') or result.get('deja_en_cours') or result.get('deja_collecte')):
+              raise SystemExit('Collecte non confirmée')
+          print(json.dumps(result, ensure_ascii=False))
+          PY
+  verifier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+      - run: node --test outils/reels/test.mjs
