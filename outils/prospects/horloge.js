@@ -14,7 +14,7 @@ export default {
     });
     if (!r.ok) throw new Error('prospects_indisponibles');
     const d = await r.json();
-    if(d.controle_drive?.etat==='erreur')throw new Error('lecture_drive_incomplete');
+    if(!['ok','deja_execute'].includes(d.controle_drive?.etat))throw new Error('lecture_drive_incomplete');
     if (!['ok', 'deja_execute', 'avant_8h'].includes(d.etat)) {
       throw new Error('prospects_execution_incomplete');
     }

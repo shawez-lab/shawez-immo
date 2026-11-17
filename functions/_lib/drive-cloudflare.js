@@ -42,8 +42,8 @@ export async function synchroniserDrive(env,{now=new Date(),force=false,fetcher=
  const b=env.DB,jour=jourParis(now);
  await b.prepare('CREATE TABLE IF NOT EXISTS veille_drive_passages(jour TEXT PRIMARY KEY,debut TEXT NOT NULL,fin TEXT,etat TEXT NOT NULL,raison TEXT)').run();
  if(!force&&minuteParis(now)<460)return {etat:'avant_7h40'};
- const lock=await b.prepare("INSERT INTO veille_drive_passages(jour,debut,etat) VALUES(?,?,'en_cours') ON CONFLICT(jour) DO UPDATE SET debut=excluded.debut,etat='en_cours',raison=NULL WHERE (veille_drive_passages.etat<>'ok' AND veille_drive_passages.debut<?) OR ?=1 RETURNING jour").bind(jour,now.toISOString(),new Date(+now-30*60000).toISOString(),force?1:0).first();
- if(!lock)return {etat:'deja_execute'};
+ const lock=await b.prepare("INSERT INTO veille_drive_passages(jour,debut,etat) VALUES(?,?,'en_cours') ON CONFLICT(jour) DO UPDATE SET debut=excluded.debut,etat='en_cours',raison=NULL WHERE (veille_drive_passages.etat<>'ok' AND veille_drive_passages.debut<?) OR (?=1 AND veille_drive_passages.etat<>'en_cours') RETURNING jour").bind(jour,now.toISOString(),new Date(+now-15*60000).toISOString(),force?1:0).first();
+ if(!lock){const precedent=await b.prepare('SELECT etat,raison FROM veille_drive_passages WHERE jour=?').bind(jour).first();return precedent?.etat==='ok'?{etat:'deja_execute'}:{etat:precedent?.etat||'en_cours',...(precedent?.raison?{raison:precedent.raison}:{})};}
  try{
   const sources=(await b.prepare('SELECT source_id,lien FROM veille_drive_controles').all()).results;
   if(SOURCES_DRIVE.some(id=>!sources.some(x=>x.source_id===id)))throw Error('sources_google_incompletes');
@@ -52,7 +52,7 @@ export async function synchroniserDrive(env,{now=new Date(),force=false,fetcher=
   for(const source_id of SOURCES_DRIVE){const s=sources.find(x=>x.source_id===source_id),m=/^https:\/\/docs\.google\.com\/spreadsheets\/d\/([\w-]+)\/edit$/.exec(s.lien||'');if(!m)throw Error('source_google_invalide');
    const root='https://sheets.googleapis.com/v4/spreadsheets/'+m[1];const meta=await get(root+'?fields=sheets(properties(sheetId,title,gridProperties))');
    const sheets=(meta.sheets||[]).map(x=>x.properties);if(!sheets.length||sheets.length>20)throw Error('couverture_google_invalide');
-   const q=new URLSearchParams({valueRenderOption:'FORMATTED_VALUE'});for(const s of sheets){if(!s.gridProperties||s.gridProperties.rowCount>5000||s.gridProperties.columnCount>100)throw Error('couverture_google_trop_grande');q.append('ranges',"'"+s.title.replaceAll("'","''")+"'!A1:CV"+s.gridProperties.rowCount);}
+   const q=new URLSearchParams({valueRenderOption:'FORMATTED_VALUE'});for(const s of sheets){if(!s.gridProperties||s.gridProperties.rowCount>5000||s.gridProperties.columnCount>100)throw Error('couverture_google_trop_grande');let n=s.gridProperties.columnCount,col='';while(n){n--;col=String.fromCharCode(65+n%26)+col;n=Math.floor(n/26)}q.append('ranges',"'"+s.title.replaceAll("'","''")+"'!A1:"+col+s.gridProperties.rowCount);}
    const data=await get(root+'/values:batchGet?'+q);if(data.valueRanges?.length!==sheets.length)throw Error('couverture_google_incomplete');
    const idx=await indexerOnglets(sheets.map((s,i)=>({nom:s.title,rows:data.valueRanges[i].values||[]})));if(!idx.lignes)throw Error('source_google_vide');snapshots.push({source_id,...idx});
   }
