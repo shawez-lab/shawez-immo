@@ -6,7 +6,7 @@ import { SCHEMA_VEILLE } from '../_lib/prospects-schema.js';
 export async function schema(env){const b=await db(env);await b.batch(SCHEMA_VEILLE.split(';').map(x=>x.trim()).filter(Boolean).map(x=>b.prepare(x)));return b;}
 export async function onRequest(ctx){const {request,env}=ctx;try{
  const url=new URL(request.url);
- if(request.method==='GET'&&url.searchParams.get('job')==='1'){await limiter(env,'veille-job:'+ip(request),6,3600);await schema(env);const controle_drive=await synchroniserDrive(env);const v=await quotidien(ctx);return json(200,{...v,controle_drive,complet:controle_drive.etat!=='erreur'&&['ok','deja_execute'].includes(v.etat)});}
+ if(request.method==='GET'&&url.searchParams.get('job')==='1'){await limiter(env,'veille-job:'+ip(request),6,3600);await schema(env);const controle_drive=await synchroniserDrive(env);const v=await quotidien(ctx);return json(200,{...v,controle_drive,complet:['ok','deja_execute'].includes(controle_drive.etat)&&['ok','deja_execute'].includes(v.etat)});}
  const c=await compteSession(request,env);if(!c)return json(401,{error:'connexion'});if(!estAdmin(c,env))return json(403,{error:'interdit'});
  verifierOrigine(request);const regle=exclusions(env),b=await schema(env);
  if(request.method==='POST'){
