@@ -33,3 +33,12 @@ Références : https://www.cnil.fr/fr/la-prospection-commerciale et https://www.
 Le Worker `shawez-prospects-horloge` appelle toujours `/api/prospects?job=1`, mais la route ne lit plus que nos sources. Passage vers 08 h 07 dans le fuseau actuel du compte Asia/Karachi. Il ne dépend pas de l'ordinateur de Shawez. Le job est idempotent ; les erreurs et interruptions peuvent être reprises après 30 minutes.
 
 `node outils/prospects/test.mjs`, Node 24 et SQLite natif : accès agence, origine, exclusions, STOP, zéro accès réseau externe même si une ancienne configuration de pige existe, demande explicite, attribution postale sans double comptage, nouveau DM après traitement et résumé quotidien sans coordonnées.
+
+
+## Contrôles privés des courriers avec Drive
+
+Trois sources internes : repertoire, relances et acquereurs. Leur configuration privée ne doit pas être committée. Lecture seulement, aucun partage ou changement d’autorisation. Les exports passent dans lire-exports-drive.py puis indexer-drive.mjs. N’exécuter le SQL que si les deux commandes réussissent et si tous les onglets ont été exportés. La table veille_drive_controles conserve uniquement des empreintes SHA-256 de rapprochement, des numéros de ligne, le lien de la source, la mention d’opposition et la date de lecture. Ces empreintes restent des données personnelles pseudonymisées dans D1, protégées par la session agence. Aucun export brut ni SQL produit ne doit être publié dans GitHub.
+
+L’admin affiche la couverture datée et les lignes sans identifiant rapprochable. Le contrôle postal refuse de présenter comme préparables les oppositions, dossiers déjà suivis, courriers déjà enregistrés, identités insuffisantes et lectures absentes ou dépassant 48 heures. Une absence de correspondance exacte n’est jamais une autorisation de prospection. Les STOP persistent comme blocage même si la lecture est périmée. Les envois réels restent tracés dans courriers ; aucune ligne Drive n’est transformée en envoi ni en lead vendeur.
+
+L’actualisation de ces empreintes utilise le navigateur déjà connecté au compte autorisé, car le connecteur Sheets retourne 403 sur ces trois sources. Elle dépend d’une session Google et d’une session Cloudflare accessibles. Aucun cookie ni jeton n’est extrait. Le traitement Cloudflare de 08:07 ne possède pas de droit Google et ne prétend pas lire les feuilles en direct. En cas d’échec de l’actualisation, conserver le dernier relevé et laisser son état vieillir vers contrôle incomplet.
