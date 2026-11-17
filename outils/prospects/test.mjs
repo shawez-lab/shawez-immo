@@ -71,3 +71,22 @@ assert(sql.prepare("SELECT id FROM courriers WHERE source_reference='postal-anci
 assert.equal(sql.prepare("SELECT id FROM courriers WHERE source_reference='email-ancien'").get(),undefined);
 assert.equal(sql.prepare("SELECT COUNT(*) n FROM sqlite_master WHERE name='veille_postal'").get().n,0);
 console.log('OK : courriers est la source postale unique, isolée des e-mails différés et de leur purge.');
+
+const {clesControle,controlesDrive,SOURCES_DRIVE}=await import('../../functions/_lib/controles-drive.js');
+assert.deepEqual(await clesControle({prenom:'Élodie',nom:'Durand',telephone:'06 12 34 56 78',email:' ELODIE@example.invalid '}),await clesControle({prenom:'elodie',nom:'durand',telephone:'+33 6 12 34 56 78',email:'elodie@example.invalid'}));
+assert.deepEqual(await clesControle({prenom:'Lucie'}),[]);
+let dr=await controlesDrive(DB,now);assert.equal(dr.public.etat,'controle_incomplet');
+const cle=await clesControle({email:'lucie@example.invalid'});
+for(const id of SOURCES_DRIVE)sql.prepare('INSERT INTO veille_drive_controles VALUES(?,?,?,?,?,?)').run(id,'https://docs.google.com/spreadsheets/d/test/edit',now.toISOString(),1,'["Contacts"]',JSON.stringify([{onglet:'Contacts',ligne:2,cles:id==='repertoire'?cle:[],opposition:id==='repertoire'}]));
+dr=await controlesDrive(DB,now);assert.equal(dr.public.etat,'raccorde');assert.equal((await dr.verifier({email:'lucie@example.invalid'})).etat,'opposition');
+assert.equal((await dr.verifier({prenom:'Lucie'})).etat,'identite_insuffisante');
+assert.equal((await dr.verifier({email:'inconnu@example.invalid'})).etat,'aucune_correspondance_exacte');
+v=await veille(ctx,now);assert.equal(v.compteurs.leads.recus,0);assert(!v.actions.some(x=>x.reference==='D-1'));
+sql.prepare('UPDATE comptes SET verifie=1 WHERE id=1').run();
+assert.equal((await onRequest({...ctx,request:request({action:'courrier_envoye',demande_reference:'D-1',source_reference:'drive-stop',envoye_le:'2026-11-15'})})).status,409);
+const pc=await (await onRequest({...ctx,request:request({action:'controle_postal',demande_reference:'D-1'})})).json();assert(pc.preparation_bloquee);assert.equal(pc.etat,'opposition');assert.equal(pc.correspondances[0].ligne,2);
+sql.prepare("UPDATE veille_drive_controles SET index_json=replace(index_json,'true','false')").run();dr=await controlesDrive(DB,now);assert.equal((await dr.verifier({email:'lucie@example.invalid'})).etat,'deja_suivi');
+assert.equal((await controlesDrive(DB,new Date(+now+49*3600000))).public.etat,'controle_incomplet');
+sql.prepare('DELETE FROM veille_drive_controles WHERE source_id=?').run('acquereurs');assert.equal((await controlesDrive(DB,now)).public.etat,'controle_incomplet');
+assert(!sql.prepare('SELECT index_json FROM veille_drive_controles LIMIT 1').get().index_json.includes('lucie'));
+console.log('OK : contrôles Drive privés, STOP prioritaire, doublons, normalisation, sources manquantes ou périmées et identité insuffisante.');
