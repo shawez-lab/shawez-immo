@@ -1,3 +1,4 @@
+import { synchroniserDrive } from '../_lib/drive-cloudflare.js';
 import { controlesDrive } from '../_lib/controles-drive.js';
 import { db,json,Erreur,compteSession,estAdmin,verifierOrigine,corps,limiter,ip,renouvellement } from '../_lib/base.js';
 import { exclusions,exclu,veille,quotidien } from '../_lib/prospects.js';
@@ -5,12 +6,12 @@ import { SCHEMA_VEILLE } from '../_lib/prospects-schema.js';
 export async function schema(env){const b=await db(env);await b.batch(SCHEMA_VEILLE.split(';').map(x=>x.trim()).filter(Boolean).map(x=>b.prepare(x)));return b;}
 export async function onRequest(ctx){const {request,env}=ctx;try{
  const url=new URL(request.url);
- if(request.method==='GET'&&url.searchParams.get('job')==='1'){await limiter(env,'veille-job:'+ip(request),6,3600);await schema(env);return json(200,await quotidien(ctx));}
+ if(request.method==='GET'&&url.searchParams.get('job')==='1'){await limiter(env,'veille-job:'+ip(request),6,3600);await schema(env);const controle_drive=await synchroniserDrive(env);const v=await quotidien(ctx);return json(200,{...v,controle_drive,complet:['ok','deja_execute'].includes(controle_drive.etat)&&['ok','deja_execute'].includes(v.etat)});}
  const c=await compteSession(request,env);if(!c)return json(401,{error:'connexion'});if(!estAdmin(c,env))return json(403,{error:'interdit'});
  verifierOrigine(request);const regle=exclusions(env),b=await schema(env);
  if(request.method==='POST'){
   const d=await corps(request,4000);
-  if(d.action==='actualiser')return json(200,await quotidien(ctx,true));
+  if(d.action==='actualiser'){const controle_drive=await synchroniserDrive(env,{force:true});return json(200,{...await quotidien(ctx,true),controle_drive,complet:controle_drive.etat==='ok'});}
   if(d.action==='traiter'){
    const v=await veille(ctx);if(!v.actions.some(a=>a.cle===d.cle))return json(404,{error:'action_absente'});
    await b.prepare('INSERT OR IGNORE INTO veille_actions VALUES(?,?)').bind(d.cle,new Date().toISOString()).run();return json(200,{ok:true});
@@ -46,5 +47,6 @@ export async function onRequest(ctx){const {request,env}=ctx;try{
  }
  if(request.method!=='GET')return json(405,{error:'methode'});
  const v=await veille(ctx);const runs=(await b.prepare('SELECT jour,debut,fin,etat FROM veille_executions ORDER BY jour DESC LIMIT 7').all()).results;
- const resp=json(200,{...v,executions:runs,heure:'08:07',fuseau:env.PROSPECTS_TIMEZONE||'Asia/Karachi'});const cs=renouvellement(request);for(const x of cs||[])resp.headers.append('Set-Cookie',x);return resp;
+ const resp=json(200,{...v,passage_drive:await b.prepare('SELECT debut,fin,etat,raison FROM veille_drive_passages ORDER BY debut DESC LIMIT 1').first(),executions:runs,heure:'08:07',fuseau:'Europe/Paris'});const cs=renouvellement(request);for(const x of cs||[])resp.headers.append('Set-Cookie',x);return resp;
 }catch(e){return e instanceof Erreur?json(e.status,{error:e.code}):json(503,{error:'veille_bloquee',message:'Vérifier les exclusions privées, la base et les schémas des sources internes.'});}}
+
