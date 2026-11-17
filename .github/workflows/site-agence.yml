@@ -1,0 +1,49 @@
+name: Site de l'agence
+
+# Reconstruit le site de l'agence GRAVELIN IMMO (branche « agence », publiée par Cloudflare Pages) à partir des
+# annonces du dépôt : après chaque synchronisation des annonces réussie, et une fois par nuit.
+# Les sources du site de l'agence sont dans la branche « agence », dossier outils-agence/.
+on:
+  workflow_run:
+    workflows: ["Synchronisation des annonces"]
+    types: [completed]
+  schedule:
+    - cron: '37 3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: site-agence
+  cancel-in-progress: false
+
+jobs:
+  construire:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Annonces, API et données de ventes (branche main)
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: site
+          sparse-checkout: |
+            annonces
+            functions
+            donnees-dvf
+      - name: Site de l'agence (branche agence)
+        uses: actions/checkout@v4
+        with:
+          ref: agence
+          path: agence
+      - name: Construction
+        run: AGENCE_OUT="$PWD/agence" SITE_DIR="$PWD/site" python3 agence/outils-agence/assemble.py
+      - name: Publication si quelque chose a changé
+        working-directory: agence
+        run: |
+          git add -A
+          if git diff --cached --quiet; then echo "Rien de nouveau."; exit 0; fi
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -q -m "Annonces du $(TZ=Europe/Paris date '+%d/%m/%Y %H:%M')"
+          git push origin agence
