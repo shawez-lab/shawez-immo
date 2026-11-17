@@ -9,6 +9,8 @@ name: Tâches à heure fixe (rappels de visite, e-mails du matin)
 on:
   schedule:
     - cron: '7 6-20 * * *'
+    # 8 h 07 dans le fuseau actuel du compte, Asia/Karachi.
+    - cron: '7 3 * * *'
   workflow_dispatch: {}
 
 permissions: {}
@@ -20,3 +22,6 @@ jobs:
     steps:
       - name: Rappels de visite et e-mails dus
         run: curl -sS -m 30 --retry 2 --retry-delay 20 https://shawez-immo.com/api/espace/taches
+      - name: Suivi des vendeurs particuliers autorisés
+        run: curl --fail-with-body -sS -m 90 --retry 2 --retry-delay 20 'https://shawez-immo.com/api/prospects?job=1'
+

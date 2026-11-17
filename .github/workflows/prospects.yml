@@ -1,0 +1,17 @@
+name: Tests du suivi des vendeurs particuliers
+on:
+  push:
+    paths: ['functions/_lib/prospects*', 'functions/api/prospects.js', 'outils/prospects/**', '.github/workflows/prospects.yml']
+  pull_request:
+    paths: ['functions/_lib/prospects*', 'functions/api/prospects.js', 'outils/prospects/**', '.github/workflows/prospects.yml']
+permissions:
+  contents: read
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+      - run: node outils/prospects/test.mjs
