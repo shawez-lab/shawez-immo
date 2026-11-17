@@ -19,17 +19,17 @@ export async function onRequest(ctx){const {request,env}=ctx;try{
    if(d.url_annonce||d.telephone||d.adresse||d.nom||d.email||d.annonces)return json(400,{error:'coordonnees_externes_interdites'});
    const ref=String(d.demande_reference||'');const dem=await b.prepare('SELECT * FROM demandes WHERE reference=?').bind(ref).first();
    if(!dem||dem.suspect||exclu([dem.contact,dem.adresse,dem.reponses],regle))return json(404,{error:'dossier_absent_ou_exclu'});
-   if(await b.prepare("SELECT id FROM veille_postal WHERE demande_reference=? AND retour='opposition' LIMIT 1").bind(ref).first())return json(409,{error:'opposition_postale'});
+   if(await b.prepare("SELECT id FROM courriers WHERE canal='postal' AND demande_id=? AND retour='opposition' LIMIT 1").bind(dem.id).first())return json(409,{error:'opposition_postale'});
    if(!/^[\w :./-]{1,200}$/.test(d.source_reference||'')||!/^\d{4}-\d{2}-\d{2}$/.test(d.envoye_le||''))return json(400,{error:'source_et_date_requises'});
    const date=new Date(d.envoye_le+'T00:00:00Z');if(!Number.isFinite(date.getTime())||date.toISOString().slice(0,10)!==d.envoye_le||date>Date.now())return json(400,{error:'date'});
    let avisId=null;if(d.avis_id){const existe=await b.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='avis_prospects'").first();if(!existe)return json(409,{error:'parcours_postal_non_raccorde'});const avis=await b.prepare('SELECT id FROM avis_prospects WHERE id=? AND revoque=0').bind(String(d.avis_id)).first();if(!avis)return json(404,{error:'page_personnelle_absente'});avisId=avis.id;}
-   await b.prepare('INSERT OR IGNORE INTO veille_postal(id,source_reference,demande_reference,avis_id,envoye_le,cree_le) VALUES(?,?,?,?,?,?)').bind(crypto.randomUUID(),d.source_reference,ref,avisId,date.toISOString(),new Date().toISOString()).run();return json(200,{ok:true});
+   await b.prepare("INSERT OR IGNORE INTO courriers(demande_id,motif,contenu,origine,canal,source_reference,avis_id,envoye_le,cree_le) VALUES(?,'postal','{}','registre-postal','postal',?,?,?,?)").bind(dem.id,d.source_reference,avisId,date.toISOString(),new Date().toISOString()).run();return json(200,{ok:true});
   }
   if(d.action==='retour_postal'){
    if(!['demande','npai','opposition','reponse_sans_demande'].includes(d.retour))return json(400,{error:'retour'});
-   const p=await b.prepare('SELECT * FROM veille_postal WHERE id=?').bind(String(d.id||'')).first();if(!p)return json(404,{error:'courrier_absent'});
-   const dem=await b.prepare('SELECT * FROM demandes WHERE reference=?').bind(p.demande_reference||'').first();if(!dem||exclu([dem.contact,dem.adresse],regle))return json(404,{error:'dossier_absent_ou_exclu'});
-   await b.prepare('UPDATE veille_postal SET retour=?,retour_le=? WHERE id=?').bind(d.retour,new Date().toISOString(),p.id).run();return json(200,{ok:true});
+   const p=await b.prepare("SELECT * FROM courriers WHERE canal='postal' AND id=?").bind(String(d.id||'')).first();if(!p)return json(404,{error:'courrier_absent'});
+   const dem=await b.prepare('SELECT * FROM demandes WHERE id=?').bind(p.demande_id).first();if(!dem||exclu([dem.contact,dem.adresse],regle))return json(404,{error:'dossier_absent_ou_exclu'});
+   await b.prepare("UPDATE courriers SET retour=?,retour_le=? WHERE canal='postal' AND id=?").bind(d.retour,new Date().toISOString(),p.id).run();return json(200,{ok:true});
   }
   return json(400,{error:'action_interdite'});
  }

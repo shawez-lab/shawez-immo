@@ -4,7 +4,7 @@ export const normaliser = s=>String(s||'').normalize('NFD').replace(/[\u0300-\u0
 const lire=s=>{try{return JSON.parse(s||'{}')}catch{return {}}};
 const clean=(s,n=1000)=>String(s||'').replace(/[\u0000-\u001f]/g,' ').trim().slice(0,n);
 export function exclusions(env){return {adresses:listePrivee(env,'REGLE9_LEAD_ADRESSES').map(normaliser),noms:listePrivee(env,'REGLE9_LEAD_NOMS',{motifs:true}).map(s=>new RegExp(`\\b${normaliser(s)}\\b`))};}
-export function exclu(champs,r){const s=normaliser(champs.join(' '));return r.adresses.some(x=>s.includes(x))||r.noms.some(x=>x.test(s));}
+export function exclu(champs,r){const etendus=champs.flatMap(x=>{try{const o=JSON.parse(x);if(o&&typeof o==='object')return [x,[o.prenom,o.nom,o.email,o.telephone,o.adresse].filter(Boolean).join(' ')];}catch{}return [x]});const s=normaliser(etendus.join(' '));return r.adresses.some(x=>s.includes(x))||r.noms.some(x=>x.test(s));}
 const vendeur=s=>/\b(estimation|estimer|vendre|vendons|vends|vente de mon|vente de notre|evaluation|evaluation|avis de valeur)\b/.test(normaliser(s));
 export function brouillon(prenom){const p=/^[\p{L} '\u2019-]{1,40}$/u.test(prenom||'')?prenom:'';return `Bonjour${p?' '+p:''}, c’est Shawez Ali, agent immobilier à Dijon. Vous m’avez parlé de votre projet. Vous souhaitez un point offert sur votre bien et les ventes signées près de chez vous ?`;}
 export function qualification({sens,texte,reponse,stop=false}){
@@ -38,16 +38,16 @@ export async function veille(ctx,now=new Date()){
  let visibles=0,commentDemandes=0;
  for(const d of comments||[]){if(exclu([d.compte,d.texte],r)||stopSet.has('i:'+d.compte))continue;visibles++;const q=qualification({texte:d.texte,reponse:d.reponse});if(!q.action||/stop|refus|exclu/i.test(d.decision||''))continue;commentDemandes++;actions.push({cle:'commentaire:'+d.comment_id,source:'commentaires',reference:d.comment_id,titre:'Demande dans un commentaire Instagram',date:d.cree,media_id:d.media_id||null,extrait:clean(d.texte,400),etat:q.etat,priorite:2,lien:'https://www.instagram.com/',action:'Répondre au commentaire ou dans la conversation engagée, sans chercher de coordonnées ailleurs.'});}
  compteurs.commentaires={interactions:comments?visibles:null,demandes_vendeurs:comments?commentDemandes:null};
- const postaux=await rows('veille_postal','SELECT p.*, d.contact AS controle_contact, d.adresse AS controle_adresse FROM veille_postal p LEFT JOIN demandes d ON d.reference=p.demande_reference WHERE datetime(p.envoye_le)>=datetime(?) ORDER BY datetime(p.envoye_le) DESC LIMIT 1500',[since]);
+ const postaux=await rows('courriers',"SELECT p.id,p.source_reference,d.reference AS demande_reference,p.avis_id,p.envoye_le,p.retour,p.retour_le,p.cree_le,d.contact AS controle_contact,d.adresse AS controle_adresse FROM courriers p JOIN demandes d ON d.id=p.demande_id WHERE p.canal='postal' AND datetime(p.envoye_le)>=datetime(?) ORDER BY datetime(p.envoye_le) DESC LIMIT 1500",[since]);
  const postalValides=[];for(const p of postaux||[]){if(!p.controle_contact||exclu([p.controle_contact,p.controle_adresse],r))continue;const {controle_contact,controle_adresse,...registre}=p;postalValides.push(registre);}
  const retours=await rows('avis_prospects_demandes','SELECT avis_id,demande_reference,cree_le FROM avis_prospects_demandes WHERE datetime(cree_le)>=datetime(?) ORDER BY datetime(cree_le) DESC LIMIT 1500',[since]);
  const retoursValides=(retours||[]).filter(p=>cache.has(p.demande_reference));
  const idsConvertis=new Set();
  for(const x of retoursValides){const candidates=postalValides.filter(p=>(x.avis_id===p.avis_id || x.demande_reference===p.demande_reference)&&Date.parse(p.envoye_le)<=Date.parse(x.cree_le)).sort((a,b)=>b.envoye_le.localeCompare(a.envoye_le));if(candidates[0])idsConvertis.add(candidates[0].id);}
  const convertis=postalValides.filter(p=>idsConvertis.has(p.id));
- if(postaux&&!postaux.length)etats.veille_postal.etat='registre_vide_fichier_non_raccorde';
+ if(postaux&&!postaux.length)etats.courriers.etat='registre_postal_initialise';
  compteurs.postal={envoyes:postalValides.length,retours_declares:postalValides.filter(p=>p.retour&&p.retour!=='aucun').length,demandes_attribuees:convertis.length,demandes_qr_non_rapprochees:retoursValides.filter(x=>!postalValides.some(p=>p.avis_id===x.avis_id||p.demande_reference===x.demande_reference)).length,taux_demande:postalValides.length?Math.round(convertis.length/postalValides.length*1000)/10:null};
- // La table courriers du site correspond aux e-mails différés, jamais aux courriers postaux.
+ // La table courriers est la source unique. Seul son canal postal est compté ici.
  const mesures=await rows('google_mesures','SELECT jour,donnees,collecte_le,source FROM google_mesures ORDER BY jour DESC LIMIT 30');
  const derniere=mesures?.[0];let fiche=null;
  try{const a=await env.ASSETS.fetch(new URL('/avis.json',ctx.request.url));if(a.ok){const f=(await a.json()).fiche;fiche=f?{nom:f.nom,note:f.note,nombre:f.nombre,releve_le:f.releve_le,lien:f.lien_avis}:null;}}catch{}
