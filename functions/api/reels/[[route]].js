@@ -1,12 +1,16 @@
 import {compteSession,estAdmin,verifierOrigine,Erreur,corps,json,db} from '../../_lib/base.js';
-import {init,collect,decodeDataset,persist,day,yesterday,briefing,keywordLeads,tableName,normalize} from '../../_lib/reels.js';
+import {init,processImports,importStatus,importWindow,decodeDataset,persist,day,yesterday,briefing,keywordLeads,tableName,normalize} from '../../_lib/reels.js';
 async function admin(request,env) {const c=await compteSession(request,env);if(!c)throw new Erreur(401,'connexion');if(!estAdmin(c,env))throw new Erreur(403,'interdit');return c;}
-async function syncAuth(request,env) {const supplied=request.headers.get('X-Reels-Sync')||'', secret=env.REELS_SYNC_TOKEN||'';if(secret.length>=32&&supplied.length===secret.length){let diff=0;for(let i=0;i<secret.length;i++)diff|=secret.charCodeAt(i)^supplied.charCodeAt(i);if(!diff)return;}verifierOrigine(request);await admin(request,env);}
 const validId=id=>typeof id==='string'&&/^[a-zA-Z0-9_-]{1,100}$/.test(id);
 export async function onRequest({request,env,params}) {
  try {
  const route='/'+[].concat(params.route||[]).join('/'), u=new URL(request.url), method=request.method;
- if(method==='POST'&&route==='/collect'){await syncAuth(request,env);return json(200,await collect(env));}
+ // Déclencheur sans secret : seulement les lignes D1 préexistantes, jamais de données dans la requête.
+ if(method==='GET'&&route==='/taches') {
+   if(!importWindow(new Date()))return json(200,{etat:'hors_creneau',traites:0});
+   return json(200,await processImports(env));
+ }
+ if(method==='POST'&&route==='/collect'){verifierOrigine(request);await admin(request,env);return json(200,await processImports(env));}
  verifierOrigine(request);await admin(request,env); const DB=await db(env);await init(DB);
  if(method==='GET'&&route==='/') {
  const found=await DB.prepare('SELECT * FROM reels_registre ORDER BY publie DESC').all();let rows=found.results.map(r=>({...r,mesures:JSON.parse(r.mesures||'{}'),leads_reel:null}));
@@ -14,7 +18,7 @@ export async function onRequest({request,env,params}) {
  rows=rows.filter(r=>(!from||r.publie>=from)&&(!to||r.publie<=to)&&(!type||r.type===type));
  const runs=await DB.prepare('SELECT * FROM reels_collectes ORDER BY debut DESC LIMIT 15').all();
  const latest=rows.map(r=>r.observe_le).filter(Boolean).sort().at(-1),report=yesterday(new Date());
- return json(200,{reels:rows,synthese:briefing(rows,report),rapport_jour:report,dernier_releve:latest||null,perime:!latest||Date.now()-Date.parse(latest)>36*3600000,collectes:runs.results,mots_cles:await keywordLeads(DB),attribution:'Indisponible : media_id absent des événements ManyChat. Les contacts par mot-clé ne sont jamais répartis par Reel.',metricool_configure:!!env.METRICOOL_API_TOKEN});
+ return json(200,{reels:rows,synthese:briefing(rows,report),rapport_jour:report,dernier_releve:latest||null,perime:!latest||Date.now()-Date.parse(latest)>36*3600000,collectes:runs.results,mots_cles:await keywordLeads(DB),attribution:'Indisponible : media_id absent des événements ManyChat. Les contacts par mot-clé ne sont jamais répartis par Reel.',imports:await importStatus(DB)});
  }
  if(method==='GET'&&route==='/historique') {
  const reel=await DB.prepare('SELECT * FROM reels_registre WHERE id=?').bind(u.searchParams.get('id')||'').first();if(!reel)throw new Erreur(404,'reel_absent');
@@ -23,7 +27,7 @@ export async function onRequest({request,env,params}) {
  if(method==='POST'&&route==='/import') {
  const b=await corps(request,4000000);if(b.brandId!=='7212231'||b.timezone!=='Europe/Paris')throw new Erreur(400,'marque_invalide');
  const observed=b.observed_at;if(!observed||!Number.isFinite(Date.parse(observed))||Date.parse(observed)>Date.now()+60000)throw new Erreur(400,'date_invalide');
- const reels=decodeDataset(b,b.metrics);const report=b.report_date||yesterday(observed);await persist(DB,reels,observed,report);
+ const reels=decodeDataset(b,b.metrics);const report=b.report_date||yesterday(observed);if(b.programmations!=null&&(!Array.isArray(b.programmations)||b.programmations.length>5000))throw new Erreur(400,'programmations');await persist(DB,reels,observed,report,b.programmations||[]);
  await DB.prepare('INSERT OR IGNORE INTO reels_collectes(id,debut,fin,statut,nombre,rapport_jour) VALUES(?,?,?,\'import\',?,?)').bind('import:'+observed,observed,new Date().toISOString(),reels.length,report).run();return json(200,{ok:true,nombre:reels.length});
  }
  if(method==='POST'&&route==='/meta') {

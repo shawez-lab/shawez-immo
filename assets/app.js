@@ -56,7 +56,7 @@ if(toit){var imgs=$$('img',toit),car=$('.toit-carton',toit),i=0;
 }
 
 /* film : la vidéo n'est chargée qu'au clic */
-$$('.film-jouer').forEach(function(b){b.addEventListener('click',function(){var c=b.parentNode,v=document.createElement('video');
+$$('.film-jouer[data-video]').forEach(function(b){b.addEventListener('click',function(){var c=b.parentNode,v=document.createElement('video');
   v.src=b.dataset.video;v.controls=true;v.autoplay=true;v.playsInline=true;v.poster=$('img',c).src;c.appendChild(v);b.remove();v.focus();});});
 
 /* liste des biens : filtres */

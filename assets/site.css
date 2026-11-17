@@ -325,7 +325,9 @@ table.prix td b{font-weight:600}
 table.prix small{color:var(--gris);display:block;font-size:.88rem}
 .barre{height:6px;background:var(--bleu);border-radius:1px;margin-top:6px;max-width:100%}
 .barre.m{background:var(--cassis)}
-@media(max-width:620px){table.prix th:nth-child(3),table.prix td:nth-child(3){display:none}}
+@media(max-width:620px){table.prix thead{display:none}table.prix tr{display:grid;grid-template-columns:1fr 1fr;gap:0 14px;padding:14px 0;border-bottom:1px solid var(--pierre)}
+table.prix tr[hidden]{display:none}table.prix td{border:0;padding:0}table.prix td:first-child{grid-column:1/-1;font-size:1.15rem;margin-bottom:8px}
+table.prix td[data-l]::before{content:attr(data-l);display:block;color:var(--gris);font-size:.85rem}}
 
 /* ---------- questions ---------- */
 .questions details{border-top:1px solid var(--pierre)}

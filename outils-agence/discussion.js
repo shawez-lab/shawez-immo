@@ -7,7 +7,7 @@
   window.__chatGravelin = 1;
   if (/\/(admin|mon-espace)\//.test(location.pathname)) return;
 
-  var API = '/api/chat';
+  var API = 'https://shawez-immo.com/api/chat-agence';
   var CLE = 'gi_chat_session';
   var session = '';
   try { session = localStorage.getItem(CLE) || ''; } catch (e) { }

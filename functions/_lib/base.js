@@ -178,13 +178,19 @@ CREATE TABLE IF NOT EXISTS socle_ombre (
 );
 `;
 const COLONNES_SP = [
+  ['courriers', 'canal', "TEXT NOT NULL DEFAULT 'email'"],
+  ['courriers', 'source_reference', "TEXT"],
+  ['courriers', 'avis_id', "TEXT"],
+  ['courriers', 'retour', "TEXT"],
+  ['courriers', 'retour_le', "TEXT"],
+
   ['demandes', 'raison', 'TEXT'],       // « Pas maintenant » ou « Perdu » : la raison notée par l'agence
   ['demandes', 'statut_le', 'TEXT'],    // date du dernier changement de statut
   ['fichiers', 'libelle', 'TEXT'],      // nature d'un document déposé par l'agence (mandat, diagnostics, compromis…)
 ];
 /* 1 : étape 2 (journal, visites, avis de valeur). 2 : étape 3 (comptes rendus de visite, offres, notaire, e-mails
    gardés pour le matin, nature des documents). */
-const VERSION_SP = '4';   // 3 : mesures_biens (vues, clics « Visiter », vidéo, par bien et par jour, sans cookie) ; 4 : socle_ombre (décisions du site et du socle AIMMO, côte à côte, sans donnée personnelle)
+const VERSION_SP = '5';   // 3 : mesures_biens (vues, clics « Visiter », vidéo, par bien et par jour, sans cookie) ; 4 : socle_ombre (décisions du site et du socle AIMMO, côte à côte, sans donnée personnelle)
 
 /* Les 10 statuts d'un dossier, dans l'ordre (jamais plus), et les deux sorties : « Pas maintenant » (relance programmée)
    et « Perdu » (raison notée). Les clés des cinq premiers statuts sont celles de la première version. */
@@ -516,3 +522,6 @@ export function comptepublic(c, env) {
     verifie: !!c.verifie, admin: estAdmin(c, env), cree_le: c.cree_le, mot_de_passe: !!c.mdp,
   };
 }
+
+export const SQL_COURRIERS_DUS = "SELECT * FROM courriers WHERE canal = 'email' AND envoye_le IS NULL ORDER BY id LIMIT 25";
+export const SQL_COURRIERS_NETTOYAGE = "DELETE FROM courriers WHERE canal = 'email' AND envoye_le IS NOT NULL AND envoye_le < ?1";

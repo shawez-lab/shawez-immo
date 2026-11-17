@@ -4,9 +4,10 @@ Aucune adresse de rue, aucun nom de propriétaire : les textes viennent des cham
 import html, json, os, re, shutil, sys, unicodedata, datetime
 
 ICI = os.path.dirname(os.path.abspath(__file__))
-OUT = os.path.join(os.path.dirname(ICI), 'out')
-SRC_ANN = sys.argv[1] if len(sys.argv) > 1 else '/home/claude/site/annonces.json'
-IMG = 'https://shawez-immo.com/annonces'      # photos des annonces, déjà publiées et tenues à jour chaque jour
+OUT = os.environ.get('AGENCE_OUT') or os.path.join(os.path.dirname(ICI), 'out')
+SITE = os.environ.get('SITE_DIR') or '/home/claude/site'
+SRC_ANN = os.path.join(SITE, 'annonces.json')
+IMG = '/annonces'      # photos des annonces, recopiées depuis le dépôt principal à chaque construction
 TEL, TEL_LIEN = '03 45 34 35 31', '+33345343531'
 MAIL = 'marion@gravelin-immo.com'
 AVIS = {'note': '4,8', 'nombre': 141, 'date': '17 novembre 2026',
@@ -15,7 +16,7 @@ e = html.escape
 HORAIRES = '<dl class="horaires"><dt>Lundi, mardi</dt><dd>9 h 30 à 18 h</dd><dt>Mercredi</dt><dd>Fermé</dd><dt>Jeudi, vendredi</dt><dd>9 h 30 à 18 h</dd><dt>Samedi, dimanche</dt><dd>Fermé</dd></dl>'
 PRIX = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'prix.json'), encoding='utf-8'))
 M = '/assets/m'
-DISCUSSION = False   # à passer à True quand le projet Cloudflare de l'agence aura ses variables (liste d'exclusions, clé du modèle)
+DISCUSSION = True   # à passer à True quand le projet Cloudflare de l'agence aura ses variables (liste d'exclusions, clé du modèle)
 EQUIPE = [('marion-gravelin', 'Marion Gravelin', 'Fondatrice et dirigeante de l’agence', 'Marion a créé l’agence en 2016 et la dirige depuis. Elle est titulaire de la carte professionnelle et suit les ventes et les mises en location.'),
           ('shawez-ali', 'Shawez Ali', 'Agent commercial, Dijon', 'Shawez vend des appartements, des maisons, des immeubles et des commerces. Il reçoit ses clients en français, en anglais et dans six autres langues.'),
           ('bernard-gogneau', 'Bernard Gogneau', 'Agent commercial, Beaune', 'Bernard accompagne les vendeurs et les acheteurs à Beaune et dans les villages de la Côte.')]
@@ -209,8 +210,8 @@ APPEL = '''<section class="bloc fond-nuit"><div class="enveloppe appel">
 </div></section>'''
 
 FILM = '''<section class="bloc fond-nuit"><div class="enveloppe film">
-<div class="film-cadre"><img src="/assets/film-affiche.webp" alt="Vue aérienne d’une longère filmée par l’agence" loading="lazy" width="1920" height="1080">
-<button class="film-jouer" type="button" data-video="https://shawez-immo.com/film-equipe.mp4"><i aria-hidden="true"></i><span>Regarder le film, 42 secondes</span></button></div>
+<div class="film-cadre"><img src="/assets/m/hw-roofs.webp" alt="Vue aérienne d’un quartier de maisons filmé au drone par l’agence" loading="lazy" width="1600" height="900">
+<button class="film-jouer" type="button" data-film="film-loft"><i aria-hidden="true"></i><span>Regarder un film de bien</span></button></div>
 <div><h2>Chaque bien a son film</h2>
 <p class="chapo" style="margin-top:18px">Drone, stabilisateur, lumière du matin : notre vidéaste, notre photographe et nos monteurs préparent chaque bien avant sa mise en vente. Les acheteurs visitent une première fois depuis leur canapé, et ceux qui se déplacent savent déjà pourquoi ils viennent.</p>
 <p><a class="lien" style="color:#fff" href="/vendre/">Comment nous vendons</a></p></div>
@@ -361,7 +362,7 @@ def unique(v):
 
 def paragraphes(t):
     t = re.sub(r'\[adresse retirée\][\s,;:]*', '', t)
-    t = re.sub(r'[^.!?]*g[ée]orisques[^.!?]*\.gouv\.fr[\s\d.]*', ' ', t, flags=re.I)
+    t = re.sub(r'[^.!?]*risques[^.!?]*?(?:www\.)?g[ée]orisques\.gouv\.fr[\s\d.]*', ' ', t, flags=re.I)
     t = re.sub(r'\s+', ' ', t).strip()
     t = re.sub(r'\s+([,.])', r'\1', t)
     t = re.sub(r'\b(X[IVX]+)\s*[eè]me\b', r'\1e', t)
@@ -468,14 +469,16 @@ def pages_fixes(biens):
 <li><h3>La diffusion</h3><p>Annonce sur les grands sites, sur nos réseaux, auprès de nos acquéreurs en recherche et dans notre vitrine, rue Bannelier.</p></li>
 <li><h3>Les visites et l’offre</h3><p>Nous vérifions le projet et le financement des acheteurs, nous vous transmettons chaque offre avec notre avis.</p></li>
 <li><h3>Du compromis à l’acte</h3><p>Nous préparons le dossier pour le notaire et suivons les délais jusqu’à la signature définitive.</p></li>
-</ol></section>''' + FILM + APPEL, '/vendre/')
+</ol></section>''' + FILM + CINEMA + APPEL, '/vendre/')
 
     page('/louer/', 'Mettre un logement en location à Dijon | GRAVELIN IMMO', 'Recherche du locataire, étude du dossier, bail et état des lieux : la mise en location par GRAVELIN IMMO à Dijon.',
          entete('Mettre votre logement en location', 'Nous trouvons le bon locataire et nous sécurisons son entrée dans les lieux, du premier appel jusqu’à l’état des lieux.') + f'''
 <section class="enveloppe deux" style="padding-bottom:var(--pas)">
 <div class="prose"><h2 style="margin-top:0">Une prestation complète</h2>
 <p>Nous prenons en charge toute la mise en location : vous n’avez ni les appels, ni les visites, ni les papiers à gérer. Une fois le locataire installé, vous restez l’interlocuteur de votre locataire.</p>
-<p>Vous cherchez un logement à louer ? Appelez l’agence au <a class="lien num" href="tel:{TEL_LIEN}">{TEL}</a> : nous vous disons ce qui est disponible.</p>
+<h2>À louer en ce moment</h2>
+<p><b>Appartement 2 pièces meublé à Dijon</b><br><span class="num">36,96 m², 790 € par mois charges comprises. Référence 389.</span></p>
+<p style="color:var(--gris);font-size:.95rem">Relevé du 17 novembre 2026. Appelez l’agence au <a class="lien num" href="tel:{TEL_LIEN}">{TEL}</a> pour la disponibilité et les autres logements à louer.</p>
 <p><a class="btn btn-plein" href="/contact/">Parler de mon logement</a></p></div>
 <ol class="etapes">
 <li><h3>Le loyer</h3><p>Nous fixons avec vous un loyer cohérent avec le marché et avec les règles applicables à votre logement.</p></li>
@@ -740,8 +743,9 @@ def pages_v2(biens):
     ordre = sorted(C, key=lambda k: -sum(v['n'] for v in C[k].values()))
     mx = max(v['median'] for c in C.values() for v in c.values())
     def cell(v, cls):
-        if not v: return '<td><small>Trop peu de ventes</small></td>'
-        return (f'<td><b class="num">{eur(v["median"])}/m²</b><small class="num">de {eur(v["q1"])} à {eur(v["q3"])}, sur {v["n"]} ventes</small>'
+        lib = 'Maisons' if cls else 'Appartements'
+        if not v: return f'<td data-l="{lib}"><small>Trop peu de ventes</small></td>'
+        return (f'<td data-l="{lib}"><b class="num">{eur(v["median"])}/m²</b><small class="num">de {eur(v["q1"])} à {eur(v["q3"])}, sur {v["n"]} ventes</small>'
                 f'<div class="barre {cls}" style="width:{round(v["median"] / mx * 100)}%"></div></td>')
     lignes = ''.join(f'<tr id="{slug(n)}" data-n="{slug(n).replace("-", " ")}"><td><b>{e(n)}</b></td>{cell(C[n].get("appartement"), "")}{cell(C[n].get("maison"), "m")}</tr>' for n in ordre)
     d = PRIX["derniere"]
@@ -765,12 +769,28 @@ def pages_v2(biens):
 <div><h2 style="margin-bottom:22px;font-size:1.6rem">Demander les dossiers en cours</h2>{formulaire('Immobilier professionnel', '', 'Envoyer', 'Votre recherche ou le bien à vendre')}</div>
 </section>""" + APPEL, '')
 
+def photos_annonces(biens):
+    # Les photos des biens en vente sont recopiées telles quelles ; celles des biens retirés disparaissent.
+    dest = os.path.join(OUT, 'annonces'); os.makedirs(dest, exist_ok=True)
+    garder = {b['ref'] for b in biens}
+    for d in os.listdir(dest):
+        if d not in garder: shutil.rmtree(os.path.join(dest, d), ignore_errors=True)
+    for b in biens:
+        src = os.path.join(SITE, 'annonces', b['ref']); dst = os.path.join(dest, b['ref']); os.makedirs(dst, exist_ok=True)
+        voulus = set(b['photos']) | {'1-600.webp'}
+        for f in os.listdir(dst):
+            if f not in voulus: os.remove(os.path.join(dst, f))
+        for f in voulus:
+            s = os.path.join(src, f); t = os.path.join(dst, f)
+            if os.path.exists(s) and (not os.path.exists(t) or os.path.getsize(s) != os.path.getsize(t)): shutil.copy(s, t)
+
 def main():
     biens, maj = charger()
     os.makedirs(os.path.join(OUT, 'assets'), exist_ok=True)
     for f in ('site.css', 'app.js', 'logo.svg'):
         shutil.copy(os.path.join(ICI, f), os.path.join(OUT, 'assets', f))
     shutil.copy(os.path.join(ICI, 'discussion.js'), os.path.join(OUT, 'assets', 'discussion.js'))
+    photos_annonces(biens)
     shutil.rmtree(os.path.join(OUT, 'biens'), ignore_errors=True)
     accueil(biens); acheter(biens)
     for b in biens: fiche(b, biens)
