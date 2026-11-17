@@ -1,41 +1,35 @@
-# Suivi des vendeurs particuliers
+# Veille des entrants
 
-Page mobile : `/admin/prospects/`. API : `/api/prospects`, sessions agence vérifiées uniquement, contrôle d'origine pour les modifications. Le passage quotidien `GET /api/prospects?job=1` ne renvoie aucune donnée personnelle et reste idempotent par jour. Le workflow `taches.yml` le déclenche. Tables dédiées, sans modification des demandes d'estimation.
+La mission est réorientée le 18 novembre 2026 : données internes uniquement. Aucun flux de pige, import d'annonces, extraction de portail ou prospection à froid. L'ancienne configuration `PROSPECTS_SOURCES_JSON` est ignorée et le code d'import a été supprimé. Aucun abonnement acheté.
 
-## État au 17 novembre 2026
+## Sources et données
 
-Aucun flux professionnel autorisé identifié. L'interface doit indiquer `sans_source_autorisee`, jamais une recherche exhaustive sans résultat. PAP interdit la prospection professionnelle et la réutilisation des annonces : https://www.pap.fr/groupe/cgu . Aucun adaptateur PAP ou Leboncoin, aucune extraction de leurs alertes grand public.
+La page `/admin/prospects/` et son API lisent les dossiers `demandes`, les mails vendeurs de `leads_tri`, les derniers messages de `dm_fil` et les commentaires de `ig_commentaires`. Les STOP de `dm_stop` et les exclusions privées de la règle 9 s'appliquent avant affichage. Le tableau ne recopie pas les coordonnées dans une nouvelle base de prospects. Il n'envoie aucun message et n'appelle aucun numéro.
 
-Le régime téléphonique a changé le 11 août 2026 : consentement préalable requis pour les nouveaux prospects, Bloctel a cessé d'exister. Source : https://www.service-public.gouv.fr/particuliers/actualites/A19003 . Aucun fournisseur de preuve de consentement n'est raccordé. Coordonnées non rendues par l'API, aucun lien d'appel ou d'envoi, messages en brouillon seulement. Une licence de données ne vaut pas consentement du vendeur à un canal de prospection.
+Les demandes explicites dans le dernier message ou le commentaire sont repérées par des mots liés à la vente ou à l'estimation. Ce repérage est conservateur : il ne détecte pas tous les projets et ne permet pas de décider d'une séquence commerciale. Un message automatique enregistré ne prouve pas une prise en charge humaine. La marque « Traitement vérifié » porte sur un message ou une demande précise ; un nouveau DM reste visible.
 
-## Raccordement
+Les sources absentes ou au schéma incompatible sont signalées, jamais remplacées par un zéro. La lecture couvre 90 jours, avec un plafond indiqué par source. Le résumé quotidien ne conserve que des compteurs et des états, sans nom, adresse ou contenu de conversation.
 
-Configurer une source seulement après vérification du contrat autorisant l'import en base et la prospection professionnelle, la mise à jour et le retrait. Un abonnement aux alertes d'acheteurs ne suffit pas. Un prestataire de pige doit justifier ses droits sur les annonces d'origine.
+## Courriers
 
-Variable privée Cloudflare `PROSPECTS_SOURCES_JSON`, cinq sources maximum. Exemple fictif, inactif :
+`veille_postal` enregistre uniquement des envois réellement effectués rattachés à nos dossiers, avec une référence de registre, une date et un retour déclaré. Aucun champ d'annonce n'est accepté par l'API. Le fichier historique des courriers envoyés n'a pas été retrouvé ; son lien est demandé au responsable. Le registre vide ne signifie pas qu'aucun courrier n'a jamais été envoyé.
 
-```json
-[{"id":"prestataire","nom":"Prestataire sous contrat","origine":"https://annonces.example.invalid","flux":"https://flux.example.invalid/annonces.json","justificatif":"Contrat vérifié","usage":"import_et_prospection","autorise_jusque":"2026-12-31","actif":false}]
-```
+La table existante `courriers` contient les e-mails différés du site, pas des courriers papier : elle est volontairement exclue du calcul. Créer un lien personnel, imprimer une lettre ou scanner un QR ne prouve pas un envoi ni une demande d'estimation.
 
-Le flux doit fournir `{"annonces":[...]}`, au plus 500 annonces et 1 Mo, sans redirection. Chaque annonce contient `reference` stable, `vendeur` égal à `particulier`, `url` HTTPS de l'origine configurée, `commune`, `type` égal à `maison` ou `appartement`. Champs optionnels publiés : `surface`, `pieces`, `prix`, `parution` AAAA-MM-JJ, `quartier`, `prenom`, `nom`, `adresse`, `email`, `telephone`. Nombres JSON ; champ absent null ou vide. `texte_public` sert au contrôle transitoire de la règle 9, sans conservation. Aucun enrichissement d'identité. Un adaptateur propre au fournisseur reste à réaliser si son format diffère.
+Si le module postal est publié, les demandes volontaires de `avis_prospects_demandes` sont rapprochées des envois par référence interne exacte. Seul le plus récent envoi antérieur à une demande reçoit cette attribution. Aucun rapprochement d'identité externe. Les demandes QR non rapprochées sont comptées séparément. Une opposition postale enregistrée empêche la déclaration d'un nouvel envoi vers le même dossier.
 
-`REGLE9_LEAD_ADRESSES` et `REGLE9_LEAD_NOMS` sont obligatoires : absentes ou invalides, elles bloquent le traitement. Contrôle avant stockage et à chaque lecture, purge des correspondances existantes. Jamais de listes nominatives dans le dépôt ou les journaux.
+## Fiche Google
 
-Une opposition depuis le tableau retire la fiche et conserve une empreinte de source, référence et URL. Elle ne permet pas de reconnaître une nouvelle annonce sous une autre référence et une autre URL. Dédoublonnage par référence stable ou même URL au sein d'une source ; aucune fusion d'identité entre plateformes.
+La page utilise le relevé public déjà conservé dans `avis.json`, avec sa date. Il n'est pas présenté comme une mesure actuelle. Si le module Google alimente `google_mesures`, ses relevés sont lus. Les auteurs d'avis ne sont pas convertis en prospects. Les demandes d'avis et la relance J+3 restent un module distinct et ne sont jamais déclenchées par cette veille.
 
-## Horaire et qualité
+## Courrier et consentement
 
-Fuseau du contexte actuel du compte : `Asia/Karachi`, passage à 8 h 07. `PROSPECTS_TIMEZONE=Europe/Paris` permet le passage vers 8 h à Dijon ; le workflow couvre été et hiver. GitHub Actions peut démarrer en retard. La préparation ne déclenche aucun appel.
+Le courrier postal est une voie à tester si l'origine des coordonnées est licite, l'information et l'opposition assurées. Un QR personnel doit reposer sur un jeton opaque et expirable, sans nom ni adresse dans l'URL. Une demande volontaire permet d'y répondre dans son objet ; elle ne vaut pas accord commercial général sur tous les canaux. Les séquences commerciales doivent conserver leurs consentements distincts, leur preuve et leur retrait.
 
-La date de parution n'est pas remplacée par la première observation. La stabilité signifie un même prix observé, pas la preuve d'absence de changement entre deux observations. Un écart de 15 % à une médiane ne prouve pas une surévaluation ni une absence future de vente.
+Références : https://www.cnil.fr/fr/la-prospection-commerciale et https://www.economie.gouv.fr/dgccrf/actualites-dgccrf/le-demarchage-telephonique-desormais-interdit-si-vous-ny-avez-pas-consenti . Aucun mécanisme Bloctel n'est utilisé pour autoriser un appel.
 
-Les pages prix du site sont lues via ASSETS : médiane par type, période et effectif. Les anciens tableaux au périmètre différent restent sans comparaison. Dijon appartements : repère communal publié dans la FAQ ; Dijon maisons : rayon autour du centre, non utilisé comme médiane communale. Neuilly-Crimolois n'est pas assimilée à Neuilly-lès-Dijon. Aucun remplacement par une commune voisine.
+## Exploitation et tests
 
-Purge des fiches non observées depuis 90 jours. Journaux d'exécution limités aux compteurs et états. Les sources retirées de la configuration ne sont plus affichées.
+Le Worker `shawez-prospects-horloge` appelle toujours `/api/prospects?job=1`, mais la route ne lit plus que nos sources. Passage vers 08 h 07 dans le fuseau actuel du compte Asia/Karachi. Il ne dépend pas de l'ordinateur de Shawez. Le job est idempotent ; les erreurs et interruptions peuvent être reprises après 30 minutes.
 
-## Vérification
-
-`node outils/prospects/test.mjs`, Node 24, SQLite natif, données fictives .invalid et tableau public de Beaune. Tests : validation, exclusions, accès anonyme, dédoublonnage, historique atomique, baisses, classement, médiane, messages et reprise quotidienne.
-
-Avant prospection réelle : contrat de source, éventuel adaptateur fournisseur, raccordement du consentement vérifiable et révocable par canal, information des personnes et gestion de leurs droits. Aucun achat ni envoi effectué.
+`node outils/prospects/test.mjs`, Node 24 et SQLite natif : accès agence, origine, exclusions, STOP, zéro accès réseau externe même si une ancienne configuration de pige existe, demande explicite, attribution postale sans double comptage, nouveau DM après traitement et résumé quotidien sans coordonnées.
