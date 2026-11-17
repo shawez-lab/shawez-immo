@@ -1,0 +1,10 @@
+name = "shawez-prospects-horloge"
+main = "horloge.js"
+compatibility_date = "2026-11-17"
+workers_dev = false
+
+[triggers]
+crons = ["7 3 * * *"]
+
+[observability]
+enabled = true
