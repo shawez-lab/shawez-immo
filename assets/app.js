@@ -8,7 +8,42 @@ var calme=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').match
 var mb=$('.menu-btn'),nav=$('.nav');
 if(mb&&nav){mb.addEventListener('click',function(){var o=nav.hasAttribute('data-ouvert');
   if(o){nav.removeAttribute('data-ouvert');}else{nav.setAttribute('data-ouvert','');}
-  mb.setAttribute('aria-expanded',String(!o));document.body.style.overflow=o?'':'hidden';});}
+  mb.setAttribute('aria-expanded',String(!o));document.body.style.overflow=o?'':'hidden';tete&&tete.classList.toggle('menu',!o);etat();});}
+
+/* accueil : en-tête posé sur le film, plein dès qu'on descend */
+var tete=$('.tete');
+function etat(){if(!document.body.classList.contains('accueil'))return;tete.classList.toggle('pleine',window.scrollY>50||tete.classList.contains('menu'));}
+window.addEventListener('scroll',etat,{passive:true});etat();
+
+/* accueil : les films s'enchaînent en fondu */
+var cine=$('.cine');
+if(cine&&!calme){var liste=(window.matchMedia('(max-width:760px)').matches?cine.dataset.mobile:cine.dataset.pc).split(','),vs=$$('video',cine),n=0,c=0;
+  var lancer=function(v,nom,apres){v.src='/assets/m/'+nom+'.mp4';v.addEventListener('playing',function(){v.setAttribute('data-on','');if(apres)apres();},{once:true});var p=v.play();if(p&&p.catch)p.catch(function(){});};
+  lancer(vs[0],liste[0]);
+  if(liste.length>1)setInterval(function(){if(document.hidden)return;n=(n+1)%liste.length;var nv=vs[1-c],av=vs[c];lancer(nv,liste[n],function(){av.removeAttribute('data-on');c=1-c;});},8000);}
+
+/* mur de vidéos : ne jouent que celles qu'on voit */
+var murs=$$('.mur video');
+if(murs.length&&'IntersectionObserver' in window&&!calme){var io=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;if(e.isIntersecting){if(!v.src)v.src=v.dataset.src;var p=v.play();if(p&&p.catch)p.catch(function(){});}else v.pause();});},{threshold:.35});murs.forEach(function(v){io.observe(v)});}
+var cinema=$('.cinema');
+if(cinema){var cv=$('video',cinema),fermerC=function(){cinema.removeAttribute('data-on');cv.pause();cv.removeAttribute('src');document.body.style.overflow='';};
+  $$('[data-film]').forEach(function(b){b.addEventListener('click',function(){cv.src='/assets/m/'+b.dataset.film+'.mp4';cinema.setAttribute('data-on','');document.body.style.overflow='hidden';cv.play();});});
+  $('button',cinema).addEventListener('click',fermerC);cinema.addEventListener('click',function(e){if(e.target===cinema)fermerC()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&cinema.hasAttribute('data-on'))fermerC()});}
+
+/* formulaires : envoi à l'agence */
+$$('form[data-envoi]').forEach(function(f){var et=$('.form-etat',f),bt=$('button[type=submit]',f);
+  f.addEventListener('submit',function(e){e.preventDefault();var d={};new FormData(f).forEach(function(v,k){d[k]=v});d.consent=!!(f.elements.consent&&f.elements.consent.checked);d.page=location.pathname;
+    if(!d.email&&!d.telephone){et.removeAttribute('data-ok');et.setAttribute('data-ko','');et.textContent='Indiquez un e-mail ou un téléphone pour que nous puissions vous répondre.';return;}
+    bt.disabled=true;et.removeAttribute('data-ko');et.removeAttribute('data-ok');et.textContent='Envoi en cours…';
+    fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)}).then(function(r){if(!r.ok)throw r.status;
+      f.reset();et.setAttribute('data-ok','');et.textContent='Message envoyé. L’agence vous répond aux heures d’ouverture.';})
+    .catch(function(s){et.setAttribute('data-ko','');et.textContent=s===429?'Trop de messages envoyés. Réessayez dans une heure ou appelez le 03 45 34 35 31.':'Le message n’est pas parti. Réessayez, ou appelez le 03 45 34 35 31.';})
+    .then(function(){bt.disabled=false;});});});
+
+/* prix : filtre par commune */
+var fp=$('[data-filtre-prix]');
+if(fp){var lignes=$$('table.prix tbody tr');fp.addEventListener('input',function(){var q=fp.value.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');lignes.forEach(function(l){l.hidden=q&&l.dataset.n.indexOf(q)<0;});});}
 
 /* vitrine : les biens se succèdent sous le toit */
 var toit=$('.toit');

@@ -9,9 +9,59 @@ SRC_ANN = sys.argv[1] if len(sys.argv) > 1 else '/home/claude/site/annonces.json
 IMG = 'https://shawez-immo.com/annonces'      # photos des annonces, déjà publiées et tenues à jour chaque jour
 TEL, TEL_LIEN = '03 45 34 35 31', '+33345343531'
 MAIL = 'marion@gravelin-immo.com'
-AVIS = {'note': '4,8', 'nombre': 137, 'date': '8 octobre 2026',
+AVIS = {'note': '4,8', 'nombre': 141, 'date': '17 novembre 2026',
         'lien': 'https://www.google.com/maps/search/?api=1&query=Gravelin%20Immo%2030%20rue%20Bannelier%20Dijon'}
 e = html.escape
+HORAIRES = '<dl class="horaires"><dt>Lundi, mardi</dt><dd>9 h 30 à 18 h</dd><dt>Mercredi</dt><dd>Fermé</dd><dt>Jeudi, vendredi</dt><dd>9 h 30 à 18 h</dd><dt>Samedi, dimanche</dt><dd>Fermé</dd></dl>'
+PRIX = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'prix.json'), encoding='utf-8'))
+M = '/assets/m'
+EQUIPE = [('marion-gravelin', 'Marion Gravelin', 'Fondatrice et dirigeante de l’agence', 'Marion a créé l’agence en 2016 et la dirige depuis. Elle est titulaire de la carte professionnelle et suit les ventes et les mises en location.'),
+          ('shawez-ali', 'Shawez Ali', 'Agent commercial, Dijon', 'Shawez vend des appartements, des maisons, des immeubles et des commerces. Il reçoit ses clients en français, en anglais et dans six autres langues.'),
+          ('bernard-gogneau', 'Bernard Gogneau', 'Agent commercial, Beaune', 'Bernard accompagne les vendeurs et les acheteurs à Beaune et dans les villages de la Côte.')]
+
+def equipe_html():
+    return '<div class="equipe">' + ''.join(
+        f'<div class="membre"><img src="{M}/{f}.webp" alt="{e(n)}, {e(r.lower())}" loading="lazy" width="900" height="1125"><h3>{e(n)}</h3><p class="role">{e(r)}</p><p>{e(t)}</p></div>'
+        for f, n, r, t in EQUIPE) + '</div>'
+
+def formulaire(objet, bien='', bouton='Envoyer', message='Votre message'):
+    return f'''<form class="form" data-envoi novalidate>
+<input type="hidden" name="objet" value="{e(objet)}"><input type="hidden" name="bien" value="{e(bien)}">
+<label class="champ"><span>Votre nom</span><input name="nom" autocomplete="name" required></label>
+<label class="champ"><span>Téléphone</span><input name="telephone" type="tel" autocomplete="tel" inputmode="tel"></label>
+<label class="champ large"><span>E-mail</span><input name="email" type="email" autocomplete="email"></label>
+<label class="champ large"><span>{message}</span><textarea name="message" rows="4"></textarea></label>
+<label class="piege" aria-hidden="true">Ne pas remplir<input name="website" tabindex="-1" autocomplete="off"></label>
+<label class="accord"><input type="checkbox" name="consent" required><span>J’accepte que l’agence utilise ces informations pour me répondre. <a href="/confidentialite/">En savoir plus</a></span></label>
+<button class="btn btn-plein large" type="submit">{bouton}</button>
+<p class="form-etat" role="status" aria-live="polite"></p>
+</form>'''
+
+FAQ = [('Combien coûte une estimation ?', 'Rien. L’estimation est offerte et ne vous engage à rien. Vous recevez d’abord une fourchette calculée sur les ventes signées autour de chez vous, puis nous venons voir le bien pour l’affiner.'),
+       ('Pourquoi un mandat exclusif ?', 'Parce qu’il nous permet d’investir dans votre bien : le film, les photos, la diffusion. Un seul interlocuteur, un seul prix affiché partout, et un compte rendu après chaque visite.'),
+       ('Combien de temps faut-il pour vendre ?', 'Cela dépend surtout du prix de départ. Un bien affiché au prix du marché trouve en général son acheteur en quelques semaines. Il faut ensuite compter environ trois mois entre le compromis et l’acte chez le notaire.'),
+       ('Quels diagnostics faut-il fournir ?', 'Le diagnostic de performance énergétique est obligatoire dès l’annonce. Selon le bien s’ajoutent l’amiante, le plomb, l’électricité, le gaz, les termites, l’état des risques et, en copropriété, le mesurage Carrez. Nous vous disons lesquels vous concernent.'),
+       ('Qui paie les honoraires de l’agence ?', 'C’est indiqué sur chaque annonce et dans le mandat. Notre barème est public : vous le trouvez sur la page Honoraires et il est affiché à l’agence.'),
+       ('Vous occupez-vous aussi des locations ?', 'Oui : recherche du locataire, étude de son dossier, rédaction du bail et état des lieux. Vous gardez ensuite la relation avec votre locataire.')]
+
+def faq_html(titre='Les questions qu’on nous pose'):
+    return (f'<section class="bloc"><div class="enveloppe deux"><div><h2>{titre}</h2></div><div class="questions">'
+            + ''.join(f'<details><summary>{e(q)}</summary><p>{e(r)}</p></details>' for q, r in FAQ) + '</div></div></section>')
+
+MUR = [('loop-chateau', 'film-chateau', 'Le château de Saint-Gervais-en-Vallière'), ('loop-loft', 'film-loft', ''), ('loop-spa', 'film-spa', ''),
+       ('loop-8portes', 'film-8portes', ''), ('loop-republique', '', ''), ('loop-hotel', '', ''), ('loop-sauna', '', ''),
+       ('loop-marrakech', '', ''), ('loop-republique2', '', ''), ('loop-saffron', '', '')]
+
+def mur_html():
+    fig = ''
+    for loop, film, titre in MUR:
+        fig += (f'<figure><video muted loop playsinline preload="none" poster="{M}/{loop}.webp" data-src="{M}/{loop}.mp4" aria-label="Visite filmée"></video>'
+                + (f'<button type="button" data-film="{film}">Voir le film</button>' if film else '')
+                + (f'<figcaption>{e(titre)}</figcaption>' if titre else '') + '</figure>')
+    return f'<div class="mur" tabindex="0" aria-label="Visites filmées par l’agence">{fig}</div>'
+
+CINEMA = '<div class="cinema" role="dialog" aria-modal="true" aria-label="Film du bien"><video controls playsinline></video><button type="button" aria-label="Fermer">×</button></div>'
+
 
 def slug(s):
     s = unicodedata.normalize('NFKD', s).encode('ascii', 'ignore').decode().lower()
@@ -92,10 +142,10 @@ def carte(b, charge='lazy'):
             f'<div class="bien-faits">{"".join(f"<span>{e(x)}</span>" for x in faits)}</div>'
             f'<div class="bien-prix num">{prix_html(b)}</div></a>')
 
-NAV = [('/acheter/', 'Acheter'), ('/vendre/', 'Vendre'), ('/louer/', 'Louer'), ('/estimation/', 'Estimer'), ('/agence/', 'L’agence'), ('/contact/', 'Contact')]
+NAV = [('/acheter/', 'Acheter'), ('/vendre/', 'Vendre'), ('/louer/', 'Louer'), ('/estimation/', 'Estimer'), ('/videos/', 'Films'), ('/agence/', 'L’agence'), ('/contact/', 'Contact')]
 ICONE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M4.8 20c.9-3.6 3.7-5.6 7.2-5.6s6.3 2 7.2 5.6"/></svg>'
 
-def page(chemin, titre, desc, corps, actif='', tete='', fin='', index=True):
+def page(chemin, titre, desc, corps, actif='', tete='', fin='', index=True, classe='', prive=False):
     nav = ''.join(f'<a href="{u}"{" aria-current=\"page\"" if u == actif else ""}>{l}</a>' for u, l in NAV)
     h = f'''<!doctype html>
 <html lang="fr">
@@ -113,7 +163,7 @@ def page(chemin, titre, desc, corps, actif='', tete='', fin='', index=True):
 <link rel="stylesheet" href="/assets/site.css">
 {tete}
 </head>
-<body>
+<body class="{classe}">
 <a class="passer" href="#contenu">Aller au contenu</a>
 <header class="tete"><div class="enveloppe">
 <a class="logo" href="/" aria-label="Gravelin immo, accueil"><span>Gravelin immo</span></a>
@@ -129,14 +179,15 @@ def page(chemin, titre, desc, corps, actif='', tete='', fin='', index=True):
 <div class="pied-grille">
 <div><a class="logo" href="/" aria-label="Gravelin immo, accueil"><span>Gravelin immo</span></a>
 <p>30 rue Bannelier<br>21000 Dijon</p>
-<p><a class="num" href="tel:{TEL_LIEN}">{TEL}</a><br><a href="mailto:{MAIL}">{MAIL}</a></p></div>
-<div><h2>Les biens</h2><ul><li><a href="/acheter/">Tous les biens à vendre</a></li><li><a href="/acheter/?type=Appartement">Appartements</a></li><li><a href="/acheter/?type=Maison">Maisons</a></li><li><a href="/acheter/?type=Immeuble">Immeubles</a></li><li><a href="/acheter/?type=Terrain">Terrains</a></li></ul></div>
-<div><h2>L’agence</h2><ul><li><a href="/vendre/">Vendre avec nous</a></li><li><a href="/louer/">Mettre en location</a></li><li><a href="/estimation/">Estimation offerte</a></li><li><a href="/agence/">L’équipe</a></li><li><a href="/honoraires/">Nos honoraires</a></li><li><a href="/avis/">Avis clients</a></li></ul></div>
+<p><a class="num" href="tel:{TEL_LIEN}">{TEL}</a><br><a href="mailto:{MAIL}">{MAIL}</a></p>{HORAIRES}</div>
+<div><h2>Les biens</h2><ul><li><a href="/acheter/">Tous les biens à vendre</a></li><li><a href="/acheter/?type=Appartement">Appartements</a></li><li><a href="/acheter/?type=Maison">Maisons</a></li><li><a href="/acheter/?type=Immeuble">Immeubles</a></li><li><a href="/acheter/?type=Terrain">Terrains</a></li><li><a href="/immobilier-professionnel/">Commerces et locaux</a></li><li><a href="/prix-immobilier/">Prix au m² par commune</a></li></ul></div>
+<div><h2>L’agence</h2><ul><li><a href="/vendre/">Vendre avec nous</a></li><li><a href="/louer/">Mettre en location</a></li><li><a href="/estimation/">Estimation offerte</a></li><li><a href="/agence/">L’équipe</a></li><li><a href="/videos/">Nos films</a></li><li><a href="/honoraires/">Nos honoraires</a></li><li><a href="/avis/">Avis clients</a></li></ul></div>
 <div><h2>Nous suivre</h2><ul><li><a href="https://www.instagram.com/gravelin_immo/" rel="noopener">Instagram</a></li><li><a href="https://www.facebook.com/gravelinimmo/" rel="noopener">Facebook</a></li><li><a href="https://www.linkedin.com/company/gravelin-immo/" rel="noopener">LinkedIn</a></li><li><a href="/mon-espace/">Mon espace</a></li></ul></div>
 </div>
 <div class="pied-bas"><p>© {datetime.date.today().year} GRAVELIN IMMO, agence immobilière à Dijon depuis 2016.</p><p><a href="/mentions-legales/">Mentions légales</a> &nbsp; <a href="/confidentialite/">Confidentialité</a></p></div>
 </div></footer>
 <script src="/assets/app.js" defer></script>
+{'' if prive else '<script src="/assets/discussion.js" defer></script>'}
 {fin}
 </body>
 </html>'''
@@ -389,7 +440,8 @@ def fiche(b, biens):
 <div class="cote-prix num">{prix_html(b)}</div>
 <small>{hon} <a href="/honoraires/">Barème de l’agence</a></small>
 <a class="btn btn-plein" href="tel:{TEL_LIEN}">Appeler le {TEL}</a>
-<a class="btn btn-trait" href="{mail}">Demander une visite par e-mail</a>
+<hr><h3 style="margin-bottom:14px">Demander une visite</h3>
+{formulaire('Demande de visite', sujet, 'Envoyer ma demande', 'Vos disponibilités, vos questions')}
 {calc}
 </aside>
 </div>
@@ -434,12 +486,7 @@ def pages_fixes(biens):
     page('/agence/', 'L’agence et son équipe | GRAVELIN IMMO, Dijon', 'GRAVELIN IMMO, agence immobilière indépendante installée 30 rue Bannelier à Dijon depuis 2016.',
          entete('Une agence indépendante, rue Bannelier', 'GRAVELIN IMMO a ouvert en 2016, à côté des Halles de Dijon. On y vend et on y loue des logements, des immeubles et des locaux professionnels.') + f'''
 <section class="enveloppe" style="padding-bottom:var(--pas)">
-<div class="personnes">
-<div class="personne"><h2>Marion Gravelin</h2><p class="role">Fondatrice et dirigeante de l’agence</p>
-<p>Marion a créé l’agence en 2016 et la dirige depuis. Elle est titulaire de la carte professionnelle et suit les dossiers de vente et de location de l’agence.</p></div>
-<div class="personne"><h2>Shawez Ali</h2><p class="role">Agent commercial</p>
-<p>Shawez vend des appartements, des maisons, des immeubles et des commerces, à Dijon et jusqu’à Beaune. Il reçoit ses clients en français, en anglais et dans six autres langues.</p></div>
-</div>
+{equipe_html()}
 <div class="deux" style="margin-top:var(--pas)">
 <div><h2>Une équipe entière derrière chaque bien</h2>
 <p class="chapo" style="margin-top:20px">Vendre un bien, c’est aussi le montrer. L’agence travaille avec sa propre équipe de marketing.</p></div>
@@ -454,6 +501,8 @@ def pages_fixes(biens):
 <div class="prose" style="margin-top:var(--pas)"><h2>Ce qui compte pour nous</h2>
 <p>Connaître nos clients et leurs biens. Dire les choses clairement, y compris sur le prix. Et montrer chaque bien aussi bien qu’il le mérite.</p>
 <p><a class="lien" href="/avis/">{AVIS["note"]} sur 5 sur Google, sur {AVIS["nombre"]} avis</a></p></div>
+<div class="deux" style="margin-top:var(--pas);align-items:center"><img class="photo-haute" src="{M}/p88-800.webp" alt="L’enseigne Gravelin immo, location et transaction" loading="lazy" width="800" height="1000" style="max-width:420px">
+<div><h2>Passez nous voir</h2><p class="chapo" style="margin-top:18px">30 rue Bannelier, à Dijon, à côté des Halles.</p>{HORAIRES}<p style="margin-top:24px"><a class="btn btn-trait" href="/contact/">Nous écrire</a></p></div></div>
 </section>''' + APPEL, '/agence/')
 
     page('/honoraires/', 'Honoraires de l’agence | GRAVELIN IMMO', 'Barème des honoraires de vente et de location de GRAVELIN IMMO, agence immobilière à Dijon.',
@@ -483,10 +532,12 @@ def pages_fixes(biens):
 <dl><dt>Téléphone</dt><dd><a class="num" href="tel:{TEL_LIEN}">{TEL}</a></dd>
 <dt>E-mail</dt><dd><a href="mailto:{MAIL}">{MAIL}</a></dd>
 <dt>Adresse</dt><dd>30 rue Bannelier<br>21000 Dijon</dd>
-<dt>Pour vendre</dt><dd><a href="/estimation/">Demander une estimation offerte</a></dd></dl>
+<dt>Horaires</dt><dd style="font:inherit">{HORAIRES}</dd></dl>
 <div><div class="plan"><img src="/assets/plan-agence.webp" alt="Plan : l’agence se trouve 30 rue Bannelier, près des Halles de Dijon" loading="lazy" width="1200" height="800"></div>
 <p style="margin-top:14px"><a class="lien" href="https://www.google.com/maps/search/?api=1&query=Gravelin%20Immo%2030%20rue%20Bannelier%20Dijon" rel="noopener">Ouvrir l’itinéraire</a></p></div>
-</section>''', '/contact/')
+</section>
+<section class="bloc fond-papier"><div class="enveloppe deux"><div><h2>Écrivez-nous</h2><p class="chapo" style="margin-top:18px">Un projet de vente, une recherche, un logement à louer : dites-nous l’essentiel, nous vous rappelons.</p></div>
+<div>{formulaire('Message depuis la page Contact')}</div></div></section>''', '/contact/')
 
     page('/mentions-legales/', 'Mentions légales | GRAVELIN IMMO', 'Mentions légales du site de l’agence GRAVELIN IMMO.',
          entete('Mentions légales') + f'''
@@ -513,25 +564,220 @@ def pages_fixes(biens):
          entete('Cette page n’existe plus', 'Le bien a peut-être été vendu. Tous ceux qui sont à vendre sont ici.') +
          '<section class="enveloppe" style="padding-bottom:var(--pas)"><p><a class="btn btn-plein" href="/acheter/">Voir les biens à vendre</a></p></section>', index=False)
 
-def module(chemin, nom, titre, index):
+def module(chemin, nom, titre, index, prive=False):
     tete = '<link rel="stylesheet" href="/espace-estimation.css"><link rel="stylesheet" href="/theme-gravelin.css">'
     page(chemin, titre, 'Estimation offerte de votre bien par GRAVELIN IMMO, à partir des ventes réelles autour de chez vous.',
          f'<div data-espace-estimation="{nom}"></div>', '/estimation/' if nom == 'estimer' else '', tete=tete,
-         fin='<script src="/espace-estimation.js"></script>', index=index)
+         fin='<script src="/espace-estimation.js"></script>', index=index, prive=prive)
+
+# ================================================================ version 2 : accueil et pages enrichies
+def img(n, alt, cls=''):
+    return (f'<img {f"class={cls} " if cls else ""}src="{M}/p{n}-800.webp" srcset="{M}/p{n}-800.webp 800w, {M}/p{n}.webp 1600w" '
+            f'sizes="(max-width:900px) 92vw, 640px" alt="{e(alt)}" loading="lazy" decoding="async">')
+
+def prix_puces(noms):
+    o = ''
+    for n in noms:
+        c = PRIX['communes'].get(n)
+        if not c: continue
+        a, m = c.get('appartement'), c.get('maison')
+        v = a or m
+        o += (f'<a href="/prix-immobilier/#{slug(n)}"><b class="num">{eur(v["median"])}/m²</b>'
+              f'<span>{e(n)}, {"appartements" if a else "maisons"}</span></a>')
+    return f'<div class="prix-puces">{o}</div>'
+
+def accueil(biens):
+    actifs = [b for b in biens if b['status'] == 'en vente']
+    types = ''.join(f'<option value="{t}">{t}</option>' for t in ('Appartement', 'Maison', 'Immeuble', 'Terrain'))
+    compte = {}
+    for b in biens: compte[b['commune']] = compte.get(b['commune'], 0) + 1
+    communes = sorted(compte, key=lambda k: (-compte[k], k))
+    opts = ''.join(f'<option>{e(c)}</option>' for c in sorted(compte))
+    budgets = ''.join(f'<option value="{v}">{eur(v)}</option>' for v in (100000, 150000, 200000, 300000, 500000, 1000000))
+    selection = ''.join(carte(b) for b in actifs[:6])
+    liste_com = ''.join(f'<li><a href="/acheter/?commune={e(c)}">{e(c)}</a><span class="num">{compte[c]}</span></li>' for c in communes)
+    ph = next((x for x in actifs if x['ref'] == '438'), None)
+    hp = next((x for x in actifs if x['ref'] == '527'), None)
+    une = ''
+    if ph:
+        une = f"""<section class="bloc fond-papier"><div class="enveloppe une">
+<video class="une-video" muted loop playsinline autoplay preload="metadata" poster="{M}/hero-chateau.webp" src="{M}/hero-chateau.mp4" aria-label="Vue aérienne du château"></video>
+<div><h2>Un château du XVIIIe siècle, près de Beaune</h2>
+<div class="une-faits num"><span>{nb(ph["surface"])} m²</span><span>{ph["pieces"]} pièces</span><span>Domaine de 15 hectares</span></div>
+<p>À Saint-Gervais-en-Vallière, une demeure des XVIIIe et XIXe siècles, son étang, son colombier et la vue sur la Côte de Beaune.</p>
+<p class="une-prix num">{eur(ph["prix"])}</p>
+<p><a class="btn btn-plein" href="{ph["url"]}">Découvrir le château</a> &nbsp; <button class="btn btn-trait" type="button" data-film="film-chateau">Voir le film</button></p></div>
+</div></section>"""
+    hotel = ''
+    if hp:
+        hotel = f"""<section class="bloc"><div class="enveloppe une" style="grid-template-columns:minmax(0,2fr) minmax(0,3fr)">
+<div><h2>Un hôtel particulier du XVIIe, au cœur de Beaune</h2>
+<div class="une-faits num"><span>{nb(hp["surface"])} m²</span><span>Cour intérieure</span><span>Cave voûtée</span></div>
+<p>Derrière une façade de pierre, une cour, des volumes anciens, une terrasse et un jardin, en plein centre historique.</p>
+<p class="une-prix num">{eur(hp["prix"])}</p>
+<a class="btn btn-trait" href="{hp["url"]}">Pousser la porte</a></div>
+<a class="une-photo" href="{hp["url"]}"><img src="{photo(hp)}" alt="{e(hp["titre"])}" loading="lazy" width="1200" height="801"></a>
+</div></section>"""
+    mosaique = ''.join(f'<img src="{M}/p{n}-800.webp" alt="{e(a)}" loading="lazy" decoding="async">' for n, a in (
+        (10, 'Loft sous charpente métallique'), (64, 'Maison bourgeoise et son magnolia'), (14, 'Suite sous les toits avec bain à remous'),
+        (32, 'Maison de vigneron en pierre'), (12, 'Séjour lumineux avec balcon'), (79, 'Façade du château'),
+        (76, 'Terrasse d’une maison contemporaine'), (29, 'Salon avec cheminée en pierre'), (118, 'Longère au crépuscule'),
+        (123, 'Salon aux boiseries bleues'), (21, 'Séjour clair et bois naturel'), (36, 'Studio rénové par architecte')))
+    corps = f"""
+<section class="cine" data-pc="hw-villa,hw-pool,hw-roofs,hw-salon,hw-contemp" data-mobile="hero-chateau,hero-beaune,hero-loft">
+<picture><source media="(max-width:760px)" srcset="{M}/hero-chateau.webp"><img class="fond" data-on src="{M}/hw-villa.webp" alt="" fetchpriority="high"></picture>
+<video muted loop playsinline aria-hidden="true"></video><video muted loop playsinline aria-hidden="true"></video>
+<div class="cine-texte"><div class="enveloppe">
+<h1>Votre agence immobilière à Dijon, depuis 2016.</h1>
+<p class="chapo">{len(biens)} biens à vendre en ce moment entre Dijon, Beaune et Chalon-sur-Saône. Chacun est photographié et filmé par notre équipe.</p>
+<form class="cherche" action="/acheter/" method="get">
+<label><span>Type de bien</span><select name="type"><option value="">Tous</option>{types}</select></label>
+<label><span>Commune</span><select name="commune"><option value="">Toutes</option>{opts}</select></label>
+<label><span>Budget</span><select name="budget"><option value="">Sans limite</option>{budgets}</select></label>
+<button class="btn btn-plein" type="submit">Voir les biens</button>
+</form>
+<p class="vitrine-suite"><a class="lien" href="/estimation/">Estimer mon bien</a><a class="lien" href="/videos/">Regarder nos films</a></p>
+</div></div>
+</section>
+
+<section class="bloc"><div class="enveloppe">
+<div class="titre-rang"><h2>À vendre en ce moment</h2><a class="lien" href="/acheter/">Voir les {len(biens)} biens</a></div>
+<div class="grille">{selection}</div>
+</div></section>
+{une}
+<section class="bloc fond-nuit"><div class="enveloppe"><div class="titre-rang"><div><h2>Visitez avant de vous déplacer</h2>
+<p class="chapo" style="margin-top:16px">Drone, stabilisateur, lumière du matin : notre vidéaste, notre photographe et nos monteurs préparent chaque bien. Plus de 200 films à ce jour.</p></div>
+<a class="lien" style="color:#fff" href="/videos/">Tous nos films</a></div></div>
+{mur_html()}</section>
+{hotel}
+<section class="bloc fond-papier"><div class="enveloppe deux">
+<div><h2>Vendre avec l’agence</h2>
+<p class="chapo" style="margin-top:20px">Un prix juste dès le départ, un bien montré sous son meilleur jour, et quelqu’un qui vous tient au courant à chaque étape.</p>
+<p style="margin-bottom:32px"><a class="btn btn-bleu" href="/vendre/">Notre façon de vendre</a></p>
+{img(64, "Maison bourgeoise présentée par l’agence, magnolia en fleurs", "photo-haute")}</div>
+<ol class="etapes">
+<li><h3>L’estimation</h3><p>Nous partons des ventes signées dans votre rue et votre quartier, puis nous visitons. Vous repartez avec un prix argumenté.</p></li>
+<li><h3>La mise en valeur</h3><p>Notre équipe de marketing photographie et filme le bien : vidéaste, photographe, monteurs.</p></li>
+<li><h3>La diffusion et les visites</h3><p>Le bien part sur les sites d’annonces et nos réseaux. Nous vérifions le financement des acheteurs avant de vous les présenter.</p></li>
+<li><h3>Du compromis à l’acte</h3><p>Nous suivons le dossier avec le notaire jusqu’à la remise des clés.</p></li>
+</ol>
+</div></section>
+
+<section class="bloc fond-papier" style="padding-top:0"><div class="enveloppe">
+<div class="preuves">
+<div><b class="num">{AVIS["note"]} sur 5</b><span>Note de l’agence sur Google, sur {AVIS["nombre"]} avis. Relevé du {AVIS["date"]}. <a class="lien" href="/avis/">Lire les avis</a></span></div>
+<div><b>Depuis 2016</b><span>La même adresse, 30 rue Bannelier, à côté des Halles de Dijon.</span></div>
+<div><b>Plus de 200 films</b><span>Tournés et montés par notre équipe, pour que le bien soit vu avant la première visite.</span></div>
+</div></div></section>
+
+<section class="bloc"><div class="enveloppe">
+<div class="titre-rang"><div><h2>Les prix réels, commune par commune</h2>
+<p class="chapo" style="margin-top:16px">Prix médian au m² des ventes signées de {PRIX["annees"][0]} à {PRIX["annees"][-1]}, d’après les actes enregistrés par l’État.</p></div>
+<a class="lien" href="/prix-immobilier/">Toutes les communes</a></div>
+{prix_puces(["Dijon", "Beaune", "Fontaine-lès-Dijon", "Talant", "Chevigny-Saint-Sauveur", "Saint-Apollinaire"])}
+</div></section>
+
+<section class="bloc fond-papier"><div class="enveloppe">
+<div class="titre-rang"><h2>Des biens que nous avons présentés</h2><a class="lien" href="https://www.instagram.com/gravelin_immo/" rel="noopener">Suivre l’agence sur Instagram</a></div>
+<div class="mosaique">{mosaique}</div>
+</div></section>
+
+<section class="bloc"><div class="enveloppe">
+<div class="titre-rang"><h2>Ceux qui s’occupent de vous</h2><a class="lien" href="/agence/">Toute l’équipe</a></div>
+{equipe_html()}
+</div></section>
+
+<section class="bloc fond-papier"><div class="enveloppe secteur">
+<div><h2>De Dijon à Chalon-sur-Saône</h2>
+<p class="chapo" style="margin-top:20px">L’agence vend à Dijon, dans les communes voisines et le long de la Côte, jusqu’à Beaune et la vallée de la Saône.</p>
+<ul class="communes">{liste_com}</ul></div>
+<div class="carte">{carte_secteur(compte)}</div>
+</div></section>
+
+<section class="bloc"><div class="enveloppe deux" style="align-items:center">
+<div>{img(123, "Salon aux boiseries bleues d’un appartement ancien", "photo-large")}</div>
+<div><h2>We speak English</h2>
+<p class="chapo" style="margin-top:18px">Buying in Burgundy from abroad? The agency works in French and English, and Shawez Ali also welcomes clients in Hindi, Urdu, Punjabi, Persian, Greek and Arabic.</p>
+<p><a class="btn btn-trait" href="/contact/">Contact the agency</a></p></div>
+</div></section>
+
+<section class="bloc fond-papier"><div class="enveloppe deux" style="align-items:start">
+<div><h2>Commerces, immeubles, locaux</h2>
+<p class="chapo" style="margin-top:18px">Fonds de commerce, murs, immeubles de rapport : l’agence vend aussi l’immobilier professionnel, à Dijon et dans son agglomération.</p>
+<p><a class="btn btn-trait" href="/immobilier-professionnel/">L’immobilier professionnel</a></p></div>
+<div><h2>Un logement à louer ?</h2>
+<p class="chapo" style="margin-top:18px">Nous cherchons le locataire, vérifions son dossier, rédigeons le bail et faisons l’état des lieux.</p>
+<p><a class="btn btn-trait" href="/louer/">La mise en location</a></p></div>
+</div></section>
+{faq_html()}
+{APPEL}{CINEMA}"""
+    ld = {"@context": "https://schema.org", "@type": "RealEstateAgent", "name": "GRAVELIN IMMO", "telephone": "+33345343531", "email": MAIL,
+          "address": {"@type": "PostalAddress", "streetAddress": "30 rue Bannelier", "postalCode": "21000", "addressLocality": "Dijon", "addressCountry": "FR"},
+          "foundingDate": "2016", "areaServed": ["Dijon", "Beaune", "Chalon-sur-Saône"], "openingHours": ["Mo,Tu,Th,Fr 09:30-18:00"]}
+    faq = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": r}} for q, r in FAQ]}
+    page('/', 'GRAVELIN IMMO, agence immobilière à Dijon depuis 2016',
+         f'{len(biens)} biens à vendre entre Dijon, Beaune et Chalon-sur-Saône. Vente, mise en location et estimation offerte, 30 rue Bannelier à Dijon.',
+         corps, classe='accueil',
+         tete=f'<link rel="preload" as="image" href="{M}/hw-villa.webp" media="(min-width:761px)"><script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script><script type="application/ld+json">{json.dumps(faq, ensure_ascii=False)}</script>')
+
+def pages_v2(biens):
+    films = [('film-chateau', 'loop-chateau', 'Le château de Saint-Gervais-en-Vallière'), ('film-loft', 'loop-loft', 'Un loft sous charpente'),
+             ('film-spa', 'loop-spa', 'Une suite avec bain à remous'), ('film-8portes', 'loop-8portes', 'Derrière les portes')]
+    cartes = ''.join(f'<figure style="flex:1 1 220px;max-width:300px"><video muted loop playsinline preload="none" poster="{M}/{l}.webp" data-src="{M}/{l}.mp4"></video>'
+                     f'<button type="button" data-film="{f}">Voir le film</button><figcaption>{e(t)}</figcaption></figure>' for f, l, t in films)
+    page('/videos/', 'Nos films de biens | GRAVELIN IMMO', 'Les biens vendus par GRAVELIN IMMO, filmés au drone et au stabilisateur par l’équipe de l’agence.',
+         entete('Nos films', 'Plus de 200 biens filmés par l’équipe de l’agence. En voici quelques-uns, à regarder avec le son.') + f"""
+<section class="fond-nuit bloc" style="padding-top:clamp(36px,5vw,64px)"><div class="mur" style="flex-wrap:wrap;overflow:visible;justify-content:flex-start">{cartes}</div>
+<div class="enveloppe" style="margin-top:clamp(40px,6vw,80px)"><h2>En boucle, sans le son</h2></div>
+<div style="margin-top:28px">{mur_html()}</div></section>
+<section class="bloc"><div class="enveloppe deux"><div><h2>Une équipe entière derrière chaque film</h2></div>
+<div class="prose"><p>Robin, notre vidéaste, tourne au stabilisateur et au drone. Notre photographe réalise les prises de vue. Nos monteurs vidéo et nos retoucheurs photo préparent ensuite chaque image avant la mise en vente.</p>
+<p>Tous les films sont publiés sur <a class="lien" href="https://www.instagram.com/gravelin_immo/" rel="noopener">Instagram</a> et sur la chaîne YouTube de l’agence.</p>
+<p><a class="btn btn-plein" href="/estimation/">Faire filmer mon bien</a></p></div></div></section>{CINEMA}""" + APPEL, '/videos/')
+
+    C = PRIX['communes']
+    ordre = sorted(C, key=lambda k: -sum(v['n'] for v in C[k].values()))
+    mx = max(v['median'] for c in C.values() for v in c.values())
+    def cell(v, cls):
+        if not v: return '<td><small>Trop peu de ventes</small></td>'
+        return (f'<td><b class="num">{eur(v["median"])}/m²</b><small class="num">de {eur(v["q1"])} à {eur(v["q3"])}, sur {v["n"]} ventes</small>'
+                f'<div class="barre {cls}" style="width:{round(v["median"] / mx * 100)}%"></div></td>')
+    lignes = ''.join(f'<tr id="{slug(n)}" data-n="{slug(n).replace("-", " ")}"><td><b>{e(n)}</b></td>{cell(C[n].get("appartement"), "")}{cell(C[n].get("maison"), "m")}</tr>' for n in ordre)
+    d = PRIX["derniere"]
+    page('/prix-immobilier/', 'Prix de l’immobilier au m² à Dijon et en Côte-d’Or | GRAVELIN IMMO',
+         f'Prix médian au m² des appartements et des maisons dans {len(C)} communes de Côte-d’Or, d’après les ventes signées de {PRIX["annees"][0]} à {PRIX["annees"][-1]}.',
+         entete('Les prix de l’immobilier, commune par commune', f'Le prix médian au m² dans {len(C)} communes de Côte-d’Or, calculé sur les ventes réellement signées de {PRIX["annees"][0]} à {PRIX["annees"][-1]}.') + f"""
+<section class="enveloppe" style="padding-bottom:var(--pas)">
+<div class="deux" style="margin-bottom:36px"><label class="champ"><span>Chercher une commune</span><input type="search" data-filtre-prix placeholder="Dijon, Beaune, Talant…" autocomplete="off"></label>
+<p style="color:var(--encre-2);margin:0">La médiane sépare les ventes en deux moitiés. La fourchette indique où se situe la moitié centrale des ventes. Ces chiffres donnent un ordre de grandeur : l’étage, l’état, l’extérieur et le diagnostic énergétique font varier le prix d’un bien à l’autre.</p></div>
+<table class="prix"><thead><tr><th>Commune</th><th>Appartements</th><th>Maisons</th></tr></thead><tbody>{lignes}</tbody></table>
+<p style="color:var(--gris);font-size:.95rem;margin-top:22px">Source : {e(PRIX["source"])}. Dernière vente prise en compte : {d[8:10]}/{d[5:7]}/{d[:4]}.</p>
+</section>""" + APPEL, '')
+
+    page('/immobilier-professionnel/', 'Immobilier professionnel à Dijon | GRAVELIN IMMO', 'Fonds de commerce, murs commerciaux, immeubles de rapport et locaux à Dijon : l’immobilier professionnel par GRAVELIN IMMO.',
+         entete('Commerces, immeubles et locaux', 'L’agence vend aussi des fonds de commerce, des murs, des immeubles de rapport et des locaux, à Dijon et dans son agglomération.') + f"""
+<section class="enveloppe deux" style="padding-bottom:var(--pas)">
+<div class="prose"><h2 style="margin-top:0">Ce que nous vendons</h2>
+<ul><li>Fonds de commerce : restaurants, bars, tabacs, hôtels, commerces de centre-ville</li><li>Murs commerciaux, libres ou occupés</li><li>Immeubles de rapport</li><li>Locaux d’activité et bureaux</li></ul>
+<p>Chaque dossier est étudié avec ses chiffres : bail, loyer, chiffre d’affaires, rentabilité. Les documents sont transmis après signature d’un engagement de confidentialité.</p>
+<p>Les dossiers en cours ne sont pas tous publiés. Dites-nous ce que vous cherchez.</p></div>
+<div><h2 style="margin-bottom:22px;font-size:1.6rem">Demander les dossiers en cours</h2>{formulaire('Immobilier professionnel', '', 'Envoyer', 'Votre recherche ou le bien à vendre')}</div>
+</section>""" + APPEL, '')
 
 def main():
     biens, maj = charger()
     os.makedirs(os.path.join(OUT, 'assets'), exist_ok=True)
     for f in ('site.css', 'app.js', 'logo.svg'):
         shutil.copy(os.path.join(ICI, f), os.path.join(OUT, 'assets', f))
+    shutil.copy(os.path.join(ICI, 'discussion.js'), os.path.join(OUT, 'assets', 'discussion.js'))
     shutil.rmtree(os.path.join(OUT, 'biens'), ignore_errors=True)
     accueil(biens); acheter(biens)
     for b in biens: fiche(b, biens)
-    pages_fixes(biens)
+    pages_fixes(biens); pages_v2(biens)
     module('/estimation/', 'estimer', 'Estimation offerte de votre bien | GRAVELIN IMMO', True)
-    module('/mon-espace/', 'mon-espace', 'Mon espace | GRAVELIN IMMO', False)
-    module('/admin/', 'admin', 'Espace agence | GRAVELIN IMMO', False)
-    module('/admin/promesses/', 'promesses', 'Promesses | GRAVELIN IMMO', False)
+    module('/mon-espace/', 'mon-espace', 'Mon espace | GRAVELIN IMMO', False, True)
+    module('/admin/', 'admin', 'Espace agence | GRAVELIN IMMO', False, True)
+    module('/admin/promesses/', 'promesses', 'Promesses | GRAVELIN IMMO', False, True)
     print(len(biens), 'biens ; mise à jour des annonces :', maj)
 
 main()

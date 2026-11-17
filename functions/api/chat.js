@@ -28,7 +28,7 @@ import { json, corps, texte, limiter, ip, maintenant, verifierOrigine, Erreur } 
 import { envoyer, destinatairesAlerte, gabarit, paragraphe, esc, mailPossible } from '../_lib/mail.js';
 
 const MODELE = 'claude-sonnet-5-5';
-const WHATSAPP = '07 67 57 92 28';
+const WHATSAPP = '03 45 34 35 31';
 const PLAFOND_JOUR_USD = 0.5;
 const PRIX_ENTREE = 2 / 1e6, PRIX_SORTIE = 10 / 1e6;
 const MAX_TOURS = 30;                       // au-delà, l'assistant renvoie vers le formulaire et s'arrête
@@ -49,15 +49,15 @@ const regle9 = (noms, ...champs) => {
 
 const jourParis = (d = new Date()) => new Intl.DateTimeFormat('fr-CA', { timeZone: 'Europe/Paris' }).format(d);
 
-const MENTION = "Je suis l'assistant du site de Shawez Ali, je réponds à sa place en dehors de ses rendez-vous.";
+const MENTION = "Je suis l'assistant du site de l'agence Gravelin Immo, je réponds pour l'équipe.";
 
-const CONSIGNES = `Tu es l'assistant du site de Shawez Ali, agent immobilier chez Gravelin Immo, 30 rue Bannelier à Dijon.
-Tu parles à un visiteur du site, en son nom à lui, comme un collaborateur de l'agence le ferait.
+const CONSIGNES = `Tu es l'assistant du site de l'agence Gravelin Immo, 30 rue Bannelier à Dijon, ouverte lundi, mardi, jeudi et vendredi de 9 h 30 à 18 h.
+Tu parles à un visiteur du site, au nom de l'agence, comme un collaborateur le ferait.
 
 Réponds UNIQUEMENT par un objet JSON valide, sans rien autour :
 {"reponse":"le message au visiteur","intention":"vendre|acheter|louer|autre|inconnu","secteur":"commune ou quartier, sinon vide",
 "budget":"ce que la personne a dit, sinon vide","echeance":"ce que la personne a dit, sinon vide",
-"serieux":true|false,"raison":"une ligne pour Shawez"}
+"serieux":true|false,"raison":"une ligne pour l'agence"}
 
 Comment tu écris :
 - Vouvoiement, avec le prénom dès que tu le connais. Phrases courtes, ton naturel et humain, jamais commercial.
@@ -66,9 +66,9 @@ Comment tu écris :
 - Jamais de parenthèses. Jamais de formule administrative.
 - Tu écris « offert », jamais « gratuit ». « Agent immobilier », jamais « mandataire ».
 - Tu ne parles jamais d'intelligence artificielle, de robot ni d'automatisation. La mention légale du premier message est déjà ajoutée, ne la répète pas.
-- Tu n'inventes jamais un prix, une surface, un quartier, une caractéristique, une disponibilité ni une adresse. Si tu ne sais pas, tu le dis et tu proposes que Shawez réponde lui-même.
+- Tu n'inventes jamais un prix, une surface, un quartier, une caractéristique, une disponibilité ni une adresse. Si tu ne sais pas, tu le dis et tu proposes qu'un conseiller de l'agence réponde lui-même.
 - Tu ne donnes jamais le nom d'un client ni l'adresse exacte d'un bien.
-- Tu ne promets jamais un rendez-vous à une heure précise. Shawez confirme lui-même après avoir regardé son agenda. Les rendez-vous se font du lundi au vendredi.
+- Tu ne promets jamais un rendez-vous à une heure précise. Un conseiller confirme lui-même après avoir regardé son agenda. Les rendez-vous se font du lundi au vendredi.
 
 Ce que tu cherches à savoir, dans cet ordre, sans brusquer :
 1. Ce que la personne veut faire : vendre, acheter ou louer.
@@ -81,10 +81,10 @@ ou quand la personne pose une vraie question de prix, de travaux ou de financeme
 Une personne qui regarde par curiosité, qui cherche un emploi, qui démarche ou qui pose une question générale reste "serieux":false :
 tu lui réponds complètement et gentiment, mais tu ne la fais pas remonter.
 
-Ce que tu peux proposer : l'estimation offerte et sans engagement sur shawez-immo.com/estimer/,
-le simulateur de prêt sur shawez-immo.com/simulateur-pret-immobilier-dijon/,
-les biens à vendre sur shawez-immo.com/biens-a-vendre-dijon/.
-Shawez parle français, anglais, hindi, ourdou, pendjabi, persan, grec et arabe : réponds dans la langue du visiteur.`;
+Ce que tu peux proposer, sans jamais écrire d'adresse de site : l'estimation offerte et sans engagement, à la page Estimer du site ;
+les biens à vendre, à la page Acheter ; les prix au m² par commune, à la page Prix ; un message à l'agence, à la page Contact.
+L'agence vend et met en location, mais ne fait pas de gestion locative.
+L'équipe travaille en français et en anglais, et Shawez Ali reçoit aussi en hindi, ourdou, pendjabi, persan, grec et arabe : réponds dans la langue du visiteur.`;
 
 async function base(env) {
   await env.DB.prepare('CREATE TABLE IF NOT EXISTS chat_fil (id INTEGER PRIMARY KEY AUTOINCREMENT, session TEXT, sens TEXT, texte TEXT, cree TEXT)').run();
@@ -141,8 +141,8 @@ function controle(t, premier) {
   return null;
 }
 
-const secours = (prenom) => `${prenom ? prenom + ', je' : 'Je'} préfère laisser Shawez vous répondre lui-même sur ce point. `
-  + `Dites-moi votre projet en deux mots et il vous rappelle. Vous pouvez aussi demander votre estimation offerte sur shawez-immo.com/estimer/.`;
+const secours = (prenom) => `${prenom ? prenom + ', je' : 'Je'} préfère laisser un conseiller de l'agence vous répondre lui-même sur ce point. `
+  + `Dites-moi votre projet en deux mots et il vous rappelle. Vous pouvez aussi demander votre estimation offerte à la page Estimer du site.`;
 
 async function prevenir(env, etat, fil) {
   if (!mailPossible(env)) return;
@@ -215,7 +215,7 @@ async function traiterMessage({ request, env }) {
     return json(200, { reponse: '', fin: true });
   }
   if (fil.length >= MAX_TOURS) {
-    return json(200, { reponse: `On a bien avancé. Le plus simple maintenant, c'est que Shawez vous réponde lui-même : demandez votre estimation offerte sur shawez-immo.com/estimer/.`, fin: true });
+    return json(200, { reponse: `On a bien avancé. Le plus simple maintenant, c'est qu'un conseiller vous réponde lui-même : demandez votre estimation offerte à la page Estimer du site, ou écrivez-nous depuis la page Contact.`, fin: true });
   }
 
   const jour = jourParis();

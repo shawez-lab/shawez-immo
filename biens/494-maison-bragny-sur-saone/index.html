@@ -14,12 +14,12 @@
 <link rel="stylesheet" href="/assets/site.css">
 <meta property="og:image" content="https://shawez-immo.com/annonces/494/1.jpg">
 </head>
-<body>
+<body class="">
 <a class="passer" href="#contenu">Aller au contenu</a>
 <header class="tete"><div class="enveloppe">
 <a class="logo" href="/" aria-label="Gravelin immo, accueil"><span>Gravelin immo</span></a>
 <button class="menu-btn" type="button" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18"/></svg></button>
-<nav class="nav" aria-label="Navigation principale"><a href="/acheter/" aria-current="page">Acheter</a><a href="/vendre/">Vendre</a><a href="/louer/">Louer</a><a href="/estimation/">Estimer</a><a href="/agence/">L’agence</a><a href="/contact/">Contact</a><a class="tete-tel num" href="tel:+33345343531">03 45 34 35 31</a></nav>
+<nav class="nav" aria-label="Navigation principale"><a href="/acheter/" aria-current="page">Acheter</a><a href="/vendre/">Vendre</a><a href="/louer/">Louer</a><a href="/estimation/">Estimer</a><a href="/videos/">Films</a><a href="/agence/">L’agence</a><a href="/contact/">Contact</a><a class="tete-tel num" href="tel:+33345343531">03 45 34 35 31</a></nav>
 <a class="compte" href="/mon-espace/" data-compte aria-label="Mon espace : se connecter" title="Mon espace"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M4.8 20c.9-3.6 3.7-5.6 7.2-5.6s6.3 2 7.2 5.6"/></svg></a>
 </div></header>
 <main id="contenu">
@@ -42,7 +42,18 @@
 <div class="cote-prix num">120 000 €</div>
 <small>Prix honoraires inclus. <a href="/honoraires/">Barème de l’agence</a></small>
 <a class="btn btn-plein" href="tel:+33345343531">Appeler le 03 45 34 35 31</a>
-<a class="btn btn-trait" href="mailto:marion@gravelin-immo.com?subject=Bien%20réf.%20494%20:%20Maison%203%20pièces%20à%20Bragny-sur-Saône">Demander une visite par e-mail</a>
+<hr><h3 style="margin-bottom:14px">Demander une visite</h3>
+<form class="form" data-envoi novalidate>
+<input type="hidden" name="objet" value="Demande de visite"><input type="hidden" name="bien" value="Bien réf. 494 : Maison 3 pièces à Bragny-sur-Saône">
+<label class="champ"><span>Votre nom</span><input name="nom" autocomplete="name" required></label>
+<label class="champ"><span>Téléphone</span><input name="telephone" type="tel" autocomplete="tel" inputmode="tel"></label>
+<label class="champ large"><span>E-mail</span><input name="email" type="email" autocomplete="email"></label>
+<label class="champ large"><span>Vos disponibilités, vos questions</span><textarea name="message" rows="4"></textarea></label>
+<label class="piege" aria-hidden="true">Ne pas remplir<input name="website" tabindex="-1" autocomplete="off"></label>
+<label class="accord"><input type="checkbox" name="consent" required><span>J’accepte que l’agence utilise ces informations pour me répondre. <a href="/confidentialite/">En savoir plus</a></span></label>
+<button class="btn btn-plein large" type="submit">Envoyer ma demande</button>
+<p class="form-etat" role="status" aria-live="polite"></p>
+</form>
 <hr><form class="calc" data-prix="120000"><h3 style="margin-bottom:14px">Votre mensualité</h3>
 <label>Apport, en euros<input name="apport" inputmode="numeric" value="12000"></label>
 <label>Durée, en années<input name="duree" inputmode="numeric" value="25"></label>
@@ -60,14 +71,15 @@
 <div class="pied-grille">
 <div><a class="logo" href="/" aria-label="Gravelin immo, accueil"><span>Gravelin immo</span></a>
 <p>30 rue Bannelier<br>21000 Dijon</p>
-<p><a class="num" href="tel:+33345343531">03 45 34 35 31</a><br><a href="mailto:marion@gravelin-immo.com">marion@gravelin-immo.com</a></p></div>
-<div><h2>Les biens</h2><ul><li><a href="/acheter/">Tous les biens à vendre</a></li><li><a href="/acheter/?type=Appartement">Appartements</a></li><li><a href="/acheter/?type=Maison">Maisons</a></li><li><a href="/acheter/?type=Immeuble">Immeubles</a></li><li><a href="/acheter/?type=Terrain">Terrains</a></li></ul></div>
-<div><h2>L’agence</h2><ul><li><a href="/vendre/">Vendre avec nous</a></li><li><a href="/louer/">Mettre en location</a></li><li><a href="/estimation/">Estimation offerte</a></li><li><a href="/agence/">L’équipe</a></li><li><a href="/honoraires/">Nos honoraires</a></li><li><a href="/avis/">Avis clients</a></li></ul></div>
+<p><a class="num" href="tel:+33345343531">03 45 34 35 31</a><br><a href="mailto:marion@gravelin-immo.com">marion@gravelin-immo.com</a></p><dl class="horaires"><dt>Lundi, mardi</dt><dd>9 h 30 à 18 h</dd><dt>Mercredi</dt><dd>Fermé</dd><dt>Jeudi, vendredi</dt><dd>9 h 30 à 18 h</dd><dt>Samedi, dimanche</dt><dd>Fermé</dd></dl></div>
+<div><h2>Les biens</h2><ul><li><a href="/acheter/">Tous les biens à vendre</a></li><li><a href="/acheter/?type=Appartement">Appartements</a></li><li><a href="/acheter/?type=Maison">Maisons</a></li><li><a href="/acheter/?type=Immeuble">Immeubles</a></li><li><a href="/acheter/?type=Terrain">Terrains</a></li><li><a href="/immobilier-professionnel/">Commerces et locaux</a></li><li><a href="/prix-immobilier/">Prix au m² par commune</a></li></ul></div>
+<div><h2>L’agence</h2><ul><li><a href="/vendre/">Vendre avec nous</a></li><li><a href="/louer/">Mettre en location</a></li><li><a href="/estimation/">Estimation offerte</a></li><li><a href="/agence/">L’équipe</a></li><li><a href="/videos/">Nos films</a></li><li><a href="/honoraires/">Nos honoraires</a></li><li><a href="/avis/">Avis clients</a></li></ul></div>
 <div><h2>Nous suivre</h2><ul><li><a href="https://www.instagram.com/gravelin_immo/" rel="noopener">Instagram</a></li><li><a href="https://www.facebook.com/gravelinimmo/" rel="noopener">Facebook</a></li><li><a href="https://www.linkedin.com/company/gravelin-immo/" rel="noopener">LinkedIn</a></li><li><a href="/mon-espace/">Mon espace</a></li></ul></div>
 </div>
 <div class="pied-bas"><p>© 2026 GRAVELIN IMMO, agence immobilière à Dijon depuis 2016.</p><p><a href="/mentions-legales/">Mentions légales</a> &nbsp; <a href="/confidentialite/">Confidentialité</a></p></div>
 </div></footer>
 <script src="/assets/app.js" defer></script>
+<script src="/assets/discussion.js" defer></script>
 
 </body>
 </html>
