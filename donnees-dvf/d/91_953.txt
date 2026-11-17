@@ -1,0 +1,5 @@
+[52250,"RUE REBOURSEAU (VILLAGE)","Magny-Lambert",25]
+[60000,"RUE DES EPAILLYS","Magny-Lambert",12]
+[75000,"RUE DE L EGLISE (RUE BASSE)","Magny-Lambert",29]
+[49500,"RUE SAINT MARC (VILLAGE)","Magny-Lambert",30]
+[90000,"RUE DES EPAILLYS","Magny-Lambert",30]
