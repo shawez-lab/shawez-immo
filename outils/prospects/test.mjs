@@ -31,6 +31,8 @@ let v=await veille(ctx,now);assert.equal(v.mode,'entrants_uniquement');assert.eq
 assert.equal(v.compteurs.postal.envoyes,2);assert.equal(v.compteurs.postal.demandes_attribuees,1);assert.equal(v.compteurs.postal.taux_demande,50);assert.equal(v.compteurs.google.mesures,null);assert.equal(v.actions.length,4);
 assert.equal(qualification({texte:'Merci pour cette vidéo'}).action,false);assert.equal(qualification({texte:'Estimation',reponse:'Réponse déjà envoyée'}).action,false);assert.throws(()=>exclusions({}));
 assert.equal((await quotidien(ctx,false,new Date('2026-11-18T02:00:00Z'))).etat,'avant_8h');
+assert.equal((await quotidien(ctx,true,new Date('2026-11-18T02:00:00Z'))).etat,'actualise');
+assert.equal(sql.prepare('SELECT count(*) n FROM veille_executions').get().n,0);
 assert.equal((await quotidien(ctx,false,now)).etat,'ok');assert.equal((await quotidien(ctx,false,now)).etat,'deja_execute');
 const resume=sql.prepare('SELECT resume FROM veille_executions').get().resume;assert(!resume.includes('Lucie'));assert(!resume.includes('example.invalid'));
 assert.equal(sql.prepare("SELECT count(*) n FROM sqlite_master WHERE name='prospects'").get().n,0);
@@ -43,6 +45,11 @@ assert.equal((await onRequest({...ctx,request:request({action:'importer',annonce
 assert.equal((await onRequest({...ctx,request:request({action:'courrier_envoye',url_annonce:'https://www.pap.fr/x'})})).status,400);
 assert.equal((await onRequest({...ctx,request:request({action:'traiter',cle:'dm:1'},'https://evil.example.invalid')})).status,403);
 assert.equal((await onRequest({...ctx,request:request({action:'traiter',cle:'dm:1'})})).status,200);
+sql.exec('CREATE TABLE avis_prospects(id TEXT PRIMARY KEY,revoque INTEGER NOT NULL)');
+sql.prepare('INSERT INTO avis_prospects VALUES(?,0)').run('avis-interne-1');
+assert.equal((await onRequest({...ctx,request:request({action:'courrier_envoye',demande_reference:'D-1',source_reference:'registre/3',envoye_le:'2026-11-15',avis_id:'avis-interne-1'})})).status,200);
+assert.equal(sql.prepare("SELECT avis_id FROM veille_postal WHERE source_reference='registre/3'").get().avis_id,'avis-interne-1');
+assert.equal((await onRequest({...ctx,request:request({action:'courrier_envoye',demande_reference:'inconnu',source_reference:'registre/4',envoye_le:'2026-11-15'})})).status,404);
 v=await veille(ctx,now);assert(!v.actions.some(x=>x.cle==='dm:1'));
 sql.prepare('INSERT INTO dm_fil VALUES(?,?,?,?,?)').run(3,'c1','in','Je veux faire estimer mon appartement','2026-11-18T03:00:00Z');
 v=await veille(ctx,now);assert(v.actions.some(x=>x.cle==='dm:3'));

@@ -38,8 +38,8 @@ export async function veille(ctx,now=new Date()){
  let visibles=0,commentDemandes=0;
  for(const d of comments||[]){if(exclu([d.compte,d.texte],r)||stopSet.has('i:'+d.compte))continue;visibles++;const q=qualification({texte:d.texte,reponse:d.reponse});if(!q.action||/stop|refus|exclu/i.test(d.decision||''))continue;commentDemandes++;actions.push({cle:'commentaire:'+d.comment_id,source:'commentaires',reference:d.comment_id,titre:'Demande dans un commentaire Instagram',date:d.cree,media_id:d.media_id||null,extrait:clean(d.texte,400),etat:q.etat,priorite:2,lien:'https://www.instagram.com/',action:'Répondre au commentaire ou dans la conversation engagée, sans chercher de coordonnées ailleurs.'});}
  compteurs.commentaires={interactions:comments?visibles:null,demandes_vendeurs:comments?commentDemandes:null};
- const postaux=await rows('veille_postal','SELECT * FROM veille_postal WHERE datetime(envoye_le)>=datetime(?) ORDER BY datetime(envoye_le) DESC LIMIT 1500',[since]);
- const postalValides=[];for(const p of postaux||[]){const d=p.demande_reference?cache.get(p.demande_reference):null;if(d===undefined&&p.demande_reference)continue;if(d&&exclu([d.contact,d.adresse],r))continue;postalValides.push(p);}
+ const postaux=await rows('veille_postal','SELECT p.*, d.contact AS controle_contact, d.adresse AS controle_adresse FROM veille_postal p LEFT JOIN demandes d ON d.reference=p.demande_reference WHERE datetime(p.envoye_le)>=datetime(?) ORDER BY datetime(p.envoye_le) DESC LIMIT 1500',[since]);
+ const postalValides=[];for(const p of postaux||[]){if(!p.controle_contact||exclu([p.controle_contact,p.controle_adresse],r))continue;const {controle_contact,controle_adresse,...registre}=p;postalValides.push(registre);}
  const retours=await rows('avis_prospects_demandes','SELECT avis_id,demande_reference,cree_le FROM avis_prospects_demandes WHERE datetime(cree_le)>=datetime(?) ORDER BY datetime(cree_le) DESC LIMIT 1500',[since]);
  const retoursValides=(retours||[]).filter(p=>cache.has(p.demande_reference));
  const idsConvertis=new Set();
@@ -58,7 +58,7 @@ export async function veille(ctx,now=new Date()){
  return {mode:'entrants_uniquement',periode:{debut:since,fin:now.toISOString(),jours:90},sources:etats,compteurs,actions:liste,postaux:postalValides.map(p=>({...p,demande_recue:convertis.some(x=>x.id===p.id)})),etat:erreurs.length?'partiel':'ok',limites:['Aucun import depuis un portail immobilier. Aucune collecte de coordonnées externes.','Les compteurs portent sur les 90 derniers jours et les limites indiquées par source.','Un lien personnel créé ne prouve ni l’envoi d’un courrier ni sa réception. Un scan ne vaut pas demande d’estimation.','Une demande entrante autorise une réponse à cette demande, pas une séquence commerciale sur tous les canaux.','Aucun appel, SMS, DM ou e-mail envoyé par ce tableau.']};
 }
 export async function quotidien(ctx,force=false,now=new Date()){
- const r=exclusions(ctx.env),zone=ctx.env.PROSPECTS_TIMEZONE||'Asia/Karachi';
+ exclusions(ctx.env);if(force){await veille(ctx,now);return {etat:'actualise',mode:'entrants_uniquement'};}const zone=ctx.env.PROSPECTS_TIMEZONE||'Asia/Karachi';
  const p=Object.fromEntries(new Intl.DateTimeFormat('en-CA',{timeZone:zone,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',hourCycle:'h23'}).formatToParts(now).map(x=>[x.type,x.value]));
  if(!force&&Number(p.hour)<8)return {etat:'avant_8h',mode:'entrants_uniquement'};
  const jour=`${p.year}-${p.month}-${p.day}`,b=ctx.env.DB;
