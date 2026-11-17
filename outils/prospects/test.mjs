@@ -16,6 +16,9 @@ sql.exec(`CREATE TABLE dm_stop(cle TEXT PRIMARY KEY);CREATE TABLE dm_fil(id INTE
 sql.prepare('INSERT INTO dm_fil VALUES(?,?,?,?,?)').run(1,'c1','in','Je veux vendre ma maison','2026-11-17T12:00:00Z');
 sql.prepare('INSERT INTO dm_fil VALUES(?,?,?,?,?)').run(2,'c2','in','Estimation','2026-11-17T12:00:00Z');
 sql.prepare('INSERT INTO dm_stop VALUES(?)').run('c:c2');
+for(let i=0;i<1505;i++)sql.prepare('INSERT INTO dm_stop VALUES(?)').run('c:p'+String(i).padStart(5,'0'));
+sql.prepare('INSERT INTO dm_stop VALUES(?)').run('c:zzzz-stop');
+sql.prepare('INSERT INTO dm_fil VALUES(?,?,?,?,?)').run(20,'zzzz-stop','in','Je veux faire estimer mon bien','2026-11-17T12:00:00Z');
 sql.prepare('INSERT INTO ig_commentaires VALUES(?,?,?,?,?,?,?)').run('i1','m1','compte1','Je souhaite faire estimer mon bien','recu','','2026-11-17T13:00:00Z');
 sql.prepare('INSERT INTO ig_commentaires VALUES(?,?,?,?,?,?,?)').run('i2','m1','compte2','Très belle vidéo','recu','','2026-11-17T13:00:00Z');
 sql.prepare('INSERT INTO veille_postal VALUES(?,?,?,?,?,?,?,?)').run('p1','registre/1','D-1',null,'2026-11-15T10:00:00Z',null,null,now.toISOString());
