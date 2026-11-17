@@ -15,6 +15,7 @@ e = html.escape
 HORAIRES = '<dl class="horaires"><dt>Lundi, mardi</dt><dd>9 h 30 à 18 h</dd><dt>Mercredi</dt><dd>Fermé</dd><dt>Jeudi, vendredi</dt><dd>9 h 30 à 18 h</dd><dt>Samedi, dimanche</dt><dd>Fermé</dd></dl>'
 PRIX = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'prix.json'), encoding='utf-8'))
 M = '/assets/m'
+DISCUSSION = False   # à passer à True quand le projet Cloudflare de l'agence aura ses variables (liste d'exclusions, clé du modèle)
 EQUIPE = [('marion-gravelin', 'Marion Gravelin', 'Fondatrice et dirigeante de l’agence', 'Marion a créé l’agence en 2016 et la dirige depuis. Elle est titulaire de la carte professionnelle et suit les ventes et les mises en location.'),
           ('shawez-ali', 'Shawez Ali', 'Agent commercial, Dijon', 'Shawez vend des appartements, des maisons, des immeubles et des commerces. Il reçoit ses clients en français, en anglais et dans six autres langues.'),
           ('bernard-gogneau', 'Bernard Gogneau', 'Agent commercial, Beaune', 'Bernard accompagne les vendeurs et les acheteurs à Beaune et dans les villages de la Côte.')]
@@ -187,7 +188,7 @@ def page(chemin, titre, desc, corps, actif='', tete='', fin='', index=True, clas
 <div class="pied-bas"><p>© {datetime.date.today().year} GRAVELIN IMMO, agence immobilière à Dijon depuis 2016.</p><p><a href="/mentions-legales/">Mentions légales</a> &nbsp; <a href="/confidentialite/">Confidentialité</a></p></div>
 </div></footer>
 <script src="/assets/app.js" defer></script>
-{'' if prive else '<script src="/assets/discussion.js" defer></script>'}
+{'' if (prive or not DISCUSSION) else '<script src="/assets/discussion.js" defer></script>'}
 {fin}
 </body>
 </html>'''
