@@ -160,7 +160,7 @@ FILM = '''<section class="bloc fond-nuit"><div class="enveloppe film">
 <div class="film-cadre"><img src="/assets/film-affiche.webp" alt="Vue aérienne d’une longère filmée par l’agence" loading="lazy" width="1920" height="1080">
 <button class="film-jouer" type="button" data-video="https://shawez-immo.com/film-equipe.mp4"><i aria-hidden="true"></i><span>Regarder le film, 42 secondes</span></button></div>
 <div><h2>Chaque bien a son film</h2>
-<p class="chapo" style="margin-top:18px">Drone, stabilisateur, lumière du matin : nous filmons les biens que nous vendons. Les acheteurs visitent une première fois depuis leur canapé, et ceux qui se déplacent savent déjà pourquoi ils viennent.</p>
+<p class="chapo" style="margin-top:18px">Drone, stabilisateur, lumière du matin : notre vidéaste, notre photographe et nos monteurs préparent chaque bien avant sa mise en vente. Les acheteurs visitent une première fois depuis leur canapé, et ceux qui se déplacent savent déjà pourquoi ils viennent.</p>
 <p><a class="lien" style="color:#fff" href="/vendre/">Comment nous vendons</a></p></div>
 </div></section>'''
 
@@ -243,7 +243,7 @@ def accueil(biens):
 <p><a class="btn btn-bleu" href="/vendre/">Notre façon de vendre</a></p></div>
 <ol class="etapes">
 <li><h3>L’estimation</h3><p>Nous partons des ventes signées dans votre rue et votre quartier, puis nous visitons. Vous repartez avec un prix argumenté.</p></li>
-<li><h3>La mise en valeur</h3><p>Photos soignées et film du bien. Plus de 200 biens ont déjà été présentés en vidéo par l’agence.</p></li>
+<li><h3>La mise en valeur</h3><p>Notre équipe de marketing photographie et filme le bien. Plus de 200 biens ont déjà été présentés en vidéo par l’agence.</p></li>
 <li><h3>La diffusion et les visites</h3><p>Le bien part sur les sites d’annonces et nos réseaux. Nous vérifions le financement des acheteurs avant de vous les présenter.</p></li>
 <li><h3>Du compromis à l’acte</h3><p>Nous suivons le dossier avec le notaire jusqu’à la remise des clés.</p></li>
 </ol>
@@ -411,7 +411,7 @@ def pages_fixes(biens):
 <ol class="etapes">
 <li><h3>L’estimation</h3><p>Nous regardons les ventes signées dans votre secteur, l’état du bien, sa copropriété, son diagnostic énergétique. Puis nous venons le voir.</p></li>
 <li><h3>Le prix de mise en vente</h3><p>Nous vous disons le prix auquel nous pensons vendre, et pourquoi. Un prix trop haut fait perdre des mois, puis de l’argent.</p></li>
-<li><h3>Le film et les photos</h3><p>Le bien est photographié et filmé. Les acheteurs le découvrent avant de se déplacer : ceux qui viennent sont déjà intéressés.</p></li>
+<li><h3>Le film et les photos</h3><p>Notre vidéaste et notre photographe viennent sur place, puis nos monteurs préparent les images. Les acheteurs le découvrent avant de se déplacer : ceux qui viennent sont déjà intéressés.</p></li>
 <li><h3>La diffusion</h3><p>Annonce sur les grands sites, sur nos réseaux, auprès de nos acquéreurs en recherche et dans notre vitrine, rue Bannelier.</p></li>
 <li><h3>Les visites et l’offre</h3><p>Nous vérifions le projet et le financement des acheteurs, nous vous transmettons chaque offre avec notre avis.</p></li>
 <li><h3>Du compromis à l’acte</h3><p>Nous préparons le dossier pour le notaire et suivons les délais jusqu’à la signature définitive.</p></li>
@@ -437,11 +437,22 @@ def pages_fixes(biens):
 <div class="personnes">
 <div class="personne"><h2>Marion Gravelin</h2><p class="role">Fondatrice et dirigeante de l’agence</p>
 <p>Marion a créé l’agence en 2016 et la dirige depuis. Elle est titulaire de la carte professionnelle et suit les dossiers de vente et de location de l’agence.</p></div>
-<div class="personne"><h2>Shawez Ali</h2><p class="role">Agent immobilier</p>
-<p>Shawez vend des appartements, des maisons, des immeubles et des commerces. Il filme lui-même les biens qu’il présente et reçoit ses clients en français, en anglais et dans six autres langues.</p></div>
+<div class="personne"><h2>Shawez Ali</h2><p class="role">Agent commercial</p>
+<p>Shawez vend des appartements, des maisons, des immeubles et des commerces, à Dijon et jusqu’à Beaune. Il reçoit ses clients en français, en anglais et dans six autres langues.</p></div>
+</div>
+<div class="deux" style="margin-top:var(--pas)">
+<div><h2>Une équipe entière derrière chaque bien</h2>
+<p class="chapo" style="margin-top:20px">Vendre un bien, c’est aussi le montrer. L’agence travaille avec sa propre équipe de marketing.</p></div>
+<div class="prose"><p>Robin, notre vidéaste, tourne les films au stabilisateur et au drone. Notre photographe réalise les prises de vue. Nos monteurs vidéo et nos retoucheurs photo préparent ensuite chaque image avant la mise en vente.</p>
+<p>C’est ce travail qui a permis à l’agence de présenter plus de 200 biens en vidéo.</p></div>
+</div>
+<div class="trio">
+<img src="/assets/equipe-tournage.webp" alt="Préparation d’un tournage dans la cuisine d’une maison en pierre" loading="lazy" width="800" height="1067">
+<img src="/assets/equipe-preparation.webp" alt="Le vidéaste de l’agence prépare son matériel" loading="lazy" width="800" height="1067">
+<img src="/assets/equipe-agence.webp" alt="Le vidéaste et sa caméra sur trépied, devant l’agence" loading="lazy" width="900" height="1600">
 </div>
 <div class="prose" style="margin-top:var(--pas)"><h2>Ce qui compte pour nous</h2>
-<p>Connaître nos clients et leurs biens. Dire les choses clairement, y compris sur le prix. Et montrer chaque bien aussi bien qu’il le mérite : c’est pour cela que l’agence a filmé plus de 200 biens.</p>
+<p>Connaître nos clients et leurs biens. Dire les choses clairement, y compris sur le prix. Et montrer chaque bien aussi bien qu’il le mérite.</p>
 <p><a class="lien" href="/avis/">{AVIS["note"]} sur 5 sur Google, sur {AVIS["nombre"]} avis</a></p></div>
 </section>''' + APPEL, '/agence/')
 
