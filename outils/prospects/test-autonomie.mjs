@@ -42,3 +42,15 @@ await horloge.scheduled({cron:'40 5,6 * * *',scheduledTime:Date.parse('2026-11-1
 await horloge.scheduled({cron:'40 5,6 * * *',scheduledTime:Date.parse('2026-11-18T06:40:00Z')});assert.equal(calls,1);
 await horloge.scheduled({cron:'40 5,6 * * *',scheduledTime:Date.parse('2026-07-18T05:40:00Z')});assert.equal(calls,2);
 console.log('OK : passage serveur simulé complet sur trois sources, atomicité, absence d’accès, horaires Paris été/hiver, avis après événements réels et une relance J+3, oppositions, attribution ManyChat jusqu’au lead sans identité dans l’URL. Aucun message réel envoyé.');
+
+const {onRequest:avisAPI}=await import('../../functions/api/avis-google/[[route]].js');
+const {sha256}=await import('../../functions/_lib/base.js');
+const userToken='fixture-avis-admin-token';env.ADMIN_EMAILS='agency@example.invalid';
+sql.prepare("INSERT INTO comptes(email,mdp,verifie,cree_le) VALUES('agency@example.invalid','',1,?)").run(now.toISOString());
+sql.prepare('INSERT INTO sessions(id,compte_id,expire,cree_le,prouve) VALUES(?,1,?,?,1)').run(await sha256(userToken),Math.floor(Date.now()/1000)+3600,now.toISOString());
+const reqAvis=origin=>new Request('https://site.example.invalid/api/avis-google/avis-recu',{method:'POST',headers:{Cookie:'se_session='+userToken,Origin:origin,'Content-Type':'application/json'},body:JSON.stringify({demande_reference:'D-1'})});
+assert.equal((await avisAPI({env,params:{route:['avis-recu']},request:reqAvis('https://evil.example.invalid')})).status,403);
+sql.prepare("UPDATE google_avis SET etat='envoye' WHERE demande_id=1").run();
+assert.equal((await avisAPI({env,params:{route:['avis-recu']},request:reqAvis('https://site.example.invalid')})).status,200);
+assert.equal(sql.prepare('SELECT etat FROM google_avis WHERE demande_id=1').get().etat,'avis_recu');
+console.log('OK : confirmation d’avis reçu par référence interne, accès agence et contrôle d’origine, arrêt effectif de la relance.');
