@@ -28,16 +28,19 @@ export async function init(DB) {
 }
 export async function historyName(id) {const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(id));return 'reels_h_'+Array.from(new Uint8Array(digest),b=>b.toString(16).padStart(2,'0')).join('');}
 export function tableName(name) {if(!/^reels_h_[a-f0-9]{64}$/.test(name))throw new Error('table_invalide');return name;}
-export async function persist(DB, reels, observed, report) {
+export async function persist(DB, reels, observed, report, versions=[]) {
  // Tout valider avant la première écriture ; pas de suppression des Reels absents du fournisseur.
  if(!Number.isFinite(Date.parse(observed))||!/^\d{4}-\d\d-\d\d$/.test(report))throw new Error('date_invalide');
  for(const reel of reels) {
  const table=await historyName(reel.id);
  await DB.prepare(`CREATE TABLE IF NOT EXISTS ${table} (observe_le TEXT PRIMARY KEY, rapport_jour TEXT NOT NULL, mesures TEXT NOT NULL, brut TEXT NOT NULL, meta TEXT NOT NULL)`).run();
  const old=await DB.prepare('SELECT * FROM reels_registre WHERE id=?').bind(reel.id).first();
- const meta={accroche:old?.accroche||null,type:old?.type||'inconnu',mot_cle:old?.mot_cle||null,duree:old?.duree??null};
+ // Le registre du Monteur décrit explicitement chaque Trial Reel ; correspondance par URL exacte seulement.
+ const matches=versions.filter(v=>v.url?.replace(/\/$/,'')===reel.url.replace(/\/$/,''));
+ const version=matches.length===1?matches[0]:null;
+ const meta={accroche:old?.accroche||version?.accroche||null,type:old?.type&&old.type!=='inconnu'?old.type:version?'essai':'inconnu',mot_cle:old?.mot_cle||version?.mot||null,duree:old?.duree??null};
  await DB.batch([
- DB.prepare(`INSERT INTO reels_registre(id,url,publie,contenu,historique,mesures,observe_le,rapport_jour) VALUES(?,?,?,?,?,?,?,?) ON CONFLICT(id) DO UPDATE SET url=excluded.url,publie=excluded.publie,contenu=excluded.contenu,mesures=excluded.mesures,observe_le=excluded.observe_le,rapport_jour=excluded.rapport_jour WHERE excluded.observe_le>=reels_registre.observe_le`).bind(reel.id,reel.url,reel.published,reel.content,table,JSON.stringify(reel.metrics),observed,report),
+ DB.prepare(`INSERT INTO reels_registre(id,url,publie,contenu,historique,mesures,observe_le,rapport_jour,type,accroche,mot_cle) VALUES(?,?,?,?,?,?,?,?,?,?,?) ON CONFLICT(id) DO UPDATE SET url=excluded.url,publie=excluded.publie,contenu=excluded.contenu,mesures=excluded.mesures,observe_le=excluded.observe_le,rapport_jour=excluded.rapport_jour,type=excluded.type,accroche=excluded.accroche,mot_cle=excluded.mot_cle WHERE excluded.observe_le>=reels_registre.observe_le`).bind(reel.id,reel.url,reel.published,reel.content,table,JSON.stringify(reel.metrics),observed,report,meta.type,meta.accroche,meta.mot_cle),
  DB.prepare(`INSERT OR IGNORE INTO ${table}(observe_le,rapport_jour,mesures,brut,meta) VALUES(?,?,?,?,?)`).bind(observed,report,JSON.stringify(reel.metrics),JSON.stringify(reel.raw),JSON.stringify(meta))
  ]);
  }
@@ -77,8 +80,10 @@ export async function collect(env, now=new Date()) {
    if(!values.length || values.length!==reels.length || values.some(r=>!reels.some(x=>x.id===r.id)))throw new Error('metricool_dataset_incomplet');
    reels=values;complement='datastudio';
  }
- await persist(env.DB,reels,observed,report);
+ let versions=[],registre='indisponible';
+ try {const response=await fetch('https://raw.githubusercontent.com/shawez-lab/shawez-immo/main/outils/trial-reels/registre.json',{signal:AbortSignal.timeout(15000)}); if(response.ok){const source=await response.json();if(!Array.isArray(source.versions))throw new Error();versions=source.versions;registre='ok';}}catch{}
+ await persist(env.DB,reels,observed,report,versions);
  await env.DB.prepare("UPDATE reels_collectes SET fin=?,statut='ok',nombre=? WHERE id=?").bind(new Date().toISOString(),reels.length,id).run();
- return {ok:true,nombre:reels.length,rapport_jour:report,source:complement,limite:'IGRE27 et IGRE28 restent indisponibles si absents de la réponse REST. Import Data Studio accepté séparément.'};
+ return {ok:true,nombre:reels.length,rapport_jour:report,source:complement,registre_programmation:registre,limite:'IGRE27 et IGRE28 restent indisponibles si absents de la réponse REST. Import Data Studio accepté séparément.'};
  }catch(e){const code=/^(metricool_|mesure_|reel_|url_|date_|taux_)/.test(e.message)?e.message:'collecte_echec';await env.DB.prepare("UPDATE reels_collectes SET fin=?,statut='erreur',erreur=? WHERE id=?").bind(new Date().toISOString(),code,id).run();throw new Error(code);}
 }
