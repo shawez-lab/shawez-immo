@@ -130,3 +130,13 @@ Chaque passage de `outils/sync_annonces.py` ajoute ici les changements constaté
 ## 2026-11-07
 
 - Annonce PREF : absente des pages de l'agence et fiche hors ligne, sans mention → « retirée ».
+
+## 2026-11-17
+
+- Nouvelle annonce 534 : Appartement à Dijon, 150 000 €.
+- Nouvelle annonce 533 : Appartement à Dijon, 111 000 €.
+- Annonce 529 : prix 350 000 € → 329 000 €.
+- Annonce 525 : prix 450 000 € → 419 000 €.
+- Nouvelle annonce 485 : Maison à Saint-Vallier, 160 000 €.
+- Annonce 474 : prix 79 800 € → 69 500 €.
+- Annonce 452IMMEUBLE : absente des pages de l'agence et fiche hors ligne, sans mention → « retirée ».
