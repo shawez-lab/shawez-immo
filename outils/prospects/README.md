@@ -18,10 +18,12 @@ Une seule demande par e-mail sur 30 jours, aucune nouvelle demande après avis r
 
 ## Attribution des Reels
 
-La requête externe ManyChat doit envoyer media_id sous forme de chaîne contenant le vrai identifiant natif, séparément de post qui conserve la clé de contenu. Pas de conversion depuis un nombre JavaScript ni de déduction à partir d’un mot-clé. Les variables non résolues et les shortcodes sont refusés comme media_id. Les automatismes « tous les Reels » qui ne fournissent pas cet identifiant restent sans attribution précise.
+La requête externe ManyChat doit envoyer media_id sous forme de chaîne contenant le vrai identifiant natif présent dans le registre, y compris sa forme numérique composite avec suffixe de compte, séparément de post qui conserve la clé de contenu. Pas de conversion depuis un nombre JavaScript ni de déduction à partir d’un mot-clé. Les variables non résolues et les shortcodes sont refusés comme media_id. Les automatismes « tous les Reels » qui ne fournissent pas cet identifiant restent sans attribution précise.
 
 Quand le média est transmis, le lien d’estimation contient un jeton opaque valable 30 jours. La demande déposée est rattachée dans demandes_reels_attribution, sans nom, adresse ou identifiant Instagram dans l’URL. Un commentaire, une interaction et une demande déposée restent trois mesures distinctes. Le premier rattachement d’une demande est conservé lors des reprises. Les flux ManyChat doivent être vérifiés dans leur interface avant publication ; aucune variable média disponible n’est supposée.
 
 ## Vérifications
 
 node outils/prospects/test.mjs lance les contrôles historiques puis test-autonomie.mjs. Le passage complet simulé couvre les trois sources, l’atomicité et les erreurs Google, les horaires été/hiver, les déclencheurs d’avis et leur destinataire, l’arrêt des relances et l’attribution jusqu’au lead. Aucun message réel n’est envoyé par les tests. Un test simulé ne vaut pas validation d’un accès Google réel ni d’une livraison client réelle.
+
+Le diagnostic ManyChat action=controle_attribution vérifie le media_id reçu contre reels_registre, sans écrire de conversation ni envoyer de message. Il utilise l’authentification habituelle du webhook.

@@ -1,5 +1,5 @@
 import { jeton } from './base.js';
-export const mediaId=s=>typeof s==='string'&&/^\d{10,30}$/.test(s)?s:null;
+export const mediaId=s=>typeof s==='string'&&/^\d{10,30}(?:_\d{5,30})?$/.test(s)?s:null;
 export const tokenValide=s=>typeof s==='string'&&/^[\w-]{43}$/.test(s);
 export async function baseAttribution(b){await b.batch([
  b.prepare('CREATE TABLE IF NOT EXISTS dm_reels_attribution(token TEXT PRIMARY KEY,evenement TEXT NOT NULL UNIQUE,media_id TEXT NOT NULL,post TEXT,cree_le TEXT NOT NULL)'),

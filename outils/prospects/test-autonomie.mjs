@@ -34,7 +34,7 @@ sql.prepare('UPDATE veille_drive_controles SET controle_le=?').run('2026-11-21T0
 assert.equal((await traiterAvis(live,{now:new Date('2026-11-21T07:59:00Z'),transport})).envoyes,0);
 assert.equal((await traiterAvis(live,{now:new Date('2026-11-21T08:00:00Z'),transport})).envoyes,1);assert.equal((await traiterAvis(live,{now:new Date('2026-11-21T09:00:00Z'),transport})).envoyes,0);assert.equal(sent.length,4);
 assert.equal(mediaId('{{media_id}}'),null);assert.equal(mediaId('Dej6eibNLq9'),null);assert.equal(mediaId(17812345678901234),null);
-const mid='17812345678901234',t=await noterMedia(DB,'event-1',mid,'mot:estimation',now);assert(t);assert.equal(await noterMedia(DB,'event-1',mid,'mot:estimation',now),t);
+const mid='4018078194278347662_39659804928',t=await noterMedia(DB,'event-1',mid,'mot:estimation',now);assert(t);assert.equal(await noterMedia(DB,'event-1',mid,'mot:estimation',now),t);
 const bloc=attacherMedia({fiche_url:'https://shawez-immo.com/estimer/',content:{messages:[{buttons:[{url:'https://shawez-immo.com/estimer/'}]}]}},t);assert(bloc.fiche_url.includes('reel_source='+t));assert(!bloc.fiche_url.includes(mid));
 assert(await rattacherDemande(DB,1,t,now));assert.equal(sql.prepare('SELECT media_id FROM demandes_reels_attribution WHERE demande_id=1').get().media_id,mid);assert.equal(await rattacherDemande(DB,2,'faux',now),false);assert.equal(await rattacherDemande(DB,2,t,new Date(+now+31*86400000)),false);
 let calls=0;globalThis.fetch=async()=>{calls++;return Response.json({etat:'avant_8h',controle_drive:{etat:'ok'}})};

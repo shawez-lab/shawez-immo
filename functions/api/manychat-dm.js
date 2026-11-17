@@ -566,6 +566,7 @@ export async function onRequest({ request, env }) {
       if (intention) post = 'vendre';
     } else if (request.method === 'POST') {
       const c = await request.json().catch(() => ({}));
+      if(c.action==='controle_attribution'){const id=mediaId(c.media_id);if(!id)return json(400,{error:'media_id_invalide'});const reel=await env.DB.prepare('SELECT id,url FROM reels_registre WHERE id=?').bind(id).first();return json(200,{media_id_recu:id,registre_confirme:!!reel,lien_reel:reel?.url||null,ecriture:false,message_envoye:false});}
       if (c.action === 'garde') {
         // Garde-fou sans appel à Claude, pour les flux ManyChat non personnalisés (réponses aux stories,
         // Conversation Starters, mentions en story) : règle 9, mode test, horaires de Paris, fenêtre Instagram de 24 h.
