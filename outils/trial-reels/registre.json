@@ -16795,7 +16795,7 @@
   },
   {
    "id": "TR-1511-estimation-x",
-   "date": "2026-11-15",
+   "date": "2026-11-17",
    "heure": "12:00",
    "ref": "estimation",
    "mot": "ESTIMATION",
@@ -16804,7 +16804,7 @@
    "source": "autre",
    "uuid": "-4134686003081031912",
    "statut": "brouillon_juge",
-   "note_juge": "16/11 : retrouvée en draft false (programmée 17/11 12:00), remise en brouillon par le Juge (style autre interdit, bien estimation en pause)"
+   "note_juge": "16/11 : retrouvée en draft false (programmée 17/11 12:00), remise en brouillon par le Juge (style autre interdit, bien estimation en pause) | 17/11 : de nouveau en draft false (17/11 12:00), remise en brouillon par le Juge (style autre interdit, bien estimation en pause)"
   },
   {
    "id": "TR-1511-estimation-x2",
@@ -16844,6 +16844,32 @@
    },
    "vues_total": 128,
    "verdict": "en_cours"
+  },
+  {
+   "id": "TR-1711-estimation-x",
+   "date": "2026-11-17",
+   "heure": "19:00",
+   "ref": "estimation",
+   "mot": "ESTIMATION",
+   "style": "autre",
+   "legende": "Deux secondes sur tes photos, et l'acheteur a déjà décidé.  Commente ESTIMATION et on regarde ce que vaut vraiment ton b",
+   "source": "autre",
+   "uuid": "-8862550744710493399",
+   "statut": "brouillon_juge",
+   "note_juge": "17/11 : trouvée en attente (créée le 17/11 vers 3 h 12), hors registre, mise en brouillon par le Juge (style autre interdit, bien estimation en pause)"
+  },
+  {
+   "id": "TR-1811-estimation-x",
+   "date": "2026-11-18",
+   "heure": "12:00",
+   "ref": "estimation",
+   "mot": "ESTIMATION",
+   "style": "autre",
+   "legende": "Attendre le printemps pour vendre, ça peut te coûter 15 000 €.  Commente ESTIMATION et je te montre ce que ton bien vaut",
+   "source": "autre",
+   "uuid": "4086285713352248544",
+   "statut": "brouillon_juge",
+   "note_juge": "17/11 : trouvée en attente (créée le 17/11 vers 3 h 12), hors registre, mise en brouillon par le Juge (style autre interdit, bien estimation en pause)"
   }
  ]
 }
