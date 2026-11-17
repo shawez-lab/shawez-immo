@@ -22,8 +22,13 @@ sql.prepare('INSERT INTO veille_postal VALUES(?,?,?,?,?,?,?,?)').run('p1','regis
 sql.prepare('INSERT INTO veille_postal VALUES(?,?,?,?,?,?,?,?)').run('p2','registre/2','D-1',null,'2026-11-16T10:00:00Z',null,null,now.toISOString());
 sql.prepare('INSERT INTO avis_prospects_demandes VALUES(?,?,?)').run('avis-1','D-1','2026-11-17T10:00:00Z');
 const ctx={env,request:new Request('https://site.example.invalid/api/prospects')};
-let v=await veille(ctx,now);assert.equal(v.mode,'entrants_uniquement');assert.equal(v.compteurs.leads.recus,1);assert.equal(v.compteurs.dm.demandes_vendeurs,1);assert.equal(v.compteurs.commentaires.demandes_vendeurs,1);
-assert.equal(v.compteurs.postal.envoyes,2);assert.equal(v.compteurs.postal.demandes_attribuees,1);assert.equal(v.compteurs.postal.taux_demande,50);assert.equal(v.compteurs.google.mesures,null);assert.equal(v.actions.length,3);
+sql.exec('CREATE TABLE leads_tri(id TEXT PRIMARY KEY,recu TEXT,de TEXT,categorie TEXT,decision TEXT,raison TEXT); CREATE TABLE leads_reponses(id TEXT PRIMARY KEY,resultat TEXT);');
+sql.prepare('INSERT INTO leads_tri VALUES(?,?,?,?,?,?)').run('mail-1','2026-11-17T10:00:00Z','entrant@example.invalid','vendeur','envoyer','ok');
+sql.prepare('INSERT INTO leads_tri VALUES(?,?,?,?,?,?)').run('mail-2','2026-11-17T10:00:00Z','confirme@example.invalid','vendeur','envoyer','applique:envoye');
+sql.prepare('INSERT INTO leads_tri VALUES(?,?,?,?,?,?)').run('mail-3','2026-11-17T10:00:00Z','autre@example.invalid','vendeur','brouillon','ok');
+sql.prepare('INSERT INTO leads_reponses VALUES(?,?)').run('mail-3',JSON.stringify({nom:'Exclu Test'}));
+let v=await veille(ctx,now);assert.equal(v.mode,'entrants_uniquement');assert.equal(v.compteurs.leads.recus,1);assert.equal(v.compteurs.dm.demandes_vendeurs,1);assert.equal(v.compteurs.commentaires.demandes_vendeurs,1);assert.equal(v.compteurs.mails.a_verifier,1);assert(v.actions.some(x=>x.cle==='mail:mail-1'));assert(!v.actions.some(x=>x.cle==='mail:mail-3'));
+assert.equal(v.compteurs.postal.envoyes,2);assert.equal(v.compteurs.postal.demandes_attribuees,1);assert.equal(v.compteurs.postal.taux_demande,50);assert.equal(v.compteurs.google.mesures,null);assert.equal(v.actions.length,4);
 assert.equal(qualification({texte:'Merci pour cette vidéo'}).action,false);assert.equal(qualification({texte:'Estimation',reponse:'Réponse déjà envoyée'}).action,false);assert.throws(()=>exclusions({}));
 assert.equal((await quotidien(ctx,false,new Date('2026-11-18T02:00:00Z'))).etat,'avant_8h');
 assert.equal((await quotidien(ctx,false,now)).etat,'ok');assert.equal((await quotidien(ctx,false,now)).etat,'deja_execute');
