@@ -1,5 +1,6 @@
+import {migrateHistory,verifyHistory} from '../../_lib/reels-migration.js';
 import {compteSession,estAdmin,verifierOrigine,Erreur,corps,json,db} from '../../_lib/base.js';
-import {init,processImports,importStatus,importWindow,decodeDataset,persist,day,yesterday,briefing,keywordLeads,tableName,normalize} from '../../_lib/reels.js';
+import {init,processImports,importStatus,importWindow,decodeDataset,persist,day,yesterday,briefing,keywordLeads,fingerprint,normalize} from '../../_lib/reels.js';
 async function admin(request,env) {const c=await compteSession(request,env);if(!c)throw new Erreur(401,'connexion');if(!estAdmin(c,env))throw new Erreur(403,'interdit');return c;}
 const validId=id=>typeof id==='string'&&/^[a-zA-Z0-9_-]{1,100}$/.test(id);
 export async function onRequest({request,env,params}) {
@@ -12,6 +13,7 @@ export async function onRequest({request,env,params}) {
  }
  if(method==='POST'&&route==='/collect'){verifierOrigine(request);await admin(request,env);return json(200,await processImports(env));}
  verifierOrigine(request);await admin(request,env); const DB=await db(env);await init(DB);
+ if(method==='POST'&&route==='/migration') {const b=await corps(request,1000);if(b.action==='copier')return json(200,await migrateHistory(DB));if(b.action==='verifier')return json(200,await verifyHistory(DB));throw new Erreur(400,'action_migration');}
  if(method==='GET'&&route==='/') {
  const found=await DB.prepare('SELECT * FROM reels_registre ORDER BY publie DESC').all();let rows=found.results.map(r=>({...r,mesures:JSON.parse(r.mesures||'{}'),leads_reel:null}));
  const from=u.searchParams.get('debut')||'',to=u.searchParams.get('fin')||'',type=u.searchParams.get('type')||'';
@@ -22,7 +24,7 @@ export async function onRequest({request,env,params}) {
  }
  if(method==='GET'&&route==='/historique') {
  const reel=await DB.prepare('SELECT * FROM reels_registre WHERE id=?').bind(u.searchParams.get('id')||'').first();if(!reel)throw new Erreur(404,'reel_absent');
- const rows=await DB.prepare(`SELECT * FROM ${tableName(reel.historique)} ORDER BY observe_le DESC LIMIT 500`).all();return json(200,{reel,historique:rows.results.map(r=>({...r,mesures:JSON.parse(r.mesures),meta:JSON.parse(r.meta)}))});
+ const rows=await DB.prepare('SELECT observe_le,rapport_jour,mesures,brut,meta FROM reels_historique WHERE empreinte=? ORDER BY observe_le DESC LIMIT 500').bind(fingerprint(reel.historique)).all();return json(200,{reel,historique:rows.results.map(r=>({...r,mesures:JSON.parse(r.mesures),meta:JSON.parse(r.meta)}))});
  }
  if(method==='POST'&&route==='/import') {
  const b=await corps(request,4000000);if(b.brandId!=='7212231'||b.timezone!=='Europe/Paris')throw new Erreur(400,'marque_invalide');
@@ -35,7 +37,7 @@ export async function onRequest({request,env,params}) {
  const duree=b.duree==null||b.duree===''?null:Number(b.duree);if(duree!=null&&(!Number.isFinite(duree)||duree<=0||duree>3600))throw new Erreur(400,'duree');
  const r=await DB.prepare('SELECT * FROM reels_registre WHERE id=?').bind(b.id).first();if(!r)throw new Erreur(404,'reel_absent');
  const now=new Date().toISOString(),meta={type:b.type,accroche:b.accroche.trim(),mot_cle:b.mot_cle.trim().toLowerCase(),duree};
- await DB.batch([DB.prepare('UPDATE reels_registre SET type=?,accroche=?,mot_cle=?,duree=?,maj_meta=? WHERE id=?').bind(meta.type,meta.accroche,meta.mot_cle,duree,now,b.id),DB.prepare(`INSERT INTO ${tableName(r.historique)} VALUES(?,?,?,?,?)`).bind(now,r.rapport_jour||day(now),r.mesures||'{}',JSON.stringify({evenement:'correction_meta'}),JSON.stringify(meta))]);return json(200,{ok:true});
+ await DB.batch([DB.prepare('UPDATE reels_registre SET type=?,accroche=?,mot_cle=?,duree=?,maj_meta=? WHERE id=?').bind(meta.type,meta.accroche,meta.mot_cle,duree,now,b.id),DB.prepare('INSERT INTO reels_historique(empreinte,observe_le,rapport_jour,mesures,brut,meta) VALUES(?,?,?,?,?,?)').bind(fingerprint(r.historique),now,r.rapport_jour||day(now),r.mesures||'{}',JSON.stringify({evenement:'correction_meta'}),JSON.stringify(meta))]);return json(200,{ok:true});
  }
  if(method==='POST'&&route==='/programmation') {
  const b=await corps(request,5000);if(typeof b.uuid!=='string'||!/^[-\w]{1,100}$/.test(b.uuid)||!['essai','normal'].includes(b.type)||typeof b.accroche!=='string'||!b.accroche.trim()||b.accroche.length>500||typeof b.mot_cle!=='string'||b.mot_cle.length>80||typeof b.programme_le!=='string'||!Number.isFinite(Date.parse(b.programme_le)))throw new Erreur(400,'champs');

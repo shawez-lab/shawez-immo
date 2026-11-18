@@ -1,3 +1,4 @@
+import { requeteModele } from '../_lib/modele.js';
 /* GÉNÉRÉ depuis chat.js par le générateur du site de l'agence (branche agence, outils-agence/chat_agence.py) : ne pas modifier à la main.
    Discussion du site de l'agence GRAVELIN IMMO : même moteur et mêmes garde-fous que /api/chat, au nom de l'agence,
    appelée depuis le site de l'agence (origines autorisées ci-dessous). */
@@ -111,7 +112,7 @@ async function appelClaude(env, fil, message, etat, correction) {
   const connu = [etat.prenom && `Prénom : ${etat.prenom}`, etat.intention && `Intention : ${etat.intention}`,
     etat.secteur && `Secteur : ${etat.secteur}`, etat.budget && `Budget : ${etat.budget}`,
     etat.echeance && `Échéance : ${etat.echeance}`].filter(Boolean).join('\n');
-  const r = await fetch('https://api.anthropic.com/v1/messages', {
+  const r = await requeteModele('https://api.anthropic.com/v1/messages', {
     method: 'POST',
     headers: { 'x-api-key': env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
     body: JSON.stringify({
@@ -124,12 +125,6 @@ async function appelClaude(env, fil, message, etat, correction) {
       }],
     }),
   });
-  if (!r.ok) {
-    // Le type et le début du message d'erreur de l'API, pour savoir pourquoi le modèle ne répond pas (jamais de secret dedans).
-    const err = await r.json().catch(() => null);
-    const detail = err && err.error ? `${err.error.type || ''} ${err.error.message || ''}` : '';
-    throw new Error(`claude ${r.status} ${detail}`);
-  }
   const d = await r.json();
   const brut = (d.content || []).map((c) => c.text || '').join('').trim();
   const cout = (d.usage ? d.usage.input_tokens * PRIX_ENTREE + d.usage.output_tokens * PRIX_SORTIE : 0);

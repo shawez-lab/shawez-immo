@@ -1,4 +1,4 @@
-/* Reels: registre et une table d'historique par Reel. Aucun zéro fabriqué. */
+/* Reels : registre et historique commun, isolé par empreinte. Aucun zéro fabriqué. */
 export const FIELDS = {IGRE01:'date',IGRE02:'timestamp',IGRE03:'content',IGRE04:'reelId',IGRE05:'imageUrl',IGRE06:'url',IGRE07:'comments',IGRE08:'engagement',IGRE09:'interactions',IGRE10:'likes',IGRE11:'reach',IGRE12:'saved',IGRE13:'videoViews',IGRE14:'videoViewsPaid',IGRE15:'videoViewsTotal',IGRE16:'reachPaid',IGRE17:'postInteractionsPaid',IGRE18:'postClicksPaid',IGRE19:'businessId',IGRE20:'spend',IGRE21:'shares',IGRE22:'interactionsTotal',IGRE23:'views',IGRE24:'averageWatchTime',IGRE25:'videoViewTotalTime',IGRE26:'durationSeconds',IGRE27:'retention',IGRE28:'reelsViewRate',IGRE29:'reposts',IGRE30:'reelsSkipRate'};
 export const METRICS = ['durationSeconds','views','reach','reelsSkipRate','reelsViewRate','retention','averageWatchTime','likes','comments','saved','shares','reposts'];
 export const day = d => new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Paris',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(d));
@@ -22,19 +22,18 @@ export function decodeDataset(payload, fields) {
 export async function init(DB) {
  await DB.batch([
  DB.prepare(`CREATE TABLE IF NOT EXISTS reels_registre (id TEXT PRIMARY KEY, url TEXT UNIQUE NOT NULL, publie TEXT NOT NULL, contenu TEXT NOT NULL, accroche TEXT, type TEXT NOT NULL DEFAULT 'inconnu' CHECK(type IN ('inconnu','essai','normal')), mot_cle TEXT, duree REAL, historique TEXT NOT NULL, mesures TEXT, observe_le TEXT, rapport_jour TEXT, maj_meta TEXT)`),
+ DB.prepare(`CREATE TABLE IF NOT EXISTS reels_historique (empreinte TEXT NOT NULL, observe_le TEXT NOT NULL, rapport_jour TEXT NOT NULL, mesures TEXT NOT NULL, brut TEXT NOT NULL, meta TEXT NOT NULL, PRIMARY KEY(empreinte,observe_le))`),
  DB.prepare(`CREATE TABLE IF NOT EXISTS reels_collectes (id TEXT PRIMARY KEY, debut TEXT NOT NULL, fin TEXT, statut TEXT NOT NULL, erreur TEXT, nombre INTEGER, rapport_jour TEXT)`),
  DB.prepare(`CREATE TABLE IF NOT EXISTS reels_programmation (uuid TEXT PRIMARY KEY, type TEXT NOT NULL CHECK(type IN ('essai','normal')), accroche TEXT NOT NULL, mot_cle TEXT, programme_le TEXT NOT NULL, reel_id TEXT UNIQUE, cree_le TEXT NOT NULL)`)
  ]);
 }
 export async function historyName(id) {const digest=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(id));return 'reels_h_'+Array.from(new Uint8Array(digest),b=>b.toString(16).padStart(2,'0')).join('');}
 export function tableName(name) {if(!/^reels_h_[a-f0-9]{64}$/.test(name))throw new Error('table_invalide');return name;}
+export function fingerprint(name) { return tableName(name).slice('reels_h_'.length); }
 export async function persist(DB, reels, observed, report, versions=[], after=[]) {
  if(!Number.isFinite(Date.parse(observed))||!/^\d{4}-\d\d-\d\d$/.test(report))throw new Error('date_invalide');
  const existing=new Map((await DB.prepare('SELECT * FROM reels_registre').all()).results.map(r=>[r.id,r]));
  const entries=await Promise.all(reels.map(async reel=>({reel,table:await historyName(reel.id)})));
- // Deux batches D1 : création additive, puis toutes les données ET l'acquittement dans une même transaction.
- // Un batch compte comme un seul appel D1, même avec des centaines de Reels sur le forfait gratuit.
- if(entries.length)await DB.batch(entries.map(({table})=>DB.prepare(`CREATE TABLE IF NOT EXISTS ${table} (observe_le TEXT PRIMARY KEY, rapport_jour TEXT NOT NULL, mesures TEXT NOT NULL, brut TEXT NOT NULL, meta TEXT NOT NULL)`)));
  const commands=[];
  for(const {reel,table} of entries) {
  const old=existing.get(reel.id);
@@ -43,7 +42,7 @@ export async function persist(DB, reels, observed, report, versions=[], after=[]
  const meta={accroche:old?.accroche||version?.accroche||null,type:old?.type&&old.type!=='inconnu'?old.type:version?'essai':'inconnu',mot_cle:old?.mot_cle||version?.mot||null,duree:old?.duree??null};
  commands.push(
  DB.prepare(`INSERT INTO reels_registre(id,url,publie,contenu,historique,mesures,observe_le,rapport_jour,type,accroche,mot_cle) VALUES(?,?,?,?,?,?,?,?,?,?,?) ON CONFLICT(id) DO UPDATE SET url=excluded.url,publie=excluded.publie,contenu=excluded.contenu,mesures=excluded.mesures,observe_le=excluded.observe_le,rapport_jour=excluded.rapport_jour,type=excluded.type,accroche=excluded.accroche,mot_cle=excluded.mot_cle WHERE excluded.observe_le>=reels_registre.observe_le`).bind(reel.id,reel.url,reel.published,reel.content,table,JSON.stringify(reel.metrics),observed,report,meta.type,meta.accroche,meta.mot_cle),
- DB.prepare(`INSERT OR IGNORE INTO ${table}(observe_le,rapport_jour,mesures,brut,meta) VALUES(?,?,?,?,?)`).bind(observed,report,JSON.stringify(reel.metrics),JSON.stringify(reel.raw),JSON.stringify(meta)));
+ DB.prepare(`INSERT OR IGNORE INTO reels_historique(empreinte,observe_le,rapport_jour,mesures,brut,meta) VALUES(?,?,?,?,?,?)`).bind(fingerprint(table),observed,report,JSON.stringify(reel.metrics),JSON.stringify(reel.raw),JSON.stringify(meta)));
  }
  if(commands.length||after.length)await DB.batch([...commands,...after]);
 }
