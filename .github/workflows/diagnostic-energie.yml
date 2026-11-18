@@ -18,7 +18,7 @@ jobs:
       - name: Lire quatre fiches réelles sans modifier les annonces
         run: |
           python3 - <<'PY'
-          import sys, json, re, pathlib
+          import sys, json, re, pathlib, html
           sys.path.insert(0, 'outils')
           import sync_annonces as sync
           dest = pathlib.Path('diagnostic-energie'); dest.mkdir()
@@ -28,6 +28,10 @@ jobs:
               s = sync.get(sync.BASE + a['chemin']).decode('utf-8', 'ignore')
               (dest / (ref + '.html')).write_text(s)
               print('\nFICHE', ref)
+              for i, src in enumerate(dict.fromkeys(re.findall(r'<img[^>]+src="([^"]*dpe.php[^"]*)"', s))):
+                  data = sync.get(sync.BASE + html.unescape(src))
+                  (dest / (ref + '-' + str(i) + '.image')).write_bytes(data)
+                  print('IMAGE', ref, i, data[:80])
               for m in list(re.finditer(r'dpe|ges|kwh|co2|diagnostic', s, re.I))[:80]:
                   print(s[max(0,m.start()-120):m.end()+350].replace('\n',' '))
           PY
