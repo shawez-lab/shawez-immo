@@ -1001,6 +1001,11 @@ def fiche(a, ph, medias, base, voisins, taux):
                     % ''.join('<li class="bl-card">%s</li>' % carte(b, bp, medias) for b, bp in voisins))
 
     crumbs = ('<ol class="bi-crumb bf-crumbs"><li><a href="/">Accueil</a></li><li><a href="/biens-a-vendre-dijon/">Biens à vendre</a></li><li aria-current="page">Réf. %s</li></ol>' % E(ref))
+    if a['commune'] == 'Dijon':
+        from pathlib import Path
+        sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+        from seo.dijon_quartiers import lien_fiche
+        secs.append('<!-- dijon-quartiers-fiche -->' + lien_fiche() + '<!-- /dijon-quartiers-fiche -->')
     main = ('<section class="route bf" data-route="%s" id="bf"><div class="shell">%s%s</div>%s<div class="shell"><div class="bf-head"><div>%s%s</div>%s</div>'
             '<div style="height:clamp(72px,10vw,136px)"></div></div>%s</section>'
             % (chemin_fiche(a), crumbs, stage, strip, entete, ''.join(secs), card.replace('{cls}', 'bf-desk'), lightbox))
