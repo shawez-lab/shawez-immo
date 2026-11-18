@@ -100,12 +100,20 @@ jobs:
 
       - name: Lecture des diagnostics publics (OCR local, sans modèle)
         if: steps.heure.outputs.go == '1' && steps.veille.outputs.change == '1'
-        timeout-minutes: 6
+        timeout-minutes: 16
         continue-on-error: true   # installation impossible : les annonces sont synchronisées quand même, sans relecture des diagnostics
         run: |
+          # L'étape « Outils vidéo » peut dépasser son délai en laissant apt tourner : on le laisse finir, il installe aussi tesseract.
+          for i in $(seq 60); do
+            command -v tesseract >/dev/null && exit 0
+            pgrep -x apt-get >/dev/null || pgrep -x dpkg >/dev/null || break
+            sleep 10
+          done
           command -v tesseract >/dev/null && exit 0
-          sudo apt-get -o DPkg::Lock::Timeout=240 update -qq
-          sudo apt-get -o DPkg::Lock::Timeout=240 install -y -qq --no-install-recommends tesseract-ocr
+          sudo dpkg --configure -a || true
+          sudo apt-get -o DPkg::Lock::Timeout=180 update -qq
+          sudo apt-get -o DPkg::Lock::Timeout=180 install -y -qq --no-install-recommends tesseract-ocr
+          tesseract --version | head -1
 
       - name: Synchronisation
         if: steps.heure.outputs.go == '1' && steps.veille.outputs.change == '1'
