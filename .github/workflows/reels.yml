@@ -1,9 +1,9 @@
 name: Tests du traitement D1 des Reels
 on:
   push:
-    paths: ['functions/_lib/reels.js', 'functions/api/reels/**', 'assets/admin-reels.*', 'admin/reels/**', 'outils/reels/**', '.github/workflows/reels.yml']
+    paths: ['functions/_lib/reels*.js', 'functions/api/reels/**', 'assets/admin-reels.*', 'admin/reels/**', 'outils/reels/**', '.github/workflows/reels.yml']
   pull_request:
-    paths: ['functions/_lib/reels.js', 'functions/api/reels/**', 'assets/admin-reels.*', 'admin/reels/**', 'outils/reels/**', '.github/workflows/reels.yml']
+    paths: ['functions/_lib/reels*.js', 'functions/api/reels/**', 'assets/admin-reels.*', 'admin/reels/**', 'outils/reels/**', '.github/workflows/reels.yml']
 permissions:
   contents: read
 concurrency:

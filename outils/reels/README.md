@@ -16,7 +16,7 @@ Un JSON d’erreur Claude est journalisé comme `erreur_source`, acquitté et ne
 
 Un import utilise `recu_le` pour l’heure d’observation, pas l’heure de traitement. La dernière journée achevée de la période importée sert de date de rapport. Les mesures restent cumulatives ; aucun historique passé n’est reconstruit. Un import plus ancien ne remplace pas l’état récent du registre.
 
-Page `/admin/reels/`, accès agence existant. `reels_registre` : une ligne par Reel ; `reels_h_<sha256 ID>` : sa table d’historique, avec mesures, JSON brut et métadonnées de chaque observation. Types essai/normal conservés explicitement. Le registre du Monteur est lu via les assets du site, uniquement par URL exacte et unique, sans API distante ; les corrections agence restent prioritaires. Si cet asset n’est pas disponible, les métadonnées déjà conservées restent en place et les nouveaux types inconnus restent inconnus.
+Page `/admin/reels/`, accès agence existant. `reels_registre` : une ligne par Reel ; `reels_historique` : historique commun, clé `(empreinte, observe_le)`, avec mesures, JSON brut et métadonnées de chaque observation. Voir [le plan de migration](MIGRATION-HISTORIQUE.md) ; aucune ancienne table n’est supprimée automatiquement. Types essai/normal conservés explicitement. Le registre du Monteur est lu via les assets du site, uniquement par URL exacte et unique, sans API distante ; les corrections agence restent prioritaires. Si cet asset n’est pas disponible, les métadonnées déjà conservées restent en place et les nouveaux types inconnus restent inconnus.
 
 ManyChat reste par mot-clé : pas d’attribution par Reel tant que l’identifiant média n’est pas reçu et raccordé. Aucun ancien contact n’est réattribué.
 
