@@ -98,6 +98,10 @@ jobs:
           IG_BUSINESS_ID: ${{ secrets.IG_BUSINESS_ID }}
         run: python3 outils/biens/reels.py
 
+      - name: Lecture des diagnostics publics (OCR local, sans modèle)
+        if: steps.heure.outputs.go == '1' && steps.veille.outputs.change == '1'
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends tesseract-ocr
+
       - name: Synchronisation
         if: steps.heure.outputs.go == '1' && steps.veille.outputs.change == '1'
         env:
