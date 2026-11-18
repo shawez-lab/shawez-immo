@@ -1,5 +1,6 @@
 import { requeteModele } from '../_lib/modele.js';
 import { listePrivee } from '../_lib/exclusions-privees.js';
+import { enregistrerQualification } from '../_lib/chat-crm.js';
 
 /* /api/chat — l'assistant du site, visible en bas à droite de shawez-immo.com.
 
@@ -262,7 +263,10 @@ async function traiterMessage({ request, env }) {
   await db.prepare('INSERT INTO chat_fil (session, sens, texte, cree) VALUES (?1, ?2, ?3, ?4)')
     .bind(session, 'out', reponse, maintenant()).run().catch(() => {});
 
+  let referenceCRM = null;
+  try { referenceCRM = await enregistrerQualification(env, session, suite); }
+  catch { console.log('chat-crm', 'qualification_non_enregistree'); }
   if (aPrevenir) await prevenir(env, { ...suite, page: page || etat.page }, fil.concat([{ sens: 'in', texte: message }, { sens: 'out', texte: reponse }]));
 
-  return json(200, { reponse, fin: false, whatsapp: suite.serieux ? WHATSAPP : null });
+  return json(200, { reponse, fin: false, whatsapp: suite.serieux ? WHATSAPP : null, reference_crm: referenceCRM });
 }
