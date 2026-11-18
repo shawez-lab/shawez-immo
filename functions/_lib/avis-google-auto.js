@@ -26,10 +26,13 @@ export async function synchroniserAvis(env,now=new Date()){
  }
  if(ev.length)await b.prepare("UPDATE google_suivi SET valeur=? WHERE cle='dernier_evenement' AND CAST(valeur AS INTEGER)<?").bind(String(ev.at(-1).id),ev.at(-1).id).run();return {ajoutes};
 }
-export async function traiterAvis(env,{now=new Date(),transport=envoyer,origine='https://shawez-immo.com'}={}){
+function reportAvis(now){const p=paris(now);return p.jour===0?'dimanche':p.h<8||p.h>=20?'heures_calmes':null;}
+export async function traiterAvis(env,{now,transport=envoyer,origine='https://shawez-immo.com',horloge}={}){
+ // En production, relire l'heure avant chaque transport : un lot peut franchir 20 h.
+ const instant=horloge||(now?()=>now:()=>new Date());now=now||instant();
  const b=await baseAvis(env);const sync=await synchroniserAvis(env,now);
  if(env.AVIS_GOOGLE_ACTIF!=='1'||origine!=='https://shawez-immo.com')return {...sync,actif:false};
- const p=paris(now);if(p.h<8||p.h>=20)return {...sync,actif:true,envoyes:0,raison:'heures_calmes'};
+ const report=reportAvis(now);if(report)return {...sync,actif:true,envoyes:0,raison:report};
  await b.prepare("UPDATE google_avis SET etat='a_verifier',raison='envoi_interrompu' WHERE etat='en_cours' AND verrou_le<?").bind(new Date(+now-600000).toISOString()).run();
  const dr=await controlesDrive(b,now),regle=exclusions(env);if(dr.public.etat!=='raccorde')return {...sync,actif:true,envoyes:0,bloques:0,raison:'controles_drive_incomplets'};let envoyes=0,bloques=0;
  const rows=(await b.prepare("SELECT * FROM google_avis WHERE etat='attente' OR (etat='envoye' AND relance_le IS NULL AND relance_prevue<=?) ORDER BY cree_le LIMIT 20").bind(now.toISOString()).all()).results;
@@ -38,6 +41,8 @@ export async function traiterAvis(env,{now=new Date(),transport=envoyer,origine=
   if(!peutEcrire(env,q.email)){bloques++;await b.prepare("UPDATE google_avis SET raison='transport_client_indisponible' WHERE id=?").bind(q.id).run();continue;}
   const lock=await b.prepare("UPDATE google_avis SET etat='en_cours',verrou_le=? WHERE id=? AND etat=? RETURNING id").bind(now.toISOString(),q.id,q.etat).first();if(!lock)continue;
   if(await b.prepare('SELECT email_hash FROM google_oppositions WHERE email_hash=?').bind(q.email_hash).first()){await b.prepare("UPDATE google_avis SET etat='stop' WHERE id=?").bind(q.id).run();continue;}
+  const reportEnvoi=reportAvis(instant());
+  if(reportEnvoi){await b.prepare("UPDATE google_avis SET etat=?,verrou_le=NULL,raison=? WHERE id=? AND etat='en_cours'").bind(q.etat,reportEnvoi,q.id).run();return {...sync,actif:true,envoyes,bloques,raison:reportEnvoi};}
   let ok=false;try{ok=await transport(env,{to:q.email,...messageAvis(q.prenom,q.etat==='envoye',q.token)});}catch{}
   if(!ok){await b.prepare("UPDATE google_avis SET etat='a_verifier',raison='transport_non_confirme' WHERE id=?").bind(q.id).run();continue;}
   if(q.etat==='envoye')await b.prepare("UPDATE google_avis SET etat='relance',relance_le=?,raison=NULL WHERE id=?").bind(now.toISOString(),q.id).run();else await b.prepare("UPDATE google_avis SET etat='envoye',envoye_le=?,relance_prevue=?,raison=NULL WHERE id=?").bind(now.toISOString(),jPlus3(now),q.id).run();envoyes++;
