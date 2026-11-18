@@ -1,0 +1,14 @@
+{
+  "timeZone": "Europe/Paris",
+  "dependencies": {"enabledAdvancedServices": [{"userSymbol": "Sheets", "version": "v4", "serviceId": "sheets"}]},
+  "exceptionLogging": "STACKDRIVER",
+  "runtimeVersion": "V8",
+  "oauthScopes": [
+    "https://www.googleapis.com/auth/spreadsheets.readonly",
+    "https://www.googleapis.com/auth/script.external_request",
+    "https://www.googleapis.com/auth/script.scriptapp",
+    "openid",
+    "https://www.googleapis.com/auth/userinfo.email"
+  ],
+  "urlFetchWhitelist": ["https://shawez-immo.com/api/prospects-relais"]
+}
