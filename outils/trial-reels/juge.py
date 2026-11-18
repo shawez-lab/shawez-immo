@@ -45,15 +45,21 @@ JUGE = os.path.join(ICI, 'juge.json')
 
 FENETRE_JOURS = 14      # on juge les Trial Reels des 14 derniers jours
 AGE_MIN_H = 24          # un Trial Reel est jugé 24 h après sa publication
-GAGNANT_MIN = 1000      # gagnant : au moins 1 000 vues…
+GAGNANT_MIN = 30        # gagnant Instagram : au moins 30 vues…
 GAGNANT_X = 3           # … et au moins 3 fois la médiane
-PERDANT_MIN = 300       # perdant : moins de 300 vues…
-PERDANT_X = 2           # … ou moins de 2 fois la médiane (le plus haut des deux seuils)
+PERDANT_MIN = 0         # pas de plancher absolu : seule la médiane compte
+PERDANT_X = 0.5         # perdant : moins de la moitié de la médiane du réseau
+REACTIONS_GAGNANT = 2   # partages + enregistrements + commentaires : à partir de 2, la vidéo gagne
 RESEAUX = ['instagram', 'tiktok', 'youtube', 'facebook',
            'threads', 'linkedin', 'pinterest', 'bluesky', 'gmb']   # les 9, depuis le 03/11/2026
 MEDIANE_MIN_N = 4        # médiane d'un réseau calculée à partir de 4 vidéos mûres
 MINIMUMS = {             # (gagnant : vues au moins, perdant : vues en dessous) par réseau, en plus de la médiane
-    'instagram': (GAGNANT_MIN, PERDANT_MIN), 'tiktok': (1000, 300), 'youtube': (500, 150), 'facebook': (500, 150),
+    # 18/11/2026 : les seuils absolus (1 000 / 300 vues) jugeaient perdante TOUTE vidéo, la médiane Instagram réelle
+    # étant de 3 vues. Résultat : 9 styles interdits, 10 biens en pause, aucun gagnant, donc rien à multiplier.
+    # Désormais on juge contre la médiane du compte : gagnant à 3 fois la médiane (au moins 30 vues), perdant sous la
+    # moitié de la médiane. Et une vidéo qui fait réagir (partage, enregistrement, commentaire) gagne quelles que soient
+    # ses vues : c'est ce qui mène au message privé.
+    'instagram': (30, 0), 'tiktok': (60, 0), 'youtube': (60, 0), 'facebook': (30, 0),
     # Cinq comptes neufs, ouverts fin octobre 2026 et partis de zéro abonné. Le seuil « gagnant » est bas parce
     # qu'une vidéo qui perce sur un compte neuf est une vraie information ; le seuil « perdant » est quasi nul
     # exprès, pour qu'une audience encore inexistante ne fasse PAS interdire un style qui marche ailleurs.
@@ -214,11 +220,11 @@ def quand_reseau(v, reseau):
     return dt.datetime.strptime('%s %s' % (d['date'], d.get('heure', '00:00')), '%Y-%m-%d %H:%M')
 
 
-def verdict_reseau(vues, age_h, mediane, reseau):
+def verdict_reseau(vues, age_h, mediane, reseau, reactions=0):
     g_min, p_min = MINIMUMS[reseau]
     seuil_g = max(g_min, GAGNANT_X * mediane)
     seuil_p = max(p_min, PERDANT_X * mediane)
-    if vues >= seuil_g:
+    if vues >= seuil_g or reactions >= REACTIONS_GAGNANT:
         return 'gagnant'
     if age_h < AGE_MIN_H:
         return 'en_cours'
@@ -279,7 +285,8 @@ def juger(args):
             if not m:
                 continue
             age_h = (maintenant - quand_reseau(v, reseau)).total_seconds() / 3600
-            verdicts[reseau] = verdict_reseau(m['vues'], age_h, medianes[reseau], reseau)
+            verdicts[reseau] = verdict_reseau(m['vues'], age_h, medianes[reseau], reseau,
+                                              m.get('partages', 0) + m.get('enregistrements', 0) + m.get('commentaires', 0))
             if reseau != 'instagram':
                 m['verdict'] = verdicts[reseau]
         v['verdicts'] = verdicts
@@ -349,8 +356,8 @@ def juger(args):
         'maj': maintenant.strftime('%Y-%m-%dT%H:%M'),
         'regles': {
             'fenetre': 'Trial Reels publiés depuis %d jours, jugés %d h après publication' % (FENETRE_JOURS, AGE_MIN_H),
-            'gagnant': 'au moins %d vues et au moins %d fois la médiane' % (GAGNANT_MIN, GAGNANT_X),
-            'perdant': 'moins de %d vues ou moins de %d fois la médiane (le plus haut des deux)' % (PERDANT_MIN, PERDANT_X),
+            'gagnant': 'au moins %d fois la médiane du réseau (plancher %d vues sur Instagram), ou au moins %d réactions' % (GAGNANT_X, GAGNANT_MIN, REACTIONS_GAGNANT),
+            'perdant': 'moins de %s fois la médiane du réseau et aucune réaction suffisante' % PERDANT_X,
             'style_interdit': 'dès %d versions jugées sans aucune gagnante et au moins 2/3 de perdantes ; jamais levé automatiquement' % STYLE_BAN_N,
             'bien_en_pause': '%d versions jugées sans gagnante ni message privé : pause de %d jours' % (BIEN_PAUSE_N, PAUSE_JOURS),
             'quota_du_jour': 'au moins %d %% des versions du jour dans un style gagnant, au plus %d %% dans un style à tester, zéro dans un style interdit ; 15 Trial Reels au plus sur 24 heures glissantes' % (QUOTA_GAGNANTS, TESTS_MAX),
@@ -373,7 +380,13 @@ def juger(args):
                               'url': v.get('url'), 'date': v['date']} for v in recents],
         'consigne_monteur': ("Chaque version porte un « style » de la liste. Jamais un style de styles_interdits, jamais un bien de biens_en_pause. "
                              "Au moins %d %% des versions du jour dans styles_gagnants (sur les biens les plus forts), au plus %d %% dans styles_a_tester. "
-                             "Chaque Trial Reel programmé est ajouté à registre.json." % (QUOTA_GAGNANTS, TESTS_MAX)),
+                             "Chaque Trial Reel programmé est ajouté à registre.json. "
+                             "BOUCLE DU JOUR (Shawez, 18/11/2026 : « dès que ça marche pas, le lendemain on change ; quand ça marche on ne touche pas, on multiplie ») : "
+                             "1. chaque Reel de gagnants_recents de moins de 72 h est refait en 3 versions le lendemain, même style et même accroche, "
+                             "en ne changeant qu'UNE chose à la fois (autre bien, ou autres premiers plans, ou autre heure) ; "
+                             "2. un style reste gagnant tant qu'il reste devant : on ne l'abandonne jamais sur une seule vidéo ; "
+                             "3. chaque jour, une version au moins teste une accroche jamais publiée ; "
+                             "4. jamais deux jours de suite la même accroche quand elle a fait zéro réaction. Plafond Metricool : 8 publications par 24 h, tous réseaux." % (QUOTA_GAGNANTS, TESTS_MAX)),
         'consigne_codex': ("Ne livre plus aucun Trial Reel dans un style de styles_interdits : il sera refusé. "
                            "Livre d'abord des variantes des gagnants_recents (même accroche, autre musique, autres premiers plans)."),
     }
