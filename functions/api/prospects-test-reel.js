@@ -24,7 +24,7 @@ export async function onRequest(ctx){try{
  }
  if(d.phase==='lead'){
   const a=await env.DB.prepare('SELECT token FROM dm_reels_attribution WHERE evenement=? AND media_id=?').bind(evenement,reel.id).first();if(!a)throw new Erreur(503,'test_attribution_absente');
-  const payload={cle,consentement:true,duree:5000,reel_source:a.token,contact:{prenom:'TEST',nom:'Attribution Reel',email:'reel-'+d.test_id+'@test.invalid',telephone:''},reponses:{type:'autre',autre_type:'autre',adresse:'TEST technique — aucune adresse réelle',commune:'Dijon',delai:'nsp',surface:1,message:'Test technique autorisé par l’agence. Aucune personne réelle.'}};
+  const payload={cle,consentement:true,duree:5000,reel_source:a.token,contact:{prenom:'TEST',nom:'Attribution Reel',email:'reel-'+d.test_id+'@test.invalid',telephone:'0000000000'},reponses:{type:'autre',autre_type:'autre',adresse:'TEST technique — aucune adresse réelle',commune:'Dijon',delai:'nsp',surface:1,message:'Test technique autorisé par l’agence. Aucune personne réelle.'}};
   const r=await espace({...ctx,params:{route:['estimation']},request:new Request('https://shawez-immo.com/api/espace/estimation',{method:'POST',headers:{Origin:'https://shawez-immo.com','Content-Type':'application/json'},body:JSON.stringify(payload)})});if(!r.ok)throw new Erreur(503,'test_lead_refuse');
   const x=await r.json();if(x.rejoue)await env.DB.prepare('UPDATE dm_reels_tests SET lead_rejoue=1 WHERE id=?').bind(d.test_id).run();
   return json(200,{reference_test:x.reference,rejoue:!!x.rejoue,email_envoye:false});
