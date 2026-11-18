@@ -1,14 +1,9 @@
-# Horloge Cloudflare
+# Horaires Europe/Paris
 
-Worker : shawez-prospects-horloge, déployé automatiquement depuis outils/prospects/wrangler.toml. Fuseau métier Europe/Paris, y compris les dates affichées dans la veille mobile.
+Google Apps Script : declencheur quotidien ciblant 07:40, marge native Google de 15 minutes. Lecture des trois feuilles et envoi d'un lot authentifie vers Cloudflare.
 
-- 07:40 : lecture serveur des trois feuilles privées.
-- 08:07 : veille entrante.
-- 08:17 à 19:17 : traitement horaire des avis, si activé.
-- Les passages Reels existants restent conservés.
+Cloudflare : veille a 08:07, avis de 08:17 a 19:17 si actives. Les passages Reels existants sont conserves. Les crons UTC sont filtres par l'heure de Paris, ete/hiver compris.
 
-Les déclencheurs Cloudflare utilisent UTC. Le code filtre l’heure de Paris pour gérer été et hiver sans doublon. Aucun appel au Mac, à Codex ou au navigateur. L’ancienne tâche Codex locale est en pause.
+Le traitement Cloudflare ne tente plus de connexion Google avec un compte de service. Il verifie le lot Apps Script recu dans la journee. Sans lot valide, complet=false. Les derniers index sont conserves et leur age est affiche.
 
-Les secrets d’accès Google sont indispensables. Sans eux, le traitement conserve le dernier relevé et ne déclare jamais une synchronisation complète. Une répétition rapprochée garde le même état d’échec ; une nouvelle tentative est possible après 15 minutes.
-
-Les avis exigent aussi un transport réellement capable d’écrire aux clients et AVIS_GOOGLE_ACTIF=1. Les tests n’envoient aucun message réel. Consulter README.md pour les accès et limites.
+La tache Codex locale reste desactivee. Aucun navigateur, ordinateur ou copie manuelle de cle n'est necessaire apres l'autorisation Google initiale.

@@ -10,7 +10,7 @@ on:
   schedule:
     - cron: '7 6-20 * * *'
     # Secours : Europe/Paris, le serveur gère l'idempotence et le changement d'heure.
-    - cron: '40 5,6 * * *'
+    - cron: '7 6,7 * * *'
   workflow_dispatch: {}
 
 permissions: {}

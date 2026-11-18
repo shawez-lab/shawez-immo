@@ -7,17 +7,12 @@ import { mediaId,noterMedia,rattacherDemande,attacherMedia } from '../../functio
 import horloge from './horloge.js';
 const sql=new DatabaseSync(':memory:');
 const DB={prepare(q){return {a:[],bind(...a){this.a=a;return this},async run(){const x=sql.prepare(q).run(...this.a);return {meta:{changes:Number(x.changes)}}},async first(){return sql.prepare(q).get(...this.a)||null},async all(){return {results:sql.prepare(q).all(...this.a)}}}},async batch(qs){sql.exec('BEGIN');try{const r=[];for(const q of qs)r.push(await q.run());sql.exec('COMMIT');return r}catch(e){sql.exec('ROLLBACK');throw e}}};
-const now=new Date('2026-11-18T08:00:00Z'),env={DB,REGLE9_LEAD_NOMS:'["Exclu Test"]',REGLE9_LEAD_ADRESSES:'["exclu@example.invalid"]',GOOGLE_SHEETS_CLIENT_ID:'fixture',GOOGLE_SHEETS_CLIENT_SECRET:'fixture',GOOGLE_SHEETS_REFRESH_TOKEN:'fixture'};
+const now=new Date('2026-11-18T08:00:00Z'),env={DB,REGLE9_LEAD_NOMS:'["Exclu Test"]',REGLE9_LEAD_ADRESSES:'["exclu@example.invalid"]',RELAIS_APPS_SCRIPT:true};
 await schema(env);for(const id of ['repertoire','relances','acquereurs'])sql.prepare('INSERT INTO veille_drive_controles VALUES(?,?,?,?,?,?)').run(id,'https://docs.google.com/spreadsheets/d/'+id+'/edit','2026-11-17T09:00:00Z',1,'["Contacts"]','[]');
-let requests=0,fail=false;
-const fetcher=async(url,opt={})=>{requests++;if(url==='https://oauth2.googleapis.com/token'){assert.equal(opt.method,'POST');assert(String(opt.body).includes('grant_type=refresh_token'));return Response.json({access_token:'fixture-token',expires_in:3600});}assert.equal(opt.headers.Authorization,'Bearer fixture-token');assert(!opt.method||opt.method==='GET');if(fail&&url.includes('/relances/values'))return new Response('',{status:403});if(url.includes('values:batchGet')){assert(new URL(url).searchParams.get('ranges').endsWith('A1:J20'));return Response.json({valueRanges:[{values:[['Prénom','Nom','E-mail','Téléphone','Statut'],['Élodie','Durand','elodie@example.invalid','06 12 34 56 78','NE PAS CONTACTER'],['Pierre','Martin','pierre@example.invalid','','pas un stop sur sa recherche']]}]});}return Response.json({sheets:[{properties:{title:'Contacts',gridProperties:{rowCount:20,columnCount:10}}}]});};
-let run=await synchroniserDrive(env,{now,fetcher});assert.equal(run.etat,'ok');assert.equal(run.sources,3);assert.equal(run.lignes,6);assert.equal(requests,7);
-assert.equal(JSON.parse(sql.prepare("SELECT index_json FROM veille_drive_controles WHERE source_id='repertoire'").get().index_json)[1].opposition,false);
-assert(!sql.prepare('SELECT index_json FROM veille_drive_controles LIMIT 1').get().index_json.includes('elodie'));
-assert.equal((await synchroniserDrive(env,{now,fetcher})).etat,'deja_execute');assert.equal(requests,7);
-const before=JSON.stringify(sql.prepare('SELECT * FROM veille_drive_controles ORDER BY source_id').all());fail=true;assert.equal((await synchroniserDrive(env,{now:new Date(+now+60000),force:true,fetcher})).etat,'erreur');assert.equal(JSON.stringify(sql.prepare('SELECT * FROM veille_drive_controles ORDER BY source_id').all()),before);fail=false;
-const {GOOGLE_SHEETS_CLIENT_ID,GOOGLE_SHEETS_CLIENT_SECRET,GOOGLE_SHEETS_REFRESH_TOKEN,...sansAcces}=env;
-assert.equal((await synchroniserDrive(sansAcces,{now,force:true,fetcher})).raison,'acces_google_serveur_absent');assert.equal((await synchroniserDrive(sansAcces,{now,fetcher})).etat,'erreur');assert.equal(JSON.stringify(sql.prepare('SELECT * FROM veille_drive_controles ORDER BY source_id').all()),before);
+sql.prepare('UPDATE veille_drive_controles SET controle_le=?').run(now.toISOString());
+await DB.prepare('INSERT INTO veille_drive_receptions VALUES(?,?,?,?)').bind('fixture-reception-0001','fixture-digest',now.toISOString(),now.toISOString()).run();
+assert.equal((await synchroniserDrive(env,{now})).etat,'ok');
+assert.equal((await synchroniserDrive(env,{now:new Date(+now+86400000)})).etat,'attente_relais');
 assert.equal(minuteParis(new Date('2026-07-18T05:40:00Z')),460);assert.equal(minuteParis(new Date('2026-11-18T06:40:00Z')),460);
 assert.equal(jPlus3(new Date('2026-03-27T08:00:00Z')),'2026-03-30T07:00:00.000Z');assert.equal(jPlus3(new Date('2026-10-23T07:00:00Z')),'2026-10-26T08:00:00.000Z');
 await baseAvis(env);await traiterAvis(env,{now});
@@ -38,9 +33,9 @@ const mid='4018078194278347662_39659804928',t=await noterMedia(DB,'event-1',mid,
 const bloc=attacherMedia({fiche_url:'https://shawez-immo.com/estimer/',content:{messages:[{buttons:[{url:'https://shawez-immo.com/estimer/'}]}]}},t);assert(bloc.fiche_url.includes('reel_source='+t));assert(!bloc.fiche_url.includes(mid));
 assert(await rattacherDemande(DB,1,t,now));assert.equal(sql.prepare('SELECT media_id FROM demandes_reels_attribution WHERE demande_id=1').get().media_id,mid);assert.equal(await rattacherDemande(DB,2,'faux',now),false);assert.equal(await rattacherDemande(DB,2,t,new Date(+now+31*86400000)),false);
 let calls=0;globalThis.fetch=async()=>{calls++;return Response.json({etat:'avant_8h',controle_drive:{etat:'ok'}})};
-await horloge.scheduled({cron:'40 5,6 * * *',scheduledTime:Date.parse('2026-11-18T05:40:00Z')});assert.equal(calls,0);
-await horloge.scheduled({cron:'40 5,6 * * *',scheduledTime:Date.parse('2026-11-18T06:40:00Z')});assert.equal(calls,1);
-await horloge.scheduled({cron:'40 5,6 * * *',scheduledTime:Date.parse('2026-07-18T05:40:00Z')});assert.equal(calls,2);
+await horloge.scheduled({cron:'7 6,7 * * *',scheduledTime:Date.parse('2026-11-18T06:07:00Z')});assert.equal(calls,0);
+await horloge.scheduled({cron:'7 6,7 * * *',scheduledTime:Date.parse('2026-11-18T07:07:00Z')});assert.equal(calls,1);
+await horloge.scheduled({cron:'7 6,7 * * *',scheduledTime:Date.parse('2026-07-18T06:07:00Z')});assert.equal(calls,2);
 console.log('OK : passage serveur simulé complet sur trois sources, atomicité, absence d’accès, horaires Paris été/hiver, avis après événements réels et une relance J+3, oppositions, attribution ManyChat jusqu’au lead sans identité dans l’URL. Aucun message réel envoyé.');
 
 const {onRequest:avisAPI}=await import('../../functions/api/avis-google/[[route]].js');

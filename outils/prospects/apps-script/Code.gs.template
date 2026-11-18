@@ -1,0 +1,72 @@
+const RELAIS = 'https://shawez-immo.com/api/prospects-relais';
+const FUSEAU = 'Europe/Paris';
+const SOURCES = __SOURCES_PRIVEES__;
+
+function installerEtTester() {
+  const resultat = forcerUnPassage();
+  if (!resultat.complet) throw new Error('Le passage complet doit etre confirme avant installation.');
+  const existe = ScriptApp.getProjectTriggers().some(t => t.getHandlerFunction() === 'passageQuotidien');
+  if (!existe) ScriptApp.newTrigger('passageQuotidien').timeBased().atHour(7).nearMinute(40).everyDays(1).inTimezone(FUSEAU).create();
+  console.log(JSON.stringify({declencheur:'quotidien',heure_cible:'07:40',fuseau:FUSEAU,marge_google_minutes:15,complet:true}));
+  return resultat;
+}
+
+function passageQuotidien() {
+  const jour = Utilities.formatDate(new Date(), FUSEAU, 'yyyy-MM-dd');
+  const props = PropertiesService.getScriptProperties();
+  if (props.getProperty('dernier_jour_automatique') === jour) return;
+  const resultat = pousser_();
+  if (resultat.complet) props.setProperty('dernier_jour_automatique', jour);
+}
+
+function forcerUnPassage() { return pousser_(); }
+
+function pousser_() {
+  const lock = LockService.getScriptLock();
+  if (!lock.tryLock(1000)) throw new Error('Un passage est deja en cours.');
+  try {
+    const sources = SOURCES.map(source => {
+      const meta = Sheets.Spreadsheets.get(source.id, {fields:'sheets(properties(title,gridProperties))'});
+      const feuilles = (meta.sheets || []).map(s => s.properties);
+      if (!feuilles.length || feuilles.length > 20) throw new Error('Couverture invalide : ' + source.alias);
+      const ranges = feuilles.map(s => {
+        if (!s.gridProperties || s.gridProperties.rowCount > 5000 || s.gridProperties.columnCount > 100) throw new Error('Grille trop grande : ' + source.alias);
+        let n=s.gridProperties.columnCount,col='';while(n){n--;col=String.fromCharCode(65+n%26)+col;n=Math.floor(n/26);}
+        return "'" + s.title.replace(/'/g,"''") + "'!A1:" + col + s.gridProperties.rowCount;
+      });
+      const data = Sheets.Spreadsheets.Values.batchGet(source.id, {ranges:ranges,valueRenderOption:'FORMATTED_VALUE'});
+      if (!data.valueRanges || data.valueRanges.length !== feuilles.length) throw new Error('Lecture incomplete : ' + source.alias);
+      const index = [], onglets = feuilles.map(s => s.title);let lignes=0;
+      data.valueRanges.forEach((tab,t) => {
+        const rows=tab.values || [],h=(rows[0] || []).map(canon_);
+        if (!h.includes('nom') && !h.includes('nom affiche') && !h.includes('pseudo')) throw new Error('Entete inconnue : ' + source.alias);
+        const col=(row,...names)=>{for(const name of names){const i=h.indexOf(canon_(name));if(i>=0&&row[i])return String(row[i]);}return '';};
+        for(let i=1;i<rows.length;i++) {
+          const row=rows[i];if(!row.some(v=>String(v).trim()))continue;lignes++;
+          const c={prenom:col(row,'Prénom'),nom:col(row,'Nom'),email:col(row,'E-mail'),telephone:col(row,'Téléphone')};
+          if(!c.prenom&&!c.nom)c.nom_complet=col(row,'Nom affiché');
+          const cles=cles_(c,col(row,'Adresse du bien','Adresse'),col(row,'Ville'));
+          const text=canon_(row.filter((_,j)=>/statut|classe|raison|stop|remarques|prochaine action|reponse/.test(h[j]||'')).join(' ')).replace(/\b(?:pas un stop|pas de stop|sans stop)\b/g,'');
+          const opposition=/\b(?:ne pas contacter|ne plus contacter|stop|opposition|ne jamais contacter)\b/.test(text)||/^(oui|true|1|x)$/i.test(col(row,'stop').trim());
+          if(cles.length)index.push({onglet:onglets[t],ligne:i+1,cles:cles,opposition:opposition});
+        }
+      });
+      if(!lignes)throw new Error('Source vide : '+source.alias);
+      return {source_id:source.alias,lien:'https://docs.google.com/spreadsheets/d/'+source.id+'/edit',lignes:lignes,onglets:onglets,index:index};
+    });
+    const token=ScriptApp.getIdentityToken();if(!token)throw new Error('Identite Google absente. Verifier les autorisations openid et e-mail.');
+    const payload=JSON.stringify({version:1,execution_id:Utilities.getUuid(),controle_le:new Date().toISOString(),sources:sources});
+    for(let essai=0;essai<3;essai++){
+      const r=UrlFetchApp.fetch(RELAIS,{method:'post',contentType:'application/json',headers:{Authorization:'Bearer '+token},payload:payload,muteHttpExceptions:true,followRedirects:false,validateHttpsCertificates:true});
+      let resultat;try{resultat=JSON.parse(r.getContentText());}catch{throw new Error('Reponse Cloudflare illisible.');}
+      if(r.getResponseCode()===200&&resultat.complet===true){console.log(JSON.stringify(resultat));return resultat;}
+      if(r.getResponseCode()<500&&r.getResponseCode()!==429){console.log(JSON.stringify(resultat));throw new Error('Passage non valide : '+(resultat.error||'incomplet'));}
+      if(essai<2)Utilities.sleep(3000);
+    }
+    throw new Error('Cloudflare indisponible. Aucun relevé remplacé partiellement.');
+  } finally {lock.releaseLock();}
+}
+
+function canon_(s){return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9@]+/g,' ').trim().replace(/\s+/g,' ');}
+function hash_(s){return Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256,s,Utilities.Charset.UTF_8).map(b=>(b&255).toString(16).padStart(2,'0')).join('');}
+function cles_(c,adresse,commune){const k=[],add=(t,v)=>{if(v)k.push(hash_(t+':'+v));};const email=String(c.email||'').trim().toLowerCase();if(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))add('email',email);let tel=String(c.telephone||'').replace(/\D/g,'').replace(/^00/,'');if(/^0[1-9]\d{8}$/.test(tel))tel='33'+tel.slice(1);if(/^\d{9,15}$/.test(tel))add('telephone',tel);const nom=canon_(c.nom_complet||[c.prenom,c.nom].filter(Boolean).join(' '));if(nom.split(' ').length>=2&&nom.length>=5)add('nom',nom);const a=canon_(adresse);if(/\d/.test(a)&&a.length>=8){add('adresse',a);if(commune)add('adresse',canon_(adresse+' '+commune));}return [...new Set(k)];}
