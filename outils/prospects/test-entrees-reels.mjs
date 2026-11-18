@@ -1,0 +1,28 @@
+import assert from 'node:assert/strict';
+import {DatabaseSync} from 'node:sqlite';
+import {onRequest} from '../../functions/api/manychat-dm.js';
+import {rattacherDemande} from '../../functions/_lib/attribution-reels.js';
+import {reserverReponseReel,messageEntreeReel,baseEntreesReels} from '../../functions/_lib/entrees-reels.js';
+const sql=new DatabaseSync(':memory:');const DB={prepare(q){return {a:[],bind(...a){this.a=a;return this},async run(){const x=sql.prepare(q).run(...this.a);return {meta:{changes:Number(x.changes)}}},async first(){return sql.prepare(q).get(...this.a)||null},async all(){return {results:sql.prepare(q).all(...this.a)}}}},async batch(qs){sql.exec('BEGIN');try{const out=[];for(const q of qs)out.push(await q.run());sql.exec('COMMIT');return out}catch(e){sql.exec('ROLLBACK');throw e}}};
+sql.exec('CREATE TABLE reels_registre(id TEXT PRIMARY KEY,url TEXT,mot_cle TEXT)');
+const media='4018078194278347662_39659804928';sql.prepare('INSERT INTO reels_registre VALUES(?,?,?)').run(media,'https://www.instagram.com/reel/DfDFNQ5tDOO/','ESTIMATION');
+await baseEntreesReels(DB);sql.prepare('INSERT INTO dm_reels_entrees VALUES(?,?,1,?)').run(media,'fixture-flow',new Date().toISOString());
+const env={DB,MANYCHAT_TOKEN:'fixture-local-only',REGLE9_IG_BASE:'["jamais-fixture"]',DM_COMPTES_TEST:'["test-fixture"]',DM_MODE:'live',ASSETS:{async fetch(){return Response.json({videos:{},motscles:{}});}}};
+globalThis.fetch=async()=>{throw Error('Aucun réseau ni envoi de DM attendu');};
+const req=(extra={})=>new Request('https://shawez-immo.com/api/manychat-dm',{method:'POST',headers:{'X-Boss-Token':env.MANYCHAT_TOKEN,'Content-Type':'application/json'},body:JSON.stringify({source:'reel_identifie',media_id:media,contact_id:'test-fixture-contact',ig_username:'test-fixture',first_name:'TEST',...extra})});
+const replies=await Promise.all([onRequest({request:req(),env}),onRequest({request:req(),env}),onRequest({request:req({event_id:'autre-flux-meme-commentaire'}),env})]);const bodies=await Promise.all(replies.map(x=>x.json()));assert.equal(bodies.filter(x=>x.envoyer==='oui').length,1);assert.equal(bodies.filter(x=>x.raison==='doublon_reel').length,2);
+const good=bodies.find(x=>x.envoyer==='oui');assert.equal(good.media_id_recu,media);assert(good.estimation_url.startsWith('https://shawez-immo.com/estimer/?reel_source='));assert(!good.estimation_url.includes(media));assert(!good.message.includes('POTENTIEL'));assert.equal(sql.prepare('SELECT COUNT(*) n FROM dm_instagram').get().n,1);assert.equal(sql.prepare('SELECT COUNT(*) n FROM dm_reels_reponses').get().n,1);
+const token=new URL(good.estimation_url).searchParams.get('reel_source');assert(await rattacherDemande(DB,1,token));assert(await rattacherDemande(DB,1,token));assert.equal(sql.prepare('SELECT COUNT(*) n FROM demandes_reels_attribution').get().n,1);assert.equal(sql.prepare('SELECT media_id FROM demandes_reels_attribution WHERE demande_id=1').get().media_id,media);
+assert.equal((await (await onRequest({request:req({contact_id:'autre',ig_username:'jamais-fixture'}),env})).json()).raison,'regle9');
+assert.equal((await (await onRequest({request:req({contact_id:'stop-fixture',comment:'STOP'}),env})).json()).raison,'stop');
+assert.equal((await (await onRequest({request:req({contact_id:'stop-fixture'}),env})).json()).raison,'stop');
+assert.equal((await (await onRequest({request:req({media_id:'99999999999999999'}),env})).json()).raison,'reel_non_identifie');
+assert.equal((await (await onRequest({request:req({contact_id:''}),env})).json()).envoyer,'non');
+assert.equal(await reserverReponseReel(DB,'test-fixture-contact',media,'2026-12-01'),true);assert.equal(await reserverReponseReel(DB,'test-fixture-contact',media,'2026-12-01'),false);
+assert(!/mandataire|gratuit|\bIA\b|Claude|automatique/.test(messageEntreeReel('TEST',{estimation:true})));
+console.log('OK : trois appels concurrents donnent un seul DM, source native vérifiée, lien opaque jusqu’au lead unique, STOP et règle 9 prioritaires. Aucun DM ni e-mail réel envoyé.');
+
+sql.prepare('UPDATE dm_reels_entrees SET actif=0').run();assert.equal((await (await onRequest({request:req({contact_id:'nouveau'}),env})).json()).raison,'reel_en_preparation');
+const simulated=await (await onRequest({request:req({action:'test_entree',contact_id:'codex-test-'+crypto.randomUUID(),ig_username:'__test_attribution__'}),env:{...env,DM_MODE:'test'}})).json();assert.equal(simulated.envoyer,'non');assert.equal(simulated.test_reponse,true);assert(simulated.estimation_url.includes('reel_source='));assert.equal(sql.prepare('SELECT COUNT(*) n FROM dm_instagram').get().n,1);
+assert.equal((await onRequest({request:req({action:'test_entree'}),env})).status,400);
+console.log('OK : entrées désactivées par défaut ; simulation réservée aux identifiants synthétiques, sans ordre de DM.');

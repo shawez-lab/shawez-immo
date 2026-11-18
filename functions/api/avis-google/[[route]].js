@@ -1,4 +1,4 @@
-import { mailClients,peutEcrire } from '../../_lib/mail.js';
+import { mailClients,peutEcrire,envoyer,esc } from '../../_lib/mail.js';
 import { sha256,json,Erreur,corps,compteSession,estAdmin,verifierOrigine,limiter,ip } from '../../_lib/base.js';
 import { paris } from '../../_lib/suivi.js';
 import { baseAvis,traiterAvis,oppositionAvis,messageAvis,jPlus3 } from '../../_lib/avis-google-auto.js';
@@ -13,9 +13,24 @@ export async function onRequest(ctx){try{
   return json(200,{mode:'preparation_sans_envoi',destinataire_test:'shawez@gravelin-immo.com',transport_agence:peutEcrire(env,'shawez@gravelin-immo.com'),transport_clients:mailClients(env),automatique_actif:env.AVIS_GOOGLE_ACTIF==='1',fuseau:'Europe/Paris',relance_prevue_si_envoi_maintenant:jPlus3(now),initial:apercu(false),relance:apercu(true),message_envoye:false,ecriture:false});
  }
  const b=await baseAvis(env);
+ if(route==='test-agence'&&request.method==='POST'){
+  if(url.origin!=='https://shawez-immo.com')throw new Erreur(403,'production_requise');
+  const d=await corps(request,2000);if(d.envoi_confirme!==true||!/^[\w-]{16,80}$/.test(d.test_id||''))throw new Erreur(400,'confirmation_test_requise');
+  const to='shawez@gravelin-immo.com';if(!peutEcrire(env,to))throw new Erreur(503,'transport_agence_indisponible');
+  const cle='test_agence:'+d.test_id,precedent=await b.prepare('SELECT valeur FROM google_suivi WHERE cle=?').bind(cle).first();
+  if(precedent)return json(200,{destinataire:to,etat:precedent.valeur,doublon:true,client_contacte:false});
+  await limiter(env,'avis-test-agence:'+c.id,1,3600);
+  const reserve=await b.prepare("INSERT OR IGNORE INTO google_suivi(cle,valeur) VALUES(?,'en_cours') RETURNING cle").bind(cle).first();
+  if(!reserve)return json(200,{destinataire:to,etat:'deja_reserve',doublon:true,client_contacte:false});
+  const m=messageAvis('Shawez',false,'test-agence'),texte=m.text.replace(/\n\nNe plus recevoir ces demandes :[^\n]+/,'')+'\n\nTest technique réservé à l’agence. Aucune relance planifiée.';
+  let accepte=false;try{accepte=await envoyer(env,{to,subject:'[TEST AGENCE] '+m.subject,text:texte,html:'<p>'+esc(texte).replace(/\n/g,'<br>')+'</p><p><img src="https://shawez-immo.com/assets/avis-google/qr-avis-google.png" alt="QR pour laisser un avis Google" width="180"></p>'});}catch{}
+  const etat=accepte?'accepte':'a_verifier';await b.prepare('UPDATE google_suivi SET valeur=? WHERE cle=?').bind(etat,cle).run();
+  return json(accepte?200:503,{destinataire:to,etat,doublon:false,client_contacte:false,relance_planifiee:false});
+ }
  if(route==='statut'&&request.method==='GET')return json(200,{actif:env.AVIS_GOOGLE_ACTIF==='1',mail_clients:mailClients(env),file:(await b.prepare('SELECT etat,raison,COUNT(*) n FROM google_avis GROUP BY etat,raison').all()).results});
  if(request.method==='POST'&&route==='avis-recu'){const d=await corps(request,2000);const dossier=d.demande_reference?await b.prepare('SELECT contact FROM demandes WHERE reference=?').bind(String(d.demande_reference)).first():Number.isInteger(d.demande)?await b.prepare('SELECT contact FROM demandes WHERE id=?').bind(d.demande).first():null;if(!dossier)throw new Erreur(404,'dossier');let contact={};try{contact=JSON.parse(dossier.contact)}catch{}const email=String(contact.email||'').trim().toLowerCase();if(!email)throw new Erreur(400,'email_absent');await b.prepare("UPDATE google_avis SET etat='avis_recu' WHERE email_hash=?").bind(await sha256(email)).run();return json(200,{ok:true});}
  if(request.method==='POST'&&route==='visite-realisee'){const d=await corps(request,2000);if(d.demande_reference)d.demande=(await b.prepare('SELECT id FROM demandes WHERE reference=?').bind(String(d.demande_reference)).first())?.id;if(d.participant_reference)d.participant_demande=(await b.prepare('SELECT id FROM demandes WHERE reference=?').bind(String(d.participant_reference)).first())?.id;if(!Number.isInteger(d.demande)||!Number.isInteger(d.participant_demande)||!/^\d{4}-\d\d-\d\d$/.test(d.visite_le||''))throw new Erreur(400,'evenement');if(!Number.isFinite(Date.parse(d.visite_le+'T00:00:00Z'))||new Date(d.visite_le+'T00:00:00Z').toISOString().slice(0,10)!==d.visite_le||d.visite_le>paris(new Date()).date)throw new Erreur(400,'visite_future');for(const id of [d.demande,d.participant_demande])if(!await b.prepare('SELECT id FROM demandes WHERE id=? AND suspect=0').bind(id).first())throw new Erreur(404,'dossier');
   const detail=JSON.stringify({participant_demande_id:d.participant_demande,visite_le:d.visite_le});if(!await b.prepare("SELECT id FROM evenements WHERE demande_id=? AND type='visite_realisee' AND detail=?").bind(d.demande,detail).first())await b.prepare("INSERT INTO evenements(demande_id,type,detail,par,cree_le) VALUES(?,'visite_realisee',?,'agence',?)").bind(d.demande,detail,new Date().toISOString()).run();return json(200,{ok:true});}
  return json(404,{error:'introuvable'});
 }catch(e){return e instanceof Erreur?json(e.status,{error:e.code}):json(503,{error:'avis_google_indisponibles'});}}
+
