@@ -175,6 +175,9 @@ if __name__ == '__main__':
                 open(P(f), 'w', encoding='utf-8').write(n); total += 1
         print('Assistant :', total, 'pages mises à jour.')
         raise SystemExit(0)
+    # Les pages et le sitemap DVF précèdent la reconstruction des liens et du plan du site.
+    from seo.dijon_quartiers import construire as quartiers_dijon
+    quartiers_dijon()
     os.makedirs(P('conseils'), exist_ok=True)
     x = flux()
     if not os.path.exists(P(FEED)) or open(P(FEED), encoding='utf-8').read() != x:

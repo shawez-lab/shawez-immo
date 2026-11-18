@@ -15,6 +15,7 @@ TITLE = 'Plan du site | Shawez Ali, agent immobilier à Dijon'
 DESC = "Toutes les pages du site de Shawez Ali, agent immobilier à Dijon : vendre, estimer, prix au m² par commune, location, commerces, biens à vendre, conseils."
 
 GROUPES = [
+    ('Estimation et prix par quartier de Dijon', lambda u: u.startswith('/estimation-immobiliere-dijon/') and u != '/estimation-immobiliere-dijon/'),
     ('Agent immobilier à Dijon', lambda u: u in ('/', '/agent-immobilier-dijon/', '/shawez-ali-agent-immobilier-dijon/', '/avis/', '/videos-immobilier-dijon/', '/podcast/', '/secteurs-dijon-nuits-saint-georges-beaune/', '/agent-immobilier-beaune/', '/immobilier-nuits-saint-georges/', '/immobilier-fontaine-les-dijon/')),
     ('Vendre et estimer', lambda u: u in ('/estimer/', '/estimation-immobiliere-dijon/', '/vendre-bien-immobilier-dijon/', '/honoraires/', '/simulateur-pret-immobilier-dijon/', '/chateau-a-vendre-bourgogne/')),
     ('Commerces et immobilier professionnel', lambda u: u in ('/vendre-commerce-dijon/', '/fonds-de-commerce-a-vendre-dijon/', '/immobilier-professionnel-dijon/')),

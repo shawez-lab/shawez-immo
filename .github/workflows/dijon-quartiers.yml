@@ -1,0 +1,22 @@
+name: Dijon quartiers DVF et indexation
+on:
+  pull_request:
+    paths: ['donnees-dvf/**', 'outils/seo/**', 'estimation-immobiliere-dijon/**', 'outils/biens/build_biens.py', 'assets/dijon-quartiers.css', '.github/workflows/dijon-quartiers.yml']
+  push:
+    paths: ['donnees-dvf/**', 'outils/seo/**', 'estimation-immobiliere-dijon/**', 'outils/biens/build_biens.py', 'assets/dijon-quartiers.css', '.github/workflows/dijon-quartiers.yml']
+permissions:
+  contents: read
+jobs:
+  quartiers:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: python3 -m unittest discover -s outils/seo/tests -v
+      - name: Contrôle IndexNow sans envoi
+        if: github.event_name == 'pull_request'
+        run: python3 outils/indexnow.py --avant '${{ github.event.pull_request.base.sha }}' --apres '${{ github.sha }}' --essai
