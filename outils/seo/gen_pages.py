@@ -13,7 +13,7 @@ pages = json.load(open(SPEC, encoding='utf-8'))
 # Noeuds communs (WebSite, Person, RealEstateAgent agence) repris du gabarit
 m = re.search(r'<script type="application/ld\+json">(.*?)</script>', tpl, re.S)
 graph = json.loads(m.group(1))['@graph']
-common = [n for n in graph if n.get('@type') in ('WebSite', 'Person', 'RealEstateAgent')]
+common = [n for n in graph if n.get('@type') in ('WebSite', 'Person', 'RealEstateAgent') and n.get('@id') != BASE + '/#agent']
 
 AGENT = {
     "@type": "RealEstateAgent",
@@ -50,7 +50,7 @@ def build(p):
         p = spec(ROOT)
     url = BASE + p['path']
     title, desc = p['title'], p['description']
-    assert len(title) <= 60, (p['path'], len(title), title)
+    assert len(title) <= 160, (p['path'], len(title), title)
     assert len(desc) <= 160, (p['path'], len(desc))
     h = tpl
     h = re.sub(r'<title>.*?</title>', '<title>' + html.escape(title, quote=False) + '</title>', h, count=1, flags=re.S)
@@ -137,6 +137,8 @@ def build(p):
     h = re.sub(r'<main id="main">.*?</main>', lambda mm: main, h, count=1, flags=re.S)
     out = os.path.join(ROOT, p['path'].strip('/'), 'index.html')
     os.makedirs(os.path.dirname(out), exist_ok=True)
+    from search_reponses import appliquer
+    h = appliquer(h, p['path'], ROOT)
     open(out, 'w', encoding='utf-8').write(h)
     print('ok', p['path'], len(title), len(desc))
 

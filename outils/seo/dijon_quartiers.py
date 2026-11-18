@@ -180,7 +180,7 @@ def cta():
             f'<img src="{PHOTO}" width="190" height="225" alt="Shawez Ali, agent immobilier à Dijon" loading="lazy"></section>')
 
 
-def page(q, quartiers, meta, an):
+def page(q, quartiers, meta, an, root=ROOT):
     nom = q['nom']
     court = nom if len(nom) < 26 else nom.split(' - ')[0]
     court = {'Gresilles': 'Grésilles'}.get(court, court)
@@ -203,7 +203,7 @@ def page(q, quartiers, meta, an):
       {'@type': 'FAQPage', 'mainEntity': [{'@type': 'Question', 'name': question, 'acceptedAnswer': {'@type': 'Answer', 'text': reponse}} for question, reponse in faq]},
     ]
     ld = json.dumps({'@context': 'https://schema.org', '@graph': graph}, ensure_ascii=False).replace('</', '<\\/')
-    return f'''<!doctype html>
+    contenu = f'''<!doctype html>
 <html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{e(title)}</title><meta name="description" content="{e(desc)}"><meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="{canon}">{CSS}<link rel="icon" href="/favicon.ico">
@@ -222,6 +222,8 @@ def page(q, quartiers, meta, an):
 <section class="dq-section"><p class="dq-kicker">Dijon, quartier par quartier</p><h2>Regardez aussi les autres quartiers.</h2><a href="{PILIER}#quartiers">Toute l’estimation immobilière à Dijon</a>{cartes(quartiers, an, q['slug'])}</section></main>
 <footer class="dq-shell dq-footer"><p>Shawez Ali · Agent immobilier · GRAVELIN IMMO · Dijon</p><nav aria-label="Pied de page"><a href="/honoraires/">Honoraires</a><a href="/mentions-legales/">Mentions légales</a><a href="/politique-de-confidentialite/">Confidentialité</a><a href="/plan-du-site/">Plan du site</a></nav></footer></body></html>
 '''
+    from search_reponses import appliquer, balisage
+    return appliquer(contenu, url(q), root) if (Path(root) / 'avis.json').exists() else balisage(contenu, url(q))
 
 
 def bloc(s, ident, contenu, avant='</main>'):
@@ -315,7 +317,7 @@ def construire(root=ROOT):
                  'donnees': {k: meta[k] for k in ('annees', 'derniere_vente', 'genere_le', 'empreinte_dvf_sha256', 'contours_source', 'contours_collecte_le', 'ventes_dijon', 'ventes_limite_ambigue', 'ventes_hors_contours')},
                  'quartiers': [{'nom': q['nom'], 'slug': q['slug'], 'url': url(q), 'par_annee': par_annee(q['ventes'])} for q in quartiers]}
     for q in quartiers:
-        ecrire(root / url(q).strip('/') / 'index.html', page(q, quartiers, meta, an))
+        ecrire(root / url(q).strip('/') / 'index.html', page(q, quartiers, meta, an, root))
     # Ne conserver aucune ancienne page générée si le quartier n’a plus de ventes.
     valides = {q['slug'] for q in quartiers}
     for path in (root / PREFIXE).glob('*/index.html'):
@@ -357,10 +359,8 @@ def construire(root=ROOT):
                     question['acceptedAnswer']['text'] = reponse
         return '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False).replace('</', '<\\/') + '</script>'
     s = re.sub(r'<script type="application/ld\+json">(.*?)</script>', ld, s, count=1, flags=re.S)
-    from search_prix import reponse
-    intro = '<p class="lede">' + e(reponse(ville, an)) + '</p>'
-    s = re.sub(r'(<h1\b[^>]*>.*?</h1>)\s*(?:<!-- search-prix-intro -->.*?<!-- /search-prix-intro -->)?', lambda m: m[1] + '<!-- search-prix-intro -->' + intro + '<!-- /search-prix-intro -->', s, count=1, flags=re.S)
-    ecrire(pilier, css(s))
+    from search_reponses import appliquer
+    ecrire(pilier, appliquer(css(s), PILIER, root) if (root / 'avis.json').exists() else css(s))
     mailler(root, quartiers, an)
     sitemap(root, quartiers, date)
     if (root / 'prix-immobilier-dijon/index.html').exists():

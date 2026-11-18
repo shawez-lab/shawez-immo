@@ -727,5 +727,8 @@ if __name__ == '__main__':
     sys.path.insert(0, os.path.join(ROOT, 'outils', 'biens'))
     import build_biens
     build_biens.construire(etat)
+    sys.path.insert(0, os.path.join(ROOT, 'outils', 'seo'))
+    from search_reponses import tout as maintenir_search
+    maintenir_search(ROOT)
     n = sum(1 for a in etat['annonces'].values() if a['status'] in ACTIFS)
     print('%d annonces actives · %d au total · %d lignes de posts' % (n, len(etat['annonces']), len(etat['posts'])))
