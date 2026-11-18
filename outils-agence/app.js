@@ -32,13 +32,13 @@ if(cinema){var cv=$('video',cinema),fermerC=function(){cinema.removeAttribute('d
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&cinema.hasAttribute('data-on'))fermerC()});}
 
 /* formulaires : envoi à l'agence */
-$$('form[data-envoi]').forEach(function(f){var et=$('.form-etat',f),bt=$('button[type=submit]',f);
+$$('form[data-envoi]').forEach(function(f){var et=$('.form-etat',f),bt=$('button[type=submit]',f),en=f.lang==='en';
   f.addEventListener('submit',function(e){e.preventDefault();var d={};new FormData(f).forEach(function(v,k){d[k]=v});d.consent=!!(f.elements.consent&&f.elements.consent.checked);d.page=location.pathname;
-    if(!d.email&&!d.telephone){et.removeAttribute('data-ok');et.setAttribute('data-ko','');et.textContent='Indiquez un e-mail ou un téléphone pour que nous puissions vous répondre.';return;}
-    bt.disabled=true;et.removeAttribute('data-ko');et.removeAttribute('data-ok');et.textContent='Envoi en cours…';
+    if(!d.email&&!d.telephone){et.removeAttribute('data-ok');et.setAttribute('data-ko','');et.textContent=en?'Please give an email address or a phone number so that we can reply.':'Indiquez un e-mail ou un téléphone pour que nous puissions vous répondre.';return;}
+    bt.disabled=true;et.removeAttribute('data-ko');et.removeAttribute('data-ok');et.textContent=en?'Sending…':'Envoi en cours…';
     fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)}).then(function(r){if(!r.ok)throw r.status;
-      f.reset();et.setAttribute('data-ok','');et.textContent='Message envoyé. L’agence vous répond aux heures d’ouverture.';})
-    .catch(function(s){et.setAttribute('data-ko','');et.textContent=s===429?'Trop de messages envoyés. Réessayez dans une heure ou appelez le 03 45 34 35 31.':'Le message n’est pas parti. Réessayez, ou appelez le 03 45 34 35 31.';})
+      f.reset();et.setAttribute('data-ok','');et.textContent=en?'Message sent. The agency replies during opening hours.':'Message envoyé. L’agence vous répond aux heures d’ouverture.';})
+    .catch(function(s){et.setAttribute('data-ko','');et.textContent=en?(s===429?'Too many messages sent. Try again in an hour or call +33 3 45 34 35 31.':'The message was not sent. Try again, or call +33 3 45 34 35 31.'):s===429?'Trop de messages envoyés. Réessayez dans une heure ou appelez le 03 45 34 35 31.':'Le message n’est pas parti. Réessayez, ou appelez le 03 45 34 35 31.';})
     .then(function(){bt.disabled=false;});});});
 
 /* prix : filtre par commune */

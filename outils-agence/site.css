@@ -205,6 +205,7 @@ dl.carac dt{color:var(--gris)}dl.carac dd{margin:0;font-weight:600;text-align:ri
 .dpe{display:flex;gap:3px;margin:14px 0 8px;max-width:380px}
 .dpe i{flex:1;height:34px;display:grid;place-items:center;font:600 .95rem var(--sans);font-style:normal;color:#fff;opacity:.28}
 .dpe i[data-on]{opacity:1;height:46px;margin-top:-6px;font-size:1.2rem}
+.dpe.ges{margin-top:6px}.dpe.ges i{color:#2a1233}.dpe.ges i:nth-child(n+4){color:#fff}.ges-t{margin:18px 0 0;font-size:.92rem}
 .cote{position:sticky;top:100px;background:var(--papier);border:1px solid var(--pierre);padding:28px}
 .cote-prix{font:600 2.1rem/1.1 var(--sans)}
 .cote-prix s{display:block;font:400 1rem var(--sans);color:var(--gris);margin-top:4px}

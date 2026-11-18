@@ -21,20 +21,28 @@ EQUIPE = [('marion-gravelin', 'Marion Gravelin', 'Fondatrice et dirigeante de l�
           ('shawez-ali', 'Shawez Ali', 'Agent commercial, Dijon', 'Shawez vend des appartements, des maisons, des immeubles et des commerces. Il reçoit ses clients en français, en anglais et dans six autres langues.'),
           ('bernard-gogneau', 'Bernard Gogneau', 'Agent commercial, Beaune', 'Bernard accompagne les vendeurs et les acheteurs à Beaune et dans les villages de la Côte.')]
 
-def equipe_html():
+EQUIPE_EN = {'marion-gravelin': ('Founder and managing director', 'Marion founded the agency in 2016 and has run it ever since. She holds the professional licence and follows sales and lettings.'),
+             'shawez-ali': ('Sales agent, Dijon', 'Shawez sells apartments, houses, buildings and business premises. He welcomes clients in French, English and six other languages.'),
+             'bernard-gogneau': ('Sales agent, Beaune', 'Bernard works with sellers and buyers in Beaune and the wine villages around it.')}
+
+def equipe_html(langue='fr'):
+    liste = [(f, n) + (EQUIPE_EN[f] if langue == 'en' else (r, t)) for f, n, r, t in EQUIPE]
     return '<div class="equipe">' + ''.join(
         f'<div class="membre"><img src="{M}/{f}.webp" alt="{e(n)}, {e(r.lower())}" loading="lazy" width="900" height="1125"><h3>{e(n)}</h3><p class="role">{e(r)}</p><p>{e(t)}</p></div>'
-        for f, n, r, t in EQUIPE) + '</div>'
+        for f, n, r, t in liste) + '</div>'
 
-def formulaire(objet, bien='', bouton='Envoyer', message='Votre message'):
-    return f'''<form class="form" data-envoi novalidate>
+def formulaire(objet, bien='', bouton='Envoyer', message='Votre message', langue='fr'):
+    en = langue == 'en'
+    t = (('Your name', 'Phone', 'Email', 'Leave empty', 'I agree that the agency uses this information to reply to me. <a href="/confidentialite/">Privacy policy, in French</a>')
+         if en else ('Votre nom', 'Téléphone', 'E-mail', 'Ne pas remplir', 'J’accepte que l’agence utilise ces informations pour me répondre. <a href="/confidentialite/">En savoir plus</a>'))
+    return f'''<form class="form" data-envoi novalidate{' lang="en"' if en else ''}>
 <input type="hidden" name="objet" value="{e(objet)}"><input type="hidden" name="bien" value="{e(bien)}">
-<label class="champ"><span>Votre nom</span><input name="nom" autocomplete="name" required></label>
-<label class="champ"><span>Téléphone</span><input name="telephone" type="tel" autocomplete="tel" inputmode="tel"></label>
-<label class="champ large"><span>E-mail</span><input name="email" type="email" autocomplete="email"></label>
+<label class="champ"><span>{t[0]}</span><input name="nom" autocomplete="name" required></label>
+<label class="champ"><span>{t[1]}</span><input name="telephone" type="tel" autocomplete="tel" inputmode="tel"></label>
+<label class="champ large"><span>{t[2]}</span><input name="email" type="email" autocomplete="email"></label>
 <label class="champ large"><span>{message}</span><textarea name="message" rows="4"></textarea></label>
-<label class="piege" aria-hidden="true">Ne pas remplir<input name="website" tabindex="-1" autocomplete="off"></label>
-<label class="accord"><input type="checkbox" name="consent" required><span>J’accepte que l’agence utilise ces informations pour me répondre. <a href="/confidentialite/">En savoir plus</a></span></label>
+<label class="piege" aria-hidden="true">{t[3]}<input name="website" tabindex="-1" autocomplete="off"></label>
+<label class="accord"><input type="checkbox" name="consent" required><span>{t[4]}</span></label>
 <button class="btn btn-plein large" type="submit">{bouton}</button>
 <p class="form-etat" role="status" aria-live="polite"></p>
 </form>'''
@@ -354,6 +362,7 @@ LIB = [('surf_carrez', 'Surface'), ('surfterrn', 'Terrain'), ('nbpiecees', 'Piè
        ('nbniveaux', 'Niveaux'), ('nbetage', 'Étage'), ('exposition', 'Exposition'), ('vue', 'Vue'), ('nb_garage', 'Garages'), ('nb_parking', 'Places de stationnement')]
 OUI = [('terrasse', 'Terrasse'), ('balcon', 'Balcon'), ('loggia', 'Loggia'), ('cave', 'Cave'), ('interphone', 'Interphone'), ('visiophone', 'Visiophone'),
        ('terrain_arbore', 'Terrain arboré'), ('terrain_piscinable', 'Terrain piscinable'), ('terrain_constructible', 'Terrain constructible'), ('terrain_viabilise', 'Terrain viabilisé')]
+GES_C = {'A': '#F6ECF7', 'B': '#DFC1E6', 'C': '#D0A6DA', 'D': '#B987C6', 'E': '#A46CB4', 'F': '#8A4E9C', 'G': '#6B2F7E'}
 DPE_C = {'A': '#2E8B4A', 'B': '#5BAA3A', 'C': '#A5C63B', 'D': '#E8D21D', 'E': '#EFA92A', 'F': '#E3702B', 'G': '#D02A2A'}
 
 def unique(v):
@@ -409,6 +418,9 @@ def fiche(b, biens):
     if b['dpe']:
         nrj += '<div class="dpe" role="img" aria-label="Classe énergie ' + b['dpe'] + '">' + ''.join(
             f'<i style="background:{col}"{" data-on" if k == b["dpe"] else ""}>{k}</i>' for k, col in DPE_C.items()) + '</div>'
+    if b['ges']:
+        nrj += '<p class="ges-t">Émissions de gaz à effet de serre</p><div class="dpe ges" role="img" aria-label="Classe climat ' + b['ges'] + '">' + ''.join(
+            f'<i style="background:{col}"{" data-on" if k == b["ges"] else ""}>{k}</i>' for k, col in GES_C.items()) + '</div>'
     if b['energie']:
         nrj += f'<p>Dépenses annuelles d’énergie estimées {e(b["energie"])}, pour un usage standard.</p>'
     if not nrj:
@@ -859,13 +871,13 @@ def page_anglais(biens):
 
 <section class="bloc fond-papier"><div class="enveloppe">
 <div class="titre-rang"><h2>Who you will be dealing with</h2><a class="lien" href="/agence/">The team</a></div>
-{equipe_html()}
+{equipe_html('en')}
 <p style="margin-top:28px;max-width:70ch">Shawez Ali also welcomes clients in Hindi, Urdu, Punjabi, Persian, Greek and Arabic. Our photographer and videographer film each property, so you can make a first visit from home.</p>
 </div></section>
 
 <section class="bloc"><div class="enveloppe deux"><div><h2>Tell us what you are looking for</h2>
 <p class="chapo" style="margin-top:18px">Type of property, area, budget and timing: a few lines are enough. We reply during opening hours, Monday, Tuesday, Thursday and Friday.</p></div>
-<div>{formulaire('Message from the English page', '', 'Send', 'Your project')}</div></div></section>{CINEMA}"""
+<div>{formulaire('Message from the English page', '', 'Send', 'Your project', 'en')}</div></div></section>{CINEMA}"""
     page('/en/', 'Property for sale in Dijon and Burgundy | GRAVELIN IMMO', 'Independent estate agency in Dijon, Burgundy. Apartments, houses and châteaux for sale between Dijon and Beaune. We work in English.', corps, '', langue='en')
 
 SITE_URL = 'https://www.gravelin-immo.com'   # adresse définitive : sert aux liens canoniques et au plan du site
