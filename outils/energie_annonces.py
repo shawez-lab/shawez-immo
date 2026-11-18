@@ -30,11 +30,11 @@ def images_diagnostic(s):
     return out
 
 
-def _ocr(im, alphabet):
+def _ocr(im, alphabet, psm=10, scale=4):
     from PIL import ImageOps
-    im = ImageOps.expand(im.convert('RGB').resize((im.width * 4, im.height * 4)), border=32, fill='white')
+    im = ImageOps.expand(im.convert('RGB').resize((im.width * scale, im.height * scale)), border=32, fill='white')
     buf = io.BytesIO(); im.save(buf, format='PNG')
-    result = subprocess.run(['tesseract', 'stdin', 'stdout', '-l', 'eng', '--psm', '10',
+    result = subprocess.run(['tesseract', 'stdin', 'stdout', '-l', 'eng', '--psm', str(psm),
                              '-c', 'tessedit_char_whitelist=' + alphabet, 'tsv'],
                             input=buf.getvalue(), capture_output=True, check=True, timeout=15)
     words = [r for r in csv.DictReader(io.StringIO(result.stdout.decode()), delimiter='\t')
@@ -76,8 +76,16 @@ def lire_image(data, cle):
         # Isoler son remplissage blanc évite de lire le cadre comme une autre lettre.
         from PIL import Image
         ink = Image.new('L', letter_image.size, 255)
-        ink.putdata([0 if min(pixel) > 220 else 255 for pixel in letter_image.getdata()])
-        letter = _ocr(ink, 'ABCDEFG')
+        ink.putdata([0 if min(letter_image.getpixel((x,y))) > 220 else 255
+                     for y in range(letter_image.height) for x in range(letter_image.width)])
+        from PIL import ImageChops
+        bounds = ImageChops.invert(ink).getbbox()
+        if bounds:
+            ink = ink.crop(bounds)
+            ink = ink.resize((round(ink.width * 48 / ink.height), 48))
+            readings = {_ocr(ink, 'ABCDEFG', psm=psm, scale=1) for psm in (10, 8, 13)} - {None}
+            if len(readings) == 1:
+                letter = readings.pop()
     out = {cle: letter} if letter and re.fullmatch('[A-G]', letter) else {}
     box = (1, top + 7, 89, top + 55) if cle == 'dpe' else (200, top + 5, 400, top + 60)
     # GES : exclure le petit texte de l'unité à droite en isolant les grands glyphes.
