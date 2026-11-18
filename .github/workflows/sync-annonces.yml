@@ -100,7 +100,12 @@ jobs:
 
       - name: Lecture des diagnostics publics (OCR local, sans modèle)
         if: steps.heure.outputs.go == '1' && steps.veille.outputs.change == '1'
-        run: sudo apt-get update -qq && sudo apt-get install -y -qq --no-install-recommends tesseract-ocr
+        timeout-minutes: 6
+        continue-on-error: true   # installation impossible : les annonces sont synchronisées quand même, sans relecture des diagnostics
+        run: |
+          command -v tesseract >/dev/null && exit 0
+          sudo apt-get -o DPkg::Lock::Timeout=240 update -qq
+          sudo apt-get -o DPkg::Lock::Timeout=240 install -y -qq --no-install-recommends tesseract-ocr
 
       - name: Synchronisation
         if: steps.heure.outputs.go == '1' && steps.veille.outputs.change == '1'
