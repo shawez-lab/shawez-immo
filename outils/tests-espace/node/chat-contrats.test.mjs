@@ -219,3 +219,13 @@ for (const partialFailure of [false, true]) {
     assert.equal(payloads.length, 2, 'aucun destinataire déjà contacté ne reçoit une nouvelle alerte');
   });
 }
+
+for(const agency of [false,true])test(`401 Anthropic : chat${agency?'-agence':''} conserve le secours et journalise la cause`,async t=>{
+ const f=fixture(t);let calls=0;
+ t.mock.method(globalThis,'fetch',async()=>{calls++;return Response.json({error:{type:'authentication_error',message:'invalid x-api-key'}},{status:401});});
+ const handler=agency?(await import('../../../functions/api/chat-agence.js')).onRequestPost:onRequestPost;
+ const response=await handler({env:f.env,request:request()});const data=await response.json();
+ assert.equal(response.status,200);assert.match(data.reponse,/préfère laisser/);assert.equal(calls,1);assert.equal(f.mails.length,0);
+ assert.match(f.logs.join('\n'),/401.*authentication error.*invalid x api key/);
+ assert.match(f.sqlite.prepare('SELECT id FROM leads_couts').get().id,/panne claude 401/);
+});
