@@ -1,0 +1,409 @@
+{
+  "source": "https://www.data.gouv.fr/datasets/demandes-de-valeurs-foncieres-geolocalisees",
+  "methode_version": 1,
+  "annee_reference": 2025,
+  "donnees": {
+    "annees": [
+      2023,
+      2024,
+      2025
+    ],
+    "derniere_vente": "2025-12-30",
+    "genere_le": "2026-11-18",
+    "empreinte_dvf_sha256": "ed0d77943c935cc01c9c2a7c6a16227c292b30af0fd466b56d22464001dfb64e",
+    "contours_source": "https://api-carto.dijon.fr/arcgis/rest/services/OPENDATA/opendata/FeatureServer/66",
+    "contours_collecte_le": "2026-11-18",
+    "ventes_dijon": 8485,
+    "ventes_limite_ambigue": 0,
+    "ventes_hors_contours": 0
+  },
+  "quartiers": [
+    {
+      "nom": "Fontaine d'Ouche - Faubourg Raines - Larrey - Motte Giron",
+      "slug": "fontaine-d-ouche-faubourg-raines-larrey-motte-giron",
+      "url": "/estimation-immobiliere-dijon/fontaine-d-ouche-faubourg-raines-larrey-motte-giron/",
+      "par_annee": {
+        "2023": {
+          "0": {
+            "ventes": 255,
+            "median_m2": 1953,
+            "median_prix": 92000
+          },
+          "1": {
+            "ventes": 28,
+            "median_m2": 3388.0,
+            "median_prix": 343000.0
+          }
+        },
+        "2024": {
+          "0": {
+            "ventes": 213,
+            "median_m2": 1961,
+            "median_prix": 100000
+          },
+          "1": {
+            "ventes": 32,
+            "median_m2": 3284.0,
+            "median_prix": 252500.0
+          }
+        },
+        "2025": {
+          "0": {
+            "ventes": 235,
+            "median_m2": 2000,
+            "median_prix": 96500
+          },
+          "1": {
+            "ventes": 39,
+            "median_m2": 3000,
+            "median_prix": 302500
+          }
+        }
+      }
+    },
+    {
+      "nom": "Centre-Ville",
+      "slug": "centre-ville",
+      "url": "/estimation-immobiliere-dijon/centre-ville/",
+      "par_annee": {
+        "2023": {
+          "0": {
+            "ventes": 617,
+            "median_m2": 2955,
+            "median_prix": 126000
+          },
+          "1": {
+            "ventes": 12,
+            "median_m2": 3457.5,
+            "median_prix": 467500.0
+          }
+        },
+        "2024": {
+          "0": {
+            "ventes": 538,
+            "median_m2": 2821.5,
+            "median_prix": 121075.0
+          },
+          "1": {
+            "ventes": 8,
+            "median_m2": 2836.5,
+            "median_prix": 394000.0
+          }
+        },
+        "2025": {
+          "0": {
+            "ventes": 584,
+            "median_m2": 2964.5,
+            "median_prix": 129000.0
+          },
+          "1": {
+            "ventes": 8,
+            "median_m2": 3431.5,
+            "median_prix": 262000.0
+          }
+        }
+      }
+    },
+    {
+      "nom": "Gresilles",
+      "slug": "gresilles",
+      "url": "/estimation-immobiliere-dijon/gresilles/",
+      "par_annee": {
+        "2023": {
+          "0": {
+            "ventes": 44,
+            "median_m2": 2212.5,
+            "median_prix": 113500.0
+          },
+          "1": {
+            "ventes": 5,
+            "median_m2": 3037,
+            "median_prix": 185000
+          }
+        },
+        "2024": {
+          "0": {
+            "ventes": 36,
+            "median_m2": 2179.5,
+            "median_prix": 105950.0
+          },
+          "1": {
+            "ventes": 5,
+            "median_m2": 2205,
+            "median_prix": 154000
+          }
+        },
+        "2025": {
+          "0": {
+            "ventes": 42,
+            "median_m2": 2095.5,
+            "median_prix": 115500.0
+          },
+          "1": {
+            "ventes": 8,
+            "median_m2": 2523.5,
+            "median_prix": 197600.0
+          }
+        }
+      }
+    },
+    {
+      "nom": "Montchapet",
+      "slug": "montchapet",
+      "url": "/estimation-immobiliere-dijon/montchapet/",
+      "par_annee": {
+        "2023": {
+          "0": {
+            "ventes": 535,
+            "median_m2": 2769,
+            "median_prix": 145000
+          },
+          "1": {
+            "ventes": 65,
+            "median_m2": 4276,
+            "median_prix": 420000
+          }
+        },
+        "2024": {
+          "0": {
+            "ventes": 492,
+            "median_m2": 2658.0,
+            "median_prix": 130000.0
+          },
+          "1": {
+            "ventes": 69,
+            "median_m2": 4009,
+            "median_prix": 387650
+          }
+        },
+        "2025": {
+          "0": {
+            "ventes": 490,
+            "median_m2": 2727.0,
+            "median_prix": 141933.5
+          },
+          "1": {
+            "ventes": 75,
+            "median_m2": 3845,
+            "median_prix": 379800
+          }
+        }
+      }
+    },
+    {
+      "nom": "Université",
+      "slug": "universite",
+      "url": "/estimation-immobiliere-dijon/universite/",
+      "par_annee": {
+        "2023": {
+          "0": {
+            "ventes": 253,
+            "median_m2": 2565,
+            "median_prix": 105000
+          },
+          "1": {
+            "ventes": 31,
+            "median_m2": 3280,
+            "median_prix": 305000
+          }
+        },
+        "2024": {
+          "0": {
+            "ventes": 237,
+            "median_m2": 2430,
+            "median_prix": 110000
+          },
+          "1": {
+            "ventes": 35,
+            "median_m2": 3230,
+            "median_prix": 295000
+          }
+        },
+        "2025": {
+          "0": {
+            "ventes": 249,
+            "median_m2": 2606,
+            "median_prix": 115000
+          },
+          "1": {
+            "ventes": 39,
+            "median_m2": 3336,
+            "median_prix": 280725
+          }
+        }
+      }
+    },
+    {
+      "nom": "Maladière - Drapeau - Clemenceau",
+      "slug": "maladiere-drapeau-clemenceau",
+      "url": "/estimation-immobiliere-dijon/maladiere-drapeau-clemenceau/",
+      "par_annee": {
+        "2023": {
+          "0": {
+            "ventes": 247,
+            "median_m2": 2628,
+            "median_prix": 135000
+          },
+          "1": {
+            "ventes": 32,
+            "median_m2": 3511.0,
+            "median_prix": 292272.5
+          }
+        },
+        "2024": {
+          "0": {
+            "ventes": 235,
+            "median_m2": 2600,
+            "median_prix": 128550
+          },
+          "1": {
+            "ventes": 29,
+            "median_m2": 3355,
+            "median_prix": 283000
+          }
+        },
+        "2025": {
+          "0": {
+            "ventes": 244,
+            "median_m2": 2666.0,
+            "median_prix": 135000.0
+          },
+          "1": {
+            "ventes": 27,
+            "median_m2": 3173,
+            "median_prix": 271470
+          }
+        }
+      }
+    },
+    {
+      "nom": "Bourroches - Port du Canal - Valendons - Montagne Sainte-Anne",
+      "slug": "bourroches-port-du-canal-valendons-montagne-sainte-anne",
+      "url": "/estimation-immobiliere-dijon/bourroches-port-du-canal-valendons-montagne-sainte-anne/",
+      "par_annee": {
+        "2023": {
+          "0": {
+            "ventes": 166,
+            "median_m2": 2331.0,
+            "median_prix": 131728.0
+          },
+          "1": {
+            "ventes": 79,
+            "median_m2": 2878,
+            "median_prix": 236000
+          }
+        },
+        "2024": {
+          "0": {
+            "ventes": 162,
+            "median_m2": 2374.5,
+            "median_prix": 129250.0
+          },
+          "1": {
+            "ventes": 78,
+            "median_m2": 2804.5,
+            "median_prix": 227721.0
+          }
+        },
+        "2025": {
+          "0": {
+            "ventes": 175,
+            "median_m2": 2421,
+            "median_prix": 124000
+          },
+          "1": {
+            "ventes": 95,
+            "median_m2": 2971,
+            "median_prix": 249000
+          }
+        }
+      }
+    },
+    {
+      "nom": "Varennes - Toison d'Or - Joffre",
+      "slug": "varennes-toison-d-or-joffre",
+      "url": "/estimation-immobiliere-dijon/varennes-toison-d-or-joffre/",
+      "par_annee": {
+        "2023": {
+          "0": {
+            "ventes": 203,
+            "median_m2": 2897,
+            "median_prix": 150630
+          },
+          "1": {
+            "ventes": 47,
+            "median_m2": 2924,
+            "median_prix": 286750
+          }
+        },
+        "2024": {
+          "0": {
+            "ventes": 187,
+            "median_m2": 2781,
+            "median_prix": 147250
+          },
+          "1": {
+            "ventes": 39,
+            "median_m2": 3159,
+            "median_prix": 298650
+          }
+        },
+        "2025": {
+          "0": {
+            "ventes": 198,
+            "median_m2": 2941.5,
+            "median_prix": 158195.0
+          },
+          "1": {
+            "ventes": 48,
+            "median_m2": 3242.5,
+            "median_prix": 273650.0
+          }
+        }
+      }
+    },
+    {
+      "nom": "Chevreul - Parc",
+      "slug": "chevreul-parc",
+      "url": "/estimation-immobiliere-dijon/chevreul-parc/",
+      "par_annee": {
+        "2023": {
+          "0": {
+            "ventes": 259,
+            "median_m2": 2618,
+            "median_prix": 130000
+          },
+          "1": {
+            "ventes": 41,
+            "median_m2": 3495,
+            "median_prix": 309450
+          }
+        },
+        "2024": {
+          "0": {
+            "ventes": 255,
+            "median_m2": 2422,
+            "median_prix": 110000
+          },
+          "1": {
+            "ventes": 47,
+            "median_m2": 3519,
+            "median_prix": 283500
+          }
+        },
+        "2025": {
+          "0": {
+            "ventes": 271,
+            "median_m2": 2585,
+            "median_prix": 120000
+          },
+          "1": {
+            "ventes": 42,
+            "median_m2": 3543.0,
+            "median_prix": 307220.5
+          }
+        }
+      }
+    }
+  ]
+}

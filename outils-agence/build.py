@@ -27,8 +27,9 @@ EQUIPE_EN = {'marion-gravelin': ('Founder and managing director', 'Marion founde
 
 def equipe_html(langue='fr'):
     liste = [(f, n) + (EQUIPE_EN[f] if langue == 'en' else (r, t)) for f, n, r, t in EQUIPE]
+    lien = {'shawez-ali': '<p><a class="lien" href="https://shawez-immo.com/">' + ('Shawez Ali’s website: selling in Dijon' if langue == 'en' else 'Le site de Shawez Ali : estimation et vente à Dijon') + '</a></p>'}
     return '<div class="equipe">' + ''.join(
-        f'<div class="membre"><img src="{M}/{f}.webp" alt="{e(n)}, {e(r.lower())}" loading="lazy" width="900" height="1125"><h3>{e(n)}</h3><p class="role">{e(r)}</p><p>{e(t)}</p></div>'
+        f'<div class="membre"><img src="{M}/{f}.webp" alt="{e(n)}, {e(r.lower())}" loading="lazy" width="900" height="1125"><h3>{e(n)}</h3><p class="role">{e(r)}</p><p>{e(t)}</p>{lien.get(f, '')}</div>'
         for f, n, r, t in liste) + '</div>'
 
 def formulaire(objet, bien='', bouton='Envoyer', message='Votre message', langue='fr'):
