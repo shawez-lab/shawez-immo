@@ -1,0 +1,779 @@
+{
+ "made": "2026-11-18 15:00 UTC",
+ "findings": [
+  {
+   "what": "Pour « prix au m2 dijon 2026 », le site donne plusieurs chiffres différents pour le même prix, et ne répond pas en haut de page à la question « et en 2026 ? ».",
+   "evidence": "Prix médian des appartements à Dijon en 2025 : environ 2 782 €/m² sur 2 884 ventes (source immovrai.com) sur https://shawez-immo.com/prix-immobilier-dijon/, 2 660 €/m² « autour de Dijon » dans la FAQ de la même page, et 2 679,5 €/m² sur 2 488 ventes sur https://shawez-immo.com/estimation-immobiliere-dijon/. Centre-ville : 2 870 €/m² dans la FAQ de /prix-immobilier-dijon/, contre 2 966,5 €/m² sur /estimation-immobiliere-dijon/centre-ville/. Le titre dit « les repères 2025 » et la phrase « Les données de 2026 ne sont pas encore publiées » est en bas de page. La FAQ « Quel est le quartier le plus",
+   "fix": "Garder une seule méthode (votre calcul DVF) et mettre les mêmes chiffres sur /prix-immobilier-dijon/, /estimation-immobiliere-dijon/, les pages quartiers et toutes les FAQ. Juste sous le titre de /prix-immobilier-dijon/, écrire deux phrases du type : « En 2026, le dernier repère complet est celui des ventes de 2025 : X €/m² pour un appartement et Y €/m² pour une maison à Dijon. Les ventes de 2026 ne sont publiées qu'en partie. » Quand la zone change (ville entière, quartier, rayon autour du centre), le dire en quelques mots à côté du chiffre. Dans la FAQ sur le quartier le plus cher, donner le",
+   "fix_type": "faq_answer",
+   "impact": "high",
+   "check": "faq-answers",
+   "check_title": "Answers To Customer Questions",
+   "id": "F1"
+  },
+  {
+   "what": "La page principale de vente ne dit pas, en haut, qu'elle sert à vendre une maison ou un appartement à Dijon. Le grand titre parle seulement de « vendre au bon prix », sans ville ni type de bien.",
+   "evidence": "https://shawez-immo.com/vendre-bien-immobilier-dijon/ : titre de l'onglet « Vendre votre bien à Dijon au bon prix | Shawez Ali », grand titre « Vendez au bon prix, sereinement et sans perdre de temps. ». Les mots maison et appartement n'apparaissent que plus bas, dans la partie sur les documents. Le reste de la page est bon : estimation offerte, étapes, barème public, rendez-vous, téléphone et WhatsApp. C'est la page qui doit répondre à « vendre sa maison rapidement à dijon », « combien de temps pour vendre une maison à dijon », « vendre appartement centre ville dijon », « quelle agence immobi",
+   "fix": "Changer le titre de l'onglet en « Vendre sa maison ou son appartement à Dijon | Shawez Ali » et le grand titre en « Vendre votre maison ou votre appartement à Dijon, au bon prix ». Ajouter sous le titre une phrase qui cite Dijon, la métropole et Beaune.",
+   "fix_type": "title",
+   "impact": "high",
+   "check": "service-pages",
+   "check_title": "Service Pages",
+   "id": "F2"
+  },
+  {
+   "what": "« agent immobilier dijon avis » : la réponse IA est construite avec les notes des plateformes d'avis et le nom des agents. Votre page Avis ne contient aucun avis écrit, Google n'a donc rien à reprendre sur vous.",
+   "evidence": "raw/by-hand-answers.md : nommés Pietrapolis (Opinion System 9,8/10, agents nommés), Cabinet Laurin (4,8/5), Square Habitat (4,8/5 sur Immodvisor), Citya ; sources Opinion System, Immodvisor, site du Cabinet Laurin. https://shawez-immo.com/avis/ : 449 mots, seulement la note 5,0 sur 27 avis et un lien vers Google ; le fichier site/avis.json a une liste d'avis vide (\"avis\": []). Le lien Opinion System de la page mène aux avis de l'agence, pas aux vôtres. Impact jugé fort : votre note 5,0 se compare très bien aux agences citées, mais elle n'est lisible nulle part où Google regarde.",
+   "fix": "Publier sur la page Avis 6 à 10 vrais avis en texte, avec le prénom, le mois et le type de bien, avec l'accord des clients, et remettre à jour la date du relevé. Demander à vos prochains clients vendeurs un avis à votre nom sur Opinion System ou Immodvisor, en plus de Google, puisque ce sont ces sites que Google cite.",
+   "fix_type": "review_request",
+   "impact": "high",
+   "check": "ai-answers",
+   "check_title": "AI Answers For Your Questions",
+   "id": "F3"
+  },
+  {
+   "what": "Pour « agent immobilier dijon avis », l'IA cite Opinion System et Immodvisor et nomme des agences avec leur note et leurs agents (Pietrapolis 9,8/10, Cabinet Laurin 4,8/5, Square Habitat 4,8/5). Shawez n'a pas de page d'avis à son nom sur ces sites : sa page avis renvoie seulement vers la page Opini",
+   "evidence": "raw/by-hand-answers.md (question 2, « agents nommés » chez les trois). site/avis/index.html et crawl.json : https://shawez-immo.com/avis/ fait 449 mots, affiche « 5,0/5 sur 27 avis » et « Avis de l'agence GRAVELIN IMMO sur Opinion System », aucun extrait d'avis. raw/by-hand-profile.md : 27 avis, un seul nouveau entre le 1/10 et le 17/11/2026. Impact élevé : les avis sont ce que Google résume pour cette question.",
+   "fix": "Demander à l'agence d'ouvrir une page agent Shawez Ali sur Opinion System (ou Immodvisor) pour que les avis collectés après ses ventes portent son nom. Demander un avis Google à chaque client après chaque signature et chaque estimation. Sur la page avis, afficher quelques vrais avis avec prénom, date et type de bien, en lien vers leur source.",
+   "fix_type": "review_request",
+   "impact": "high",
+   "check": "named-instead",
+   "check_title": "Who Google's AI Names Instead",
+   "id": "F4"
+  },
+  {
+   "what": "Vous avez beaucoup moins d'avis que les agences que Google met en avant à Dijon. La note est parfaite, mais le volume est 4 à 10 fois plus faible.",
+   "evidence": "Votre fiche : 27 avis, note 5,0, relevé du 9/10/2026 (raw/by-hand-profile.md). Relevé RealAdvisor du 18/11/2026, avis marqués Google : Pietrapolis 4,9 sur 265 à 268 avis, Actifs Immo 4,9 sur 193, Balducci Immobilier 4,9 à 5,0 sur 91 à 95 (realadvisor.fr, pages agences et liste Dijon). Square Habitat Dijon : 4,8 sur 36 avis Immodvisor. L'agence Gravelin Immo : 4,8 sur 141. ERA Vimont et Cabinet Laurin : nombre non trouvé. Pourquoi l'impact est fort : Google dit que ses réponses IA peuvent reprendre des informations sur les commerces locaux, et sa propre aide demande aux professionnels de sollic",
+   "fix": "Envoyez ce mail à tous vos clients récents, vendeurs, acheteurs, bailleurs et locataires, sans faire de tri entre les contents et les moins contents. Remplacez [LIEN AVIS] par votre lien d'avis Google, celui noté dans site/assets/avis-google/LISEZMOI.txt. Ne promettez rien en échange et ne demandez jamais une note précise : Google supprime les avis obtenus comme ça. Objet : Votre avis sur notre projet ensemble Bonjour [Prénom], Merci encore de m'avoir fait confiance pour votre projet immobilier. Je demande à chacun de mes clients de raconter en quelques lignes comment ça s'est passé avec moi, ",
+   "fix_type": "review_request",
+   "impact": "high",
+   "check": "reviews",
+   "check_title": "Reviews",
+   "id": "F5"
+  },
+  {
+   "what": "Vos avis ne sont plus récents. Un seul nouvel avis en sept semaines, alors que les agences concurrentes en reçoivent chaque semaine.",
+   "evidence": "Un seul nouvel avis entre le 1/10 et le 17/11/2026 (raw/by-hand-profile.md). Avis les plus récents vus le 18/11/2026 : Pietrapolis il y a 5 jours, Balducci il y a 6 jours, Actifs Immo il y a 15 jours (realadvisor.fr). Square Habitat Dijon : dernier avis Immodvisor le 06/02/2026. L'impact est fort car un profil qui reçoit des avis frais montre à Google une activité réelle, et vos concurrents directs en reçoivent en continu.",
+   "fix": "Envoyez ce SMS le jour même de chaque signature, remise de clés ou état des lieux, en semaine et en journée, puis une fois à tous vos clients des douze derniers mois. Même lien à la place de [LIEN AVIS], même règle : rien en échange, aucune note demandée, tout le monde reçoit le message. Bonjour [Prénom], c'est Shawez. Merci encore pour votre confiance. Si vous avez deux minutes, pouvez-vous dire sur Google comment ça s'est passé avec moi, en toute franchise ? Ça aide beaucoup les gens qui cherchent un agent immobilier à Dijon. Le lien : [LIEN AVIS] Belle journée à vous",
+   "fix_type": "review_request",
+   "impact": "high",
+   "check": "reviews",
+   "check_title": "Reviews",
+   "id": "F6"
+  },
+  {
+   "what": "Dans les 4 réponses IA lues, shawez-immo.com n'est jamais cité et Shawez Ali n'est jamais nommé. La cause commune : Google classe encore vos pages trop loin sur les recherches autour de Dijon, et il va chercher ses sources ailleurs.",
+   "evidence": "raw/by-hand-answers.md : aperçu IA affiché 4 fois sur 4, site cité 0 fois, Shawez Ali nommé 0 fois. Sources choisies par Google : realadvisor.fr, Opinion System, Immodvisor, Meilleurs Agents, et les sites d'agences (Cabinet Laurin, Bersot, Maison GLM, EZARE, Citya). setup.json, Search Console sur 28 jours : recherches contenant Dijon à la position moyenne 44,8 avec 0 clic sur 163 affichages, « estimation immobilière dijon » à la position 57,9, et seulement 9 liens venant d'autres sites (cylex-locale.fr 8, mappy.com 1). Impact jugé fort : les sources citées sont toutes des pages déjà en premièr",
+   "fix": "Être présent, à votre nom et avec un lien vers shawez-immo.com, sur les sites que Google cite pour ces questions : une fiche agent sur Meilleurs Agents et RealAdvisor, et un profil à votre nom sur Opinion System ou Immodvisor, si ce n'est pas déjà fait. Demander aussi à l'agence une page équipe sur gravelin-immo.com qui vous nomme et renvoie vers votre site : Google nomme déjà Gravelin Immo, ce lien l'aide à faire le rapprochement avec vous.",
+   "fix_type": "directory_fix",
+   "impact": "high",
+   "check": "ai-answers",
+   "check_title": "AI Answers For Your Questions",
+   "id": "F7"
+  },
+  {
+   "what": "Pour « meilleur agent immobilier dijon », la seule source citée par l'IA est RealAdvisor, un comparateur d'agences. Les agences qu'il met en avant y ont une fiche avec note, nombre d'avis, nombre de ventes sur 24 mois, prix médian de vente et agents nommés. Aucune fiche à son nom pour Shawez Ali n'e",
+   "evidence": "raw/by-hand-answers.md : « Source citée : realadvisor.fr », résultats web realadvisor.fr et meilleursagents.com. Fiche RealAdvisor de Pietrapolis Dijon (https://realadvisor.fr/fr/agences-immobilieres/agence-dijon-pietrapolis) : note 4,9 sur 265 avis, 70 biens vendus en 24 mois, prix médians affichés, 3 agents nommés avec leur propre note. Recherche web « Shawez Ali » avec RealAdvisor, Meilleurs Agents, Immodvisor : seules d'autres agences et d'autres agents de Dijon sortent. Impact élevé : c'est la source que Google a choisie pour cette question.",
+   "fix": "Créer ou réclamer sa fiche d'agent immobilier sur RealAdvisor et sur Meilleurs Agents, rattachée à GRAVELIN IMMO, avec ses vraies ventes signées, sa zone (Dijon, Côte de Nuits, Beaune), ses langues, et le lien vers shawez-immo.com. Y demander des avis à ses clients vendeurs.",
+   "fix_type": "directory_fix",
+   "impact": "high",
+   "check": "named-instead",
+   "check_title": "Who Google's AI Names Instead",
+   "id": "F8"
+  },
+  {
+   "what": "Pas de fiche Pages Jaunes à ton nom. Pages Jaunes alimente aussi Mappy, le 118 712 et d'autres annuaires, donc une seule fiche manquante te fait disparaître de plusieurs endroits d'un coup.",
+   "evidence": "Recherches web sur ton nom, ton téléphone et ton site : aucune fiche Pages Jaunes pour Shawez Ali. On trouve seulement celle de l'agence (pagesjaunes.fr/pros/57243769, reprise par Mappy sur https://fr.mappy.com/poi/5beb671f0351d130e656e578, au nom de « Gravelin Immo », 30 r Bannelier). Search Console ne montre aucun lien depuis pagesjaunes.fr vers shawez-immo.com (setup.json). Tes notes disent que tu as créé cette fiche : elle n'est peut-être pas encore publiée. Impact élevé parce que les annuaires sont une des sources que Google utilise pour juger la notoriété d'un professionnel local, et que",
+   "fix": "Pages Jaunes (version sans paiement) : se connecter, vérifier que la fiche est publiée. Elle doit dire : nom « Shawez Ali — Agent immobilier », 30 rue Bannelier, 21000 Dijon, 07 67 57 92 28 (jamais le numéro de l'agence), site https://shawez-immo.com, activité agent immobilier. Aujourd'hui : aucune fiche visible à ton nom.",
+   "fix_type": "directory_fix",
+   "impact": "high",
+   "check": "citations",
+   "check_title": "Listings And Directories",
+   "id": "F9"
+  },
+  {
+   "what": "Shawez Ali n'est nommé dans aucune des 4 réponses de l'IA de Google lues. Les noms cités à sa place, du plus fréquent au moins fréquent : Pietrapolis Immobilier (2 réponses et la carte), La Maison GLM (2 réponses et la carte), Citya (2 réponses), EZARE (1 réponse et la carte), puis ERA Dijon Vimont,",
+   "evidence": "raw/by-hand-answers.md (relevé du 18/11/2026, 4 questions sur 18) : « Shawez Ali : non » aux 4 questions. Pour « estimation maison dijon gratuite », l'aperçu nomme « l'Agence Darcy, Gravelin Immo ou La Maison GLM ». Carte de « meilleur agent immobilier dijon » : 10 agences, pas Shawez (raw/by-hand-profile.md). Impact élevé : être nommé est le but même de ces réponses, et il est absent partout.",
+   "fix": "Traiter les points suivants dans l'ordre : présence à son nom sur les sites d'avis et annuaires cités, volume d'avis, puis réponse directe en haut de ses pages. Quand l'IA cite GRAVELIN IMMO, faire en sorte que la source qu'elle lit nomme aussi Shawez Ali comme agent immobilier de l'agence.",
+   "fix_type": "other",
+   "impact": "high",
+   "check": "named-instead",
+   "check_title": "Who Google's AI Names Instead",
+   "id": "F10"
+  },
+  {
+   "what": "La fiche se voit très peu et n'apparaît pas sur la carte Google pour la question principale des vendeurs, alors que le nom et l'adresse ont été changés le 26/10/2026.",
+   "evidence": "raw/by-hand-profile.md : du 1/10 au 17/11/2026, environ 85 vues, 3 clics vers le site, 0 appel, 0 message ; carte du 18/11 pour « meilleur agent immobilier dijon » : dix agences, Shawez Ali n'y est pas. raw/by-hand-answers.md : l'aperçu de Google reprend justement ces agences de la carte. Impact élevé car la carte et la fiche sont ce que Google montre en premier pour un agent local, et un changement de nom et d'adresse passe par une relecture de Google.",
+   "fix": "Ouvrez https://business.google.com/ et regardez s'il y a un message du type modification en cours de relecture ou validation demandée. Si Google demande une nouvelle validation, faites-la tout de suite. Ensuite, ne touchez plus au nom ni à l'adresse pendant plusieurs semaines, et complétez la description et les photos (voir les points suivants).",
+   "fix_type": "other",
+   "impact": "high",
+   "check": "profile",
+   "check_title": "Google Business Profile",
+   "id": "F11"
+  },
+  {
+   "what": "58 pages de prix visent des communes absentes de votre zone desservie, et chacune propose de venir estimer sur place. Si vous n'y allez pas vraiment, Google peut les voir comme des pages faites pour capter des recherches par ville et renvoyer vers le même formulaire, ce que ses règles anti spam appe",
+   "evidence": "Le site a 78 pages /prix-immobilier-.../ (dossier /home/claude/search-work/site/ et sitemap). Votre fiche Google liste 19 communes (raw/by-hand-profile.md). 58 pages concernent d'autres communes, dont des villes loin de Dijon : /prix-immobilier-chatillon-sur-seine/, /prix-immobilier-montbard/, /prix-immobilier-semur-en-auxois/, /prix-immobilier-saulieu/, /prix-immobilier-venarey-les-laumes/, /prix-immobilier-arnay-le-duc/, /prix-immobilier-nolay/, /prix-immobilier-seurre/. La page Châtillon-sur-Seine finit par « je vous remets un avis de valeur écrit, appuyé sur les ventes comparables à Châtil",
+   "fix": "Gardez une page par commune seulement là où vous allez vraiment estimer et vendre. Pour les autres, deux choix : les regrouper dans un tableau sur /prix-immobilier-cote-d-or/ (une seule page qui dit clairement que vous travaillez depuis Dijon), ou les passer en noindex. Si vous allez vraiment dans ces villes, ajoutez-les à votre zone Google et montrez sur chaque page un dossier réel que vous y avez traité.",
+   "fix_type": "other",
+   "impact": "high",
+   "check": "location-pages",
+   "check_title": "Location Pages",
+   "id": "F12"
+  },
+  {
+   "what": "Aucune mention indépendante de Shawez Ali, agent immobilier à Dijon, n'a été trouvée sur le web : ni journal local, ni chambre de commerce, ni association, ni partenaire, ni forum.",
+   "evidence": "Recherches du 18/11/2026 : \"Shawez Ali\" Dijon, \"Shawez Ali\" immobilier, \"Shawez Ali\" agent immobilier, \"shawez-immo\" sans le site, \"Shawez\" Gravelin Immo, \"Shawez immo\" Dijon. Les résultats sont des personnes sans rapport (autres \"Ali\", courtiers au Québec), son propre site shawez-immo.com, son propre dépôt de code sur github.com, et des pages d'agences concurrentes. Search Console (setup.json) ne compte que 9 liens externes, tous venant d'annuaires : cylex-locale.fr (8) et mappy.com (1). Impact élevé : Google dit que ses réponses IA reprennent ce qui se dit d'une entreprise ailleurs sur le we",
+   "fix": "Faire parler de lui pour de vraies raisons, sous son nom et avec « agent immobilier à Dijon » : proposer au journal local et aux sites d'info de Dijon une vraie histoire (par exemple son podcast avec des entrepreneurs dijonnais, ou l'accueil des acheteurs étrangers dans leur langue) ; s'inscrire à la CCI de Côte-d'Or et aux réseaux d'entrepreneurs locaux qui publient la liste de leurs membres ; demander aux partenaires avec qui il travaille vraiment (notaires, courtiers, diagnostiqueurs, artisans) de le citer sur leur site. Ne jamais payer d'article déguisé ni écrire de faux avis.",
+   "fix_type": "other",
+   "impact": "high",
+   "check": "mentions",
+   "check_title": "Brand Mentions",
+   "id": "F13"
+  },
+  {
+   "what": "Le site realadvisor.fr, que Google cite comme source pour « meilleur agent immobilier dijon », a des fiches pour de nombreux agents immobiliers de Dijon, mais aucune pour Shawez Ali n'a été trouvée.",
+   "evidence": "raw/by-hand-answers.md : pour « meilleur agent immobilier dijon », l'aperçu IA cite realadvisor.fr et nomme ERA Vimont, Balducci, Actifs Immobilier, INNOV, Pietrapolis, Laforêt. Les recherches renvoient des fiches realadvisor.fr d'agents de Dijon (par exemple https://realadvisor.fr/fr/agents-immobiliers/agent-cedric-bellot, https://realadvisor.fr/fr/agents-immobiliers/agent-pierre-laurent) mais aucune à son nom. Impact élevé : c'est une source que Google utilise déjà pour la question principale d'un vendeur.",
+   "fix": "Vérifier sur realadvisor.fr si un agent peut créer ou réclamer sa fiche, et si oui la remplir avec ses vraies ventes, ses vrais avis et ses langues. Faire de même sur les autres sites d'avis d'agents que Google cite pour Dijon (Opinion System, Immodvisor), uniquement avec de vrais clients.",
+   "fix_type": "other",
+   "impact": "high",
+   "check": "mentions",
+   "check_title": "Brand Mentions",
+   "id": "F14"
+  },
+  {
+   "what": "La vente de maison et la vente d'appartement n'ont pas de page à elles. Tout passe par une seule page générale.",
+   "evidence": "Le relevé des pages (/home/claude/search-work/raw/pages.json) ne trouve, pour ces deux services, que la page générale de conseils, des pages de prix par commune et la page vente générale. Les fiches de biens existent (par exemple https://shawez-immo.com/biens/506-maison-dijon/ et https://shawez-immo.com/biens/534-appartement-dijon/) mais ce sont des annonces, pas des pages de service. Impact jugé moyen : la page vente générale peut déjà répondre si son titre est corrigé, mais une page par type de bien colle mieux aux questions posées.",
+   "fix": "Créer deux pages courtes : « Vendre sa maison à Dijon » et « Vendre son appartement à Dijon ». Chacune dit en haut ce que vous faites, les communes couvertes, que l'estimation est offerte, que les honoraires suivent le barème de l'agence et ne sont dus qu'à la vente, et comment prendre rendez-vous. Pour l'appartement, parler du centre-ville et des documents de copropriété ; pour la maison, du délai de vente et de l'audit énergétique.",
+   "fix_type": "new_page",
+   "impact": "medium",
+   "check": "service-pages",
+   "check_title": "Service Pages",
+   "id": "F15"
+  },
+  {
+   "what": "La vente d'immeuble entier n'a pas de page à elle. Elle n'est citée qu'en passant sur deux autres pages.",
+   "evidence": "https://shawez-immo.com/vendre-bien-immobilier-dijon/ lui consacre un seul paragraphe (« Pour un immeuble entier, le dossier s'élargit... »). https://shawez-immo.com/immobilier-professionnel-dijon/ a une partie « Bureaux, locaux et immeubles de rapport » de trois lignes, et son titre parle de « murs, bureaux, locaux », pas d'immeuble. Pourtant les données structurées du site annoncent la vente d'immeubles et deux immeubles sont en vente sur le site (https://shawez-immo.com/biens/463-immeuble-dijon/ et https://shawez-immo.com/biens/527-immeuble-beaune/). Impact jugé moyen : aucune des 18 questi",
+   "fix": "Créer une page « Vendre un immeuble à Dijon » : immeuble de rapport ou mixte, ce que l'investisseur regarde (loyers, baux, travaux), les pièces à préparer, estimation offerte, honoraires selon le barème, prise de rendez-vous. La relier depuis la page vente et la page immobilier professionnel.",
+   "fix_type": "new_page",
+   "impact": "medium",
+   "check": "service-pages",
+   "check_title": "Service Pages",
+   "id": "F16"
+  },
+  {
+   "what": "Pour « mandat exclusif ou mandat simple pour vendre », il n'y a pas de page dédiée, seulement trois lignes repliées en bas d'une page, qui ne disent pas clairement ce que vous faites.",
+   "evidence": "Le script ne trouve aucun titre qui ressemble à la question ; la meilleure page est /conseils-vendeurs/, avec un score faible de 0,55 (raw/answers-on-site.json). Sur https://shawez-immo.com/vendre-bien-immobilier-dijon/, la FAQ repliée dit : « Avec un mandat exclusif, votre bien a un seul responsable […] Je vous explique les deux, vous choisissez. » Le guide /conseils-vendeurs/choisir-agent-immobilier-dijon/ en parle en deux phrases (partie 4). La page d'accueil dit : « En exclusivité, votre bien a un seul prix et une seule présentation sur les portails. » La page /honoraires/ indique un barèm",
+   "fix": "Créer une page /conseils-vendeurs/mandat-exclusif-ou-mandat-simple/ qui répond dès les trois premières lignes : la différence entre les deux, la durée et comment en sortir après la période minimale, ce qui change pour l'acheteur (un seul prix affiché), que les honoraires sont les mêmes dans les deux cas (barème « tous types de mandat »), puis votre position et ce que vous vous engagez à faire en échange (film, photos, drone, point écrit chaque semaine, un seul interlocuteur). Si vous ne prenez que des mandats exclusifs, le dire franchement au lieu de « vous choisissez ». Faits que seul vous po",
+   "fix_type": "new_page",
+   "impact": "medium",
+   "check": "faq-answers",
+   "check_title": "Answers To Customer Questions",
+   "id": "F17"
+  },
+  {
+   "what": "« meilleur agent immobilier dijon » : la réponse IA nomme 6 agences d'après realadvisor.fr et vous n'y êtes pas. Votre guide sur le sujet donne les mêmes conseils que Google, mais vos propres repères (note, adresse, secteurs) ne viennent qu'à la toute fin.",
+   "evidence": "raw/by-hand-answers.md : nommés ERA Vimont, Balducci, Actifs Immobilier, INNOV, Pietrapolis, Laforêt ; source realadvisor.fr ; conseils : rencontrer 2 à 3 agences, demander un avis de valeur écrit. Carte Google : 10 agences, pas vous (raw/by-hand-profile.md). Votre page https://shawez-immo.com/conseils-vendeurs/choisir-agent-immobilier-dijon/ (site/conseils-vendeurs/choisir-agent-immobilier-dijon/index.html) dit exactement cela, mais affirme qu'il n'existe aucun classement, et la note 5,0 sur 27 avis n'apparaît que dans le dernier bloc « Ce que je réponds, moi ». crawl.json : 10 liens internes",
+   "fix": "Ajouter juste sous le titre un encadré de deux ou trois phrases : Shawez Ali, agent immobilier chez GRAVELIN IMMO, 30 rue Bannelier à Dijon, note 5,0 sur 27 avis Google avec la date du relevé, secteurs couverts et langues parlées. Mettre un lien vers ce guide depuis l'accueil et depuis la page Agent immobilier à Dijon.",
+   "fix_type": "faq_answer",
+   "impact": "medium",
+   "check": "ai-answers",
+   "check_title": "AI Answers For Your Questions",
+   "id": "F18"
+  },
+  {
+   "what": "« estimation immobilière dijon » : la réponse IA donne les prix au m² par type de bien et par quartier, cités depuis Meilleurs Agents et des agences. Votre page a les mêmes chiffres, mais ils sont présentés en tableaux et en blocs, et la phrase de réponse claire n'arrive qu'en bas de page.",
+   "evidence": "raw/by-hand-answers.md : prix moyen 2 827 €/m², appartements 2 740 €/m², maisons 3 091 €/m², prix par quartier ; sources Meilleurs Agents, Bersot, Maison GLM, EZARE ; Gravelin Immo dans les résultats mais pas dans l'aperçu. https://shawez-immo.com/estimation-immobiliere-dijon/ (site/estimation-immobiliere-dijon/index.html) : médiane 2 750 €/m², appartements 2 679,5 €/m², maisons 3 259 €/m², 9 quartiers, ventes DVF 2025 ; la phrase « En 2025, le prix médian est de... » est dans la foire aux questions après le formulaire. Position 57,9 sur cette recherche (setup.json). Impact moyen : le contenu ",
+   "fix": "Juste sous le titre, écrire une phrase simple : à Dijon, d'après les ventes signées en 2025, le prix médian est d'environ 2 750 € le m², 2 680 € pour un appartement et 3 260 € pour une maison. Ajouter une phrase par quartier sous chaque chiffre, avec des montants arrondis plutôt que des décimales.",
+   "fix_type": "faq_answer",
+   "impact": "medium",
+   "check": "ai-answers",
+   "check_title": "AI Answers For Your Questions",
+   "id": "F19"
+  },
+  {
+   "what": "« estimation maison dijon gratuite » : la réponse IA nomme Gravelin Immo parmi les agences qui offrent l'estimation, mais pas vous. Votre site n'a aucune réponse qui parle précisément de l'estimation d'une maison à Dijon avec votre nom.",
+   "evidence": "raw/by-hand-answers.md : « plusieurs agences à Dijon proposent une estimation offerte [...] notamment l'Agence Darcy, Gravelin Immo ou La Maison GLM » ; autres sources Procivis, imkiz, economie.gouv.fr, Citya. Sur https://shawez-immo.com/estimation-immobiliere-dijon/, la question « L'estimation est-elle payante ? » répond « Non : elle est offerte », sans parler de maison ni de votre nom ; le prix des maisons (3 259 €/m² sur 381 ventes) n'est que dans un tableau. Aucune page sur l'estimation d'une maison dans crawl.json. Impact moyen : Google nomme déjà votre agence ici, une réponse précise à v",
+   "fix": "Ajouter sur la page Estimation une question et sa réponse : faire estimer sa maison à Dijon, ça coûte combien ? Réponse : rien, Shawez Ali, agent immobilier chez GRAVELIN IMMO, vient chez vous et vous remet un avis de valeur écrit, offert et sans engagement. Ajouter le prix médian des maisons et ce que vous regardez pour une maison, par exemple le terrain, les travaux et le DPE.",
+   "fix_type": "faq_answer",
+   "impact": "medium",
+   "check": "ai-answers",
+   "check_title": "AI Answers For Your Questions",
+   "id": "F20"
+  },
+  {
+   "what": "La page qui répond à « meilleur agent immobilier dijon » et « quelle agence choisir pour vendre à Dijon » donne sa réponse tout en bas, sans chiffre vérifiable, et presque aucune page du site ne pointe vers elle. La source citée par Google, au contraire, met d'emblée des chiffres comparables : note,",
+   "evidence": "crawl.json : https://shawez-immo.com/conseils-vendeurs/choisir-agent-immobilier-dijon/ reçoit des liens de 10 pages seulement, contre 199 pour les pages principales. La partie « Alors, qui est le meilleur agent immobilier à Dijon ? » est le 8e titre sur 9, et la page ne contient aucun chiffre. Impact moyen : la page existe et Google la trouve, mais rien en haut ne lui donne une réponse courte à reprendre.",
+   "fix": "Mettre en haut de cette page une réponse de deux ou trois phrases avec ses faits vérifiables : agent immobilier chez GRAVELIN IMMO, 30 rue Bannelier, 5,0 sur 27 avis Google, langues parlées, estimation offerte, et son nombre de ventes s'il le donne (à fournir par Shawez, ne pas l'inventer). Ajouter un lien vers cette page depuis l'accueil, la page agent immobilier Dijon et la page avis.",
+   "fix_type": "faq_answer",
+   "impact": "medium",
+   "check": "named-instead",
+   "check_title": "Who Google's AI Names Instead",
+   "id": "F21"
+  },
+  {
+   "what": "La page pour vendre un commerce ne dit rien du prix du service : ni honoraires, ni si l'évaluation est offerte.",
+   "evidence": "https://shawez-immo.com/vendre-commerce-dijon/ : le seul prix affiché est celui de l'hôtel en vente (892 500 € honoraires inclus). Le lien vers la page Honoraires n'est que dans le menu et le pied de page. Aucune partie questions et réponses. Les pages vente, estimation et location, elles, disent que l'estimation est offerte et que les honoraires ne sont dus qu'à la vente. Impact jugé moyen : le coût est une des premières choses que l'IA de Google cherche à dire sur un service.",
+   "fix": "Ajouter, près du haut, une ligne qui dit si l'évaluation du fonds est offerte et comment sont calculés les honoraires d'une cession, puis une courte partie questions et réponses (prix du service, durée d'une cession, confidentialité). N'écrire que ce qui est vrai pour l'agence : je n'ai pas trouvé sur le site si le barème de vente s'applique aussi aux fonds de commerce.",
+   "fix_type": "faq_answer",
+   "impact": "medium",
+   "check": "service-pages",
+   "check_title": "Service Pages",
+   "id": "F22"
+  },
+  {
+   "what": "Pour « combien de temps pour vendre une maison à dijon » et « vendre sa maison rapidement à dijon », le site ne donne aucun ordre de grandeur.",
+   "evidence": "Sur https://shawez-immo.com/vendre-bien-immobilier-dijon/, la FAQ « Combien de temps prend une vente ? » répond : « Cela dépend d'abord du prix de départ […] Je vous donne un ordre de grandeur réaliste pour votre bien lors de l'estimation. » Aucun nombre de semaines ou de mois, ni pour trouver l'acheteur, ni entre le compromis et la signature chez le notaire. La page /conseils-vendeurs/trois-premieres-semaines-vente/ donne la règle des trois semaines, mais pas de délai moyen. Le script ne trouve aucun titre de page qui ressemble à la question (raw/answers-on-site.json). Les réponses de Google ",
+   "fix": "En haut de /vendre-bien-immobilier-dijon/, et dans la FAQ, écrire une réponse courte avec des chiffres : « À Dijon, une maison au bon prix trouve en général son acheteur en X à Y semaines. Il faut ensuite compter environ 2 à 3 mois entre le compromis et la signature chez le notaire. Si rien ne bouge en 3 semaines, on revoit le prix ensemble. » Fait que seul vous pouvez donner : votre délai réel moyen de vente (sur vos ventes ou celles de l'agence), et sur combien de ventes il repose.",
+   "fix_type": "faq_answer",
+   "impact": "medium",
+   "check": "faq-answers",
+   "check_title": "Answers To Customer Questions",
+   "id": "F23"
+  },
+  {
+   "what": "Pour « estimation immobilière en ligne fiable », aucune page ne dit si une estimation en ligne est fiable, ni de combien elle peut se tromper.",
+   "evidence": "Aucune page de la copie locale du site ne parle de fiabilité (recherche des mots « fiable » et « fiabilité » : aucun résultat). https://shawez-immo.com/estimer/ est un formulaire en 6 étapes, sans texte d'explication. /estimation-en-ligne/ est en noindex et affiche seulement « Si l'outil ne s'affiche pas ». La FAQ de /estimation-immobiliere-dijon/ parle d'une « fourchette indicative […] à confirmer par une visite », sans dire ce que l'outil ne voit pas.",
+   "fix": "Ajouter une question « Une estimation en ligne est-elle fiable ? » dans la FAQ de /estimation-immobiliere-dijon/ et trois lignes au-dessus du formulaire de /estimer/ : ce que l'outil utilise (les ventes DVF autour de l'adresse), ce qu'il ne voit pas (état, lumière, vue, travaux, charges de copropriété), la largeur habituelle de la fourchette, et quand demander la visite, offerte et sans engagement. Fait que seul vous pouvez donner : l'écart habituel entre la fourchette en ligne et votre avis de valeur final.",
+   "fix_type": "faq_answer",
+   "impact": "medium",
+   "check": "faq-answers",
+   "check_title": "Answers To Customer Questions",
+   "id": "F24"
+  },
+  {
+   "what": "Pour « meilleur agent immobilier dijon » et « quelle agence immobilière choisir pour vendre à dijon », le guide est bon mais vos propres preuves arrivent tout en bas.",
+   "evidence": "https://shawez-immo.com/conseils-vendeurs/choisir-agent-immobilier-dijon/ commence par un guide neutre ; la partie « Ce que je réponds, moi » (note 5,0 sur 27 avis, un seul interlocuteur, point écrit chaque semaine, estimation écrite) est le dernier titre, après environ 1 500 mots. La réponse de la FAQ « Qui est le meilleur agent immobilier à Dijon ? » commence par « Il n'existe aucun classement officiel » et ne vous nomme pas. L'aperçu IA de Google du 18/11 cite realadvisor.fr et nomme six agences, pas vous (raw/by-hand-answers.md). Impact moyen : pour cette question, Google s'appuie aussi be",
+   "fix": "Sous le titre du guide et en haut de /agent-immobilier-dijon/, ajouter un encadré de trois ou quatre lignes avec vos faits : agent immobilier chez GRAVELIN IMMO, 30 rue Bannelier ; 5,0 sur 27 avis Google (avec la date) ; un seul interlocuteur et un point écrit chaque semaine ; estimation écrite fondée sur les ventes réelles, offerte ; film, photos et drone ; langues parlées. Ajouter une phrase qui vous nomme dans la réponse de la FAQ. Faits que seul vous pouvez donner : votre nombre de ventes sur les 12 derniers mois et, si vous l'avez, l'écart moyen entre prix affiché et prix signé sur vos ve",
+   "fix_type": "faq_answer",
+   "impact": "medium",
+   "check": "faq-answers",
+   "check_title": "Answers To Customer Questions",
+   "id": "F25"
+  },
+  {
+   "what": "Pour « agent immobilier dijon avis », la page des avis ne montre aucun avis : seulement la note et un lien vers Google.",
+   "evidence": "https://shawez-immo.com/avis/ (449 mots) affiche « 5,0/5 sur 27 avis (relevé du 9 octobre 2026) », la note de l'agence (4,8 sur 137 avis, relevé du 8 octobre 2026, alors que les notes du 18/11 parlent de 141 avis) et un bouton vers Google, mais aucun extrait d'avis ni ce que les clients disent. L'aperçu IA de Google du 18/11 nomme Pietrapolis, le Cabinet Laurin, Square Habitat et Citya, avec leurs notes et des agents nommés (raw/by-hand-answers.md).",
+   "fix": "En haut de /avis/, ajouter un court paragraphe « Ce que mes clients disent le plus souvent », puis 4 à 6 extraits courts de vrais avis Google, avec le prénom, le mois et le type de projet (vente de maison, appartement, commerce), chacun avec un lien vers l'avis. Mettre à jour les nombres et la date du relevé. Faits que seul vous pouvez donner : le choix des extraits, l'accord des clients et le nombre d'avis du jour.",
+   "fix_type": "faq_answer",
+   "impact": "medium",
+   "check": "faq-answers",
+   "check_title": "Answers To Customer Questions",
+   "id": "F26"
+  },
+  {
+   "what": "Pour « estimation immobilière dijon », l'IA répond avec un prix moyen au m² pour toute la ville et par quartier, en citant Meilleurs Agents, Bersot Immobilier, La Maison GLM et EZARE. La page prix de Shawez annonce encore les repères et les médianes de 2025, ce qui la rend moins actuelle aux yeux d'",
+   "evidence": "raw/by-hand-answers.md : « prix moyen 2 827 €/m², appartements 2 740 €/m², maisons 3 091 €/m², prix par quartier ». crawl.json : https://shawez-immo.com/prix-immobilier-dijon/ a pour titre « Prix immobilier à Dijon au m² : les repères 2025 » et un titre « Secteur par secteur : les médianes 2025 ». setup.json : position 57,9 sur cette requête. La page estimation Dijon, elle, a bien des sections par quartier. Impact moyen.",
+   "fix": "Dès que ses données DVF le permettent, mettre la page prix à jour avec l'année en cours, et placer tout en haut de la page estimation Dijon une phrase avec le prix médian au m² de la ville pour les appartements et pour les maisons, avec la date du relevé. Uniquement ses propres chiffres, jamais un prix inventé.",
+   "fix_type": "title",
+   "impact": "medium",
+   "check": "named-instead",
+   "check_title": "Who Google's AI Names Instead",
+   "id": "F27"
+  },
+  {
+   "what": "La page pour les commerçants qui vendent ne contient pas les mots « fonds de commerce » ni « vendre » dans son titre. Le titre qui les contient est celui de la page pour les acheteurs.",
+   "evidence": "https://shawez-immo.com/vendre-commerce-dijon/ : titre « Céder votre commerce à Dijon, en toute discrétion », grand titre « Cédez votre commerce au bon prix, en toute discrétion. ». La page https://shawez-immo.com/fonds-de-commerce-a-vendre-dijon/ s'appelle « Fonds de commerce à vendre à Dijon : reprendre une affaire » et dit elle même qu'elle s'adresse aux repreneurs. Il existe aussi l'article https://shawez-immo.com/conseils-vendeurs/vendre-un-commerce-dijon/. Pour la question « vendre un fonds de commerce à dijon », Google risque de prendre la page acheteurs ou l'article au lieu de la page ",
+   "fix": "Changer le titre de l'onglet en « Vendre un fonds de commerce à Dijon, en toute discrétion | Shawez Ali » et le grand titre en « Vendre votre fonds de commerce à Dijon, au bon prix et en toute discrétion ».",
+   "fix_type": "title",
+   "impact": "medium",
+   "check": "service-pages",
+   "check_title": "Service Pages",
+   "id": "F28"
+  },
+  {
+   "what": "Le nom de ton activité dans le bloc caché n'est pas ton vrai nom : on y lit ton nom suivi d'un tiret et de « Agent immobilier à Dijon » sur l'accueil, et de « Agent immobilier » sur 97 autres pages. Ta fiche Google s'appelle simplement « Shawez Ali » depuis le 26/10/2026. Google rapproche le site et",
+   "evidence": "Bloc RealEstateAgent https://shawez-immo.com/#agent : nom avec « Agent immobilier à Dijon » sur https://shawez-immo.com/ et avec « Agent immobilier » sur 97 pages (relevé dans /home/claude/search-work/crawl.json). Nom de la fiche Google : « Shawez Ali » d'après /home/claude/search-work/raw/by-hand-profile.md. Le lien Google Maps des liens de profils contient encore l'ancien nom dans l'adresse. Impact moyen : c'est l'élément que Google utilise pour relier le site à la fiche, et il diffère, mais adresse et téléphone sont identiques, donc le lien reste probable.",
+   "fix": "Sur toutes les pages, mettre le nom « Shawez Ali » et garder « Shawez Ali Immobilier » comme autre nom. Bloc complet à poser sur l'accueil et sur la page contact, construit uniquement avec ce que le site dit déjà (les offres de services actuelles peuvent rester ajoutées en dessous) : {\"@context\":\"https://schema.org\",\"@type\":\"RealEstateAgent\",\"@id\":\"https://shawez-immo.com/#agent\",\"name\":\"Shawez Ali\",\"alternateName\":\"Shawez Ali Immobilier\",\"url\":\"https://shawez-immo.com/\",\"telephone\":\"+33767579228\",\"email\":\"shawez@gravelin-immo.com\",\"image\":[\"https://shawez-immo.com/assets/shawez-ali-portrait-v",
+   "fix_type": "schema",
+   "impact": "medium",
+   "check": "schema",
+   "check_title": "Structured Data",
+   "id": "F29"
+  },
+  {
+   "what": "Ton site ne pointe vers aucune de tes fiches d'annuaire. Google relie plus facilement une fiche à toi quand ton site la cite.",
+   "evidence": "Dans les données structurées de toutes les pages (par exemple https://shawez-immo.com/), la liste sameAs de ta fiche contient Instagram, LinkedIn, la chaîne YouTube de l'agence, TikTok et Google Maps, mais aucun annuaire (Pages Jaunes, Cylex, Facebook, Apple, Bing, Meilleurs Agents, Immodvisor). Copie locale : /home/claude/search-work/site/.",
+   "fix": "Dès que chaque fiche est publiée, ajouter son adresse dans la liste sameAs de ta fiche sur le site (et dans le pied de page si tu veux).",
+   "fix_type": "schema",
+   "impact": "medium",
+   "check": "citations",
+   "check_title": "Listings And Directories",
+   "id": "F30"
+  },
+  {
+   "what": "La description de la fiche n'a pas été vérifiée : elle est peut être vide ou ancienne.",
+   "evidence": "raw/by-hand-profile.md : « Description, photos, date de la dernière photo : non vérifiés aujourd'hui ». Impact moyen : c'est le texte où Google lit ce que vous faites et où, mais on ne sait pas s'il manque vraiment.",
+   "fix": "Dans Modifier le profil, rubrique Description, mettez ce texte (738 caractères, faits repris du site) : Shawez Ali, agent immobilier à l'agence Gravelin Immo, au centre de Dijon. Je vends appartements, maisons, immeubles, fonds de commerce et biens de prestige comme des châteaux, à Dijon et dans sa métropole, en Côte de Nuits et vers Beaune. Je fais moi-même l'estimation, les visites et la négociation : un seul interlocuteur du premier appel jusqu'aux clés. Une équipe de professionnels photographie et filme votre bien, en drone pour les maisons, puis le diffuse sur les portails et les réseaux.",
+   "fix_type": "gbp_update",
+   "impact": "medium",
+   "check": "profile",
+   "check_title": "Google Business Profile",
+   "id": "F31"
+  },
+  {
+   "what": "Vous n'apparaissez pas sur les sites d'avis que Google cite quand on cherche un agent immobilier à Dijon.",
+   "evidence": "La réponse IA sur « agent immobilier dijon avis » s'appuie sur Opinion System, Immodvisor et le site du Cabinet Laurin ; celle sur « meilleur agent immobilier dijon » cite realadvisor.fr (raw/by-hand-answers.md). La liste RealAdvisor des agences de Dijon ne vous montre pas, ni l'agence Gravelin Immo, et une recherche web « Shawez Ali avis agent immobilier Dijon » n'a ramené aucune page à votre nom. Impact moyen car ce sont ces sites que l'IA reprend, mais leur poids exact n'est pas connu.",
+   "fix": "Créez votre profil d'agent immobilier sur RealAdvisor, qui affiche les avis Google, et sur Immodvisor, avec le même nom, la même adresse et le même téléphone que votre fiche Google. Continuez à envoyer vos clients en priorité vers Google.",
+   "fix_type": "directory_fix",
+   "impact": "medium",
+   "check": "reviews",
+   "check_title": "Reviews",
+   "id": "F32"
+  },
+  {
+   "what": "Sur Meilleurs Agents et Immodvisor, les deux annuaires qui comptent le plus dans l'immobilier en France, on ne trouve que l'agence, pas toi.",
+   "evidence": "Meilleurs Agents : seule la page agence https://www.meilleursagents.com/agence-immobiliere/agence-gravelin-immo-84521/ est sortie (la page n'a pas pu être lue, donc on ne sait pas si tu y figures comme agent). Immodvisor : rien trouvé ni pour toi ni pour l'agence. Les concurrents qui sortent sur ces recherches (efficity, Capifrance, iad, RealAdvisor) ont tous une page agent avec nom, ville et avis. Impact moyen : ce sont des sources spécialisées que les réponses IA reprennent pour « meilleur agent immobilier Dijon ».",
+   "fix": "Meilleurs Agents : demander à l'agence de t'ajouter comme agent sur sa page, avec ta photo, 07 67 57 92 28 et le lien https://shawez-immo.com. Immodvisor : créer ou publier ta fiche « Shawez Ali — Agent immobilier », 30 rue Bannelier, 21000 Dijon, puis y faire déposer des avis par tes clients. Aujourd'hui : aucune fiche à ton nom visible sur l'un ou l'autre.",
+   "fix_type": "directory_fix",
+   "impact": "medium",
+   "check": "citations",
+   "check_title": "Listings And Directories",
+   "id": "F33"
+  },
+  {
+   "what": "Bing Places et Apple Business Connect : impossible de voir une fiche à ton nom depuis l'extérieur. Bing nourrit Copilot et une partie de ChatGPT, Apple nourrit Plans et Siri sur iPhone.",
+   "evidence": "Aucune fiche trouvée par recherche pour « Shawez Ali » sur bing.com/maps ou maps.apple.com. Tes notes disent que tu les as créées. Impact moyen : ces fiches ne pèsent pas directement sur Google, mais elles confirment ton identité aux autres IA et aux téléphones Apple.",
+   "fix": "Bing Places : se connecter et vérifier que la fiche est validée (Bing peut importer ta fiche Google directement). Apple Business Connect : vérifier que la fiche est publiée. Les deux doivent dire « Shawez Ali — Agent immobilier », 30 rue Bannelier, 21000 Dijon, 07 67 57 92 28, https://shawez-immo.com, lundi au vendredi 9 h à 19 h. Aujourd'hui : statut inconnu, rien de visible.",
+   "fix_type": "directory_fix",
+   "impact": "medium",
+   "check": "citations",
+   "check_title": "Listings And Directories",
+   "id": "F34"
+  },
+  {
+   "what": "Pas de page Facebook professionnelle trouvée à ton nom, seulement un profil personnel.",
+   "evidence": "La recherche ne sort que le profil https://www.facebook.com/shawez.ali.9440/ (non lisible, Facebook bloque la lecture). Ton site ne donne aucun lien vers Facebook dans ses données structurées (sameAs : Instagram, LinkedIn, YouTube de l'agence, TikTok, Google Maps). Impact moyen : Facebook est un des annuaires que Google et les IA recoupent le plus.",
+   "fix": "Facebook : si tu as une page pro, vérifier qu'elle dit « Shawez Ali — Agent immobilier », catégorie agent immobilier, 30 rue Bannelier, 21000 Dijon, 07 67 57 92 28, https://shawez-immo.com. Sinon, passer ton profil en mode professionnel ou créer la page avec ces infos. Aujourd'hui : aucune page pro trouvée.",
+   "fix_type": "directory_fix",
+   "impact": "medium",
+   "check": "citations",
+   "check_title": "Listings And Directories",
+   "id": "F35"
+  },
+  {
+   "what": "On ne sait pas si vous répondez à vos avis. Une fiche où chaque avis a une réponse paraît suivie et vivante.",
+   "evidence": "Réponses aux avis : non vérifié (raw/by-hand-profile.md). Impact moyen : les réponses ne sont pas citées par Google comme critère de classement, mais elles ajoutent du texte sur vos services et vos secteurs, lu par les clients.",
+   "fix": "Répondez à chaque avis, anciens compris, en deux ou trois phrases personnelles. Citez le service et la ville, par exemple la vente d'une maison à Talant ou l'estimation d'un appartement à Dijon, sans jamais donner l'adresse du bien ni de détail privé.",
+   "fix_type": "other",
+   "impact": "medium",
+   "check": "reviews",
+   "check_title": "Reviews",
+   "id": "F36"
+  },
+  {
+   "what": "Les photos de la fiche et la date de la plus récente ne sont pas connues.",
+   "evidence": "raw/by-hand-profile.md : photos non vérifiées. Le site montre de vraies photos de vous et de l'équipe (devant l'agence, préparation d'un tournage, installation dans un appartement) sur site/shawez-ali-agent-immobilier-dijon/index.html. Impact moyen : des photos récentes et réelles font partie d'une fiche tenue à jour.",
+   "fix": "Sur https://business.google.com/, Modifier le profil, puis Photos, puis Ajouter : votre photo de profil, vous devant l'agence rue Bannelier, une photo de vous en visite ou en tournage, et quelques photos haut de gamme de biens en vente, bien éclairées, sans adresse ni nom de client. Ajoutez ensuite une ou deux photos nouvelles chaque mois.",
+   "fix_type": "other",
+   "impact": "medium",
+   "check": "profile",
+   "check_title": "Google Business Profile",
+   "id": "F37"
+  },
+  {
+   "what": "Les catégories couvrent la vente et l'estimation, mais pas les fonds de commerce et l'immobilier professionnel, qui sont une grosse part de votre travail. Et la catégorie Agence immobilière est celle de l'agence Gravelin Immo, qui a déjà sa propre fiche à la même adresse.",
+   "evidence": "raw/by-hand-profile.md : principale Agent immobilier, secondaires Agence immobilière et Service d'estimation immobilière ; services : vente, estimation, location, fonds de commerce ; fiche Gravelin Immo distincte à la même adresse. Le site a des pages fonds-de-commerce-a-vendre-dijon, vendre-commerce-dijon et immobilier-professionnel-dijon, et la question « vendre un fonds de commerce à dijon » est dans questions.json. Impact moyen : les catégories aident Google à savoir pour quelles recherches vous montrer.",
+   "fix": "Dans Modifier le profil, puis Catégorie d'activité, gardez Agent immobilier en principale. Tapez « commercial » ou « immobilier commercial » et ajoutez la catégorie qui correspond à l'immobilier commercial si elle apparaît dans la liste. Demandez vous aussi si Agence immobilière doit rester : vous êtes l'agent, pas l'agence, et la retirer distingue mieux votre fiche de celle de Gravelin Immo. Ne changez pas le nom de la fiche.",
+   "fix_type": "other",
+   "impact": "medium",
+   "check": "profile",
+   "check_title": "Google Business Profile",
+   "id": "F38"
+  },
+  {
+   "what": "Les neuf nouvelles pages de quartiers de Dijon sont vraies et utiles par leurs chiffres, mais leur texte est identique de l'une à l'autre. Elles ne disent rien du quartier lui-même, rien de ce que vous y avez fait, et ne renvoient pas vers vos guides de quartier déjà écrits.",
+   "evidence": "Dossier /estimation-immobiliere-dijon/ (9 pages publiées le 18/11/2026, lastmod 2026-11-18 dans sitemap.xml). Chaque page fait environ 950 mots, dont seulement 58 à 71 mots qui ne se retrouvent sur aucune autre : le nom du quartier et les chiffres. Les chiffres, eux, sont propres et différents : par exemple Montchapet 565 ventes en 2025 et 2 831 €/m², Grésilles 50 ventes et 2 245,5 €/m², avec 8 ventes récentes anonymisées et la méthode expliquée. Aucune rue, aucun repère local, aucun dossier traité. Pourtant vos guides existent : /conseils-vendeurs/montchapet-marmuzots-estimation-maison-differ",
+   "fix": "Sur chaque page de quartier, ajoutez un court passage écrit par vous : ce qu'on y vend surtout (par exemple à Montchapet 490 appartements pour 75 maisons en 2025), deux ou trois repères du quartier repris de votre guide, et ce que vous y avez fait. La page Secteurs en donne déjà : à Montchapet un studio rénové filmé, aux Grésilles un T2 avec terrasse et jardin estimé, à Drapeau-Maladière un T4 avec grande terrasse estimé, dans le centre un loft meublé en mandat exclusif. Jamais de nom de client ni d'adresse. Mettez un lien vers le guide du quartier. Un guide manque pour Fontaine d'Ouche.",
+   "fix_type": "other",
+   "impact": "medium",
+   "check": "location-pages",
+   "check_title": "Location Pages",
+   "id": "F39"
+  },
+  {
+   "what": "Les villes où vous travaillez vraiment ont les pages les plus pauvres. Les communes de votre zone Google ont la version courte de la page prix, alors que des communes lointaines ont la version complète.",
+   "evidence": "Sur les 18 communes de votre fiche hors Dijon, 15 ont la version courte (environ 540 mots, un seul tableau, pas de rues, pas de questions fréquentes) : Talant, Chenôve, Marsannay-la-Côte, Longvic, Quetigny, Saint-Apollinaire, Chevigny-Saint-Sauveur, Plombières-lès-Dijon, Ahuy, Daix, Perrigny-lès-Dijon, Neuilly-lès-Dijon, Sennecey-lès-Dijon, Gevrey-Chambertin, Genlis. Seules Beaune, Fontaine-lès-Dijon et Nuits-Saint-Georges ont la version complète. 51 pages ont la version complète, dont 48 pour des communes hors de votre zone (ex. /prix-immobilier-chatillon-sur-seine/, 1 351 mots avec rues, nom",
+   "fix": "Passez en priorité les 15 communes de votre zone à la version complète (rues où ça se vend, nombre de pièces, questions fréquentes), puis ajoutez une ligne vraie sur votre travail dans chaque commune. Vos pages de mise en location de Talant, Chenôve, Quetigny, Longvic, Saint-Apollinaire, Chevigny-Saint-Sauveur, Fontaine-lès-Dijon et Beaune montrent le bon niveau : elles parlent du lac Kir, de l'absence de tram, des locataires du coin.",
+   "fix_type": "other",
+   "impact": "medium",
+   "check": "location-pages",
+   "check_title": "Location Pages",
+   "id": "F40"
+  },
+  {
+   "what": "Les « communes voisines » affichées en bas des pages courtes sont fausses. Ce ne sont pas les vrais voisins, juste les pages suivantes de la liste, ce qui donne une fausse carte du secteur à Google et aux lecteurs.",
+   "evidence": "/prix-immobilier-daix/ propose comme voisines Auxonne, Is-sur-Tille, Saint-Jean-de-Losne et Chevigny-Saint-Sauveur, alors que Daix est au nord-ouest de Dijon. /prix-immobilier-talant/ propose Saint-Apollinaire, Longvic, Quetigny, Marsannay-la-Côte au lieu de Fontaine-lès-Dijon, Daix ou Plombières. /prix-immobilier-genlis/ propose Gevrey-Chambertin et Plombières-lès-Dijon. Les pages complètes sont justes (Beaune : Bligny-lès-Beaune, Savigny-lès-Beaune, Ladoix-Serrigny). Impact moyen : c'est une information de lieu fausse, sur vos communes principales.",
+   "fix": "Remplacez la liste par les vraies communes qui touchent chaque ville, comme sur les pages complètes.",
+   "fix_type": "other",
+   "impact": "medium",
+   "check": "location-pages",
+   "check_title": "Location Pages",
+   "id": "F41"
+  },
+  {
+   "what": "Dijon est découpé de trois façons différentes selon la page, et la page prix de Dijon ne renvoie pas vers les neuf nouvelles pages de quartiers. Elle dit même ne pas publier de classement par quartier.",
+   "evidence": "/secteurs-dijon-nuits-saint-georges-beaune/ parle de centre historique, Montchapet, République, Grésilles, Drapeau-Maladière, Montmuzard. /prix-immobilier-dijon/ donne des chiffres par rayon autour d'un point (centre 1,2 km, première couronne 4 km) et répond « Je ne publie pas de classement de quartiers ». Les nouvelles pages suivent les 9 conseils de quartier de la Ville. Les nouvelles pages ne reçoivent des liens que du sommaire /estimation-immobiliere-dijon/, du plan du site, d'elles-mêmes et de 5 guides. Ni /prix-immobilier-dijon/ ni la page Secteurs ne pointent vers elles. Impact moyen : ",
+   "fix": "Dans la partie « Secteur par secteur » de /prix-immobilier-dijon/, ajoutez un lien vers chacune des neuf pages et changez la réponse sur le classement des quartiers. Sur la page Secteurs, reliez chaque quartier cité à sa page. Gardez les mêmes noms de quartiers partout.",
+   "fix_type": "other",
+   "impact": "medium",
+   "check": "location-pages",
+   "check_title": "Location Pages",
+   "id": "F42"
+  },
+  {
+   "what": "Aucune page de ville ou de quartier ne cite un dossier réellement traité sur place, ni la personne de l'équipe qui couvre le secteur. Sur Beaune, la page dit elle-même que l'exemple montré n'est pas une vente faite à Beaune.",
+   "evidence": "/agent-immobilier-beaune/ : « Cet exemple illustre une présentation vidéo ; il ne constitue pas une référence de vente conclue à Beaune ». /immobilier-nuits-saint-georges/ et /immobilier-fontaine-les-dijon/ décrivent le marché et la méthode, sans aucun dossier local. Le seul endroit qui cite des dossiers par secteur est la liste de la page Secteurs. questions.json indique que Beaune est un secteur suivi par « Bernard et Shawez », mais la page Beaune ne nomme aucun collègue. Impact moyen : ce sont ces preuves locales qui font qu'une page de ville est plus qu'un modèle rempli.",
+   "fix": "Sur Beaune, Nuits-Saint-Georges, Fontaine-lès-Dijon et les communes de votre zone, ajoutez un à trois dossiers réels (type de bien, mois, estimé, mis en vente ou vendu), sans nom de client ni adresse. Si un collègue couvre Beaune avec vous, nommez-le sur la page avec son rôle. N'ajoutez que des faits vrais.",
+   "fix_type": "other",
+   "impact": "medium",
+   "check": "location-pages",
+   "check_title": "Location Pages",
+   "id": "F43"
+  },
+  {
+   "what": "Son « Podcast de l'Immobilier » est invisible sur le web en dehors de ses propres pages : aucun invité, aucune page extérieure ne le cite avec son nom.",
+   "evidence": "La page https://shawez-immo.com/podcast/ (copie locale site/podcast/index.html) dit que les épisodes sont publiés sur la chaîne YouTube de l'agence GRAVELIN IMMO et sur Instagram, avec des entrepreneurs de Dijon, un épisode avec Julien Brizet et un épisode avec la page communautaire J'aime Dijon. Les recherches \"Podcast de l'Immobilier\" Shawez, \"Shawez Ali\" podcast immobilier Dijon, \"J'aime Dijon\" Shawez et \"Julien Brizet\" podcast ne renvoient que d'autres podcasts. Impact moyen : c'est la source la plus naturelle de mentions locales, déjà produite, mais aujourd'hui elle ne rapporte aucune pag",
+   "fix": "Demander à chaque invité, et à J'aime Dijon, de publier l'épisode sur leur propre site ou leur page avec une phrase qui le nomme (« interviewé par Shawez Ali, agent immobilier à Dijon ») et le lien de l'épisode. Mettre aussi le podcast sur les plateformes de podcasts (Apple Podcasts, Spotify) avec son nom et Dijon dans la description, pour qu'il existe ailleurs que sur ses comptes.",
+   "fix_type": "other",
+   "impact": "medium",
+   "check": "mentions",
+   "check_title": "Brand Mentions",
+   "id": "F44"
+  },
+  {
+   "what": "Les pages de l'agence GRAVELIN IMMO sur les sites extérieurs ne le nomment pas, alors qu'elles sortent quand on cherche son nom.",
+   "evidence": "La fiche https://fr.mappy.com/poi/5beb671f0351d130e656e578 (Gravelin Immo, 30 rue Bannelier) ne contient ni « Shawez » ni « shawez-immo ». La page https://www.meilleursagents.com/agence-immobiliere/agence-gravelin-immo-84521/ sort en tête pour \"Shawez Ali\" agent immobilier mais n'a pas pu être lue (erreur du site). Impact moyen : ces pages relient déjà l'adresse de l'agence à l'immobilier à Dijon, et y voir son nom aiderait Google à faire le lien entre lui et l'agence.",
+   "fix": "Demander à l'agence d'ajouter Shawez Ali, agent immobilier, dans l'équipe affichée sur ses fiches extérieures (meilleursagents.com et les autres) quand ces sites le permettent, avec un lien vers son site.",
+   "fix_type": "other",
+   "impact": "medium",
+   "check": "mentions",
+   "check_title": "Brand Mentions",
+   "id": "F45"
+  },
+  {
+   "what": "La page vente ne donne pas les chiffres des honoraires : elle renvoie seulement vers une autre page.",
+   "evidence": "https://shawez-immo.com/vendre-bien-immobilier-dijon/ : à la question « Combien coûtent les honoraires ? », la réponse est « Le barème de l'agence GRAVELIN IMMO est consultable sur la page Honoraires. Ils ne sont dus qu'à la vente. ». Les chiffres (de 7 % à 5,5 % selon le prix, forfaits en dessous de 70 000 €) sont sur https://shawez-immo.com/honoraires/. Impact jugé faible : l'information existe sur le site, elle est juste à un clic.",
+   "fix": "Dans la réponse sur les honoraires, recopier en une phrase le barème publié (par exemple : de 7 % à 5,5 % TTC selon le prix de vente, dus seulement si la vente se fait), en gardant le lien vers la page Honoraires.",
+   "fix_type": "faq_answer",
+   "impact": "low",
+   "check": "service-pages",
+   "check_title": "Service Pages",
+   "id": "F46"
+  },
+  {
+   "what": "Pour « estimation maison dijon gratuite », la réponse existe mais ne parle pas de maison en haut de page.",
+   "evidence": "https://shawez-immo.com/estimation-immobiliere-dijon/ dit dès l'introduction « offerte et sans engagement » et sa FAQ répond « L'estimation est-elle payante ? Non : elle est offerte et sans engagement. » Mais le titre et l'introduction parlent de « votre bien » et de la fourchette en ligne, pas de maison, et la FAQ « Combien de temps pour recevoir l'estimation ? » reste vague (« dès que le dossier est prêt »). L'aperçu IA de Google du 18/11 nomme Gravelin Immo pour cette question, pas vous (raw/by-hand-answers.md).",
+   "fix": "Sous le titre de /estimation-immobiliere-dijon/, ajouter une phrase : « Maison ou appartement, à Dijon et autour : je viens chez vous, l'estimation est offerte et sans engagement, et vous recevez un avis de valeur écrit sous X jours. » Fait que seul vous pouvez donner : le délai habituel pour remettre l'avis de valeur.",
+   "fix_type": "faq_answer",
+   "impact": "low",
+   "check": "faq-answers",
+   "check_title": "Answers To Customer Questions",
+   "id": "F47"
+  },
+  {
+   "what": "Pour « honoraires agence immobilière dijon », le barème est bien là, mais le titre de la page est vague et il n'y a pas de phrase de réponse toute faite.",
+   "evidence": "https://shawez-immo.com/honoraires/ a pour grand titre « Le barème. » et un tableau clair (de 5,5 % à 7 % TTC, 4 500 € sous 70 000 €, dus seulement à la vente). Le tableau saute de « Moins de 70 000 € » à « De 71 000 € à 100 000 € », de même entre 100 000 et 101 000 € et entre 200 000 et 201 000 €. Aucune ligne pour la vente d'un fonds de commerce.",
+   "fix": "Changer le grand titre en « Honoraires d'agence immobilière à Dijon : le barème » et ajouter dessous une phrase : « Pour une vente, les honoraires vont de 5,5 % à 7 % TTC du prix, avec un forfait de 4 500 € sous 70 000 €, et ne sont dus que si la vente se fait. » Faire vérifier par l'agence les tranches sans trou entre elles et ajouter, si elle existe, la règle pour un fonds de commerce.",
+   "fix_type": "faq_answer",
+   "impact": "low",
+   "check": "faq-answers",
+   "check_title": "Answers To Customer Questions",
+   "id": "F48"
+  },
+  {
+   "what": "Pour « vendre un fonds de commerce à dijon », la page explique la méthode mais ne répond ni au délai ni au coût.",
+   "evidence": "https://shawez-immo.com/vendre-commerce-dijon/ (730 mots) décrit la confidentialité et les six étapes, sans FAQ, sans délai habituel, sans honoraires pour un fonds, et cite les pièces (bail, comptes, inventaire) sans liste précise. Le guide /conseils-vendeurs/vendre-un-commerce-dijon/ répond à « ce que je regarde en premier ».",
+   "fix": "Ajouter sur /vendre-commerce-dijon/ trois questions courtes : « Combien de temps pour vendre un fonds de commerce à Dijon ? », « Quels documents préparer ? », « Combien coûtent vos honoraires pour un fonds ? ». Faits que seul vous pouvez donner : le délai habituel d'une cession, les honoraires appliqués à un fonds de commerce, la liste exacte des pièces que vous demandez.",
+   "fix_type": "faq_answer",
+   "impact": "low",
+   "check": "faq-answers",
+   "check_title": "Answers To Customer Questions",
+   "id": "F49"
+  },
+  {
+   "what": "Pour « vendre appartement centre ville dijon », le site a les prix et un article sur l'annonce, mais pas de réponse simple sur la vente elle-même.",
+   "evidence": "https://shawez-immo.com/estimation-immobiliere-dijon/centre-ville/ donne les chiffres (2 966,5 €/m² en médiane, 592 ventes en 2025) puis le formulaire. L'article /conseils-vendeurs/centre-ville-dijon-distribution-copropriete-appartement/ explique comment décrire l'appartement dans l'annonce. Aucune des deux ne dit en quelques lignes qui achète dans le centre, ce qui fait monter ou baisser le prix, et comment vous vendez.",
+   "fix": "En haut de /estimation-immobiliere-dijon/centre-ville/, ajouter trois ou quatre phrases : le prix médian, ce qui fait varier le prix dans le centre (étage, ascenseur, lumière, charges, travaux votés en copropriété), puis comment vous vendez, avec un lien vers l'article. Fait que seul vous pouvez donner : qui achète le plus souvent dans le centre selon vos ventes.",
+   "fix_type": "faq_answer",
+   "impact": "low",
+   "check": "faq-answers",
+   "check_title": "Answers To Customer Questions",
+   "id": "F50"
+  },
+  {
+   "what": "La page châteaux et biens de prestige est tournée vers les acheteurs dans son titre, alors que la question des vendeurs est « vendre une propriété de prestige en Côte-d'Or ».",
+   "evidence": "https://shawez-immo.com/chateau-a-vendre-bourgogne/ : titre « Château à vendre en Bourgogne et biens de prestige ». La page contient bien une partie « Vendre un château ou une demeure de caractère », l'estimation offerte, les secteurs couverts et le lien d'estimation, mais le premier bouton pour vous joindre n'arrive qu'en bas de page et la Côte-d'Or n'est pas dans le titre. Impact jugé faible : le contenu est déjà bon, seul l'affichage est à revoir.",
+   "fix": "Changer le titre en « Château et propriété de prestige en Côte-d'Or : vendre ou acheter | Shawez Ali » et ajouter, sous le premier paragraphe, un bouton « Faire estimer ma propriété, offert » et le téléphone.",
+   "fix_type": "title",
+   "impact": "low",
+   "check": "service-pages",
+   "check_title": "Service Pages",
+   "id": "F51"
+  },
+  {
+   "what": "Le grand titre de la page Honoraires est seulement « Le barème. », sans dire de quoi ni où.",
+   "evidence": "https://shawez-immo.com/honoraires/ : titre de l'onglet correct (« Honoraires de l'agent immobilier | GRAVELIN IMMO Dijon »), mais grand titre « Le barème. ». C'est la page qui répond à « honoraires agence immobilière dijon ». Impact jugé faible : le titre de l'onglet porte déjà les bons mots.",
+   "fix": "Remplacer le grand titre par « Honoraires de vente et de location à Dijon : le barème de l'agence GRAVELIN IMMO ».",
+   "fix_type": "title",
+   "impact": "low",
+   "check": "service-pages",
+   "check_title": "Service Pages",
+   "id": "F52"
+  },
+  {
+   "what": "La page de Neuilly porte un ancien nom de commune, différent de celui de votre fiche Google.",
+   "evidence": "Page /prix-immobilier-neuilly-les-dijon/ (titre « Prix immobilier à Neuilly-lès-Dijon »), aussi citée sur la page Secteurs. Votre fiche Google dit Neuilly-Crimolois (raw/by-hand-profile.md), qui est le nom actuel de la commune (code INSEE 21452, voir insee.fr et Wikipédia). Impact faible : une seule commune, mais le nom ne correspond pas à ce que tapent les gens ni à votre fiche.",
+   "fix": "Renommez le titre et le grand titre en Neuilly-Crimolois, vérifiez que les ventes de Crimolois sont bien comptées, et gardez l'ancienne adresse de page en redirection.",
+   "fix_type": "title",
+   "impact": "low",
+   "check": "location-pages",
+   "check_title": "Location Pages",
+   "id": "F53"
+  },
+  {
+   "what": "Sur le site, le code lu par Google donne encore à votre fiche d'agent un nom avec des mots en plus, différent du nom de la fiche Google.",
+   "evidence": "Fiche Google : « Shawez Ali » depuis le 26/10/2026 (raw/by-hand-profile.md). Dans le code des pages (bloc RealEstateAgent de site/index.html, présent sur 611 pages), le nom est « Shawez Ali » suivi d'un tiret et de « Agent immobilier à Dijon ». Impact faible : le téléphone et l'adresse concordent, seul le nom diffère.",
+   "fix": "Dans le code des pages, mettez le nom du bloc RealEstateAgent à « Shawez Ali », exactement comme la fiche Google. Les titres des pages peuvent rester comme ils sont.",
+   "fix_type": "schema",
+   "impact": "low",
+   "check": "profile",
+   "check_title": "Google Business Profile",
+   "id": "F54"
+  },
+  {
+   "what": "Sur les pages en français, le bloc qui te décrit dit que tu ne réponds qu'en français, alors que la page anglaise du site liste tes 8 langues et que les pages françaises citent l'hindi, l'ourdou, le pendjabi et le persan. C'est utile pour la question « english speaking real estate agent dijon ».",
+   "evidence": "Bloc Person https://shawez-immo.com/#shawez, champ des langues du contact à « fr » seul sur 199 pages, dont https://shawez-immo.com/ et https://shawez-immo.com/contact/. Sur https://shawez-immo.com/en/ le même bloc donne en, fr, hi, ur, pa, fa, el, ar. Question suivie dans /home/claude/search-work/questions.json. Impact faible : les réponses IA lisent surtout le texte des pages, ce bloc ne fait que confirmer.",
+   "fix": "Dans le bloc Person des pages françaises, remplacer la langue « fr » du contact par la liste [\"fr\",\"en\",\"hi\",\"ur\",\"pa\",\"fa\",\"el\",\"ar\"] et ajouter \"knowsLanguage\" avec la même liste, comme sur la page anglaise. La même liste est déjà dans le bloc complet de la correction précédente.",
+   "fix_type": "schema",
+   "impact": "low",
+   "check": "schema",
+   "check_title": "Structured Data",
+   "id": "F55"
+  },
+  {
+   "what": "Le bloc qui décrit l'agence GRAVELIN IMMO lui donne des horaires du lundi au vendredi de 9 h à 19 h. Ce sont tes horaires à toi : la fiche Google de l'agence indique lundi, mardi, jeudi et vendredi de 9 h 30 à 18 h. Deux horaires différents pour la même adresse, cela brouille l'information. Sur la p",
+   "evidence": "Bloc RealEstateAgent https://shawez-immo.com/#gravelin avec horaires lundi au vendredi 9 h à 19 h sur 199 pages (/home/claude/search-work/crawl.json). Texte visible de https://shawez-immo.com/contact/ : la ligne de l'agence puis « Horaires Du lundi au vendredi ». Horaires de la fiche de l'agence dans /home/claude/search-work/raw/by-hand-profile.md. Impact faible : cela touche la description de l'agence, pas ta propre fiche.",
+   "fix": "Retirer les horaires du bloc de l'agence et garder les horaires seulement dans ton bloc. Bloc de l'agence corrigé : {\"@type\":\"RealEstateAgent\",\"@id\":\"https://shawez-immo.com/#gravelin\",\"name\":\"GRAVELIN IMMO\",\"url\":\"https://www.gravelin-immo.com/\",\"telephone\":\"+33345343531\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"30 rue Bannelier\",\"postalCode\":\"21000\",\"addressLocality\":\"Dijon\",\"addressCountry\":\"FR\"},\"employee\":{\"@id\":\"https://shawez-immo.com/#shawez\"}} Sur la page contact, écrire « Mes horaires » au lieu de « Horaires » pour que le texte dise la même chose.",
+   "fix_type": "schema",
+   "impact": "low",
+   "check": "schema",
+   "check_title": "Structured Data",
+   "id": "F56"
+  },
+  {
+   "what": "La page contact et la page À propos ne portent pas ton bloc d'activité complet : la seule activité décrite en entier y est l'agence, avec le numéro de l'agence. C'est le cas sur 102 des 200 pages lues. Ton bloc personnel est bien là sur ces pages, avec ton téléphone et ton adresse, donc ce n'est pas",
+   "evidence": "Pages sans le bloc https://shawez-immo.com/#agent mais avec le bloc complet https://shawez-immo.com/#gravelin : https://shawez-immo.com/contact/, https://shawez-immo.com/shawez-ali-agent-immobilier-dijon/, https://shawez-immo.com/avis/, https://shawez-immo.com/honoraires/ et 98 autres (relevé dans /home/claude/search-work/crawl.json). Impact faible : l'accueil porte déjà le bloc complet et juste.",
+   "fix": "Poser le bloc complet de la première correction aussi sur la page contact, et sur les autres pages au moins le lien court {\"@id\":\"https://shawez-immo.com/#agent\"} dans le champ « about » de la page, pour que chaque page dise clairement qu'elle parle de toi.",
+   "fix_type": "schema",
+   "impact": "low",
+   "check": "schema",
+   "check_title": "Structured Data",
+   "id": "F57"
+  },
+  {
+   "what": "Dans les liens vers tes profils, le lien YouTube s'appelle « @gravelinimmo » : si c'est la chaîne de l'agence et pas la tienne, il ne devrait pas être dans ta liste. Aucun lien Facebook n'apparaît nulle part sur le site ni dans le balisage.",
+   "evidence": "Liste des profils du bloc https://shawez-immo.com/#shawez et du bloc https://shawez-immo.com/#agent sur https://shawez-immo.com/ : Instagram shawez_immo, LinkedIn shawez-ali, YouTube @gravelinimmo, TikTok shawez_immobilier, Google Maps. Aucun « facebook.com » dans /home/claude/search-work/site/. La page https://www.youtube.com/@gravelinimmo n'a pas pu être ouverte pour vérifier à qui elle appartient. Impact faible : ces liens aident Google à relier tes comptes, sans plus.",
+   "fix": "Garder dans la liste uniquement les comptes qui sont à ton nom. Si tu as une page Facebook à ton nom, ajouter son lien en bas du site puis dans cette liste. Remplacer le lien Google Maps par la version au nom actuel, déjà mise dans le bloc complet de la première correction.",
+   "fix_type": "schema",
+   "impact": "low",
+   "check": "schema",
+   "check_title": "Structured Data",
+   "id": "F58"
+  },
+  {
+   "what": "Citya est nommée deux fois sans page remarquable : sa fiche sur l'annuaire FNAIM liste ses services et un bouton d'estimation, sans note ni prix. Sa force vient de sa présence dans les annuaires du métier. Shawez n'est pas visible dans ce type d'annuaire à son nom.",
+   "evidence": "https://www.fnaim.fr/agence-immobiliere/7637/43-dijon-citya-gessy-verne-immobilier.htm : services listés (vente, location, syndic, gestion), lien « Estimation de votre bien en 2 minutes », pas de note, pas d'honoraires. Impact bas : utile en appui, moins décisif que les avis.",
+   "fix": "Vérifier si GRAVELIN IMMO figure dans un annuaire professionnel (FNAIM ou autre réseau dont l'agence est membre) et, si oui, demander que Shawez Ali y soit listé comme agent immobilier avec un lien vers shawez-immo.com.",
+   "fix_type": "directory_fix",
+   "impact": "low",
+   "check": "named-instead",
+   "check_title": "Who Google's AI Names Instead",
+   "id": "F59"
+  },
+  {
+   "what": "La fiche Cylex qui renvoie vers ton site existe mais n'a pas pu être lue : on ne sait pas si elle donne les bonnes infos.",
+   "evidence": "Search Console : 8 liens depuis cylex-locale.fr vers shawez-immo.com (setup.json). La seule page Cylex sortie en recherche est celle de l'agence, https://www.cylex-locale.fr/entreprises/gravelin-immo-13710054.html (lecture refusée). Impact faible : Cylex est un petit annuaire, mais c'est aujourd'hui une de tes deux seules sources de liens.",
+   "fix": "Cylex : ouvrir ta fiche et vérifier qu'elle dit « Shawez Ali — Agent immobilier », 30 rue Bannelier, 21000 Dijon, 07 67 57 92 28, https://shawez-immo.com, et non le nom ou le numéro de l'agence.",
+   "fix_type": "directory_fix",
+   "impact": "low",
+   "check": "citations",
+   "check_title": "Listings And Directories",
+   "id": "F60"
+  },
+  {
+   "what": "Les horaires de l'agence écrits sur ton site ne sont pas les mêmes que ceux de la fiche Google de l'agence.",
+   "evidence": "Sur environ 600 pages, les données structurées de GRAVELIN IMMO disent lundi au vendredi 9 h à 19 h (et llms.txt dit pareil), alors que la fiche Google de l'agence affiche lundi, mardi, jeudi, vendredi 9 h 30 à 18 h (raw/by-hand-profile.md). On ne sait pas lequel est juste. Impact faible : c'est la fiche de l'agence, mais une IA peut répondre à un client que l'agence est ouverte le mercredi.",
+   "fix": "Mettre sur le site les vrais horaires de l'agence, ou retirer les horaires du bloc GRAVELIN IMMO et ne garder que les tiens (lundi au vendredi 9 h à 19 h). Ne pas toucher à la fiche Google de l'agence.",
+   "fix_type": "site_setting",
+   "impact": "low",
+   "check": "citations",
+   "check_title": "Listings And Directories",
+   "id": "F61"
+  },
+  {
+   "what": "Ton nom est écrit de plusieurs façons sur le site, et une page parle encore de l'ancien nom de ta fiche Google.",
+   "evidence": "Le site utilise « Shawez Ali — Agent immobilier », « Shawez Ali — Agent immobilier à Dijon » et « Shawez Ali — Immobilier, Dijon » (raw/nap.json). https://shawez-immo.com/llms.txt dit « Fiche Google : « Shawez Ali — Agent immobilier » » alors que la fiche s'appelle « Shawez Ali » depuis le 26/10/2026, et le lien Google Maps du site cherche encore l'ancien nom (il marche quand même grâce à l'identifiant de la fiche).",
+   "fix": "Garder un seul nom dans les données structurées : « Shawez Ali — Agent immobilier ». Corriger la ligne de llms.txt en « Fiche Google : « Shawez Ali » ».",
+   "fix_type": "site_setting",
+   "impact": "low",
+   "check": "citations",
+   "check_title": "Listings And Directories",
+   "id": "F62"
+  },
+  {
+   "what": "Personne n'a vérifié le réglage de Search Console qui autorise Google à montrer votre site dans ses réponses IA (AI Overviews et AI Mode).",
+   "evidence": "Dans /home/claude/search-work/setup.json, les notes Search Console disent : « Réglage Search generative AI : non vérifié ». Impact faible car Include est le réglage par défaut : il est sans doute déjà bon, mais s'il avait été changé, le site n'apparaîtrait plus du tout dans ces réponses.",
+   "fix": "Open Search Console, Settings, Search generative AI, and check it says Include. En clair : ouvrez Search Console, Paramètres, le réglage Search generative AI, et vérifiez qu'il est sur Include. Ne touchez à rien d'autre.",
+   "fix_type": "site_setting",
+   "impact": "low",
+   "check": "ai-access",
+   "check_title": "Can Google Read Your Site",
+   "id": "F63"
+  },
+  {
+   "what": "Votre site annonce 27 avis mais n'en montre aucun, et le relevé date du 9 octobre.",
+   "evidence": "site/avis.json contient \"avis\": 0, donc aucune phrase de client n'est publiée. La page https://shawez-immo.com/avis/, l'accueil et llms.txt affichent « 27 avis Google (relevé du 9 octobre 2026) » ; l'accueil et la page avis n'ont aucune donnée de note pour Google. Le site affiche aussi 137 avis pour l'agence, contre 141 sur votre relevé. Impact faible : Google n'affiche pas d'étoiles pour les avis qu'une entreprise publie sur son propre site, mais le texte des avis donne à l'IA des faits concrets sur votre travail.",
+   "fix": "Ajoutez sur la page avis cinq ou six vrais avis Google, recopiés mot pour mot avec seulement l'initiale du prénom, et mettez à jour le nombre et la date du relevé chaque mois.",
+   "fix_type": "other",
+   "impact": "low",
+   "check": "reviews",
+   "check_title": "Reviews",
+   "id": "F64"
+  },
+  {
+   "what": "Les services sont listés, mais seulement en quatre mots généraux, sans détail.",
+   "evidence": "raw/by-hand-profile.md : « vente, estimation, location (mise en location seulement, jamais de gestion locative), fonds de commerce ». Le site propose aussi les châteaux et biens de prestige et les murs, bureaux et locaux (menu de site/index.html). Impact faible : c'est un complément.",
+   "fix": "Dans Modifier le profil, puis Services, ajoutez ou renommez : Estimation offerte chez vous ; Vente d'appartements et de maisons ; Vente de fonds de commerce ; Murs, bureaux et locaux professionnels ; Châteaux et biens de prestige ; Mise en location sans gestion. Mettez une phrase simple sous chacun, reprise du site.",
+   "fix_type": "other",
+   "impact": "low",
+   "check": "profile",
+   "check_title": "Google Business Profile",
+   "id": "F65"
+  },
+  {
+   "what": "Petits détails sur les neuf pages de quartiers qui font « fabriqué par machine ».",
+   "evidence": "Prix médians avec une demi unité : 2 245,5 €/m² (Grésilles), 2 966,5 €/m² (Centre-Ville), 2 083,5 €/m² (Fontaine d'Ouche), 2 686,5 €/m² (Université). « Gresilles » sans accent dans le grand titre et sur le sommaire, « Grésilles » dans le titre de l'onglet. Pages /estimation-immobiliere-dijon/gresilles/ et /estimation-immobiliere-dijon/. Impact faible : de la finition.",
+   "fix": "Arrondissez les prix à l'euro ou à la dizaine d'euros et écrivez Grésilles avec son accent partout.",
+   "fix_type": "other",
+   "impact": "low",
+   "check": "location-pages",
+   "check_title": "Location Pages",
+   "id": "F66"
+  },
+  {
+   "what": "Le code de ton site apparaît en public sur GitHub dans les résultats de recherche sur ton nom.",
+   "evidence": "La recherche « cylex Shawez Ali agent immobilier » sort https://github.com/shawez-lab/shawez-immo. Le contenu n'a pas été ouvert. Ce n'est pas un annuaire, mais c'est visible par tout le monde.",
+   "fix": "Vérifier que ce dépôt doit vraiment être public et qu'il ne contient ni notes privées, ni noms de clients, ni clés. Sinon, le passer en privé.",
+   "fix_type": "other",
+   "impact": "low",
+   "check": "citations",
+   "check_title": "Listings And Directories",
+   "id": "F67"
+  },
+  {
+   "what": "Quelques pages connues de Google ne sont pas dans son index : 4 pages explorées mais pas retenues, et 1 adresse qui renvoie une erreur 404.",
+   "evidence": "Notes Search Console du 18/11/2026 dans /home/claude/search-work/setup.json : 585 pages indexées, 68 non indexées dont 26 noindex, 25 canonique, 11 redirection, 1 404, 1 robots, 4 explorées non indexées. Les noindex, canoniques et redirections sont voulus (voir plus bas). Les notes ne donnent pas les adresses des 4 pages ni de la 404. Impact faible : 5 pages sur près de 600. Vérifié en local : robots.txt ouvre tout le site à Googlebot (groupe User-agent: *, Allow: /) et ne ferme que des dossiers privés ou techniques (/admin/, /mon-espace/, /merci/, /annonces/, /posts-images/, /de-claude/, /don",
+   "fix": "Dans Search Console, ouvrez Pages, puis la ligne « Explorée, actuellement non indexée » pour voir les 4 adresses. Si l'une est une page importante (une commune, l'estimation offerte, la vente de commerce), ajoutez-y du texte utile et demandez l'indexation avec Inspection de l'URL. Ouvrez aussi la ligne 404 : si cette adresse a existé, ajoutez une redirection vers la bonne page dans le fichier _redirects du site.",
+   "fix_type": "other",
+   "impact": "low",
+   "check": "ai-access",
+   "check_title": "Can Google Read Your Site",
+   "id": "F68"
+  },
+  {
+   "what": "Sur la page d'accueil, la grande vidéo du haut se charge en entier dès l'ouverture, même sur téléphone. Sur une connexion mobile moyenne, cela peut ralentir l'affichage du reste de la page.",
+   "evidence": "Dans la copie locale de https://shawez-immo.com/ (/home/claude/search-work/site/index.html), la vidéo d'accueil est réglée en lecture automatique avec chargement complet (autoplay, preload=\"auto\", fichiers /hero.mp4 et /film-equipe-bg.mp4). L'image de couverture est bien chargée en priorité, ce qui est un bon point. Je n'ai pas pu peser la vidéo (les vidéos ont été retirées de la copie) ni mesurer son effet réel, d'où un impact faible : Google cite une bonne expérience de page parmi ses bases pour les réponses IA, mais la vitesse est rarement la raison pour laquelle une entreprise en est absen",
+   "fix": "Sur téléphone, n'afficher que l'image de couverture au départ et ne lancer la vidéo qu'une fois la page affichée, ou servir une version de la vidéo plus courte et plus légère pour les petits écrans. Puis vérifier la note sur pagespeed.web.dev.",
+   "fix_type": "other",
+   "impact": "low",
+   "check": "speed",
+   "check_title": "Page Speed",
+   "id": "F69"
+  },
+  {
+   "what": "Le seul résultat extérieur à son nom est son propre dépôt de code sur GitHub : ce n'est pas une mention indépendante, et il montre le code de son site au public.",
+   "evidence": "La recherche \"Shawez Ali\" agent immobilier renvoie https://github.com/shawez-lab/shawez-immo. La page n'a pas pu être ouverte (limite du site), donc son contenu n'a pas été vérifié. Impact faible pour les réponses IA, mais c'est ce qu'un client voit en cherchant son nom.",
+   "fix": "Vérifier que ce dépôt doit bien être public. S'il ne doit pas l'être, le passer en privé ; sinon, laisser, mais ne pas le compter comme une mention.",
+   "fix_type": "other",
+   "impact": "low",
+   "check": "mentions",
+   "check_title": "Brand Mentions",
+   "id": "F70"
+  }
+ ],
+ "checks": [
+  {
+   "check": "ai-answers",
+   "title": "AI Answers For Your Questions",
+   "status": "needs work",
+   "summary": "Sur les 4 questions relevées à la main, Google a affiché une réponse IA à chaque fois, mais votre site n'est jamais cité et votre nom n'apparaît dans aucune, seule l'agence Gravelin Immo est nommée une fois. Vos pages répondent déjà à ces questions : le vrai frein est que Google les classe encore très loin, donc il faut surtout être présent sur les sites qu'il cite et mettre vos réponses en tête d"
+  },
+  {
+   "check": "named-instead",
+   "title": "Who Google's AI Names Instead",
+   "status": "needs work",
+   "summary": "Sur les 4 réponses de l'IA de Google lues à la main, Shawez Ali n'est nommé dans aucune, alors que Pietrapolis, La Maison GLM et Citya reviennent chacun deux fois et que l'agence GRAVELIN IMMO est nommée une fois à sa place. Les concurrents gagnent surtout grâce aux sites d'avis et aux annuaires que Google cite (RealAdvisor, Opinion System, Immodvisor, Meilleurs Agents), où Shawez n'apparaît pas à"
+  },
+  {
+   "check": "reviews",
+   "title": "Reviews",
+   "status": "needs work",
+   "summary": "Votre fiche Google a 27 avis notés 5,0, mais les agences que Google cite pour Dijon en affichent de 95 à 268, et vous n'avez reçu qu'un seul nouvel avis entre le 1er octobre et le 17 novembre. Le plus utile maintenant est de demander un avis sincère à chaque client récent, par mail et par SMS, puis de répondre à chaque avis reçu."
+  },
+  {
+   "check": "profile",
+   "title": "Google Business Profile",
+   "status": "needs work",
+   "summary": "Votre fiche Google a les bases justes : le nom « Shawez Ali », la catégorie Agent immobilier, le même téléphone que le site, les horaires du lundi au vendredi de 9 h à 19 h et le lien vers votre site. Mais elle se voit très peu (environ 85 vues et 0 appel en sept semaines, absente de la carte pour « meilleur agent immobilier dijon ») et la description comme les photos n'ont pas été vérifiées : il "
+  },
+  {
+   "check": "service-pages",
+   "title": "Service Pages",
+   "status": "needs work",
+   "summary": "L'estimation, la mise en location, les commerces, les châteaux et la clientèle internationale ont chacun une vraie page claire, avec le lieu, le prix ou les honoraires et un moyen de vous joindre. En revanche, la vente de maison, la vente d'appartement et la vente d'immeuble n'ont pas de page à elles, et la page « Vendre » ne dit pas en haut qu'elle parle de maisons et d'appartements à Dijon."
+  },
+  {
+   "check": "location-pages",
+   "title": "Location Pages",
+   "status": "needs work",
+   "summary": "Vous travaillez depuis une seule adresse, 30 rue Bannelier à Dijon, et le site a beaucoup de pages par ville et par quartier, toutes bâties sur de vraies ventes DVF : les neuf nouvelles pages de quartiers de Dijon sont honnêtes, mais leur texte est le même partout et rien n'y montre votre travail sur place. Le plus gros risque vient des 58 pages de prix pour des communes qui ne figurent pas dans v"
+  },
+  {
+   "check": "faq-answers",
+   "title": "Answers To Customer Questions",
+   "status": "needs work",
+   "summary": "Votre site répond déjà bien à la plupart des questions de vos clients, avec vos propres chiffres : estimation, Beaune, biens de prestige, Montchapet et clients anglophones. Mais il donne des prix au m² qui se contredisent d'une page à l'autre, et il manque des réponses nettes sur le délai de vente, la fiabilité de l'estimation en ligne, le mandat exclusif et les avis."
+  },
+  {
+   "check": "schema",
+   "title": "Structured Data",
+   "status": "good",
+   "summary": "Ton site a bien, sur la page d'accueil, le bloc caché qui décrit ton activité à Google (nom, adresse, téléphone, site, horaires, liens vers tes profils), sans aucune erreur sur les 200 pages lues et conforme à ce que la page affiche, mais le nom inscrit n'est pas « Shawez Ali » comme sur ta fiche Google et quelques détails sont à corriger. Google dit que ce balisage n'est pas obligatoire pour ses "
+  },
+  {
+   "check": "citations",
+   "title": "Listings And Directories",
+   "status": "needs work",
+   "summary": "Ta fiche Google est bonne, mais sur les autres annuaires on voit surtout l'agence Gravelin Immo et presque jamais toi : aucune fiche à ton nom n'est sortie sur Pages Jaunes, Meilleurs Agents, Immodvisor, Facebook, Bing ou Apple. Google croise ces annuaires pour savoir qui tu es et si tu comptes à Dijon, donc il faut que ces fiches existent, soient publiées et donnent exactement le même nom, la mêm"
+  },
+  {
+   "check": "ai-access",
+   "title": "Can Google Read Your Site",
+   "status": "good",
+   "summary": "Google peut lire votre site sans obstacle : rien ne bloque son robot, aucune page importante n'est cachée et Search Console compte déjà 585 pages indexées. Il reste un réglage à vérifier dans Search Console et quelques pages non indexées à regarder, rien d'urgent."
+  },
+  {
+   "check": "speed",
+   "title": "Page Speed",
+   "status": "could not check",
+   "summary": "Je n'ai pas pu mesurer la vitesse du site sur téléphone : le service PageSpeed de Google était inaccessible depuis mon poste et la demande en ligne n'a pas été validée à temps. D'après le code des pages, le site est bien construit pour la vitesse (images légères, polices chez vous, hébergement rapide), il reste seulement à confirmer la note avec Google et à surveiller la vidéo d'accueil sur téléph"
+  },
+  {
+   "check": "mentions",
+   "title": "Brand Mentions",
+   "status": "missing",
+   "summary": "En dehors de son propre site, aucune page indépendante (presse locale, association, partenaire, forum) ne parle de Shawez Ali comme agent immobilier à Dijon : les recherches sur son nom ne ramènent que des homonymes, ses propres pages et des annuaires. Rien de faux ni de négatif n'a été trouvé, mais Google n'a pour l'instant presque rien d'extérieur à reprendre dans ses réponses IA à son sujet."
+  }
+ ]
+}
