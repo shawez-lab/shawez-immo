@@ -16941,8 +16941,54 @@
    "legende": "Deux secondes sur tes photos, et l'acheteur a déjà décidé.  Commente ESTIMATION et on regarde ce que vaut vraiment ton b",
    "source": "autre",
    "uuid": "-8862550744710493399",
-   "statut": "brouillon_juge",
-   "note_juge": "17/11 : trouvée en attente (créée le 17/11 vers 3 h 12), hors registre, mise en brouillon par le Juge (style autre interdit, bien estimation en pause) | 18/11 : de nouveau en draft false, reprogrammée au 19/11 12:00, remise en brouillon par le Juge (style autre interdit, bien estimation en pause)"
+   "statut": "publie",
+   "note_juge": "17/11 : trouvée en attente (créée le 17/11 vers 3 h 12), hors registre, mise en brouillon par le Juge (style autre interdit, bien estimation en pause) | 18/11 : de nouveau en draft false, reprogrammée au 19/11 12:00, remise en brouillon par le Juge (style autre interdit, bien estimation en pause) | 18/11 16h40 Diffuseur (relance du Contrôleur, file du 19/11 vide) : retrouvée dans Metricool en draft false, statut PENDING (recréée le 18/11 à 15 h 14) ; style et bien autorisés par juge.json du 18/11 12:46 ; statut remis à publie pour la diffusion sur les autres réseaux",
+   "legende_complete": "Deux secondes sur tes photos, et l'acheteur a déjà décidé.\n\nLumière grise, pièce en désordre, cadrage de travers : il passe au bien suivant sans même lire le prix.\n\nPartage-le à la personne qui s'apprête à mettre son bien en ligne.\n\nÉcris-moi ESTIMATION en privé sur Instagram @shawez_immo et je t’envoie la visite complète 📩\n\n#photoimmobiliere #vendresonbien #immobilierdijon #dijon #bourgogne",
+   "accroche": "Deux secondes sur tes photos, et l'acheteur a déjà décidé.",
+   "diffusions": {
+    "threads": {
+     "uuid": "202517292607882728",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "13:00"
+    },
+    "linkedin": {
+     "uuid": "1163975311642870050",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "14:05"
+    },
+    "pinterest": {
+     "uuid": "-287596601775273637",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "13:00"
+    },
+    "bluesky": {
+     "uuid": "-632345237912926920",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "13:00"
+    },
+    "tiktok": {
+     "uuid": "-5068571520117814267",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "13:00"
+    },
+    "youtube": {
+     "uuid": "7207197210874693300",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "13:00"
+    },
+    "facebook": {
+     "uuid": "-5241560119090527994",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "16:10"
+    }
+   }
   },
   {
    "id": "TR-1811-estimation-x",
@@ -16954,21 +17000,113 @@
    "legende": "Attendre le printemps pour vendre, ça peut te coûter 15 000 €.  Commente ESTIMATION et je te montre ce que ton bien vaut",
    "source": "autre",
    "uuid": "4086285713352248544",
-   "statut": "brouillon_juge",
-   "note_juge": "17/11 : trouvée en attente (créée le 17/11 vers 3 h 12), hors registre, mise en brouillon par le Juge (style autre interdit, bien estimation en pause) | 18/11 : de nouveau en draft false, reprogrammée au 19/11 17:00, remise en brouillon par le Juge (style autre interdit, bien estimation en pause)"
+   "statut": "publie",
+   "note_juge": "17/11 : trouvée en attente (créée le 17/11 vers 3 h 12), hors registre, mise en brouillon par le Juge (style autre interdit, bien estimation en pause) | 18/11 : de nouveau en draft false, reprogrammée au 19/11 17:00, remise en brouillon par le Juge (style autre interdit, bien estimation en pause) | 18/11 16h40 Diffuseur (relance du Contrôleur, file du 19/11 vide) : retrouvée dans Metricool en draft false, statut PENDING (recréée le 18/11 à 15 h 14) ; style et bien autorisés par juge.json du 18/11 12:46 ; statut remis à publie pour la diffusion sur les autres réseaux",
+   "legende_complete": "Attendre le printemps pour vendre, ça peut te coûter cher.\n\nTout le monde met son bien en vente en mars. Plus de biens en face, plus de négociation, et c'est ton prix qui descend.\n\nPartage-le à celui qui te répète d'attendre.\n\nÉcris-moi ESTIMATION en privé sur Instagram @shawez_immo et je t’envoie la visite complète 📩\n\n#vendresonbien #immobilierdijon #prixaum2 #dijon #bourgogne",
+   "accroche": "Attendre le printemps pour vendre, ça peut te coûter cher.",
+   "diffusions": {
+    "threads": {
+     "uuid": "-5639331474323650275",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "17:10"
+    },
+    "linkedin": {
+     "uuid": "-6998897924822773833",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "17:10"
+    },
+    "pinterest": {
+     "uuid": "617848775068764459",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "17:10"
+    },
+    "bluesky": {
+     "uuid": "-276778854776289488",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "17:10"
+    },
+    "tiktok": {
+     "uuid": "7968066836210208031",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "17:10"
+    },
+    "youtube": {
+     "uuid": "-7322118548531560178",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "17:10"
+    },
+    "facebook": {
+     "uuid": "-4679750350684271291",
+     "url": "",
+     "date": "2026-11-20",
+     "heure": "09:00"
+    }
+   }
   },
   {
    "id": "TR-1811-527-x",
-   "date": "2026-11-18",
-   "heure": "12:00",
+   "date": "2026-11-19",
+   "heure": "19:00",
    "ref": "527",
    "mot": "BEAUNE",
    "style": "chiffre_choc",
    "legende": "2 500 000 € derrière cette porte. Tu entres ?\n\nDe la rue, c'est une façade en pierre de plus à Beaune. Tu passes devant ",
    "source": "autre",
    "uuid": "895440958093610373",
-   "statut": "brouillon_juge",
-   "note_juge": "18/11 : trouvée en attente (créée le 17/11 à 20 h 10), hors registre, mise en brouillon par le Juge (style chiffre_choc interdit)"
+   "statut": "publie",
+   "note_juge": "18/11 : trouvée en attente (créée le 17/11 à 20 h 10), hors registre, mise en brouillon par le Juge (style chiffre_choc interdit) | 18/11 16h40 Diffuseur (relance du Contrôleur, file du 19/11 vide) : retrouvée dans Metricool en draft false, statut PENDING (recréée le 18/11 à 15 h 14) ; style et bien autorisés par juge.json du 18/11 12:46 ; statut remis à publie pour la diffusion sur les autres réseaux ; date corrigée 2026-11-18 12:00 -> 2026-11-19 19:00 d'après la publication Instagram 895440958093610373",
+   "legende_complete": "2 500 000 € derrière cette porte. Tu entres ?\n\nDe la rue, c'est une façade en pierre de plus à Beaune. Tu passes devant sans la voir. Pousse la porte : une cour intérieure, une galerie en bois sur colonnes de pierre, et à l'étage l'ambiance change complètement.\n\n360 m², hôtel particulier du XVIIe, plein cœur historique.\n\nTu commencerais par quelle pièce ? Dis-le en commentaire.\n\nÉcris-moi BEAUNE en privé sur Instagram @shawez_immo et je t’envoie la visite complète 📩\n\n#beaune #bourgogne #hotelparticulier #immobilierdeprestige #cotedor",
+   "accroche": "2 500 000 € derrière cette porte. Tu entres ?",
+   "diffusions": {
+    "threads": {
+     "uuid": "6660322525795404948",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "19:10"
+    },
+    "linkedin": {
+     "uuid": "-8930804709851838887",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "19:10"
+    },
+    "pinterest": {
+     "uuid": "1145955485544368981",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "19:10"
+    },
+    "bluesky": {
+     "uuid": "-2583911822466137768",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "19:10"
+    },
+    "tiktok": {
+     "uuid": "-7954676551079212552",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "19:10"
+    },
+    "youtube": {
+     "uuid": "-3078959844990367071",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "19:10"
+    },
+    "facebook": {
+     "uuid": "5747875643357282781",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "19:10"
+    }
+   }
   },
   {
    "id": "TR-1811-525-x",
@@ -16980,8 +17118,60 @@
    "legende": "Tu pensais que c'était un placard ? Regarde bien.\n\nOn m'avait dit qu'il y avait du rangement. J'étais pas prêt. Un placa",
    "source": "autre",
    "uuid": "-7153124783185639143",
-   "statut": "brouillon_juge",
-   "note_juge": "18/11 : trouvée en attente (créée le 17/11 à 20 h 10), hors registre, mise en brouillon par le Juge (bien 525 en pause jusqu'au 28/11)"
+   "statut": "publie",
+   "note_juge": "18/11 : trouvée en attente (créée le 17/11 à 20 h 10), hors registre, mise en brouillon par le Juge (bien 525 en pause jusqu'au 28/11) | 18/11 16h30 Diffuseur : retrouvée dans Metricool en draft false, statut PENDING (recréée le 18/11 à 15 h 14) ; style et bien autorisés par juge.json du 18/11 12:46 ; statut remis à publie pour la diffusion sur les autres réseaux",
+   "legende_complete": "Tu pensais que c'était un placard ? Regarde bien.\n\nOn m'avait dit qu'il y avait du rangement. J'étais pas prêt. Un placard, un immense dressing. Un autre, une cuisine entière.\n\nNeuilly-Crimolois, aux portes de Dijon. 149 m², 5 chambres, construite en 2018, classe énergie A. 450 000 € honoraires inclus.\n\nTu viens ouvrir les autres portes avec moi ?\n\nÉcris-moi NEUILLY en privé sur Instagram @shawez_immo et je t’envoie la visite complète 📩\n\n#immobilierdijon #neuillycrimolois #maisonavendre #dijon #cotedor",
+   "accroche": "Tu pensais que c'était un placard ? Regarde bien.",
+   "diffusions": {
+    "threads": {
+     "uuid": "-8783103042369272272",
+     "url": "",
+     "date": "2026-11-18",
+     "heure": "17:10"
+    },
+    "linkedin": {
+     "uuid": "-7844697545053420578",
+     "url": "",
+     "date": "2026-11-18",
+     "heure": "19:10"
+    },
+    "pinterest": {
+     "uuid": "8145406958089094397",
+     "url": "",
+     "date": "2026-11-18",
+     "heure": "17:10"
+    },
+    "bluesky": {
+     "uuid": "-6631866800534696185",
+     "url": "",
+     "date": "2026-11-18",
+     "heure": "17:10"
+    },
+    "tiktok": {
+     "uuid": "-878781494259725460",
+     "url": "",
+     "date": "2026-11-18",
+     "heure": "17:40"
+    },
+    "youtube": {
+     "uuid": "324385598754342099",
+     "url": "",
+     "date": "2026-11-18",
+     "heure": "17:10"
+    },
+    "facebook": {
+     "uuid": "739710824482227445",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "09:00"
+    },
+    "gmb": {
+     "uuid": "944207327236476835",
+     "url": "",
+     "date": "2026-11-20",
+     "heure": "13:05"
+    }
+   }
   },
   {
    "id": "TR-1811-438-x",
@@ -16993,8 +17183,294 @@
    "legende": "1 600 000 €. Tu aurais dit combien, toi ?\n\nUn château du XVIIIe à quinze minutes de Beaune. 520 m², 18 pièces, 7 cha",
    "source": "autre",
    "uuid": "4964763291799146188",
-   "statut": "brouillon_juge",
-   "note_juge": "18/11 : trouvée en attente (créée le 17/11 à 20 h 10), hors registre, mise en brouillon par le Juge (style chiffre_choc interdit)"
+   "statut": "publie",
+   "note_juge": "18/11 : trouvée en attente (créée le 17/11 à 20 h 10), hors registre, mise en brouillon par le Juge (style chiffre_choc interdit) | 18/11 16h30 Diffuseur : retrouvée dans Metricool en draft false, statut PENDING (recréée le 18/11 à 15 h 14) ; style et bien autorisés par juge.json du 18/11 12:46 ; statut remis à publie pour la diffusion sur les autres réseaux",
+   "legende_complete": "1 600 000 €. Tu aurais dit combien, toi ?\n\nUn château du XVIIIe à quinze minutes de Beaune. 520 m², 18 pièces, 7 chambres. Autour, 15 hectares, un étang, un colombier, une maison d'amis, et la vue sur la Côte de Beaune.\n\nMets ton prix en commentaire avant de regarder la suite.\n\nPartage-le à la personne avec qui tu l'achèterais.\n\nÉcris-moi CHATEAU en privé sur Instagram @shawez_immo et je t’envoie la visite complète 📩\n\n#chateauavendre #bourgogne #beaune #immobilierdeprestige #cotedor",
+   "accroche": "1 600 000 €. Tu aurais dit combien, toi ?",
+   "diffusions": {
+    "threads": {
+     "uuid": "3312741753438030797",
+     "url": "",
+     "date": "2026-11-18",
+     "heure": "20:10"
+    },
+    "linkedin": {
+     "uuid": "1390309235793350484",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "12:35"
+    },
+    "pinterest": {
+     "uuid": "-2199446950987873290",
+     "url": "",
+     "date": "2026-11-18",
+     "heure": "20:10"
+    },
+    "bluesky": {
+     "uuid": "219317835171253622",
+     "url": "",
+     "date": "2026-11-18",
+     "heure": "20:10"
+    },
+    "tiktok": {
+     "uuid": "8968032020607158636",
+     "url": "",
+     "date": "2026-11-18",
+     "heure": "20:10"
+    },
+    "youtube": {
+     "uuid": "-4577437093782927981",
+     "url": "",
+     "date": "2026-11-18",
+     "heure": "20:10"
+    },
+    "facebook": {
+     "uuid": "6336048548631693713",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "13:05"
+    }
+   }
+  },
+  {
+   "id": "TR-1811-483-v1",
+   "date": "2026-11-18",
+   "heure": "18:30",
+   "ref": "483",
+   "mot": "LOFT",
+   "style": "chiffre_choc",
+   "accroche": "178 500 €, sauna et jacuzzi en plein Dijon",
+   "legende": "Un loft de 42 m² au cœur historique de Dijon, avec son espace bien-être privatif : jacuzzi balnéo, sauna et cheminée d’a",
+   "source": "monteur",
+   "uuid": "5763916250714557049",
+   "statut": "publie",
+   "media": "https://5227e50c.shawez-immo.pages.dev/trial/2026-11-18/loft-spa-dijon-483-v1.mp4",
+   "instagram": true
+  },
+  {
+   "id": "TR-1811-483-v2",
+   "date": "2026-11-18",
+   "heure": "16:30",
+   "ref": "483",
+   "mot": "LOFT",
+   "style": "autre",
+   "accroche": "Derrière ces portes vitrées, un sauna",
+   "legende": "On ouvre la porte en verre et c’est un vrai sauna, à deux pas du jacuzzi, dans un loft en plein centre de Dijon 🔥\n\nTu l’",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://5227e50c.shawez-immo.pages.dev/trial/2026-11-18/loft-spa-dijon-483-v2.mp4",
+   "instagram": false
+  },
+  {
+   "id": "TR-1811-483-v3",
+   "date": "2026-11-18",
+   "heure": "16:30",
+   "ref": "483",
+   "mot": "LOFT",
+   "style": "question",
+   "accroche": "Jacuzzi ou sauna, tu commences par lequel ?",
+   "legende": "Jacuzzi balnéo d’un côté, sauna de l’autre, et une salle d’eau en marbre avec douche à l’italienne. Dis-moi en commentai",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://5227e50c.shawez-immo.pages.dev/trial/2026-11-18/loft-spa-dijon-483-v3.mp4",
+   "instagram": false
+  },
+  {
+   "id": "TR-1811-483-v4",
+   "date": "2026-11-18",
+   "heure": "16:30",
+   "ref": "483",
+   "mot": "LOFT",
+   "style": "chiffre_choc",
+   "accroche": "42 m², un sauna et une cheminée",
+   "legende": "Tout tient dans 42 m² : coin nuit cosy, cuisine équipée design, cheminée d’ambiance et sauna. Et le loft est déjà exploi",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://5227e50c.shawez-immo.pages.dev/trial/2026-11-18/loft-spa-dijon-483-v4.mp4",
+   "instagram": false
+  },
+  {
+   "id": "TR-1811-501-v1",
+   "date": "2026-11-18",
+   "heure": "21:30",
+   "ref": "501",
+   "mot": "LUMIÈRE",
+   "style": "chiffre_choc",
+   "accroche": "139 000 €, 2 chambres et une cave",
+   "legende": "Un T3 de 53,62 m² au premier étage, résidence avec gardien, cuisine meublée et équipée, cave privative et parking collec",
+   "source": "monteur",
+   "uuid": "-8724521138389430998",
+   "statut": "publie",
+   "media": "https://5227e50c.shawez-immo.pages.dev/trial/2026-11-18/appartement-t3-501-v1.mp4",
+   "instagram": true
+  },
+  {
+   "id": "TR-1811-501-v2",
+   "date": "2026-11-18",
+   "heure": "16:30",
+   "ref": "501",
+   "mot": "LUMIÈRE",
+   "style": "defi_1pourcent",
+   "accroche": "Mets pause : 1 % compte les chambres",
+   "legende": "Regarde bien, il y a deux chambres dans ce T3 lumineux de Dijon, et la deuxième passe vite. Tu les as vues toutes les de",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://5227e50c.shawez-immo.pages.dev/trial/2026-11-18/appartement-t3-501-v2.mp4",
+   "instagram": false
+  },
+  {
+   "id": "TR-1811-501-v3",
+   "date": "2026-11-18",
+   "heure": "16:30",
+   "ref": "501",
+   "mot": "LUMIÈRE",
+   "style": "question",
+   "accroche": "Tu ferais quoi de la deuxième chambre ?",
+   "legende": "Bureau, chambre d’amis ou chambre d’enfant : dans ce T3 de Dijon, la deuxième chambre t’attend. Dis-moi ce que tu en fer",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://5227e50c.shawez-immo.pages.dev/trial/2026-11-18/appartement-t3-501-v3.mp4",
+   "instagram": false
+  },
+  {
+   "id": "TR-1811-501-v4",
+   "date": "2026-11-18",
+   "heure": "16:30",
+   "ref": "501",
+   "mot": "LUMIÈRE",
+   "style": "autre",
+   "accroche": "Ce T3 a un gardien et une cave privative",
+   "legende": "Copropriété avec gardien, cave privative en sous-sol, parking collectif et chauffage urbain. Le genre de détail qui chan",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://5227e50c.shawez-immo.pages.dev/trial/2026-11-18/appartement-t3-501-v4.mp4",
+   "instagram": false
+  },
+  {
+   "id": "TR-1811-415-v1",
+   "date": "2026-11-19",
+   "heure": "08:30",
+   "ref": "415",
+   "mot": "DUPLEX",
+   "style": "lieu_exception",
+   "accroche": "Dernier étage en plein cœur de Dijon",
+   "legende": "Un duplex de 92 m² au sol, au deuxième et dernier étage, avec une cheminée qui fonctionne et une chambre avec sa salle d",
+   "source": "monteur",
+   "uuid": "-3968938894681160966",
+   "statut": "publie",
+   "media": "https://5227e50c.shawez-immo.pages.dev/trial/2026-11-18/duplex-dijon-415-v1.mp4",
+   "instagram": true
+  },
+  {
+   "id": "TR-1811-415-v2",
+   "date": "2026-11-18",
+   "heure": "16:30",
+   "ref": "415",
+   "mot": "DUPLEX",
+   "style": "chiffre_choc",
+   "accroche": "49 m² de pièce de vie en plein Dijon",
+   "legende": "La pièce de vie fait 49 m² avec sa cuisine américaine, en plein cœur de Dijon. Tu imagines la table pour recevoir ? 🍽️\n\n",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://5227e50c.shawez-immo.pages.dev/trial/2026-11-18/duplex-dijon-415-v2.mp4",
+   "instagram": false
+  },
+  {
+   "id": "TR-1811-415-v3",
+   "date": "2026-11-18",
+   "heure": "16:30",
+   "ref": "415",
+   "mot": "DUPLEX",
+   "style": "question",
+   "accroche": "Tu cuisines face à la cheminée ?",
+   "legende": "Cuisine américaine équipée d’un côté, cheminée fonctionnelle de l’autre, dans un duplex de charme au cœur de Dijon. Ça t",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://5227e50c.shawez-immo.pages.dev/trial/2026-11-18/duplex-dijon-415-v3.mp4",
+   "instagram": false
+  },
+  {
+   "id": "TR-1811-415-v4",
+   "date": "2026-11-18",
+   "heure": "16:30",
+   "ref": "415",
+   "mot": "DUPLEX",
+   "style": "question",
+   "accroche": "C’est tout ? Non, il y a un étage",
+   "legende": "En bas, la pièce de vie et une chambre. À l’étage, une belle chambre avec sa salle de bains privative. 220 000 € pour ce",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://5227e50c.shawez-immo.pages.dev/trial/2026-11-18/duplex-dijon-415-v4.mp4",
+   "instagram": false
+  },
+  {
+   "id": "TR-1811-520-v1",
+   "date": "2026-11-19",
+   "heure": "11:00",
+   "ref": "520",
+   "mot": "CHEVIGNY",
+   "style": "chiffre_choc",
+   "accroche": "200 000 € avec jardin aux portes de Dijon",
+   "legende": "À Chevigny-Saint-Sauveur, un T3 de 61,49 m² en rez-de-chaussée, avec terrasse, jardin privatif orienté ouest et garage f",
+   "source": "monteur",
+   "uuid": "2611895902023534610",
+   "statut": "publie",
+   "media": "https://5227e50c.shawez-immo.pages.dev/trial/2026-11-18/appartement-chevigny-520-v1.mp4",
+   "instagram": true
+  },
+  {
+   "id": "TR-1811-520-v2",
+   "date": "2026-11-18",
+   "heure": "16:30",
+   "ref": "520",
+   "mot": "CHEVIGNY",
+   "style": "autre",
+   "accroche": "Un jardin plein ouest au rez-de-chaussée",
+   "legende": "Le séjour de plus de 25 m² s’ouvre sur une terrasse et un jardin privatif orienté ouest. Les fins de journée se passent ",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://5227e50c.shawez-immo.pages.dev/trial/2026-11-18/appartement-chevigny-520-v2.mp4",
+   "instagram": false
+  },
+  {
+   "id": "TR-1811-520-v3",
+   "date": "2026-11-18",
+   "heure": "16:30",
+   "ref": "520",
+   "mot": "CHEVIGNY",
+   "style": "question",
+   "accroche": "Classe B et un jardin, tu emménages ?",
+   "legende": "Résidence récente et sécurisée, DPE B, double vitrage et volets roulants électriques, deux chambres et un jardin. Tu pos",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://5227e50c.shawez-immo.pages.dev/trial/2026-11-18/appartement-chevigny-520-v3.mp4",
+   "instagram": false
+  },
+  {
+   "id": "TR-1811-520-v4",
+   "date": "2026-11-18",
+   "heure": "16:30",
+   "ref": "520",
+   "mot": "CHEVIGNY",
+   "style": "defi_1pourcent",
+   "accroche": "Mets pause : 1 % voit la terrasse",
+   "legende": "La terrasse passe en un éclair, juste avant le jardin privatif. Tu as réussi à t’arrêter dessus ? ⏸️\n\nCommente CHEVIGNY ",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://5227e50c.shawez-immo.pages.dev/trial/2026-11-18/appartement-chevigny-520-v4.mp4",
+   "instagram": false
   }
  ]
 }

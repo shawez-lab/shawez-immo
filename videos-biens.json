@@ -221,13 +221,6 @@
   ],
   "en_essai": [
     {
-      "mot": "NEUILLY",
-      "ref": "525",
-      "libelle": "la maison de Neuilly-Crimolois",
-      "depuis": "2026-10-29",
-      "jusqu_au": "2026-11-14"
-    },
-    {
       "mot": "BEAUNE",
       "ref": "527",
       "libelle": "l’hôtel particulier de Beaune",
@@ -247,41 +240,6 @@
       "libelle": "le château près de Beaune",
       "depuis": "2026-11-02",
       "jusqu_au": "2026-12-10"
-    },
-    {
-      "mot": "T5",
-      "ref": "Mandat",
-      "libelle": "la maison T5 de Neuilly-Crimolois",
-      "depuis": "2026-11-02",
-      "jusqu_au": "2026-11-11"
-    },
-    {
-      "mot": "BALI",
-      "ref": "461BALI",
-      "libelle": "le studio inspiration Bali",
-      "depuis": "2026-11-02",
-      "jusqu_au": "2026-11-11"
-    },
-    {
-      "mot": "CHEVIGNY",
-      "ref": "520",
-      "libelle": "l’appartement T3 avec jardin de Chevigny-Saint-Sauveur",
-      "depuis": "2026-11-03",
-      "jusqu_au": "2026-11-15"
-    },
-    {
-      "mot": "LUMIÈRE",
-      "ref": "501",
-      "libelle": "l’appartement T3 lumineux à Dijon",
-      "depuis": "2026-11-03",
-      "jusqu_au": "2026-11-21"
-    },
-    {
-      "mot": "DUPLEX",
-      "ref": "415",
-      "libelle": "le duplex en plein cœur de Dijon",
-      "depuis": "2026-11-04",
-      "jusqu_au": "2026-11-15"
     },
     {
       "mot": "COUCHEY",
@@ -338,6 +296,34 @@
       "libelle": "le T2 de 44 m² à rafraîchir",
       "depuis": "2026-11-06",
       "jusqu_au": "2026-12-10"
+    },
+    {
+      "mot": "LOFT",
+      "ref": "483",
+      "libelle": "le loft avec sauna et jacuzzi en plein Dijon",
+      "depuis": "2026-11-18",
+      "jusqu_au": "2026-12-02"
+    },
+    {
+      "mot": "LUMIÈRE",
+      "ref": "501",
+      "libelle": "l’appartement T3 lumineux à Dijon",
+      "depuis": "2026-11-18",
+      "jusqu_au": "2026-12-02"
+    },
+    {
+      "mot": "DUPLEX",
+      "ref": "415",
+      "libelle": "le duplex en plein cœur de Dijon",
+      "depuis": "2026-11-18",
+      "jusqu_au": "2026-12-02"
+    },
+    {
+      "mot": "CHEVIGNY",
+      "ref": "520",
+      "libelle": "l’appartement T3 avec jardin de Chevigny-Saint-Sauveur",
+      "depuis": "2026-11-18",
+      "jusqu_au": "2026-12-02"
     }
   ]
 }
