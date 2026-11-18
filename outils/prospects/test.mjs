@@ -95,3 +95,5 @@ const {spawnSync}=await import('node:child_process');
 assert.equal(spawnSync(process.execPath,[new URL('./test-autonomie.mjs',import.meta.url).pathname],{stdio:'inherit'}).status,0);
 
 assert.equal(spawnSync(process.execPath,[new URL('./test-relais.mjs',import.meta.url).pathname],{stdio:'inherit'}).status,0);
+
+assert.equal(spawnSync(process.execPath,[new URL('./test-entrees-reels.mjs',import.meta.url).pathname],{stdio:'inherit'}).status,0);

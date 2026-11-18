@@ -1,3 +1,4 @@
+import { reelPublie,reserverReponseReel,messageEntreeReel } from '../_lib/entrees-reels.js';
 import { mediaId,noterMedia,attacherMedia } from '../_lib/attribution-reels.js';
 import { listePrivee } from '../_lib/exclusions-privees.js';
 
@@ -542,7 +543,7 @@ export async function onRequest({ request, env }) {
     }
 
 
-    let mediaNatif=null,attributionToken=null;
+    let mediaNatif=null,attributionToken=null,reelEntree=null;
     let prenom, commentaire, post, contact, compte, evenement, source = '', test = false, waContactExistant = false, intention = '';
     if (request.method === 'GET') {
       const u = new URL(request.url);
@@ -591,6 +592,7 @@ export async function onRequest({ request, env }) {
       commentaire = propre(c.comment || c.commentaire, 500);
       intention = /^vend/i.test(propre(c.intention, 20)) ? 'vendre' : '';
       post = propre(c.post || c.post_id || c.reel || c.url, 300);
+      if(source==='reel_identifie'){reelEntree=await reelPublie(env.DB,mediaNatif);if(!reelEntree)return sansMessage('reel_non_identifie');post=reelEntree.url;commentaire=STOP.test(commentaire)?commentaire:'';intention='';}
       // Vendeur : clé à part, pour qu'une réponse du matin à un autre commentaire ne bloque jamais un vendeur (une réponse vendeur par jour)
       if (intention) post = 'vendre';
       contact = propre(c.contact_id || c.user_id, 80);
@@ -629,6 +631,7 @@ export async function onRequest({ request, env }) {
     const base = await journal(env).catch(e => { console.log('journal', e.message); return null; });
     if(base&&!test&&source!=='whatsapp'&&mediaNatif)attributionToken=await noterMedia(base,evenement,mediaNatif,post);
     const jour = jourParis();
+    if(mediaNatif&&!test&&source!=='dm'&&source!=='whatsapp'&&!/^story/i.test(source||'')){if(!base)return sansMessage('antidoublon_indisponible');if(!await reserverReponseReel(base,contact,mediaNatif,jour))return sansMessage('doublon_reel');}
     // Image seule en message privé : repère court à la place du lien signé d'Instagram.
     // Pendant le défi pause, une image seule ou « je l'ai eu » en privé, c'est sans doute la capture promise par la vidéo.
     const prive = source === 'dm' || /^story/i.test(source || '') || /^(story|dm)/i.test(post || '');
@@ -682,6 +685,15 @@ export async function onRequest({ request, env }) {
       await noter('out', t, '');
       return json(200, { ...blocManyChat(t, null, false), envoyer: 'oui', origine: 'cloture', cout: 0 });
     }
+    if(reelEntree){
+      let bien=await trouverBien(env,request,reelEntree.url);
+      if(!bien&&reelEntree.mot_cle)bien=await trouverBien(env,request,'mot:'+sansAccents(reelEntree.mot_cle));
+      const texte=messageEntreeReel(prenom,{bien:!!bien,estimation:/^estimation$/i.test(reelEntree.mot_cle||'')});
+      await base.prepare('INSERT OR IGNORE INTO dm_instagram VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11)').bind(evenement,contact,compte,mediaNatif,bien?.ref||'',jour,'reel_identifie',0,0,0,new Date().toISOString()).run();
+      await noter('out',texte,bien?reelEntree.url:'');
+      return json(200,{...attacherMedia(blocManyChat(texte,bien,true),attributionToken),envoyer:'oui',origine:'reel_identifie',media_id_recu:mediaNatif,attribution:'media_id_verifie',cout:0});
+    }
+
     // Commentaire « à l'aveugle » : Instagram ne transmet à ManyChat ni le texte du commentaire ni la vidéo commentée.
     // Impossible d'y répondre de façon logique, donc AUCUN message : ni question au hasard sur les biens du moment, ni défi,
     // ni bien d'une conversation précédente. Décision de Shawez du 29/10/2026, après des DM hors sujet
@@ -846,4 +858,5 @@ export async function onRequest({ request, env }) {
     return json(500, { error: 'serveur' });
   }
 }
+
 
