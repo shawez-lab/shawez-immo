@@ -159,6 +159,7 @@ def page(chemin, titre, desc, corps, actif='', tete='', fin='', index=True, clas
 {'' if index else '<meta name="robots" content="noindex">'}
 <meta name="theme-color" content="#F3F4F1">
 <meta property="og:title" content="{e(titre)}"><meta property="og:description" content="{e(desc)}"><meta property="og:type" content="website"><meta property="og:locale" content="fr_FR">
+{f'<link rel="canonical" href="{SITE_URL}{chemin}">' if index and chemin != '/404' else ''}
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/assets/fonts/serif.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/sans.woff2" as="font" type="font/woff2" crossorigin>
@@ -193,6 +194,7 @@ def page(chemin, titre, desc, corps, actif='', tete='', fin='', index=True, clas
 {fin}
 </body>
 </html>'''
+    if index and chemin != '/404': URLS.append(chemin)
     p = os.path.join(OUT, chemin.strip('/'), 'index.html') if chemin != '/404' else os.path.join(OUT, '404.html')
     os.makedirs(os.path.dirname(p), exist_ok=True)
     open(p, 'w', encoding='utf-8').write(h)
@@ -866,6 +868,56 @@ def page_anglais(biens):
 <div>{formulaire('Message from the English page', '', 'Send', 'Your project')}</div></div></section>{CINEMA}"""
     page('/en/', 'Property for sale in Dijon and Burgundy | GRAVELIN IMMO', 'Independent estate agency in Dijon, Burgundy. Apartments, houses and châteaux for sale between Dijon and Beaune. We work in English.', corps, '', langue='en')
 
+SITE_URL = 'https://www.gravelin-immo.com'   # adresse définitive : sert aux liens canoniques et au plan du site
+URLS = []
+
+def fichiers_site():
+    """Plan du site, robots, en-têtes et redirections des anciennes adresses du site de l'agence."""
+    aujourd = datetime.date.today().isoformat()
+    with open(os.path.join(OUT, 'sitemap.xml'), 'w', encoding='utf-8') as f:
+        f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+                + ''.join(f'<url><loc>{SITE_URL}{u}</loc><lastmod>{aujourd}</lastmod></url>\n' for u in sorted(set(URLS)))
+                + '</urlset>\n')
+    open(os.path.join(OUT, 'robots.txt'), 'w').write(f'User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /mon-espace/\nDisallow: /api/\n\nSitemap: {SITE_URL}/sitemap.xml\n')
+    csp = ("default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; media-src 'self'; "
+           "connect-src 'self' https://shawez-immo.com https://api-adresse.data.gouv.fr https://data.geopf.fr; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests")
+    open(os.path.join(OUT, '_headers'), 'w').write(f"""/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
+  Content-Security-Policy: {csp}
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+https://:projet.pages.dev/*
+  X-Robots-Tag: noindex
+https://:version.:projet.pages.dev/*
+  X-Robots-Tag: noindex
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+/assets/m/*
+  Cache-Control: public, max-age=2592000
+""")
+    # Anciennes adresses du site (La Boîte Immo) : chacune mène à la page qui la remplace, pour ne perdre ni visiteur ni référencement.
+    open(os.path.join(OUT, '_redirects'), 'w').write("""/notre-agence /agence/ 301
+/notre-expertise /vendre/ 301
+/nos-honoraires /honoraires/ 301
+/avis-clients /avis/ 301
+/nos-avis /avis/ 301
+/vente /acheter/ 301
+/vente/* /acheter/ 301
+/vente-pro /immobilier-professionnel/ 301
+/vente-pro/* /immobilier-professionnel/ 301
+/location /louer/ 301
+/location/* /louer/ 301
+/location-saisonniere /louer/ 301
+/location-saisonniere/* /louer/ 301
+/actualites /agence/ 301
+/actualites/* /agence/ 301
+/nous-contacter /contact/ 301
+/rgpd /confidentialite/ 301
+/politique-de-confidentialite /confidentialite/ 301
+/plan-du-site /sitemap.xml 301
+""")
+
 def main():
     biens, maj = charger()
     os.makedirs(os.path.join(OUT, 'assets'), exist_ok=True)
@@ -881,6 +933,7 @@ def main():
     module('/mon-espace/', 'mon-espace', 'Mon espace | GRAVELIN IMMO', False, True)
     module('/admin/', 'admin', 'Espace agence | GRAVELIN IMMO', False, True)
     module('/admin/promesses/', 'promesses', 'Promesses | GRAVELIN IMMO', False, True)
+    fichiers_site()
     print(len(biens), 'biens ; mise à jour des annonces :', maj)
 
 main()

@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /mon-espace/
+Disallow: /api/
+
+Sitemap: https://www.gravelin-immo.com/sitemap.xml
