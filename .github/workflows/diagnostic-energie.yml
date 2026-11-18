@@ -1,0 +1,38 @@
+name: Diagnostic HTML énergie
+on:
+  push:
+    branches: [codex/dpe-fiches-reelles]
+    paths: ['.github/workflows/diagnostic-energie.yml']
+permissions:
+  contents: read
+jobs:
+  diagnostic:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          sparse-checkout: |
+            outils/sync_annonces.py
+            annonces.json
+          sparse-checkout-cone-mode: false
+      - name: Lire quatre fiches réelles sans modifier les annonces
+        run: |
+          python3 - <<'PY'
+          import sys, json, re, pathlib
+          sys.path.insert(0, 'outils')
+          import sync_annonces as sync
+          dest = pathlib.Path('diagnostic-energie'); dest.mkdir()
+          annonces = json.load(open('annonces.json'))['annonces']
+          for ref in ['349A', '383', '394', '403']:
+              a = annonces[ref]
+              s = sync.get(sync.BASE + a['chemin']).decode('utf-8', 'ignore')
+              (dest / (ref + '.html')).write_text(s)
+              print('\nFICHE', ref)
+              for m in list(re.finditer(r'dpe|ges|kwh|co2|diagnostic', s, re.I))[:80]:
+                  print(s[max(0,m.start()-120):m.end()+350].replace('\n',' '))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: diagnostic-energie
+          path: diagnostic-energie/
+          retention-days: 3
