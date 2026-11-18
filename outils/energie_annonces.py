@@ -68,7 +68,15 @@ def lire_image(data, cle):
     if not 65 <= bottom - top <= 85:
         return {}
     letter_box = (176, top + 6, 240, bottom - 7) if cle == 'dpe' else (5, top + 6, 75, bottom - 7)
-    letter = _ocr(im.crop(letter_box), 'ABCDEFG')
+    letter_image = im.crop(letter_box)
+    letter = _ocr(letter_image, 'ABCDEFG')
+    if letter is None:
+        # Le texte de la classe est blanc, entouré de noir sur une barre colorée.
+        # Isoler son remplissage blanc évite de lire le cadre comme une autre lettre.
+        from PIL import Image
+        ink = Image.new('L', letter_image.size, 255)
+        ink.putdata([0 if min(pixel) > 220 else 255 for pixel in letter_image.getdata()])
+        letter = _ocr(ink, 'ABCDEFG')
     out = {cle: letter} if letter and re.fullmatch('[A-G]', letter) else {}
     box = (1, top + 7, 89, top + 55) if cle == 'dpe' else (200, top + 5, 400, top + 60)
     # GES : exclure le petit texte de l'unité à droite en isolant les grands glyphes.
