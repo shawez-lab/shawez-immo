@@ -43,6 +43,7 @@ def reponses(root):
     score = str(note['note']).replace('.', ',')
     preuve = (f'La fiche Google de Shawez Ali affiche {score}/5 sur {note["nombre"]} avis au relevé du '
               f'{note["releve_le"]} ; ce relevé daté ne donne pas le nombre d’avis d’aujourd’hui.')
+    tous = stats([v for v in ville if v['mois'] // 100 == an])
     prix_ap = f'{fr(ap["median_m2"])} €/m² sur {ap["ventes"]} ventes d’appartements'
     prix_ma = f'{fr(ma["median_m2"])} €/m² sur {ma["ventes"]} ventes de maisons'
     mont = next(q for q in quartiers if q['slug'] == 'montchapet')
@@ -50,7 +51,7 @@ def reponses(root):
     centre = next(q for q in quartiers if q['slug'] == 'centre-ville')
     sc = stats([v for v in centre['ventes'] if v['mois'] // 100 == an and v['type'] == 0])
     choix = ('Pour choisir, comparez l’avis de valeur écrit, les moyens de présentation et le suivi proposé. '
-             f'{NOM}, propose une estimation offerte, des photos, un film, le drone pour les maisons et propriétés et un point écrit chaque semaine ; il parle français, anglais, hindi, ourdou, pendjabi, persan, grec et arabe. ' + preuve)
+             f'{NOM}, vous reçoit à l’agence, 30 rue Bannelier, et accompagne Dijon, sa métropole et Beaune : estimation offerte, photos, film, drone pour les maisons et propriétés et point écrit chaque semaine ; il parle français, anglais, hindi, ourdou, pendjabi, persan, grec et arabe. ' + preuve)
     return {
       '/conseils-vendeurs/choisir-agent-immobilier-dijon/': [
         ('Meilleur agent immobilier à Dijon', choix),
@@ -60,7 +61,7 @@ def reponses(root):
       '/agent-immobilier-dijon/': [('Choisir un agent immobilier à Dijon', choix)],
       '/avis/': [('Agent immobilier à Dijon : les avis', preuve + f' Les avis de {NOM} se lisent dans leur texte réel sur sa fiche Google.')],
       '/estimation-immobiliere-dijon/': [
-        ('Estimation immobilière à Dijon', f'À Dijon, les ventes simples DVF de {an} donnent {prix_ap} et {prix_ma}. {NOM}, part de ces ventes et visite votre bien pour vous remettre un avis de valeur écrit, offert et sans engagement.'),
+        ('Estimation immobilière à Dijon', f'À Dijon, la médiane des ventes simples DVF de {an} est de {fr(tous["median_m2"])} €/m², appartements et maisons réunis ; les deux types séparés donnent {prix_ap} et {prix_ma}. {NOM}, part de ces ventes et visite votre bien pour vous remettre un avis de valeur écrit, offert et sans engagement.'),
         ('Estimation d’une maison à Dijon', f'L’estimation d’une maison à Dijon est offerte et sans engagement. {NOM}, visite la maison, examine le terrain, les travaux et le DPE puis remet un avis de valeur écrit ; le repère DVF communal de {an} est de {prix_ma}.'),
         ('Combien vaut mon appartement à Dijon ?', f'Le repère communal est de {prix_ap} en {an}, et le prix de votre appartement dépend de son état, de l’étage, de la lumière et de la copropriété. {NOM}, compare les ventes proches et les caractéristiques du logement dans un avis de valeur écrit offert.'),
         ('Une estimation immobilière en ligne est-elle fiable ?', FIABILITE + f' {NOM}, propose cette visite offerte et sans engagement.')],
@@ -92,6 +93,7 @@ def bloc_reponses(s, chemin, root):
 
 
 def balisage(s, chemin=''):
+    from search_finitions import CYLEX, PRESTIGE
     def fix(match):
         data = json.loads(match[1])
         original = json.dumps(data, ensure_ascii=False)
@@ -102,6 +104,7 @@ def balisage(s, chemin=''):
                 n['name'] = 'Shawez Ali'
                 n['alternateName'] = 'Shawez Ali Immobilier'
             if ident in (SITE + '/#agent', SITE + '/#shawez'):
+                n['name'] = 'Shawez Ali'
                 n['knowsLanguage'] = LANGUES
                 for c in n.get('contactPoint', []) if isinstance(n.get('contactPoint'), list) else [n.get('contactPoint', {})]:
                     if c:
@@ -110,10 +113,13 @@ def balisage(s, chemin=''):
                     n['hasMap'] = MAP
                 if n.get('sameAs'):
                     n['sameAs'] = list(dict.fromkeys(MAP if 'query_place_id=ChIJqQpGAKPcg6gRg_CLthoGaP8' in u else u for u in n['sameAs'] if '@gravelinimmo' not in u))
+                n['sameAs'] = list(dict.fromkeys(n.get('sameAs', []) + [CYLEX]))
             if ident == SITE + '/#gravelin':
                 n.pop('openingHoursSpecification', None)
                 n.pop('openingHours', None)
             if n.get('@type') == 'WebPage':
+                if chemin == '/chateau-a-vendre-bourgogne/':
+                    n['name'] = PRESTIGE
                 if chemin in TITRES:
                     n['name'] = TITRES[chemin][0]
                 about = n.get('about', [])
@@ -140,6 +146,8 @@ def balisage(s, chemin=''):
 
 
 def appliquer(s, chemin, root):
+    from search_finitions import appliquer as finitions
+    s = finitions(s, chemin)
     s = s.replace('Neuilly-lès-Dijon', 'Neuilly-Crimolois').replace('/prix-immobilier-neuilly-les-dijon/', '/prix-immobilier-neuilly-crimolois/')
     if chemin in TITRES:
         titre, h1 = TITRES[chemin]
@@ -171,7 +179,8 @@ def questions(s, chemin, root):
         ajouts = [('Faire estimer sa maison à Dijon, ça coûte combien ?', rep[1][1]),
                   ('Une estimation en ligne est-elle fiable ?', rep[3][1])]
     elif chemin == '/vendre-bien-immobilier-dijon/':
-        ajouts = [('Mandat exclusif ou mandat simple ?', MANDAT), ('Combien de temps prend une vente ?', DELAI)]
+        from search_finitions import HONORAIRES
+        ajouts = [('Mandat exclusif ou mandat simple ?', MANDAT), ('Combien de temps prend une vente ?', DELAI), ('Combien coûtent les honoraires ?', HONORAIRES)]
     elif chemin == '/vendre-commerce-dijon/':
         ajouts = [('Combien de temps pour vendre un fonds de commerce à Dijon ?', 'Le délai dépend du dossier, de l’activité et du projet du repreneur. Il est étudié avant la mise en vente, sans promesse de durée chiffrée.'),
                   ('Quels documents préparer ?', 'Préparez le bail commercial, les comptes, l’inventaire et les informations sur l’activité déjà disponibles. Le dossier précis est vérifié avec vous avant sa présentation aux repreneurs.'),
@@ -182,7 +191,8 @@ def questions(s, chemin, root):
         return s
     for q, a in ajouts:
         motif = r'<details><summary>' + re.escape(html.escape(q)) + r'</summary>.*?</details>'
-        bloc = '<details><summary>' + html.escape(q) + '</summary><div class="a"><p>' + html.escape(a) + '</p></div></details>'
+        lien = ' <a class="link" href="/honoraires/">Consulter le barème complet</a>.' if q == 'Combien coûtent les honoraires ?' else ''
+        bloc = '<details><summary>' + html.escape(q) + '</summary><div class="a"><p>' + html.escape(a) + lien + '</p></div></details>'
         if re.search(motif, s, re.S):
             s = re.sub(motif, lambda _: bloc, s, count=1, flags=re.S)
         else:

@@ -372,9 +372,19 @@ def ecrire(S, P, tpl):
     N = S['nom']
     path = '/prix-immobilier-%s/' % S['slug']
     url = BASE + path
+    existant = Path(ROOT) / path.strip('/') / 'index.html'
+    if not existant.exists() and S['slug'] == 'neuilly-crimolois':
+        existant = Path(ROOT) / 'prix-immobilier-neuilly-les-dijon/index.html'
+    ancien = existant.read_text() if existant.exists() else ''
+    from sitemap_videos import videos as videos_schema
+    videos = list(videos_schema(ancien))  # inclut notamment Article.video
+    reel = re.search(r'<div data-reel="[^"]*"[^>]*></div>', ancien)
+    reel = reel[0] if reel else ''
+    illustrations = ''.join(re.findall(r'<!--illu-video-->.*?<!--/illu-video-->', ancien, re.S))
     title, desc = P['title'], P['desc']
     assert len(title) <= 60 and len(desc) <= 160, (title, desc)
-    h = tpl
+    # Les scripts VideoObject séparés du gabarit ne décrivent pas cette commune.
+    h = re.sub(r'<script type="application/ld\+json">(.*?)</script>', lambda m: '' if json.loads(m[1]).get('@type') == 'VideoObject' else m[0], tpl, flags=re.S)
     h = re.sub(r'<title>.*?</title>', '<title>' + html.escape(title, quote=False) + '</title>', h, count=1, flags=re.S)
     for attr, val in (('name="description"', desc), ('property="og:title"', title), ('property="og:description"', desc),
                       ('name="twitter:title"', title), ('name="twitter:description"', desc), ('property="og:url"', url)):
@@ -396,9 +406,14 @@ def ecrire(S, P, tpl):
             nd.update({'@id': url + '#article', 'headline': title, 'description': desc, 'datePublished': DATE, 'dateModified': DATE,
                        'mainEntityOfPage': {'@id': url + '#page'}})
             nd.pop('wordCount', None)
-        elif t == 'FAQPage':
+            nd.pop('video', None)
+            if videos:
+                nd['video'] = videos[0] if len(videos) == 1 else videos
+        elif t in ('FAQPage', 'VideoObject'):
             continue
         nodes.append(nd)
+    if not any(n.get('@type') == 'Article' for n in nodes):
+        nodes.extend(videos)
     nodes.append({'@type': 'FAQPage', '@id': url + '#faq', 'mainEntity': [
         {'@type': 'Question', 'name': qq, 'acceptedAnswer': {'@type': 'Answer', 'text': re.sub('<[^>]+>', '', a)}} for qq, a in P['faq']]})
     g['@graph'] = nodes
@@ -432,6 +447,7 @@ def ecrire(S, P, tpl):
       <div class="article">
         <details class="toc"><summary>Sommaire</summary><ol>{toc}</ol></details>
         <p>{P['intro']}</p>
+{illustrations}
 {body}
         <h2 id="questions">Questions fréquentes</h2>
         <div class="faq" style="max-width:760px;">{faq}</div>
@@ -440,7 +456,7 @@ def ecrire(S, P, tpl):
         <div class="btn-row" style="margin-top:32px;"><a class="btn btn-primary btn-lg" href="/estimer/">Estimation offerte</a><a class="btn" href="tel:+33767579228">Appeler Shawez</a></div>
       </div>
       <aside class="art-side">
-        <div data-reel="v13" aria-label="Une vidéo de Shawez Ali"></div>
+{reel}
         <div class="card"><h3>Communes voisines</h3>{side}</div>
       </aside>
     </div>

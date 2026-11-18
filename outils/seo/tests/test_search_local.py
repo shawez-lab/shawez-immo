@@ -5,6 +5,7 @@ import pathlib
 import re
 import sys
 import unittest
+from unittest.mock import patch
 
 SEO = pathlib.Path(__file__).resolve().parents[1]
 ROOT = SEO.parents[1]
@@ -16,6 +17,37 @@ import search_quartiers as sq
 
 
 class SearchLocal(unittest.TestCase):
+    def test_generation_commune_preserve_sa_video_et_non_celle_du_gabarit(self):
+        import statistics
+        idx, ventes = pc.charge()
+        dep = {'app': statistics.median(v['pm2'] for v in ventes if not v['maison']),
+               'mai': statistics.median(v['pm2'] for v in ventes if v['maison'])}
+        stats = pc.analyse('Talant', [v for v in ventes if v['commune'] == 'Talant'], dep, idx['annees'])
+        stats.update(a0=min(idx['annees']), a1=max(idx['annees']), derniere_fr=idx['derniere_vente'])
+        p = pc.page(stats, [], [], idx['annees'])
+        actuel = (ROOT / 'prix-immobilier-talant/index.html').read_text()
+        gabarit = (ROOT / 'prix-immobilier-fenay/index.html').read_text()
+        def videos(s):
+            out = []
+            def inspecte(n):
+                if isinstance(n, dict):
+                    if n.get('@type') == 'VideoObject':
+                        out.append(n)
+                    for v in n.values(): inspecte(v)
+                elif isinstance(n, list):
+                    for v in n: inspecte(v)
+            for m in re.finditer(r'<script type="application/ld\+json">(.*?)</script>', s, re.S):
+                inspecte(json.loads(m[1]))
+            return out
+        self.assertTrue(videos(actuel))
+        self.assertNotEqual(videos(actuel), videos(gabarit))
+        with patch.object(pc, 'open', create=True) as writer:
+            pc.ecrire(stats, p, gabarit)
+        produit = writer.return_value.write.call_args[0][0]
+        self.assertEqual(videos(produit), videos(actuel))
+        self.assertEqual(re.search(r'<div data-reel="[^"]*"[^>]*></div>', produit)[0],
+                         re.search(r'<div data-reel="[^"]*"[^>]*></div>', actuel)[0])
+
     def test_voisins_sont_des_limitrophes_et_non_des_centres_proches(self):
         voisins = json.loads((SEO / 'communes-voisines.json').read_text())['communes']
         self.assertIn('Fontaine-lès-Dijon', voisins['Daix'])
