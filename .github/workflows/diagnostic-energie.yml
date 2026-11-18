@@ -29,7 +29,7 @@ jobs:
               (dest / (ref + '.html')).write_text(s)
               print('\nFICHE', ref)
               for i, src in enumerate(dict.fromkeys(re.findall(r'<img[^>]+src="([^"]*dpe.php[^"]*)"', s))):
-                  data = sync.get(sync.BASE + html.unescape(src))
+                  data = sync.get(sync.BASE + html.unescape(src), verif=False)
                   (dest / (ref + '-' + str(i) + '.image')).write_bytes(data)
                   print('IMAGE', ref, i, data[:80])
               for m in list(re.finditer(r'dpe|ges|kwh|co2|diagnostic', s, re.I))[:80]:
