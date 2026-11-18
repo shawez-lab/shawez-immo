@@ -1,4 +1,5 @@
 import { reelPublie,reserverReponseReel,messageEntreeReel,entreeReelActive } from '../_lib/entrees-reels.js';
+import { requeteModele } from '../_lib/modele.js';
 import { mediaId,noterMedia,attacherMedia } from '../_lib/attribution-reels.js';
 import { listePrivee } from '../_lib/exclusions-privees.js';
 
@@ -325,7 +326,7 @@ async function rediger(env, prenom, commentaire, bien, source, fil = [], intenti
     : 'Bien non identifié : remercie, demande quel bien l’intéresse ou ce qu’il cherche.';
   // Capture du défi pause : la promesse de la vidéo passe avant la question générique sur le bien recherché
   const donnees = !defi ? donneesBien : bien ? `${donneesBien}\n\n${DONNEES_DEFI}` : `Aucun bien en vente à présenter.\n${DONNEES_DEFI}`;
-  const r = await fetch('https://api.anthropic.com/v1/messages', {
+  const r = await requeteModele('https://api.anthropic.com/v1/messages', {
     method: 'POST',
     headers: { 'x-api-key': env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
     body: JSON.stringify({
@@ -338,7 +339,6 @@ async function rediger(env, prenom, commentaire, bien, source, fil = [], intenti
       messages: [{ role: 'user', content: `${fil.length ? 'Historique récent de la conversation, du plus ancien au plus récent :\n' + fil.map(m => (m.sens === 'out' ? 'Shawez : ' : 'Client : ') + m.texte).join('\n') + '\n\n' : ''}Type : ${source === 'whatsapp' ? 'message WhatsApp' : source === 'dm' ? 'message privé direct' : /story/i.test(source || '') ? 'réponse à une story' : 'commentaire sous une vidéo'}\nPrénom : ${prenom || '(inconnu)'}${!prenom && pseudo ? `\nPseudo Instagram : ${pseudo}` : ''}\nMessage : ${commentaire || '(vide)'}\n\nDonnées du bien :\n${donnees}${correction ? `\n\nTon message précédent a été refusé : ${correction}. Réécris-le entièrement en corrigeant ce point, en respectant toutes les autres règles, sans rien inventer.` : ''}` }],
     }),
   });
-  if (!r.ok) throw new Error(`api ${r.status} ${(await r.text()).slice(0, 200)}`);
   const d = await r.json();
   const texte = normaliser((d.content || []).filter(b => b.type === 'text').map(b => b.text).join(''));
   const info = {

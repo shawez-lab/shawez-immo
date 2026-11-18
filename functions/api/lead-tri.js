@@ -1,3 +1,4 @@
+import { requeteModele } from '../_lib/modele.js';
 import { listePrivee } from '../_lib/exclusions-privees.js';
 
 /* /api/lead-tri — Étape 2 du cahier des charges API : tri et première réponse des leads (mails de portails, formulaires).
@@ -123,7 +124,7 @@ null seulement pour professionnel et spam) :
 
 async function analyser(env, mail, biens) {
   if (!env.ANTHROPIC_API_KEY) throw new Error('cle absente');
-  const r = await fetch('https://api.anthropic.com/v1/messages', {
+  const r = await requeteModele('https://api.anthropic.com/v1/messages', {
     method: 'POST',
     headers: { 'x-api-key': env.ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01', 'content-type': 'application/json' },
     body: JSON.stringify({
@@ -139,7 +140,6 @@ async function analyser(env, mail, biens) {
       }],
     }),
   });
-  if (!r.ok) throw new Error(`api ${r.status} ${(await r.text()).slice(0, 200)}`);
   const d = await r.json();
   const brut = (d.content || []).filter(b => b.type === 'text').map(b => b.text).join('').trim();
   const debut = brut.indexOf('{'), fin = brut.lastIndexOf('}');
