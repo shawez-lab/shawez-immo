@@ -136,12 +136,23 @@ def fiche(url):
     mentions = [T(x) for x in re.findall(r'property-status__content">(.*?)</span>', s.split('property-detail-v1__description')[0], re.S)]
     return {'tableau': lignes_tableau(s), 'description': T(desc.group(1)) if desc else '', 'photos': photos, 'texte': T(s),
             'energie': ('entre %s € et %s €' % (' '.join(ener.group(1).split()), ' '.join(ener.group(2).split()))) if ener else None,
-            'mentions_fiche': mentions, **extras_fiche(s)}
+            'mentions_fiche': mentions, **extras_fiche(s, charge_image=charge_diagnostic)}
 
 
-def extras_fiche(s):
-    """Ce que la fiche de l'agence affiche en plus (lu seulement s'il est écrit en toutes lettres ; sinon rien) :
-    mention des honoraires, classes DPE / GES, lien de visite virtuelle."""
+def charge_diagnostic(chemin):
+    # Exception limitée aux images DPE/GES publiques intégrées à la fiche : /admin/
+    # est exclu globalement par robots.txt, même pour ces images visibles de tous.
+    # Les pages et toutes les autres ressources conservent le contrôle robots.txt.
+    from energie_annonces import images_diagnostic
+    if chemin not in images_diagnostic('<img src="' + html.escape(chemin, quote=True) + '">').values():
+        raise ValueError('image diagnostic invalide')
+    return get(BASE + chemin, verif=False)
+
+
+def extras_fiche(s, charge_image=None):
+    """Ce que la fiche de l'agence affiche en plus (texte explicite ou valeur effectivement dessinée dans le diagnostic ; sinon rien) :
+    mention des honoraires, classes DPE / GES, lien de visite virtuelle.
+    Les images publiques des diagnostics sont lues si un chargeur est fourni."""
     out = {}
     try:
         txt = T(s)
@@ -158,6 +169,8 @@ def extras_fiche(s):
             out['visite_virtuelle'] = html.unescape(v.group(1))
     except Exception:
         pass
+    from energie_annonces import extras_energie
+    out.update(extras_energie(s, charge_image))
     return out
 
 # ---------------------------------------------------------------- confidentialité
@@ -434,6 +447,7 @@ def synchronise(etat):
         nouveau = {'ref': ref, 'id': c['id'], 'chemin': c['chemin'], 'type': typ, 'commune': c['commune'], 'cp': c['cp'],
                    'prix': c['prix'], 'surface': surf, 'compo_agence': c['compo'], 'pieces': int(pieces) if pieces else None,
                    'caracteristiques': tab, 'energie': f['energie'], 'dpe': f.get('dpe'), 'ges': f.get('ges'),
+                   'dpe_kwh_m2_an': f.get('dpe_kwh_m2_an'), 'ges_kg_co2_m2_an': f.get('ges_kg_co2_m2_an'),
                    'honoraires_texte': f.get('honoraires_texte'), 'visite_virtuelle': f.get('visite_virtuelle'),
                    'description_expurgee': expurge(f['description']), 'mentions_agence': mentions}
         nouveau['photos'] = photos(ref, f['photos'], (a or {}).get('photos', {}))
