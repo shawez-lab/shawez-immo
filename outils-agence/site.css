@@ -354,3 +354,5 @@ table.prix td[data-l]::before{content:attr(data-l);display:block;color:var(--gri
 .photo-large{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:2px;background:var(--pierre)}
 .photo-haute{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:2px;background:var(--pierre)}
 .une-video{aspect-ratio:9/14;max-height:680px;width:100%;object-fit:cover;border-radius:2px;background:var(--nuit)}
+
+table.prix a{text-decoration:none}table.prix a:hover{color:var(--cassis);text-decoration:underline}

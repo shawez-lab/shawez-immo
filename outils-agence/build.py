@@ -92,7 +92,7 @@ def charger():
         fam = FAMILLE.get(a['type'], 'Autre')
         if t in ('Terrain', 'Terrain à bâtir'):
             nom = f"{t} de {nb(s)} m²" if s else t
-        elif t == 'Studio' or not p:
+        elif t == 'Studio' or not p or p == 1:
             nom = t
         else:
             nom = f"{t} {p} pièces"
@@ -237,7 +237,7 @@ def carte_secteur(compte):
         anc = 'start' if cote == 'd' else 'end'
         lab = nom + (f' ({n})' if n else '')
         g = f'<circle class="{"pt" if n else "pt-agence"}" cx="{x}" cy="{y}" r="{r}"{"" if n else " fill-opacity=.35"}/><text x="{x + dx}" y="{y + 6}" text-anchor="{anc}">{e(lab)}</text>'
-        o.append(f'<a href="/acheter/?commune={e(nom)}">{g}</a>' if n else g)
+        o.append(f'<a href="/immobilier/{slug(nom)}/">{g}</a>' if n else g)
     o.append('</svg>')
     return ''.join(o)
 
@@ -255,7 +255,7 @@ def accueil(biens):
     opts = ''.join(f'<option>{e(c)}</option>' for c in sorted(compte))
     budgets = ''.join(f'<option value="{v}">{eur(v)}</option>' for v in (100000, 150000, 200000, 300000, 500000, 1000000))
     selection = ''.join(carte(b) for b in actifs[:6])
-    liste_com = ''.join(f'<li><a href="/acheter/?commune={e(c)}">{e(c)}</a><span class="num">{compte[c]}</span></li>' for c in communes)
+    liste_com = ''.join(f'<li><a href="{url_commune(c)}">{e(c)}</a><span class="num">{compte[c]}</span></li>' for c in communes)
     ph = next((x for x in actifs if x['ref'] == '438'), None)
     une_bloc = ''
     if ph:
@@ -425,7 +425,7 @@ def fiche(b, biens):
     hon = 'Prix honoraires inclus.' if c.get('prix_honoraires_inclus') else ''
     corps = f'''
 <section class="enveloppe" style="padding-top:22px">
-<p class="fil"><a href="/acheter/">Biens à vendre</a> / <a href="/acheter/?commune={e(b["commune"])}">{e(b["commune"])}</a> / {e(b["nom"])}</p>
+<p class="fil"><a href="/acheter/">Biens à vendre</a> / <a href="/immobilier/{slug(b["commune"])}/">{e(b["commune"])}</a> / {e(b["nom"])}</p>
 <div class="galerie" data-photos='{e(json.dumps(tous))}'>{boutons}</div>
 <div class="fiche">
 <div>
@@ -599,7 +599,7 @@ def accueil(biens):
     opts = ''.join(f'<option>{e(c)}</option>' for c in sorted(compte))
     budgets = ''.join(f'<option value="{v}">{eur(v)}</option>' for v in (100000, 150000, 200000, 300000, 500000, 1000000))
     selection = ''.join(carte(b) for b in actifs[:6])
-    liste_com = ''.join(f'<li><a href="/acheter/?commune={e(c)}">{e(c)}</a><span class="num">{compte[c]}</span></li>' for c in communes)
+    liste_com = ''.join(f'<li><a href="{url_commune(c)}">{e(c)}</a><span class="num">{compte[c]}</span></li>' for c in communes)
     ph = next((x for x in actifs if x['ref'] == '438'), None)
     hp = next((x for x in actifs if x['ref'] == '527'), None)
     une = ''
@@ -747,7 +747,8 @@ def pages_v2(biens):
         if not v: return f'<td data-l="{lib}"><small>Trop peu de ventes</small></td>'
         return (f'<td data-l="{lib}"><b class="num">{eur(v["median"])}/m²</b><small class="num">de {eur(v["q1"])} à {eur(v["q3"])}, sur {v["n"]} ventes</small>'
                 f'<div class="barre {cls}" style="width:{round(v["median"] / mx * 100)}%"></div></td>')
-    lignes = ''.join(f'<tr id="{slug(n)}" data-n="{slug(n).replace("-", " ")}"><td><b>{e(n)}</b></td>{cell(C[n].get("appartement"), "")}{cell(C[n].get("maison"), "m")}</tr>' for n in ordre)
+    pg = set(communes_pages(biens))
+    lignes = ''.join(f'<tr id="{slug(n)}" data-n="{slug(n).replace("-", " ")}"><td><b>{f"<a href={url_commune(n)}>{e(n)}</a>" if n in pg else e(n)}</b></td>{cell(C[n].get("appartement"), "")}{cell(C[n].get("maison"), "m")}</tr>' for n in ordre)
     d = PRIX["derniere"]
     page('/prix-immobilier/', 'Prix de l’immobilier au m² à Dijon et en Côte-d’Or | GRAVELIN IMMO',
          f'Prix médian au m² des appartements et des maisons dans {len(C)} communes de Côte-d’Or, d’après les ventes signées de {PRIX["annees"][0]} à {PRIX["annees"][-1]}.',
@@ -784,6 +785,50 @@ def photos_annonces(biens):
             s = os.path.join(src, f); t = os.path.join(dst, f)
             if os.path.exists(s) and (not os.path.exists(t) or os.path.getsize(s) != os.path.getsize(t)): shutil.copy(s, t)
 
+# ================================================================ version 3 : une page par commune
+def communes_pages(biens):
+    C = PRIX['communes']
+    avec_biens = {b['commune'] for b in biens}
+    top = sorted(C, key=lambda k: -sum(v['n'] for v in C[k].values()))[:28]
+    return sorted(avec_biens | set(top))
+
+def url_commune(n):
+    return f"/immobilier/{slug(n)}/"
+
+def pages_communes(biens):
+    noms = communes_pages(biens)
+    for n in noms:
+        ici = [b for b in biens if b['commune'] == n]
+        c = PRIX['communes'].get(n, {})
+        a, m = c.get('appartement'), c.get('maison')
+        def tuile(v, lib):
+            if not v: return f'<div><b>Trop peu de ventes</b><span>{lib} : moins de douze ventes sur la période, pas de médiane fiable.</span></div>'
+            return (f'<div><b class="num">{eur(v["median"])}/m²</b><span>{lib} : prix médian. La moitié des ventes se situe entre '
+                    f'<span class="num">{eur(v["q1"])}</span> et <span class="num">{eur(v["q3"])}</span> le m², sur {v["n"]} ventes.</span></div>')
+        prix = ''
+        if a or m:
+            prix = f"""<section class="bloc fond-papier"><div class="enveloppe">
+<div class="titre-rang"><div><h2>Les prix à {e(n)}</h2>
+<p class="chapo" style="margin-top:16px">Ventes signées de {PRIX["annees"][0]} à {PRIX["annees"][-1]}, d’après les actes enregistrés par l’État.</p></div>
+<a class="lien" href="/prix-immobilier/">Comparer avec les autres communes</a></div>
+<div class="preuves" style="grid-template-columns:repeat(2,1fr)">{tuile(a, "Appartements")}{tuile(m, "Maisons")}</div>
+</div></section>"""
+        if ici:
+            chapo = f"{len(ici)} bien{'s' if len(ici) > 1 else ''} à vendre en ce moment à {e(n)} avec l’agence."
+            liste = f"""<section class="enveloppe" style="padding-bottom:var(--pas)"><div class="grille">{"".join(carte(b, "eager" if i < 3 else "lazy") for i, b in enumerate(ici))}</div></section>"""
+        else:
+            chapo = f"Aucun bien de l’agence n’est à vendre à {e(n)} en ce moment. Dites-nous ce que vous cherchez : nous vous prévenons dès qu’un bien arrive."
+            liste = f"""<section class="enveloppe deux" style="padding-bottom:var(--pas)"><div><h2>Votre recherche à {e(n)}</h2>
+<p class="chapo" style="margin-top:18px">Type de bien, budget, quartier : quelques mots suffisent.</p></div>
+<div>{formulaire("Recherche à " + n, "", "Envoyer ma recherche", "Ce que vous cherchez")}</div></section>"""
+        corps = entete(f"L’immobilier à {e(n)}", chapo, [("/acheter/", "Biens à vendre"), ("", n)]) + liste + prix + f"""
+<section class="bloc"><div class="enveloppe deux"><div><h2>Vous vendez à {e(n)} ?</h2></div>
+<div><p class="chapo">Nous partons des ventes signées autour de chez vous, puis nous venons voir le bien. L’estimation est offerte et ne vous engage à rien.</p>
+<p style="margin-top:22px"><a class="btn btn-plein" href="/estimation/">Estimer mon bien à {e(n)}</a></p></div></div></section>""" + APPEL
+        d = f"Biens à vendre à {n}" + (f", prix médian des appartements {eur(a['median'])}/m²" if a else '') + (f", des maisons {eur(m['median'])}/m²" if m else '') + ". GRAVELIN IMMO, agence immobilière à Dijon."
+        page(url_commune(n), f"Immobilier à {n} : biens à vendre et prix au m² | GRAVELIN IMMO", d, corps, '/acheter/')
+    return noms
+
 def main():
     biens, maj = charger()
     os.makedirs(os.path.join(OUT, 'assets'), exist_ok=True)
@@ -794,7 +839,7 @@ def main():
     shutil.rmtree(os.path.join(OUT, 'biens'), ignore_errors=True)
     accueil(biens); acheter(biens)
     for b in biens: fiche(b, biens)
-    pages_fixes(biens); pages_v2(biens)
+    pages_fixes(biens); pages_v2(biens); pages_communes(biens)
     module('/estimation/', 'estimer', 'Estimation offerte de votre bien | GRAVELIN IMMO', True)
     module('/mon-espace/', 'mon-espace', 'Mon espace | GRAVELIN IMMO', False, True)
     module('/admin/', 'admin', 'Espace agence | GRAVELIN IMMO', False, True)

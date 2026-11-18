@@ -124,7 +124,12 @@ async function appelClaude(env, fil, message, etat, correction) {
       }],
     }),
   });
-  if (!r.ok) throw new Error('claude ' + r.status);
+  if (!r.ok) {
+    // Le type et le début du message d'erreur de l'API, pour savoir pourquoi le modèle ne répond pas (jamais de secret dedans).
+    const err = await r.json().catch(() => null);
+    const detail = err && err.error ? `${err.error.type || ''} ${err.error.message || ''}` : '';
+    throw new Error(`claude ${r.status} ${detail}`);
+  }
   const d = await r.json();
   const brut = (d.content || []).map((c) => c.text || '').join('').trim();
   const cout = (d.usage ? d.usage.input_tokens * PRIX_ENTREE + d.usage.output_tokens * PRIX_SORTIE : 0);
@@ -228,17 +233,18 @@ async function traiterMessage({ request, env }) {
     return json(200, { reponse: t, fin: false, whatsapp: null });
   }
 
-  let r = null, refus = null;
+  let r = null, refus = null, panne = '';
   try {
     r = await appelClaude(env, fil, message, { ...etat, page: page || etat.page }, null);
     refus = controle(r.reponse, premier);
     if (refus) { const r2 = await appelClaude(env, fil, message, { ...etat, page: page || etat.page }, refus); const f2 = controle(r2.reponse, premier); if (!f2) { r = { ...r2, cout: r.cout + r2.cout }; refus = null; } else { r.cout += r2.cout; } }
   } catch (e) {
-    console.log('chat', 'modele_indisponible');
+    panne = String((e && e.message) || 'inconnue').replace(/[^a-zA-Z0-9 ]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 90);
+    console.log('chat', 'modele_indisponible', panne);
   }
 
   await db.prepare('INSERT INTO leads_couts VALUES (?1, ?2, ?3, ?4, ?5)')
-    .bind(jour, `chat:${session}:${Date.now()}`, (r && r.cout) || 0, 0, maintenant()).run().catch(() => {});
+    .bind(jour, `chat:${session}:${Date.now()}${panne ? ':panne ' + panne : ''}`, (r && r.cout) || 0, 0, maintenant()).run().catch(() => {});
 
   let reponse = r && !refus ? String(r.reponse).trim() : secours(etat.prenom);
   if (premier) reponse = `${reponse}\n\n${MENTION}`;

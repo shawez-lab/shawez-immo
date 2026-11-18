@@ -1,0 +1,44 @@
+
+# ================================================================ version 3 : une page par commune
+def communes_pages(biens):
+    C = PRIX['communes']
+    avec_biens = {b['commune'] for b in biens}
+    top = sorted(C, key=lambda k: -sum(v['n'] for v in C[k].values()))[:28]
+    return sorted(avec_biens | set(top))
+
+def url_commune(n):
+    return f"/immobilier/{slug(n)}/"
+
+def pages_communes(biens):
+    noms = communes_pages(biens)
+    for n in noms:
+        ici = [b for b in biens if b['commune'] == n]
+        c = PRIX['communes'].get(n, {})
+        a, m = c.get('appartement'), c.get('maison')
+        def tuile(v, lib):
+            if not v: return f'<div><b>Trop peu de ventes</b><span>{lib} : moins de douze ventes sur la période, pas de médiane fiable.</span></div>'
+            return (f'<div><b class="num">{eur(v["median"])}/m²</b><span>{lib} : prix médian. La moitié des ventes se situe entre '
+                    f'<span class="num">{eur(v["q1"])}</span> et <span class="num">{eur(v["q3"])}</span> le m², sur {v["n"]} ventes.</span></div>')
+        prix = ''
+        if a or m:
+            prix = f"""<section class="bloc fond-papier"><div class="enveloppe">
+<div class="titre-rang"><div><h2>Les prix à {e(n)}</h2>
+<p class="chapo" style="margin-top:16px">Ventes signées de {PRIX["annees"][0]} à {PRIX["annees"][-1]}, d’après les actes enregistrés par l’État.</p></div>
+<a class="lien" href="/prix-immobilier/">Comparer avec les autres communes</a></div>
+<div class="preuves" style="grid-template-columns:repeat(2,1fr)">{tuile(a, "Appartements")}{tuile(m, "Maisons")}</div>
+</div></section>"""
+        if ici:
+            chapo = f"{len(ici)} bien{'s' if len(ici) > 1 else ''} à vendre en ce moment à {e(n)} avec l’agence."
+            liste = f"""<section class="enveloppe" style="padding-bottom:var(--pas)"><div class="grille">{"".join(carte(b, "eager" if i < 3 else "lazy") for i, b in enumerate(ici))}</div></section>"""
+        else:
+            chapo = f"Aucun bien de l’agence n’est à vendre à {e(n)} en ce moment. Dites-nous ce que vous cherchez : nous vous prévenons dès qu’un bien arrive."
+            liste = f"""<section class="enveloppe deux" style="padding-bottom:var(--pas)"><div><h2>Votre recherche à {e(n)}</h2>
+<p class="chapo" style="margin-top:18px">Type de bien, budget, quartier : quelques mots suffisent.</p></div>
+<div>{formulaire("Recherche à " + n, "", "Envoyer ma recherche", "Ce que vous cherchez")}</div></section>"""
+        corps = entete(f"L’immobilier à {e(n)}", chapo, [("/acheter/", "Biens à vendre"), ("", n)]) + liste + prix + f"""
+<section class="bloc"><div class="enveloppe deux"><div><h2>Vous vendez à {e(n)} ?</h2></div>
+<div><p class="chapo">Nous partons des ventes signées autour de chez vous, puis nous venons voir le bien. L’estimation est offerte et ne vous engage à rien.</p>
+<p style="margin-top:22px"><a class="btn btn-plein" href="/estimation/">Estimer mon bien à {e(n)}</a></p></div></div></section>""" + APPEL
+        d = f"Biens à vendre à {n}" + (f", prix médian des appartements {eur(a['median'])}/m²" if a else '') + (f", des maisons {eur(m['median'])}/m²" if m else '') + ". GRAVELIN IMMO, agence immobilière à Dijon."
+        page(url_commune(n), f"Immobilier à {n} : biens à vendre et prix au m² | GRAVELIN IMMO", d, corps, '/acheter/')
+    return noms
