@@ -16839,8 +16839,8 @@
   },
   {
    "id": "TR-1711-estimation-x",
-   "date": "2026-11-17",
-   "heure": "19:00",
+   "date": "2026-11-19",
+   "heure": "12:00",
    "ref": "estimation",
    "mot": "ESTIMATION",
    "style": "autre",
@@ -16848,12 +16848,12 @@
    "source": "autre",
    "uuid": "-8862550744710493399",
    "statut": "brouillon_juge",
-   "note_juge": "17/11 : trouvée en attente (créée le 17/11 vers 3 h 12), hors registre, mise en brouillon par le Juge (style autre interdit, bien estimation en pause)"
+   "note_juge": "17/11 : trouvée en attente (créée le 17/11 vers 3 h 12), hors registre, mise en brouillon par le Juge (style autre interdit, bien estimation en pause) | 18/11 : de nouveau en draft false, reprogrammée au 19/11 12:00, remise en brouillon par le Juge (style autre interdit, bien estimation en pause)"
   },
   {
    "id": "TR-1811-estimation-x",
-   "date": "2026-11-18",
-   "heure": "12:00",
+   "date": "2026-11-19",
+   "heure": "17:00",
    "ref": "estimation",
    "mot": "ESTIMATION",
    "style": "autre",
@@ -16861,7 +16861,46 @@
    "source": "autre",
    "uuid": "4086285713352248544",
    "statut": "brouillon_juge",
-   "note_juge": "17/11 : trouvée en attente (créée le 17/11 vers 3 h 12), hors registre, mise en brouillon par le Juge (style autre interdit, bien estimation en pause)"
+   "note_juge": "17/11 : trouvée en attente (créée le 17/11 vers 3 h 12), hors registre, mise en brouillon par le Juge (style autre interdit, bien estimation en pause) | 18/11 : de nouveau en draft false, reprogrammée au 19/11 17:00, remise en brouillon par le Juge (style autre interdit, bien estimation en pause)"
+  },
+  {
+   "id": "TR-1811-527-x",
+   "date": "2026-11-18",
+   "heure": "12:00",
+   "ref": "527",
+   "mot": "BEAUNE",
+   "style": "chiffre_choc",
+   "legende": "2 500 000 € derrière cette porte. Tu entres ?\n\nDe la rue, c'est une façade en pierre de plus à Beaune. Tu passes devant ",
+   "source": "autre",
+   "uuid": "895440958093610373",
+   "statut": "brouillon_juge",
+   "note_juge": "18/11 : trouvée en attente (créée le 17/11 à 20 h 10), hors registre, mise en brouillon par le Juge (style chiffre_choc interdit)"
+  },
+  {
+   "id": "TR-1811-525-x",
+   "date": "2026-11-18",
+   "heure": "17:00",
+   "ref": "525",
+   "mot": "NEUILLY",
+   "style": "revelation",
+   "legende": "Tu pensais que c'était un placard ? Regarde bien.\n\nOn m'avait dit qu'il y avait du rangement. J'étais pas prêt. Un placa",
+   "source": "autre",
+   "uuid": "-7153124783185639143",
+   "statut": "brouillon_juge",
+   "note_juge": "18/11 : trouvée en attente (créée le 17/11 à 20 h 10), hors registre, mise en brouillon par le Juge (bien 525 en pause jusqu'au 28/11)"
+  },
+  {
+   "id": "TR-1811-438-x",
+   "date": "2026-11-18",
+   "heure": "20:00",
+   "ref": "438",
+   "mot": "CHATEAU",
+   "style": "chiffre_choc",
+   "legende": "1 600 000 €. Tu aurais dit combien, toi ?\n\nUn château du XVIIIe à quinze minutes de Beaune. 520 m², 18 pièces, 7 cha",
+   "source": "autre",
+   "uuid": "4964763291799146188",
+   "statut": "brouillon_juge",
+   "note_juge": "18/11 : trouvée en attente (créée le 17/11 à 20 h 10), hors registre, mise en brouillon par le Juge (style chiffre_choc interdit)"
   }
  ]
 }
