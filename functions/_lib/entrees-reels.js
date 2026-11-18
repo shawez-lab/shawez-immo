@@ -1,6 +1,9 @@
 import { sha256 } from './base.js';
 import { mediaId } from './attribution-reels.js';
 
+export async function baseEntreesReels(b){await b.prepare('CREATE TABLE IF NOT EXISTS dm_reels_entrees(media_id TEXT PRIMARY KEY,flow_id TEXT UNIQUE NOT NULL,actif INTEGER NOT NULL DEFAULT 0 CHECK(actif IN (0,1)),maj_le TEXT NOT NULL)').run();}
+export async function entreeReelActive(b,id){await baseEntreesReels(b);return !!await b.prepare('SELECT media_id FROM dm_reels_entrees WHERE media_id=? AND actif=1').bind(id).first();}
+
 export async function reelPublie(b,id){
  if(!mediaId(id))return null;
  const r=await b.prepare('SELECT id,url,mot_cle FROM reels_registre WHERE id=?').bind(id).first();

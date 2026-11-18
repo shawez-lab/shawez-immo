@@ -1,4 +1,4 @@
-import { reelPublie,reserverReponseReel,messageEntreeReel } from '../_lib/entrees-reels.js';
+import { reelPublie,reserverReponseReel,messageEntreeReel,entreeReelActive } from '../_lib/entrees-reels.js';
 import { mediaId,noterMedia,attacherMedia } from '../_lib/attribution-reels.js';
 import { listePrivee } from '../_lib/exclusions-privees.js';
 
@@ -543,7 +543,7 @@ export async function onRequest({ request, env }) {
     }
 
 
-    let mediaNatif=null,attributionToken=null,reelEntree=null;
+    let mediaNatif=null,attributionToken=null,reelEntree=null,testEntree=false;
     let prenom, commentaire, post, contact, compte, evenement, source = '', test = false, waContactExistant = false, intention = '';
     if (request.method === 'GET') {
       const u = new URL(request.url);
@@ -583,6 +583,7 @@ export async function onRequest({ request, env }) {
         return json(200, { envoyer: 'oui', raison: 'ok', source });
       }
       source = propre(c.source, 40);
+      if(c.action==='test_entree'){if(source!=='reel_identifie'||!/^codex-test-[\w-]{16,80}$/.test(c.contact_id||'')||c.ig_username!=='__test_attribution__')return json(400,{error:'test_invalide'});testEntree=true;}
       mediaNatif=mediaId(c.media_id);
       prenom = propre(c.first_name || c.prenom, 40);
       // « GRAVELIN » ou « gravelin » → « Gravelin »
@@ -592,7 +593,7 @@ export async function onRequest({ request, env }) {
       commentaire = propre(c.comment || c.commentaire, 500);
       intention = /^vend/i.test(propre(c.intention, 20)) ? 'vendre' : '';
       post = propre(c.post || c.post_id || c.reel || c.url, 300);
-      if(source==='reel_identifie'){reelEntree=await reelPublie(env.DB,mediaNatif);if(!reelEntree)return sansMessage('reel_non_identifie');post=reelEntree.url;commentaire=STOP.test(commentaire)?commentaire:'';intention='';}
+      if(source==='reel_identifie'){reelEntree=await reelPublie(env.DB,mediaNatif);if(!reelEntree)return sansMessage('reel_non_identifie');if(!testEntree&&!await entreeReelActive(env.DB,mediaNatif))return sansMessage('reel_en_preparation');post=reelEntree.url;commentaire=STOP.test(commentaire)?commentaire:'';intention='';}
       // Vendeur : clé à part, pour qu'une réponse du matin à un autre commentaire ne bloque jamais un vendeur (une réponse vendeur par jour)
       if (intention) post = 'vendre';
       contact = propre(c.contact_id || c.user_id, 80);
@@ -618,9 +619,10 @@ export async function onRequest({ request, env }) {
     // La personne demande d'arrêter : aucune réponse automatique, à traiter par Shawez (tag ManyChat « stop »).
     if (STOP.test(commentaire || '')) { if (!test) await memoriserStop(env, contact, compte, 'stop'); return sansMessage('stop', { a_reprendre: true }); }
     if (!test && await estStoppe(env, contact, compte)) return sansMessage('stop', { a_reprendre: true });
-    if (env.DM_MODE !== 'live' && !comptesTest.includes(compte)) return sansMessage('mode_test', { compte });
+    if (!testEntree && env.DM_MODE !== 'live' && !comptesTest.includes(compte)) return sansMessage('mode_test', { compte });
     // Décision de Shawez du 24/10/2026 : le client qui écrit en premier reçoit sa réponse tout de suite, à toute heure,
     // dimanche compris. Seuls les envois à l'initiative du réseau (relances, alertes) restent du lundi au samedi, 8 h-20 h.
+    if(testEntree)evenement='test-reel-'+contact;
     if (!evenement) {
       // DM et stories sans identifiant d'événement : même texte du même contact à 2 minutes près = même événement (relance ManyChat),
       // au-delà c'est un nouveau message (plusieurs « oui » dans une conversation). Commentaires : un par jour et par Reel.
@@ -689,9 +691,9 @@ export async function onRequest({ request, env }) {
       let bien=await trouverBien(env,request,reelEntree.url);
       if(!bien&&reelEntree.mot_cle)bien=await trouverBien(env,request,'mot:'+sansAccents(reelEntree.mot_cle));
       const texte=messageEntreeReel(prenom,{bien:!!bien,estimation:/^estimation$/i.test(reelEntree.mot_cle||'')});
-      await base.prepare('INSERT OR IGNORE INTO dm_instagram VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11)').bind(evenement,contact,compte,mediaNatif,bien?.ref||'',jour,'reel_identifie',0,0,0,new Date().toISOString()).run();
-      await noter('out',texte,bien?reelEntree.url:'');
-      return json(200,{...attacherMedia(blocManyChat(texte,bien,true),attributionToken),envoyer:'oui',origine:'reel_identifie',media_id_recu:mediaNatif,attribution:'media_id_verifie',cout:0});
+      if(!testEntree)await base.prepare('INSERT OR IGNORE INTO dm_instagram VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11)').bind(evenement,contact,compte,mediaNatif,bien?.ref||'',jour,'reel_identifie',0,0,0,new Date().toISOString()).run();
+      if(!testEntree)await noter('out',texte,bien?reelEntree.url:'');
+      return json(200,{...attacherMedia(blocManyChat(texte,bien,true),attributionToken),envoyer:testEntree?'non':'oui',test_reponse:testEntree,message_envoye:false,origine:testEntree?'reel_identifie_test':'reel_identifie',media_id_recu:mediaNatif,attribution:'media_id_verifie',cout:0});
     }
 
     // Commentaire « à l'aveugle » : Instagram ne transmet à ManyChat ni le texte du commentaire ni la vidéo commentée.
