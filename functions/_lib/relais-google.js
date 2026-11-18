@@ -13,7 +13,7 @@ export async function identiteGoogle(token,{now=new Date(),fetcher=fetch}={}){
   etape='cle';const jwk=jwksCache.keys.find(k=>k.kid===h.kid&&k.kty==='RSA');if(!jwk)throw Error();const key=await crypto.subtle.importKey('jwk',jwk,{name:'RSASSA-PKCS1-v1_5',hash:'SHA-256'},false,['verify']);
   etape='signature';if(!await crypto.subtle.verify('RSASSA-PKCS1-v1_5',key,decoder(parts[2]),new TextEncoder().encode(parts[0]+'.'+parts[1])))throw Error();
   etape='validite';const c=objet(parts[1]),t=+now/1000;if(!['accounts.google.com','https://accounts.google.com'].includes(c.iss)||c.email_verified!==true||typeof c.email!=='string'||typeof c.aud!=='string'||!Number.isFinite(c.exp)||c.exp<=t||!Number.isFinite(c.iat)||c.iat>t+60||c.iat<t-3700||c.exp-c.iat>3700)throw Error();return c;
- }catch(e){console.log('relais-google',etape,String(e?.message||'').slice(0,200));throw new Erreur(401,'identite_google_invalide',{diagnostic:etape,incident:etape==='certificats'?String(e?.message||'').slice(0,200):undefined});}
+ }catch{throw new Erreur(401,'identite_google_invalide',{diagnostic:etape});}
 }
 export function verifierLot(data,config,now=new Date()){
  if(!data||Object.keys(data).some(k=>!['version','execution_id','controle_le','sources'].includes(k))||data.version!==1||!/^[\w-]{16,80}$/.test(data.execution_id||''))throw new Erreur(400,'lot_invalide');
