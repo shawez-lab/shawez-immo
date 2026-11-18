@@ -450,6 +450,11 @@ def synchronise(etat):
                    'dpe_kwh_m2_an': f.get('dpe_kwh_m2_an'), 'ges_kg_co2_m2_an': f.get('ges_kg_co2_m2_an'),
                    'honoraires_texte': f.get('honoraires_texte'), 'visite_virtuelle': f.get('visite_virtuelle'),
                    'description_expurgee': expurge(f['description']), 'mentions_agence': mentions}
+        # Une panne de lecture, un OCR absent ou un diagnostic vide ne retire pas
+        # une information déjà vérifiée pour cette référence. DPE et GES restent indépendants.
+        for cle in ('dpe', 'ges', 'dpe_kwh_m2_an', 'ges_kg_co2_m2_an'):
+            if nouveau.get(cle) is None or (isinstance(nouveau.get(cle), str) and not nouveau[cle].strip()):
+                nouveau[cle] = (a or {}).get(cle)
         nouveau['photos'] = photos(ref, f['photos'], (a or {}).get('photos', {}))
         if a is None and not lien_valide(lien_neutre(nouveau)):
             nouveau['lien_complet'] = True
