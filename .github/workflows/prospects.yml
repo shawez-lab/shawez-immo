@@ -15,3 +15,4 @@ jobs:
         with:
           node-version: '24'
       - run: node outils/prospects/test.mjs
+      - run: node --test outils/prospects/avis-horaires.test.mjs
