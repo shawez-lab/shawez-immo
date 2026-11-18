@@ -40,6 +40,7 @@ def _ocr(im, alphabet):
     words = [r for r in csv.DictReader(io.StringIO(result.stdout.decode()), delimiter='\t')
              if r.get('text', '').strip()]
     if len(words) != 1 or float(words[0]['conf']) < 70:
+        print('Lecture diagnostic peu sûre', alphabet, [(w['text'], w['conf']) for w in words])
         return None
     return words[0]['text'].strip()
 
