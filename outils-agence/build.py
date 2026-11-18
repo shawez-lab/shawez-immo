@@ -147,10 +147,10 @@ def carte(b, charge='lazy'):
 NAV = [('/acheter/', 'Acheter'), ('/vendre/', 'Vendre'), ('/louer/', 'Louer'), ('/estimation/', 'Estimer'), ('/videos/', 'Films'), ('/agence/', 'L’agence'), ('/contact/', 'Contact')]
 ICONE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M4.8 20c.9-3.6 3.7-5.6 7.2-5.6s6.3 2 7.2 5.6"/></svg>'
 
-def page(chemin, titre, desc, corps, actif='', tete='', fin='', index=True, classe='', prive=False):
+def page(chemin, titre, desc, corps, actif='', tete='', fin='', index=True, classe='', prive=False, langue='fr'):
     nav = ''.join(f'<a href="{u}"{" aria-current=\"page\"" if u == actif else ""}>{l}</a>' for u, l in NAV)
     h = f'''<!doctype html>
-<html lang="fr">
+<html lang="{langue}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -184,7 +184,7 @@ def page(chemin, titre, desc, corps, actif='', tete='', fin='', index=True, clas
 <p><a class="num" href="tel:{TEL_LIEN}">{TEL}</a><br><a href="mailto:{MAIL}">{MAIL}</a></p>{HORAIRES}</div>
 <div><h2>Les biens</h2><ul><li><a href="/acheter/">Tous les biens à vendre</a></li><li><a href="/acheter/?type=Appartement">Appartements</a></li><li><a href="/acheter/?type=Maison">Maisons</a></li><li><a href="/acheter/?type=Immeuble">Immeubles</a></li><li><a href="/acheter/?type=Terrain">Terrains</a></li><li><a href="/immobilier-professionnel/">Commerces et locaux</a></li><li><a href="/prix-immobilier/">Prix au m² par commune</a></li></ul></div>
 <div><h2>L’agence</h2><ul><li><a href="/vendre/">Vendre avec nous</a></li><li><a href="/louer/">Mettre en location</a></li><li><a href="/estimation/">Estimation offerte</a></li><li><a href="/agence/">L’équipe</a></li><li><a href="/videos/">Nos films</a></li><li><a href="/honoraires/">Nos honoraires</a></li><li><a href="/avis/">Avis clients</a></li></ul></div>
-<div><h2>Nous suivre</h2><ul><li><a href="https://www.instagram.com/gravelin_immo/" rel="noopener">Instagram</a></li><li><a href="https://www.facebook.com/gravelinimmo/" rel="noopener">Facebook</a></li><li><a href="https://www.linkedin.com/company/gravelin-immo/" rel="noopener">LinkedIn</a></li><li><a href="/mon-espace/">Mon espace</a></li></ul></div>
+<div><h2>Nous suivre</h2><ul><li><a href="https://www.instagram.com/gravelin_immo/" rel="noopener">Instagram</a></li><li><a href="https://www.facebook.com/gravelinimmo/" rel="noopener">Facebook</a></li><li><a href="https://www.linkedin.com/company/gravelin-immo/" rel="noopener">LinkedIn</a></li><li><a href="/mon-espace/">Mon espace</a></li><li><a href="/en/" lang="en">English</a></li></ul></div>
 </div>
 <div class="pied-bas"><p>© {datetime.date.today().year} GRAVELIN IMMO, agence immobilière à Dijon depuis 2016.</p><p><a href="/mentions-legales/">Mentions légales</a> &nbsp; <a href="/confidentialite/">Confidentialité</a></p></div>
 </div></footer>
@@ -702,7 +702,7 @@ def accueil(biens):
 <div>{img(123, "Salon aux boiseries bleues d’un appartement ancien", "photo-large")}</div>
 <div><h2>We speak English</h2>
 <p class="chapo" style="margin-top:18px">Buying in Burgundy from abroad? The agency works in French and English, and Shawez Ali also welcomes clients in Hindi, Urdu, Punjabi, Persian, Greek and Arabic.</p>
-<p><a class="btn btn-trait" href="/contact/">Contact the agency</a></p></div>
+<p><a class="btn btn-trait" href="/en/">Buying in Burgundy</a></p></div>
 </div></section>
 
 <section class="bloc fond-papier"><div class="enveloppe deux" style="align-items:start">
@@ -829,6 +829,43 @@ def pages_communes(biens):
         page(url_commune(n), f"Immobilier à {n} : biens à vendre et prix au m² | GRAVELIN IMMO", d, corps, '/acheter/')
     return noms
 
+# ================================================================ version 4 : page en anglais
+def page_anglais(biens):
+    actifs = [b for b in biens if b['status'] == 'en vente']
+    haut = sorted(actifs, key=lambda b: -(b['prix'] or 0))[:6]
+    corps = entete('Buying a home in Burgundy', 'GRAVELIN IMMO is an independent estate agency in Dijon, open since 2016. We sell apartments, houses, town mansions and châteaux between Dijon, Beaune and the Saône valley, and we work in English.') + f"""
+<section class="enveloppe" style="padding-bottom:var(--pas)">
+<div class="titre-rang"><h2>For sale now</h2><a class="lien" href="/acheter/">All {len(biens)} properties</a></div>
+<div class="grille">{"".join(carte(b) for b in haut)}</div></section>
+
+<section class="bloc fond-papier"><div class="enveloppe deux">
+<div><h2>How a purchase works in France</h2>
+<p class="chapo" style="margin-top:20px">The steps are the same for residents and for buyers living abroad. A notaire, a public official, handles the sale from the preliminary contract to completion.</p></div>
+<ol class="etapes">
+<li><h3>Viewing and offer</h3><p>You can view in person or first by video. Your offer is made in writing and passed to the seller with our advice.</p></li>
+<li><h3>Preliminary contract</h3><p>Once the offer is accepted, both parties sign a preliminary contract, the compromis de vente. As a private buyer you then have a ten-day period during which you may withdraw without giving a reason.</p></li>
+<li><h3>Financing and searches</h3><p>The contract usually allows time to obtain a mortgage if you need one. Meanwhile the notaire gathers the title deeds, planning documents and legal searches.</p></li>
+<li><h3>Completion</h3><p>About three months after the preliminary contract, the final deed is signed at the notaire’s office, in person or by power of attorney, and you receive the keys.</p></li>
+</ol></div></section>
+
+<section class="bloc"><div class="enveloppe deux" style="align-items:center">
+<div>{img(79, "Façade of a château sold through the agency", "photo-large")}</div>
+<div><h2>What to budget on top of the price</h2>
+<p class="chapo" style="margin-top:18px">Each listing shows the price including the agency fee. Taxes and notaire’s costs come on top: for an existing property they usually amount to around seven to eight per cent of the price. The notaire gives you the exact figure before you sign.</p>
+<p>Every listing also shows the surface area and, when available, the energy rating and estimated yearly energy costs.</p></div>
+</div></section>
+
+<section class="bloc fond-papier"><div class="enveloppe">
+<div class="titre-rang"><h2>Who you will be dealing with</h2><a class="lien" href="/agence/">The team</a></div>
+{equipe_html()}
+<p style="margin-top:28px;max-width:70ch">Shawez Ali also welcomes clients in Hindi, Urdu, Punjabi, Persian, Greek and Arabic. Our photographer and videographer film each property, so you can make a first visit from home.</p>
+</div></section>
+
+<section class="bloc"><div class="enveloppe deux"><div><h2>Tell us what you are looking for</h2>
+<p class="chapo" style="margin-top:18px">Type of property, area, budget and timing: a few lines are enough. We reply during opening hours, Monday, Tuesday, Thursday and Friday.</p></div>
+<div>{formulaire('Message from the English page', '', 'Send', 'Your project')}</div></div></section>{CINEMA}"""
+    page('/en/', 'Property for sale in Dijon and Burgundy | GRAVELIN IMMO', 'Independent estate agency in Dijon, Burgundy. Apartments, houses and châteaux for sale between Dijon and Beaune. We work in English.', corps, '', langue='en')
+
 def main():
     biens, maj = charger()
     os.makedirs(os.path.join(OUT, 'assets'), exist_ok=True)
@@ -839,7 +876,7 @@ def main():
     shutil.rmtree(os.path.join(OUT, 'biens'), ignore_errors=True)
     accueil(biens); acheter(biens)
     for b in biens: fiche(b, biens)
-    pages_fixes(biens); pages_v2(biens); pages_communes(biens)
+    pages_fixes(biens); pages_v2(biens); pages_communes(biens); page_anglais(biens)
     module('/estimation/', 'estimer', 'Estimation offerte de votre bien | GRAVELIN IMMO', True)
     module('/mon-espace/', 'mon-espace', 'Mon espace | GRAVELIN IMMO', False, True)
     module('/admin/', 'admin', 'Espace agence | GRAVELIN IMMO', False, True)
