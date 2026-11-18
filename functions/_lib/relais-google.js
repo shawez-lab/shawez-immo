@@ -6,13 +6,14 @@ let jwksCache;
 const decoder=s=>Uint8Array.from(atob(s.replace(/-/g,'+').replace(/_/g,'/').padEnd(Math.ceil(s.length/4)*4,'=')),c=>c.charCodeAt(0));
 const objet=s=>JSON.parse(new TextDecoder().decode(decoder(s)));
 export async function identiteGoogle(token,{now=new Date(),fetcher=fetch}={}){
+ let etape='format';
  try{
   if(typeof token!=='string'||token.length>15000)throw Error();const parts=token.split('.');if(parts.length!==3)throw Error();const h=objet(parts[0]);if(h.alg!=='RS256'||typeof h.kid!=='string')throw Error();
-  if(!jwksCache||jwksCache.until<+now||!jwksCache.keys.some(k=>k.kid===h.kid)){const r=await fetcher('https://www.googleapis.com/oauth2/v3/certs',{redirect:'error',signal:AbortSignal.timeout(10000)});if(!r.ok)throw Error();const j=await r.json();if(!Array.isArray(j.keys))throw Error();jwksCache={keys:j.keys,until:+now+3600000};}
-  const jwk=jwksCache.keys.find(k=>k.kid===h.kid&&k.kty==='RSA');if(!jwk)throw Error();const key=await crypto.subtle.importKey('jwk',jwk,{name:'RSASSA-PKCS1-v1_5',hash:'SHA-256'},false,['verify']);
-  if(!await crypto.subtle.verify('RSASSA-PKCS1-v1_5',key,decoder(parts[2]),new TextEncoder().encode(parts[0]+'.'+parts[1])))throw Error();
-  const c=objet(parts[1]),t=+now/1000;if(!['accounts.google.com','https://accounts.google.com'].includes(c.iss)||c.email_verified!==true||typeof c.email!=='string'||typeof c.aud!=='string'||!Number.isFinite(c.exp)||c.exp<=t||!Number.isFinite(c.iat)||c.iat>t+60||c.iat<t-3700||c.exp-c.iat>3700)throw Error();return c;
- }catch{throw new Erreur(401,'identite_google_invalide');}
+  etape='certificats';if(!jwksCache||jwksCache.until<+now||!jwksCache.keys.some(k=>k.kid===h.kid)){const r=await fetcher('https://www.googleapis.com/oauth2/v3/certs',{redirect:'error',signal:AbortSignal.timeout(10000)});if(!r.ok)throw Error();const j=await r.json();if(!Array.isArray(j.keys))throw Error();jwksCache={keys:j.keys,until:+now+3600000};}
+  etape='cle';const jwk=jwksCache.keys.find(k=>k.kid===h.kid&&k.kty==='RSA');if(!jwk)throw Error();const key=await crypto.subtle.importKey('jwk',jwk,{name:'RSASSA-PKCS1-v1_5',hash:'SHA-256'},false,['verify']);
+  etape='signature';if(!await crypto.subtle.verify('RSASSA-PKCS1-v1_5',key,decoder(parts[2]),new TextEncoder().encode(parts[0]+'.'+parts[1])))throw Error();
+  etape='validite';const c=objet(parts[1]),t=+now/1000;if(!['accounts.google.com','https://accounts.google.com'].includes(c.iss)||c.email_verified!==true||typeof c.email!=='string'||typeof c.aud!=='string'||!Number.isFinite(c.exp)||c.exp<=t||!Number.isFinite(c.iat)||c.iat>t+60||c.iat<t-3700||c.exp-c.iat>3700)throw Error();return c;
+ }catch{throw new Erreur(401,'identite_google_invalide',{diagnostic:etape});}
 }
 export function verifierLot(data,config,now=new Date()){
  if(!data||Object.keys(data).some(k=>!['version','execution_id','controle_le','sources'].includes(k))||data.version!==1||!/^[\w-]{16,80}$/.test(data.execution_id||''))throw new Erreur(400,'lot_invalide');
