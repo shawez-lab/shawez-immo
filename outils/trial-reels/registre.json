@@ -16980,8 +16980,54 @@
    "legende": "Tu pensais que c'était un placard ? Regarde bien.\n\nOn m'avait dit qu'il y avait du rangement. J'étais pas prêt. Un placa",
    "source": "autre",
    "uuid": "-7153124783185639143",
-   "statut": "brouillon_juge",
-   "note_juge": "18/11 : trouvée en attente (créée le 17/11 à 20 h 10), hors registre, mise en brouillon par le Juge (bien 525 en pause jusqu'au 28/11)"
+   "statut": "publie",
+   "note_juge": "18/11 : trouvée en attente (créée le 17/11 à 20 h 10), hors registre, mise en brouillon par le Juge (bien 525 en pause jusqu'au 28/11) | 18/11 16h30 Diffuseur : retrouvée dans Metricool en draft false, statut PENDING (recréée le 18/11 à 15 h 14) ; style et bien autorisés par juge.json du 18/11 12:46 ; statut remis à publie pour la diffusion sur les autres réseaux",
+   "legende_complete": "Tu pensais que c'était un placard ? Regarde bien.\n\nOn m'avait dit qu'il y avait du rangement. J'étais pas prêt. Un placard, un immense dressing. Un autre, une cuisine entière.\n\nNeuilly-Crimolois, aux portes de Dijon. 149 m², 5 chambres, construite en 2018, classe énergie A. 450 000 € honoraires inclus.\n\nTu viens ouvrir les autres portes avec moi ?\n\nÉcris-moi NEUILLY en privé sur Instagram @shawez_immo et je t’envoie la visite complète 📩\n\n#immobilierdijon #neuillycrimolois #maisonavendre #dijon #cotedor",
+   "accroche": "Tu pensais que c'était un placard ? Regarde bien.",
+   "diffusions": {
+    "threads": {
+     "uuid": "-8783103042369272272",
+     "url": "",
+     "date": "2026-11-18",
+     "heure": "17:10"
+    },
+    "linkedin": {
+     "uuid": "-7844697545053420578",
+     "url": "",
+     "date": "2026-11-18",
+     "heure": "19:10"
+    },
+    "pinterest": {
+     "uuid": "8145406958089094397",
+     "url": "",
+     "date": "2026-11-18",
+     "heure": "17:10"
+    },
+    "bluesky": {
+     "uuid": "-6631866800534696185",
+     "url": "",
+     "date": "2026-11-18",
+     "heure": "17:10"
+    },
+    "tiktok": {
+     "uuid": "-878781494259725460",
+     "url": "",
+     "date": "2026-11-18",
+     "heure": "17:40"
+    },
+    "youtube": {
+     "uuid": "324385598754342099",
+     "url": "",
+     "date": "2026-11-18",
+     "heure": "17:10"
+    },
+    "facebook": {
+     "uuid": "739710824482227445",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "09:00"
+    }
+   }
   },
   {
    "id": "TR-1811-438-x",
@@ -16993,8 +17039,54 @@
    "legende": "1 600 000 €. Tu aurais dit combien, toi ?\n\nUn château du XVIIIe à quinze minutes de Beaune. 520 m², 18 pièces, 7 cha",
    "source": "autre",
    "uuid": "4964763291799146188",
-   "statut": "brouillon_juge",
-   "note_juge": "18/11 : trouvée en attente (créée le 17/11 à 20 h 10), hors registre, mise en brouillon par le Juge (style chiffre_choc interdit)"
+   "statut": "publie",
+   "note_juge": "18/11 : trouvée en attente (créée le 17/11 à 20 h 10), hors registre, mise en brouillon par le Juge (style chiffre_choc interdit) | 18/11 16h30 Diffuseur : retrouvée dans Metricool en draft false, statut PENDING (recréée le 18/11 à 15 h 14) ; style et bien autorisés par juge.json du 18/11 12:46 ; statut remis à publie pour la diffusion sur les autres réseaux",
+   "legende_complete": "1 600 000 €. Tu aurais dit combien, toi ?\n\nUn château du XVIIIe à quinze minutes de Beaune. 520 m², 18 pièces, 7 chambres. Autour, 15 hectares, un étang, un colombier, une maison d'amis, et la vue sur la Côte de Beaune.\n\nMets ton prix en commentaire avant de regarder la suite.\n\nPartage-le à la personne avec qui tu l'achèterais.\n\nÉcris-moi CHATEAU en privé sur Instagram @shawez_immo et je t’envoie la visite complète 📩\n\n#chateauavendre #bourgogne #beaune #immobilierdeprestige #cotedor",
+   "accroche": "1 600 000 €. Tu aurais dit combien, toi ?",
+   "diffusions": {
+    "threads": {
+     "uuid": "3312741753438030797",
+     "url": "",
+     "date": "2026-11-18",
+     "heure": "20:10"
+    },
+    "linkedin": {
+     "uuid": "1390309235793350484",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "12:35"
+    },
+    "pinterest": {
+     "uuid": "-2199446950987873290",
+     "url": "",
+     "date": "2026-11-18",
+     "heure": "20:10"
+    },
+    "bluesky": {
+     "uuid": "219317835171253622",
+     "url": "",
+     "date": "2026-11-18",
+     "heure": "20:10"
+    },
+    "tiktok": {
+     "uuid": "8968032020607158636",
+     "url": "",
+     "date": "2026-11-18",
+     "heure": "20:10"
+    },
+    "youtube": {
+     "uuid": "-4577437093782927981",
+     "url": "",
+     "date": "2026-11-18",
+     "heure": "20:10"
+    },
+    "facebook": {
+     "uuid": "6336048548631693713",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "13:05"
+    }
+   }
   }
  ]
 }
