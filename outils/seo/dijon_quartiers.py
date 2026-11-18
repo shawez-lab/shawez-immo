@@ -24,6 +24,9 @@ PHOTO = '/assets/shawez-ali-portrait-veste-verte.webp'
 MINIMUM = 5
 ARTICLES = {
  'choisir-agent-immobilier-dijon': None,
+ 'montchapet-marmuzots-estimation-maison-differences': 'montchapet',
+ 'bourroches-port-canal-valendons-montagne-sainte-anne-vendre': 'bourroches-port-du-canal-valendons-montagne-sainte-anne',
+ 'maladiere-drapeau-clemenceau-trois-histoires-vendre': 'maladiere-drapeau-clemenceau',
  'prix-affiche-prix-signe-dijon': None,
  'centre-ville-dijon-distribution-copropriete-appartement': 'centre-ville',
  'chevreul-parc-jardin-balcon-cour-vendre-dijon': 'chevreul-parc',
@@ -48,8 +51,9 @@ def e(s):
 def fr(n):
     if n is None:
         return 'Échantillon insuffisant'
-    # La médiane exacte est conservée : une demi-unité n'est pas arrondie.
-    return f'{n:,.1f}'.replace(',', '\u202f').replace('.', ',').removesuffix(',0')
+    # Valeur exacte conservée dans le manifeste ; affichage arrondi à l’euro.
+    from decimal import Decimal, ROUND_HALF_UP
+    return f'{int(Decimal(str(n)).quantize(Decimal(1), rounding=ROUND_HALF_UP)):,}'.replace(',', '\u202f')
 
 
 def anneau(x, y, points):
@@ -74,7 +78,7 @@ def contient(geom, x, y):
 def charger(root=ROOT):
     index = json.loads((root / 'donnees-dvf/index.json').read_text())
     contours = json.loads((root / 'outils/seo/dijon-quartiers.geojson').read_text())
-    quartiers = [{'nom': f['properties']['nom'], 'slug': slug(f['properties']['nom']),
+    quartiers = [{'nom': {'Gresilles': 'Grésilles'}.get(f['properties']['nom'], f['properties']['nom']), 'slug': slug(f['properties']['nom']),
                   'geometrie': f['geometry'], 'ventes': []} for f in contours['features']]
     ville, ambigus, hors_contours = [], 0, 0
     empreinte = hashlib.sha256()
@@ -179,7 +183,8 @@ def cta():
             f'<img src="{PHOTO}" width="190" height="225" alt="Shawez Ali, agent immobilier à Dijon" loading="lazy"></section>')
 
 
-def page(q, quartiers, meta, an):
+def page(q, quartiers, meta, an, root=ROOT):
+    from search_quartiers import passage, autres
     nom = q['nom']
     court = nom if len(nom) < 26 else nom.split(' - ')[0]
     court = {'Gresilles': 'Grésilles'}.get(court, court)
@@ -194,7 +199,7 @@ def page(q, quartiers, meta, an):
     faq = [('Comment estimer mon bien dans ce quartier ?', 'Les ventes signées donnent un repère. Shawez Ali compare ensuite votre logement à des biens proches, puis examine son état, ses caractéristiques et les travaux. Vous pouvez demander une estimation offerte et sans engagement.'),
            ('Les données DVF reflètent-elles les prix d’aujourd’hui ?', f'Non. La dernière vente publiée dans le jeu départemental date du {meta["derniere_vente"]}. Ces montants sont des prix signés publiés avec retard, pas un relevé des prix d’annonce en temps réel.')]
     graph = [
-      {'@type': 'RealEstateAgent', '@id': SITE + '/#agent', 'name': 'Shawez Ali — Agent immobilier à Dijon', 'url': SITE + '/', 'telephone': '+33767579228', 'areaServed': {'@type': 'City', 'name': 'Dijon'}, 'image': SITE + PHOTO},
+      {'@type': 'RealEstateAgent', '@id': SITE + '/#agent', 'name': 'Shawez Ali', 'alternateName': 'Shawez Ali Immobilier', 'url': SITE + '/', 'telephone': '+33767579228', 'areaServed': {'@type': 'City', 'name': 'Dijon'}, 'image': SITE + PHOTO},
       {'@type': 'WebPage', '@id': canon + '#page', 'url': canon, 'name': title, 'description': desc, 'inLanguage': 'fr-FR', 'dateModified': max(meta['genere_le'], meta['contours_collecte_le']), 'about': {'@type': 'Place', 'name': nom + ', Dijon'}, 'mainEntity': {'@id': canon + '#donnees'}},
       {'@type': 'Dataset', '@id': canon + '#donnees', 'name': 'Ventes DVF — ' + nom + ', Dijon', 'description': 'Statistiques agrégées de ventes simples, sans adresse ni identité de client. Méthode et période visibles sur la page.', 'url': canon, 'license': 'https://www.etalab.gouv.fr/licence-ouverte-open-licence/', 'creator': {'@type': 'Organization', 'name': 'DGFiP / Etalab'}, 'isBasedOn': SOURCE_DVF, 'spatialCoverage': {'@type': 'Place', 'name': nom + ', Dijon'}, 'temporalCoverage': temporal, 'variableMeasured': ['Nombre de ventes', 'Prix médian au m²', 'Prix de vente médian']},
       {'@type': 'Service', 'name': 'Estimation immobilière à ' + nom + ', Dijon', 'serviceType': 'Estimation immobilière', 'provider': {'@id': SITE + '/#agent'}, 'areaServed': {'@type': 'Place', 'name': nom + ', Dijon'}, 'offers': {'@type': 'Offer', 'price': '0', 'priceCurrency': 'EUR', 'description': 'Estimation offerte et sans engagement', 'url': SITE + '/estimer/'}},
@@ -202,7 +207,7 @@ def page(q, quartiers, meta, an):
       {'@type': 'FAQPage', 'mainEntity': [{'@type': 'Question', 'name': question, 'acceptedAnswer': {'@type': 'Answer', 'text': reponse}} for question, reponse in faq]},
     ]
     ld = json.dumps({'@context': 'https://schema.org', '@graph': graph}, ensure_ascii=False).replace('</', '<\\/')
-    return f'''<!doctype html>
+    contenu = f'''<!doctype html>
 <html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{e(title)}</title><meta name="description" content="{e(desc)}"><meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="{canon}">{CSS}<link rel="icon" href="/favicon.ico">
@@ -212,15 +217,17 @@ def page(q, quartiers, meta, an):
 <header class="dq-header"><div class="dq-shell"><a class="dq-brand" href="/">SHAWEZ ALI<small>Agent immobilier · Dijon</small></a><nav aria-label="Navigation principale"><a href="{PILIER}">Estimer à Dijon</a><a href="/biens-a-vendre-dijon/">Les biens</a><a href="/contact/">Contact</a></nav></div></header>
 <main id="main" class="dq-shell"><ol class="dq-crumb" aria-label="Fil d’Ariane"><li><a href="/">Accueil</a> /</li><li><a href="{PILIER}">Estimation Dijon</a> /</li><li aria-current="page">{e(nom)}</li></ol>
 <section class="dq-hero"><p class="dq-kicker">Dijon · Ventes signées · DVF {an}</p><h1>Estimation immobilière<br>{e(nom)}<br>à Dijon.</h1>
-<p class="dq-intro">Avant de fixer un prix, regardons ce qui s’est vendu. Voici les ventes réelles du quartier, leurs médianes et leur évolution, puis une estimation offerte pour votre logement.</p>
+{passage(q, an)}
 <div class="dq-actions"><a class="dq-button" href="/estimer/">Obtenir mon estimation offerte →</a><a href="#ventes">Voir les ventes DVF</a></div>{bilan(q['ventes'], an)}<p class="dq-note">Appartements et maisons réunis. Un repère de marché, à préciser selon votre bien. Dernière vente du jeu départemental : {meta['derniere_vente']}.</p></section>
 <section class="dq-section" id="evolution"><p class="dq-kicker">Comparer ce qui est comparable</p><h2>Appartements et maisons : deux lectures du quartier.</h2>{tableau(q['ventes'], an)}</section>
 <section class="dq-section" id="ventes"><p class="dq-kicker">Les ventes derrière les chiffres</p><h2>Des transactions signées, pas des prix d’annonce.</h2><div class="dq-scroll" role="region" aria-label="Exemples de ventes DVF" tabindex="0"><table><caption>Huit dernières ventes disponibles au plus, anonymisées et sans adresse. Prix signés tels que publiés dans DVF ; le détail des honoraires n’est pas connu.</caption><thead><tr><th scope="col">Mois</th><th scope="col">Type</th><th scope="col">Surface bâtie</th><th scope="col">Prix signé</th><th scope="col">Prix au m²</th></tr></thead><tbody>{lignes}</tbody></table></div></section>
-<section class="dq-section" id="methode"><p class="dq-kicker">Sources et périmètre</p><h2>Des chiffres que vous pouvez vérifier.</h2>{methode(meta)}</section>
+<section class="dq-section" id="methode"><p class="dq-kicker">Sources et périmètre</p><h2>Des chiffres que vous pouvez vérifier.</h2><p>Source : DVF, ventes simples géolocalisées rattachées au conseil de quartier officiel. Dernière vente du jeu départemental : {meta['derniere_vente']}. <a href="{PILIER}#prix-reels">Méthode complète, filtres, source et limites</a>. Ces ventes ne sont pas un relevé des prix d’annonce.</p></section>
 {cta()}<section class="dq-section"><h2>Vos questions sur l’estimation.</h2>{''.join(f'<h3>{e(a)}</h3><p>{e(b)}</p>' for a, b in faq)}</section>
-<section class="dq-section"><p class="dq-kicker">Dijon, quartier par quartier</p><h2>Regardez aussi les autres quartiers.</h2><a href="{PILIER}#quartiers">Toute l’estimation immobilière à Dijon</a>{cartes(quartiers, an, q['slug'])}</section></main>
+<section class="dq-section"><p class="dq-kicker">Dijon, quartier par quartier</p><h2>Regardez aussi les autres quartiers.</h2><a href="{PILIER}#quartiers">Toute l’estimation immobilière à Dijon</a>{autres(quartiers, q['slug'])}</section></main>
 <footer class="dq-shell dq-footer"><p>Shawez Ali · Agent immobilier · GRAVELIN IMMO · Dijon</p><nav aria-label="Pied de page"><a href="/honoraires/">Honoraires</a><a href="/mentions-legales/">Mentions légales</a><a href="/politique-de-confidentialite/">Confidentialité</a><a href="/plan-du-site/">Plan du site</a></nav></footer></body></html>
 '''
+    from search_reponses import appliquer, balisage
+    return appliquer(contenu, url(q), root) if (Path(root) / 'avis.json').exists() else balisage(contenu, url(q))
 
 
 def bloc(s, ident, contenu, avant='</main>'):
@@ -263,6 +270,8 @@ def mailler(root, quartiers, an):
         lien = f'<a href="{url(q)}">Les ventes DVF de {e(q["nom"])}</a> · ' if q else ''
         contenu = f'<nav class="shell dq dq-section" aria-label="Prix et estimation à Dijon"><h2>Du conseil aux ventes réelles.</h2><p>{lien}<a href="{PILIER}#quartiers">Prix et évolution dans tous les quartiers de Dijon</a></p><a class="dq-button" href="/estimer/">Demander mon estimation offerte</a></nav>'
         ecrire(path, bloc(css(path.read_text()), 'dijon-quartiers-article', contenu))
+    from search_quartiers import secteurs
+    secteurs(root, quartiers, an)
     # S’applique aussi aux fiches existantes ; le générateur reçoit le même lien pour les suivantes.
     for path in (root / 'biens').glob('*/index.html'):
         s = path.read_text()
@@ -314,7 +323,7 @@ def construire(root=ROOT):
                  'donnees': {k: meta[k] for k in ('annees', 'derniere_vente', 'genere_le', 'empreinte_dvf_sha256', 'contours_source', 'contours_collecte_le', 'ventes_dijon', 'ventes_limite_ambigue', 'ventes_hors_contours')},
                  'quartiers': [{'nom': q['nom'], 'slug': q['slug'], 'url': url(q), 'par_annee': par_annee(q['ventes'])} for q in quartiers]}
     for q in quartiers:
-        ecrire(root / url(q).strip('/') / 'index.html', page(q, quartiers, meta, an))
+        ecrire(root / url(q).strip('/') / 'index.html', page(q, quartiers, meta, an, root))
     # Ne conserver aucune ancienne page générée si le quartier n’a plus de ventes.
     valides = {q['slug'] for q in quartiers}
     for path in (root / PREFIXE).glob('*/index.html'):
@@ -356,9 +365,13 @@ def construire(root=ROOT):
                     question['acceptedAnswer']['text'] = reponse
         return '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False).replace('</', '<\\/') + '</script>'
     s = re.sub(r'<script type="application/ld\+json">(.*?)</script>', ld, s, count=1, flags=re.S)
-    ecrire(pilier, css(s))
+    from search_reponses import appliquer
+    ecrire(pilier, appliquer(css(s), PILIER, root) if (root / 'avis.json').exists() else css(s))
     mailler(root, quartiers, an)
     sitemap(root, quartiers, date)
+    if (root / 'prix-immobilier-dijon/index.html').exists():
+        from search_prix import construire as prix_dijon
+        prix_dijon(root)
     return manifeste
 
 

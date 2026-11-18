@@ -148,6 +148,10 @@ def patch(s, f=''):
         i = s.rfind('</body>')
         if i >= 0:
             s = s[:i] + OAI + '\n' + s[i:]
+    if not f.startswith(PRIVEES):
+        sys.path.insert(0, P('outils', 'seo'))
+        from search_reponses import appliquer
+        s = appliquer(s, '/' + f.removesuffix('index.html'), ROOT)
     return patch_chat(s, f)
 
 def patch_chat(s, f=''):
@@ -175,6 +179,10 @@ if __name__ == '__main__':
                 open(P(f), 'w', encoding='utf-8').write(n); total += 1
         print('Assistant :', total, 'pages mises à jour.')
         raise SystemExit(0)
+    sys.path.insert(0, P('outils', 'seo'))
+    from seo.search_services import construire as services_search
+    services_search(ROOT)
+    subprocess.run([sys.executable, P('outils/seo/prix_communes.py'), '--tout', '--existantes'], cwd=ROOT, check=True)
     # Les pages et le sitemap DVF précèdent la reconstruction des liens et du plan du site.
     from seo.dijon_quartiers import construire as quartiers_dijon
     quartiers_dijon()

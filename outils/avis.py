@@ -8,6 +8,9 @@ Relançable : le contenu généré est encadré par des marqueurs <!-- avis:… 
 Aucun texte n'est modifié ; seul l'extrait de l'accueil est coupé à 220 caractères (texte complet sur /avis/).
 """
 import html, json, re, sys
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent / 'seo'))
+from search_reponses import appliquer
 
 SRC = sys.argv[1] if len(sys.argv) > 1 else 'avis.json'
 D = json.load(open(SRC, encoding='utf-8'))
@@ -61,7 +64,7 @@ def carte(a, complet=False):
     return ('<article class="avis-card">%s<p class="avis-txt">%s%s</p>'
             '<div class="avis-meta"><span class="who">%s</span><span class="when">%s</span>'
             '<a class="src" href="%s" target="_blank" rel="noopener">%s<span>Avis Google</span></a></div></article>'
-            % (etoiles(a['note']), E(t), more, E(court(a['auteur'])), mois(a['date']), E(lien), G))
+            % (etoiles(a['note']), E(t), more, 'Auteur anonymisé', mois(a['date']), E(lien), G))
 
 def date_fr(d):
     y, m, j = d.split('-')
@@ -159,7 +162,7 @@ def jsonld(s):
                       'areaServed': {'@type': 'City', 'name': 'Dijon'}, 'founder': {'@id': 'https://shawez-immo.com/#shawez'},
                       'parentOrganization': {'@id': 'https://shawez-immo.com/#gravelin'}, 'sameAs': [F['lien_avis']],
                       'aggregateRating': {'@type': 'AggregateRating', 'ratingValue': F['note'], 'reviewCount': F['nombre'], 'bestRating': 5, 'worstRating': 1},
-                      'review': [{'@type': 'Review', 'author': {'@type': 'Person', 'name': court(a['auteur'])}, 'datePublished': a['date'],
+                      'review': [{'@type': 'Review', 'datePublished': a['date'],
                                   'reviewRating': {'@type': 'Rating', 'ratingValue': int(a['note']), 'bestRating': 5},
                                   'reviewBody': ' '.join(a['texte'].split())} for a in AVIS]})
         return '<script type="application/ld+json">%s</script>' % json.dumps(d, ensure_ascii=False)
@@ -172,6 +175,7 @@ if '<!-- avis:accueil -->' not in s:   # premier passage : remplace le bloc d'at
     assert n == 1, 'bloc d\'attente introuvable'
 s = repl(s, 'accueil', bloc_accueil())
 s = with_css(jsonld(s))
+s = appliquer(s, '/' + p.removesuffix('index.html'), Path.cwd())
 open(p, 'w', encoding='utf-8').write(s)
 
 # ---------- page /avis/ ----------
@@ -184,5 +188,6 @@ if '<!-- avis:page -->' not in s:
                   '<p class="body" style="margin:0 0 10px;font-size:.96rem;">Les avis de l\'agence GRAVELIN IMMO dans son ensemble sont collectés par un organisme indépendant :</p><a class="link ext" href="https://www.opinionsystem.fr/fr-fr/certificate/12511" target="_blank" rel="noopener">Avis de l\'agence GRAVELIN IMMO sur Opinion System</a>')
 s = repl(s, 'page', bloc_page())
 s = with_css(s)
+s = appliquer(s, '/' + p.removesuffix('index.html'), Path.cwd())
 open(p, 'w', encoding='utf-8').write(s)
 print('%d avis · fiche Shawez %s/5 sur %d avis · agence %s/5 sur %d avis' % (len(AVIS), fr(F['note']), F['nombre'], fr(D['preuve_agence']['note']), D['preuve_agence']['nombre']))

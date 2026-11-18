@@ -4,7 +4,7 @@ Usage : python3 gen_pages.py <racine_du_depot> <pages.json>
 """
 import html, json, os, re, sys
 
-ROOT, SPEC = sys.argv[1], sys.argv[2]
+ROOT, SPEC = os.path.abspath(sys.argv[1]), sys.argv[2]
 BASE = 'https://shawez-immo.com'
 TPL = os.path.join(ROOT, 'conseils-vendeurs/choisir-agent-immobilier-dijon/index.html')
 tpl = open(TPL, encoding='utf-8').read()
@@ -13,19 +13,20 @@ pages = json.load(open(SPEC, encoding='utf-8'))
 # Noeuds communs (WebSite, Person, RealEstateAgent agence) repris du gabarit
 m = re.search(r'<script type="application/ld\+json">(.*?)</script>', tpl, re.S)
 graph = json.loads(m.group(1))['@graph']
-common = [n for n in graph if n.get('@type') in ('WebSite', 'Person', 'RealEstateAgent')]
+common = [n for n in graph if n.get('@type') in ('WebSite', 'Person', 'RealEstateAgent') and n.get('@id') != BASE + '/#agent']
 
 AGENT = {
     "@type": "RealEstateAgent",
     "@id": BASE + "/#agent",
-    "name": "Shawez Ali — Agent immobilier",
+    "name": "Shawez Ali",
+    "alternateName": "Shawez Ali Immobilier",
     "url": BASE + "/",
     "image": BASE + "/assets/shawez-ali-portrait-veste-verte.webp",
     "telephone": "+33767579228",
     "email": "shawez@gravelin-immo.com",
     "address": {"@type": "PostalAddress", "streetAddress": "30 rue Bannelier", "postalCode": "21000",
                 "addressLocality": "Dijon", "addressRegion": "Côte-d'Or", "addressCountry": "FR"},
-    "hasMap": "https://www.google.com/maps/search/?api=1&query=Shawez%20Ali%20%E2%80%94%20Agent%20immobilier&query_place_id=ChIJqQpGAKPcg6gRg_CLthoGaP8",
+    "hasMap": "https://www.google.com/maps/search/?api=1&query=Shawez%20Ali&query_place_id=ChIJqQpGAKPcg6gRg_CLthoGaP8",
     "openingHoursSpecification": [{"@type": "OpeningHoursSpecification",
                                    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
                                    "opens": "09:00", "closes": "19:00"}],
@@ -35,7 +36,7 @@ AGENT = {
         "Gevrey-Chambertin", "Nuits-Saint-Georges", "Beaune"]],
     "founder": {"@id": BASE + "/#shawez"},
     "parentOrganization": {"@id": BASE + "/#gravelin"},
-    "sameAs": ["https://www.google.com/maps/search/?api=1&query=Shawez%20Ali%20%E2%80%94%20Agent%20immobilier&query_place_id=ChIJqQpGAKPcg6gRg_CLthoGaP8",
+    "sameAs": ["https://www.google.com/maps/search/?api=1&query=Shawez%20Ali&query_place_id=ChIJqQpGAKPcg6gRg_CLthoGaP8",
                "https://www.instagram.com/shawez_immo"],
 }
 
@@ -45,9 +46,24 @@ def esc(s):
 
 
 def build(p):
+    if p['path'].startswith('/prix-immobilier-') and p['path'] not in ('/prix-immobilier-dijon/', '/prix-immobilier-cote-d-or/'):
+        import subprocess
+        commune = p['path'].strip('/').removeprefix('prix-immobilier-')
+        subprocess.run([sys.executable, os.path.join(ROOT, 'outils/seo/prix_communes.py'), '--commune', commune], cwd=ROOT, check=True)
+        return
+    if p['path'] == '/prix-immobilier-dijon/':
+        from search_prix import spec
+        p = spec(ROOT)
     url = BASE + p['path']
+    precedent = os.path.join(ROOT, p['path'].strip('/'), 'index.html')
+    ancien = open(precedent, encoding='utf-8').read() if os.path.exists(precedent) else ''
+    from sitemap_videos import videos as videos_schema
+    videos = list(videos_schema(ancien))
+    reel = re.search(r'<div data-reel="[^"]*"[^>]*></div>', ancien)
+    reel = reel[0] if reel else ''
+    illustrations = ''.join(re.findall(r'<!--illu-video-->.*?<!--/illu-video-->', ancien, re.S))
     title, desc = p['title'], p['description']
-    assert len(title) <= 60, (p['path'], len(title), title)
+    assert len(title) <= 160, (p['path'], len(title), title)
     assert len(desc) <= 160, (p['path'], len(desc))
     h = tpl
     h = re.sub(r'<title>.*?</title>', '<title>' + html.escape(title, quote=False) + '</title>', h, count=1, flags=re.S)
@@ -82,6 +98,9 @@ def build(p):
         if not p.get('service_type'):
             srv["offers"] = {"@type": "Offer", "price": "0", "priceCurrency": "EUR", "description": "Estimation offerte et sans engagement"}
         nodes.append(srv)
+    if videos:
+        entite = next(n for n in nodes if n.get('@type') == ('Article' if p.get('article') else 'WebPage'))
+        entite['video'] = videos[0] if len(videos) == 1 else videos
     faq = p['faq']
     nodes.append({"@type": "FAQPage", "@id": url + "#faq", "mainEntity": [
         {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": re.sub('<[^>]+>', '', a)}} for q, a in faq]})
@@ -119,12 +138,14 @@ def build(p):
       <div class="article">
         <details class="toc"><summary>Sommaire</summary><ol>{toc}<li><a href="#questions">Questions fréquentes</a></li></ol></details>
         <p>{p['intro']}</p>
+{illustrations}
 {body}
         <h2 id="questions">Questions fréquentes</h2>
         <div class="faq" style="max-width:760px;">{faq_html}</div>
         {cta}
       </div>
       <aside class="art-side">
+{reel}
         <div class="card"><h3>{side_title}</h3>{side}</div>
       </aside>
     </div>
@@ -134,6 +155,8 @@ def build(p):
     h = re.sub(r'<main id="main">.*?</main>', lambda mm: main, h, count=1, flags=re.S)
     out = os.path.join(ROOT, p['path'].strip('/'), 'index.html')
     os.makedirs(os.path.dirname(out), exist_ok=True)
+    from search_reponses import appliquer
+    h = appliquer(h, p['path'], ROOT)
     open(out, 'w', encoding='utf-8').write(h)
     print('ok', p['path'], len(title), len(desc))
 

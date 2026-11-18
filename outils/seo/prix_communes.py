@@ -16,6 +16,8 @@ Règles :
     python3 outils/seo/prix_communes.py --liste    # affiche les communes retenues / écartées, n'écrit rien
 """
 import argparse, glob, html, json, math, os, re, statistics as st, sys, unicodedata
+from pathlib import Path
+from search_local import ZONE_GOOGLE, commune_actuelle, adapter_prix
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 BASE = 'https://shawez-immo.com'
@@ -23,7 +25,7 @@ sys.path.insert(0, os.path.join(ROOT, 'outils', 'biens'))
 from commun import ACTIFS, chemin_fiche  # noqa: E402
 
 SEUIL, SEUIL_TYPE_DOMINANT, MIN_TYPE, MIN_ANNEE, MIN_EVOL = 30, 20, 10, 5, 10
-DATE, DATE_FR = '2026-10-22', '22 octobre 2026'
+DATE, DATE_FR = '2026-11-18', '18 novembre 2026'
 NB = ' '
 MARQUE = '<!-- page générée par outils/seo/prix_communes.py -->'
 GABARIT = os.path.join(ROOT, 'prix-immobilier-fenay', 'index.html')
@@ -127,7 +129,7 @@ def charge():
         for v, l in zip(t, d):
             x = json.loads(l)
             ventes.append(dict(lat=v[0], lon=v[1], maison=v[2] == 1, surf=v[3], pm2=v[4], an=v[5] // 100, pieces=v[6],
-                               terrain=v[7], prix=x[0], voie=x[1], commune=x[2]))
+                               terrain=v[7], prix=x[0], voie=x[1], commune=commune_actuelle(ROOT, x[2], v[1], v[0])))
     return idx, ventes
 
 
@@ -362,16 +364,27 @@ def page(S, voisins, annonces, annees):
         desc = 'Prix au m² à %s sur %d ventes réelles %d-%d : %s. Estimation offerte.' % (N, n, a0, a1, ', '.join(parts))
     if len(desc) > 160:
         desc = 'Prix au m² à %s (%d ventes DVF %d-%d) : %s. Estimation offerte.' % (N, n, a0, a1, parts[0])
-    return dict(title=title, desc=desc, intro=intro, sections=sections, faq=faq, voisins=voisins)
+    P = dict(title=title, desc=desc, intro=intro, sections=sections, faq=faq, voisins=voisins)
+    return adapter_prix(P, N)
 
 
 def ecrire(S, P, tpl):
     N = S['nom']
     path = '/prix-immobilier-%s/' % S['slug']
     url = BASE + path
+    existant = Path(ROOT) / path.strip('/') / 'index.html'
+    if not existant.exists() and S['slug'] == 'neuilly-crimolois':
+        existant = Path(ROOT) / 'prix-immobilier-neuilly-les-dijon/index.html'
+    ancien = existant.read_text() if existant.exists() else ''
+    from sitemap_videos import videos as videos_schema
+    videos = list(videos_schema(ancien))  # inclut notamment Article.video
+    reel = re.search(r'<div data-reel="[^"]*"[^>]*></div>', ancien)
+    reel = reel[0] if reel else ''
+    illustrations = ''.join(re.findall(r'<!--illu-video-->.*?<!--/illu-video-->', ancien, re.S))
     title, desc = P['title'], P['desc']
     assert len(title) <= 60 and len(desc) <= 160, (title, desc)
-    h = tpl
+    # Les scripts VideoObject séparés du gabarit ne décrivent pas cette commune.
+    h = re.sub(r'<script type="application/ld\+json">(.*?)</script>', lambda m: '' if json.loads(m[1]).get('@type') == 'VideoObject' else m[0], tpl, flags=re.S)
     h = re.sub(r'<title>.*?</title>', '<title>' + html.escape(title, quote=False) + '</title>', h, count=1, flags=re.S)
     for attr, val in (('name="description"', desc), ('property="og:title"', title), ('property="og:description"', desc),
                       ('name="twitter:title"', title), ('name="twitter:description"', desc), ('property="og:url"', url)):
@@ -393,9 +406,14 @@ def ecrire(S, P, tpl):
             nd.update({'@id': url + '#article', 'headline': title, 'description': desc, 'datePublished': DATE, 'dateModified': DATE,
                        'mainEntityOfPage': {'@id': url + '#page'}})
             nd.pop('wordCount', None)
-        elif t == 'FAQPage':
+            nd.pop('video', None)
+            if videos:
+                nd['video'] = videos[0] if len(videos) == 1 else videos
+        elif t in ('FAQPage', 'VideoObject'):
             continue
         nodes.append(nd)
+    if not any(n.get('@type') == 'Article' for n in nodes):
+        nodes.extend(videos)
     nodes.append({'@type': 'FAQPage', '@id': url + '#faq', 'mainEntity': [
         {'@type': 'Question', 'name': qq, 'acceptedAnswer': {'@type': 'Answer', 'text': re.sub('<[^>]+>', '', a)}} for qq, a in P['faq']]})
     g['@graph'] = nodes
@@ -429,6 +447,7 @@ def ecrire(S, P, tpl):
       <div class="article">
         <details class="toc"><summary>Sommaire</summary><ol>{toc}</ol></details>
         <p>{P['intro']}</p>
+{illustrations}
 {body}
         <h2 id="questions">Questions fréquentes</h2>
         <div class="faq" style="max-width:760px;">{faq}</div>
@@ -437,7 +456,7 @@ def ecrire(S, P, tpl):
         <div class="btn-row" style="margin-top:32px;"><a class="btn btn-primary btn-lg" href="/estimer/">Estimation offerte</a><a class="btn" href="tel:+33767579228">Appeler Shawez</a></div>
       </div>
       <aside class="art-side">
-        <div data-reel="v13" aria-label="Une vidéo de Shawez Ali"></div>
+{reel}
         <div class="card"><h3>Communes voisines</h3>{side}</div>
       </aside>
     </div>
@@ -448,6 +467,10 @@ def ecrire(S, P, tpl):
     assert k == 1
     out = os.path.join(ROOT, path.strip('/'), 'index.html')
     os.makedirs(os.path.dirname(out), exist_ok=True)
+    from search_reponses import appliquer
+    h = appliquer(h, path, ROOT)
+    if N not in ZONE_GOOGLE:
+        h = h.replace('Estimation chez vous, offerte', 'Contacter Shawez à Dijon')
     open(out, 'w', encoding='utf-8').write(h)
     return path
 
@@ -494,6 +517,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--liste', action='store_true')
     ap.add_argument('--tout', action='store_true', help='réécrit aussi les pages prix déjà en ligne (déconseillé)')
+    ap.add_argument('--commune', help='reconstruit une commune existante depuis son slug')
+    ap.add_argument('--existantes', action='store_true', help='ne crée aucune nouvelle commune hors du périmètre publié')
     a = ap.parse_args()
     idx, ventes = charge()
     annees = idx['annees']
@@ -514,6 +539,8 @@ def main():
         else:
             ecartees.append(S)
     existantes = {d[len('prix-immobilier-'):] for d in os.listdir(ROOT) if d.startswith('prix-immobilier-') and os.path.isfile(os.path.join(ROOT, d, 'index.html'))}
+    if 'neuilly-les-dijon' in existantes:
+        existantes.add('neuilly-crimolois')
     if a.liste:
         for S in retenues:
             print('%-4d %-28s %s' % (S['n'], S['nom'], 'existe' if S['slug'] in existantes else 'NOUVELLE'))
@@ -528,14 +555,21 @@ def main():
             par_c.setdefault(slug(x['commune']), []).append((chemin_fiche(x), t))
     tpl = open(GABARIT, encoding='utf-8').read()
     for S in retenues:
-        vois = sorted((r for r in retenues if r is not S), key=lambda r: dist(S['centre'], r['centre']))[:4]
-        voisins = [(r['slug'], r['nom']) for r in vois]
+        if a.commune and S['slug'] != a.commune.replace('neuilly-les-dijon', 'neuilly-crimolois'):
+            continue
+        if a.existantes and S['slug'] not in existantes:
+            continue
+        noms_voisins = json.load(open(os.path.join(ROOT, 'outils/seo/communes-voisines.json'), encoding='utf-8'))['communes'].get(S['nom'], [])
+        voisins = [(slug(n), n) for n in noms_voisins if slug(n) in existantes or n == 'Dijon']
         f = os.path.join(ROOT, 'prix-immobilier-%s' % S['slug'], 'index.html')
-        if S['slug'] in existantes and not a.tout and MARQUE not in open(f, encoding='utf-8').read():
+        if S['slug'] in existantes and not (a.tout or a.commune) and MARQUE not in open(f, encoding='utf-8').read():
             continue
         P = page(S, voisins, par_c.get(S['slug'], []), annees)
         print('ok', ecrire(S, P, tpl), len(P['title']), len(P['desc']))
-    maj_hub(retenues)
+    if not a.commune:
+        maj_hub(retenues)
+    from search_local import redirection_neuilly
+    redirection_neuilly(Path(ROOT))
 
 
 if __name__ == '__main__':

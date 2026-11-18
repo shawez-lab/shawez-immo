@@ -23,48 +23,10 @@ def links(exclude):
 
 P = []
 
-# 1. PRIX AU M² DIJON
-P.append(dict(
-  id="prix-dijon", path="/prix-immobilier-dijon/", date=DATE, date_fr=DATE_FR,
-  title="Prix immobilier à Dijon au m² : les repères 2025",
-  description="Prix au m² à Dijon en 2025 d'après les ventes réelles (DVF) : appartements, maisons, centre-ville, communes voisines. Méthode, limites, et votre prix à vous.",
-  label="Prix du marché", h1="Prix au m² à Dijon : <em>ce que disent les ventes réelles.</em>", h1_plain="Prix au m² à Dijon : ce que disent les ventes réelles",
-  lede="Pas d'estimation au doigt mouillé : des médianes calculées sur les ventes signées chez le notaire, secteur par secteur, avec la méthode et les limites.",
-  image="/assets/dijon-eglise-saint-michel.webp", image_alt="L'église Saint-Michel, dans le centre historique de Dijon",
-  crumbs=[("Prix immobilier à Dijon", "/prix-immobilier-dijon/")],
-  intro="Quand on me demande « combien vaut le mètre carré à Dijon ? », je réponds toujours avec les ventes réellement signées, pas avec les prix affichés sur les annonces. Voici les repères que je tire de la base publique DVF, et la façon de les lire sans se tromper.",
-  sections=[
-    ("le-repere-a-l-echelle-de-la-ville", "Le repère à l'échelle de la ville",
-     "<p>Sur l'année 2025, le prix médian des appartements vendus à Dijon ressort à environ 2 782 €/m², pour 2 884 ventes (base DVF de la DGFiP, chiffres consolidés par immovrai.com, consultés le 21 septembre 2026). C'est un repère, pas un prix : entre deux quartiers, deux immeubles ou deux étages, l'écart dépasse largement l'écart d'une année sur l'autre.</p>"),
-    ("secteur-par-secteur", "Secteur par secteur : les médianes 2025",
-     "<p>J'ai refait le calcul sur les ventes DVF de 2025, en ne gardant que les ventes d'un seul logement (un appartement ou une maison, avec au plus une cave ou un garage), dans un rayon autour du centre de chaque secteur.</p>" +
-     table([("Dijon, centre (1,2 km autour de la place de la Libération)", "Appartement", "2 870 €", "1 089"),
-            ("Dijon et première couronne (4 km)", "Appartement", "2 660 €", "2 766"),
-            ("Dijon et première couronne (4 km)", "Maison", "3 230 €", "582"),
-            ("Fontaine-lès-Dijon (1,3 km autour du centre)", "Maison", "3 440 €", "121"),
-            ("Talant (1,2 km)", "Maison", "3 050 €", "69"),
-            ("Chenôve (1,5 km)", "Maison", "2 500 €", "82"),
-            ("Quetigny (1,4 km)", "Appartement", "2 070 €", "60"),
-            ("Beaune (2 km)", "Appartement", "2 610 €", "203"),
-            ("Nuits-Saint-Georges (1,5 km)", "Maison", "2 440 €", "40")],
-           "Prix médian au m² des ventes signées en 2025") +
-     "<p style=\"font-size:.9em;opacity:.8;\">" + SRC + " Un rayon ne suit pas exactement les limites d'une commune : ces chiffres décrivent un secteur, pas une adresse.</p>"),
-    ("ce-qui-fait-varier-le-prix", "Ce qui fait varier le prix de votre bien",
-     "<p>Deux biens de même surface, dans la même rue, peuvent se vendre à des prix très différents. Ce que je regarde en premier : l'étage et l'ascenseur, la lumière, l'extérieur (balcon, terrasse, jardin), le stationnement, l'état et les travaux à prévoir, le diagnostic de performance énergétique, et, en copropriété, les charges et les travaux votés. Une maison se juge aussi sur son terrain : en 2025, la moitié des maisons vendues autour de Dijon avaient moins de 400 m² de terrain.</p>"),
-    ("comment-les-prix-ont-evolue", "Comment les prix ont évolué depuis 2023",
-     "<p>Sur les appartements vendus dans un rayon de 4 km autour du centre de Dijon, la médiane est passée de 2 640 €/m² en 2023 à 2 530 €/m² en 2024, puis 2 660 €/m² en 2025. Pour les maisons : 3 290, 3 180, puis 3 230 €/m². Autrement dit, un marché qui a marqué le pas en 2024 et qui s'est stabilisé en 2025. " + "Les données de 2026 ne sont pas encore publiées dans leur totalité.</p>"),
-    ("votre-prix-a-vous", "Votre prix à vous",
-     "<p>Une médiane ne dit pas ce que vaut votre bien. Pour cela, il faut partir des ventes les plus proches et les plus comparables, puis ajuster. C'est ce que fait l'<a class=\"link\" href=\"/estimer/\">estimation en ligne</a> du site (une fourchette indicative, à partir des ventes DVF autour de votre adresse), et c'est ce que je fais à la main lors d'une visite, avant de vous remettre un avis de valeur écrit. L'estimation est offerte et sans engagement.</p>"),
-  ],
-  faq=[
-    ("Quel est le prix moyen du m² à Dijon ?", "Sur 2025, le prix médian des appartements vendus à Dijon est d'environ 2 782 €/m² (DVF, DGFiP, via immovrai.com). Pour les maisons, mon calcul sur les ventes à moins de 4 km du centre donne 3 230 €/m². Ce sont des médianes : votre bien peut être nettement au-dessus ou en dessous."),
-    ("Quel est le prix d'un appartement dans le centre de Dijon ?", "Pour les appartements vendus en 2025 à moins de 1,2 km de la place de la Libération, la médiane est de 2 870 €/m² (1 089 ventes, DVF). La moitié des ventes se situe entre 2 320 et 3 430 €/m²."),
-    ("Quel est le quartier le plus cher de Dijon ?", "Je ne publie pas de classement de quartiers : les écarts se font souvent rue par rue et immeuble par immeuble. Les ventes réelles d'une rue sont consultables gratuitement sur app.dvf.etalab.gouv.fr, et je peux vous les commenter pour votre bien."),
-    ("Les prix de l'immobilier baissent-ils à Dijon ?", "D'après les ventes DVF, la médiane des appartements autour de Dijon est passée de 2 640 €/m² en 2023 à 2 530 €/m² en 2024, puis 2 660 €/m² en 2025 : une baisse en 2024, puis une stabilisation."),
-    ("Comment connaître le prix de vente réel d'un bien près de chez moi ?", "Toutes les ventes signées chez le notaire sont publiées dans la base DVF, consultable adresse par adresse sur app.dvf.etalab.gouv.fr. Vous pouvez aussi utiliser l'<a class=\"link\" href=\"/estimer/\">estimation en ligne</a>, qui s'appuie sur ces ventes."),
-  ],
-  links=[("Prix affiché, prix signé à Dijon", "/conseils-vendeurs/prix-affiche-prix-signe-dijon/")] + links("/prix-immobilier-dijon/")[:4],
-))
+# 1. PRIX AU M² DIJON : même calcul local que les pages de quartiers.
+from pathlib import Path
+from search_prix import spec as prix_dijon
+P.append(prix_dijon(Path(__file__).resolve().parents[2]))
 
 # 2. AGENT IMMOBILIER BEAUNE
 P.append(dict(

@@ -318,6 +318,9 @@ def page_html(base, *, route, titre_page, desc, canonical, image, main, graph, c
 
 
 def ecrire(chemin, s):
+    sys.path.insert(0, os.path.join(ROOT, 'outils', 'seo'))
+    from search_reponses import balisage
+    s = balisage(s)
     os.makedirs(os.path.dirname(chemin), exist_ok=True)
     with open(chemin, 'w', encoding='utf-8') as o:
         o.write(s)

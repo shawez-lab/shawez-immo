@@ -47,7 +47,7 @@ P.append(dict(
      "<li><strong>Mise en location, sans gestion</strong> : je trouve le locataire, je prépare le bail et je fais l'état des lieux d'entrée, puis vous gardez la main. " + L("/location-immobiliere-dijon/", "Mettre en location à Dijon") + ".</li>"
      "</ul>"),
     ("agence-immobiliere-dijon", "Une agence immobilière au centre de Dijon",
-     "<p>Derrière moi, il y a une vraie agence immobilière à Dijon : GRAVELIN IMMO, 30 rue Bannelier, à deux pas des Halles. Vous pouvez y passer du lundi au vendredi, de 9 h à 19 h, ou appeler l'agence au 03 45 34 35 31. Mon numéro direct reste le 07 67 57 92 28. Les visites des biens se font du lundi au samedi.</p>"
+     "<p>Derrière moi, il y a une vraie agence immobilière à Dijon : GRAVELIN IMMO, 30 rue Bannelier, à deux pas des Halles. Vous pouvez prendre rendez-vous avec moi ou appeler l'agence au 03 45 34 35 31. Mon numéro direct reste le 07 67 57 92 28. Les visites des biens se font du lundi au samedi.</p>"
      "<p>Agent ou agence, quelle différence pour vous ? Les honoraires sont ceux du " + L("/honoraires/", "barème de l'agence") + ", dus seulement si la vente se fait. La différence, c'est que vous parlez toujours à la même personne, qui connaît votre dossier par cœur.</p>"),
     ("ou-j-interviens", "Où j'interviens",
      "<p><strong>Dijon et ses quartiers</strong> : centre historique, Montchapet, République, Grésilles, Drapeau-Maladière, Montmuzard… Les prix réels, quartier par quartier, sont sur la page " + L("/prix-immobilier-dijon/", "prix immobilier à Dijon") + ".</p>"
@@ -57,7 +57,7 @@ P.append(dict(
      "<p><strong>Le même service pour tous les biens.</strong> Un studio, un T2, un bureau de tabac, un plateau de bureaux ou un château : chaque bien que l'on me confie a son photographe, son vidéaste, son film monté et son home staging virtuel, quel que soit son prix. Les films sont publiés sur la chaîne YouTube de l'agence GRAVELIN IMMO, ouverte il y a plus de dix ans.</p>"
      "<ol>"
      "<li><strong>L'estimation, chez vous, offerte.</strong> Je visite, puis je compare avec les ventes réellement signées autour de chez vous (base publique DVF). Vous recevez un avis de valeur écrit. " + L("/estimation-immobiliere-dijon/", "Demander l'estimation") + " ou " + L("/estimer/", "obtenir une première fourchette en ligne") + ".</li>"
-     "<li><strong>Le mandat</strong>, simple ou exclusif : je vous explique les deux, vous choisissez.</li>"
+     "<li><strong>Le mandat exclusif</strong> : je prends uniquement des mandats exclusifs en vente, pour un seul prix, une seule présentation et un suivi cohérent.</li>"
      "<li><strong>Les photos, le film et le drone</strong>, puis la diffusion sur Leboncoin, SeLoger, Bien'ici, Instagram, TikTok, YouTube et LinkedIn (et Figaro Immobilier pour les biens d'exception).</li>"
      "<li><strong>Les visites</strong>, avec des acheteurs qui ont déjà vu le film, et un retour après chacune.</li>"
      "<li><strong>L'offre, le compromis, l'acte</strong> : je vérifie le financement de l'acheteur et je suis le dossier jusqu'au notaire.</li>"
@@ -86,7 +86,7 @@ P.append(dict(
 P.append(dict(
   id="prestige", path="/chateau-a-vendre-bourgogne/", date=DATE, date_fr=DATE_FR,
   service="Vente de châteaux et de biens de prestige en Bourgogne", service_type="Transaction immobilière de prestige", city="Bourgogne", area_type="AdministrativeArea",
-  title="Château à vendre en Bourgogne et biens de prestige",
+  title="Château et propriété de prestige en Côte-d’Or : vendre ou acheter | Shawez Ali",
   description="Châteaux, propriétés et demeures de caractère à vendre en Bourgogne et en Côte-d'Or, filmés et présentés avec discrétion par Shawez Ali, agent immobilier.",
   label="Châteaux et prestige",
   h1="Château à vendre en Bourgogne&nbsp;: <em>des demeures filmées, présentées avec discrétion.</em>",
