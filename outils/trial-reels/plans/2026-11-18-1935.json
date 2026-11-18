@@ -1,0 +1,651 @@
+{
+ "jour": "2026-11-18",
+ "choisir": "choisir.py a rendu 425 513 403 431 ; vivier : 425 513 403 431 509 461 438 483 501 481 446 507 525 527 415 520 494",
+ "ecartes": {
+  "425": "face caméra avec sous-titres incrustés (explicatif SCI), planche revue 18/11 19h35",
+  "513": "Shawez face caméra avec sous-titres incrustés, planche revue 18/11 19h35",
+  "403": "Shawez face caméra avec textes incrustés, planche revue 18/11 19h35",
+  "431": "face caméra avec sous-titres incrustés, planche revue 18/11 19h35"
+ },
+ "remplacants": "les 4 biens rendus sont face caméra : remplacés par les suivants du vivier, dans l’ordre de choisir.py : 509 461 438 483.",
+ "outil": "509 : video.mp4 est un Reel photo fini (diaporama.json), monté par outils/biens/diaporama.py photo par photo dans l’ordre de « photos » ; 461 438 483 : fabriquer.py.",
+ "biens": [
+  {
+   "ref": "509",
+   "src": "assets/biens/509/video.mp4",
+   "mot": "COUCHEY",
+   "nom": "deux-maisons-couchey",
+   "mode": "photos",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": true,
+     "accroche": "Deux maisons rénovées|sur la côte des vins",
+     "photos": [
+      9,
+      1,
+      3,
+      4,
+      10,
+      15
+     ],
+     "lignes": [
+      "141 m²"
+     ],
+     "legende": "Au cœur du village viticole de Couchey, deux maisons entièrement rénovées l’une en face de l’autre, vendues ensemble. Tu vis dans laquelle ? 🍇\n\nCommente COUCHEY et je t’envoie la visite complète en privé 📩\n\n#couchey #cotedesvins #maisonrenovee #immobilierbourgogne #villageviticole",
+     "publier": "2026-11-19T20:00",
+     "style": "autre"
+    },
+    {
+     "id": "v2",
+     "instagram": false,
+     "accroche": "2 caves voûtées,|25 et 30 m²",
+     "photos": [
+      10,
+      9,
+      2,
+      6,
+      7,
+      15
+     ],
+     "lignes": [
+      "Caves voûtées"
+     ],
+     "legende": "Sous chaque maison, sa cave voûtée : 25 m² d’un côté, 30 m² de l’autre. Tu en ferais quoi, toi ? 🍷\n\nCommente COUCHEY et je t’envoie la visite complète en privé 📩\n\n#cavevoutee #maisonancienne #bourgogne #cotedor #biendecaractere",
+     "style": "autre"
+    },
+    {
+     "id": "v3",
+     "instagram": false,
+     "accroche": "Une maison pour toi,|l’autre en location ?",
+     "photos": [
+      1,
+      11,
+      13,
+      4,
+      16,
+      9
+     ],
+     "lignes": [
+      "2 maisons"
+     ],
+     "legende": "La seconde maison de 63 m² est totalement indépendante, parfaite pour de la location courte ou longue durée. Tu la gardes pour qui ? 🏡\n\nCommente COUCHEY et je t’envoie la visite complète en privé 📩\n\n#investissementlocatif #locationcourteduree #deuxmaisons #immobilierdijon #maisonavendre",
+     "style": "question"
+    },
+    {
+     "id": "v4",
+     "instagram": false,
+     "accroche": "Une chambre|avec son balcon privatif",
+     "photos": [
+      15,
+      5,
+      7,
+      3,
+      10,
+      9
+     ],
+     "lignes": [
+      "3 chambres"
+     ],
+     "legende": "En haut de la première maison, une grande chambre de près de 14 m² avec son balcon privatif, et une terrasse au premier étage ☀️\n\nCommente COUCHEY et je t’envoie la visite complète en privé 📩\n\n#balcon #terrasse #maisonrenovee #couchey #immobilierbourgogne",
+     "style": "autre"
+    }
+   ]
+  },
+  {
+   "ref": "461",
+   "src": "assets/biens/461/video.mp4",
+   "mot": "MARRAKECH",
+   "nom": "studio-marrakech",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": true,
+     "accroche": "19 m² rénovés|par un architecte",
+     "plans": [
+      [
+       3.0,
+       5.5,
+       1
+      ],
+      [
+       1.0,
+       3.0,
+       1,
+       "Sur mesure"
+      ],
+      [
+       8.0,
+       10.5,
+       1
+      ],
+      [
+       13.0,
+       15.5,
+       1
+      ],
+      [
+       0.0,
+       1.5,
+       1
+      ],
+      [
+       28.5,
+       31.5,
+       1
+      ]
+     ],
+     "legende": "Un studio inspiration Marrakech à 129 000 €, entièrement rénové, avec kitchenette et rangements sur mesure. Tu t’y vois ? 🧡\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#studiodijon #renovationarchitecte #inspirationmarrakech #immobilierdijon #surmesure",
+     "style": "autre"
+    },
+    {
+     "id": "v2",
+     "instagram": false,
+     "accroche": "Rendement saisonnier|annoncé : 23 %",
+     "plans": [
+      [
+       22.5,
+       25.5,
+       1
+      ],
+      [
+       28.5,
+       30.5,
+       1,
+       "23 %"
+      ],
+      [
+       13.0,
+       15.0,
+       1
+      ],
+      [
+       3.5,
+       5.5,
+       1
+      ],
+      [
+       9.0,
+       11.0,
+       1
+      ],
+      [
+       17.0,
+       20.0,
+       1
+      ]
+     ],
+     "legende": "L’annonce affiche un rendement locatif saisonnier de 23 % pour ce studio clé en main, syndic bénévole et faibles charges. Tu l’achètes pour louer ? 📈\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#investissementlocatif #rendementlocatif #studio #dijon #locationsaisonniere",
+     "style": "autre"
+    },
+    {
+     "id": "v3",
+     "instagram": false,
+     "accroche": "Un rétroprojecteur|dans 19 m²,|oui c’est possible",
+     "plans": [
+      [
+       8.0,
+       11.0,
+       1
+      ],
+      [
+       27.0,
+       28.5,
+       1
+      ],
+      [
+       11.0,
+       12.5,
+       1,
+       "Rétroprojecteur"
+      ],
+      [
+       19.5,
+       21.5,
+       1
+      ],
+      [
+       1.5,
+       3.0,
+       1
+      ],
+      [
+       4.5,
+       6.5,
+       1
+      ],
+      [
+       13.3,
+       16.0,
+       1
+      ]
+     ],
+     "legende": "Rétroprojecteur intégré, baignoire balnéothérapie, petit coin extérieur sur cour : tout tient dans 19,15 m² Carrez 🎬\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#retroprojecteur #balneo #petitesurface #studiodesign #dijoncentre",
+     "style": "detail_surprenant"
+    },
+    {
+     "id": "v4",
+     "instagram": false,
+     "accroche": "Parc Darcy à deux pas,|tu t’installes ?",
+     "plans": [
+      [
+       0.0,
+       2.0,
+       1
+      ],
+      [
+       24.0,
+       26.5,
+       1,
+       "Cour intérieure"
+      ],
+      [
+       3.0,
+       5.0,
+       1
+      ],
+      [
+       17.0,
+       19.0,
+       1
+      ],
+      [
+       29.5,
+       31.5,
+       1
+      ],
+      [
+       13.0,
+       14.5,
+       1
+      ],
+      [
+       5.5,
+       8.2,
+       1
+      ]
+     ],
+     "legende": "Au calme d’une cour intérieure, à l’abri des regards, et le centre-ville à pied. Premier achat ou pied-à-terre ? 🌿\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#parcdarcy #premierachat #piedaterre #immobilierdijon #courinterieure",
+     "style": "question"
+    }
+   ]
+  },
+  {
+   "ref": "438",
+   "src": "assets/biens/438/video.mp4",
+   "mot": "CHATEAU",
+   "nom": "chateau-beaune",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": true,
+     "accroche": "15 hectares,|un étang|et un colombier",
+     "plans": [
+      [
+       5.3,
+       7.1,
+       1
+      ],
+      [
+       3.3,
+       5.1,
+       1
+      ],
+      [
+       1.3,
+       3.1,
+       1,
+       "Un étang"
+      ],
+      [
+       8.3,
+       11.1,
+       1
+      ],
+      [
+       0.0,
+       1.15,
+       1
+      ],
+      [
+       13.25,
+       15.1,
+       1
+      ],
+      [
+       15.2,
+       19.1,
+       1
+      ]
+     ],
+     "legende": "Autour de ce château du XVIIIe, un domaine d’environ 15 hectares dont 10 de bois, un étang et un colombier. Tu commences par où ? 🌳\n\nCommente CHATEAU et je t’envoie la visite complète en privé 📩\n\n#chateauavendre #domaine #etang #bourgogne #immobilierdeprestige",
+     "style": "chiffre_choc"
+    },
+    {
+     "id": "v2",
+     "instagram": false,
+     "accroche": "Pousse la porte|de ce château du XVIIIe",
+     "plans": [
+      [
+       13.25,
+       15.1,
+       1
+      ],
+      [
+       15.2,
+       17.5,
+       1,
+       "Vestibule"
+      ],
+      [
+       17.5,
+       19.1,
+       1
+      ],
+      [
+       19.2,
+       20.1,
+       1
+      ],
+      [
+       22.2,
+       24.1,
+       1,
+       "Cuisine"
+      ],
+      [
+       24.2,
+       27.1,
+       1
+      ],
+      [
+       27.2,
+       30.0,
+       1
+      ]
+     ],
+     "legende": "Un vestibule d’entrée majestueux, des boiseries, des moulures et des cheminées d’époque : 1 600 000 € pour 520 m² à quinze minutes de Beaune 🏰\n\nCommente CHATEAU et je t’envoie la visite complète en privé 📩\n\n#chateau #patrimoine #demeuredecaractere #beaune #cotedor",
+     "style": "autre"
+    },
+    {
+     "id": "v3",
+     "instagram": false,
+     "accroche": "Sept chambres,|tu invites qui ?",
+     "plans": [
+      [
+       8.3,
+       11.1,
+       1
+      ],
+      [
+       27.2,
+       29.1,
+       1,
+       "7 chambres"
+      ],
+      [
+       15.2,
+       17.2,
+       1
+      ],
+      [
+       24.2,
+       26.1,
+       1
+      ],
+      [
+       0.0,
+       1.15,
+       1
+      ],
+      [
+       3.3,
+       5.1,
+       1
+      ],
+      [
+       5.3,
+       7.15,
+       0.7
+      ]
+     ],
+     "legende": "Sept chambres, trois salons de réception, une salle à manger et une maison d’amis d’environ 60 m². Dis-moi qui tu invites en premier 👇\n\nCommente CHATEAU et je t’envoie la visite complète en privé 📩\n\n#maisondefamille #chateaufrancais #receptions #saonetloire #grandemaison",
+     "style": "question"
+    },
+    {
+     "id": "v4",
+     "instagram": false,
+     "accroche": "Face à la Côte de Beaune,|un panorama rare",
+     "plans": [
+      [
+       0.0,
+       1.15,
+       1
+      ],
+      [
+       8.3,
+       11.1,
+       1,
+       "Vue dégagée"
+      ],
+      [
+       1.3,
+       3.1,
+       1
+      ],
+      [
+       19.2,
+       22.1,
+       1
+      ],
+      [
+       15.2,
+       17.2,
+       1
+      ],
+      [
+       11.25,
+       13.15,
+       1
+      ],
+      [
+       5.3,
+       7.15,
+       0.7
+      ]
+     ],
+     "legende": "La propriété domine la campagne bourguignonne avec une vue dégagée sur la Côte de Beaune, l’un des paysages viticoles les plus connus de Bourgogne 🍇\n\nCommente CHATEAU et je t’envoie la visite complète en privé 📩\n\n#cotedebeaune #vignoble #chateaudubourgogne #vuedegagee #proprietedexception",
+     "style": "autre"
+    }
+   ]
+  },
+  {
+   "ref": "483",
+   "src": "assets/biens/483/video.mp4",
+   "mot": "LOFT",
+   "nom": "loft",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": true,
+     "accroche": "Déjà loué|en courte durée|en plein Dijon",
+     "plans": [
+      [
+       12.3,
+       13.6,
+       1
+      ],
+      [
+       5.1,
+       7.8,
+       1
+      ],
+      [
+       18.45,
+       19.55,
+       1,
+       "Loft & spa"
+      ],
+      [
+       24.0,
+       26.1,
+       1
+      ],
+      [
+       2.05,
+       3.8,
+       1
+      ],
+      [
+       15.7,
+       17.5,
+       1
+      ],
+      [
+       31.95,
+       34.7,
+       1
+      ]
+     ],
+     "legende": "Ce loft de 42 m² est déjà exploité en location courte durée, avec un fort taux de remplissage. Décoration et équipements inclus, tu reprends dès le premier jour 🔑\n\nCommente LOFT et je t’envoie la visite complète en privé 📩\n\n#investissementlocatif #locationcourteduree #loftdijon #cleenmain #rentabilite",
+     "style": "business"
+    },
+    {
+     "id": "v2",
+     "instagram": false,
+     "accroche": "Un loft & spa|en plein cœur historique",
+     "plans": [
+      [
+       26.2,
+       27.9,
+       1
+      ],
+      [
+       19.6,
+       22.6,
+       1,
+       "Sauna"
+      ],
+      [
+       0.0,
+       1.95,
+       1
+      ],
+      [
+       15.7,
+       18.35,
+       1
+      ],
+      [
+       9.35,
+       10.45,
+       1
+      ],
+      [
+       22.75,
+       23.85,
+       1
+      ],
+      [
+       27.95,
+       29.65,
+       0.6
+      ]
+     ],
+     "legende": "Pierres apparentes, belle hauteur sous plafond, jacuzzi balnéo et sauna privatifs, à pied des restaurants et des monuments de Dijon 🧖\n\nCommente LOFT et je t’envoie la visite complète en privé 📩\n\n#loftandspa #dijonhistorique #jacuzzi #sauna #piedaterre",
+     "style": "lieu_exception"
+    },
+    {
+     "id": "v3",
+     "instagram": false,
+     "accroche": "Cette porte dorée|cache une salle d’eau",
+     "plans": [
+      [
+       29.7,
+       31.85,
+       1
+      ],
+      [
+       27.95,
+       29.65,
+       1,
+       "Marbre"
+      ],
+      [
+       3.85,
+       5.0,
+       1
+      ],
+      [
+       13.65,
+       15.65,
+       1
+      ],
+      [
+       7.85,
+       9.3,
+       1
+      ],
+      [
+       19.6,
+       21.6,
+       1
+      ],
+      [
+       31.95,
+       34.7,
+       1
+      ]
+     ],
+     "legende": "Salle d’eau en marbre avec douche à l’italienne, cuisine équipée design et coin nuit cosy : 178 500 € en plein centre de Dijon 🚿\n\nCommente LOFT et je t’envoie la visite complète en privé 📩\n\n#salledeau #marbre #doucheitalienne #immobilierdijon #loft",
+     "style": "revelation"
+    },
+    {
+     "id": "v4",
+     "instagram": false,
+     "accroche": "99 % ratent|la cheminée d’ambiance",
+     "plans": [
+      [
+       18.45,
+       19.55,
+       1
+      ],
+      [
+       5.1,
+       7.0,
+       1
+      ],
+      [
+       19.6,
+       21.6,
+       1,
+       "Sauna"
+      ],
+      [
+       2.05,
+       3.8,
+       1
+      ],
+      [
+       9.35,
+       10.45,
+       1
+      ],
+      [
+       24.0,
+       26.1,
+       1
+      ],
+      [
+       31.95,
+       34.7,
+       1
+      ]
+     ],
+     "legende": "Mets pause et cherche-la : entre le sauna et le jacuzzi, ce loft cache aussi une cheminée d’ambiance 🔥\n\nCommente LOFT et je t’envoie la visite complète en privé 📩\n\n#cheminee #ambiancecosy #loftdijon #defi #dijon",
+     "style": "defi_1pourcent"
+    }
+   ]
+  }
+ ]
+}
