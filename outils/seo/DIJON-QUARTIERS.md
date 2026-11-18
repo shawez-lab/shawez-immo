@@ -18,7 +18,7 @@ La page pilier `/estimation-immobiliere-dijon/` relie les pages des conseils de 
 
 `python3 outils/seo/dijon_quartiers.py`
 
-Cette commande est hors réseau et relançable. Elle produit les pages, le manifeste agrégé `donnees-dvf/quartiers-dijon.json`, les liens de la page pilier, de l’accueil, des sept articles concernés et des fiches indexables de Dijon, le plan du site et les entrées du sitemap. Une ancienne page générée sans ventes est retirée. Les vidéos et leurs scripts ne sont pas modifiés.
+Cette commande est hors réseau et relançable. Elle produit les pages, le manifeste agrégé `donnees-dvf/quartiers-dijon.json`, les liens de la page pilier, de l’accueil, des dix articles concernés et des fiches indexables de Dijon, le plan du site et les entrées du sitemap. Une ancienne page générée sans ventes est retirée. Les vidéos et leurs scripts ne sont pas modifiés.
 
 Le constructeur des fiches garde le même lien lors des synchronisations suivantes. La construction générale régénère les quartiers avant le plan du site ; le mode `--chat-only` garde son périmètre initial. Le workflow mensuel DVF régénère aussi les pages avant son commit. Les modifications de quartier sont testées dans une PR ; le rafraîchissement réseau DVF est limité à main.
 
@@ -31,3 +31,13 @@ IndexNow détecte déjà les nouvelles pages HTML et leurs modifications sur mai
 Contrôles de géométrie, médianes et échantillons, cohérence des sources, partition des ventes, confidentialité, canonicals, JSON-LD, maillage, sitemap et IndexNow, absence de page sans données, régénération identique et conservation des vidéos. Le workflow `Dijon quartiers DVF et indexation` les exécute.
 
 Le point de départ Search Console communiqué pour 28 jours est 0 clic / 163 affichages / position moyenne 44,8 pour les requêtes contenant Dijon, et 57,9 pour « estimation immobilière dijon ». Après publication et exploration des nouvelles URL, comparer à nouveau les mêmes filtres sur 28 jours. La cible est le top 10 ; une publication ou une notification d’URL ne garantit pas un classement.
+
+## Corrections Search du 18 novembre 2026
+
+`search_prix.py` partage le calcul communal avec le pilier et les FAQ. `search_quartiers.py` porte les textes propres aux quartiers et les liens vers les huit guides existants ; les quatre dossiers repris de la page Secteurs gardent leur statut d’origine. Fontaine d’Ouche n’a pas de guide dans le dépôt : son analyse reste limitée au jeu DVF.
+
+`prix_communes.py --tout --existantes` reconstruit les 76 pages de communes hors Dijon avec le même niveau de détail. Les 19 communes de la zone Google (Dijon compris) sont explicites dans `search_local.py` ; les 58 autres pages indiquent un travail depuis Dijon sans promesse de visite sur place. La construction générale relance aussi ces pages. `gen_pages.py` délègue les anciennes spécifications de pages prix à ce constructeur, pour éviter leur retour en version courte.
+
+Les voisins viennent de segments de frontière communs dans les contours de l’API officielle Découpage administratif. `communes-voisines.json` conserve source, date, méthode et empreinte de la réponse du 18 novembre ; seuls les voisins ayant une page reçoivent un lien. Aucune distance entre centres ni position dans une liste ne détermine la proximité.
+
+Pour Neuilly-Crimolois, `neuilly-crimolois.geojson` conserve le contour officiel actuel (code 21452). Les 70 points DVF disponibles sous l’ancien libellé se trouvent dans ce contour ; les points de tout le jeu sont testés dans son emprise pour ne pas écarter une vente qui porterait un autre libellé. Aucune vente supplémentaire n’a été trouvée dans le contour au relevé. L’ancien chemin reste une redirection 301 vers la page au nom actuel ; ni le volume ni les prix ne sont inventés pour Crimolois.

@@ -1,0 +1,5329 @@
+{
+  "source": "https://geo.api.gouv.fr/communes?codeDepartement=21&fields=nom,code&format=geojson&geometry=contour",
+  "collecte_le": "2026-11-18",
+  "sha256_reponse_source": "daffcbf437b9841135791ce8d53f8b915efeb5d13de04af0024f72b28d5fc2ac",
+  "methode": "Communes partageant au moins un segment de frontière dans les contours officiels, pas seulement un sommet ; aucune proximité de centre utilisée.",
+  "communes": {
+    "Agencourt": [
+      "Boncourt-le-Bois",
+      "Gerland",
+      "Nuits-Saint-Georges",
+      "Quincey"
+    ],
+    "Gerland": [
+      "Agencourt",
+      "Argilly",
+      "Boncourt-le-Bois",
+      "Broin",
+      "Quincey",
+      "Saint-Nicolas-lès-Cîteaux"
+    ],
+    "Quincey": [
+      "Agencourt",
+      "Argilly",
+      "Gerland",
+      "Nuits-Saint-Georges",
+      "Premeaux-Prissey"
+    ],
+    "Nuits-Saint-Georges": [
+      "Agencourt",
+      "Boncourt-le-Bois",
+      "Chambolle-Musigny",
+      "Chaux",
+      "Curtil-Vergy",
+      "Flagey-Echézeaux",
+      "Premeaux-Prissey",
+      "Quincey",
+      "Reulle-Vergy",
+      "Segrois",
+      "Villars-Fontaine",
+      "Vosne-Romanée"
+    ],
+    "Boncourt-le-Bois": [
+      "Agencourt",
+      "Flagey-Echézeaux",
+      "Gerland",
+      "Nuits-Saint-Georges",
+      "Villebichot",
+      "Vosne-Romanée"
+    ],
+    "Agey": [
+      "Gissey-sur-Ouche",
+      "Mesmont",
+      "Prâlon",
+      "Remilly-en-Montagne",
+      "Sainte-Marie-sur-Ouche"
+    ],
+    "Prâlon": [
+      "Agey",
+      "Mesmont",
+      "Mâlain",
+      "Sainte-Marie-sur-Ouche",
+      "Savigny-sous-Mâlain"
+    ],
+    "Sainte-Marie-sur-Ouche": [
+      "Agey",
+      "Arcey",
+      "Fleurey-sur-Ouche",
+      "Gissey-sur-Ouche",
+      "Mâlain",
+      "Prâlon"
+    ],
+    "Gissey-sur-Ouche": [
+      "Agey",
+      "Arcey",
+      "Barbirey-sur-Ouche",
+      "Gergueil",
+      "Saint-Victor-sur-Ouche",
+      "Sainte-Marie-sur-Ouche"
+    ],
+    "Remilly-en-Montagne": [
+      "Agey",
+      "Barbirey-sur-Ouche",
+      "Grenant-lès-Sombernon",
+      "Mesmont",
+      "Sombernon",
+      "Échannay"
+    ],
+    "Mesmont": [
+      "Agey",
+      "Prâlon",
+      "Remilly-en-Montagne",
+      "Savigny-sous-Mâlain",
+      "Sombernon"
+    ],
+    "Ahuy": [
+      "Asnières-lès-Dijon",
+      "Daix",
+      "Dijon",
+      "Fontaine-lès-Dijon",
+      "Hauteville-lès-Dijon",
+      "Messigny-et-Vantoux"
+    ],
+    "Daix": [
+      "Ahuy",
+      "Darois",
+      "Fontaine-lès-Dijon",
+      "Hauteville-lès-Dijon",
+      "Plombières-lès-Dijon",
+      "Prenois",
+      "Talant"
+    ],
+    "Hauteville-lès-Dijon": [
+      "Ahuy",
+      "Daix",
+      "Darois",
+      "Messigny-et-Vantoux",
+      "Étaules"
+    ],
+    "Messigny-et-Vantoux": [
+      "Ahuy",
+      "Asnières-lès-Dijon",
+      "Hauteville-lès-Dijon",
+      "Norges-la-Ville",
+      "Saussy",
+      "Savigny-le-Sec",
+      "Val-Suzon",
+      "Étaules"
+    ],
+    "Asnières-lès-Dijon": [
+      "Ahuy",
+      "Bellefond",
+      "Dijon",
+      "Messigny-et-Vantoux",
+      "Norges-la-Ville"
+    ],
+    "Dijon": [
+      "Ahuy",
+      "Asnières-lès-Dijon",
+      "Bellefond",
+      "Chenôve",
+      "Chevigny-Saint-Sauveur",
+      "Corcelles-les-Monts",
+      "Fontaine-lès-Dijon",
+      "Longvic",
+      "Plombières-lès-Dijon",
+      "Quetigny",
+      "Ruffey-lès-Echirey",
+      "Saint-Apollinaire",
+      "Sennecey-lès-Dijon",
+      "Talant"
+    ],
+    "Fontaine-lès-Dijon": [
+      "Ahuy",
+      "Daix",
+      "Dijon",
+      "Talant"
+    ],
+    "Quemigny-sur-Seine": [
+      "Aignay-le-Duc",
+      "Ampilly-les-Bordes",
+      "Baigneux-les-Juifs",
+      "Beaunotte",
+      "Bellenod-sur-Seine",
+      "Duesme",
+      "Magny-Lambert",
+      "Meulson"
+    ],
+    "Aignay-le-Duc": [
+      "Beaunotte",
+      "Duesme",
+      "Mauvilly",
+      "Moitron",
+      "Montmoyen",
+      "Quemigny-sur-Seine",
+      "Étalante"
+    ],
+    "Beaunotte": [
+      "Aignay-le-Duc",
+      "Mauvilly",
+      "Meulson",
+      "Quemigny-sur-Seine"
+    ],
+    "Mauvilly": [
+      "Aignay-le-Duc",
+      "Beaulieu",
+      "Beaunotte",
+      "Bellenod-sur-Seine",
+      "Busseaut",
+      "Meulson",
+      "Montmoyen",
+      "Rochefort-sur-Brévon"
+    ],
+    "Montmoyen": [
+      "Aignay-le-Duc",
+      "Beaulieu",
+      "Essarois",
+      "Mauvilly",
+      "Moitron",
+      "Recey-sur-Ource",
+      "Saint-Broing-les-Moines",
+      "Terrefondrée"
+    ],
+    "Moitron": [
+      "Aignay-le-Duc",
+      "Minot",
+      "Montmoyen",
+      "Saint-Broing-les-Moines",
+      "Étalante"
+    ],
+    "Étalante": [
+      "Aignay-le-Duc",
+      "Duesme",
+      "Minot",
+      "Moitron",
+      "Oigny",
+      "Orret",
+      "Poiseul-la-Grange",
+      "Échalot"
+    ],
+    "Duesme": [
+      "Aignay-le-Duc",
+      "Baigneux-les-Juifs",
+      "Orret",
+      "Quemigny-sur-Seine",
+      "Étalante"
+    ],
+    "Brazey-en-Plaine": [
+      "Aiserey",
+      "Aubigny-en-Plaine",
+      "Bessey-lès-Cîteaux",
+      "Esbarres",
+      "Magny-lès-Aubigny",
+      "Montot",
+      "Saint-Usage",
+      "Tart",
+      "Échigey"
+    ],
+    "Aiserey": [
+      "Bessey-lès-Cîteaux",
+      "Brazey-en-Plaine",
+      "Izeure",
+      "Longecourt-en-Plaine",
+      "Échigey"
+    ],
+    "Bessey-lès-Cîteaux": [
+      "Aiserey",
+      "Aubigny-en-Plaine",
+      "Brazey-en-Plaine",
+      "Izeure",
+      "Saint-Nicolas-lès-Cîteaux"
+    ],
+    "Izeure": [
+      "Aiserey",
+      "Bessey-lès-Cîteaux",
+      "Corcelles-lès-Cîteaux",
+      "Longecourt-en-Plaine",
+      "Noiron-sous-Gevrey",
+      "Saint-Nicolas-lès-Cîteaux",
+      "Saulon-la-Chapelle"
+    ],
+    "Longecourt-en-Plaine": [
+      "Aiserey",
+      "Izeure",
+      "Marliens",
+      "Saulon-la-Chapelle",
+      "Tart",
+      "Thorey-en-Plaine",
+      "Échigey"
+    ],
+    "Échigey": [
+      "Aiserey",
+      "Brazey-en-Plaine",
+      "Longecourt-en-Plaine",
+      "Tart"
+    ],
+    "Aisey-sur-Seine": [
+      "Brémur-et-Vaurois",
+      "Busseaut",
+      "Chamesson",
+      "Chemin-d'Aisey",
+      "Coulmier-le-Sec",
+      "Nod-sur-Seine"
+    ],
+    "Brémur-et-Vaurois": [
+      "Aisey-sur-Seine",
+      "Busseaut",
+      "Chemin-d'Aisey",
+      "Origny",
+      "Saint-Marc-sur-Seine",
+      "Semond"
+    ],
+    "Chemin-d'Aisey": [
+      "Aisey-sur-Seine",
+      "Brémur-et-Vaurois",
+      "Coulmier-le-Sec",
+      "Semond",
+      "Villaines-en-Duesmois"
+    ],
+    "Coulmier-le-Sec": [
+      "Aisey-sur-Seine",
+      "Ampilly-le-Sec",
+      "Chamesson",
+      "Chemin-d'Aisey",
+      "Nesle-et-Massoult",
+      "Puits",
+      "Villaines-en-Duesmois"
+    ],
+    "Chamesson": [
+      "Aisey-sur-Seine",
+      "Ampilly-le-Sec",
+      "Buncey",
+      "Coulmier-le-Sec",
+      "Nod-sur-Seine"
+    ],
+    "Nod-sur-Seine": [
+      "Aisey-sur-Seine",
+      "Buncey",
+      "Busseaut",
+      "Chamesson",
+      "Saint-Germain-le-Rocheux",
+      "Villiers-le-Duc"
+    ],
+    "Busseaut": [
+      "Aisey-sur-Seine",
+      "Bellenod-sur-Seine",
+      "Brémur-et-Vaurois",
+      "Mauvilly",
+      "Nod-sur-Seine",
+      "Origny",
+      "Rochefort-sur-Brévon",
+      "Saint-Germain-le-Rocheux"
+    ],
+    "Aisy-sous-Thil": [
+      "Dompierre-en-Morvan",
+      "Juillenay",
+      "Lacour-d'Arcenay",
+      "Le Val-Larrey",
+      "Montigny-Saint-Barthélemy",
+      "Précy-sous-Thil",
+      "Vic-sous-Thil"
+    ],
+    "Juillenay": [
+      "Aisy-sous-Thil",
+      "Lacour-d'Arcenay",
+      "Montlay-en-Auxois",
+      "Vic-sous-Thil"
+    ],
+    "Lacour-d'Arcenay": [
+      "Aisy-sous-Thil",
+      "Dompierre-en-Morvan",
+      "Juillenay",
+      "La Roche-en-Brenil",
+      "Molphey",
+      "Montlay-en-Auxois"
+    ],
+    "Dompierre-en-Morvan": [
+      "Aisy-sous-Thil",
+      "La Roche-en-Brenil",
+      "Lacour-d'Arcenay",
+      "Montigny-Saint-Barthélemy",
+      "Thoste"
+    ],
+    "Montigny-Saint-Barthélemy": [
+      "Aisy-sous-Thil",
+      "Courcelles-lès-Semur",
+      "Dompierre-en-Morvan",
+      "Le Val-Larrey",
+      "Thoste"
+    ],
+    "Le Val-Larrey": [
+      "Aisy-sous-Thil",
+      "Brianny",
+      "Courcelles-lès-Semur",
+      "Montigny-Saint-Barthélemy",
+      "Montigny-sur-Armançon",
+      "Pont-et-Massène",
+      "Précy-sous-Thil",
+      "Roilly",
+      "Semur-en-Auxois"
+    ],
+    "Précy-sous-Thil": [
+      "Aisy-sous-Thil",
+      "Le Val-Larrey",
+      "Nan-sous-Thil",
+      "Roilly",
+      "Vic-sous-Thil"
+    ],
+    "Vic-sous-Thil": [
+      "Aisy-sous-Thil",
+      "Fontangy",
+      "Juillenay",
+      "La Motte-Ternant",
+      "Montlay-en-Auxois",
+      "Nan-sous-Thil",
+      "Précy-sous-Thil"
+    ],
+    "Alise-Sainte-Reine": [
+      "Flavigny-sur-Ozerain",
+      "Grésigny-Sainte-Reine",
+      "Mussy-la-Fosse",
+      "Venarey-les-Laumes"
+    ],
+    "Flavigny-sur-Ozerain": [
+      "Alise-Sainte-Reine",
+      "Darcey",
+      "Gissey-sous-Flavigny",
+      "Grésigny-Sainte-Reine",
+      "Hauteroche",
+      "La Roche-Vanneau",
+      "Marigny-le-Cahouët",
+      "Mussy-la-Fosse",
+      "Pouillenay"
+    ],
+    "Mussy-la-Fosse": [
+      "Alise-Sainte-Reine",
+      "Flavigny-sur-Ozerain",
+      "Massingy-lès-Semur",
+      "Pouillenay",
+      "Venarey-les-Laumes"
+    ],
+    "Venarey-les-Laumes": [
+      "Alise-Sainte-Reine",
+      "Grignon",
+      "Grésigny-Sainte-Reine",
+      "Massingy-lès-Semur",
+      "Mussy-la-Fosse",
+      "Ménétreux-le-Pitois"
+    ],
+    "Grésigny-Sainte-Reine": [
+      "Alise-Sainte-Reine",
+      "Bussy-le-Grand",
+      "Darcey",
+      "Flavigny-sur-Ozerain",
+      "Ménétreux-le-Pitois",
+      "Venarey-les-Laumes"
+    ],
+    "Allerey": [
+      "Arconcey",
+      "Beurey-Bauguay",
+      "Clomot",
+      "Diancey",
+      "Jouey",
+      "Marcheseuil",
+      "Sussey"
+    ],
+    "Arconcey": [
+      "Allerey",
+      "Beurey-Bauguay",
+      "Chailly-sur-Armançon",
+      "Châtellenot",
+      "Clomot"
+    ],
+    "Clomot": [
+      "Allerey",
+      "Arconcey",
+      "Châtellenot",
+      "Essey",
+      "Jouey",
+      "Le Fête",
+      "Mimeure"
+    ],
+    "Jouey": [
+      "Allerey",
+      "Arnay-le-Duc",
+      "Clomot",
+      "Magnien",
+      "Marcheseuil",
+      "Mimeure"
+    ],
+    "Marcheseuil": [
+      "Allerey",
+      "Bard-le-Régulier",
+      "Diancey",
+      "Jouey",
+      "Magnien",
+      "Manlay",
+      "Vianges",
+      "Voudenay"
+    ],
+    "Diancey": [
+      "Allerey",
+      "Censerey",
+      "Marcheseuil",
+      "Sussey",
+      "Vianges"
+    ],
+    "Sussey": [
+      "Allerey",
+      "Beurey-Bauguay",
+      "Censerey",
+      "Diancey",
+      "Liernais",
+      "Marcilly-Ogny",
+      "Thoisy-la-Berchère"
+    ],
+    "Beurey-Bauguay": [
+      "Allerey",
+      "Arconcey",
+      "Chailly-sur-Armançon",
+      "Marcilly-Ogny",
+      "Sussey"
+    ],
+    "Aloxe-Corton": [
+      "Chorey-les-Beaune",
+      "Ladoix-Serrigny",
+      "Pernand-Vergelesses",
+      "Savigny-lès-Beaune"
+    ],
+    "Savigny-lès-Beaune": [
+      "Aloxe-Corton",
+      "Beaune",
+      "Bessey-en-Chaume",
+      "Bouilland",
+      "Bouze-lès-Beaune",
+      "Chorey-les-Beaune",
+      "Pernand-Vergelesses",
+      "Échevronne"
+    ],
+    "Pernand-Vergelesses": [
+      "Aloxe-Corton",
+      "Ladoix-Serrigny",
+      "Magny-lès-Villers",
+      "Savigny-lès-Beaune",
+      "Échevronne"
+    ],
+    "Ladoix-Serrigny": [
+      "Aloxe-Corton",
+      "Chorey-les-Beaune",
+      "Corgoloin",
+      "Magny-lès-Villers",
+      "Pernand-Vergelesses",
+      "Ruffey-lès-Beaune",
+      "Villy-le-Moutier"
+    ],
+    "Chorey-les-Beaune": [
+      "Aloxe-Corton",
+      "Beaune",
+      "Ladoix-Serrigny",
+      "Savigny-lès-Beaune",
+      "Vignoles"
+    ],
+    "Ampilly-les-Bordes": [
+      "Baigneux-les-Juifs",
+      "Jours-lès-Baigneux",
+      "Magny-Lambert",
+      "Quemigny-sur-Seine"
+    ],
+    "Baigneux-les-Juifs": [
+      "Ampilly-les-Bordes",
+      "Duesme",
+      "Jours-lès-Baigneux",
+      "La Villeneuve-les-Convers",
+      "Orret",
+      "Poiseul-la-Ville-et-Laperrière",
+      "Quemigny-sur-Seine",
+      "Étormay"
+    ],
+    "Jours-lès-Baigneux": [
+      "Ampilly-les-Bordes",
+      "Baigneux-les-Juifs",
+      "Chaume-lès-Baigneux",
+      "Magny-Lambert",
+      "Étormay"
+    ],
+    "Magny-Lambert": [
+      "Ampilly-les-Bordes",
+      "Bellenod-sur-Seine",
+      "Chaume-lès-Baigneux",
+      "Fontaines-en-Duesmois",
+      "Jours-lès-Baigneux",
+      "Quemigny-sur-Seine",
+      "Saint-Marc-sur-Seine",
+      "Semond",
+      "Villaines-en-Duesmois"
+    ],
+    "Ampilly-le-Sec": [
+      "Balot",
+      "Buncey",
+      "Chamesson",
+      "Châtillon-sur-Seine",
+      "Coulmier-le-Sec",
+      "Cérilly",
+      "Nesle-et-Massoult",
+      "Sainte-Colombe-sur-Seine"
+    ],
+    "Châtillon-sur-Seine": [
+      "Ampilly-le-Sec",
+      "Buncey",
+      "Maisey-le-Duc",
+      "Massingy",
+      "Montliot-et-Courcelles",
+      "Prusly-sur-Ource",
+      "Sainte-Colombe-sur-Seine",
+      "Villiers-le-Duc"
+    ],
+    "Buncey": [
+      "Ampilly-le-Sec",
+      "Chamesson",
+      "Châtillon-sur-Seine",
+      "Nod-sur-Seine",
+      "Villiers-le-Duc"
+    ],
+    "Nesle-et-Massoult": [
+      "Ampilly-le-Sec",
+      "Balot",
+      "Coulmier-le-Sec",
+      "Fontaines-les-Sèches",
+      "Laignes",
+      "Puits",
+      "Savoisy"
+    ],
+    "Balot": [
+      "Ampilly-le-Sec",
+      "Bissey-la-Pierre",
+      "Cérilly",
+      "Laignes",
+      "Nesle-et-Massoult",
+      "Poinçon-lès-Larrey"
+    ],
+    "Cérilly": [
+      "Ampilly-le-Sec",
+      "Balot",
+      "Bouix",
+      "Poinçon-lès-Larrey",
+      "Sainte-Colombe-sur-Seine",
+      "Étrochey"
+    ],
+    "Sainte-Colombe-sur-Seine": [
+      "Ampilly-le-Sec",
+      "Châtillon-sur-Seine",
+      "Cérilly",
+      "Montliot-et-Courcelles",
+      "Étrochey"
+    ],
+    "Ancey": [
+      "Baulme-la-Roche",
+      "Fleurey-sur-Ouche",
+      "Lantenay",
+      "Mâlain",
+      "Panges",
+      "Pasques"
+    ],
+    "Panges": [
+      "Ancey",
+      "Baulme-la-Roche",
+      "Blaisy-Haut",
+      "Pasques",
+      "Saint-Martin-du-Mont",
+      "Trouhaut"
+    ],
+    "Pasques": [
+      "Ancey",
+      "Lantenay",
+      "Panges",
+      "Prenois",
+      "Saint-Martin-du-Mont",
+      "Val-Suzon"
+    ],
+    "Lantenay": [
+      "Ancey",
+      "Fleurey-sur-Ouche",
+      "Pasques",
+      "Plombières-lès-Dijon",
+      "Prenois",
+      "Velars-sur-Ouche"
+    ],
+    "Fleurey-sur-Ouche": [
+      "Ancey",
+      "Arcey",
+      "Flavignerot",
+      "Lantenay",
+      "Mâlain",
+      "Sainte-Marie-sur-Ouche",
+      "Urcy",
+      "Valforêt",
+      "Velars-sur-Ouche"
+    ],
+    "Mâlain": [
+      "Ancey",
+      "Baulme-la-Roche",
+      "Fleurey-sur-Ouche",
+      "Prâlon",
+      "Sainte-Marie-sur-Ouche",
+      "Savigny-sous-Mâlain"
+    ],
+    "Baulme-la-Roche": [
+      "Ancey",
+      "Blaisy-Haut",
+      "Mâlain",
+      "Panges",
+      "Savigny-sous-Mâlain"
+    ],
+    "Saint-Jean-de-Bœuf": [
+      "Antheuil",
+      "Détain-et-Bruant",
+      "Gergueil",
+      "La Bussière-sur-Ouche",
+      "Saint-Victor-sur-Ouche",
+      "Ternant"
+    ],
+    "Antheuil": [
+      "Aubaine",
+      "Bouilland",
+      "Détain-et-Bruant",
+      "Saint-Jean-de-Bœuf",
+      "Veuvey-sur-Ouche"
+    ],
+    "Détain-et-Bruant": [
+      "Antheuil",
+      "Arcenant",
+      "Bouilland",
+      "Bévy",
+      "Chevannes",
+      "Collonges-lès-Bévy",
+      "Fussey",
+      "Saint-Jean-de-Bœuf",
+      "Ternant"
+    ],
+    "Bouilland": [
+      "Antheuil",
+      "Aubaine",
+      "Bessey-en-Chaume",
+      "Détain-et-Bruant",
+      "Fussey",
+      "Savigny-lès-Beaune",
+      "Échevronne"
+    ],
+    "Aubaine": [
+      "Antheuil",
+      "Bessey-en-Chaume",
+      "Bligny-sur-Ouche",
+      "Bouilland",
+      "Crugey",
+      "Thorey-sur-Ouche",
+      "Veuvey-sur-Ouche"
+    ],
+    "Veuvey-sur-Ouche": [
+      "Antheuil",
+      "Aubaine",
+      "Bouhey",
+      "Crugey",
+      "La Bussière-sur-Ouche"
+    ],
+    "Antigny-la-Ville": [
+      "Foissy",
+      "Lacanche",
+      "Thomirey"
+    ],
+    "Foissy": [
+      "Antigny-la-Ville",
+      "Arnay-le-Duc",
+      "Culètre",
+      "Lacanche",
+      "Longecourt-lès-Culêtre",
+      "Maligny",
+      "Mimeure",
+      "Musigny",
+      "Saint-Prix-lès-Arnay",
+      "Thomirey",
+      "Veilly"
+    ],
+    "Thomirey": [
+      "Antigny-la-Ville",
+      "Bessey-la-Cour",
+      "Champignolles",
+      "Foissy",
+      "Lacanche",
+      "Saussey",
+      "Veilly",
+      "Écutigny"
+    ],
+    "Lacanche": [
+      "Antigny-la-Ville",
+      "Champignolles",
+      "Foissy",
+      "Maligny",
+      "Saint-Pierre-en-Vaux",
+      "Thomirey"
+    ],
+    "Arceau": [
+      "Arc-sur-Tille",
+      "Beire-le-Châtel",
+      "Belleneuve",
+      "Brognon",
+      "Magny-Saint-Médard",
+      "Orgeux",
+      "Saint-Julien"
+    ],
+    "Arc-sur-Tille": [
+      "Arceau",
+      "Belleneuve",
+      "Binges",
+      "Bressey-sur-Tille",
+      "Couternon",
+      "Orgeux",
+      "Remilly-sur-Tille"
+    ],
+    "Orgeux": [
+      "Arc-sur-Tille",
+      "Arceau",
+      "Couternon",
+      "Saint-Julien",
+      "Varois-et-Chaignot"
+    ],
+    "Saint-Julien": [
+      "Arceau",
+      "Bretigny",
+      "Brognon",
+      "Clénay",
+      "Flacey",
+      "Orgeux",
+      "Spoy",
+      "Varois-et-Chaignot"
+    ],
+    "Brognon": [
+      "Arceau",
+      "Beire-le-Châtel",
+      "Saint-Julien",
+      "Spoy"
+    ],
+    "Beire-le-Châtel": [
+      "Arceau",
+      "Brognon",
+      "Bèze",
+      "Lux",
+      "Magny-Saint-Médard",
+      "Spoy",
+      "Tanay",
+      "Viévigne"
+    ],
+    "Magny-Saint-Médard": [
+      "Arceau",
+      "Beire-le-Châtel",
+      "Belleneuve",
+      "Mirebeau-sur-Bèze",
+      "Savolles",
+      "Tanay"
+    ],
+    "Belleneuve": [
+      "Arc-sur-Tille",
+      "Arceau",
+      "Binges",
+      "Cuiserey",
+      "Magny-Saint-Médard",
+      "Mirebeau-sur-Bèze",
+      "Savolles",
+      "Trochères"
+    ],
+    "Arcenant": [
+      "Chevannes",
+      "Détain-et-Bruant",
+      "Fussey",
+      "Marey-lès-Fussey",
+      "Meuilley"
+    ],
+    "Fussey": [
+      "Arcenant",
+      "Bouilland",
+      "Détain-et-Bruant",
+      "Marey-lès-Fussey",
+      "Échevronne"
+    ],
+    "Chevannes": [
+      "Arcenant",
+      "Collonges-lès-Bévy",
+      "Détain-et-Bruant",
+      "Messanges",
+      "Meuilley"
+    ],
+    "Meuilley": [
+      "Arcenant",
+      "Chaux",
+      "Chevannes",
+      "Marey-lès-Fussey",
+      "Messanges",
+      "Segrois",
+      "Villars-Fontaine",
+      "Villers-la-Faye"
+    ],
+    "Marey-lès-Fussey": [
+      "Arcenant",
+      "Fussey",
+      "Meuilley",
+      "Villers-la-Faye",
+      "Échevronne"
+    ],
+    "Arcey": [
+      "Fleurey-sur-Ouche",
+      "Gergueil",
+      "Gissey-sur-Ouche",
+      "Sainte-Marie-sur-Ouche",
+      "Urcy"
+    ],
+    "Urcy": [
+      "Arcey",
+      "Fleurey-sur-Ouche",
+      "Gergueil",
+      "Valforêt"
+    ],
+    "Gergueil": [
+      "Arcey",
+      "Gissey-sur-Ouche",
+      "Saint-Jean-de-Bœuf",
+      "Saint-Victor-sur-Ouche",
+      "Semezanges",
+      "Ternant",
+      "Urcy",
+      "Valforêt"
+    ],
+    "Chailly-sur-Armançon": [
+      "Arconcey",
+      "Bellenot-sous-Pouilly",
+      "Beurey-Bauguay",
+      "Blancey",
+      "Châtellenot",
+      "Marcilly-Ogny",
+      "Mont-Saint-Jean",
+      "Thoisy-le-Désert",
+      "Éguilly"
+    ],
+    "Châtellenot": [
+      "Arconcey",
+      "Chailly-sur-Armançon",
+      "Clomot",
+      "Essey",
+      "Thoisy-le-Désert"
+    ],
+    "Binges": [
+      "Arc-sur-Tille",
+      "Belleneuve",
+      "Cirey-lès-Pontailler",
+      "Remilly-sur-Tille",
+      "Tellecey",
+      "Trochères",
+      "Étevaux"
+    ],
+    "Remilly-sur-Tille": [
+      "Arc-sur-Tille",
+      "Binges",
+      "Bressey-sur-Tille",
+      "Cessey-sur-Tille",
+      "Chambeire",
+      "Tellecey"
+    ],
+    "Bressey-sur-Tille": [
+      "Arc-sur-Tille",
+      "Cessey-sur-Tille",
+      "Chevigny-Saint-Sauveur",
+      "Couternon",
+      "Izier",
+      "Magny-sur-Tille",
+      "Remilly-sur-Tille"
+    ],
+    "Couternon": [
+      "Arc-sur-Tille",
+      "Bressey-sur-Tille",
+      "Chevigny-Saint-Sauveur",
+      "Orgeux",
+      "Quetigny",
+      "Varois-et-Chaignot"
+    ],
+    "Argilly": [
+      "Auvillars-sur-Saône",
+      "Bagnot",
+      "Broin",
+      "Corgoloin",
+      "Gerland",
+      "Montmain",
+      "Premeaux-Prissey",
+      "Quincey",
+      "Villy-le-Moutier"
+    ],
+    "Auvillars-sur-Saône": [
+      "Argilly",
+      "Bagnot",
+      "Broin",
+      "Glanon",
+      "Lechâtelet"
+    ],
+    "Bagnot": [
+      "Argilly",
+      "Auvillars-sur-Saône",
+      "Glanon",
+      "Labergement-lès-Seurre",
+      "Montmain",
+      "Pouilly-sur-Saône"
+    ],
+    "Montmain": [
+      "Argilly",
+      "Bagnot",
+      "Corberon",
+      "Labergement-lès-Seurre",
+      "Villy-le-Moutier"
+    ],
+    "Villy-le-Moutier": [
+      "Argilly",
+      "Corberon",
+      "Corgoloin",
+      "Ladoix-Serrigny",
+      "Marigny-lès-Reullée",
+      "Montmain",
+      "Ruffey-lès-Beaune"
+    ],
+    "Corgoloin": [
+      "Argilly",
+      "Comblanchien",
+      "Ladoix-Serrigny",
+      "Magny-lès-Villers",
+      "Premeaux-Prissey",
+      "Villers-la-Faye",
+      "Villy-le-Moutier"
+    ],
+    "Premeaux-Prissey": [
+      "Argilly",
+      "Chaux",
+      "Comblanchien",
+      "Corgoloin",
+      "Nuits-Saint-Georges",
+      "Quincey"
+    ],
+    "Broin": [
+      "Argilly",
+      "Auvillars-sur-Saône",
+      "Bonnencontre",
+      "Gerland",
+      "Lechâtelet",
+      "Saint-Nicolas-lès-Cîteaux"
+    ],
+    "Arnay-le-Duc": [
+      "Foissy",
+      "Jouey",
+      "Magnien",
+      "Mimeure",
+      "Saint-Prix-lès-Arnay"
+    ],
+    "Mimeure": [
+      "Arnay-le-Duc",
+      "Clomot",
+      "Foissy",
+      "Jouey",
+      "Le Fête",
+      "Musigny"
+    ],
+    "Saint-Prix-lès-Arnay": [
+      "Arnay-le-Duc",
+      "Foissy",
+      "Magnien",
+      "Maligny"
+    ],
+    "Magnien": [
+      "Arnay-le-Duc",
+      "Jouey",
+      "Maligny",
+      "Marcheseuil",
+      "Saint-Prix-lès-Arnay",
+      "Viévy",
+      "Voudenay"
+    ],
+    "Arnay-sous-Vitteaux": [
+      "Brain",
+      "Dampierre-en-Montagne",
+      "Marcilly-et-Dracy",
+      "Marigny-le-Cahouët",
+      "Posanges",
+      "Sainte-Colombe-en-Auxois",
+      "Velogny",
+      "Villeferry"
+    ],
+    "Posanges": [
+      "Arnay-sous-Vitteaux",
+      "Dampierre-en-Montagne",
+      "Marcilly-et-Dracy",
+      "Vitteaux"
+    ],
+    "Marcilly-et-Dracy": [
+      "Arnay-sous-Vitteaux",
+      "Posanges",
+      "Saint-Thibault",
+      "Velogny",
+      "Vitteaux"
+    ],
+    "Velogny": [
+      "Arnay-sous-Vitteaux",
+      "Clamerey",
+      "Marcilly-et-Dracy",
+      "Saint-Thibault",
+      "Sainte-Colombe-en-Auxois"
+    ],
+    "Sainte-Colombe-en-Auxois": [
+      "Arnay-sous-Vitteaux",
+      "Braux",
+      "Clamerey",
+      "Marigny-le-Cahouët",
+      "Velogny"
+    ],
+    "Marigny-le-Cahouët": [
+      "Arnay-sous-Vitteaux",
+      "Brain",
+      "Braux",
+      "Charigny",
+      "Chassey",
+      "Flavigny-sur-Ozerain",
+      "La Roche-Vanneau",
+      "Pouillenay",
+      "Saint-Euphrône",
+      "Sainte-Colombe-en-Auxois",
+      "Villeneuve-sous-Charigny"
+    ],
+    "Brain": [
+      "Arnay-sous-Vitteaux",
+      "La Roche-Vanneau",
+      "Marigny-le-Cahouët",
+      "Villeferry"
+    ],
+    "Villeferry": [
+      "Arnay-sous-Vitteaux",
+      "Brain",
+      "Dampierre-en-Montagne",
+      "La Roche-Vanneau"
+    ],
+    "Dampierre-en-Montagne": [
+      "Arnay-sous-Vitteaux",
+      "Jailly-les-Moulins",
+      "La Roche-Vanneau",
+      "Posanges",
+      "Villeberny",
+      "Villeferry",
+      "Vitteaux"
+    ],
+    "Rougemont": [
+      "Arrans",
+      "Asnières-en-Montagne",
+      "Buffon",
+      "Quincy-le-Vicomte",
+      "Saint-Rémy"
+    ],
+    "Arrans": [
+      "Asnières-en-Montagne",
+      "Montbard",
+      "Rougemont",
+      "Saint-Rémy"
+    ],
+    "Asnières-en-Montagne": [
+      "Arrans",
+      "Rougemont",
+      "Verdonnet"
+    ],
+    "Montbard": [
+      "Arrans",
+      "Crépand",
+      "Marmagne",
+      "Montigny-Montfort",
+      "Nogent-lès-Montbard",
+      "Planay",
+      "Quincerot",
+      "Saint-Rémy",
+      "Savoisy",
+      "Touillon",
+      "Étais"
+    ],
+    "Saint-Rémy": [
+      "Arrans",
+      "Buffon",
+      "Montbard",
+      "Quincerot",
+      "Quincy-le-Vicomte",
+      "Rougemont"
+    ],
+    "Verdonnet": [
+      "Asnières-en-Montagne",
+      "Fontaines-les-Sèches",
+      "Planay",
+      "Savoisy"
+    ],
+    "Norges-la-Ville": [
+      "Asnières-lès-Dijon",
+      "Bellefond",
+      "Bretigny",
+      "Clénay",
+      "Marsannay-le-Bois",
+      "Messigny-et-Vantoux",
+      "Savigny-le-Sec"
+    ],
+    "Bellefond": [
+      "Asnières-lès-Dijon",
+      "Bretigny",
+      "Dijon",
+      "Norges-la-Ville",
+      "Ruffey-lès-Echirey"
+    ],
+    "Villers-les-Pots": [
+      "Athée",
+      "Auxonne",
+      "Champdôtre",
+      "Collonges-et-Premières",
+      "Soirans",
+      "Tillenay"
+    ],
+    "Athée": [
+      "Auxonne",
+      "Magny-Montarlot",
+      "Poncey-lès-Athée",
+      "Villers-les-Pots"
+    ],
+    "Magny-Montarlot": [
+      "Athée",
+      "Collonges-et-Premières",
+      "Lamarche-sur-Saône",
+      "Poncey-lès-Athée"
+    ],
+    "Poncey-lès-Athée": [
+      "Athée",
+      "Auxonne",
+      "Flammerans",
+      "Lamarche-sur-Saône",
+      "Magny-Montarlot"
+    ],
+    "Auxonne": [
+      "Athée",
+      "Billey",
+      "Flammerans",
+      "Labergement-lès-Auxonne",
+      "Les Maillys",
+      "Poncey-lès-Athée",
+      "Tillenay",
+      "Villers-Rotin",
+      "Villers-les-Pots"
+    ],
+    "Corsaint": [
+      "Athie",
+      "Bard-lès-Époisses",
+      "Corrombles",
+      "Fain-lès-Moutiers",
+      "Jeux-lès-Bard",
+      "Moutiers-Saint-Jean",
+      "Époisses"
+    ],
+    "Athie": [
+      "Corsaint",
+      "Fain-lès-Moutiers",
+      "Jeux-lès-Bard",
+      "Moutiers-Saint-Jean",
+      "Senailly",
+      "Villaines-les-Prévôtes",
+      "Viserny"
+    ],
+    "Moutiers-Saint-Jean": [
+      "Athie",
+      "Corsaint",
+      "Fain-lès-Moutiers"
+    ],
+    "Fain-lès-Moutiers": [
+      "Athie",
+      "Corsaint",
+      "Moutiers-Saint-Jean",
+      "Quincy-le-Vicomte",
+      "Senailly"
+    ],
+    "Senailly": [
+      "Athie",
+      "Crépand",
+      "Fain-lès-Moutiers",
+      "Montigny-Montfort",
+      "Quincy-le-Vicomte",
+      "Saint-Germain-lès-Senailly",
+      "Viserny"
+    ],
+    "Viserny": [
+      "Athie",
+      "Montigny-Montfort",
+      "Senailly",
+      "Villaines-les-Prévôtes"
+    ],
+    "Villaines-les-Prévôtes": [
+      "Athie",
+      "Champ-d'Oiseau",
+      "Genay",
+      "Millery",
+      "Montigny-Montfort",
+      "Viserny"
+    ],
+    "Jeux-lès-Bard": [
+      "Athie",
+      "Bard-lès-Époisses",
+      "Corsaint",
+      "Genay",
+      "Torcy-et-Pouligny"
+    ],
+    "Bessey-en-Chaume": [
+      "Aubaine",
+      "Bligny-sur-Ouche",
+      "Bouilland",
+      "Bouze-lès-Beaune",
+      "Lusigny-sur-Ouche",
+      "Mavilly-Mandelot",
+      "Savigny-lès-Beaune"
+    ],
+    "Bligny-sur-Ouche": [
+      "Aubaine",
+      "Bessey-en-Chaume",
+      "Lusigny-sur-Ouche",
+      "Painblanc",
+      "Thorey-sur-Ouche",
+      "Vic-des-Prés"
+    ],
+    "Thorey-sur-Ouche": [
+      "Aubaine",
+      "Bligny-sur-Ouche",
+      "Chaudenay-la-Ville",
+      "Colombier",
+      "Crugey",
+      "Painblanc"
+    ],
+    "Crugey": [
+      "Aubaine",
+      "Bouhey",
+      "Chaudenay-la-Ville",
+      "Chaudenay-le-Château",
+      "Colombier",
+      "Sainte-Sabine",
+      "Thorey-sur-Ouche",
+      "Veuvey-sur-Ouche"
+    ],
+    "Magny-lès-Aubigny": [
+      "Aubigny-en-Plaine",
+      "Brazey-en-Plaine",
+      "Charrey-sur-Saône",
+      "Esbarres",
+      "Saint-Nicolas-lès-Cîteaux"
+    ],
+    "Aubigny-en-Plaine": [
+      "Bessey-lès-Cîteaux",
+      "Brazey-en-Plaine",
+      "Magny-lès-Aubigny",
+      "Saint-Nicolas-lès-Cîteaux"
+    ],
+    "Saint-Nicolas-lès-Cîteaux": [
+      "Aubigny-en-Plaine",
+      "Bessey-lès-Cîteaux",
+      "Bonnencontre",
+      "Broin",
+      "Charrey-sur-Saône",
+      "Corcelles-lès-Cîteaux",
+      "Gerland",
+      "Izeure",
+      "Magny-lès-Aubigny",
+      "Savouges",
+      "Villebichot",
+      "Épernay-sous-Gevrey"
+    ],
+    "Molinot": [
+      "Aubigny-la-Ronce",
+      "Champignolles",
+      "Santosse",
+      "Thury",
+      "Val-Mont"
+    ],
+    "Aubigny-la-Ronce": [
+      "Cormot-Vauchignon",
+      "Molinot",
+      "Nolay",
+      "Santosse"
+    ],
+    "Santosse": [
+      "Aubigny-la-Ronce",
+      "Baubigny",
+      "Cormot-Vauchignon",
+      "Molinot",
+      "Val-Mont"
+    ],
+    "Cormot-Vauchignon": [
+      "Aubigny-la-Ronce",
+      "La Rochepot",
+      "Nolay",
+      "Santosse"
+    ],
+    "Nolay": [
+      "Aubigny-la-Ronce",
+      "Cormot-Vauchignon",
+      "La Rochepot"
+    ],
+    "Grosbois-en-Montagne": [
+      "Aubigny-lès-Sombernon",
+      "Civry-en-Montagne",
+      "Martrois",
+      "Saint-Anthot",
+      "Saint-Mesmin",
+      "Soussey-sur-Brionne",
+      "Uncey-le-Franc"
+    ],
+    "Aubigny-lès-Sombernon": [
+      "Civry-en-Montagne",
+      "Grosbois-en-Montagne",
+      "Montoillot",
+      "Saint-Anthot",
+      "Semarey",
+      "Vieilmoulin",
+      "Échannay"
+    ],
+    "Saint-Anthot": [
+      "Aubigny-lès-Sombernon",
+      "Grosbois-en-Montagne",
+      "Saint-Mesmin",
+      "Vieilmoulin"
+    ],
+    "Vieilmoulin": [
+      "Aubigny-lès-Sombernon",
+      "Saint-Anthot",
+      "Saint-Mesmin",
+      "Sombernon",
+      "Échannay"
+    ],
+    "Échannay": [
+      "Aubigny-lès-Sombernon",
+      "Grenant-lès-Sombernon",
+      "La Bussière-sur-Ouche",
+      "Montoillot",
+      "Remilly-en-Montagne",
+      "Sombernon",
+      "Vieilmoulin"
+    ],
+    "Montoillot": [
+      "Aubigny-lès-Sombernon",
+      "Commarin",
+      "La Bussière-sur-Ouche",
+      "Semarey",
+      "Échannay"
+    ],
+    "Semarey": [
+      "Aubigny-lès-Sombernon",
+      "Civry-en-Montagne",
+      "Commarin",
+      "Créancey",
+      "Montoillot"
+    ],
+    "Civry-en-Montagne": [
+      "Aubigny-lès-Sombernon",
+      "Bellenot-sous-Pouilly",
+      "Créancey",
+      "Grosbois-en-Montagne",
+      "Martrois",
+      "Pouilly-en-Auxois",
+      "Semarey"
+    ],
+    "Grancey-sur-Ource": [
+      "Autricourt",
+      "Charrey-sur-Seine"
+    ],
+    "Autricourt": [
+      "Belan-sur-Ource",
+      "Charrey-sur-Seine",
+      "Chaumont-le-Bois",
+      "Grancey-sur-Ource",
+      "Riel-les-Eaux"
+    ],
+    "Riel-les-Eaux": [
+      "Autricourt",
+      "Belan-sur-Ource",
+      "Bissey-la-Côte",
+      "Gevrolles",
+      "Montigny-sur-Aube",
+      "Thoires"
+    ],
+    "Belan-sur-Ource": [
+      "Autricourt",
+      "Brion-sur-Ource",
+      "Chaumont-le-Bois",
+      "Mosson",
+      "Riel-les-Eaux",
+      "Thoires"
+    ],
+    "Chaumont-le-Bois": [
+      "Autricourt",
+      "Belan-sur-Ource",
+      "Charrey-sur-Seine",
+      "Massingy",
+      "Mosson",
+      "Obtrée",
+      "Vannaire"
+    ],
+    "Charrey-sur-Seine": [
+      "Autricourt",
+      "Chaumont-le-Bois",
+      "Gomméville",
+      "Grancey-sur-Ource",
+      "Noiron-sur-Seine",
+      "Obtrée",
+      "Pothières",
+      "Villers-Patras"
+    ],
+    "Lechâtelet": [
+      "Auvillars-sur-Saône",
+      "Bonnencontre",
+      "Broin",
+      "Glanon",
+      "Labruyère",
+      "Pagny-la-Ville"
+    ],
+    "Glanon": [
+      "Auvillars-sur-Saône",
+      "Bagnot",
+      "Labruyère",
+      "Lechâtelet",
+      "Pouilly-sur-Saône",
+      "Seurre"
+    ],
+    "Auxant": [
+      "Bessey-la-Cour",
+      "Culètre",
+      "Painblanc",
+      "Veilly",
+      "Vic-des-Prés"
+    ],
+    "Culètre": [
+      "Auxant",
+      "Cussy-le-Châtel",
+      "Foissy",
+      "Longecourt-lès-Culêtre",
+      "Painblanc",
+      "Veilly"
+    ],
+    "Painblanc": [
+      "Auxant",
+      "Bligny-sur-Ouche",
+      "Chaudenay-la-Ville",
+      "Culètre",
+      "Cussy-le-Châtel",
+      "Sainte-Sabine",
+      "Thorey-sur-Ouche",
+      "Vic-des-Prés"
+    ],
+    "Vic-des-Prés": [
+      "Auxant",
+      "Bessey-la-Cour",
+      "Bligny-sur-Ouche",
+      "Lusigny-sur-Ouche",
+      "Painblanc",
+      "Écutigny"
+    ],
+    "Bessey-la-Cour": [
+      "Auxant",
+      "Thomirey",
+      "Veilly",
+      "Vic-des-Prés",
+      "Écutigny"
+    ],
+    "Veilly": [
+      "Auxant",
+      "Bessey-la-Cour",
+      "Culètre",
+      "Foissy",
+      "Thomirey"
+    ],
+    "Auxey-Duresses": [
+      "Baubigny",
+      "La Rochepot",
+      "Meursault",
+      "Monthelie",
+      "Saint-Aubin",
+      "Saint-Romain"
+    ],
+    "La Rochepot": [
+      "Auxey-Duresses",
+      "Baubigny",
+      "Cormot-Vauchignon",
+      "Nolay",
+      "Saint-Aubin",
+      "Santenay"
+    ],
+    "Baubigny": [
+      "Auxey-Duresses",
+      "La Rochepot",
+      "Saint-Romain",
+      "Santosse",
+      "Val-Mont"
+    ],
+    "Saint-Romain": [
+      "Auxey-Duresses",
+      "Baubigny",
+      "Cussy-la-Colonne",
+      "Meloisey",
+      "Montceau-et-Écharnant",
+      "Monthelie",
+      "Val-Mont",
+      "Volnay"
+    ],
+    "Monthelie": [
+      "Auxey-Duresses",
+      "Meursault",
+      "Saint-Romain",
+      "Volnay"
+    ],
+    "Meursault": [
+      "Auxey-Duresses",
+      "Corcelles-les-Arts",
+      "Merceuil",
+      "Monthelie",
+      "Puligny-Montrachet",
+      "Saint-Aubin",
+      "Tailly",
+      "Volnay"
+    ],
+    "Saint-Aubin": [
+      "Auxey-Duresses",
+      "Chassagne-Montrachet",
+      "La Rochepot",
+      "Meursault",
+      "Puligny-Montrachet",
+      "Santenay"
+    ],
+    "Labergement-lès-Auxonne": [
+      "Auxonne",
+      "Flagey-lès-Auxonne",
+      "Les Maillys",
+      "Villers-Rotin"
+    ],
+    "Les Maillys": [
+      "Auxonne",
+      "Champdôtre",
+      "Flagey-lès-Auxonne",
+      "Labergement-lès-Auxonne",
+      "Laperrière-sur-Saône",
+      "Pont",
+      "Saint-Seine-en-Bâche",
+      "Tillenay",
+      "Trouhans",
+      "Échenon"
+    ],
+    "Tillenay": [
+      "Auxonne",
+      "Champdôtre",
+      "Les Maillys",
+      "Pont",
+      "Villers-les-Pots"
+    ],
+    "Flammerans": [
+      "Auxonne",
+      "Lamarche-sur-Saône",
+      "Poncey-lès-Athée",
+      "Soissons-sur-Nacey",
+      "Vielverge"
+    ],
+    "Billey": [
+      "Auxonne",
+      "Flagey-lès-Auxonne",
+      "Villers-Rotin"
+    ],
+    "Villers-Rotin": [
+      "Auxonne",
+      "Billey",
+      "Flagey-lès-Auxonne",
+      "Labergement-lès-Auxonne"
+    ],
+    "Poiseul-lès-Saulx": [
+      "Avelanges",
+      "Avot",
+      "Barjon",
+      "Courtivron",
+      "Le Meix",
+      "Salives",
+      "Saulx-le-Duc"
+    ],
+    "Avelanges": [
+      "Avot",
+      "Marey-sur-Tille",
+      "Poiseul-lès-Saulx",
+      "Saulx-le-Duc"
+    ],
+    "Avot": [
+      "Avelanges",
+      "Barjon",
+      "Bussières",
+      "Courlon",
+      "Cussey-les-Forges",
+      "Fraignot-et-Vesvrotte",
+      "Grancey-le-Château-Neuvelle",
+      "Marey-sur-Tille",
+      "Poiseul-lès-Saulx"
+    ],
+    "Marey-sur-Tille": [
+      "Avelanges",
+      "Avot",
+      "Cussey-les-Forges",
+      "Foncegrive",
+      "Is-sur-Tille",
+      "Saulx-le-Duc",
+      "Selongey",
+      "Villey-sur-Tille"
+    ],
+    "Saulx-le-Duc": [
+      "Avelanges",
+      "Courtivron",
+      "Diénay",
+      "Is-sur-Tille",
+      "Marey-sur-Tille",
+      "Poiseul-lès-Saulx",
+      "Tarsul",
+      "Villecomte"
+    ],
+    "Uncey-le-Franc": [
+      "Avosnes",
+      "Boussey",
+      "Grosbois-en-Montagne",
+      "Marcellois",
+      "Saffres",
+      "Saint-Mesmin",
+      "Soussey-sur-Brionne"
+    ],
+    "Avosnes": [
+      "Chevannay",
+      "Marcellois",
+      "Saffres",
+      "Saint-Mesmin",
+      "Uncey-le-Franc",
+      "Villy-en-Auxois"
+    ],
+    "Saffres": [
+      "Avosnes",
+      "Boussey",
+      "Massingy-lès-Vitteaux",
+      "Uncey-le-Franc",
+      "Villy-en-Auxois",
+      "Vitteaux"
+    ],
+    "Villy-en-Auxois": [
+      "Avosnes",
+      "Champrenault",
+      "Charencey",
+      "Chevannay",
+      "Massingy-lès-Vitteaux",
+      "Saffres",
+      "Salmaise",
+      "Verrey-sous-Salmaise",
+      "Villeberny"
+    ],
+    "Chevannay": [
+      "Avosnes",
+      "Champrenault",
+      "Saint-Hélier",
+      "Saint-Mesmin",
+      "Verrey-sous-Drée",
+      "Villy-en-Auxois"
+    ],
+    "Saint-Mesmin": [
+      "Avosnes",
+      "Chevannay",
+      "Drée",
+      "Grosbois-en-Montagne",
+      "Marcellois",
+      "Saint-Anthot",
+      "Sombernon",
+      "Uncey-le-Franc",
+      "Verrey-sous-Drée",
+      "Vieilmoulin"
+    ],
+    "Marcellois": [
+      "Avosnes",
+      "Saint-Mesmin",
+      "Uncey-le-Franc"
+    ],
+    "Barjon": [
+      "Avot",
+      "Fraignot-et-Vesvrotte",
+      "Le Meix",
+      "Poiseul-lès-Saulx",
+      "Salives"
+    ],
+    "Fraignot-et-Vesvrotte": [
+      "Avot",
+      "Barjon",
+      "Beneuvre",
+      "Bussières",
+      "Minot",
+      "Salives"
+    ],
+    "Bussières": [
+      "Avot",
+      "Beneuvre",
+      "Busserotte-et-Montenaille",
+      "Courlon",
+      "Fraignot-et-Vesvrotte",
+      "Grancey-le-Château-Neuvelle"
+    ],
+    "Courlon": [
+      "Avot",
+      "Busserotte-et-Montenaille",
+      "Bussières",
+      "Grancey-le-Château-Neuvelle"
+    ],
+    "Grancey-le-Château-Neuvelle": [
+      "Avot",
+      "Beneuvre",
+      "Busserotte-et-Montenaille",
+      "Bussières",
+      "Courlon",
+      "Cussey-les-Forges"
+    ],
+    "Cussey-les-Forges": [
+      "Avot",
+      "Foncegrive",
+      "Grancey-le-Château-Neuvelle",
+      "Marey-sur-Tille",
+      "Vernois-lès-Vesvres"
+    ],
+    "Pouilly-sur-Saône": [
+      "Bagnot",
+      "Glanon",
+      "Labergement-lès-Seurre",
+      "Seurre"
+    ],
+    "Labergement-lès-Seurre": [
+      "Bagnot",
+      "Chivres",
+      "Corberon",
+      "Corgengoux",
+      "Jallanges",
+      "Montmain",
+      "Pouilly-sur-Saône",
+      "Seurre",
+      "Trugny"
+    ],
+    "Orret": [
+      "Baigneux-les-Juifs",
+      "Duesme",
+      "Oigny",
+      "Poiseul-la-Ville-et-Laperrière",
+      "Étalante"
+    ],
+    "Poiseul-la-Ville-et-Laperrière": [
+      "Baigneux-les-Juifs",
+      "Billy-lès-Chanceaux",
+      "Frôlois",
+      "La Villeneuve-les-Convers",
+      "Oigny",
+      "Orret"
+    ],
+    "La Villeneuve-les-Convers": [
+      "Baigneux-les-Juifs",
+      "Bussy-le-Grand",
+      "Darcey",
+      "Frôlois",
+      "Poiseul-la-Ville-et-Laperrière",
+      "Étormay"
+    ],
+    "Étormay": [
+      "Baigneux-les-Juifs",
+      "Bussy-le-Grand",
+      "Chaume-lès-Baigneux",
+      "Jours-lès-Baigneux",
+      "La Villeneuve-les-Convers",
+      "Lucenay-le-Duc"
+    ],
+    "Laignes": [
+      "Balot",
+      "Bissey-la-Pierre",
+      "Fontaines-les-Sèches",
+      "Griselles",
+      "Marcenay",
+      "Nesle-et-Massoult",
+      "Nicey"
+    ],
+    "Bissey-la-Pierre": [
+      "Balot",
+      "Laignes",
+      "Larrey",
+      "Marcenay",
+      "Poinçon-lès-Larrey"
+    ],
+    "Poinçon-lès-Larrey": [
+      "Balot",
+      "Bissey-la-Pierre",
+      "Bouix",
+      "Cérilly",
+      "Larrey"
+    ],
+    "Barbirey-sur-Ouche": [
+      "Gissey-sur-Ouche",
+      "Grenant-lès-Sombernon",
+      "La Bussière-sur-Ouche",
+      "Remilly-en-Montagne",
+      "Saint-Victor-sur-Ouche"
+    ],
+    "Saint-Victor-sur-Ouche": [
+      "Barbirey-sur-Ouche",
+      "Gergueil",
+      "Gissey-sur-Ouche",
+      "La Bussière-sur-Ouche",
+      "Saint-Jean-de-Bœuf"
+    ],
+    "La Bussière-sur-Ouche": [
+      "Barbirey-sur-Ouche",
+      "Bouhey",
+      "Châteauneuf",
+      "Commarin",
+      "Grenant-lès-Sombernon",
+      "Montoillot",
+      "Saint-Jean-de-Bœuf",
+      "Saint-Victor-sur-Ouche",
+      "Veuvey-sur-Ouche",
+      "Échannay"
+    ],
+    "Grenant-lès-Sombernon": [
+      "Barbirey-sur-Ouche",
+      "La Bussière-sur-Ouche",
+      "Remilly-en-Montagne",
+      "Échannay"
+    ],
+    "Villiers-en-Morvan": [
+      "Bard-le-Régulier",
+      "Blanot",
+      "Brazey-en-Morvan",
+      "Savilly"
+    ],
+    "Bard-le-Régulier": [
+      "Brazey-en-Morvan",
+      "Manlay",
+      "Marcheseuil",
+      "Savilly",
+      "Vianges",
+      "Villiers-en-Morvan"
+    ],
+    "Brazey-en-Morvan": [
+      "Bard-le-Régulier",
+      "Blanot",
+      "Censerey",
+      "Liernais",
+      "Vianges",
+      "Villiers-en-Morvan"
+    ],
+    "Vianges": [
+      "Bard-le-Régulier",
+      "Brazey-en-Morvan",
+      "Censerey",
+      "Diancey",
+      "Marcheseuil"
+    ],
+    "Manlay": [
+      "Bard-le-Régulier",
+      "Marcheseuil",
+      "Savilly",
+      "Voudenay"
+    ],
+    "Savilly": [
+      "Bard-le-Régulier",
+      "Manlay",
+      "Villiers-en-Morvan"
+    ],
+    "Torcy-et-Pouligny": [
+      "Bard-lès-Époisses",
+      "Corrombles",
+      "Forléans",
+      "Genay",
+      "Jeux-lès-Bard",
+      "Vic-de-Chassenay",
+      "Époisses"
+    ],
+    "Bard-lès-Époisses": [
+      "Corrombles",
+      "Corsaint",
+      "Jeux-lès-Bard",
+      "Torcy-et-Pouligny"
+    ],
+    "Corrombles": [
+      "Bard-lès-Époisses",
+      "Corsaint",
+      "Torcy-et-Pouligny",
+      "Époisses"
+    ],
+    "Gevrey-Chambertin": [
+      "Barges",
+      "Brochon",
+      "Broindon",
+      "Chambœuf",
+      "Curley",
+      "Fénay",
+      "Morey-Saint-Denis",
+      "Saint-Philibert",
+      "Saulon-la-Rue"
+    ],
+    "Barges": [
+      "Broindon",
+      "Gevrey-Chambertin",
+      "Noiron-sous-Gevrey",
+      "Saulon-la-Chapelle",
+      "Saulon-la-Rue"
+    ],
+    "Saulon-la-Rue": [
+      "Barges",
+      "Fénay",
+      "Gevrey-Chambertin",
+      "Saulon-la-Chapelle"
+    ],
+    "Saulon-la-Chapelle": [
+      "Barges",
+      "Bretenière",
+      "Fénay",
+      "Izeure",
+      "Longecourt-en-Plaine",
+      "Noiron-sous-Gevrey",
+      "Saulon-la-Rue",
+      "Thorey-en-Plaine"
+    ],
+    "Noiron-sous-Gevrey": [
+      "Barges",
+      "Broindon",
+      "Corcelles-lès-Cîteaux",
+      "Izeure",
+      "Saulon-la-Chapelle",
+      "Savouges"
+    ],
+    "Broindon": [
+      "Barges",
+      "Gevrey-Chambertin",
+      "Gilly-lès-Cîteaux",
+      "Noiron-sous-Gevrey",
+      "Saint-Philibert",
+      "Savouges",
+      "Épernay-sous-Gevrey"
+    ],
+    "Salives": [
+      "Barjon",
+      "Courtivron",
+      "Fraignot-et-Vesvrotte",
+      "Frénois",
+      "Le Meix",
+      "Léry",
+      "Minot",
+      "Moloy",
+      "Poiseul-lès-Saulx",
+      "Échalot"
+    ],
+    "Le Meix": [
+      "Barjon",
+      "Poiseul-lès-Saulx",
+      "Salives"
+    ],
+    "Val-Mont": [
+      "Baubigny",
+      "Champignolles",
+      "Cussy-la-Colonne",
+      "Molinot",
+      "Montceau-et-Écharnant",
+      "Saint-Romain",
+      "Santosse",
+      "Saussey"
+    ],
+    "Savigny-sous-Mâlain": [
+      "Baulme-la-Roche",
+      "Blaisy-Bas",
+      "Blaisy-Haut",
+      "Bussy-la-Pesle",
+      "Mesmont",
+      "Mâlain",
+      "Prâlon",
+      "Sombernon"
+    ],
+    "Blaisy-Haut": [
+      "Baulme-la-Roche",
+      "Blaisy-Bas",
+      "Panges",
+      "Savigny-sous-Mâlain",
+      "Trouhaut"
+    ],
+    "Beaulieu": [
+      "Essarois",
+      "Mauvilly",
+      "Montmoyen",
+      "Rochefort-sur-Brévon"
+    ],
+    "Rochefort-sur-Brévon": [
+      "Beaulieu",
+      "Busseaut",
+      "Essarois",
+      "Mauvilly",
+      "Saint-Germain-le-Rocheux",
+      "Villiers-le-Duc"
+    ],
+    "Essarois": [
+      "Beaulieu",
+      "Leuglay",
+      "Montmoyen",
+      "Recey-sur-Ource",
+      "Rochefort-sur-Brévon",
+      "Villiers-le-Duc",
+      "Voulaines-les-Templiers"
+    ],
+    "Noiron-sur-Bèze": [
+      "Beaumont-sur-Vingeanne",
+      "Blagny-sur-Vingeanne",
+      "Bèze",
+      "Mirebeau-sur-Bèze",
+      "Tanay",
+      "Viévigne"
+    ],
+    "Beaumont-sur-Vingeanne": [
+      "Blagny-sur-Vingeanne",
+      "Bèze",
+      "Champagne-sur-Vingeanne",
+      "Dampierre-et-Flée",
+      "Noiron-sur-Bèze"
+    ],
+    "Bèze": [
+      "Beaumont-sur-Vingeanne",
+      "Beire-le-Châtel",
+      "Bourberain",
+      "Dampierre-et-Flée",
+      "Lux",
+      "Noiron-sur-Bèze",
+      "Viévigne"
+    ],
+    "Dampierre-et-Flée": [
+      "Beaumont-sur-Vingeanne",
+      "Bourberain",
+      "Bèze",
+      "Fontenelle",
+      "Licey-sur-Vingeanne"
+    ],
+    "Champagne-sur-Vingeanne": [
+      "Beaumont-sur-Vingeanne",
+      "Blagny-sur-Vingeanne",
+      "Oisilly",
+      "Renève"
+    ],
+    "Blagny-sur-Vingeanne": [
+      "Beaumont-sur-Vingeanne",
+      "Champagne-sur-Vingeanne",
+      "Mirebeau-sur-Bèze",
+      "Noiron-sur-Bèze",
+      "Oisilly"
+    ],
+    "Montagny-lès-Beaune": [
+      "Beaune",
+      "Bligny-lès-Beaune",
+      "Levernois",
+      "Merceuil",
+      "Sainte-Marie-la-Blanche"
+    ],
+    "Beaune": [
+      "Bligny-lès-Beaune",
+      "Bouze-lès-Beaune",
+      "Chorey-les-Beaune",
+      "Combertault",
+      "Levernois",
+      "Montagny-lès-Beaune",
+      "Pommard",
+      "Ruffey-lès-Beaune",
+      "Savigny-lès-Beaune",
+      "Vignoles"
+    ],
+    "Bligny-lès-Beaune": [
+      "Beaune",
+      "Merceuil",
+      "Montagny-lès-Beaune",
+      "Pommard",
+      "Tailly",
+      "Volnay"
+    ],
+    "Pommard": [
+      "Beaune",
+      "Bligny-lès-Beaune",
+      "Bouze-lès-Beaune",
+      "Nantoux",
+      "Volnay"
+    ],
+    "Bouze-lès-Beaune": [
+      "Beaune",
+      "Bessey-en-Chaume",
+      "Mavilly-Mandelot",
+      "Nantoux",
+      "Pommard",
+      "Savigny-lès-Beaune"
+    ],
+    "Vignoles": [
+      "Beaune",
+      "Chorey-les-Beaune",
+      "Ruffey-lès-Beaune"
+    ],
+    "Ruffey-lès-Beaune": [
+      "Beaune",
+      "Combertault",
+      "Ladoix-Serrigny",
+      "Marigny-lès-Reullée",
+      "Meursanges",
+      "Vignoles",
+      "Villy-le-Moutier"
+    ],
+    "Combertault": [
+      "Beaune",
+      "Levernois",
+      "Meursanges",
+      "Ruffey-lès-Beaune",
+      "Sainte-Marie-la-Blanche"
+    ],
+    "Levernois": [
+      "Beaune",
+      "Combertault",
+      "Montagny-lès-Beaune",
+      "Sainte-Marie-la-Blanche"
+    ],
+    "Meulson": [
+      "Beaunotte",
+      "Bellenod-sur-Seine",
+      "Mauvilly",
+      "Quemigny-sur-Seine"
+    ],
+    "Lux": [
+      "Beire-le-Châtel",
+      "Bourberain",
+      "Bèze",
+      "Gemeaux",
+      "Pichanges",
+      "Spoy",
+      "Til-Châtel",
+      "Véronnes"
+    ],
+    "Viévigne": [
+      "Beire-le-Châtel",
+      "Bèze",
+      "Noiron-sur-Bèze",
+      "Tanay"
+    ],
+    "Tanay": [
+      "Beire-le-Châtel",
+      "Magny-Saint-Médard",
+      "Mirebeau-sur-Bèze",
+      "Noiron-sur-Bèze",
+      "Viévigne"
+    ],
+    "Spoy": [
+      "Beire-le-Châtel",
+      "Brognon",
+      "Flacey",
+      "Lux",
+      "Pichanges",
+      "Saint-Julien"
+    ],
+    "Labergement-Foigney": [
+      "Beire-le-Fort",
+      "Cessey-sur-Tille",
+      "Chambeire",
+      "Genlis",
+      "Longchamp"
+    ],
+    "Beire-le-Fort": [
+      "Collonges-et-Premières",
+      "Genlis",
+      "Labergement-Foigney",
+      "Longchamp",
+      "Longeault-Pluvault"
+    ],
+    "Longchamp": [
+      "Beire-le-Fort",
+      "Chambeire",
+      "Collonges-et-Premières",
+      "Labergement-Foigney",
+      "Lamarche-sur-Saône"
+    ],
+    "Collonges-et-Premières": [
+      "Beire-le-Fort",
+      "Lamarche-sur-Saône",
+      "Longchamp",
+      "Longeault-Pluvault",
+      "Magny-Montarlot",
+      "Pluvet",
+      "Soirans",
+      "Villers-les-Pots"
+    ],
+    "Longeault-Pluvault": [
+      "Beire-le-Fort",
+      "Collonges-et-Premières",
+      "Genlis",
+      "Pluvet",
+      "Tart-le-Bas"
+    ],
+    "Genlis": [
+      "Beire-le-Fort",
+      "Cessey-sur-Tille",
+      "Izier",
+      "Labergement-Foigney",
+      "Longeault-Pluvault",
+      "Magny-sur-Tille",
+      "Tart-le-Bas",
+      "Varanges"
+    ],
+    "Thoires": [
+      "Belan-sur-Ource",
+      "Bissey-la-Côte",
+      "Brion-sur-Ource",
+      "Riel-les-Eaux"
+    ],
+    "Brion-sur-Ource": [
+      "Belan-sur-Ource",
+      "Bissey-la-Côte",
+      "Mosson",
+      "Prusly-sur-Ource",
+      "Thoires",
+      "Villotte-sur-Ource"
+    ],
+    "Mosson": [
+      "Belan-sur-Ource",
+      "Brion-sur-Ource",
+      "Chaumont-le-Bois",
+      "Massingy",
+      "Prusly-sur-Ource"
+    ],
+    "Bretigny": [
+      "Bellefond",
+      "Clénay",
+      "Norges-la-Ville",
+      "Ruffey-lès-Echirey",
+      "Saint-Julien",
+      "Varois-et-Chaignot"
+    ],
+    "Ruffey-lès-Echirey": [
+      "Bellefond",
+      "Bretigny",
+      "Dijon",
+      "Saint-Apollinaire",
+      "Varois-et-Chaignot"
+    ],
+    "Savolles": [
+      "Belleneuve",
+      "Magny-Saint-Médard",
+      "Mirebeau-sur-Bèze"
+    ],
+    "Mirebeau-sur-Bèze": [
+      "Belleneuve",
+      "Blagny-sur-Vingeanne",
+      "Bézouotte",
+      "Charmes",
+      "Cheuge",
+      "Cuiserey",
+      "Magny-Saint-Médard",
+      "Noiron-sur-Bèze",
+      "Oisilly",
+      "Savolles",
+      "Tanay"
+    ],
+    "Cuiserey": [
+      "Belleneuve",
+      "Bézouotte",
+      "Charmes",
+      "Marandeuil",
+      "Mirebeau-sur-Bèze",
+      "Trochères"
+    ],
+    "Trochères": [
+      "Belleneuve",
+      "Binges",
+      "Cuiserey",
+      "Marandeuil",
+      "Étevaux"
+    ],
+    "Bellenod-sur-Seine": [
+      "Busseaut",
+      "Magny-Lambert",
+      "Mauvilly",
+      "Meulson",
+      "Origny",
+      "Quemigny-sur-Seine",
+      "Saint-Marc-sur-Seine"
+    ],
+    "Saint-Marc-sur-Seine": [
+      "Bellenod-sur-Seine",
+      "Brémur-et-Vaurois",
+      "Magny-Lambert",
+      "Origny",
+      "Semond"
+    ],
+    "Origny": [
+      "Bellenod-sur-Seine",
+      "Brémur-et-Vaurois",
+      "Busseaut",
+      "Saint-Marc-sur-Seine"
+    ],
+    "Bellenot-sous-Pouilly": [
+      "Chailly-sur-Armançon",
+      "Civry-en-Montagne",
+      "Martrois",
+      "Pouilly-en-Auxois",
+      "Thoisy-le-Désert",
+      "Éguilly"
+    ],
+    "Pouilly-en-Auxois": [
+      "Bellenot-sous-Pouilly",
+      "Civry-en-Montagne",
+      "Créancey",
+      "Meilly-sur-Rouvres",
+      "Thoisy-le-Désert"
+    ],
+    "Thoisy-le-Désert": [
+      "Bellenot-sous-Pouilly",
+      "Chailly-sur-Armançon",
+      "Châtellenot",
+      "Essey",
+      "Meilly-sur-Rouvres",
+      "Pouilly-en-Auxois"
+    ],
+    "Éguilly": [
+      "Bellenot-sous-Pouilly",
+      "Blancey",
+      "Chailly-sur-Armançon",
+      "Gissey-le-Vieil",
+      "Martrois",
+      "Soussey-sur-Brionne"
+    ],
+    "Martrois": [
+      "Bellenot-sous-Pouilly",
+      "Civry-en-Montagne",
+      "Grosbois-en-Montagne",
+      "Soussey-sur-Brionne",
+      "Éguilly"
+    ],
+    "Beneuvre": [
+      "Bure-les-Templiers",
+      "Bussières",
+      "Fraignot-et-Vesvrotte",
+      "Grancey-le-Château-Neuvelle",
+      "Minot"
+    ],
+    "Minot": [
+      "Beneuvre",
+      "Bure-les-Templiers",
+      "Fraignot-et-Vesvrotte",
+      "Moitron",
+      "Saint-Broing-les-Moines",
+      "Salives",
+      "Échalot",
+      "Étalante"
+    ],
+    "Bure-les-Templiers": [
+      "Beneuvre",
+      "Chaugey",
+      "Menesble",
+      "Minot",
+      "Recey-sur-Ource",
+      "Saint-Broing-les-Moines",
+      "Terrefondrée"
+    ],
+    "Montigny-Montfort": [
+      "Benoisey",
+      "Champ-d'Oiseau",
+      "Courcelles-lès-Montbard",
+      "Crépand",
+      "Grignon",
+      "Montbard",
+      "Nogent-lès-Montbard",
+      "Senailly",
+      "Villaines-les-Prévôtes",
+      "Viserny"
+    ],
+    "Benoisey": [
+      "Courcelles-lès-Montbard",
+      "Fresnes",
+      "Grignon",
+      "Montigny-Montfort",
+      "Seigny"
+    ],
+    "Courcelles-lès-Montbard": [
+      "Benoisey",
+      "Fain-lès-Montbard",
+      "Fresnes",
+      "Montigny-Montfort",
+      "Nogent-lès-Montbard"
+    ],
+    "Fresnes": [
+      "Benoisey",
+      "Courcelles-lès-Montbard",
+      "Fain-lès-Montbard",
+      "Lucenay-le-Duc",
+      "Seigny",
+      "Touillon",
+      "Éringes"
+    ],
+    "Seigny": [
+      "Benoisey",
+      "Fresnes",
+      "Grignon",
+      "Ménétreux-le-Pitois",
+      "Éringes"
+    ],
+    "Grignon": [
+      "Benoisey",
+      "Champ-d'Oiseau",
+      "Lantilly",
+      "Massingy-lès-Semur",
+      "Montigny-Montfort",
+      "Ménétreux-le-Pitois",
+      "Seigny",
+      "Venarey-les-Laumes"
+    ],
+    "Mavilly-Mandelot": [
+      "Bessey-en-Chaume",
+      "Bouze-lès-Beaune",
+      "Lusigny-sur-Ouche",
+      "Meloisey",
+      "Montceau-et-Écharnant",
+      "Nantoux"
+    ],
+    "Lusigny-sur-Ouche": [
+      "Bessey-en-Chaume",
+      "Bligny-sur-Ouche",
+      "Mavilly-Mandelot",
+      "Montceau-et-Écharnant",
+      "Vic-des-Prés",
+      "Écutigny"
+    ],
+    "Écutigny": [
+      "Bessey-la-Cour",
+      "Lusigny-sur-Ouche",
+      "Montceau-et-Écharnant",
+      "Saussey",
+      "Thomirey",
+      "Vic-des-Prés"
+    ],
+    "Marcilly-Ogny": [
+      "Beurey-Bauguay",
+      "Chailly-sur-Armançon",
+      "Mont-Saint-Jean",
+      "Sussey",
+      "Thoisy-la-Berchère"
+    ],
+    "Vitteaux": [
+      "Beurizot",
+      "Boussey",
+      "Dampierre-en-Montagne",
+      "Marcilly-et-Dracy",
+      "Massingy-lès-Vitteaux",
+      "Posanges",
+      "Saffres",
+      "Saint-Thibault",
+      "Vesvres",
+      "Villeberny"
+    ],
+    "Beurizot": [
+      "Boussey",
+      "Gissey-le-Vieil",
+      "Saint-Thibault",
+      "Soussey-sur-Brionne",
+      "Thorey-sous-Charny",
+      "Vesvres",
+      "Vitteaux"
+    ],
+    "Vesvres": [
+      "Beurizot",
+      "Boussey",
+      "Vitteaux"
+    ],
+    "Boussey": [
+      "Beurizot",
+      "Saffres",
+      "Soussey-sur-Brionne",
+      "Uncey-le-Franc",
+      "Vesvres",
+      "Vitteaux"
+    ],
+    "Soussey-sur-Brionne": [
+      "Beurizot",
+      "Boussey",
+      "Gissey-le-Vieil",
+      "Grosbois-en-Montagne",
+      "Martrois",
+      "Uncey-le-Franc",
+      "Éguilly"
+    ],
+    "Gissey-le-Vieil": [
+      "Beurizot",
+      "Blancey",
+      "Soussey-sur-Brionne",
+      "Thorey-sous-Charny",
+      "Éguilly"
+    ],
+    "Thorey-sous-Charny": [
+      "Beurizot",
+      "Blancey",
+      "Charny",
+      "Gissey-le-Vieil",
+      "Mont-Saint-Jean",
+      "Noidan",
+      "Normier",
+      "Saint-Thibault"
+    ],
+    "Saint-Thibault": [
+      "Beurizot",
+      "Clamerey",
+      "Marcilly-et-Dracy",
+      "Normier",
+      "Thorey-sous-Charny",
+      "Velogny",
+      "Vitteaux"
+    ],
+    "Bévy": [
+      "Collonges-lès-Bévy",
+      "Détain-et-Bruant",
+      "L'Étang-Vergy",
+      "Messanges",
+      "Ternant"
+    ],
+    "Ternant": [
+      "Bévy",
+      "Chambœuf",
+      "Détain-et-Bruant",
+      "Gergueil",
+      "L'Étang-Vergy",
+      "Reulle-Vergy",
+      "Saint-Jean-de-Bœuf",
+      "Semezanges"
+    ],
+    "L'Étang-Vergy": [
+      "Bévy",
+      "Curtil-Vergy",
+      "Messanges",
+      "Reulle-Vergy",
+      "Ternant"
+    ],
+    "Messanges": [
+      "Bévy",
+      "Chevannes",
+      "Collonges-lès-Bévy",
+      "Curtil-Vergy",
+      "L'Étang-Vergy",
+      "Meuilley",
+      "Segrois"
+    ],
+    "Collonges-lès-Bévy": [
+      "Bévy",
+      "Chevannes",
+      "Détain-et-Bruant",
+      "Messanges"
+    ],
+    "Bourberain": [
+      "Bèze",
+      "Chazeuil",
+      "Dampierre-et-Flée",
+      "Fontaine-Française",
+      "Fontenelle",
+      "Lux",
+      "Véronnes"
+    ],
+    "Charmes": [
+      "Bézouotte",
+      "Cheuge",
+      "Cuiserey",
+      "Marandeuil",
+      "Mirebeau-sur-Bèze",
+      "Montmançon"
+    ],
+    "Bézouotte": [
+      "Charmes",
+      "Cuiserey",
+      "Mirebeau-sur-Bèze"
+    ],
+    "Flagey-lès-Auxonne": [
+      "Billey",
+      "Labergement-lès-Auxonne",
+      "Les Maillys",
+      "Saint-Seine-en-Bâche",
+      "Villers-Rotin"
+    ],
+    "Poiseul-la-Grange": [
+      "Billy-lès-Chanceaux",
+      "Chanceaux",
+      "Lamargelle",
+      "Léry",
+      "Oigny",
+      "Échalot",
+      "Étalante"
+    ],
+    "Billy-lès-Chanceaux": [
+      "Chanceaux",
+      "Frôlois",
+      "Oigny",
+      "Poiseul-la-Grange",
+      "Poiseul-la-Ville-et-Laperrière"
+    ],
+    "Chanceaux": [
+      "Billy-lès-Chanceaux",
+      "Frôlois",
+      "Lamargelle",
+      "Pellerey",
+      "Poiseul-la-Grange",
+      "Poncey-sur-l'Ignon",
+      "Source-Seine"
+    ],
+    "Frôlois": [
+      "Billy-lès-Chanceaux",
+      "Boux-sous-Salmaise",
+      "Chanceaux",
+      "Corpoyer-la-Chapelle",
+      "Darcey",
+      "Gissey-sous-Flavigny",
+      "La Villeneuve-les-Convers",
+      "Poiseul-la-Ville-et-Laperrière",
+      "Source-Seine",
+      "Thenissey"
+    ],
+    "Oigny": [
+      "Billy-lès-Chanceaux",
+      "Orret",
+      "Poiseul-la-Grange",
+      "Poiseul-la-Ville-et-Laperrière",
+      "Étalante"
+    ],
+    "Étevaux": [
+      "Binges",
+      "Cirey-lès-Pontailler",
+      "Marandeuil",
+      "Saint-Léger-Triey",
+      "Trochères"
+    ],
+    "Cirey-lès-Pontailler": [
+      "Binges",
+      "Lamarche-sur-Saône",
+      "Saint-Léger-Triey",
+      "Tellecey",
+      "Étevaux"
+    ],
+    "Tellecey": [
+      "Binges",
+      "Chambeire",
+      "Cirey-lès-Pontailler",
+      "Lamarche-sur-Saône",
+      "Remilly-sur-Tille"
+    ],
+    "Bissey-la-Côte": [
+      "Brion-sur-Ource",
+      "Courban",
+      "Montigny-sur-Aube",
+      "Riel-les-Eaux",
+      "Thoires",
+      "Villotte-sur-Ource"
+    ],
+    "Montigny-sur-Aube": [
+      "Bissey-la-Côte",
+      "Courban",
+      "Gevrolles",
+      "Riel-les-Eaux",
+      "Veuxhaulles-sur-Aube"
+    ],
+    "Courban": [
+      "Bissey-la-Côte",
+      "Louesme",
+      "Maisey-le-Duc",
+      "Montigny-sur-Aube",
+      "Veuxhaulles-sur-Aube",
+      "Villotte-sur-Ource"
+    ],
+    "Villotte-sur-Ource": [
+      "Bissey-la-Côte",
+      "Brion-sur-Ource",
+      "Courban",
+      "Maisey-le-Duc",
+      "Prusly-sur-Ource"
+    ],
+    "Larrey": [
+      "Bissey-la-Pierre",
+      "Bouix",
+      "Marcenay",
+      "Molesme",
+      "Poinçon-lès-Larrey",
+      "Villedieu"
+    ],
+    "Marcenay": [
+      "Bissey-la-Pierre",
+      "Griselles",
+      "Laignes",
+      "Larrey",
+      "Villedieu"
+    ],
+    "Oisilly": [
+      "Blagny-sur-Vingeanne",
+      "Champagne-sur-Vingeanne",
+      "Cheuge",
+      "Mirebeau-sur-Bèze",
+      "Renève"
+    ],
+    "Blaisy-Bas": [
+      "Blaisy-Haut",
+      "Bussy-la-Pesle",
+      "Saint-Hélier",
+      "Savigny-sous-Mâlain",
+      "Trouhaut",
+      "Turcey"
+    ],
+    "Saint-Hélier": [
+      "Blaisy-Bas",
+      "Bussy-la-Pesle",
+      "Champrenault",
+      "Chevannay",
+      "Turcey",
+      "Verrey-sous-Drée"
+    ],
+    "Turcey": [
+      "Blaisy-Bas",
+      "Bligny-le-Sec",
+      "Champrenault",
+      "Charencey",
+      "Saint-Hélier",
+      "Saint-Martin-du-Mont",
+      "Trouhaut",
+      "Verrey-sous-Salmaise",
+      "Villotte-Saint-Seine"
+    ],
+    "Trouhaut": [
+      "Blaisy-Bas",
+      "Blaisy-Haut",
+      "Panges",
+      "Saint-Martin-du-Mont",
+      "Turcey"
+    ],
+    "Bussy-la-Pesle": [
+      "Blaisy-Bas",
+      "Drée",
+      "Saint-Hélier",
+      "Savigny-sous-Mâlain",
+      "Sombernon",
+      "Verrey-sous-Drée"
+    ],
+    "Blancey": [
+      "Chailly-sur-Armançon",
+      "Gissey-le-Vieil",
+      "Mont-Saint-Jean",
+      "Thorey-sous-Charny",
+      "Éguilly"
+    ],
+    "Mont-Saint-Jean": [
+      "Blancey",
+      "Chailly-sur-Armançon",
+      "Charny",
+      "Fontangy",
+      "Marcilly-Ogny",
+      "Missery",
+      "Thoisy-la-Berchère",
+      "Thorey-sous-Charny"
+    ],
+    "Blanot": [
+      "Brazey-en-Morvan",
+      "Liernais",
+      "Saint-Martin-de-la-Mer",
+      "Villiers-en-Morvan"
+    ],
+    "Saint-Martin-de-la-Mer": [
+      "Blanot",
+      "Champeau-en-Morvan",
+      "Liernais",
+      "Saulieu"
+    ],
+    "Liernais": [
+      "Blanot",
+      "Brazey-en-Morvan",
+      "Censerey",
+      "Saint-Martin-de-la-Mer",
+      "Saulieu",
+      "Sussey",
+      "Thoisy-la-Berchère"
+    ],
+    "Poncey-sur-l'Ignon": [
+      "Bligny-le-Sec",
+      "Champagny",
+      "Chanceaux",
+      "Pellerey",
+      "Source-Seine",
+      "Vaux-Saules"
+    ],
+    "Source-Seine": [
+      "Bligny-le-Sec",
+      "Boux-sous-Salmaise",
+      "Chanceaux",
+      "Frôlois",
+      "Poncey-sur-l'Ignon",
+      "Salmaise"
+    ],
+    "Bligny-le-Sec": [
+      "Champagny",
+      "Poncey-sur-l'Ignon",
+      "Saint-Martin-du-Mont",
+      "Saint-Seine-l'Abbaye",
+      "Salmaise",
+      "Source-Seine",
+      "Turcey",
+      "Villotte-Saint-Seine"
+    ],
+    "Salmaise": [
+      "Bligny-le-Sec",
+      "Boux-sous-Salmaise",
+      "Source-Seine",
+      "Verrey-sous-Salmaise",
+      "Villeberny",
+      "Villotte-Saint-Seine",
+      "Villy-en-Auxois"
+    ],
+    "Boux-sous-Salmaise": [
+      "Frôlois",
+      "Hauteroche",
+      "Jailly-les-Moulins",
+      "Salmaise",
+      "Source-Seine",
+      "Thenissey",
+      "Villeberny"
+    ],
+    "Villotte-Saint-Seine": [
+      "Bligny-le-Sec",
+      "Salmaise",
+      "Turcey",
+      "Verrey-sous-Salmaise"
+    ],
+    "Champagny": [
+      "Bligny-le-Sec",
+      "Poncey-sur-l'Ignon",
+      "Saint-Seine-l'Abbaye",
+      "Vaux-Saules"
+    ],
+    "Saint-Seine-l'Abbaye": [
+      "Bligny-le-Sec",
+      "Champagny",
+      "Saint-Martin-du-Mont",
+      "Vaux-Saules"
+    ],
+    "Saint-Martin-du-Mont": [
+      "Bligny-le-Sec",
+      "Francheville",
+      "Panges",
+      "Pasques",
+      "Saint-Seine-l'Abbaye",
+      "Trouhaut",
+      "Turcey",
+      "Val-Suzon",
+      "Vaux-Saules"
+    ],
+    "Merceuil": [
+      "Bligny-lès-Beaune",
+      "Corcelles-les-Arts",
+      "Meursault",
+      "Montagny-lès-Beaune",
+      "Sainte-Marie-la-Blanche",
+      "Tailly"
+    ],
+    "Tailly": [
+      "Bligny-lès-Beaune",
+      "Merceuil",
+      "Meursault",
+      "Volnay"
+    ],
+    "Volnay": [
+      "Bligny-lès-Beaune",
+      "Meloisey",
+      "Meursault",
+      "Monthelie",
+      "Nantoux",
+      "Pommard",
+      "Saint-Romain",
+      "Tailly"
+    ],
+    "Villebichot": [
+      "Boncourt-le-Bois",
+      "Flagey-Echézeaux",
+      "Saint-Bernard",
+      "Saint-Nicolas-lès-Cîteaux",
+      "Épernay-sous-Gevrey"
+    ],
+    "Vosne-Romanée": [
+      "Boncourt-le-Bois",
+      "Flagey-Echézeaux",
+      "Nuits-Saint-Georges"
+    ],
+    "Flagey-Echézeaux": [
+      "Boncourt-le-Bois",
+      "Chambolle-Musigny",
+      "Gilly-lès-Cîteaux",
+      "Nuits-Saint-Georges",
+      "Saint-Bernard",
+      "Villebichot",
+      "Vosne-Romanée",
+      "Vougeot"
+    ],
+    "Bonnencontre": [
+      "Broin",
+      "Charrey-sur-Saône",
+      "Esbarres",
+      "Lechâtelet",
+      "Pagny-la-Ville",
+      "Saint-Nicolas-lès-Cîteaux"
+    ],
+    "Charrey-sur-Saône": [
+      "Bonnencontre",
+      "Esbarres",
+      "Magny-lès-Aubigny",
+      "Saint-Nicolas-lès-Cîteaux"
+    ],
+    "Esbarres": [
+      "Bonnencontre",
+      "Brazey-en-Plaine",
+      "Charrey-sur-Saône",
+      "Magny-lès-Aubigny",
+      "Pagny-la-Ville",
+      "Pagny-le-Château",
+      "Saint-Usage"
+    ],
+    "Pagny-la-Ville": [
+      "Bonnencontre",
+      "Esbarres",
+      "Labruyère",
+      "Lechâtelet",
+      "Pagny-le-Château"
+    ],
+    "Boudreville": [
+      "La Chaume",
+      "Veuxhaulles-sur-Aube"
+    ],
+    "Veuxhaulles-sur-Aube": [
+      "Boudreville",
+      "Courban",
+      "La Chaume",
+      "Louesme",
+      "Montigny-sur-Aube"
+    ],
+    "La Chaume": [
+      "Boudreville",
+      "Les Goulles",
+      "Lignerolles",
+      "Louesme",
+      "Lucey",
+      "Veuxhaulles-sur-Aube",
+      "Voulaines-les-Templiers"
+    ],
+    "Bouhey": [
+      "Châteauneuf",
+      "Crugey",
+      "La Bussière-sur-Ouche",
+      "Sainte-Sabine",
+      "Veuvey-sur-Ouche"
+    ],
+    "Sainte-Sabine": [
+      "Bouhey",
+      "Chaudenay-la-Ville",
+      "Chaudenay-le-Château",
+      "Chazilly",
+      "Châteauneuf",
+      "Crugey",
+      "Cussy-le-Châtel",
+      "Painblanc",
+      "Rouvres-sous-Meilly",
+      "Vandenesse-en-Auxois"
+    ],
+    "Châteauneuf": [
+      "Bouhey",
+      "Commarin",
+      "La Bussière-sur-Ouche",
+      "Sainte-Sabine",
+      "Vandenesse-en-Auxois"
+    ],
+    "Échevronne": [
+      "Bouilland",
+      "Fussey",
+      "Magny-lès-Villers",
+      "Marey-lès-Fussey",
+      "Pernand-Vergelesses",
+      "Savigny-lès-Beaune",
+      "Villers-la-Faye"
+    ],
+    "Bouix": [
+      "Cérilly",
+      "Gomméville",
+      "Larrey",
+      "Molesme",
+      "Noiron-sur-Seine",
+      "Poinçon-lès-Larrey",
+      "Pothières",
+      "Étrochey"
+    ],
+    "Molesme": [
+      "Bouix",
+      "Gomméville",
+      "Larrey",
+      "Vertault",
+      "Villedieu"
+    ],
+    "Gomméville": [
+      "Bouix",
+      "Charrey-sur-Seine",
+      "Molesme",
+      "Noiron-sur-Seine"
+    ],
+    "Noiron-sur-Seine": [
+      "Bouix",
+      "Charrey-sur-Seine",
+      "Gomméville",
+      "Pothières"
+    ],
+    "Pothières": [
+      "Bouix",
+      "Charrey-sur-Seine",
+      "Noiron-sur-Seine",
+      "Villers-Patras",
+      "Vix",
+      "Étrochey"
+    ],
+    "Étrochey": [
+      "Bouix",
+      "Cérilly",
+      "Montliot-et-Courcelles",
+      "Pothières",
+      "Sainte-Colombe-sur-Seine",
+      "Vix"
+    ],
+    "Véronnes": [
+      "Bourberain",
+      "Chazeuil",
+      "Lux",
+      "Orville",
+      "Selongey",
+      "Til-Châtel"
+    ],
+    "Chazeuil": [
+      "Bourberain",
+      "Fontaine-Française",
+      "Sacquenay",
+      "Selongey",
+      "Véronnes"
+    ],
+    "Fontaine-Française": [
+      "Bourberain",
+      "Chaume-et-Courchamp",
+      "Chazeuil",
+      "Fontenelle",
+      "Licey-sur-Vingeanne",
+      "Montigny-Mornay-Villeneuve-sur-Vingeanne",
+      "Pouilly-sur-Vingeanne",
+      "Sacquenay",
+      "Saint-Maurice-sur-Vingeanne",
+      "Saint-Seine-sur-Vingeanne"
+    ],
+    "Fontenelle": [
+      "Bourberain",
+      "Dampierre-et-Flée",
+      "Fontaine-Française",
+      "Licey-sur-Vingeanne"
+    ],
+    "Lanthes": [
+      "Bousselange",
+      "Chamblanc",
+      "Grosbois-lès-Tichey",
+      "Jallanges",
+      "Pagny-le-Château",
+      "Seurre"
+    ],
+    "Bousselange": [
+      "Grosbois-lès-Tichey",
+      "Lanthes",
+      "Montagny-lès-Seurre",
+      "Tichey"
+    ],
+    "Grosbois-lès-Tichey": [
+      "Bousselange",
+      "Lanthes",
+      "Montagny-lès-Seurre",
+      "Pagny-le-Château"
+    ],
+    "Montagny-lès-Seurre": [
+      "Bousselange",
+      "Franxault",
+      "Grosbois-lès-Tichey",
+      "Pagny-le-Château",
+      "Tichey"
+    ],
+    "Tichey": [
+      "Bousselange",
+      "Montagny-lès-Seurre"
+    ],
+    "Boussenois": [
+      "Selongey"
+    ],
+    "Selongey": [
+      "Boussenois",
+      "Chazeuil",
+      "Crécey-sur-Tille",
+      "Foncegrive",
+      "Marey-sur-Tille",
+      "Orville",
+      "Til-Châtel",
+      "Vernois-lès-Vesvres",
+      "Villey-sur-Tille",
+      "Véronnes",
+      "Échevannes"
+    ],
+    "Villeberny": [
+      "Boux-sous-Salmaise",
+      "Dampierre-en-Montagne",
+      "Jailly-les-Moulins",
+      "Massingy-lès-Vitteaux",
+      "Salmaise",
+      "Villy-en-Auxois",
+      "Vitteaux"
+    ],
+    "Jailly-les-Moulins": [
+      "Boux-sous-Salmaise",
+      "Dampierre-en-Montagne",
+      "Hauteroche",
+      "La Roche-Vanneau",
+      "Villeberny"
+    ],
+    "Hauteroche": [
+      "Boux-sous-Salmaise",
+      "Flavigny-sur-Ozerain",
+      "Gissey-sous-Flavigny",
+      "Jailly-les-Moulins",
+      "La Roche-Vanneau",
+      "Thenissey"
+    ],
+    "Thenissey": [
+      "Boux-sous-Salmaise",
+      "Frôlois",
+      "Gissey-sous-Flavigny",
+      "Hauteroche"
+    ],
+    "Nantoux": [
+      "Bouze-lès-Beaune",
+      "Mavilly-Mandelot",
+      "Meloisey",
+      "Pommard",
+      "Volnay"
+    ],
+    "La Roche-Vanneau": [
+      "Brain",
+      "Dampierre-en-Montagne",
+      "Flavigny-sur-Ozerain",
+      "Hauteroche",
+      "Jailly-les-Moulins",
+      "Marigny-le-Cahouët",
+      "Villeferry"
+    ],
+    "Braux": [
+      "Brianny",
+      "Charigny",
+      "Clamerey",
+      "Marcigny-sous-Thil",
+      "Marigny-le-Cahouët",
+      "Montigny-sur-Armançon",
+      "Sainte-Colombe-en-Auxois",
+      "Villeneuve-sous-Charigny"
+    ],
+    "Clamerey": [
+      "Braux",
+      "Fontangy",
+      "Marcigny-sous-Thil",
+      "Nan-sous-Thil",
+      "Noidan",
+      "Normier",
+      "Saint-Thibault",
+      "Sainte-Colombe-en-Auxois",
+      "Velogny"
+    ],
+    "Marcigny-sous-Thil": [
+      "Braux",
+      "Brianny",
+      "Clamerey",
+      "Nan-sous-Thil"
+    ],
+    "Brianny": [
+      "Braux",
+      "Le Val-Larrey",
+      "Marcigny-sous-Thil",
+      "Montigny-sur-Armançon",
+      "Nan-sous-Thil",
+      "Roilly"
+    ],
+    "Montigny-sur-Armançon": [
+      "Braux",
+      "Brianny",
+      "Le Val-Larrey",
+      "Pont-et-Massène",
+      "Saint-Euphrône",
+      "Villeneuve-sous-Charigny"
+    ],
+    "Villeneuve-sous-Charigny": [
+      "Braux",
+      "Charigny",
+      "Marigny-le-Cahouët",
+      "Montigny-sur-Armançon",
+      "Saint-Euphrône"
+    ],
+    "Charigny": [
+      "Braux",
+      "Marigny-le-Cahouët",
+      "Villeneuve-sous-Charigny"
+    ],
+    "Censerey": [
+      "Brazey-en-Morvan",
+      "Diancey",
+      "Liernais",
+      "Sussey",
+      "Vianges"
+    ],
+    "Saint-Usage": [
+      "Brazey-en-Plaine",
+      "Esbarres",
+      "Losne",
+      "Montot",
+      "Pagny-le-Château",
+      "Saint-Jean-de-Losne",
+      "Trouhans",
+      "Échenon"
+    ],
+    "Tart": [
+      "Brazey-en-Plaine",
+      "Longecourt-en-Plaine",
+      "Marliens",
+      "Montot",
+      "Pluvet",
+      "Tart-le-Bas",
+      "Trouhans",
+      "Tréclun",
+      "Varanges",
+      "Échigey"
+    ],
+    "Montot": [
+      "Brazey-en-Plaine",
+      "Saint-Usage",
+      "Tart",
+      "Trouhans"
+    ],
+    "Semond": [
+      "Brémur-et-Vaurois",
+      "Chemin-d'Aisey",
+      "Magny-Lambert",
+      "Saint-Marc-sur-Seine",
+      "Villaines-en-Duesmois"
+    ],
+    "Cessey-sur-Tille": [
+      "Bressey-sur-Tille",
+      "Chambeire",
+      "Genlis",
+      "Izier",
+      "Labergement-Foigney",
+      "Remilly-sur-Tille"
+    ],
+    "Izier": [
+      "Bressey-sur-Tille",
+      "Cessey-sur-Tille",
+      "Genlis",
+      "Magny-sur-Tille"
+    ],
+    "Magny-sur-Tille": [
+      "Bressey-sur-Tille",
+      "Chevigny-Saint-Sauveur",
+      "Fauverney",
+      "Genlis",
+      "Izier",
+      "Varanges"
+    ],
+    "Chevigny-Saint-Sauveur": [
+      "Bressey-sur-Tille",
+      "Couternon",
+      "Dijon",
+      "Fauverney",
+      "Magny-sur-Tille",
+      "Neuilly-Crimolois",
+      "Quetigny",
+      "Sennecey-lès-Dijon"
+    ],
+    "Bretenière": [
+      "Fénay",
+      "Ouges",
+      "Rouvres-en-Plaine",
+      "Saulon-la-Chapelle",
+      "Thorey-en-Plaine"
+    ],
+    "Thorey-en-Plaine": [
+      "Bretenière",
+      "Longecourt-en-Plaine",
+      "Marliens",
+      "Rouvres-en-Plaine",
+      "Saulon-la-Chapelle"
+    ],
+    "Fénay": [
+      "Bretenière",
+      "Brochon",
+      "Fixin",
+      "Gevrey-Chambertin",
+      "Longvic",
+      "Marsannay-la-Côte",
+      "Ouges",
+      "Perrigny-lès-Dijon",
+      "Saulon-la-Chapelle",
+      "Saulon-la-Rue"
+    ],
+    "Ouges": [
+      "Bretenière",
+      "Fénay",
+      "Longvic",
+      "Neuilly-Crimolois",
+      "Rouvres-en-Plaine"
+    ],
+    "Rouvres-en-Plaine": [
+      "Bretenière",
+      "Fauverney",
+      "Marliens",
+      "Neuilly-Crimolois",
+      "Ouges",
+      "Thorey-en-Plaine",
+      "Varanges"
+    ],
+    "Clénay": [
+      "Bretigny",
+      "Flacey",
+      "Marsannay-le-Bois",
+      "Norges-la-Ville",
+      "Saint-Julien"
+    ],
+    "Varois-et-Chaignot": [
+      "Bretigny",
+      "Couternon",
+      "Orgeux",
+      "Quetigny",
+      "Ruffey-lès-Echirey",
+      "Saint-Apollinaire",
+      "Saint-Julien"
+    ],
+    "Nan-sous-Thil": [
+      "Brianny",
+      "Clamerey",
+      "Fontangy",
+      "Marcigny-sous-Thil",
+      "Précy-sous-Thil",
+      "Roilly",
+      "Vic-sous-Thil"
+    ],
+    "Roilly": [
+      "Brianny",
+      "Le Val-Larrey",
+      "Nan-sous-Thil",
+      "Précy-sous-Thil"
+    ],
+    "Prusly-sur-Ource": [
+      "Brion-sur-Ource",
+      "Châtillon-sur-Seine",
+      "Maisey-le-Duc",
+      "Massingy",
+      "Mosson",
+      "Villotte-sur-Ource"
+    ],
+    "Brochon": [
+      "Chambœuf",
+      "Fixin",
+      "Fénay",
+      "Gevrey-Chambertin",
+      "Valforêt"
+    ],
+    "Chambœuf": [
+      "Brochon",
+      "Curley",
+      "Gevrey-Chambertin",
+      "Reulle-Vergy",
+      "Semezanges",
+      "Ternant",
+      "Valforêt"
+    ],
+    "Valforêt": [
+      "Brochon",
+      "Chambœuf",
+      "Couchey",
+      "Fixin",
+      "Flavignerot",
+      "Fleurey-sur-Ouche",
+      "Gergueil",
+      "Semezanges",
+      "Urcy"
+    ],
+    "Fixin": [
+      "Brochon",
+      "Couchey",
+      "Fénay",
+      "Perrigny-lès-Dijon",
+      "Valforêt"
+    ],
+    "Savouges": [
+      "Broindon",
+      "Corcelles-lès-Cîteaux",
+      "Noiron-sous-Gevrey",
+      "Saint-Nicolas-lès-Cîteaux",
+      "Épernay-sous-Gevrey"
+    ],
+    "Épernay-sous-Gevrey": [
+      "Broindon",
+      "Gilly-lès-Cîteaux",
+      "Saint-Bernard",
+      "Saint-Nicolas-lès-Cîteaux",
+      "Savouges",
+      "Villebichot"
+    ],
+    "Gilly-lès-Cîteaux": [
+      "Broindon",
+      "Chambolle-Musigny",
+      "Flagey-Echézeaux",
+      "Morey-Saint-Denis",
+      "Saint-Bernard",
+      "Saint-Philibert",
+      "Vougeot",
+      "Épernay-sous-Gevrey"
+    ],
+    "Saint-Philibert": [
+      "Broindon",
+      "Gevrey-Chambertin",
+      "Gilly-lès-Cîteaux",
+      "Morey-Saint-Denis"
+    ],
+    "Buffon": [
+      "Quincy-le-Vicomte",
+      "Rougemont",
+      "Saint-Rémy"
+    ],
+    "Quincy-le-Vicomte": [
+      "Buffon",
+      "Fain-lès-Moutiers",
+      "Quincerot",
+      "Rougemont",
+      "Saint-Germain-lès-Senailly",
+      "Saint-Rémy",
+      "Senailly"
+    ],
+    "Villiers-le-Duc": [
+      "Buncey",
+      "Châtillon-sur-Seine",
+      "Essarois",
+      "Maisey-le-Duc",
+      "Nod-sur-Seine",
+      "Rochefort-sur-Brévon",
+      "Saint-Germain-le-Rocheux",
+      "Vanvey",
+      "Voulaines-les-Templiers"
+    ],
+    "Saint-Broing-les-Moines": [
+      "Bure-les-Templiers",
+      "Minot",
+      "Moitron",
+      "Montmoyen",
+      "Terrefondrée"
+    ],
+    "Terrefondrée": [
+      "Bure-les-Templiers",
+      "Montmoyen",
+      "Recey-sur-Ource",
+      "Saint-Broing-les-Moines"
+    ],
+    "Recey-sur-Ource": [
+      "Bure-les-Templiers",
+      "Chambain",
+      "Essarois",
+      "Faverolles-lès-Lucey",
+      "Leuglay",
+      "Menesble",
+      "Montmoyen",
+      "Terrefondrée"
+    ],
+    "Menesble": [
+      "Bure-les-Templiers",
+      "Chambain",
+      "Recey-sur-Ource"
+    ],
+    "Chaugey": [
+      "Bure-les-Templiers"
+    ],
+    "Saint-Germain-le-Rocheux": [
+      "Busseaut",
+      "Nod-sur-Seine",
+      "Rochefort-sur-Brévon",
+      "Villiers-le-Duc"
+    ],
+    "Busserotte-et-Montenaille": [
+      "Bussières",
+      "Courlon",
+      "Grancey-le-Château-Neuvelle"
+    ],
+    "Commarin": [
+      "Châteauneuf",
+      "Créancey",
+      "La Bussière-sur-Ouche",
+      "Montoillot",
+      "Semarey",
+      "Vandenesse-en-Auxois"
+    ],
+    "Sombernon": [
+      "Bussy-la-Pesle",
+      "Drée",
+      "Mesmont",
+      "Remilly-en-Montagne",
+      "Saint-Mesmin",
+      "Savigny-sous-Mâlain",
+      "Vieilmoulin",
+      "Échannay"
+    ],
+    "Drée": [
+      "Bussy-la-Pesle",
+      "Saint-Mesmin",
+      "Sombernon",
+      "Verrey-sous-Drée"
+    ],
+    "Verrey-sous-Drée": [
+      "Bussy-la-Pesle",
+      "Chevannay",
+      "Drée",
+      "Saint-Hélier",
+      "Saint-Mesmin"
+    ],
+    "Éringes": [
+      "Bussy-le-Grand",
+      "Fresnes",
+      "Lucenay-le-Duc",
+      "Ménétreux-le-Pitois",
+      "Seigny"
+    ],
+    "Bussy-le-Grand": [
+      "Darcey",
+      "Grésigny-Sainte-Reine",
+      "La Villeneuve-les-Convers",
+      "Lucenay-le-Duc",
+      "Ménétreux-le-Pitois",
+      "Éringes",
+      "Étormay"
+    ],
+    "Lucenay-le-Duc": [
+      "Bussy-le-Grand",
+      "Chaume-lès-Baigneux",
+      "Fontaines-en-Duesmois",
+      "Fresnes",
+      "Touillon",
+      "Éringes",
+      "Étormay"
+    ],
+    "Darcey": [
+      "Bussy-le-Grand",
+      "Corpoyer-la-Chapelle",
+      "Flavigny-sur-Ozerain",
+      "Frôlois",
+      "Gissey-sous-Flavigny",
+      "Grésigny-Sainte-Reine",
+      "La Villeneuve-les-Convers"
+    ],
+    "Ménétreux-le-Pitois": [
+      "Bussy-le-Grand",
+      "Grignon",
+      "Grésigny-Sainte-Reine",
+      "Seigny",
+      "Venarey-les-Laumes",
+      "Éringes"
+    ],
+    "Buxerolles": [
+      "Chambain",
+      "Gurgy-le-Château"
+    ],
+    "Chambain": [
+      "Buxerolles",
+      "Faverolles-lès-Lucey",
+      "Gurgy-le-Château",
+      "Menesble",
+      "Recey-sur-Ource"
+    ],
+    "Gurgy-le-Château": [
+      "Buxerolles",
+      "Chambain",
+      "Faverolles-lès-Lucey",
+      "Gurgy-la-Ville",
+      "Lucey"
+    ],
+    "Chambeire": [
+      "Cessey-sur-Tille",
+      "Labergement-Foigney",
+      "Lamarche-sur-Saône",
+      "Longchamp",
+      "Remilly-sur-Tille",
+      "Tellecey"
+    ],
+    "Saussy": [
+      "Chaignay",
+      "Curtil-Saint-Seine",
+      "Messigny-et-Vantoux",
+      "Savigny-le-Sec",
+      "Val-Suzon",
+      "Vernot",
+      "Épagny"
+    ],
+    "Chaignay": [
+      "Diénay",
+      "Gemeaux",
+      "Is-sur-Tille",
+      "Marcilly-sur-Tille",
+      "Marsannay-le-Bois",
+      "Saussy",
+      "Vernot",
+      "Villecomte",
+      "Épagny"
+    ],
+    "Vernot": [
+      "Chaignay",
+      "Courtivron",
+      "Curtil-Saint-Seine",
+      "Francheville",
+      "Saussy",
+      "Tarsul",
+      "Villecomte"
+    ],
+    "Villecomte": [
+      "Chaignay",
+      "Diénay",
+      "Saulx-le-Duc",
+      "Tarsul",
+      "Vernot"
+    ],
+    "Diénay": [
+      "Chaignay",
+      "Is-sur-Tille",
+      "Saulx-le-Duc",
+      "Villecomte"
+    ],
+    "Is-sur-Tille": [
+      "Chaignay",
+      "Crécey-sur-Tille",
+      "Diénay",
+      "Marcilly-sur-Tille",
+      "Marey-sur-Tille",
+      "Saulx-le-Duc",
+      "Til-Châtel",
+      "Villey-sur-Tille",
+      "Échevannes"
+    ],
+    "Marcilly-sur-Tille": [
+      "Chaignay",
+      "Gemeaux",
+      "Is-sur-Tille",
+      "Til-Châtel"
+    ],
+    "Gemeaux": [
+      "Chaignay",
+      "Flacey",
+      "Lux",
+      "Marcilly-sur-Tille",
+      "Marsannay-le-Bois",
+      "Pichanges",
+      "Til-Châtel"
+    ],
+    "Marsannay-le-Bois": [
+      "Chaignay",
+      "Clénay",
+      "Flacey",
+      "Gemeaux",
+      "Norges-la-Ville",
+      "Savigny-le-Sec",
+      "Épagny"
+    ],
+    "Épagny": [
+      "Chaignay",
+      "Marsannay-le-Bois",
+      "Saussy",
+      "Savigny-le-Sec"
+    ],
+    "Faverolles-lès-Lucey": [
+      "Chambain",
+      "Gurgy-le-Château",
+      "Leuglay",
+      "Lucey",
+      "Recey-sur-Ource"
+    ],
+    "Lamarche-sur-Saône": [
+      "Chambeire",
+      "Cirey-lès-Pontailler",
+      "Collonges-et-Premières",
+      "Flammerans",
+      "Longchamp",
+      "Magny-Montarlot",
+      "Poncey-lès-Athée",
+      "Pontailler-sur-Saône",
+      "Saint-Léger-Triey",
+      "Tellecey",
+      "Vielverge",
+      "Vonges"
+    ],
+    "Chamblanc": [
+      "Labruyère",
+      "Lanthes",
+      "Pagny-le-Château",
+      "Seurre"
+    ],
+    "Seurre": [
+      "Chamblanc",
+      "Glanon",
+      "Jallanges",
+      "Labergement-lès-Seurre",
+      "Labruyère",
+      "Lanthes",
+      "Pouilly-sur-Saône"
+    ],
+    "Labruyère": [
+      "Chamblanc",
+      "Glanon",
+      "Lechâtelet",
+      "Pagny-la-Ville",
+      "Pagny-le-Château",
+      "Seurre"
+    ],
+    "Pagny-le-Château": [
+      "Chamblanc",
+      "Esbarres",
+      "Franxault",
+      "Grosbois-lès-Tichey",
+      "Labruyère",
+      "Lanthes",
+      "Losne",
+      "Montagny-lès-Seurre",
+      "Pagny-la-Ville",
+      "Saint-Usage"
+    ],
+    "Curley": [
+      "Chambolle-Musigny",
+      "Chambœuf",
+      "Gevrey-Chambertin",
+      "Morey-Saint-Denis",
+      "Reulle-Vergy"
+    ],
+    "Reulle-Vergy": [
+      "Chambolle-Musigny",
+      "Chambœuf",
+      "Curley",
+      "Curtil-Vergy",
+      "L'Étang-Vergy",
+      "Nuits-Saint-Georges",
+      "Ternant"
+    ],
+    "Semezanges": [
+      "Chambœuf",
+      "Gergueil",
+      "Ternant",
+      "Valforêt"
+    ],
+    "Chambolle-Musigny": [
+      "Curley",
+      "Flagey-Echézeaux",
+      "Gilly-lès-Cîteaux",
+      "Morey-Saint-Denis",
+      "Nuits-Saint-Georges",
+      "Reulle-Vergy",
+      "Vougeot"
+    ],
+    "Morey-Saint-Denis": [
+      "Chambolle-Musigny",
+      "Curley",
+      "Gevrey-Chambertin",
+      "Gilly-lès-Cîteaux",
+      "Saint-Philibert"
+    ],
+    "Vougeot": [
+      "Chambolle-Musigny",
+      "Flagey-Echézeaux",
+      "Gilly-lès-Cîteaux"
+    ],
+    "Renève": [
+      "Champagne-sur-Vingeanne",
+      "Cheuge",
+      "Jancigny",
+      "Oisilly"
+    ],
+    "Vaux-Saules": [
+      "Champagny",
+      "Francheville",
+      "Lamargelle",
+      "Pellerey",
+      "Poncey-sur-l'Ignon",
+      "Saint-Martin-du-Mont",
+      "Saint-Seine-l'Abbaye"
+    ],
+    "Champ-d'Oiseau": [
+      "Grignon",
+      "Lantilly",
+      "Millery",
+      "Montigny-Montfort",
+      "Villaines-les-Prévôtes"
+    ],
+    "Lantilly": [
+      "Champ-d'Oiseau",
+      "Grignon",
+      "Massingy-lès-Semur",
+      "Millery",
+      "Semur-en-Auxois",
+      "Villars-et-Villenotte"
+    ],
+    "Millery": [
+      "Champ-d'Oiseau",
+      "Genay",
+      "Lantilly",
+      "Semur-en-Auxois",
+      "Vic-de-Chassenay",
+      "Villaines-les-Prévôtes"
+    ],
+    "Champdôtre": [
+      "Les Maillys",
+      "Pont",
+      "Soirans",
+      "Tillenay",
+      "Trouhans",
+      "Tréclun",
+      "Villers-les-Pots"
+    ],
+    "Trouhans": [
+      "Champdôtre",
+      "Les Maillys",
+      "Montot",
+      "Saint-Usage",
+      "Tart",
+      "Tréclun",
+      "Échenon"
+    ],
+    "Tréclun": [
+      "Champdôtre",
+      "Pluvet",
+      "Soirans",
+      "Tart",
+      "Trouhans"
+    ],
+    "Soirans": [
+      "Champdôtre",
+      "Collonges-et-Premières",
+      "Pluvet",
+      "Tréclun",
+      "Villers-les-Pots"
+    ],
+    "Pont": [
+      "Champdôtre",
+      "Les Maillys",
+      "Tillenay"
+    ],
+    "Champeau-en-Morvan": [
+      "Saint-Didier",
+      "Saint-Martin-de-la-Mer",
+      "Saulieu"
+    ],
+    "Saint-Didier": [
+      "Champeau-en-Morvan",
+      "La Roche-en-Brenil",
+      "Molphey",
+      "Montlay-en-Auxois",
+      "Saulieu"
+    ],
+    "Saulieu": [
+      "Champeau-en-Morvan",
+      "Liernais",
+      "Montlay-en-Auxois",
+      "Saint-Didier",
+      "Saint-Martin-de-la-Mer",
+      "Thoisy-la-Berchère",
+      "Villargoix"
+    ],
+    "Champignolles": [
+      "Lacanche",
+      "Molinot",
+      "Saint-Pierre-en-Vaux",
+      "Saussey",
+      "Thomirey",
+      "Thury",
+      "Val-Mont"
+    ],
+    "Thury": [
+      "Champignolles",
+      "Molinot",
+      "Saint-Pierre-en-Vaux",
+      "Viévy"
+    ],
+    "Saint-Pierre-en-Vaux": [
+      "Champignolles",
+      "Lacanche",
+      "Maligny",
+      "Thury",
+      "Viévy"
+    ],
+    "Saussey": [
+      "Champignolles",
+      "Montceau-et-Écharnant",
+      "Thomirey",
+      "Val-Mont",
+      "Écutigny"
+    ],
+    "Champrenault": [
+      "Charencey",
+      "Chevannay",
+      "Saint-Hélier",
+      "Turcey",
+      "Villy-en-Auxois"
+    ],
+    "Charencey": [
+      "Champrenault",
+      "Turcey",
+      "Verrey-sous-Salmaise",
+      "Villy-en-Auxois"
+    ],
+    "Lamargelle": [
+      "Chanceaux",
+      "Francheville",
+      "Frénois",
+      "Léry",
+      "Pellerey",
+      "Poiseul-la-Grange",
+      "Vaux-Saules"
+    ],
+    "Pellerey": [
+      "Chanceaux",
+      "Lamargelle",
+      "Poncey-sur-l'Ignon",
+      "Vaux-Saules"
+    ],
+    "Channay": [
+      "Griselles",
+      "Nicey",
+      "Vertault",
+      "Villedieu"
+    ],
+    "Villedieu": [
+      "Channay",
+      "Griselles",
+      "Larrey",
+      "Marcenay",
+      "Molesme",
+      "Vertault"
+    ],
+    "Griselles": [
+      "Channay",
+      "Laignes",
+      "Marcenay",
+      "Nicey",
+      "Villedieu"
+    ],
+    "Nicey": [
+      "Channay",
+      "Griselles",
+      "Laignes"
+    ],
+    "Vertault": [
+      "Channay",
+      "Molesme",
+      "Villedieu"
+    ],
+    "Verrey-sous-Salmaise": [
+      "Charencey",
+      "Salmaise",
+      "Turcey",
+      "Villotte-Saint-Seine",
+      "Villy-en-Auxois"
+    ],
+    "Cheuge": [
+      "Charmes",
+      "Jancigny",
+      "Mirebeau-sur-Bèze",
+      "Montmançon",
+      "Oisilly",
+      "Renève",
+      "Saint-Sauveur"
+    ],
+    "Montmançon": [
+      "Charmes",
+      "Cheuge",
+      "Drambon",
+      "Marandeuil",
+      "Saint-Sauveur"
+    ],
+    "Marandeuil": [
+      "Charmes",
+      "Cuiserey",
+      "Drambon",
+      "Montmançon",
+      "Saint-Léger-Triey",
+      "Trochères",
+      "Étevaux"
+    ],
+    "Charny": [
+      "Fontangy",
+      "Mont-Saint-Jean",
+      "Noidan",
+      "Thorey-sous-Charny"
+    ],
+    "Fontangy": [
+      "Charny",
+      "Clamerey",
+      "La Motte-Ternant",
+      "Missery",
+      "Mont-Saint-Jean",
+      "Nan-sous-Thil",
+      "Noidan",
+      "Vic-sous-Thil"
+    ],
+    "Noidan": [
+      "Charny",
+      "Clamerey",
+      "Fontangy",
+      "Normier",
+      "Thorey-sous-Charny"
+    ],
+    "Obtrée": [
+      "Charrey-sur-Seine",
+      "Chaumont-le-Bois",
+      "Vannaire",
+      "Villers-Patras",
+      "Vix"
+    ],
+    "Villers-Patras": [
+      "Charrey-sur-Seine",
+      "Obtrée",
+      "Pothières",
+      "Vix"
+    ],
+    "Puligny-Montrachet": [
+      "Chassagne-Montrachet",
+      "Corcelles-les-Arts",
+      "Corpeau",
+      "Meursault",
+      "Saint-Aubin",
+      "Ébaty"
+    ],
+    "Chassagne-Montrachet": [
+      "Corpeau",
+      "Puligny-Montrachet",
+      "Saint-Aubin",
+      "Santenay"
+    ],
+    "Corpeau": [
+      "Chassagne-Montrachet",
+      "Puligny-Montrachet",
+      "Ébaty"
+    ],
+    "Santenay": [
+      "Chassagne-Montrachet",
+      "La Rochepot",
+      "Saint-Aubin"
+    ],
+    "Chassey": [
+      "Magny-la-Ville",
+      "Marigny-le-Cahouët",
+      "Pouillenay",
+      "Saint-Euphrône"
+    ],
+    "Pouillenay": [
+      "Chassey",
+      "Flavigny-sur-Ozerain",
+      "Juilly",
+      "Magny-la-Ville",
+      "Marigny-le-Cahouët",
+      "Massingy-lès-Semur",
+      "Mussy-la-Fosse",
+      "Souhey"
+    ],
+    "Saint-Euphrône": [
+      "Chassey",
+      "Juilly",
+      "Magny-la-Ville",
+      "Marigny-le-Cahouët",
+      "Montigny-sur-Armançon",
+      "Pont-et-Massène",
+      "Souhey",
+      "Villars-et-Villenotte",
+      "Villeneuve-sous-Charigny"
+    ],
+    "Magny-la-Ville": [
+      "Chassey",
+      "Pouillenay",
+      "Saint-Euphrône",
+      "Souhey"
+    ],
+    "Vandenesse-en-Auxois": [
+      "Châteauneuf",
+      "Commarin",
+      "Créancey",
+      "Maconge",
+      "Rouvres-sous-Meilly",
+      "Sainte-Sabine"
+    ],
+    "Essey": [
+      "Châtellenot",
+      "Clomot",
+      "Le Fête",
+      "Meilly-sur-Rouvres",
+      "Thoisy-le-Désert"
+    ],
+    "Montliot-et-Courcelles": [
+      "Châtillon-sur-Seine",
+      "Massingy",
+      "Sainte-Colombe-sur-Seine",
+      "Vannaire",
+      "Vix",
+      "Étrochey"
+    ],
+    "Massingy": [
+      "Chaumont-le-Bois",
+      "Châtillon-sur-Seine",
+      "Montliot-et-Courcelles",
+      "Mosson",
+      "Prusly-sur-Ource",
+      "Vannaire"
+    ],
+    "Maisey-le-Duc": [
+      "Châtillon-sur-Seine",
+      "Courban",
+      "Louesme",
+      "Prusly-sur-Ource",
+      "Vanvey",
+      "Villiers-le-Duc",
+      "Villotte-sur-Ource"
+    ],
+    "Chaudenay-la-Ville": [
+      "Chaudenay-le-Château",
+      "Colombier",
+      "Crugey",
+      "Painblanc",
+      "Sainte-Sabine",
+      "Thorey-sur-Ouche"
+    ],
+    "Chaudenay-le-Château": [
+      "Chaudenay-la-Ville",
+      "Crugey",
+      "Sainte-Sabine"
+    ],
+    "Colombier": [
+      "Chaudenay-la-Ville",
+      "Crugey",
+      "Thorey-sur-Ouche"
+    ],
+    "Sacquenay": [
+      "Chaume-et-Courchamp",
+      "Chazeuil",
+      "Fontaine-Française"
+    ],
+    "Chaume-et-Courchamp": [
+      "Fontaine-Française",
+      "Sacquenay",
+      "Saint-Maurice-sur-Vingeanne"
+    ],
+    "Saint-Maurice-sur-Vingeanne": [
+      "Chaume-et-Courchamp",
+      "Fontaine-Française",
+      "Montigny-Mornay-Villeneuve-sur-Vingeanne",
+      "Orain"
+    ],
+    "Lignerolles": [
+      "La Chaume",
+      "Les Goulles"
+    ],
+    "Les Goulles": [
+      "Gurgy-la-Ville",
+      "La Chaume",
+      "Lignerolles",
+      "Lucey"
+    ],
+    "Lucey": [
+      "Faverolles-lès-Lucey",
+      "Gurgy-la-Ville",
+      "Gurgy-le-Château",
+      "La Chaume",
+      "Les Goulles",
+      "Leuglay"
+    ],
+    "Voulaines-les-Templiers": [
+      "Essarois",
+      "La Chaume",
+      "Leuglay",
+      "Louesme",
+      "Vanvey",
+      "Villiers-le-Duc"
+    ],
+    "Louesme": [
+      "Courban",
+      "La Chaume",
+      "Maisey-le-Duc",
+      "Vanvey",
+      "Veuxhaulles-sur-Aube",
+      "Voulaines-les-Templiers"
+    ],
+    "Chaume-lès-Baigneux": [
+      "Fontaines-en-Duesmois",
+      "Jours-lès-Baigneux",
+      "Lucenay-le-Duc",
+      "Magny-Lambert",
+      "Étormay"
+    ],
+    "Fontaines-en-Duesmois": [
+      "Chaume-lès-Baigneux",
+      "Lucenay-le-Duc",
+      "Magny-Lambert",
+      "Touillon",
+      "Villaines-en-Duesmois"
+    ],
+    "Vannaire": [
+      "Chaumont-le-Bois",
+      "Massingy",
+      "Montliot-et-Courcelles",
+      "Obtrée",
+      "Vix"
+    ],
+    "Comblanchien": [
+      "Chaux",
+      "Corgoloin",
+      "Premeaux-Prissey",
+      "Villers-la-Faye"
+    ],
+    "Chaux": [
+      "Comblanchien",
+      "Meuilley",
+      "Nuits-Saint-Georges",
+      "Premeaux-Prissey",
+      "Villars-Fontaine",
+      "Villers-la-Faye"
+    ],
+    "Villers-la-Faye": [
+      "Chaux",
+      "Comblanchien",
+      "Corgoloin",
+      "Magny-lès-Villers",
+      "Marey-lès-Fussey",
+      "Meuilley",
+      "Échevronne"
+    ],
+    "Villars-Fontaine": [
+      "Chaux",
+      "Meuilley",
+      "Nuits-Saint-Georges",
+      "Segrois"
+    ],
+    "Longecourt-lès-Culêtre": [
+      "Chazilly",
+      "Culètre",
+      "Cussy-le-Châtel",
+      "Foissy",
+      "Musigny"
+    ],
+    "Chazilly": [
+      "Cussy-le-Châtel",
+      "Longecourt-lès-Culêtre",
+      "Meilly-sur-Rouvres",
+      "Musigny",
+      "Rouvres-sous-Meilly",
+      "Sainte-Sabine"
+    ],
+    "Musigny": [
+      "Chazilly",
+      "Foissy",
+      "Le Fête",
+      "Longecourt-lès-Culêtre",
+      "Meilly-sur-Rouvres",
+      "Mimeure"
+    ],
+    "Meilly-sur-Rouvres": [
+      "Chazilly",
+      "Créancey",
+      "Essey",
+      "Le Fête",
+      "Maconge",
+      "Musigny",
+      "Pouilly-en-Auxois",
+      "Rouvres-sous-Meilly",
+      "Thoisy-le-Désert"
+    ],
+    "Rouvres-sous-Meilly": [
+      "Chazilly",
+      "Maconge",
+      "Meilly-sur-Rouvres",
+      "Sainte-Sabine",
+      "Vandenesse-en-Auxois"
+    ],
+    "Cussy-le-Châtel": [
+      "Chazilly",
+      "Culètre",
+      "Longecourt-lès-Culêtre",
+      "Painblanc",
+      "Sainte-Sabine"
+    ],
+    "Villaines-en-Duesmois": [
+      "Chemin-d'Aisey",
+      "Coulmier-le-Sec",
+      "Fontaines-en-Duesmois",
+      "Magny-Lambert",
+      "Puits",
+      "Semond",
+      "Touillon",
+      "Étais"
+    ],
+    "Corcelles-les-Monts": [
+      "Chenôve",
+      "Couchey",
+      "Dijon",
+      "Flavignerot",
+      "Marsannay-la-Côte",
+      "Plombières-lès-Dijon",
+      "Velars-sur-Ouche"
+    ],
+    "Chenôve": [
+      "Corcelles-les-Monts",
+      "Dijon",
+      "Longvic",
+      "Marsannay-la-Côte"
+    ],
+    "Longvic": [
+      "Chenôve",
+      "Dijon",
+      "Fénay",
+      "Marsannay-la-Côte",
+      "Neuilly-Crimolois",
+      "Ouges"
+    ],
+    "Marsannay-la-Côte": [
+      "Chenôve",
+      "Corcelles-les-Monts",
+      "Couchey",
+      "Fénay",
+      "Longvic",
+      "Perrigny-lès-Dijon"
+    ],
+    "Jancigny": [
+      "Cheuge",
+      "Renève",
+      "Saint-Sauveur",
+      "Talmay"
+    ],
+    "Saint-Sauveur": [
+      "Cheuge",
+      "Drambon",
+      "Jancigny",
+      "Maxilly-sur-Saône",
+      "Montmançon",
+      "Talmay"
+    ],
+    "Chevigny-en-Valière": [
+      "Corgengoux",
+      "Meursanges"
+    ],
+    "Meursanges": [
+      "Chevigny-en-Valière",
+      "Combertault",
+      "Corgengoux",
+      "Marigny-lès-Reullée",
+      "Ruffey-lès-Beaune",
+      "Sainte-Marie-la-Blanche"
+    ],
+    "Corgengoux": [
+      "Chevigny-en-Valière",
+      "Corberon",
+      "Labergement-lès-Seurre",
+      "Marigny-lès-Reullée",
+      "Meursanges"
+    ],
+    "Quetigny": [
+      "Chevigny-Saint-Sauveur",
+      "Couternon",
+      "Dijon",
+      "Saint-Apollinaire",
+      "Varois-et-Chaignot"
+    ],
+    "Fauverney": [
+      "Chevigny-Saint-Sauveur",
+      "Magny-sur-Tille",
+      "Neuilly-Crimolois",
+      "Rouvres-en-Plaine",
+      "Varanges"
+    ],
+    "Neuilly-Crimolois": [
+      "Chevigny-Saint-Sauveur",
+      "Fauverney",
+      "Longvic",
+      "Ouges",
+      "Rouvres-en-Plaine",
+      "Sennecey-lès-Dijon"
+    ],
+    "Sennecey-lès-Dijon": [
+      "Chevigny-Saint-Sauveur",
+      "Dijon",
+      "Neuilly-Crimolois"
+    ],
+    "Chivres": [
+      "Labergement-lès-Seurre",
+      "Trugny"
+    ],
+    "Trugny": [
+      "Chivres",
+      "Jallanges",
+      "Labergement-lès-Seurre"
+    ],
+    "Saint-Léger-Triey": [
+      "Cirey-lès-Pontailler",
+      "Drambon",
+      "Lamarche-sur-Saône",
+      "Marandeuil",
+      "Pontailler-sur-Saône",
+      "Étevaux"
+    ],
+    "Créancey": [
+      "Civry-en-Montagne",
+      "Commarin",
+      "Maconge",
+      "Meilly-sur-Rouvres",
+      "Pouilly-en-Auxois",
+      "Semarey",
+      "Vandenesse-en-Auxois"
+    ],
+    "Normier": [
+      "Clamerey",
+      "Noidan",
+      "Saint-Thibault",
+      "Thorey-sous-Charny"
+    ],
+    "Flavignerot": [
+      "Corcelles-les-Monts",
+      "Couchey",
+      "Fleurey-sur-Ouche",
+      "Valforêt",
+      "Velars-sur-Ouche"
+    ],
+    "Couchey": [
+      "Corcelles-les-Monts",
+      "Fixin",
+      "Flavignerot",
+      "Marsannay-la-Côte",
+      "Perrigny-lès-Dijon",
+      "Valforêt"
+    ],
+    "Flacey": [
+      "Clénay",
+      "Gemeaux",
+      "Marsannay-le-Bois",
+      "Pichanges",
+      "Saint-Julien",
+      "Spoy"
+    ],
+    "Cléry": [
+      "Perrigny-sur-l'Ognon"
+    ],
+    "Perrigny-sur-l'Ognon": [
+      "Cléry",
+      "Heuilley-sur-Saône",
+      "Maxilly-sur-Saône",
+      "Pontailler-sur-Saône",
+      "Vielverge"
+    ],
+    "Le Fête": [
+      "Clomot",
+      "Essey",
+      "Meilly-sur-Rouvres",
+      "Mimeure",
+      "Musigny"
+    ],
+    "Pluvet": [
+      "Collonges-et-Premières",
+      "Longeault-Pluvault",
+      "Soirans",
+      "Tart",
+      "Tart-le-Bas",
+      "Tréclun"
+    ],
+    "Sainte-Marie-la-Blanche": [
+      "Combertault",
+      "Levernois",
+      "Merceuil",
+      "Meursanges",
+      "Montagny-lès-Beaune"
+    ],
+    "Corberon": [
+      "Corgengoux",
+      "Labergement-lès-Seurre",
+      "Marigny-lès-Reullée",
+      "Montmain",
+      "Villy-le-Moutier"
+    ],
+    "Marigny-lès-Reullée": [
+      "Corberon",
+      "Corgengoux",
+      "Meursanges",
+      "Ruffey-lès-Beaune",
+      "Villy-le-Moutier"
+    ],
+    "Corcelles-les-Arts": [
+      "Merceuil",
+      "Meursault",
+      "Puligny-Montrachet",
+      "Ébaty"
+    ],
+    "Ébaty": [
+      "Corcelles-les-Arts",
+      "Corpeau",
+      "Puligny-Montrachet"
+    ],
+    "Corcelles-lès-Cîteaux": [
+      "Izeure",
+      "Noiron-sous-Gevrey",
+      "Saint-Nicolas-lès-Cîteaux",
+      "Savouges"
+    ],
+    "Velars-sur-Ouche": [
+      "Corcelles-les-Monts",
+      "Flavignerot",
+      "Fleurey-sur-Ouche",
+      "Lantenay",
+      "Plombières-lès-Dijon"
+    ],
+    "Plombières-lès-Dijon": [
+      "Corcelles-les-Monts",
+      "Daix",
+      "Dijon",
+      "Lantenay",
+      "Prenois",
+      "Talant",
+      "Velars-sur-Ouche"
+    ],
+    "Magny-lès-Villers": [
+      "Corgoloin",
+      "Ladoix-Serrigny",
+      "Pernand-Vergelesses",
+      "Villers-la-Faye",
+      "Échevronne"
+    ],
+    "Corpoyer-la-Chapelle": [
+      "Darcey",
+      "Frôlois"
+    ],
+    "Époisses": [
+      "Corrombles",
+      "Corsaint",
+      "Forléans",
+      "Montberthault",
+      "Torcy-et-Pouligny",
+      "Toutry",
+      "Vieux-Château"
+    ],
+    "Perrigny-lès-Dijon": [
+      "Couchey",
+      "Fixin",
+      "Fénay",
+      "Marsannay-la-Côte"
+    ],
+    "Puits": [
+      "Coulmier-le-Sec",
+      "Nesle-et-Massoult",
+      "Savoisy",
+      "Villaines-en-Duesmois",
+      "Étais"
+    ],
+    "Thoste": [
+      "Courcelles-Frémoy",
+      "Courcelles-lès-Semur",
+      "Dompierre-en-Morvan",
+      "Forléans",
+      "La Roche-en-Brenil",
+      "Montigny-Saint-Barthélemy",
+      "Vic-de-Chassenay"
+    ],
+    "Courcelles-Frémoy": [
+      "Forléans",
+      "La Roche-en-Brenil",
+      "Montberthault",
+      "Thoste"
+    ],
+    "La Roche-en-Brenil": [
+      "Courcelles-Frémoy",
+      "Dompierre-en-Morvan",
+      "Lacour-d'Arcenay",
+      "Molphey",
+      "Montberthault",
+      "Rouvray",
+      "Saint-Didier",
+      "Saint-Germain-de-Modéon",
+      "Sincey-lès-Rouvray",
+      "Thoste"
+    ],
+    "Montberthault": [
+      "Courcelles-Frémoy",
+      "Forléans",
+      "La Roche-en-Brenil",
+      "Sincey-lès-Rouvray",
+      "Vieux-Château",
+      "Époisses"
+    ],
+    "Forléans": [
+      "Courcelles-Frémoy",
+      "Montberthault",
+      "Thoste",
+      "Torcy-et-Pouligny",
+      "Vic-de-Chassenay",
+      "Époisses"
+    ],
+    "Nogent-lès-Montbard": [
+      "Courcelles-lès-Montbard",
+      "Fain-lès-Montbard",
+      "Marmagne",
+      "Montbard",
+      "Montigny-Montfort"
+    ],
+    "Fain-lès-Montbard": [
+      "Courcelles-lès-Montbard",
+      "Fresnes",
+      "Marmagne",
+      "Nogent-lès-Montbard",
+      "Touillon"
+    ],
+    "Courcelles-lès-Semur": [
+      "Le Val-Larrey",
+      "Montigny-Saint-Barthélemy",
+      "Semur-en-Auxois",
+      "Thoste",
+      "Vic-de-Chassenay"
+    ],
+    "Vic-de-Chassenay": [
+      "Courcelles-lès-Semur",
+      "Forléans",
+      "Genay",
+      "Millery",
+      "Semur-en-Auxois",
+      "Thoste",
+      "Torcy-et-Pouligny"
+    ],
+    "Semur-en-Auxois": [
+      "Courcelles-lès-Semur",
+      "Lantilly",
+      "Le Val-Larrey",
+      "Millery",
+      "Pont-et-Massène",
+      "Vic-de-Chassenay",
+      "Villars-et-Villenotte"
+    ],
+    "Courtivron": [
+      "Francheville",
+      "Frénois",
+      "Moloy",
+      "Poiseul-lès-Saulx",
+      "Salives",
+      "Saulx-le-Duc",
+      "Tarsul",
+      "Vernot"
+    ],
+    "Francheville": [
+      "Courtivron",
+      "Curtil-Saint-Seine",
+      "Frénois",
+      "Lamargelle",
+      "Saint-Martin-du-Mont",
+      "Val-Suzon",
+      "Vaux-Saules",
+      "Vernot"
+    ],
+    "Frénois": [
+      "Courtivron",
+      "Francheville",
+      "Lamargelle",
+      "Léry",
+      "Moloy",
+      "Salives"
+    ],
+    "Moloy": [
+      "Courtivron",
+      "Frénois",
+      "Salives"
+    ],
+    "Tarsul": [
+      "Courtivron",
+      "Saulx-le-Duc",
+      "Vernot",
+      "Villecomte"
+    ],
+    "Maconge": [
+      "Créancey",
+      "Meilly-sur-Rouvres",
+      "Rouvres-sous-Meilly",
+      "Vandenesse-en-Auxois"
+    ],
+    "Crécey-sur-Tille": [
+      "Is-sur-Tille",
+      "Selongey",
+      "Villey-sur-Tille",
+      "Échevannes"
+    ],
+    "Villey-sur-Tille": [
+      "Crécey-sur-Tille",
+      "Is-sur-Tille",
+      "Marey-sur-Tille",
+      "Selongey"
+    ],
+    "Échevannes": [
+      "Crécey-sur-Tille",
+      "Is-sur-Tille",
+      "Selongey",
+      "Til-Châtel"
+    ],
+    "Crépand": [
+      "Montbard",
+      "Montigny-Montfort",
+      "Quincerot",
+      "Saint-Germain-lès-Senailly",
+      "Senailly"
+    ],
+    "Saint-Germain-lès-Senailly": [
+      "Crépand",
+      "Quincerot",
+      "Quincy-le-Vicomte",
+      "Senailly"
+    ],
+    "Quincerot": [
+      "Crépand",
+      "Montbard",
+      "Quincy-le-Vicomte",
+      "Saint-Germain-lès-Senailly",
+      "Saint-Rémy"
+    ],
+    "Val-Suzon": [
+      "Curtil-Saint-Seine",
+      "Darois",
+      "Francheville",
+      "Messigny-et-Vantoux",
+      "Pasques",
+      "Prenois",
+      "Saint-Martin-du-Mont",
+      "Saussy",
+      "Étaules"
+    ],
+    "Curtil-Saint-Seine": [
+      "Francheville",
+      "Saussy",
+      "Val-Suzon",
+      "Vernot"
+    ],
+    "Curtil-Vergy": [
+      "L'Étang-Vergy",
+      "Messanges",
+      "Nuits-Saint-Georges",
+      "Reulle-Vergy",
+      "Segrois"
+    ],
+    "Segrois": [
+      "Curtil-Vergy",
+      "Messanges",
+      "Meuilley",
+      "Nuits-Saint-Georges",
+      "Villars-Fontaine"
+    ],
+    "Foncegrive": [
+      "Cussey-les-Forges",
+      "Marey-sur-Tille",
+      "Selongey",
+      "Vernois-lès-Vesvres"
+    ],
+    "Vernois-lès-Vesvres": [
+      "Cussey-les-Forges",
+      "Foncegrive",
+      "Selongey"
+    ],
+    "Cussy-la-Colonne": [
+      "Montceau-et-Écharnant",
+      "Saint-Romain",
+      "Val-Mont"
+    ],
+    "Montceau-et-Écharnant": [
+      "Cussy-la-Colonne",
+      "Lusigny-sur-Ouche",
+      "Mavilly-Mandelot",
+      "Meloisey",
+      "Saint-Romain",
+      "Saussey",
+      "Val-Mont",
+      "Écutigny"
+    ],
+    "Talant": [
+      "Daix",
+      "Dijon",
+      "Fontaine-lès-Dijon",
+      "Plombières-lès-Dijon"
+    ],
+    "Prenois": [
+      "Daix",
+      "Darois",
+      "Lantenay",
+      "Pasques",
+      "Plombières-lès-Dijon",
+      "Val-Suzon"
+    ],
+    "Darois": [
+      "Daix",
+      "Hauteville-lès-Dijon",
+      "Prenois",
+      "Val-Suzon",
+      "Étaules"
+    ],
+    "Licey-sur-Vingeanne": [
+      "Dampierre-et-Flée",
+      "Fontaine-Française",
+      "Fontenelle"
+    ],
+    "Gissey-sous-Flavigny": [
+      "Darcey",
+      "Flavigny-sur-Ozerain",
+      "Frôlois",
+      "Hauteroche",
+      "Thenissey"
+    ],
+    "Étaules": [
+      "Darois",
+      "Hauteville-lès-Dijon",
+      "Messigny-et-Vantoux",
+      "Val-Suzon"
+    ],
+    "Saint-Apollinaire": [
+      "Dijon",
+      "Quetigny",
+      "Ruffey-lès-Echirey",
+      "Varois-et-Chaignot"
+    ],
+    "Drambon": [
+      "Marandeuil",
+      "Maxilly-sur-Saône",
+      "Montmançon",
+      "Pontailler-sur-Saône",
+      "Saint-Léger-Triey",
+      "Saint-Sauveur"
+    ],
+    "Maxilly-sur-Saône": [
+      "Drambon",
+      "Heuilley-sur-Saône",
+      "Perrigny-sur-l'Ognon",
+      "Pontailler-sur-Saône",
+      "Saint-Sauveur",
+      "Talmay"
+    ],
+    "Pontailler-sur-Saône": [
+      "Drambon",
+      "Lamarche-sur-Saône",
+      "Maxilly-sur-Saône",
+      "Perrigny-sur-l'Ognon",
+      "Saint-Léger-Triey",
+      "Vielverge",
+      "Vonges"
+    ],
+    "Échalot": [
+      "Léry",
+      "Minot",
+      "Poiseul-la-Grange",
+      "Salives",
+      "Étalante"
+    ],
+    "Léry": [
+      "Frénois",
+      "Lamargelle",
+      "Poiseul-la-Grange",
+      "Salives",
+      "Échalot"
+    ],
+    "Échenon": [
+      "Laperrière-sur-Saône",
+      "Les Maillys",
+      "Saint-Symphorien-sur-Saône",
+      "Saint-Usage",
+      "Trouhans"
+    ],
+    "Laperrière-sur-Saône": [
+      "Les Maillys",
+      "Saint-Seine-en-Bâche",
+      "Saint-Symphorien-sur-Saône",
+      "Samerey",
+      "Échenon"
+    ],
+    "Saint-Symphorien-sur-Saône": [
+      "Laperrière-sur-Saône",
+      "Losne",
+      "Samerey",
+      "Échenon"
+    ],
+    "Til-Châtel": [
+      "Gemeaux",
+      "Is-sur-Tille",
+      "Lux",
+      "Marcilly-sur-Tille",
+      "Orville",
+      "Selongey",
+      "Véronnes",
+      "Échevannes"
+    ],
+    "Savigny-le-Sec": [
+      "Marsannay-le-Bois",
+      "Messigny-et-Vantoux",
+      "Norges-la-Ville",
+      "Saussy",
+      "Épagny"
+    ],
+    "Saint-Bernard": [
+      "Flagey-Echézeaux",
+      "Gilly-lès-Cîteaux",
+      "Villebichot",
+      "Épernay-sous-Gevrey"
+    ],
+    "Vieux-Château": [
+      "Montberthault",
+      "Sincey-lès-Rouvray",
+      "Toutry",
+      "Époisses"
+    ],
+    "Toutry": [
+      "Vieux-Château",
+      "Époisses"
+    ],
+    "Leuglay": [
+      "Essarois",
+      "Faverolles-lès-Lucey",
+      "Lucey",
+      "Recey-sur-Ource",
+      "Voulaines-les-Templiers"
+    ],
+    "Étais": [
+      "Montbard",
+      "Puits",
+      "Savoisy",
+      "Touillon",
+      "Villaines-en-Duesmois"
+    ],
+    "Touillon": [
+      "Fain-lès-Montbard",
+      "Fontaines-en-Duesmois",
+      "Fresnes",
+      "Lucenay-le-Duc",
+      "Marmagne",
+      "Montbard",
+      "Villaines-en-Duesmois",
+      "Étais"
+    ],
+    "Savoisy": [
+      "Fontaines-les-Sèches",
+      "Montbard",
+      "Nesle-et-Massoult",
+      "Planay",
+      "Puits",
+      "Verdonnet",
+      "Étais"
+    ],
+    "Vix": [
+      "Montliot-et-Courcelles",
+      "Obtrée",
+      "Pothières",
+      "Vannaire",
+      "Villers-Patras",
+      "Étrochey"
+    ],
+    "Marmagne": [
+      "Fain-lès-Montbard",
+      "Montbard",
+      "Nogent-lès-Montbard",
+      "Touillon"
+    ],
+    "Varanges": [
+      "Fauverney",
+      "Genlis",
+      "Magny-sur-Tille",
+      "Marliens",
+      "Rouvres-en-Plaine",
+      "Tart",
+      "Tart-le-Bas"
+    ],
+    "Pichanges": [
+      "Flacey",
+      "Gemeaux",
+      "Lux",
+      "Spoy"
+    ],
+    "Saint-Seine-en-Bâche": [
+      "Flagey-lès-Auxonne",
+      "Laperrière-sur-Saône",
+      "Les Maillys",
+      "Samerey"
+    ],
+    "Vielverge": [
+      "Flammerans",
+      "Lamarche-sur-Saône",
+      "Perrigny-sur-l'Ognon",
+      "Pontailler-sur-Saône",
+      "Soissons-sur-Nacey"
+    ],
+    "Soissons-sur-Nacey": [
+      "Flammerans",
+      "Vielverge"
+    ],
+    "Pont-et-Massène": [
+      "Le Val-Larrey",
+      "Montigny-sur-Armançon",
+      "Saint-Euphrône",
+      "Semur-en-Auxois",
+      "Villars-et-Villenotte"
+    ],
+    "Maligny": [
+      "Foissy",
+      "Lacanche",
+      "Magnien",
+      "Saint-Pierre-en-Vaux",
+      "Saint-Prix-lès-Arnay",
+      "Viévy"
+    ],
+    "Saint-Seine-sur-Vingeanne": [
+      "Fontaine-Française",
+      "Pouilly-sur-Vingeanne"
+    ],
+    "Montigny-Mornay-Villeneuve-sur-Vingeanne": [
+      "Fontaine-Française",
+      "Orain",
+      "Pouilly-sur-Vingeanne",
+      "Saint-Maurice-sur-Vingeanne"
+    ],
+    "Pouilly-sur-Vingeanne": [
+      "Fontaine-Française",
+      "Montigny-Mornay-Villeneuve-sur-Vingeanne",
+      "Saint-Seine-sur-Vingeanne"
+    ],
+    "Fontaines-les-Sèches": [
+      "Laignes",
+      "Nesle-et-Massoult",
+      "Savoisy",
+      "Verdonnet"
+    ],
+    "Missery": [
+      "Fontangy",
+      "La Motte-Ternant",
+      "Mont-Saint-Jean",
+      "Thoisy-la-Berchère"
+    ],
+    "La Motte-Ternant": [
+      "Fontangy",
+      "Missery",
+      "Montlay-en-Auxois",
+      "Thoisy-la-Berchère",
+      "Vic-sous-Thil",
+      "Villargoix"
+    ],
+    "Franxault": [
+      "Losne",
+      "Montagny-lès-Seurre",
+      "Pagny-le-Château"
+    ],
+    "Losne": [
+      "Franxault",
+      "Pagny-le-Château",
+      "Saint-Jean-de-Losne",
+      "Saint-Symphorien-sur-Saône",
+      "Saint-Usage"
+    ],
+    "Genay": [
+      "Jeux-lès-Bard",
+      "Millery",
+      "Torcy-et-Pouligny",
+      "Vic-de-Chassenay",
+      "Villaines-les-Prévôtes"
+    ],
+    "Tart-le-Bas": [
+      "Genlis",
+      "Longeault-Pluvault",
+      "Pluvet",
+      "Tart",
+      "Varanges"
+    ],
+    "Gevrolles": [
+      "Montigny-sur-Aube",
+      "Riel-les-Eaux"
+    ],
+    "Gurgy-la-Ville": [
+      "Gurgy-le-Château",
+      "Les Goulles",
+      "Lucey"
+    ],
+    "Massingy-lès-Semur": [
+      "Grignon",
+      "Juilly",
+      "Lantilly",
+      "Mussy-la-Fosse",
+      "Pouillenay",
+      "Venarey-les-Laumes",
+      "Villars-et-Villenotte"
+    ],
+    "Heuilley-sur-Saône": [
+      "Maxilly-sur-Saône",
+      "Perrigny-sur-l'Ognon",
+      "Talmay"
+    ],
+    "Talmay": [
+      "Heuilley-sur-Saône",
+      "Jancigny",
+      "Maxilly-sur-Saône",
+      "Saint-Sauveur"
+    ],
+    "Jallanges": [
+      "Labergement-lès-Seurre",
+      "Lanthes",
+      "Seurre",
+      "Trugny"
+    ],
+    "Montlay-en-Auxois": [
+      "Juillenay",
+      "La Motte-Ternant",
+      "Lacour-d'Arcenay",
+      "Molphey",
+      "Saint-Didier",
+      "Saulieu",
+      "Vic-sous-Thil",
+      "Villargoix"
+    ],
+    "Juilly": [
+      "Massingy-lès-Semur",
+      "Pouillenay",
+      "Saint-Euphrône",
+      "Souhey",
+      "Villars-et-Villenotte"
+    ],
+    "Souhey": [
+      "Juilly",
+      "Magny-la-Ville",
+      "Pouillenay",
+      "Saint-Euphrône"
+    ],
+    "Villars-et-Villenotte": [
+      "Juilly",
+      "Lantilly",
+      "Massingy-lès-Semur",
+      "Pont-et-Massène",
+      "Saint-Euphrône",
+      "Semur-en-Auxois"
+    ],
+    "Molphey": [
+      "La Roche-en-Brenil",
+      "Lacour-d'Arcenay",
+      "Montlay-en-Auxois",
+      "Saint-Didier"
+    ],
+    "Vonges": [
+      "Lamarche-sur-Saône",
+      "Pontailler-sur-Saône"
+    ],
+    "Samerey": [
+      "Laperrière-sur-Saône",
+      "Saint-Seine-en-Bâche",
+      "Saint-Symphorien-sur-Saône"
+    ],
+    "Thoisy-la-Berchère": [
+      "La Motte-Ternant",
+      "Liernais",
+      "Marcilly-Ogny",
+      "Missery",
+      "Mont-Saint-Jean",
+      "Saulieu",
+      "Sussey",
+      "Villargoix"
+    ],
+    "Marliens": [
+      "Longecourt-en-Plaine",
+      "Rouvres-en-Plaine",
+      "Tart",
+      "Thorey-en-Plaine",
+      "Varanges"
+    ],
+    "Saint-Jean-de-Losne": [
+      "Losne",
+      "Saint-Usage"
+    ],
+    "Vanvey": [
+      "Louesme",
+      "Maisey-le-Duc",
+      "Villiers-le-Duc",
+      "Voulaines-les-Templiers"
+    ],
+    "Viévy": [
+      "Magnien",
+      "Maligny",
+      "Saint-Pierre-en-Vaux",
+      "Thury",
+      "Voudenay"
+    ],
+    "Voudenay": [
+      "Magnien",
+      "Manlay",
+      "Marcheseuil",
+      "Viévy"
+    ],
+    "Massingy-lès-Vitteaux": [
+      "Saffres",
+      "Villeberny",
+      "Villy-en-Auxois",
+      "Vitteaux"
+    ],
+    "Meloisey": [
+      "Mavilly-Mandelot",
+      "Montceau-et-Écharnant",
+      "Nantoux",
+      "Saint-Romain",
+      "Volnay"
+    ],
+    "Ménessaire": [],
+    "Planay": [
+      "Montbard",
+      "Savoisy",
+      "Verdonnet"
+    ],
+    "Sincey-lès-Rouvray": [
+      "La Roche-en-Brenil",
+      "Montberthault",
+      "Rouvray",
+      "Vieux-Château"
+    ],
+    "Orain": [
+      "Montigny-Mornay-Villeneuve-sur-Vingeanne",
+      "Saint-Maurice-sur-Vingeanne"
+    ],
+    "Villargoix": [
+      "La Motte-Ternant",
+      "Montlay-en-Auxois",
+      "Saulieu",
+      "Thoisy-la-Berchère"
+    ],
+    "Orville": [
+      "Selongey",
+      "Til-Châtel",
+      "Véronnes"
+    ],
+    "Saint-Germain-de-Modéon": [
+      "La Roche-en-Brenil",
+      "Rouvray",
+      "Saint-Andeux"
+    ],
+    "Rouvray": [
+      "La Roche-en-Brenil",
+      "Saint-Andeux",
+      "Saint-Germain-de-Modéon",
+      "Sincey-lès-Rouvray"
+    ],
+    "Saint-Andeux": [
+      "Rouvray",
+      "Saint-Germain-de-Modéon"
+    ]
+  }
+}

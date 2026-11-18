@@ -140,6 +140,7 @@ def balisage(s, chemin=''):
 
 
 def appliquer(s, chemin, root):
+    s = s.replace('Neuilly-lès-Dijon', 'Neuilly-Crimolois').replace('/prix-immobilier-neuilly-les-dijon/', '/prix-immobilier-neuilly-crimolois/')
     if chemin in TITRES:
         titre, h1 = TITRES[chemin]
         s = re.sub(r'<title>.*?</title>', lambda _: '<title>' + html.escape(titre) + '</title>', s, count=1, flags=re.S)
@@ -152,6 +153,13 @@ def appliquer(s, chemin, root):
     if 'Mandat exclusif ou mandat simple' in s:
         s = re.sub(r'(<details><summary>Mandat exclusif ou mandat simple.*?</summary><div class="a"><p>).*?(</p>)', lambda m: m[1] + MANDAT + m[2], s, flags=re.S)
     s = questions(s, chemin, root)
+    if chemin == '/immobilier-fontaine-les-dijon/':
+        from search_local import EXEMPLES
+        contenu = '<!-- search-dossier-local --><section class="shell sec-mid"><h2>Un dossier cité à Fontaine-lès-Dijon</h2><p>' + EXEMPLES['Fontaine-lès-Dijon'] + ' <a href="/secteurs-dijon-nuits-saint-georges-beaune/">Voir la page Secteurs</a>.</p></section><!-- /search-dossier-local -->'
+        if '<!-- search-dossier-local -->' in s:
+            s = re.sub(r'<!-- search-dossier-local -->.*?<!-- /search-dossier-local -->', lambda _: contenu, s, flags=re.S)
+        else:
+            s = s.replace('</main>', contenu + '</main>', 1)
     s = liens(s, chemin)
     return bloc_reponses(s, chemin, root)
 

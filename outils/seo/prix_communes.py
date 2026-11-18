@@ -16,6 +16,8 @@ Règles :
     python3 outils/seo/prix_communes.py --liste    # affiche les communes retenues / écartées, n'écrit rien
 """
 import argparse, glob, html, json, math, os, re, statistics as st, sys, unicodedata
+from pathlib import Path
+from search_local import ZONE_GOOGLE, commune_actuelle, adapter_prix
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 BASE = 'https://shawez-immo.com'
@@ -23,7 +25,7 @@ sys.path.insert(0, os.path.join(ROOT, 'outils', 'biens'))
 from commun import ACTIFS, chemin_fiche  # noqa: E402
 
 SEUIL, SEUIL_TYPE_DOMINANT, MIN_TYPE, MIN_ANNEE, MIN_EVOL = 30, 20, 10, 5, 10
-DATE, DATE_FR = '2026-10-22', '22 octobre 2026'
+DATE, DATE_FR = '2026-11-18', '18 novembre 2026'
 NB = ' '
 MARQUE = '<!-- page générée par outils/seo/prix_communes.py -->'
 GABARIT = os.path.join(ROOT, 'prix-immobilier-fenay', 'index.html')
@@ -127,7 +129,7 @@ def charge():
         for v, l in zip(t, d):
             x = json.loads(l)
             ventes.append(dict(lat=v[0], lon=v[1], maison=v[2] == 1, surf=v[3], pm2=v[4], an=v[5] // 100, pieces=v[6],
-                               terrain=v[7], prix=x[0], voie=x[1], commune=x[2]))
+                               terrain=v[7], prix=x[0], voie=x[1], commune=commune_actuelle(ROOT, x[2], v[1], v[0])))
     return idx, ventes
 
 
@@ -362,7 +364,8 @@ def page(S, voisins, annonces, annees):
         desc = 'Prix au m² à %s sur %d ventes réelles %d-%d : %s. Estimation offerte.' % (N, n, a0, a1, ', '.join(parts))
     if len(desc) > 160:
         desc = 'Prix au m² à %s (%d ventes DVF %d-%d) : %s. Estimation offerte.' % (N, n, a0, a1, parts[0])
-    return dict(title=title, desc=desc, intro=intro, sections=sections, faq=faq, voisins=voisins)
+    P = dict(title=title, desc=desc, intro=intro, sections=sections, faq=faq, voisins=voisins)
+    return adapter_prix(P, N)
 
 
 def ecrire(S, P, tpl):
@@ -448,6 +451,10 @@ def ecrire(S, P, tpl):
     assert k == 1
     out = os.path.join(ROOT, path.strip('/'), 'index.html')
     os.makedirs(os.path.dirname(out), exist_ok=True)
+    from search_reponses import appliquer
+    h = appliquer(h, path, ROOT)
+    if N not in ZONE_GOOGLE:
+        h = h.replace('Estimation chez vous, offerte', 'Contacter Shawez à Dijon')
     open(out, 'w', encoding='utf-8').write(h)
     return path
 
@@ -494,6 +501,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--liste', action='store_true')
     ap.add_argument('--tout', action='store_true', help='réécrit aussi les pages prix déjà en ligne (déconseillé)')
+    ap.add_argument('--commune', help='reconstruit une commune existante depuis son slug')
+    ap.add_argument('--existantes', action='store_true', help='ne crée aucune nouvelle commune hors du périmètre publié')
     a = ap.parse_args()
     idx, ventes = charge()
     annees = idx['annees']
@@ -514,6 +523,8 @@ def main():
         else:
             ecartees.append(S)
     existantes = {d[len('prix-immobilier-'):] for d in os.listdir(ROOT) if d.startswith('prix-immobilier-') and os.path.isfile(os.path.join(ROOT, d, 'index.html'))}
+    if 'neuilly-les-dijon' in existantes:
+        existantes.add('neuilly-crimolois')
     if a.liste:
         for S in retenues:
             print('%-4d %-28s %s' % (S['n'], S['nom'], 'existe' if S['slug'] in existantes else 'NOUVELLE'))
@@ -528,14 +539,21 @@ def main():
             par_c.setdefault(slug(x['commune']), []).append((chemin_fiche(x), t))
     tpl = open(GABARIT, encoding='utf-8').read()
     for S in retenues:
-        vois = sorted((r for r in retenues if r is not S), key=lambda r: dist(S['centre'], r['centre']))[:4]
-        voisins = [(r['slug'], r['nom']) for r in vois]
+        if a.commune and S['slug'] != a.commune.replace('neuilly-les-dijon', 'neuilly-crimolois'):
+            continue
+        if a.existantes and S['slug'] not in existantes:
+            continue
+        noms_voisins = json.load(open(os.path.join(ROOT, 'outils/seo/communes-voisines.json'), encoding='utf-8'))['communes'].get(S['nom'], [])
+        voisins = [(slug(n), n) for n in noms_voisins if slug(n) in existantes or n == 'Dijon']
         f = os.path.join(ROOT, 'prix-immobilier-%s' % S['slug'], 'index.html')
-        if S['slug'] in existantes and not a.tout and MARQUE not in open(f, encoding='utf-8').read():
+        if S['slug'] in existantes and not (a.tout or a.commune) and MARQUE not in open(f, encoding='utf-8').read():
             continue
         P = page(S, voisins, par_c.get(S['slug'], []), annees)
         print('ok', ecrire(S, P, tpl), len(P['title']), len(P['desc']))
-    maj_hub(retenues)
+    if not a.commune:
+        maj_hub(retenues)
+    from search_local import redirection_neuilly
+    redirection_neuilly(Path(ROOT))
 
 
 if __name__ == '__main__':

@@ -45,6 +45,11 @@ def esc(s):
 
 
 def build(p):
+    if p['path'].startswith('/prix-immobilier-') and p['path'] not in ('/prix-immobilier-dijon/', '/prix-immobilier-cote-d-or/'):
+        import subprocess
+        commune = p['path'].strip('/').removeprefix('prix-immobilier-')
+        subprocess.run([sys.executable, os.path.join(ROOT, 'outils/seo/prix_communes.py'), '--commune', commune], cwd=ROOT, check=True)
+        return
     if p['path'] == '/prix-immobilier-dijon/':
         from search_prix import spec
         p = spec(ROOT)

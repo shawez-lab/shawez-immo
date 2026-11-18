@@ -182,6 +182,7 @@ if __name__ == '__main__':
     sys.path.insert(0, P('outils', 'seo'))
     from seo.search_services import construire as services_search
     services_search(ROOT)
+    subprocess.run([sys.executable, P('outils/seo/prix_communes.py'), '--tout', '--existantes'], cwd=ROOT, check=True)
     # Les pages et le sitemap DVF précèdent la reconstruction des liens et du plan du site.
     from seo.dijon_quartiers import construire as quartiers_dijon
     quartiers_dijon()
