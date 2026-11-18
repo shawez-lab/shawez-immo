@@ -45,6 +45,9 @@ def esc(s):
 
 
 def build(p):
+    if p['path'] == '/prix-immobilier-dijon/':
+        from search_prix import spec
+        p = spec(ROOT)
     url = BASE + p['path']
     title, desc = p['title'], p['description']
     assert len(title) <= 60, (p['path'], len(title), title)

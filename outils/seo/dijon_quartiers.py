@@ -48,8 +48,9 @@ def e(s):
 def fr(n):
     if n is None:
         return 'Échantillon insuffisant'
-    # La médiane exacte est conservée : une demi-unité n'est pas arrondie.
-    return f'{n:,.1f}'.replace(',', '\u202f').replace('.', ',').removesuffix(',0')
+    # Valeur exacte conservée dans le manifeste ; affichage arrondi à l’euro.
+    from decimal import Decimal, ROUND_HALF_UP
+    return f'{int(Decimal(str(n)).quantize(Decimal(1), rounding=ROUND_HALF_UP)):,}'.replace(',', '\u202f')
 
 
 def anneau(x, y, points):
@@ -356,9 +357,15 @@ def construire(root=ROOT):
                     question['acceptedAnswer']['text'] = reponse
         return '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False).replace('</', '<\\/') + '</script>'
     s = re.sub(r'<script type="application/ld\+json">(.*?)</script>', ld, s, count=1, flags=re.S)
+    from search_prix import reponse
+    intro = '<p class="lede">' + e(reponse(ville, an)) + '</p>'
+    s = re.sub(r'(<h1\b[^>]*>.*?</h1>)\s*(?:<!-- search-prix-intro -->.*?<!-- /search-prix-intro -->)?', lambda m: m[1] + '<!-- search-prix-intro -->' + intro + '<!-- /search-prix-intro -->', s, count=1, flags=re.S)
     ecrire(pilier, css(s))
     mailler(root, quartiers, an)
     sitemap(root, quartiers, date)
+    if (root / 'prix-immobilier-dijon/index.html').exists():
+        from search_prix import construire as prix_dijon
+        prix_dijon(root)
     return manifeste
 
 

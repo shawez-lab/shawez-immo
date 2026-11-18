@@ -34,7 +34,7 @@ class GeometrieEtCalcul(unittest.TestCase):
         self.assertAlmostEqual(dq.evolution({'median_m2': 2800}, s), 25)
         self.assertIsNone(dq.stats(ventes[:4])['median_m2'])
         self.assertIsNone(dq.evolution(dq.stats([]), s))
-        self.assertEqual(dq.fr(2964.5), '2\u202f964,5')
+        self.assertEqual(dq.fr(2964.5), '2\u202f965')
 
 
 class PublicationDVF(unittest.TestCase):
@@ -87,6 +87,18 @@ class PublicationDVF(unittest.TestCase):
                 dernieres = sorted(q['ventes'], key=lambda v: (v['mois'], v['jour'], v['type'], v['surface'], v['prix']), reverse=True)[:8]
                 for vente in dernieres:
                     self.assertIn(dq.fr(vente['prix']) + ' €</td>', s)
+
+    def test_prix_commune_meme_reference_que_estimation(self):
+        from search_prix import spec
+        p = spec(self.root)
+        for type_ in (0, 1):
+            ventes = [v for v in self.ville if v['type'] == type_ and v['mois'] // 100 == 2025]
+            self.assertIn(dq.fr(dq.stats(ventes)['median_m2']) + ' €/m²', p['lede'])
+            self.assertIn(dq.fr(dq.stats(ventes)['median_m2']) + ' €/m²', p['faq'][0][1])
+        self.assertNotIn('immovrai', str(p))
+        self.assertNotIn('1,2 km', str(p))
+        self.assertIn('2026', p['title'])
+        self.assertIn('ne contient pas encore de ventes de 2026', p['lede'])
 
     def test_pilier_accueil_plan_sitemap_et_indexnow(self):
         pilier = (self.root / 'estimation-immobiliere-dijon/index.html').read_text()
