@@ -4165,7 +4165,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51"
+     "mesure_le": "2026-11-19T06:51"
     }
    }
   },
@@ -4334,7 +4334,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51"
+     "mesure_le": "2026-11-19T06:51"
     },
     "youtube": {
      "vues": 309,
@@ -4438,13 +4438,12 @@
      "verdict": "perdant"
     },
     "facebook": {
-     "vues": 0,
-     "duree_moy": 0.0,
+     "vues": 3,
+     "duree_moy": 1.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
-     "verdict": "perdant"
+     "mesure_le": "2026-11-19T06:51"
     },
     "linkedin": {
      "vues": 4,
@@ -4452,8 +4451,7 @@
      "partages": 0,
      "enregistrements": 1,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
-     "verdict": "perdant"
+     "mesure_le": "2026-11-19T06:51"
     }
    },
    "verdicts": {
@@ -4549,7 +4547,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51"
+     "mesure_le": "2026-11-19T06:51"
     },
     "youtube": {
      "vues": 310,
@@ -5310,7 +5308,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51"
+     "mesure_le": "2026-11-19T06:51"
     },
     "youtube": {
      "vues": 239,
@@ -8212,7 +8210,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51"
+     "mesure_le": "2026-11-19T06:51"
     },
     "youtube": {
      "vues": 71,
@@ -8981,7 +8979,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51"
+     "mesure_le": "2026-11-19T06:51"
     },
     "linkedin": {
      "vues": 16,
@@ -8989,7 +8987,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51"
+     "mesure_le": "2026-11-19T06:51"
     }
    },
    "verdicts": {
@@ -9041,7 +9039,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51"
+     "mesure_le": "2026-11-19T06:51"
     }
    },
    "verdicts": {
@@ -9080,7 +9078,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51"
+     "mesure_le": "2026-11-19T06:51"
     }
    },
    "verdicts": {
@@ -9396,22 +9394,20 @@
    },
    "reseaux": {
     "tiktok": {
-     "vues": 856,
+     "vues": 859,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 2,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
-     "verdict": "gagnant"
+     "mesure_le": "2026-11-19T06:51"
     },
     "facebook": {
-     "vues": 3,
-     "duree_moy": 14.0,
+     "vues": 7,
+     "duree_moy": 7.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
-     "verdict": "moyen"
+     "mesure_le": "2026-11-19T06:51"
     },
     "threads": {
      "vues": 4,
@@ -9419,8 +9415,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
-     "verdict": "perdant"
+     "mesure_le": "2026-11-19T06:51"
     },
     "linkedin": {
      "vues": 42,
@@ -9428,8 +9423,7 @@
      "partages": 0,
      "enregistrements": 2,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
-     "verdict": "gagnant"
+     "mesure_le": "2026-11-19T06:51"
     },
     "youtube": {
      "vues": 107,
@@ -9437,8 +9431,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
-     "verdict": "moyen"
+     "mesure_le": "2026-11-19T06:51"
     }
    }
   },
@@ -9569,22 +9562,20 @@
    },
    "reseaux": {
     "tiktok": {
-     "vues": 692,
+     "vues": 694,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 2,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
-     "verdict": "gagnant"
+     "mesure_le": "2026-11-19T06:51"
     },
     "facebook": {
-     "vues": 4,
-     "duree_moy": 0.0,
+     "vues": 7,
+     "duree_moy": 1.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
-     "verdict": "moyen"
+     "mesure_le": "2026-11-19T06:51"
     },
     "threads": {
      "vues": 1,
@@ -9592,8 +9583,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
-     "verdict": "perdant"
+     "mesure_le": "2026-11-19T06:51"
     },
     "youtube": {
      "vues": 47,
@@ -9601,8 +9591,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
-     "verdict": "moyen"
+     "mesure_le": "2026-11-19T06:51"
     }
    }
   },
@@ -9726,22 +9715,20 @@
    },
    "reseaux": {
     "tiktok": {
-     "vues": 4,
+     "vues": 6,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
-     "verdict": "perdant"
+     "mesure_le": "2026-11-19T06:51"
     },
     "facebook": {
-     "vues": 2,
-     "duree_moy": 5.0,
+     "vues": 5,
+     "duree_moy": 2.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
-     "verdict": "moyen"
+     "mesure_le": "2026-11-19T06:51"
     },
     "youtube": {
      "vues": 223,
@@ -9749,8 +9736,7 @@
      "partages": 0,
      "enregistrements": 1,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
-     "verdict": "gagnant"
+     "mesure_le": "2026-11-19T06:51"
     }
    }
   },
@@ -9929,7 +9915,7 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-18T06:51",
+   "mesure_le": "2026-11-19T06:51",
    "reseaux": {
     "threads": {
      "vues": 19,
@@ -9937,16 +9923,16 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     },
     "tiktok": {
-     "vues": 10,
+     "vues": 12,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 1,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     },
     "youtube": {
@@ -9955,17 +9941,17 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
-     "verdict": "perdant"
+     "mesure_le": "2026-11-19T06:51",
+     "verdict": "moyen"
     }
    },
    "verdicts": {
     "instagram": "gagnant",
     "tiktok": "perdant",
-    "youtube": "perdant",
+    "youtube": "moyen",
     "threads": "perdant"
    },
-   "vues_total": 203,
+   "vues_total": 205,
    "verdict": "gagnant"
   },
   {
@@ -10034,12 +10020,12 @@
    },
    "reseaux": {
     "tiktok": {
-     "vues": 781,
+     "vues": 784,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 6,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "gagnant"
     },
     "linkedin": {
@@ -10048,17 +10034,17 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     },
     "facebook": {
-     "vues": 0,
-     "duree_moy": 0.0,
+     "vues": 4,
+     "duree_moy": 1.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
-     "verdict": "perdant"
+     "mesure_le": "2026-11-19T06:51",
+     "verdict": "moyen"
     },
     "youtube": {
      "vues": 236,
@@ -10066,18 +10052,18 @@
      "partages": 0,
      "enregistrements": 1,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "gagnant"
     }
    },
    "verdicts": {
-    "instagram": "perdant",
+    "instagram": "moyen",
     "tiktok": "gagnant",
     "youtube": "gagnant",
-    "facebook": "perdant",
+    "facebook": "moyen",
     "linkedin": "perdant"
    },
-   "vues_total": 1021,
+   "vues_total": 1028,
    "verdict": "gagnant",
    "vues": 0
   },
@@ -10135,12 +10121,12 @@
    },
    "reseaux": {
     "tiktok": {
-     "vues": 10,
+     "vues": 12,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 1,
      "commentaires": 3,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "gagnant"
     },
     "threads": {
@@ -10149,7 +10135,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     },
     "linkedin": {
@@ -10158,7 +10144,7 @@
      "partages": 0,
      "enregistrements": 2,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "gagnant"
     },
     "youtube": {
@@ -10167,18 +10153,18 @@
      "partages": 0,
      "enregistrements": 3,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "gagnant"
     }
    },
    "verdicts": {
-    "instagram": "perdant",
+    "instagram": "moyen",
     "tiktok": "gagnant",
     "youtube": "gagnant",
     "threads": "perdant",
     "linkedin": "gagnant"
    },
-   "vues_total": 747,
+   "vues_total": 749,
    "verdict": "gagnant",
    "vues": 0
   },
@@ -10241,16 +10227,16 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     },
     "tiktok": {
-     "vues": 19,
+     "vues": 21,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "moyen"
     },
     "linkedin": {
@@ -10259,7 +10245,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     },
     "youtube": {
@@ -10268,18 +10254,18 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
-     "verdict": "perdant"
+     "mesure_le": "2026-11-19T06:51",
+     "verdict": "moyen"
     }
    },
    "verdicts": {
-    "instagram": "perdant",
+    "instagram": "moyen",
     "tiktok": "moyen",
-    "youtube": "perdant",
+    "youtube": "moyen",
     "threads": "perdant",
     "linkedin": "perdant"
    },
-   "vues_total": 36,
+   "vues_total": 38,
    "verdict": "moyen",
    "vues": 0
   },
@@ -10335,7 +10321,7 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-18T06:51",
+   "mesure_le": "2026-11-19T06:51",
    "reseaux": {
     "threads": {
      "vues": 1,
@@ -10343,16 +10329,16 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     },
     "tiktok": {
-     "vues": 108,
+     "vues": 110,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 2,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "gagnant"
     },
     "youtube": {
@@ -10361,7 +10347,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     }
    },
@@ -10371,7 +10357,7 @@
     "youtube": "perdant",
     "threads": "perdant"
    },
-   "vues_total": 277,
+   "vues_total": 279,
    "verdict": "gagnant"
   },
   {
@@ -10434,21 +10420,21 @@
    },
    "reseaux": {
     "tiktok": {
-     "vues": 751,
+     "vues": 753,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 1,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "gagnant"
     },
     "facebook": {
-     "vues": 2,
-     "duree_moy": 0.0,
+     "vues": 6,
+     "duree_moy": 1.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "moyen"
     },
     "youtube": {
@@ -10457,17 +10443,17 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "gagnant"
     }
    },
    "verdicts": {
-    "instagram": "perdant",
+    "instagram": "moyen",
     "tiktok": "gagnant",
     "youtube": "gagnant",
     "facebook": "moyen"
    },
-   "vues_total": 903,
+   "vues_total": 909,
    "verdict": "gagnant",
    "vues": 0
   },
@@ -10525,12 +10511,12 @@
    },
    "reseaux": {
     "tiktok": {
-     "vues": 27,
+     "vues": 29,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 1,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "moyen"
     },
     "threads": {
@@ -10539,7 +10525,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     },
     "linkedin": {
@@ -10548,7 +10534,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     },
     "youtube": {
@@ -10557,19 +10543,19 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
-     "verdict": "moyen"
+     "mesure_le": "2026-11-19T06:51",
+     "verdict": "gagnant"
     }
    },
    "verdicts": {
-    "instagram": "perdant",
+    "instagram": "moyen",
     "tiktok": "moyen",
-    "youtube": "moyen",
+    "youtube": "gagnant",
     "threads": "perdant",
     "linkedin": "perdant"
    },
-   "vues_total": 135,
-   "verdict": "moyen",
+   "vues_total": 137,
+   "verdict": "gagnant",
    "vues": 0
   },
   {
@@ -10671,7 +10657,7 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-18T06:51",
+   "mesure_le": "2026-11-19T06:51",
    "reseaux": {
     "threads": {
      "vues": 1,
@@ -10679,16 +10665,16 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     },
     "tiktok": {
-     "vues": 16,
+     "vues": 18,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 1,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "moyen"
     },
     "youtube": {
@@ -10697,17 +10683,17 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
-     "verdict": "perdant"
+     "mesure_le": "2026-11-19T06:51",
+     "verdict": "moyen"
     }
    },
    "verdicts": {
     "instagram": "gagnant",
     "tiktok": "moyen",
-    "youtube": "perdant",
+    "youtube": "moyen",
     "threads": "perdant"
    },
-   "vues_total": 135,
+   "vues_total": 137,
    "verdict": "gagnant"
   },
   {
@@ -10770,22 +10756,22 @@
    },
    "reseaux": {
     "tiktok": {
-     "vues": 19,
+     "vues": 21,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 2,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "gagnant"
     },
     "facebook": {
-     "vues": 1,
+     "vues": 7,
      "duree_moy": 1.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
-     "verdict": "perdant"
+     "mesure_le": "2026-11-19T06:51",
+     "verdict": "moyen"
     },
     "linkedin": {
      "vues": 12,
@@ -10793,7 +10779,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     },
     "youtube": {
@@ -10802,18 +10788,18 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
-     "verdict": "moyen"
+     "mesure_le": "2026-11-19T06:51",
+     "verdict": "gagnant"
     }
    },
    "verdicts": {
-    "instagram": "perdant",
+    "instagram": "moyen",
     "tiktok": "gagnant",
-    "youtube": "moyen",
-    "facebook": "perdant",
+    "youtube": "gagnant",
+    "facebook": "moyen",
     "linkedin": "perdant"
    },
-   "vues_total": 109,
+   "vues_total": 117,
    "verdict": "gagnant",
    "vues": 0
   },
@@ -10871,12 +10857,12 @@
    },
    "reseaux": {
     "tiktok": {
-     "vues": 8,
+     "vues": 10,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     },
     "linkedin": {
@@ -10885,7 +10871,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     },
     "youtube": {
@@ -10894,17 +10880,17 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "moyen"
     }
    },
    "verdicts": {
-    "instagram": "perdant",
+    "instagram": "moyen",
     "tiktok": "perdant",
     "youtube": "moyen",
     "linkedin": "perdant"
    },
-   "vues_total": 60,
+   "vues_total": 62,
    "verdict": "moyen",
    "vues": 0
   },
@@ -10961,16 +10947,16 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     },
     "tiktok": {
-     "vues": 9,
+     "vues": 12,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     },
     "youtube": {
@@ -10979,18 +10965,18 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     }
    },
    "verdicts": {
-    "instagram": "perdant",
+    "instagram": "moyen",
     "tiktok": "perdant",
     "youtube": "perdant",
     "threads": "perdant"
    },
-   "vues_total": 13,
-   "verdict": "perdant",
+   "vues_total": 16,
+   "verdict": "moyen",
    "vues": 0
   },
   {
@@ -11045,7 +11031,7 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-18T06:51",
+   "mesure_le": "2026-11-19T06:51",
    "reseaux": {
     "threads": {
      "vues": 26,
@@ -11053,16 +11039,16 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "moyen"
     },
     "tiktok": {
-     "vues": 125,
+     "vues": 127,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "gagnant"
     },
     "youtube": {
@@ -11071,17 +11057,17 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
-     "verdict": "perdant"
+     "mesure_le": "2026-11-19T06:51",
+     "verdict": "moyen"
     }
    },
    "verdicts": {
     "instagram": "gagnant",
     "tiktok": "gagnant",
-    "youtube": "perdant",
+    "youtube": "moyen",
     "threads": "moyen"
    },
-   "vues_total": 331,
+   "vues_total": 333,
    "verdict": "gagnant"
   },
   {
@@ -11144,21 +11130,21 @@
    },
    "reseaux": {
     "tiktok": {
-     "vues": 24,
+     "vues": 27,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 1,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "moyen"
     },
     "facebook": {
-     "vues": 4,
+     "vues": 9,
      "duree_moy": 3.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "moyen"
     },
     "linkedin": {
@@ -11167,7 +11153,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     },
     "youtube": {
@@ -11176,18 +11162,18 @@
      "partages": 0,
      "enregistrements": 2,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "gagnant"
     }
    },
    "verdicts": {
-    "instagram": "perdant",
+    "instagram": "moyen",
     "tiktok": "moyen",
     "youtube": "gagnant",
     "facebook": "moyen",
     "linkedin": "perdant"
    },
-   "vues_total": 575,
+   "vues_total": 583,
    "verdict": "gagnant",
    "vues": 0
   },
@@ -11245,12 +11231,12 @@
    },
    "reseaux": {
     "tiktok": {
-     "vues": 20,
+     "vues": 22,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 1,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "moyen"
     },
     "linkedin": {
@@ -11259,7 +11245,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     },
     "youtube": {
@@ -11268,17 +11254,17 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
-     "verdict": "perdant"
+     "mesure_le": "2026-11-19T06:51",
+     "verdict": "moyen"
     }
    },
    "verdicts": {
-    "instagram": "perdant",
+    "instagram": "moyen",
     "tiktok": "moyen",
-    "youtube": "perdant",
+    "youtube": "moyen",
     "linkedin": "perdant"
    },
-   "vues_total": 33,
+   "vues_total": 35,
    "vues": 0,
    "verdict": "moyen"
   },
@@ -11335,16 +11321,16 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     },
     "tiktok": {
-     "vues": 20,
+     "vues": 22,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 1,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "moyen"
     },
     "youtube": {
@@ -11353,17 +11339,17 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
-     "verdict": "perdant"
+     "mesure_le": "2026-11-19T06:51",
+     "verdict": "moyen"
     }
    },
    "verdicts": {
-    "instagram": "perdant",
+    "instagram": "moyen",
     "tiktok": "moyen",
-    "youtube": "perdant",
+    "youtube": "moyen",
     "threads": "perdant"
    },
-   "vues_total": 33,
+   "vues_total": 35,
    "verdict": "moyen",
    "vues": 0
   },
@@ -11413,7 +11399,7 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-18T06:51",
+   "mesure_le": "2026-11-19T06:51",
    "verdicts": {
     "instagram": "gagnant",
     "youtube": "perdant",
@@ -11428,7 +11414,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     },
     "youtube": {
@@ -11437,7 +11423,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     }
    }
@@ -11507,16 +11493,16 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     },
     "tiktok": {
-     "vues": 25,
+     "vues": 27,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 1,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "moyen"
     },
     "youtube": {
@@ -11525,17 +11511,17 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
-     "verdict": "perdant"
+     "mesure_le": "2026-11-19T06:51",
+     "verdict": "moyen"
     }
    },
    "verdicts": {
-    "instagram": "perdant",
+    "instagram": "moyen",
     "tiktok": "moyen",
-    "youtube": "perdant",
+    "youtube": "moyen",
     "threads": "perdant"
    },
-   "vues_total": 35,
+   "vues_total": 37,
    "verdict": "moyen",
    "vues": 0
   },
@@ -11592,12 +11578,12 @@
      "partages": 0,
      "enregistrements": 1,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "gagnant"
     }
    },
    "verdicts": {
-    "instagram": "perdant",
+    "instagram": "moyen",
     "youtube": "gagnant"
    },
    "vues_total": 222,
@@ -11651,7 +11637,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     },
     "youtube": {
@@ -11660,18 +11646,18 @@
      "partages": 0,
      "enregistrements": 1,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
-     "verdict": "moyen"
+     "mesure_le": "2026-11-19T06:51",
+     "verdict": "gagnant"
     }
    },
    "verdicts": {
-    "instagram": "perdant",
-    "youtube": "moyen",
+    "instagram": "moyen",
+    "youtube": "gagnant",
     "threads": "perdant"
    },
    "vues_total": 138,
    "vues": 0,
-   "verdict": "moyen"
+   "verdict": "gagnant"
   },
   {
    "id": "TR-0611-481-v1",
@@ -11719,7 +11705,7 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-18T06:51",
+   "mesure_le": "2026-11-19T06:51",
    "reseaux": {
     "threads": {
      "vues": 7,
@@ -11727,7 +11713,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     },
     "youtube": {
@@ -11736,7 +11722,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     }
    },
@@ -11808,12 +11794,12 @@
    },
    "reseaux": {
     "tiktok": {
-     "vues": 147,
+     "vues": 151,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 5,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "gagnant"
     },
     "youtube": {
@@ -11822,16 +11808,16 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     }
    },
    "verdicts": {
-    "instagram": "perdant",
+    "instagram": "moyen",
     "tiktok": "gagnant",
     "youtube": "perdant"
    },
-   "vues_total": 153,
+   "vues_total": 157,
    "vues": 0,
    "verdict": "gagnant"
   },
@@ -11888,17 +11874,17 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
-     "verdict": "moyen"
+     "mesure_le": "2026-11-19T06:51",
+     "verdict": "gagnant"
     }
    },
    "verdicts": {
-    "instagram": "perdant",
-    "youtube": "moyen"
+    "instagram": "moyen",
+    "youtube": "gagnant"
    },
    "vues_total": 79,
    "vues": 0,
-   "verdict": "moyen"
+   "verdict": "gagnant"
   },
   {
    "id": "TR-0611-481-v4",
@@ -11947,7 +11933,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     },
     "youtube": {
@@ -11956,18 +11942,18 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
-     "verdict": "moyen"
+     "mesure_le": "2026-11-19T06:51",
+     "verdict": "gagnant"
     }
    },
    "verdicts": {
-    "instagram": "perdant",
-    "youtube": "moyen",
+    "instagram": "moyen",
+    "youtube": "gagnant",
     "threads": "perdant"
    },
    "vues_total": 121,
    "vues": 0,
-   "verdict": "moyen"
+   "verdict": "gagnant"
   },
   {
    "id": "TR-0611-446-v1",
@@ -12015,7 +12001,7 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-18T06:51",
+   "mesure_le": "2026-11-19T06:51",
    "reseaux": {
     "threads": {
      "vues": 2,
@@ -12023,7 +12009,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     },
     "youtube": {
@@ -12032,13 +12018,13 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
-     "verdict": "perdant"
+     "mesure_le": "2026-11-19T06:51",
+     "verdict": "moyen"
     }
    },
    "verdicts": {
     "instagram": "gagnant",
-    "youtube": "perdant",
+    "youtube": "moyen",
     "threads": "perdant"
    },
    "vues_total": 121,
@@ -12109,17 +12095,17 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
-     "verdict": "moyen"
+     "mesure_le": "2026-11-19T06:51",
+     "verdict": "gagnant"
     }
    },
    "verdicts": {
-    "instagram": "perdant",
-    "youtube": "moyen"
+    "instagram": "moyen",
+    "youtube": "gagnant"
    },
    "vues_total": 86,
    "vues": 0,
-   "verdict": "moyen"
+   "verdict": "gagnant"
   },
   {
    "id": "TR-0611-446-v3",
@@ -12174,17 +12160,17 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
-     "verdict": "moyen"
+     "mesure_le": "2026-11-19T06:51",
+     "verdict": "gagnant"
     }
    },
    "verdicts": {
-    "instagram": "perdant",
-    "youtube": "moyen"
+    "instagram": "moyen",
+    "youtube": "gagnant"
    },
    "vues_total": 94,
    "vues": 0,
-   "verdict": "moyen"
+   "verdict": "gagnant"
   },
   {
    "id": "TR-0611-446-v4",
@@ -12233,7 +12219,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     },
     "youtube": {
@@ -12242,18 +12228,18 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
-     "verdict": "moyen"
+     "mesure_le": "2026-11-19T06:51",
+     "verdict": "gagnant"
     }
    },
    "verdicts": {
-    "instagram": "perdant",
-    "youtube": "moyen",
+    "instagram": "moyen",
+    "youtube": "gagnant",
     "threads": "perdant"
    },
    "vues_total": 92,
    "vues": 0,
-   "verdict": "moyen"
+   "verdict": "gagnant"
   },
   {
    "id": "TR-0611-507-v1",
@@ -12301,7 +12287,7 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-18T06:51",
+   "mesure_le": "2026-11-19T06:51",
    "verdicts": {
     "instagram": "gagnant"
    },
@@ -12373,7 +12359,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     },
     "youtube": {
@@ -12382,12 +12368,12 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "gagnant"
     }
    },
    "verdicts": {
-    "instagram": "perdant",
+    "instagram": "moyen",
     "youtube": "gagnant",
     "threads": "perdant"
    },
@@ -12448,12 +12434,12 @@
      "partages": 0,
      "enregistrements": 1,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "moyen"
     }
    },
    "verdicts": {
-    "instagram": "perdant",
+    "instagram": "moyen",
     "youtube": "moyen"
    },
    "vues_total": 59,
@@ -12507,12 +12493,12 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "gagnant"
     }
    },
    "verdicts": {
-    "instagram": "perdant",
+    "instagram": "moyen",
     "youtube": "gagnant"
    },
    "vues_total": 217,
@@ -12536,7 +12522,7 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-18T06:51",
+   "mesure_le": "2026-11-19T06:51",
    "verdicts": {
     "instagram": "moyen",
     "tiktok": "gagnant",
@@ -12545,7 +12531,7 @@
     "threads": "perdant",
     "linkedin": "perdant"
    },
-   "vues_total": 305,
+   "vues_total": 313,
    "verdict": "gagnant",
    "diffusions": {
     "threads": {
@@ -12598,25 +12584,25 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     },
     "tiktok": {
-     "vues": 277,
+     "vues": 280,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 4,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "gagnant"
     },
     "facebook": {
-     "vues": 4,
-     "duree_moy": 5.0,
+     "vues": 9,
+     "duree_moy": 3.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "moyen"
     },
     "linkedin": {
@@ -12625,7 +12611,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     },
     "youtube": {
@@ -12634,7 +12620,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     }
    }
@@ -12658,12 +12644,12 @@
    "commentaires": 0,
    "mesure_le": "2026-11-07T06:54",
    "verdicts": {
-    "instagram": "perdant",
+    "instagram": "moyen",
     "youtube": "perdant",
     "threads": "perdant"
    },
-   "vues_total": 8,
-   "verdict": "perdant",
+   "vues_total": 9,
+   "verdict": "moyen",
    "diffusions": {
     "threads": {
      "uuid": "-3878647195722497049",
@@ -12710,12 +12696,12 @@
    },
    "reseaux": {
     "threads": {
-     "vues": 3,
+     "vues": 4,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     },
     "youtube": {
@@ -12724,7 +12710,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     }
    }
@@ -12788,7 +12774,7 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-18T06:51",
+   "mesure_le": "2026-11-19T06:51",
    "verdicts": {
     "instagram": "gagnant"
    },
@@ -12854,17 +12840,17 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     }
    },
    "verdicts": {
-    "instagram": "perdant",
+    "instagram": "moyen",
     "youtube": "perdant"
    },
    "vues_total": 4,
    "vues": 0,
-   "verdict": "perdant"
+   "verdict": "moyen"
   },
   {
    "id": "TR-0711-509-v3",
@@ -12919,7 +12905,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     },
     "youtube": {
@@ -12928,18 +12914,18 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     }
    },
    "verdicts": {
-    "instagram": "perdant",
+    "instagram": "moyen",
     "youtube": "perdant",
     "threads": "perdant"
    },
    "vues_total": 14,
    "vues": 0,
-   "verdict": "perdant"
+   "verdict": "moyen"
   },
   {
    "id": "TR-0711-509-v4",
@@ -13028,7 +13014,7 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-18T06:51",
+   "mesure_le": "2026-11-19T06:51",
    "verdicts": {
     "instagram": "gagnant"
    },
@@ -13094,17 +13080,17 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
-     "verdict": "perdant"
+     "mesure_le": "2026-11-19T06:51",
+     "verdict": "moyen"
     }
    },
    "verdicts": {
-    "instagram": "perdant",
-    "youtube": "perdant"
+    "instagram": "moyen",
+    "youtube": "moyen"
    },
    "vues_total": 8,
    "vues": 0,
-   "verdict": "perdant"
+   "verdict": "moyen"
   },
   {
    "id": "TR-0711-Combottes-v3",
@@ -13154,12 +13140,12 @@
    },
    "reseaux": {
     "threads": {
-     "vues": 1,
+     "vues": 2,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     },
     "youtube": {
@@ -13168,16 +13154,16 @@
      "partages": 0,
      "enregistrements": 1,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "gagnant"
     }
    },
    "verdicts": {
-    "instagram": "perdant",
+    "instagram": "moyen",
     "youtube": "gagnant",
     "threads": "perdant"
    },
-   "vues_total": 175,
+   "vues_total": 176,
    "vues": 0,
    "verdict": "gagnant"
   },
@@ -13262,7 +13248,7 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-18T06:51",
+   "mesure_le": "2026-11-19T06:51",
    "verdicts": {
     "instagram": "gagnant"
    },
@@ -13328,17 +13314,17 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     }
    },
    "verdicts": {
-    "instagram": "perdant",
+    "instagram": "moyen",
     "youtube": "perdant"
    },
    "vues_total": 6,
    "vues": 0,
-   "verdict": "perdant"
+   "verdict": "moyen"
   },
   {
    "id": "TR-0711-461-v3",
@@ -13388,22 +13374,22 @@
    },
    "reseaux": {
     "threads": {
-     "vues": 4,
+     "vues": 5,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     }
    },
    "verdicts": {
-    "instagram": "perdant",
+    "instagram": "moyen",
     "threads": "perdant"
    },
-   "vues_total": 4,
+   "vues_total": 5,
    "vues": 0,
-   "verdict": "perdant"
+   "verdict": "moyen"
   },
   {
    "id": "TR-0711-461-v4",
@@ -13505,7 +13491,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     },
     "youtube": {
@@ -13514,18 +13500,18 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
-     "verdict": "perdant"
+     "mesure_le": "2026-11-19T06:51",
+     "verdict": "moyen"
     }
    },
    "verdicts": {
-    "instagram": "perdant",
-    "youtube": "perdant",
+    "instagram": "moyen",
+    "youtube": "moyen",
     "threads": "perdant"
    },
    "vues_total": 18,
    "vues": 0,
-   "verdict": "perdant"
+   "verdict": "moyen"
   },
   {
    "id": "TR-0711-527-v2",
@@ -14400,7 +14386,7 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-18T06:51",
+   "mesure_le": "2026-11-19T06:51",
    "verdicts": {
     "instagram": "gagnant"
    },
@@ -14491,7 +14477,7 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-18T06:51",
+   "mesure_le": "2026-11-19T06:51",
    "verdicts": {
     "instagram": "moyen"
    },
@@ -15676,7 +15662,7 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-18T06:51",
+   "mesure_le": "2026-11-19T06:51",
    "verdicts": {
     "instagram": "gagnant",
     "tiktok": "gagnant",
@@ -15685,7 +15671,7 @@
     "threads": "perdant",
     "linkedin": "perdant"
    },
-   "vues_total": 1104,
+   "vues_total": 1116,
    "verdict": "gagnant",
    "diffusions": {
     "threads": {
@@ -15739,30 +15725,30 @@
    },
    "reseaux": {
     "tiktok": {
-     "vues": 691,
+     "vues": 695,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 10,
-     "commentaires": 1,
-     "mesure_le": "2026-11-18T06:51",
+     "commentaires": 2,
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "gagnant"
     },
     "facebook": {
-     "vues": 4,
-     "duree_moy": 4.0,
+     "vues": 9,
+     "duree_moy": 2.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "moyen"
     },
     "threads": {
-     "vues": 16,
+     "vues": 19,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     },
     "linkedin": {
@@ -15771,7 +15757,7 @@
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     },
     "youtube": {
@@ -15780,7 +15766,7 @@
      "partages": 0,
      "enregistrements": 1,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "gagnant"
     }
    }
@@ -15870,7 +15856,7 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-18T06:51",
+   "mesure_le": "2026-11-19T06:51",
    "verdicts": {
     "instagram": "gagnant"
    },
@@ -16012,7 +15998,7 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-18T06:51",
+   "mesure_le": "2026-11-19T06:51",
    "verdicts": {
     "instagram": "gagnant"
    },
@@ -16305,12 +16291,12 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-18T06:51",
+   "mesure_le": "2026-11-19T06:51",
    "verdicts": {
     "instagram": "gagnant",
     "threads": "perdant"
    },
-   "vues_total": 126,
+   "vues_total": 128,
    "verdict": "gagnant",
    "diffusions": {
     "threads": {
@@ -16364,12 +16350,12 @@
    },
    "reseaux": {
     "threads": {
-     "vues": 5,
+     "vues": 7,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     }
    }
@@ -16391,7 +16377,7 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-18T06:51",
+   "mesure_le": "2026-11-19T06:51",
    "verdicts": {
     "instagram": "gagnant"
    },
@@ -16459,7 +16445,7 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-18T06:51",
+   "mesure_le": "2026-11-19T06:51",
    "verdicts": {
     "instagram": "gagnant"
    },
@@ -16533,12 +16519,12 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-18T06:51",
+   "mesure_le": "2026-11-19T06:51",
    "verdicts": {
     "instagram": "gagnant",
     "threads": "perdant"
    },
-   "vues_total": 113,
+   "vues_total": 114,
    "verdict": "gagnant",
    "diffusions": {
     "threads": {
@@ -16592,12 +16578,12 @@
    },
    "reseaux": {
     "threads": {
-     "vues": 5,
+     "vues": 6,
      "duree_moy": 0.0,
      "partages": 0,
      "enregistrements": 0,
      "commentaires": 0,
-     "mesure_le": "2026-11-18T06:51",
+     "mesure_le": "2026-11-19T06:51",
      "verdict": "perdant"
     }
    }
@@ -16633,7 +16619,7 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-18T06:51",
+   "mesure_le": "2026-11-19T06:51",
    "verdicts": {
     "instagram": "gagnant"
    },
@@ -16670,7 +16656,7 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-18T06:51",
+   "mesure_le": "2026-11-19T06:51",
    "verdicts": {
     "instagram": "gagnant"
    },
@@ -16694,7 +16680,7 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-18T06:51",
+   "mesure_le": "2026-11-19T06:51",
    "verdicts": {
     "instagram": "gagnant"
    },
@@ -16718,7 +16704,7 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-18T06:51",
+   "mesure_le": "2026-11-19T06:51",
    "verdicts": {
     "instagram": "gagnant"
    },
@@ -16742,7 +16728,7 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-18T06:51",
+   "mesure_le": "2026-11-19T06:51",
    "verdicts": {
     "instagram": "moyen"
    },
@@ -16766,7 +16752,7 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-18T06:51",
+   "mesure_le": "2026-11-19T06:51",
    "verdicts": {
     "instagram": "gagnant"
    },
@@ -16791,52 +16777,55 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-18T06:51",
+   "mesure_le": "2026-11-19T06:51",
    "verdicts": {
-    "instagram": "gagnant"
+    "instagram": "gagnant",
+    "tiktok": "en_cours",
+    "facebook": "gagnant",
+    "threads": "en_cours"
    },
-   "vues_total": 111,
+   "vues_total": 414,
    "verdict": "gagnant",
    "diffusions": {
     "threads": {
      "uuid": "-7529135635696889930",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/Df42XgUtEBv",
      "date": "2026-11-18",
      "heure": "16:40"
     },
     "linkedin": {
      "uuid": "-4161598614982605244",
-     "url": "",
+     "url": "https://linkedin.com/feed/update/urn:li:ugcPost:7528859808955920384",
      "date": "2026-11-18",
      "heure": "17:40"
     },
     "pinterest": {
      "uuid": "-6672518168949078269",
-     "url": "",
+     "url": "https://www.pinterest.es/pin/1143844005393817314",
      "date": "2026-11-18",
      "heure": "16:40"
     },
     "bluesky": {
      "uuid": "-4136547951564732410",
-     "url": "",
+     "url": "https://bsky.app/profile/shawez.bsky.social/post/3n2lvexxhnm2l",
      "date": "2026-11-18",
      "heure": "16:40"
     },
     "tiktok": {
      "uuid": "8695132845044616899",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7709540743651642646",
      "date": "2026-11-18",
      "heure": "16:55"
     },
     "youtube": {
      "uuid": "-3586180386447669461",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/ws29t0lNk2g",
      "date": "2026-11-18",
      "heure": "16:40"
     },
     "facebook": {
      "uuid": "-7079353230126332425",
-     "url": "",
+     "url": "https://facebook.com/reel/1443461124583130",
      "date": "2026-11-18",
      "heure": "18:10"
     },
@@ -16845,6 +16834,35 @@
      "url": "",
      "date": "2026-11-19",
      "heure": "13:05"
+    }
+   },
+   "reseaux": {
+    "tiktok": {
+     "vues": 71,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 1,
+     "commentaires": 0,
+     "mesure_le": "2026-11-19T06:51",
+     "verdict": "en_cours"
+    },
+    "facebook": {
+     "vues": 230,
+     "duree_moy": 3.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-19T06:51",
+     "verdict": "gagnant"
+    },
+    "threads": {
+     "vues": 2,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-19T06:51",
+     "verdict": "en_cours"
     }
    }
   },
@@ -16880,34 +16898,36 @@
    "partages": 0,
    "enregistrements": 0,
    "commentaires": 0,
-   "mesure_le": "2026-11-18T06:51",
+   "mesure_le": "2026-11-19T06:51",
    "verdicts": {
-    "instagram": "gagnant"
+    "instagram": "gagnant",
+    "tiktok": "gagnant",
+    "facebook": "gagnant"
    },
-   "vues_total": 130,
+   "vues_total": 551,
    "verdict": "gagnant",
    "diffusions": {
     "threads": {
      "uuid": "4845524412901115826",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/Df4zIveS9l8",
      "date": "2026-11-18",
      "heure": "16:10"
     },
     "linkedin": {
      "uuid": "-6809368096565735742",
-     "url": "",
+     "url": "https://linkedin.com/feed/update/urn:li:ugcPost:7528837696400830464",
      "date": "2026-11-18",
      "heure": "16:10"
     },
     "pinterest": {
      "uuid": "-3164220855623529075",
-     "url": "",
+     "url": "https://www.pinterest.es/pin/1143844005393815763",
      "date": "2026-11-18",
      "heure": "16:10"
     },
     "bluesky": {
      "uuid": "2227580008468922735",
-     "url": "",
+     "url": "https://bsky.app/profile/shawez.bsky.social/post/3n2lttfyvzx2z",
      "date": "2026-11-18",
      "heure": "16:10"
     },
@@ -16919,21 +16939,41 @@
     },
     "tiktok": {
      "uuid": "-3439486990194160197",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7709529719372254486",
      "date": "2026-11-18",
      "heure": "16:10"
     },
     "youtube": {
      "uuid": "-4700601557281977347",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/Q70rRWb8KZw",
      "date": "2026-11-18",
      "heure": "16:10"
     },
     "facebook": {
      "uuid": "1736805281004536249",
-     "url": "",
+     "url": "https://facebook.com/reel/2534079467118948",
      "date": "2026-11-18",
      "heure": "16:10"
+    }
+   },
+   "reseaux": {
+    "tiktok": {
+     "vues": 252,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 5,
+     "commentaires": 0,
+     "mesure_le": "2026-11-19T06:51",
+     "verdict": "gagnant"
+    },
+    "facebook": {
+     "vues": 169,
+     "duree_moy": 7.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-19T06:51",
+     "verdict": "gagnant"
     }
    }
   },
@@ -17131,7 +17171,7 @@
    "diffusions": {
     "threads": {
      "uuid": "-8783103042369272272",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/Df457ulNvyI",
      "date": "2026-11-18",
      "heure": "17:10"
     },
@@ -17143,25 +17183,25 @@
     },
     "pinterest": {
      "uuid": "8145406958089094397",
-     "url": "",
+     "url": "https://www.pinterest.es/pin/1143844005393819156",
      "date": "2026-11-18",
      "heure": "17:10"
     },
     "bluesky": {
      "uuid": "-6631866800534696185",
-     "url": "",
+     "url": "https://bsky.app/profile/shawez.bsky.social/post/3n2lx42z6er2f",
      "date": "2026-11-18",
      "heure": "17:10"
     },
     "tiktok": {
      "uuid": "-878781494259725460",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7709552363912187158",
      "date": "2026-11-18",
      "heure": "17:40"
     },
     "youtube": {
      "uuid": "324385598754342099",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/ZHEuFDyqNyI",
      "date": "2026-11-18",
      "heure": "17:10"
     },
@@ -17177,7 +17217,41 @@
      "date": "2026-11-20",
      "heure": "13:05"
     }
-   }
+   },
+   "url": "https://www.instagram.com/reel/Df45owIhdov/",
+   "vues": 2,
+   "duree_moy": 16.21,
+   "partages": 0,
+   "enregistrements": 0,
+   "commentaires": 0,
+   "mesure_le": "2026-11-19T06:51",
+   "reseaux": {
+    "tiktok": {
+     "vues": 241,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 3,
+     "commentaires": 0,
+     "mesure_le": "2026-11-19T06:51",
+     "verdict": "gagnant"
+    },
+    "threads": {
+     "vues": 1,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-19T06:51",
+     "verdict": "en_cours"
+    }
+   },
+   "verdicts": {
+    "instagram": "en_cours",
+    "tiktok": "gagnant",
+    "threads": "en_cours"
+   },
+   "vues_total": 244,
+   "verdict": "gagnant"
   },
   {
    "id": "TR-1811-438-x",
@@ -17236,7 +17310,8 @@
      "date": "2026-11-19",
      "heure": "13:05"
     }
-   }
+   },
+   "url": "https://www.instagram.com/reel/Df5N3uuAZYO/"
   },
   {
    "id": "TR-1811-483-v1",
@@ -17251,7 +17326,19 @@
    "uuid": "5763916250714557049",
    "statut": "publie",
    "media": "https://5227e50c.shawez-immo.pages.dev/trial/2026-11-18/loft-spa-dijon-483-v1.mp4",
-   "instagram": true
+   "instagram": true,
+   "url": "https://www.instagram.com/reel/Df5DOkNicGn/",
+   "vues": 266,
+   "duree_moy": 4.36,
+   "partages": 0,
+   "enregistrements": 0,
+   "commentaires": 0,
+   "mesure_le": "2026-11-19T06:51",
+   "verdicts": {
+    "instagram": "gagnant"
+   },
+   "vues_total": 266,
+   "verdict": "gagnant"
   },
   {
    "id": "TR-1811-483-v2",
@@ -17270,19 +17357,19 @@
    "diffusions": {
     "threads": {
      "uuid": "-1353727619074339034",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/Df5PjNgSK7u",
      "date": "2026-11-18",
      "heure": "20:20"
     },
     "pinterest": {
      "uuid": "-6645149476749622887",
-     "url": "",
+     "url": "https://www.pinterest.es/pin/1143844005393832511",
      "date": "2026-11-18",
      "heure": "20:20"
     },
     "bluesky": {
      "uuid": "1915383881111652823",
-     "url": "",
+     "url": "https://bsky.app/profile/shawez.bsky.social/post/3n2mboigxdq2k",
      "date": "2026-11-18",
      "heure": "20:20"
     },
@@ -17294,13 +17381,13 @@
     },
     "tiktok": {
      "uuid": "8411477822008348109",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7709593720995269910",
      "date": "2026-11-18",
      "heure": "20:20"
     },
     "youtube": {
      "uuid": "-1332792762572649086",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/BKy60S_3qWI",
      "date": "2026-11-18",
      "heure": "20:20"
     },
@@ -17310,7 +17397,34 @@
      "date": "2026-11-19",
      "heure": "09:00"
     }
-   }
+   },
+   "reseaux": {
+    "tiktok": {
+     "vues": 40,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-19T06:51",
+     "verdict": "en_cours"
+    },
+    "threads": {
+     "vues": 7,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-19T06:51",
+     "verdict": "en_cours"
+    }
+   },
+   "verdicts": {
+    "tiktok": "en_cours",
+    "threads": "en_cours"
+   },
+   "vues_total": 47,
+   "vues": 0,
+   "verdict": "en_cours"
   },
   {
    "id": "TR-1811-483-v3",
@@ -17355,7 +17469,19 @@
    "uuid": "-8724521138389430998",
    "statut": "publie",
    "media": "https://5227e50c.shawez-immo.pages.dev/trial/2026-11-18/appartement-t3-501-v1.mp4",
-   "instagram": true
+   "instagram": true,
+   "url": "https://www.instagram.com/reel/Df5Xnh6CrvV/",
+   "vues": 110,
+   "duree_moy": 2.8,
+   "partages": 0,
+   "enregistrements": 0,
+   "commentaires": 0,
+   "mesure_le": "2026-11-19T06:51",
+   "verdicts": {
+    "instagram": "gagnant"
+   },
+   "vues_total": 110,
+   "verdict": "gagnant"
   },
   {
    "id": "TR-1811-501-v2",
@@ -17374,19 +17500,19 @@
    "diffusions": {
     "threads": {
      "uuid": "3833563416992828523",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/Df5R1IyK3iS",
      "date": "2026-11-18",
      "heure": "20:40"
     },
     "pinterest": {
      "uuid": "8600712467079972249",
-     "url": "",
+     "url": "https://www.pinterest.es/pin/1143844005393833758",
      "date": "2026-11-18",
      "heure": "20:40"
     },
     "bluesky": {
      "uuid": "-2971458660598791904",
-     "url": "",
+     "url": "https://bsky.app/profile/shawez.bsky.social/post/3n2mcrlbxfz2w",
      "date": "2026-11-18",
      "heure": "20:40"
     },
@@ -17398,13 +17524,13 @@
     },
     "tiktok": {
      "uuid": "-3394192628143078767",
-     "url": "",
+     "url": "https://www.tiktok.com/@shawez_immo/video/7709605417067826454",
      "date": "2026-11-18",
      "heure": "21:05"
     },
     "youtube": {
      "uuid": "-5154496516064457272",
-     "url": "",
+     "url": "https://www.youtube.com/shorts/Am9MOGFrmr8",
      "date": "2026-11-18",
      "heure": "20:50"
     },
@@ -17414,7 +17540,24 @@
      "date": "2026-11-19",
      "heure": "11:00"
     }
-   }
+   },
+   "reseaux": {
+    "tiktok": {
+     "vues": 28,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 1,
+     "commentaires": 0,
+     "mesure_le": "2026-11-19T06:51",
+     "verdict": "en_cours"
+    }
+   },
+   "verdicts": {
+    "tiktok": "en_cours"
+   },
+   "vues_total": 28,
+   "vues": 0,
+   "verdict": "en_cours"
   },
   {
    "id": "TR-1811-501-v3",
@@ -17478,19 +17621,19 @@
    "diffusions": {
     "threads": {
      "uuid": "-4416595871797723083",
-     "url": "",
+     "url": "https://www.threads.com/@shawez_immo/post/Df5VQs3hnCZ",
      "date": "2026-11-18",
      "heure": "21:10"
     },
     "pinterest": {
      "uuid": "354483865521965365",
-     "url": "",
+     "url": "https://www.pinterest.es/pin/1143844005393835849",
      "date": "2026-11-18",
      "heure": "21:10"
     },
     "bluesky": {
      "uuid": "-5815326510661418733",
-     "url": "",
+     "url": "https://bsky.app/profile/shawez.bsky.social/post/3n2mehpkjqz2f",
      "date": "2026-11-18",
      "heure": "21:10"
     },
@@ -17500,7 +17643,24 @@
      "date": "2026-11-18",
      "heure": "21:20"
     }
-   }
+   },
+   "reseaux": {
+    "threads": {
+     "vues": 6,
+     "duree_moy": 0.0,
+     "partages": 0,
+     "enregistrements": 0,
+     "commentaires": 0,
+     "mesure_le": "2026-11-19T06:51",
+     "verdict": "en_cours"
+    }
+   },
+   "verdicts": {
+    "threads": "en_cours"
+   },
+   "vues_total": 6,
+   "vues": 0,
+   "verdict": "en_cours"
   },
   {
    "id": "TR-1811-415-v3",
