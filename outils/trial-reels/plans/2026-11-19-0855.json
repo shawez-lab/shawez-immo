@@ -1,0 +1,343 @@
+{
+ "jour": "2026-11-19",
+ "choisir": "choisir.py a rendu 425 513 403 431 ; vivier : 425 513 403 431 481 446 507 525 527 438 415 520 501 461 494 509 483",
+ "ecartes": {
+  "425": "face caméra avec sous-titres incrustés (planche revue 19/11 08h55)",
+  "513": "Shawez face caméra avec mots incrustés (planche revue 19/11 07h35)",
+  "403": "Shawez face caméra avec textes incrustés (planche revue 19/11 08h55)",
+  "431": "face caméra avec sous-titres incrustés (planche revue 19/11 07h35)"
+ },
+ "remplacants": "les 4 biens rendus sont face caméra : remplacés par les suivants du vivier, dans l’ordre de choisir.py : 481 446 507 525.",
+ "outil": "outils/biens/diaporama.py, photo par photo dans l’ordre de « photos ». 481 446 507 : video.mp4 est un Reel photo fini. 525 : video.mp4 et video-hd.mp4 affichent 450 000 € incrusté alors que l’annonce est passée à 419 000 € (prix_precedent 450 000) ; on monte donc depuis les photos pour ne pas publier un prix faux.",
+ "relance": "Lancement manuel 19/11 8 h 47 (Chef d’orchestre : file du 20/11 maigre, refaire TR-1811-525-x). creneaux.py --horizon 24 : AUCUN (8 Trial Reels déjà dans la fenêtre). 525-v1 reprend l’accroche gagnante de TR-1811-525-x.",
+ "biens": [
+  {
+   "ref": "481",
+   "src": "assets/biens/481/video.mp4",
+   "mot": "ETUDIANT",
+   "nom": "t2-residence-etudiante",
+   "mode": "photos",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": true,
+     "accroche": "329 € de loyer|chaque mois, déjà loué",
+     "legende": "Ce T2 de 28,66 m² dans une résidence étudiante de Dijon rapporte 329 euros par mois à son propriétaire. On fait le calcul ensemble ? 📈\n\nCommente ETUDIANT et je t’envoie la visite complète en privé 📩\n\n#investissementlocatif #revenupassif #dijon #logementetudiant #rentabilite",
+     "photos": [
+      8,
+      4,
+      9,
+      10,
+      2,
+      12
+     ],
+     "lignes": [
+      "",
+      "Chambre séparée"
+     ],
+     "style": "chiffre_choc"
+    },
+    {
+     "id": "v2",
+     "instagram": false,
+     "accroche": "Premier investissement|à 66 900 € ?",
+     "legende": "66 900 € pour un T2 déjà loué en résidence étudiante, avec chambre séparée et salle d’eau. Tu te lances cette année ? 🎓\n\nCommente ETUDIANT et je t’envoie la visite complète en privé 📩\n\n#premierinvestissement #t2 #immobilierdijon #investirjeune #cotedor",
+     "photos": [
+      1,
+      12,
+      4,
+      8,
+      10,
+      2
+     ],
+     "lignes": [
+      "Déjà loué"
+     ],
+     "style": "chiffre_choc"
+    },
+    {
+     "id": "v3",
+     "instagram": false,
+     "accroche": "Baby-foot et coach sportif|inclus dans la résidence",
+     "legende": "Wi-Fi, accueil, salle de détente, salle de sport, coach sportif et baby-foot : tout ça est inclus dans la résidence de ce T2 dijonnais 🏓\n\nCommente ETUDIANT et je t’envoie la visite complète en privé 📩\n\n#residenceetudiante #vieetudiante #babyfoot #etudiantdijon #dijonmaville",
+     "photos": [
+      2,
+      3,
+      11,
+      4,
+      8,
+      9
+     ],
+     "lignes": [
+      "Salle de sport"
+     ],
+     "style": "autre"
+    },
+    {
+     "id": "v4",
+     "instagram": false,
+     "accroche": "Tu pensais à un studio ?|Regarde bien.",
+     "legende": "On croit voir un studio avec sa kitchenette, et puis il y a une vraie chambre séparée. Tout ça dans 28,66 m² 🛏️\n\nCommente ETUDIANT et je t’envoie la visite complète en privé 📩\n\n#petitesurface #chambreseparee #kitchenette #appartementdijon #astuceimmo",
+     "photos": [
+      4,
+      5,
+      7,
+      8,
+      9,
+      10
+     ],
+     "lignes": [
+      "Chambre séparée"
+     ],
+     "style": "revelation"
+    }
+   ]
+  },
+  {
+   "ref": "446",
+   "src": "assets/biens/446/video.mp4",
+   "mot": "MONTCHAPET",
+   "nom": "t2-montchapet",
+   "mode": "photos",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": true,
+     "accroche": "870 € de taxe foncière|pour 45 m² rénovés",
+     "legende": "Un T2 d’environ 45 m² entièrement rénové dans le bas Montchapet, avec une taxe foncière de 870 €, une cave et un grenier. Tu t’attendais à moins ou à plus ? 🧾\n\nCommente MONTCHAPET et je t’envoie la visite complète en privé 📩\n\n#taxefonciere #t2renove #montchapet #immobilierdijon #budgetimmo",
+     "photos": [
+      2,
+      1,
+      7,
+      9,
+      10,
+      6
+     ],
+     "lignes": [
+      "Cave et grenier"
+     ],
+     "style": "chiffre_choc"
+    },
+    {
+     "id": "v2",
+     "instagram": false,
+     "accroche": "Premier achat :|tu le prends rénové ?",
+     "legende": "Rez-de-chaussée d’une petite copropriété bien entretenue, logement entièrement rénové et prêt à habiter. Tu poses tes cartons direct ? 📦\n\nCommente MONTCHAPET et je t’envoie la visite complète en privé 📩\n\n#premierachat #primoaccedant #pretahabiter #dijon #appartementt2",
+     "photos": [
+      1,
+      2,
+      4,
+      8,
+      11,
+      6
+     ],
+     "lignes": [
+      "Prêt à habiter"
+     ],
+     "style": "question"
+    },
+    {
+     "id": "v3",
+     "instagram": false,
+     "accroche": "Pousse cette porte :|séjour et cuisine de 26 m²",
+     "legende": "L’entrée s’ouvre sur un séjour avec cuisine ouverte aménagée et équipée d’environ 26 m², puis une chambre séparée en parquet chêne 🔑\n\nCommente MONTCHAPET et je t’envoie la visite complète en privé 📩\n\n#cuisineouverte #sejour #interieurdesign #dijonimmobilier #renovation",
+     "photos": [
+      6,
+      1,
+      2,
+      4,
+      9,
+      7
+     ],
+     "lignes": [
+      "26 m²"
+     ],
+     "style": "autre"
+    },
+    {
+     "id": "v4",
+     "instagram": false,
+     "accroche": "99 % ratent|le parquet chêne",
+     "legende": "Mets pause et cherche-le : la chambre de 14 m² de ce T2 rénové a un parquet chêne. Tu l’as vu du premier coup ? 👀\n\nCommente MONTCHAPET et je t’envoie la visite complète en privé 📩\n\n#defipause #parquetchene #oeildelynx #chambre #bourgogneimmo",
+     "photos": [
+      1,
+      4,
+      7,
+      10,
+      2,
+      8
+     ],
+     "lignes": [
+      "Parquet chêne"
+     ],
+     "style": "defi_1pourcent"
+    }
+   ]
+  },
+  {
+   "ref": "507",
+   "src": "assets/biens/507/video.mp4",
+   "mot": "POTENTIEL",
+   "nom": "t2-potentiel",
+   "mode": "photos",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": true,
+     "accroche": "47,70 m² au sol|et une cave voûtée",
+     "legende": "47,70 m² au sol, 44,30 m² Carrez, et en bas une grande cave voûtée de plus de 15 m². Un T2 dans l’ancien à rafraîchir 🧱\n\nCommente POTENTIEL et je t’envoie la visite complète en privé 📩\n\n#caveoutee #charmedelancien #t2dijon #investissement #arenover",
+     "photos": [
+      1,
+      3,
+      2,
+      8,
+      4,
+      10
+     ],
+     "lignes": [
+      "",
+      "",
+      "",
+      "Parquet"
+     ],
+     "style": "chiffre_choc"
+    },
+    {
+     "id": "v2",
+     "instagram": false,
+     "accroche": "Tu ferais quoi|de ces 2 cheminées ?",
+     "legende": "Deux belles cheminées en bon état dans un T2 de l’ancien, avec parquet et double vitrage PVC. Tu les rallumes ou tu les décores ? 🔥\n\nCommente POTENTIEL et je t’envoie la visite complète en privé 📩\n\n#cheminee #appartementancien #decoration #dijon #projetdeco",
+     "photos": [
+      8,
+      3,
+      1,
+      2,
+      7,
+      11
+     ],
+     "lignes": [
+      "Bon état"
+     ],
+     "style": "question"
+    },
+    {
+     "id": "v3",
+     "instagram": false,
+     "accroche": "Ouvre la porte du bas :|15 m² de cave voûtée",
+     "legende": "On descend l’escalier de la copropriété et on tombe sur une grande cave voûtée de plus de 15 m². Tu en ferais quoi ? 🍷\n\nCommente POTENTIEL et je t’envoie la visite complète en privé 📩\n\n#cavevoutee #pierre #rangement #immobilieranciens #cotedorimmo",
+     "photos": [
+      9,
+      10,
+      11,
+      1,
+      2,
+      3
+     ],
+     "lignes": [
+      "Plus de 15 m²"
+     ],
+     "style": "autre"
+    },
+    {
+     "id": "v4",
+     "instagram": false,
+     "accroche": "15 m² de séjour,|20 m² de chambre",
+     "legende": "Une entrée sur séjour de 15 m², une grande chambre de 20 m² avec parquet, au premier étage. Un rafraîchissement global est à prévoir 🛠️\n\nCommente POTENTIEL et je t’envoie la visite complète en privé 📩\n\n#travaux #potentielimmo #grandechambre #dijoncentre #achatimmobilier",
+     "photos": [
+      2,
+      1,
+      4,
+      5,
+      6,
+      11
+     ],
+     "lignes": [
+      "1er étage"
+     ],
+     "style": "chiffre_choc"
+    }
+   ]
+  },
+  {
+   "ref": "525",
+   "src": "assets/biens/525/video.mp4",
+   "mot": "NEUILLY",
+   "nom": "maison-neuilly",
+   "mode": "photos",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": true,
+     "accroche": "Tu pensais que c'était|un placard ?|Regarde bien.",
+     "legende": "Dans la suite parentale de cette maison de 2018 aux portes de Dijon, la porte ne cache pas un placard mais un immense dressing 👀\n\nCommente NEUILLY et je t’envoie la visite complète en privé 📩\n\n#dressing #suiteparentale #maisonmoderne #dijon #reveal",
+     "photos": [
+      17,
+      18,
+      19,
+      14,
+      6,
+      22
+     ],
+     "lignes": [
+      "Immense dressing"
+     ],
+     "style": "revelation"
+    },
+    {
+     "id": "v2",
+     "instagram": false,
+     "accroche": "149 m², 5 chambres|et DPE A",
+     "legende": "Une maison de 2018 aux normes RT 2012 sur 429 m² de terrain, 5 chambres et un DPE A. Tu t’y vois en famille ? 🏡\n\nCommente NEUILLY et je t’envoie la visite complète en privé 📩\n\n#maisonfamiliale #dpea #rt2012 #constructionrecente #neuillycrimolois",
+     "photos": [
+      1,
+      3,
+      7,
+      17,
+      23,
+      22
+     ],
+     "lignes": [
+      "Construite en 2018"
+     ],
+     "style": "chiffre_choc"
+    },
+    {
+     "id": "v3",
+     "instagram": false,
+     "accroche": "Tu mettrais quoi|dans ce garage chauffé ?",
+     "legende": "Le garage de 23 m², carrelé et chauffé, communique avec la maison. Atelier, salle de sport ou voiture : tu choisis quoi ? 🚗\n\nCommente NEUILLY et je t’envoie la visite complète en privé 📩\n\n#garage #atelier #maisonavecgarage #portesdedijon #idee",
+     "photos": [
+      25,
+      1,
+      3,
+      9,
+      12,
+      22
+     ],
+     "lignes": [
+      "Carrelé"
+     ],
+     "style": "question"
+    },
+    {
+     "id": "v4",
+     "instagram": false,
+     "accroche": "99 % ratent|l'arrière-cuisine",
+     "legende": "Mets pause et cherche-la : derrière la cuisine dînatoire équipée, il y a une arrière-cuisine. Tu l’as trouvée ? 🔎\n\nCommente NEUILLY et je t’envoie la visite complète en privé 📩\n\n#defipause #arrierecuisine #cuisineequipee #oeildelynx #maisonbourgogne",
+     "photos": [
+      7,
+      8,
+      9,
+      3,
+      5,
+      23
+     ],
+     "lignes": [
+      "Cuisine dînatoire"
+     ],
+     "style": "defi_1pourcent"
+    }
+   ]
+  }
+ ]
+}

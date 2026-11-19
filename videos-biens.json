@@ -256,27 +256,6 @@
       "jusqu_au": "2026-12-06"
     },
     {
-      "mot": "CHENOVE",
-      "ref": "529",
-      "libelle": "la maison traversante de Chenôve",
-      "depuis": "2026-11-06",
-      "jusqu_au": "2026-12-06"
-    },
-    {
-      "mot": "JARDIN",
-      "ref": "394",
-      "libelle": "la maison dijonnaise et son terrain de 773 m²",
-      "depuis": "2026-11-06",
-      "jusqu_au": "2026-12-06"
-    },
-    {
-      "mot": "BEZE",
-      "ref": "Combottes",
-      "libelle": "la maison de 1850 avec piscine à Bèze",
-      "depuis": "2026-11-06",
-      "jusqu_au": "2026-12-06"
-    },
-    {
       "mot": "ETUDIANT",
       "ref": "481",
       "libelle": "le T2 dijonnais déjà loué en résidence étudiante",
@@ -324,6 +303,13 @@
       "libelle": "l’appartement T3 avec jardin de Chevigny-Saint-Sauveur",
       "depuis": "2026-11-18",
       "jusqu_au": "2026-12-02"
+    },
+    {
+      "mot": "NEUILLY",
+      "ref": "525",
+      "libelle": "la maison de 2018 aux portes de Dijon",
+      "depuis": "2026-11-19",
+      "jusqu_au": "2026-12-03"
     }
   ]
 }
