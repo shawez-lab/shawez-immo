@@ -1,0 +1,736 @@
+{
+ "jour": "2026-11-19",
+ "choisir": "choisir.py a rendu 425 513 403 431 ; vivier : 425 513 403 431 438 483 501 461 481 446 507 525 527 415 520 494 509",
+ "ecartes": {
+  "425": "face caméra avec sous-titres incrustés (explicatif SCI), planche revue 19/11 07h35",
+  "513": "Shawez face caméra avec mots incrustés, planche revue 19/11 07h35",
+  "403": "Shawez face caméra avec textes incrustés, planche revue 19/11 07h35",
+  "431": "face caméra avec sous-titres incrustés, planche revue 19/11 07h35"
+ },
+ "remplacants": "les 4 biens rendus sont face caméra : remplacés par les suivants du vivier, dans l’ordre de choisir.py : 438 483 501 461.",
+ "boucle": "483-v1 et 501-v1 reprennent l’accroche gagnante du 18/11 (TR-1811-483-v1, 266 vues ; TR-1811-501-v1, 110 vues), seuls les premiers plans changent.",
+ "outil": "fabriquer.py pour les quatre biens.",
+ "biens": [
+  {
+   "ref": "438",
+   "src": "assets/biens/438/video.mp4",
+   "mot": "CHATEAU",
+   "nom": "chateau-beaune",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": true,
+     "accroche": "Mets pause :|1 % voit l’étang",
+     "plans": [
+      [
+       5.3,
+       7.1,
+       1
+      ],
+      [
+       8.3,
+       11.1,
+       1
+      ],
+      [
+       3.3,
+       4.4,
+       1,
+       "Un étang"
+      ],
+      [
+       0.05,
+       1.15,
+       1
+      ],
+      [
+       24.3,
+       27.0,
+       1
+      ],
+      [
+       15.3,
+       19.1,
+       1
+      ]
+     ],
+     "legende": "Mets pause et cherche-le : ce château du XVIIIe, à quinze minutes de Beaune, cache un étang dans son parc. Tu l’as vu du premier coup ? 👀\n\nCommente CHATEAU et je t’envoie la visite complète en privé 📩\n\n#defipause #chateauavendre #etang #beaune #oeildelynx",
+     "style": "defi_1pourcent"
+    },
+    {
+     "id": "v2",
+     "instagram": false,
+     "accroche": "1 600 000 €|pour 18 pièces|et 520 m²",
+     "plans": [
+      [
+       8.3,
+       11.1,
+       1
+      ],
+      [
+       13.3,
+       15.1,
+       1
+      ],
+      [
+       5.3,
+       6.8,
+       1
+      ],
+      [
+       15.3,
+       17.4,
+       1,
+       "18 pièces"
+      ],
+      [
+       20.2,
+       22.1,
+       1
+      ],
+      [
+       29.25,
+       29.95,
+       1
+      ],
+      [
+       24.2,
+       27.1,
+       1
+      ]
+     ],
+     "legende": "1 600 000 € pour un château d’environ 520 m², 18 pièces et 7 chambres, dans un domaine d’environ 15 hectares en Bourgogne. Tu aurais mis combien ? 💶\n\nCommente CHATEAU et je t’envoie la visite complète en privé 📩\n\n#immobilierdeprestige #chateaubourgogne #520m2 #demeuredecaractere #saintgervaisenvalliere",
+     "style": "chiffre_choc"
+    },
+    {
+     "id": "v3",
+     "instagram": false,
+     "accroche": "15 minutes de Beaune,|tu t’y vois ?",
+     "plans": [
+      [
+       1.3,
+       3.1,
+       1
+      ],
+      [
+       5.3,
+       7.1,
+       1,
+       "Côte de Beaune"
+      ],
+      [
+       11.3,
+       13.1,
+       1
+      ],
+      [
+       13.3,
+       15.1,
+       1
+      ],
+      [
+       22.2,
+       24.1,
+       1
+      ],
+      [
+       29.25,
+       29.95,
+       1
+      ],
+      [
+       15.2,
+       18.4,
+       1
+      ]
+     ],
+     "legende": "Une vue dégagée sur la Côte de Beaune, des boiseries, des moulures et des cheminées d’époque. Tu t’installes ou tu viens juste pour le week-end ? 🍷\n\nCommente CHATEAU et je t’envoie la visite complète en privé 📩\n\n#cotedebeaune #bourgogne #vignoble #chateaufrancais #viealacampagne",
+     "style": "question"
+    },
+    {
+     "id": "v4",
+     "instagram": false,
+     "accroche": "Derrière cette porte,|un château du XVIIIe",
+     "plans": [
+      [
+       13.25,
+       15.1,
+       1
+      ],
+      [
+       15.3,
+       17.6,
+       1,
+       "XVIIIe siècle"
+      ],
+      [
+       20.2,
+       22.1,
+       1
+      ],
+      [
+       8.3,
+       10.2,
+       1
+      ],
+      [
+       5.3,
+       6.5,
+       1
+      ],
+      [
+       1.3,
+       3.2,
+       1
+      ],
+      [
+       24.2,
+       27.1,
+       1
+      ]
+     ],
+     "legende": "On pousse la porte et le vestibule s’ouvre sur l’escalier, puis la cuisine et le parc. Un château parfaitement entretenu depuis vingt ans 🏰\n\nCommente CHATEAU et je t’envoie la visite complète en privé 📩\n\n#chateau #patrimoine #xviiiesiecle #maisondemaitre #immobilierbourgogne",
+     "style": "revelation"
+    }
+   ]
+  },
+  {
+   "ref": "483",
+   "src": "assets/biens/483/video.mp4",
+   "mot": "LOFT",
+   "nom": "loft-spa",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": true,
+     "accroche": "178 500 €,|sauna et jacuzzi|en plein Dijon",
+     "plans": [
+      [
+       26.2,
+       27.9,
+       1
+      ],
+      [
+       19.7,
+       22.6,
+       1,
+       "Sauna privatif"
+      ],
+      [
+       12.3,
+       13.6,
+       1
+      ],
+      [
+       15.8,
+       18.3,
+       1
+      ],
+      [
+       27.95,
+       29.6,
+       1
+      ],
+      [
+       31.9,
+       34.7,
+       1
+      ]
+     ],
+     "legende": "178 500 € pour un loft de 42 m² en plein cœur historique de Dijon, avec jacuzzi balnéo, sauna et cheminée d’ambiance. Tu réserves ta soirée ? 🧖\n\nCommente LOFT et je t’envoie la visite complète en privé 📩\n\n#loftdijon #jacuzziprive #dijoncentre #immobilieratypique #suitespa",
+     "style": "chiffre_choc"
+    },
+    {
+     "id": "v2",
+     "instagram": false,
+     "accroche": "Ce loft cache|un spa privatif",
+     "plans": [
+      [
+       12.25,
+       13.6,
+       1
+      ],
+      [
+       15.8,
+       17.5,
+       1
+      ],
+      [
+       19.7,
+       22.6,
+       1,
+       "Sauna"
+      ],
+      [
+       3.9,
+       4.95,
+       1
+      ],
+      [
+       24.0,
+       26.1,
+       1
+      ],
+      [
+       27.95,
+       29.0,
+       1
+      ],
+      [
+       31.9,
+       34.7,
+       1
+      ]
+     ],
+     "legende": "Pierres apparentes, belle hauteur sous plafond… et derrière, tout un espace bien-être privatif. Tu l’avais deviné ? 🤫\n\nCommente LOFT et je t’envoie la visite complète en privé 📩\n\n#spaprive #pierresapparentes #loft #bienetre #coeurhistoriquedijon",
+     "style": "revelation"
+    },
+    {
+     "id": "v3",
+     "instagram": false,
+     "accroche": "Un sauna privé|dans 42 m²,|oui c’est possible",
+     "plans": [
+      [
+       22.75,
+       23.85,
+       1
+      ],
+      [
+       3.9,
+       4.95,
+       1
+      ],
+      [
+       19.7,
+       21.6,
+       1
+      ],
+      [
+       9.35,
+       10.45,
+       1,
+       "42 m²"
+      ],
+      [
+       5.1,
+       7.0,
+       1
+      ],
+      [
+       12.25,
+       13.6,
+       1
+      ],
+      [
+       27.95,
+       29.6,
+       1
+      ],
+      [
+       15.7,
+       18.4,
+       1
+      ]
+     ],
+     "legende": "42 m² seulement, et pourtant : sauna, jacuzzi balnéo, salle d’eau en marbre avec douche à l’italienne. Tu aurais cru ? 😮\n\nCommente LOFT et je t’envoie la visite complète en privé 📩\n\n#sauna #petitesurface #optimisation #salledeaumarbre #loftdesign",
+     "style": "detail_surprenant"
+    },
+    {
+     "id": "v4",
+     "instagram": false,
+     "accroche": "Une activité rentable|dès le premier jour",
+     "plans": [
+      [
+       5.1,
+       7.8,
+       1
+      ],
+      [
+       2.0,
+       3.8,
+       1,
+       "Clé en main"
+      ],
+      [
+       18.45,
+       19.5,
+       1
+      ],
+      [
+       24.0,
+       26.1,
+       1
+      ],
+      [
+       12.25,
+       13.6,
+       1
+      ],
+      [
+       27.95,
+       29.0,
+       1
+      ],
+      [
+       19.6,
+       22.6,
+       1
+      ]
+     ],
+     "legende": "Le loft est déjà exploité en location courte durée avec un fort taux de remplissage, décoration et équipements inclus. Tu reprends l’activité ? 📈\n\nCommente LOFT et je t’envoie la visite complète en privé 📩\n\n#investissementimmobilier #locationcourteduree #rendementlocatif #cleenmain #investirdijon",
+     "style": "business"
+    }
+   ]
+  },
+  {
+   "ref": "501",
+   "src": "assets/biens/501/video.mp4",
+   "mot": "LUMIÈRE",
+   "nom": "t3-lumiere",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": true,
+     "accroche": "139 000 €,|2 chambres|et une cave",
+     "plans": [
+      [
+       8.0,
+       10.0,
+       1
+      ],
+      [
+       17.2,
+       19.2,
+       1,
+       "2 chambres"
+      ],
+      [
+       10.6,
+       12.4,
+       1
+      ],
+      [
+       22.4,
+       24.0,
+       1
+      ],
+      [
+       26.4,
+       28.4,
+       1
+      ],
+      [
+       33.5,
+       36.5,
+       1
+      ]
+     ],
+     "legende": "139 000 € pour un T3 lumineux de 53,62 m² au premier étage, avec gardien, cave privative et parking collectif. Tu viens le voir ? 🏠\n\nCommente LUMIÈRE et je t’envoie la visite complète en privé 📩\n\n#t3dijon #appartementavendre #caveprivative #dijonimmobilier #residenceavecgardien",
+     "style": "chiffre_choc"
+    },
+    {
+     "id": "v2",
+     "instagram": false,
+     "accroche": "Premier achat à Dijon,|tu signes ?",
+     "plans": [
+      [
+       10.6,
+       12.6,
+       1
+      ],
+      [
+       1.3,
+       3.4,
+       1
+      ],
+      [
+       17.2,
+       19.0,
+       1,
+       "53,62 m²"
+      ],
+      [
+       22.4,
+       24.0,
+       1
+      ],
+      [
+       8.2,
+       10.0,
+       1
+      ],
+      [
+       33.0,
+       36.0,
+       1
+      ]
+     ],
+     "legende": "Deux chambres, un salon, une cuisine séparée meublée et équipée, et une cave. Pour un premier achat, tu dis oui ? ✍️\n\nCommente LUMIÈRE et je t’envoie la visite complète en privé 📩\n\n#premierachat #primoaccedant #acheteradijon #t3 #appartementlumineux",
+     "style": "question"
+    },
+    {
+     "id": "v3",
+     "instagram": false,
+     "accroche": "Derrière cette porte,|la deuxième chambre",
+     "plans": [
+      [
+       15.7,
+       16.9,
+       1
+      ],
+      [
+       22.3,
+       24.8,
+       1,
+       "Chambre 2"
+      ],
+      [
+       17.2,
+       19.0,
+       1
+      ],
+      [
+       10.6,
+       12.2,
+       1
+      ],
+      [
+       8.2,
+       9.6,
+       1
+      ],
+      [
+       26.6,
+       28.4,
+       1
+      ],
+      [
+       33.4,
+       36.5,
+       1
+      ]
+     ],
+     "legende": "La première chambre, tu l’as vue. La deuxième attend derrière cette porte : bureau, chambre d’enfant ou chambre d’amis ? 🚪\n\nCommente LUMIÈRE et je t’envoie la visite complète en privé 📩\n\n#deuxiemechambre #bureaumaison #immobiliercotedor #vivreadijon #appartementfamilial",
+     "style": "revelation"
+    },
+    {
+     "id": "v4",
+     "instagram": false,
+     "accroche": "53,62 m²,|deux chambres,|un gardien",
+     "plans": [
+      [
+       17.0,
+       19.2,
+       1
+      ],
+      [
+       4.8,
+       6.8,
+       1
+      ],
+      [
+       12.4,
+       14.2,
+       1,
+       "Gardien"
+      ],
+      [
+       22.3,
+       24.0,
+       1
+      ],
+      [
+       26.6,
+       28.6,
+       1
+      ],
+      [
+       32.9,
+       36.0,
+       1
+      ]
+     ],
+     "legende": "53,62 m² au premier étage d’une copropriété de 1969 avec gardien, chauffage urbain et parking collectif. Le quotidien simplifié 🔑\n\nCommente LUMIÈRE et je t’envoie la visite complète en privé 📩\n\n#copropriete #gardien #chauffageurbain #immobilierdijon #t3avendre",
+     "style": "chiffre_choc"
+    }
+   ]
+  },
+  {
+   "ref": "461",
+   "src": "assets/biens/461/video.mp4",
+   "mot": "MARRAKECH",
+   "nom": "studio-marrakech",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": true,
+     "accroche": "129 000 €,|Marrakech|en plein Dijon",
+     "plans": [
+      [
+       3.0,
+       5.5,
+       1
+      ],
+      [
+       13.3,
+       15.5,
+       1,
+       "Balnéo"
+      ],
+      [
+       8.0,
+       10.5,
+       1
+      ],
+      [
+       0.0,
+       1.5,
+       1
+      ],
+      [
+       22.0,
+       24.0,
+       1
+      ],
+      [
+       28.5,
+       31.5,
+       1
+      ]
+     ],
+     "legende": "129 000 € pour un studio inspiration Marrakech rénové par un architecte, à deux pas du parc Darcy. Tu craques ? 🧡\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#studiodijon #inspirationmarrakech #parcdarcy #decoboheme #achatstudio",
+     "style": "chiffre_choc"
+    },
+    {
+     "id": "v2",
+     "instagram": false,
+     "accroche": "Tu pensais que c’était|un simple studio ?",
+     "plans": [
+      [
+       1.0,
+       3.0,
+       1
+      ],
+      [
+       8.5,
+       11.0,
+       1,
+       "Rétroprojecteur"
+      ],
+      [
+       13.3,
+       15.5,
+       1
+      ],
+      [
+       17.0,
+       19.0,
+       1
+      ],
+      [
+       22.0,
+       23.6,
+       1
+      ],
+      [
+       5.5,
+       8.2,
+       1
+      ]
+     ],
+     "legende": "19,15 m² Carrez, et pourtant : rétroprojecteur intégré, baignoire balnéothérapie et rangements sur mesure. Regarde bien 👀\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#studiodesign #petitappartement #amenagementsurmesure #dijon #renovation",
+     "style": "revelation"
+    },
+    {
+     "id": "v3",
+     "instagram": false,
+     "accroche": "Balnéo ou soirée film,|tu choisis quoi ?",
+     "plans": [
+      [
+       13.3,
+       15.0,
+       1
+      ],
+      [
+       27.0,
+       28.5,
+       1,
+       "Rétroprojecteur"
+      ],
+      [
+       8.0,
+       10.0,
+       1
+      ],
+      [
+       4.0,
+       6.0,
+       1
+      ],
+      [
+       22.0,
+       23.5,
+       1
+      ],
+      [
+       1.0,
+       2.4,
+       1
+      ],
+      [
+       17.0,
+       19.8,
+       1
+      ]
+     ],
+     "legende": "D’un côté une baignoire balnéothérapie, de l’autre un rétroprojecteur intégré. Ce soir, c’est quoi pour toi ? 🛁🎬\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#baignoirebalneo #soireefilm #piedaterre #studiocosy #immobilierdijon",
+     "style": "question"
+    },
+    {
+     "id": "v4",
+     "instagram": false,
+     "accroche": "99 % ratent|la baignoire balnéo",
+     "plans": [
+      [
+       17.0,
+       19.0,
+       1
+      ],
+      [
+       3.0,
+       5.0,
+       1
+      ],
+      [
+       14.0,
+       14.9,
+       1
+      ],
+      [
+       8.0,
+       10.0,
+       1
+      ],
+      [
+       1.0,
+       2.5,
+       1
+      ],
+      [
+       22.5,
+       24.0,
+       1
+      ],
+      [
+       29.0,
+       32.0,
+       1
+      ]
+     ],
+     "legende": "Mets pause et cherche-la : dans ce studio de 19 m², une baignoire balnéothérapie se cache quelque part. Tu l’as trouvée ? 🔍\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#defipause #99pourcent #studio #balneotherapie #dijoncentre",
+     "style": "defi_1pourcent"
+    }
+   ]
+  }
+ ]
+}
