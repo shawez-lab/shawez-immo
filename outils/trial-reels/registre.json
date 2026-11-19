@@ -18182,6 +18182,12 @@
      "url": "",
      "date": "2026-11-20",
      "heure": "14:30"
+    },
+    "youtube": {
+     "uuid": "4328919693806160055",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "17:55"
     }
    }
   },
@@ -18505,6 +18511,12 @@
      "url": "",
      "date": "2026-11-20",
      "heure": "15:00"
+    },
+    "youtube": {
+     "uuid": "-3483822388025670657",
+     "url": "",
+     "date": "2026-11-20",
+     "heure": "18:00"
     }
    }
   },
@@ -19946,6 +19958,12 @@
      "url": "",
      "date": "2026-11-20",
      "heure": "14:00"
+    },
+    "youtube": {
+     "uuid": "-3201451061046655771",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "16:55"
     }
    }
   },
@@ -19977,7 +19995,21 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://ff5101f5.shawez-immo.pages.dev/trial/2026-11-19/hotel-beaune-527-v1.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "-3155658758323221842",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "16:25"
+    },
+    "youtube": {
+     "uuid": "8293791642527485672",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "15:55"
+    }
+   }
   },
   {
    "id": "TR-1911-527-v2",
@@ -19992,7 +20024,21 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://ff5101f5.shawez-immo.pages.dev/trial/2026-11-19/hotel-beaune-527-v2.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "-8384075529203726982",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "16:55"
+    },
+    "youtube": {
+     "uuid": "6362376552677395061",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "17:25"
+    }
+   }
   },
   {
    "id": "TR-1911-527-v3",
@@ -20007,7 +20053,21 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://ff5101f5.shawez-immo.pages.dev/trial/2026-11-19/hotel-beaune-527-v3.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "5704811893528742881",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "17:25"
+    },
+    "youtube": {
+     "uuid": "4109542960340419704",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "18:25"
+    }
+   }
   },
   {
    "id": "TR-1911-527-v4",
@@ -20157,7 +20217,15 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://ff5101f5.shawez-immo.pages.dev/trial/2026-11-19/t3-chevigny-520-v1.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "youtube": {
+     "uuid": "-2828258226327697985",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "16:25"
+    }
+   }
   },
   {
    "id": "TR-1911-520-v2",
