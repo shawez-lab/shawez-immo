@@ -17464,6 +17464,18 @@
      "url": "",
      "date": "2026-11-19",
      "heure": "09:45"
+    },
+    "youtube": {
+     "uuid": "202948997924930615",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "11:25"
+    },
+    "tiktok": {
+     "uuid": "-2106176105744546377",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "16:55"
     }
    }
   },
@@ -17480,7 +17492,15 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://5227e50c.shawez-immo.pages.dev/trial/2026-11-18/loft-spa-dijon-483-v4.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "-4752793969398165547",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "14:25"
+    }
+   }
   },
   {
    "id": "TR-1811-501-v1",
@@ -17617,6 +17637,12 @@
      "url": "",
      "date": "2026-11-19",
      "heure": "10:15"
+    },
+    "youtube": {
+     "uuid": "1536282696527661348",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "11:55"
     }
    }
   },
@@ -17633,7 +17659,15 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://5227e50c.shawez-immo.pages.dev/trial/2026-11-18/appartement-t3-501-v4.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "-8290848996062116728",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "14:55"
+    }
+   }
   },
   {
    "id": "TR-1811-415-v1",
@@ -17758,6 +17792,12 @@
      "url": "",
      "date": "2026-11-19",
      "heure": "10:45"
+    },
+    "youtube": {
+     "uuid": "-6969431600990239016",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "12:25"
     }
    }
   },
@@ -17774,7 +17814,15 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://5227e50c.shawez-immo.pages.dev/trial/2026-11-18/duplex-dijon-415-v4.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "-124781711354607858",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "15:25"
+    }
+   }
   },
   {
    "id": "TR-1811-520-v1",
@@ -17882,6 +17930,12 @@
      "url": "",
      "date": "2026-11-19",
      "heure": "11:15"
+    },
+    "youtube": {
+     "uuid": "5680109619149555889",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "12:55"
     }
    }
   },
@@ -17898,7 +17952,15 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://5227e50c.shawez-immo.pages.dev/trial/2026-11-18/appartement-chevigny-520-v4.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "932115060425576301",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "15:55"
+    }
+   }
   },
   {
    "id": "TR-1811-494-v1",
@@ -17965,6 +18027,12 @@
      "url": "",
      "date": "2026-11-19",
      "heure": "09:00"
+    },
+    "facebook": {
+     "uuid": "4038641722006716507",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "11:00"
     }
    }
   },
@@ -18000,6 +18068,12 @@
      "url": "",
      "date": "2026-11-19",
      "heure": "11:45"
+    },
+    "youtube": {
+     "uuid": "-119908759287479857",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "13:55"
     }
    }
   },
@@ -18062,6 +18136,18 @@
      "url": "",
      "date": "2026-11-19",
      "heure": "09:30"
+    },
+    "linkedin": {
+     "uuid": "5773691819169697298",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "10:55"
+    },
+    "facebook": {
+     "uuid": "352633582704676758",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "13:00"
     }
    }
   },
@@ -18078,7 +18164,33 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://2ce58b7d.shawez-immo.pages.dev/trial/2026-11-18/t2-residence-etudiante-481-v2.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "5984933181002238009",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "11:25"
+    },
+    "pinterest": {
+     "uuid": "-1507506111407111113",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "11:25"
+    },
+    "bluesky": {
+     "uuid": "-2355363287480186588",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "11:25"
+    },
+    "youtube": {
+     "uuid": "704846151865419828",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "14:25"
+    }
+   }
   },
   {
    "id": "TR-1811-481-v3",
@@ -18148,6 +18260,24 @@
      "url": "",
      "date": "2026-11-19",
      "heure": "10:00"
+    },
+    "linkedin": {
+     "uuid": "-4559015081183197403",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "12:25"
+    },
+    "tiktok": {
+     "uuid": "4960515286357525131",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "10:55"
+    },
+    "facebook": {
+     "uuid": "-727562021866225380",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "16:10"
     }
    }
   },
@@ -18164,7 +18294,33 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://2ce58b7d.shawez-immo.pages.dev/trial/2026-11-18/t2-montchapet-446-v2.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "-5648047258702492233",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "11:55"
+    },
+    "pinterest": {
+     "uuid": "-5467960803936680691",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "11:55"
+    },
+    "bluesky": {
+     "uuid": "823427525980408842",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "11:55"
+    },
+    "youtube": {
+     "uuid": "-4589467421267637927",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "14:55"
+    }
+   }
   },
   {
    "id": "TR-1811-446-v3",
@@ -18234,6 +18390,18 @@
      "url": "",
      "date": "2026-11-19",
      "heure": "10:30"
+    },
+    "linkedin": {
+     "uuid": "-5424856605139515001",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "13:55"
+    },
+    "tiktok": {
+     "uuid": "6095865194206349110",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "11:40"
     }
    }
   },
@@ -18250,7 +18418,33 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://2ce58b7d.shawez-immo.pages.dev/trial/2026-11-18/t2-potentiel-507-v2.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "-6792923872736165092",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "12:25"
+    },
+    "pinterest": {
+     "uuid": "5866181183662999250",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "12:25"
+    },
+    "bluesky": {
+     "uuid": "7047457846414757087",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "12:25"
+    },
+    "youtube": {
+     "uuid": "-3012912511903644135",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "15:25"
+    }
+   }
   },
   {
    "id": "TR-1811-507-v3",
@@ -18335,6 +18529,18 @@
      "url": "",
      "date": "2026-11-19",
      "heure": "11:00"
+    },
+    "linkedin": {
+     "uuid": "-9008507506566149036",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "15:25"
+    },
+    "tiktok": {
+     "uuid": "-2824737002225054246",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "12:25"
     }
    }
   },
@@ -18351,7 +18557,27 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://d134aa2c.shawez-immo.pages.dev/trial/2026-11-18/deux-maisons-couchey-509-v3.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "7642305909844167124",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "12:55"
+    },
+    "pinterest": {
+     "uuid": "-2103831726202797481",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "12:55"
+    },
+    "bluesky": {
+     "uuid": "4125293545816410862",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "12:55"
+    }
+   }
   },
   {
    "id": "TR-1811-509-v4",
@@ -18406,6 +18632,18 @@
      "url": "",
      "date": "2026-11-19",
      "heure": "11:30"
+    },
+    "tiktok": {
+     "uuid": "952776282597902218",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "13:10"
+    },
+    "linkedin": {
+     "uuid": "-5927526555360212531",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "16:55"
     }
    }
   },
@@ -18422,7 +18660,27 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://d134aa2c.shawez-immo.pages.dev/trial/2026-11-18/studio-marrakech-461-v2.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "4538509887869830632",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "13:25"
+    },
+    "pinterest": {
+     "uuid": "1907188857903137179",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "13:25"
+    },
+    "bluesky": {
+     "uuid": "-2084800649963024679",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "13:25"
+    }
+   }
   },
   {
    "id": "TR-1811-461-v3",
@@ -18486,6 +18744,18 @@
      "url": "",
      "date": "2026-11-19",
      "heure": "09:15"
+    },
+    "youtube": {
+     "uuid": "8411959553672429910",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "10:55"
+    },
+    "tiktok": {
+     "uuid": "4995977158943460060",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "16:10"
     }
    }
   },
@@ -18502,7 +18772,27 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://d134aa2c.shawez-immo.pages.dev/trial/2026-11-18/chateau-beaune-438-v2.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "8588616187373374649",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "13:55"
+    },
+    "pinterest": {
+     "uuid": "5269964100419800014",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "13:55"
+    },
+    "bluesky": {
+     "uuid": "-6372316748404667355",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "13:55"
+    }
+   }
   },
   {
    "id": "TR-1811-438-v3",
@@ -19027,7 +19317,33 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://9969eb0e.shawez-immo.pages.dev/trial/2026-11-19/maison-neuilly-525-v1.mp4",
-   "instagram": true
+   "instagram": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "-5205424388708939839",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "10:55"
+    },
+    "pinterest": {
+     "uuid": "8441358773040991977",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "10:55"
+    },
+    "bluesky": {
+     "uuid": "-2336141111510807671",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "10:55"
+    },
+    "youtube": {
+     "uuid": "6575705680884092807",
+     "url": "",
+     "date": "2026-11-19",
+     "heure": "13:25"
+    }
+   }
   },
   {
    "id": "TR-1911-525-v2",
