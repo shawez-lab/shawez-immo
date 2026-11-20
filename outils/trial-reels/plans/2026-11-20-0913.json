@@ -1,0 +1,426 @@
+{
+ "jour": "2026-11-20",
+ "choisir": "choisir.py a rendu 425 513 403 431 ; vivier : 425 513 403 431 507 509 525 527 438 415 520 483 501 461 481 446 494",
+ "ecartes": {
+  "425": "face caméra avec sous-titres/mots incrustés (planches revues 20/11 08h51)",
+  "513": "face caméra avec sous-titres/mots incrustés (planches revues 20/11 08h51)",
+  "403": "face caméra avec sous-titres/mots incrustés (planches revues 20/11 08h51)",
+  "431": "face caméra avec sous-titres/mots incrustés (planches revues 20/11 08h51)"
+ },
+ "remplacants": "les 4 biens rendus sont face caméra : remplacés par les suivants du vivier, dans l’ordre de choisir.py : 507 509 525 527.",
+ "outil": "outils/biens/diaporama.py photo par photo pour 507 509 525 (Reels photo finis ; 525 : prix incrusté périmé) ; fabriquer.py pour 527. 507 509 525 : pas de prix_honoraires_inclus, aucun prix cité.",
+ "relance": "Relance du Chef d’orchestre 20/11 8 h 50 (file IG du 21/11 vide). creneaux.py --horizon 24 depuis 10:40 : AUCUN (494-v1 déjà au 21/11 08:30, plafond de 8 atteint). 16 versions montées pour le Diffuseur, sans Instagram. 509-v1 décline le gagnant TR-1811-509-v1.",
+ "biens": [
+  {
+   "ref": "507",
+   "src": "assets/biens/507/video.mp4",
+   "mot": "POTENTIEL",
+   "nom": "t2-potentiel",
+   "mode": "photos",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": true,
+     "accroche": "Deux cheminées|dans un T2,|oui c’est possible",
+     "legende": "Un T2 de 44,30 m² Carrez dans une copropriété ancienne de Dijon, avec deux belles cheminées en bon état et une grande cave voûtée. Tu craques pour le charme ? 🔥\n\nCommente POTENTIEL et je t’envoie la visite complète en privé 📩\n\n#cheminee #charmedelancien #t2dijon #appartementancien #cavevoutee",
+     "photos": [
+      8,
+      1,
+      3,
+      2,
+      10,
+      11
+     ],
+     "lignes": [
+      "Cave voûtée"
+     ],
+     "style": "detail_surprenant"
+    },
+    {
+     "id": "v2",
+     "instagram": false,
+     "accroche": "20 m²|rien que pour la chambre",
+     "legende": "Une grande chambre de 20 m² avec parquet, un séjour de 15 m², une cuisine et une salle d’eau. De la place pour bien dormir 🛏️\n\nCommente POTENTIEL et je t’envoie la visite complète en privé 📩\n\n#grandechambre #parquetancien #dijon #appartementt2 #immobilierdijon",
+     "photos": [
+      2,
+      1,
+      8,
+      3,
+      4,
+      10
+     ],
+     "lignes": [
+      "Parquet"
+     ],
+     "style": "chiffre_choc"
+    },
+    {
+     "id": "v3",
+     "instagram": false,
+     "accroche": "Un T2 à rafraîchir,|tu te lances ?",
+     "legende": "Un rafraîchissement global est à prévoir, mais la base est là : double vitrage PVC, chaudière gaz d’environ 10 ans et le charme de l’ancien. Ton projet ? 🛠️\n\nCommente POTENTIEL et je t’envoie la visite complète en privé 📩\n\n#arafraichir #projetrenovation #premierachat #investissementlocatif #dijonimmo",
+     "photos": [
+      1,
+      4,
+      6,
+      8,
+      10,
+      11
+     ],
+     "lignes": [
+      "Charme de l’ancien"
+     ],
+     "style": "question"
+    },
+    {
+     "id": "v4",
+     "instagram": false,
+     "accroche": "Sous ce T2|se cache une cave voûtée",
+     "legende": "Une grande cave voûtée de plus de 15 m² complète cet appartement au premier étage d’une copropriété ancienne 🍷\n\nCommente POTENTIEL et je t’envoie la visite complète en privé 📩\n\n#cavevoutee #rangement #pierreancienne #bienatypique #achatimmobilier",
+     "photos": [
+      11,
+      9,
+      10,
+      1,
+      8,
+      3
+     ],
+     "lignes": [
+      "15 m² voûtés"
+     ],
+     "style": "revelation"
+    }
+   ]
+  },
+  {
+   "ref": "509",
+   "src": "assets/biens/509/video.mp4",
+   "mot": "COUCHEY",
+   "nom": "deux-maisons-couchey",
+   "mode": "photos",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": true,
+     "accroche": "Deux maisons rénovées,|une seule vente",
+     "legende": "À Couchey, en plein village viticole, deux maisons entièrement rénovées se vendent ensemble, l’une en face de l’autre dans une petite impasse pleine de charme 🍇\n\nCommente COUCHEY et je t’envoie la visite complète en privé 📩\n\n#couchey #cotedesvins #deuxmaisons #villageviticole #maisonrenovee",
+     "photos": [
+      9,
+      26,
+      1,
+      4,
+      28,
+      15
+     ],
+     "lignes": [
+      "Côte des vins"
+     ],
+     "style": "autre"
+    },
+    {
+     "id": "v2",
+     "instagram": false,
+     "accroche": "Une maison pour toi,|l’autre pour tes proches ?",
+     "legende": "78 m² d’un côté, 63 m² de l’autre, face à face dans la même impasse. Tu installes qui en face ? 🏡\n\nCommente COUCHEY et je t’envoie la visite complète en privé 📩\n\n#maisondefamille #ensembleimmobilier #bourgogne #viealacampagne #immobilier21",
+     "photos": [
+      26,
+      1,
+      13,
+      7,
+      15,
+      25
+     ],
+     "lignes": [
+      "Deux maisons"
+     ],
+     "style": "question"
+    },
+    {
+     "id": "v3",
+     "instagram": false,
+     "accroche": "141 m²|sur la côte des vins",
+     "legende": "Au total 141 m² rénovés, avec pompe à chaleur air/eau de 2021, double vitrage et volets roulants électriques, au cœur d’un bourg historique 🌿\n\nCommente COUCHEY et je t’envoie la visite complète en privé 📩\n\n#renovationcomplete #pompeachaleur #bourghistorique #cotedor #maisonancienne",
+     "photos": [
+      1,
+      4,
+      11,
+      28,
+      15,
+      9
+     ],
+     "lignes": [
+      "Entièrement rénovées"
+     ],
+     "style": "chiffre_choc"
+    },
+    {
+     "id": "v4",
+     "instagram": false,
+     "accroche": "Regarde bien sous la maison :|25 m² voûtés",
+     "legende": "Une magnifique cave voûtée de 25 m² complète ce bien atypique. Parfait pour une région de grands vins 🍷\n\nCommente COUCHEY et je t’envoie la visite complète en privé 📩\n\n#cavevoutee #caveavin #bienatypique #vignoble #patrimoinebourguignon",
+     "photos": [
+      27,
+      28,
+      10,
+      1,
+      4,
+      9
+     ],
+     "lignes": [
+      "Village viticole"
+     ],
+     "style": "revelation"
+    }
+   ]
+  },
+  {
+   "ref": "525",
+   "src": "assets/biens/525/video.mp4",
+   "mot": "NEUILLY",
+   "nom": "maison-neuilly",
+   "mode": "photos",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": true,
+     "accroche": "149 m²,|construite en 2018,|zéro travaux",
+     "legende": "Une maison de 2018 aux normes RT 2012, sur une parcelle de 429 m² dans un lotissement calme aux portes de Dijon. Tu poses tes valises ? 🔑\n\nCommente NEUILLY et je t’envoie la visite complète en privé 📩\n\n#maisonrecente #sanstravaux #neuillycrimolois #portesdedijon #rt2012",
+     "photos": [
+      1,
+      3,
+      7,
+      18,
+      23,
+      22
+     ],
+     "lignes": [
+      "Portes de Dijon"
+     ],
+     "style": "chiffre_choc"
+    },
+    {
+     "id": "v2",
+     "instagram": false,
+     "accroche": "Derrière la cuisine,|une arrière-cuisine cachée",
+     "legende": "Une cuisine dînatoire équipée, et juste derrière, une arrière-cuisine pour tout ranger. Le rêve des grandes familles 🍳\n\nCommente NEUILLY et je t’envoie la visite complète en privé 📩\n\n#arrierecuisine #cuisineequipee #maisonfamiliale #rangement #immobilierdijon",
+     "photos": [
+      7,
+      9,
+      8,
+      2,
+      11,
+      22
+     ],
+     "lignes": [
+      "Cuisine dînatoire"
+     ],
+     "style": "revelation"
+    },
+    {
+     "id": "v3",
+     "instagram": false,
+     "accroche": "Un dressing pareil,|tu le remplis comment ?",
+     "legende": "À l’étage, la suite parentale a son immense dressing et son coin douche, en plus de 3 autres chambres avec placards 👗\n\nCommente NEUILLY et je t’envoie la visite complète en privé 📩\n\n#dressing #suiteparentale #maisonmoderne #chambreparentale #dijonmetropole",
+     "photos": [
+      18,
+      17,
+      19,
+      14,
+      4,
+      1
+     ],
+     "lignes": [
+      "Suite parentale"
+     ],
+     "style": "question"
+    },
+    {
+     "id": "v4",
+     "instagram": false,
+     "accroche": "99 % ratent|la terrasse de 36 m²",
+     "legende": "Le rez-de-chaussée donne sur une terrasse carrelée et ombragée de 36 m², et le garage de 23 m² est carrelé et chauffé ☀️\n\nCommente NEUILLY et je t’envoie la visite complète en privé 📩\n\n#terrasse #garagechauffe #jardin #maisonavecjardin #achatmaison",
+     "photos": [
+      3,
+      5,
+      23,
+      22,
+      24,
+      1
+     ],
+     "lignes": [
+      "Terrasse ombragée"
+     ],
+     "style": "defi_1pourcent"
+    }
+   ]
+  },
+  {
+   "ref": "527",
+   "src": "assets/biens/527/video.mp4",
+   "mot": "BEAUNE",
+   "nom": "hotel-beaune-galerie",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": true,
+     "accroche": "Un hôtel particulier|au cœur de Beaune",
+     "legende": "Un hôtel particulier du XVIIe siècle dans le cœur historique de Beaune, organisé autour de sa cour intérieure, à 2 500 000 €. Tu t’y vois ? 🏛️\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#hotelparticulier #beaunecentre #xviiesiecle #immobilierdeprestige #bourgogne",
+     "plans": [
+      [
+       0.0,
+       2.5,
+       1
+      ],
+      [
+       9.0,
+       11.0,
+       1
+      ],
+      [
+       27.0,
+       29.0,
+       1,
+       "XVIIe siècle"
+      ],
+      [
+       12.0,
+       14.0,
+       1
+      ],
+      [
+       38.0,
+       40.0,
+       1
+      ],
+      [
+       44.0,
+       47.0,
+       1
+      ]
+     ],
+     "style": "lieu_exception"
+    },
+    {
+     "id": "v2",
+     "instagram": false,
+     "accroche": "Une galerie en bois|au-dessus de la cour",
+     "legende": "Pierre, poutres et une galerie en bois qui court au-dessus de la cour intérieure : l’identité d’un hôtel particulier de Beaune 🪵\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#galerieenbois #courinterieure #pierreetpoutres #beaune #maisondecaractere",
+     "plans": [
+      [
+       38.5,
+       40.5,
+       1
+      ],
+      [
+       29.0,
+       31.0,
+       1
+      ],
+      [
+       43.0,
+       45.0,
+       1,
+       "Galerie"
+      ],
+      [
+       12.0,
+       14.0,
+       1
+      ],
+      [
+       21.0,
+       23.0,
+       1
+      ],
+      [
+       45.0,
+       48.0,
+       1
+      ]
+     ],
+     "style": "autre"
+    },
+    {
+     "id": "v3",
+     "instagram": false,
+     "accroche": "Résidence et activité pro,|tu combines ?",
+     "legende": "Trois appartements indépendants et un local professionnel en monopropriété : de quoi associer résidence et activité, dans le respect des baux en cours 💼\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#monopropriete #localprofessionnel #patrimoineimmobilier #capitaledesvins #investir",
+     "plans": [
+      [
+       12.0,
+       14.0,
+       1
+      ],
+      [
+       16.0,
+       18.0,
+       1,
+       "Monopropriété"
+      ],
+      [
+       3.0,
+       5.0,
+       1
+      ],
+      [
+       55.0,
+       57.0,
+       1
+      ],
+      [
+       29.0,
+       31.0,
+       1
+      ],
+      [
+       44.5,
+       47.5,
+       1
+      ]
+     ],
+     "style": "question"
+    },
+    {
+     "id": "v4",
+     "instagram": false,
+     "accroche": "Ce porche cache|toute une cour",
+     "legende": "Passe le porche et toute la propriété s’organise autour d’une cour intérieure, avec terrasse, jardin et garage en plein centre de Beaune 👀\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#porche #courcachee #beaunehistorique #jardinencentreville #immobilierbeaune",
+     "plans": [
+      [
+       1.0,
+       3.0,
+       1
+      ],
+      [
+       9.5,
+       11.5,
+       1
+      ],
+      [
+       27.0,
+       29.0,
+       1
+      ],
+      [
+       44.0,
+       46.0,
+       1,
+       "Cour intérieure"
+      ],
+      [
+       21.0,
+       23.0,
+       1
+      ],
+      [
+       46.0,
+       49.0,
+       1
+      ]
+     ],
+     "style": "revelation"
+    }
+   ]
+  }
+ ]
+}
