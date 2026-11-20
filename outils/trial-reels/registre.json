@@ -20336,6 +20336,12 @@
      "url": "",
      "date": "2026-11-21",
      "heure": "09:00"
+    },
+    "youtube": {
+     "uuid": "9080122464271288877",
+     "url": "",
+     "date": "2026-11-21",
+     "heure": "17:40"
     }
    }
   },
@@ -22247,7 +22253,15 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://f3ae49ce.shawez-immo.pages.dev/trial/2026-11-20/t3-chevigny-jardin-520-v2.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "7559370158183630228",
+     "url": "",
+     "date": "2026-11-21",
+     "heure": "17:40"
+    }
+   }
   },
   {
    "id": "TR-2011-520-v3",
