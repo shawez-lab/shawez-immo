@@ -1,0 +1,428 @@
+{
+ "jour": "2026-11-20",
+ "choisir": "choisir.py a rendu 425 513 403 431 ; vivier : 425 513 403 431 461 494 481 446 507 509 525 527 438 415 520 483 501",
+ "ecartes": {
+  "425": "Shawez face caméra en voiture avec sous-titres incrustés (planche revue 20/11 08h51)",
+  "513": "Shawez face caméra avec mots incrustés (planche revue 20/11 08h51)",
+  "403": "Shawez face caméra avec textes incrustés (planche revue 20/11 08h51)",
+  "431": "face caméra avec sous-titres incrustés (planche revue 20/11 08h51)"
+ },
+ "remplacants": "les 4 biens rendus sont face caméra : remplacés par les suivants du vivier, dans l’ordre de choisir.py : 461 494 481 446.",
+ "outil": "fabriquer.py pour 461 ; outils/biens/diaporama.py photo par photo dans l’ordre de « photos » pour 494 481 446 (video.mp4 = Reel photo fini). 446 : pas de prix_honoraires_inclus dans l’annonce, aucune version ne cite de prix.",
+ "relance": "Passage déclenché à 08h51, après le passage 07h35 déjà fait (527 438 520 501). creneaux.py --horizon 24 depuis 10:10 : 2 créneaux (20/11 21:30, 21/11 08:30) → Instagram pour 461 et 494 ; 481 et 446 partent par le Diffuseur seulement.",
+ "biens": [
+  {
+   "ref": "461",
+   "src": "assets/biens/461/video.mp4",
+   "mot": "MARRAKECH",
+   "nom": "studio-marrakech",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": true,
+     "style": "autre",
+     "accroche": "Marrakech,|à deux pas|du parc Darcy",
+     "plans": [
+      [
+       4.0,
+       6.5,
+       1
+      ],
+      [
+       13.3,
+       15.5,
+       1,
+       "Balnéo"
+      ],
+      [
+       1.0,
+       3.0,
+       1
+      ],
+      [
+       8.5,
+       10.5,
+       1
+      ],
+      [
+       24.0,
+       26.0,
+       1
+      ],
+      [
+       29.0,
+       32.0,
+       1
+      ]
+     ],
+     "legende": "Un studio inspiration Marrakech de 19,15 m², rénové par un architecte, au calme d’une cour intérieure près du parc Darcy, à 129 000 €. Tu t’y vois ? 🧡\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#parcdarcy #studiodijon #inspirationmarrakech #dijoncentre #architecteinterieur",
+     "publier": "2026-11-20T21:30"
+    },
+    {
+     "id": "v2",
+     "instagram": false,
+     "style": "autre",
+     "accroche": "23 %|de rendement saisonnier|annoncé",
+     "plans": [
+      [
+       13.5,
+       15.5,
+       1
+      ],
+      [
+       3.0,
+       5.0,
+       1
+      ],
+      [
+       22.0,
+       24.0,
+       1,
+       "Coin extérieur"
+      ],
+      [
+       8.0,
+       10.0,
+       1
+      ],
+      [
+       1.0,
+       3.0,
+       1
+      ],
+      [
+       30.0,
+       33.0,
+       1
+      ]
+     ],
+     "legende": "L’annonce affiche un rendement locatif saisonnier de 23 % pour ce studio entièrement rénové, syndic bénévole et faibles charges de copropriété 📈\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#locationsaisonniere #investissementlocatif #rendementlocatif #dijon #studiorenove"
+    },
+    {
+     "id": "v3",
+     "instagram": false,
+     "style": "revelation",
+     "accroche": "Tu pensais à une douche ?|Regarde bien",
+     "plans": [
+      [
+       11.5,
+       13.3,
+       1
+      ],
+      [
+       13.3,
+       15.8,
+       1,
+       "Balnéo"
+      ],
+      [
+       17.0,
+       19.0,
+       1
+      ],
+      [
+       5.0,
+       7.0,
+       1
+      ],
+      [
+       8.5,
+       10.5,
+       1
+      ],
+      [
+       31.0,
+       34.0,
+       1
+      ]
+     ],
+     "legende": "Dans un studio de 19,15 m², personne ne s’attend à une baignoire balnéothérapie. Et pourtant elle est là, avec un rétroprojecteur intégré en bonus 🛁\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#balneo #petitespaces #studiodesign #salledebain #renovationdijon"
+    },
+    {
+     "id": "v4",
+     "instagram": false,
+     "style": "question",
+     "accroche": "Cour intérieure au calme,|tu t’y installes ?",
+     "plans": [
+      [
+       0.0,
+       2.0,
+       1
+      ],
+      [
+       22.5,
+       24.5,
+       1,
+       "Cour intérieure"
+      ],
+      [
+       3.5,
+       5.5,
+       1
+      ],
+      [
+       9.0,
+       11.0,
+       1
+      ],
+      [
+       14.0,
+       16.0,
+       1
+      ],
+      [
+       28.5,
+       31.5,
+       1
+      ]
+     ],
+     "legende": "Niché au calme d’une cour intérieure, à l’abri des regards, ce studio clé en main a même son petit coin extérieur. Premier achat ou pied-à-terre ? 🌿\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#courinterieure #pieddaterre #premierachat #vivreadijon #cleenmain"
+    }
+   ]
+  },
+  {
+   "ref": "494",
+   "src": "assets/biens/494/video.mp4",
+   "mot": "BISTRO",
+   "nom": "ancien-bistro-bragny",
+   "mode": "photos",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": true,
+     "style": "chiffre_choc",
+     "accroche": "340 m²|pour 120 000 €",
+     "photos": [
+      12,
+      7,
+      2,
+      18,
+      22,
+      1
+     ],
+     "lignes": [
+      "Trois niveaux"
+     ],
+     "legende": "À Bragny-sur-Saône, un ancien bistro d’environ 340 m² : habitation sur trois niveaux, ancienne salle de bal, dépendances, garage et 543 m² de terrain. Tu en fais quoi ? 🏚️\n\nCommente BISTRO et je t’envoie la visite complète en privé 📩\n\n#ancienbistro #grandvolume #bragnysursaone #immobilieratypique #saoneetloire",
+     "publier": "2026-11-21T08:30"
+    },
+    {
+     "id": "v2",
+     "instagram": false,
+     "style": "question",
+     "accroche": "Restaurant, chambres d’hôtes|ou événements ?",
+     "photos": [
+      7,
+      14,
+      12,
+      3,
+      18,
+      22
+     ],
+     "lignes": [
+      "Terrain 543 m²"
+     ],
+     "legende": "Restauration, projet touristique, événementiel ou grande maison de famille : avec ses volumes, cet ancien bistro laisse tout ouvert. Ton projet, c’est quoi ? 👇\n\nCommente BISTRO et je t’envoie la visite complète en privé 📩\n\n#projetimmobilier #lieudevenements #chambresdhotes #reconversion #bourgogne"
+    },
+    {
+     "id": "v3",
+     "instagram": false,
+     "style": "revelation",
+     "accroche": "Cette façade cache|une salle de bal",
+     "photos": [
+      2,
+      12,
+      7,
+      18,
+      5,
+      1
+     ],
+     "lignes": [
+      "Salle de bal"
+     ],
+     "legende": "De la rue, on voit une maison de village. Derrière, il y a l’ancienne salle de bal du bistro, chargée d’histoire 💃\n\nCommente BISTRO et je t’envoie la visite complète en privé 📩\n\n#salledebal #patrimoine #maisondevillage #chargedhistoire #immobilierancien"
+    },
+    {
+     "id": "v4",
+     "instagram": false,
+     "style": "defi_1pourcent",
+     "accroche": "99 % ratent|ce qu’était cette salle",
+     "photos": [
+      18,
+      12,
+      7,
+      2,
+      23,
+      1
+     ],
+     "lignes": [
+      "Ancien bistro"
+     ],
+     "legende": "Indice : on y servait des verres et on y dansait. Un bien rare à réinventer, avec dépendances et garage 🍷\n\nCommente BISTRO et je t’envoie la visite complète en privé 📩\n\n#devinette #ancienbistro #arenover #volumesgeneroux #bienrare"
+    }
+   ]
+  },
+  {
+   "ref": "481",
+   "src": "assets/biens/481/video.mp4",
+   "mot": "ETUDIANT",
+   "nom": "t2-residence-etudiante",
+   "mode": "photos",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": true,
+     "style": "chiffre_choc",
+     "accroche": "Un T2 qui rapporte|329 € par mois,|tu signes ?",
+     "photos": [
+      1,
+      8,
+      4,
+      2,
+      3,
+      12
+     ],
+     "lignes": [
+      "Déjà loué"
+     ],
+     "legende": "T2 de 28,66 m² en résidence étudiante à Dijon, déjà loué : le propriétaire perçoit 329 euros de loyer chaque mois. Tu te lances ? 🎓\n\nCommente ETUDIANT et je t’envoie la visite complète en privé 📩\n\n#loyerpercu #investirdijon #residenceetudiante #revenuspassifs #premierinvestissement"
+    },
+    {
+     "id": "v2",
+     "instagram": false,
+     "style": "chiffre_choc",
+     "accroche": "66 900 €|pour un T2 à Dijon",
+     "photos": [
+      9,
+      4,
+      7,
+      10,
+      2,
+      1
+     ],
+     "lignes": [
+      "Chambre séparée"
+     ],
+     "legende": "Une pièce principale avec kitchenette, une chambre séparée et une salle d’eau, au 1er étage d’une résidence étudiante, en exclusivité 🔑\n\nCommente ETUDIANT et je t’envoie la visite complète en privé 📩\n\n#t2dijon #petitbudget #exclusivite #immobilierdijon #achatappartement"
+    },
+    {
+     "id": "v3",
+     "instagram": false,
+     "style": "revelation",
+     "accroche": "Regarde bien :|la chambre a sa porte",
+     "photos": [
+      6,
+      8,
+      9,
+      4,
+      5,
+      12
+     ],
+     "lignes": [
+      "28,66 m²"
+     ],
+     "legende": "On croit voir un studio, et pourtant la chambre a sa propre porte. Tout tient dans 28,66 m² bien pensés 🛏️\n\nCommente ETUDIANT et je t’envoie la visite complète en privé 📩\n\n#chambreseparee #optimisation #petitesurface #logementetudiant #dijonimmo"
+    },
+    {
+     "id": "v4",
+     "instagram": false,
+     "style": "defi_1pourcent",
+     "accroche": "99 % ratent|la salle de sport",
+     "photos": [
+      12,
+      2,
+      3,
+      8,
+      4,
+      1
+     ],
+     "lignes": [
+      "Résidence étudiante"
+     ],
+     "legende": "Wi-Fi, salle de sport, coach sportif, baby-foot et cuisine partagée : la résidence inclut tout ça pour tes futurs locataires 🏋️\n\nCommente ETUDIANT et je t’envoie la visite complète en privé 📩\n\n#salledesport #servicesinclus #vieetudiante #etudiantdijon #investissementimmobilier"
+    }
+   ]
+  },
+  {
+   "ref": "446",
+   "src": "assets/biens/446/video.mp4",
+   "mot": "MONTCHAPET",
+   "nom": "t2-montchapet",
+   "mode": "photos",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": true,
+     "style": "detail_surprenant",
+     "accroche": "Un T2 avec cave|et grenier,|oui c’est possible",
+     "photos": [
+      1,
+      7,
+      3,
+      9,
+      10,
+      8
+     ],
+     "lignes": [
+      "Entièrement rénové"
+     ],
+     "legende": "En rez-de-chaussée d’une petite copropriété du quartier bas Montchapet, ce T2 rénové a une cave accessible depuis le logement et un grenier. Tu le vois venir ? 📦\n\nCommente MONTCHAPET et je t’envoie la visite complète en privé 📩\n\n#montchapet #caveetgrenier #t2dijon #rangement #appartementrenove"
+    },
+    {
+     "id": "v2",
+     "instagram": false,
+     "style": "autre",
+     "accroche": "45 m² rénovés|quartier Montchapet",
+     "photos": [
+      3,
+      8,
+      4,
+      11,
+      6,
+      7
+     ],
+     "lignes": [
+      "Parquet chêne"
+     ],
+     "legende": "Séjour avec cuisine ouverte équipée d’environ 26 m², chambre de 14 m² en parquet chêne et salle d’eau : tout est refait, il n’y a qu’à poser tes meubles 🪵\n\nCommente MONTCHAPET et je t’envoie la visite complète en privé 📩\n\n#parquetchene #renovationcomplete #dijonmontchapet #cuisineouverte #immobilier21"
+    },
+    {
+     "id": "v3",
+     "instagram": false,
+     "style": "question",
+     "accroche": "Ton premier appart,|tu le veux prêt à vivre ?",
+     "photos": [
+      5,
+      4,
+      7,
+      10,
+      1,
+      8
+     ],
+     "lignes": [
+      "Prêt à habiter"
+     ],
+     "legende": "Chaudière à condensation, double vitrage PVC, fibre : ce T2 est prêt à l’habitation dès la remise des clés. Premier achat ou location ? 🔑\n\nCommente MONTCHAPET et je t’envoie la visite complète en privé 📩\n\n#premierachat #pretahabiter #fibre #primoaccedant #vivreadijon"
+    },
+    {
+     "id": "v4",
+     "instagram": false,
+     "style": "revelation",
+     "accroche": "Derrière cette porte,|14 m² de parquet chêne",
+     "photos": [
+      6,
+      8,
+      7,
+      3,
+      9,
+      1
+     ],
+     "lignes": [
+      "Chambre séparée"
+     ],
+     "legende": "Passe l’entrée, et la chambre séparée t’attend avec son parquet chêne et sa grande fenêtre. Petite copropriété bien entretenue 🚪\n\nCommente MONTCHAPET et je t’envoie la visite complète en privé 📩\n\n#chambreparquet #copropriete #dijon #t2renove #achatimmobilier"
+    }
+   ]
+  }
+ ]
+}
