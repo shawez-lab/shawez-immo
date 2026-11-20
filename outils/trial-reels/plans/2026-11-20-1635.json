@@ -1,0 +1,685 @@
+{
+ "jour": "2026-11-20",
+ "choisir": "choisir.py a rendu 425 513 403 431 ; vivier : 425 513 403 431 527 438 520 483 501 461 481 446 507 509 525 415 494",
+ "ecartes": {
+  "425": "face caméra avec sous-titres/mots incrustés (planches revues 20/11 16h35)",
+  "513": "face caméra avec sous-titres/mots incrustés (planches revues 20/11 16h35)",
+  "403": "face caméra avec sous-titres/mots incrustés (planches revues 20/11 16h35)",
+  "431": "face caméra avec sous-titres/mots incrustés (planches revues 20/11 16h35)"
+ },
+ "remplacants": "les 4 biens rendus sont face caméra : remplacés par les suivants du vivier, dans l’ordre : 527 438 520 483",
+ "biens": [
+  {
+   "ref": "527",
+   "src": "assets/biens/527/video.mp4",
+   "mot": "BEAUNE",
+   "nom": "hotel-beaune-lots",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": true,
+     "accroche": "117 m² rénovés|en 2025|sous les poutres",
+     "plans": [
+      [
+       3.0,
+       5.5,
+       1
+      ],
+      [
+       12.0,
+       14.5,
+       1,
+       "Rénové en 2025"
+      ],
+      [
+       18.0,
+       20.0,
+       1
+      ],
+      [
+       21.0,
+       23.0,
+       1
+      ],
+      [
+       44.0,
+       46.5,
+       1
+      ],
+      [
+       57.5,
+       60.5,
+       1
+      ]
+     ],
+     "legende": "Au deuxième étage d’un hôtel particulier du XVIIe à Beaune, un quatre pièces rénové en 2025, classé B, avec ses poutres anciennes. Tu montes ? 🪵\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#beaune #renovation #poutresapparentes #immobilierbourgogne #appartementdecaractere",
+     "style": "chiffre_choc"
+    },
+    {
+     "id": "v2",
+     "instagram": false,
+     "accroche": "Une cave voûtée|à Beaune,|tu y ranges quoi ?",
+     "plans": [
+      [
+       0.0,
+       2.0,
+       1
+      ],
+      [
+       27.0,
+       29.0,
+       1
+      ],
+      [
+       29.5,
+       32.5,
+       1
+      ],
+      [
+       38.0,
+       40.0,
+       1
+      ],
+      [
+       54.0,
+       56.5,
+       1,
+       "Cave voûtée"
+      ],
+      [
+       66.0,
+       69.0,
+       1
+      ]
+     ],
+     "legende": "Sous cet hôtel particulier de Beaune, une cave voûtée d’environ 60 m². Les grands vins de Bourgogne ont trouvé leur place 🍷\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#cavevoutee #vinsdebourgogne #beaunecentre #patrimoine #hotelparticulier",
+     "style": "question"
+    },
+    {
+     "id": "v3",
+     "instagram": false,
+     "accroche": "Une pompe à chaleur|dans un hôtel|du XVIIe",
+     "plans": [
+      [
+       4.0,
+       6.0,
+       1
+      ],
+      [
+       9.0,
+       12.0,
+       1
+      ],
+      [
+       13.0,
+       15.0,
+       1
+      ],
+      [
+       18.5,
+       20.5,
+       1
+      ],
+      [
+       24.0,
+       26.0,
+       1,
+       "Classé B"
+      ],
+      [
+       74.0,
+       77.0,
+       1
+      ]
+     ],
+     "legende": "Des murs du XVIIe, et au deuxième étage une pompe à chaleur réversible indépendante. L’ancien et le confort, sans choisir 🔥\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#pompeachaleur #renovationenergetique #pierreancienne #cotedor #immobilierbeaune",
+     "style": "autre"
+    },
+    {
+     "id": "v4",
+     "instagram": false,
+     "accroche": "Ton bureau en bas,|ton appart|au-dessus",
+     "plans": [
+      [
+       2.0,
+       4.0,
+       1
+      ],
+      [
+       27.0,
+       30.0,
+       1
+      ],
+      [
+       33.0,
+       35.0,
+       1,
+       "Local 58 m²"
+      ],
+      [
+       50.0,
+       52.0,
+       1
+      ],
+      [
+       63.0,
+       65.0,
+       1
+      ],
+      [
+       80.0,
+       83.0,
+       1
+      ]
+     ],
+     "legende": "Un local professionnel indépendant de 58,08 m² au pied de trois appartements, dans un hôtel particulier en plein Beaune. Tu combines vie et activité ? 💼\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#localprofessionnel #investissementimmobilier #beaune #monopropriete #bourgogne",
+     "style": "autre"
+    }
+   ]
+  },
+  {
+   "ref": "438",
+   "src": "assets/biens/438/video.mp4",
+   "mot": "CHATEAU",
+   "nom": "chateau-beaune-salons",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": true,
+     "accroche": "99 % ratent|le vestibule|d’entrée",
+     "plans": [
+      [
+       5.0,
+       8.0,
+       1
+      ],
+      [
+       8.0,
+       10.0,
+       1
+      ],
+      [
+       13.0,
+       15.0,
+       1
+      ],
+      [
+       15.0,
+       17.5,
+       1,
+       "Vestibule"
+      ],
+      [
+       17.5,
+       19.0,
+       1
+      ],
+      [
+       24.0,
+       27.0,
+       1
+      ]
+     ],
+     "legende": "Un vestibule d’entrée majestueux, puis trois salons, un boudoir et sept chambres. Château du XVIIIe à 15 minutes de Beaune, 1 600 000 € 🏰\n\nCommente CHATEAU et je t’envoie la visite complète en privé 📩\n\n#chateaufrance #vestibule #demeuredecaractere #bourgogne #immobilierdeprestige",
+     "style": "defi_1pourcent"
+    },
+    {
+     "id": "v2",
+     "instagram": false,
+     "accroche": "3 salons,|1 boudoir,|7 chambres",
+     "plans": [
+      [
+       0.0,
+       2.5,
+       1
+      ],
+      [
+       3.0,
+       5.0,
+       1
+      ],
+      [
+       5.5,
+       8.5,
+       1
+      ],
+      [
+       11.0,
+       13.0,
+       1
+      ],
+      [
+       19.0,
+       21.0,
+       1
+      ],
+      [
+       26.9,
+       29.9,
+       1,
+       "Salle à manger"
+      ]
+     ],
+     "legende": "Trois salons de réception, une salle à manger, un boudoir et sept chambres sur environ 520 m². Tu prends quelle pièce en premier ? 🗝️\n\nCommente CHATEAU et je t’envoie la visite complète en privé 📩\n\n#chateau #grandedemeure #maisondefamille #cotedebeaune #proprietedexception",
+     "style": "autre"
+    },
+    {
+     "id": "v3",
+     "instagram": false,
+     "accroche": "Mariage ou séminaire,|tu le vois|comment ?",
+     "plans": [
+      [
+       1.0,
+       3.0,
+       1
+      ],
+      [
+       5.0,
+       7.5,
+       1
+      ],
+      [
+       8.0,
+       10.0,
+       1
+      ],
+      [
+       10.0,
+       13.0,
+       1
+      ],
+      [
+       16.0,
+       18.0,
+       1,
+       "Réceptions"
+      ],
+      [
+       26.9,
+       29.9,
+       1
+      ]
+     ],
+     "legende": "Ses volumes et son parc s’ouvrent aussi à un projet d’accueil ou d’événementiel : réceptions, séminaires, mariages. Tu en ferais quoi ? 💍\n\nCommente CHATEAU et je t’envoie la visite complète en privé 📩\n\n#lieudereception #mariageenbourgogne #seminaire #chateauevenementiel #beaune",
+     "style": "question"
+    },
+    {
+     "id": "v4",
+     "instagram": false,
+     "accroche": "Une maison d’amis|en plus|du château",
+     "plans": [
+      [
+       1.0,
+       3.0,
+       1
+      ],
+      [
+       5.0,
+       7.0,
+       1,
+       "15 hectares"
+      ],
+      [
+       7.5,
+       10.5,
+       1
+      ],
+      [
+       12.0,
+       14.0,
+       1
+      ],
+      [
+       14.0,
+       16.0,
+       1
+      ],
+      [
+       24.5,
+       27.5,
+       1
+      ]
+     ],
+     "legende": "À côté du château, une maison d’amis d’environ 60 m² avec deux chambres, plus un colombier, une grange et 15 hectares. Tes invités dorment où ? 🌳\n\nCommente CHATEAU et je t’envoie la visite complète en privé 📩\n\n#maisondamis #domaine #campagnebourguignonne #chateaudubourgogne #viealacampagne",
+     "style": "autre"
+    }
+   ]
+  },
+  {
+   "ref": "520",
+   "src": "assets/biens/520/video.mp4",
+   "mot": "CHEVIGNY",
+   "nom": "t3-chevigny-garage",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": true,
+     "accroche": "2 chambres,|1 jardin,|1 garage fermé",
+     "plans": [
+      [
+       4.0,
+       6.0,
+       1
+      ],
+      [
+       8.0,
+       10.0,
+       1,
+       "2 chambres"
+      ],
+      [
+       13.0,
+       15.0,
+       1
+      ],
+      [
+       17.5,
+       19.0,
+       1
+      ],
+      [
+       19.0,
+       21.0,
+       1
+      ],
+      [
+       21.0,
+       24.0,
+       1
+      ]
+     ],
+     "legende": "Un T3 de 61,49 m² à Chevigny-Saint-Sauveur avec deux chambres, un jardin privatif orienté ouest et un garage fermé en sous-sol. 200 000 € 🔑\n\nCommente CHEVIGNY et je t’envoie la visite complète en privé 📩\n\n#chevignysaintsauveur #t3 #jardinprivatif #garage #immobilierdijon",
+     "style": "chiffre_choc"
+    },
+    {
+     "id": "v2",
+     "instagram": false,
+     "accroche": "Premier achat|à 200 000 €,|tu signes ?",
+     "plans": [
+      [
+       5.0,
+       7.0,
+       1
+      ],
+      [
+       7.0,
+       9.0,
+       1
+      ],
+      [
+       13.0,
+       15.5,
+       1
+      ],
+      [
+       15.5,
+       17.5,
+       1
+      ],
+      [
+       19.0,
+       22.0,
+       1
+      ],
+      [
+       22.0,
+       25.0,
+       1,
+       "Résidence 2013"
+      ]
+     ],
+     "legende": "Une résidence récente et sécurisée, une pièce de vie de plus de 25 m² et un jardin. Pour un premier achat près de Dijon, tu hésites encore ? ✍️\n\nCommente CHEVIGNY et je t’envoie la visite complète en privé 📩\n\n#premierachat #primoaccedant #appartementavecjardin #cotedor #devenirproprietaire",
+     "style": "chiffre_choc"
+    },
+    {
+     "id": "v3",
+     "instagram": false,
+     "accroche": "Résidence de 2013,|calme et|sécurisée",
+     "plans": [
+      [
+       4.0,
+       6.0,
+       1
+      ],
+      [
+       6.0,
+       8.0,
+       1
+      ],
+      [
+       14.0,
+       16.0,
+       1
+      ],
+      [
+       16.0,
+       18.0,
+       1,
+       "Sécurisée"
+      ],
+      [
+       18.0,
+       20.0,
+       1
+      ],
+      [
+       21.0,
+       24.0,
+       1
+      ]
+     ],
+     "legende": "Une copropriété récente, calme et bien entretenue, proche de toutes les commodités. Au rez-de-chaussée, ton T3 avec terrasse t’attend 🏡\n\nCommente CHEVIGNY et je t’envoie la visite complète en privé 📩\n\n#residencesecurisee #immobilierneuf #dijonmetropole #rezdejardin #appartementt3",
+     "style": "autre"
+    },
+    {
+     "id": "v4",
+     "instagram": false,
+     "accroche": "Ouvre la baie :|le jardin|est à toi",
+     "plans": [
+      [
+       4.5,
+       6.5,
+       1
+      ],
+      [
+       7.5,
+       9.5,
+       1
+      ],
+      [
+       9.6,
+       10.9,
+       1
+      ],
+      [
+       13.0,
+       15.0,
+       1
+      ],
+      [
+       19.0,
+       21.0,
+       1,
+       "Jardin privatif"
+      ],
+      [
+       21.0,
+       24.0,
+       1
+      ]
+     ],
+     "legende": "Le séjour s’ouvre sur une terrasse et un jardin privatif plein ouest. Les soirées d’été, c’est dehors que ça se passe 🌅\n\nCommente CHEVIGNY et je t’envoie la visite complète en privé 📩\n\n#terrasse #jardin #pleinouest #vivreadijon #appartementrezdechaussee",
+     "style": "autre"
+    }
+   ]
+  },
+  {
+   "ref": "483",
+   "src": "assets/biens/483/video.mp4",
+   "mot": "LOFT",
+   "nom": "loft-spa-dijon",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": true,
+     "accroche": "178 500 €,|sauna et jacuzzi|en plein Dijon",
+     "plans": [
+      [
+       4.0,
+       6.0,
+       1
+      ],
+      [
+       12.0,
+       14.0,
+       1
+      ],
+      [
+       16.0,
+       18.0,
+       1
+      ],
+      [
+       20.0,
+       22.5,
+       1
+      ],
+      [
+       24.0,
+       26.0,
+       1,
+       "Jacuzzi"
+      ],
+      [
+       31.5,
+       34.5,
+       1
+      ]
+     ],
+     "legende": "Un loft de 42 m² en plein cœur historique de Dijon, avec sauna, jacuzzi balnéo et cheminée d’ambiance. Tu réserves ta soirée ? 🧖\n\nCommente LOFT et je t’envoie la visite complète en privé 📩\n\n#loftdijon #sauna #jacuzzi #dijoncentre #lofts",
+     "style": "chiffre_choc"
+    },
+    {
+     "id": "v2",
+     "instagram": false,
+     "accroche": "Fort taux|de remplissage|en courte durée",
+     "plans": [
+      [
+       5.0,
+       7.0,
+       1
+      ],
+      [
+       8.0,
+       11.0,
+       1
+      ],
+      [
+       12.0,
+       14.0,
+       1
+      ],
+      [
+       16.0,
+       18.0,
+       1,
+       "Courte durée"
+      ],
+      [
+       21.0,
+       23.0,
+       1
+      ],
+      [
+       26.0,
+       29.0,
+       1
+      ]
+     ],
+     "legende": "Ce loft & spa est déjà exploité en location courte durée avec un fort taux de remplissage. Décoration et équipements inclus, tu reprends l’activité ? 📈\n\nCommente LOFT et je t’envoie la visite complète en privé 📩\n\n#investissementlocatif #locationcourteduree #rendement #immobilierdijon #cleenmain",
+     "style": "business"
+    },
+    {
+     "id": "v3",
+     "instagram": false,
+     "accroche": "Week-end spa|à Dijon,|tu invites qui ?",
+     "plans": [
+      [
+       0.0,
+       2.0,
+       1
+      ],
+      [
+       14.0,
+       16.0,
+       1
+      ],
+      [
+       18.0,
+       20.0,
+       1
+      ],
+      [
+       22.0,
+       24.0,
+       1,
+       "Sauna"
+      ],
+      [
+       26.0,
+       28.0,
+       1
+      ],
+      [
+       31.5,
+       34.5,
+       1
+      ]
+     ],
+     "legende": "Un sauna, un jacuzzi et des pierres apparentes, à pied des restaurants et des monuments de Dijon. Tu emmènes qui pour le week-end ? 🥂\n\nCommente LOFT et je t’envoie la visite complète en privé 📩\n\n#weekendspa #escapadedijon #spaprive #pierresapparentes #bourgognetourisme",
+     "style": "question"
+    },
+    {
+     "id": "v4",
+     "instagram": false,
+     "accroche": "Une salle d’eau|en marbre|dans 42 m²",
+     "plans": [
+      [
+       2.0,
+       4.0,
+       1
+      ],
+      [
+       9.0,
+       11.0,
+       1
+      ],
+      [
+       18.5,
+       20.5,
+       1
+      ],
+      [
+       24.0,
+       27.0,
+       1
+      ],
+      [
+       28.0,
+       30.0,
+       1
+      ],
+      [
+       30.0,
+       33.0,
+       1,
+       "Marbre"
+      ]
+     ],
+     "legende": "Salle d’eau en marbre avec douche à l’italienne, cuisine design équipée et coin nuit cosy, le tout dans 42 m² au cœur de Dijon ✨\n\nCommente LOFT et je t’envoie la visite complète en privé 📩\n\n#salledeau #marbre #doucheitalienne #petitesurface #deco",
+     "style": "detail_surprenant"
+    }
+   ]
+  }
+ ]
+}
