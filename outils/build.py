@@ -33,7 +33,7 @@ OAI = '<script src="/assets/oai-mesure.js" defer></script>'
 #    Jamais sur les pages privees (admin/, mon-espace/).
 CHAT = '<script src="/assets/chat/chat.js" defer></script>'
 
-PRIVEES = ('admin/', 'mon-espace/')
+PRIVEES = ('admin/', 'mon-espace/', 'estimation-personnalisee/', 'votre-estimation/', 'avis-google/')
 SANS_PARAM = ('estimer/',)
 METRICOOL_SANS_PARAM = METRICOOL.replace('<script>', '<script>if(!location.search){', 1).replace('</script>', '}</script>', 1)
 

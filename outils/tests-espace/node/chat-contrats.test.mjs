@@ -15,6 +15,7 @@ const MODEL_ANSWER = { reponse: 'Dans quel secteur se trouve votre logement ?', 
 function fixture(t, answer = MODEL_ANSWER) {
   const sqlite = new DatabaseSync(':memory:');
   sqlite.exec(SCHEMA); sqlite.exec(SCHEMA_SP);
+  sqlite.exec('ALTER TABLE demandes ADD COLUMN cle TEXT; CREATE UNIQUE INDEX demandes_cle ON demandes(cle);');
   const values = list => list.map(value => value === undefined ? null : typeof value === 'boolean' ? Number(value) : value);
   const statement = (sql, args = []) => ({
     bind: (...bound) => statement(sql, bound),
@@ -161,7 +162,10 @@ test('une limite déjà atteinte reste sans réponse automatique pour une person
 
 test('qualification sérieuse : le module mail réel appelle une seule fois le transport simulé', async t => {
   const f = fixture(t, { ...MODEL_ANSWER, secteur: 'Ville fictive', echeance: 'Au printemps', serieux: true });
-  await call(f); await call(f);
+  const premier = await call(f); await call(f);
+  assert.match(premier.data.reference_crm, /^CHAT-/);
+  assert.equal(count(f, 'demandes'), 1);
+  assert.equal(JSON.parse(f.sqlite.prepare('SELECT contact FROM demandes').get().contact).telephone, '');
   assert.equal(f.mails.length, 1); assert.match(f.mails[0].subject, /Contact sérieux/);
   assert.equal(f.mails[0].to, 'agency@example.invalid');
   assert.equal(f.sqlite.prepare('SELECT notifie FROM chat_sessions').get().notifie, 1);
