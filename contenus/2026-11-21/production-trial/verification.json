@@ -1,0 +1,32 @@
+[
+  {
+    "file": "mission-vendre-dijon.mp4",
+    "decode_exit": 0,
+    "video": "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(progressive), 1080x1920, 141 kb/s, 30 fps, 30 tbr, 15360 tbn (default)",
+    "audio": "Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 156 kb/s (default)",
+    "duration": "00:00:32.00",
+    "max_volume": "-19.8 dB",
+    "bytes": 1227080,
+    "sha256": "70b86bb86e6dc0803bdf2db2191e5dfc4e6f88b48a10ef322b5dc00f79127238"
+  },
+  {
+    "file": "niveau-1-bon-prix.mp4",
+    "decode_exit": 0,
+    "video": "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(progressive), 1080x1920, 154 kb/s, 30 fps, 30 tbr, 15360 tbn (default)",
+    "audio": "Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 156 kb/s (default)",
+    "duration": "00:00:32.00",
+    "max_volume": "-19.8 dB",
+    "bytes": 1280141,
+    "sha256": "3d269f97491e38a55de4ed96d24a34395d73be601948e7cd9e5491fd7aaee906"
+  },
+  {
+    "file": "niveau-2-preparer-visites.mp4",
+    "decode_exit": 0,
+    "video": "Stream #0:0[0x1](und): Video: h264 (High) (avc1 / 0x31637661), yuv420p(progressive), 1080x1920, 144 kb/s, 30 fps, 30 tbr, 15360 tbn (default)",
+    "audio": "Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 156 kb/s (default)",
+    "duration": "00:00:32.00",
+    "max_volume": "-19.8 dB",
+    "bytes": 1238663,
+    "sha256": "77778644f134a0308d9cd05bc203f9f9e165cc1a3c4d31df7b862905120ab189"
+  }
+]
