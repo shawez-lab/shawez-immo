@@ -1,0 +1,545 @@
+{
+ "jour": "2026-11-21",
+ "choisir": "choisir.py a rendu 425 513 403 431 ; vivier : 425 513 403 431 509 525 527 438 415 520 483 501 494 481 446 507 461",
+ "ecartes": {
+  "425": "face caméra avec sous-titres incrustés (planche revue 21/11 10h35)",
+  "513": "face caméra avec sous-titres incrustés (planche revue 21/11 10h35)",
+  "403": "face caméra avec sous-titres incrustés (planche revue 21/11 10h35)",
+  "431": "face caméra avec sous-titres incrustés (planche revue 21/11 10h35)"
+ },
+ "remplacants": "les 4 biens rendus sont face caméra : remplacés par les suivants du vivier, dans l’ordre de choisir.py : 509 525 527 438.",
+ "outil": "diaporama photo par photo (outils/biens/diaporama.monter, ordre de photos imposé) pour 509 et 525 (Reels photo finis ; 525 : prix incrusté périmé) ; fabriquer.py pour 527 et 438. 509 et 525 : pas de prix_honoraires_inclus, aucun prix cité.",
+ "relance": "creneaux.py --horizon 24 depuis 12:00 : AUCUN (8 Trial Reels Instagram déjà en attente d’ici demain 08:30). 16 versions montées pour le Diffuseur, sans Instagram.",
+ "biens": [
+  {
+   "ref": "509",
+   "src": "assets/biens/509/video.mp4",
+   "mot": "COUCHEY",
+   "nom": "deux-maisons-couchey",
+   "mode": "photos",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": true,
+     "style": "defi_1pourcent",
+     "accroche": "Mets pause :|1 % voit|la cave voûtée",
+     "photos": [
+      9,
+      1,
+      4,
+      28,
+      15,
+      26
+     ],
+     "lignes": [
+      "",
+      "",
+      "Cave voûtée",
+      "",
+      ""
+     ],
+     "legende": "Sous la première maison, une cave voûtée de 25 m², et sous la seconde une autre de 30 m². Tu l’as vue passer ? 🍷\n\nCommente COUCHEY et je t’envoie la visite complète en privé 📩\n\n#cavevoutee #couchey #defiimmo #cotedesvins #maisondevigneron"
+    },
+    {
+     "id": "v2",
+     "instagram": false,
+     "style": "chiffre_choc",
+     "accroche": "78 m² + 63 m²|face à face",
+     "photos": [
+      26,
+      3,
+      13,
+      7,
+      16,
+      25
+     ],
+     "lignes": [
+      "Deux maisons",
+      "",
+      "",
+      "",
+      ""
+     ],
+     "legende": "Deux maisons entièrement rénovées, l’une en face de l’autre dans une petite impasse de Couchey, vendues ensemble 🏡\n\nCommente COUCHEY et je t’envoie la visite complète en privé 📩\n\n#deuxmaisons #renovationtotale #bourgogne #immobilierdijon #ensembleimmobilier"
+    },
+    {
+     "id": "v3",
+     "instagram": false,
+     "style": "autre",
+     "accroche": "Deux maisons rénovées|dans un village viticole",
+     "photos": [
+      1,
+      9,
+      6,
+      24,
+      27,
+      15
+     ],
+     "lignes": [
+      "Côte des vins",
+      "",
+      "",
+      "",
+      ""
+     ],
+     "legende": "Au cœur du bourg historique de Couchey, sur la côte des vins, un ensemble ancien refait à neuf, au calme 🍇\n\nCommente COUCHEY et je t’envoie la visite complète en privé 📩\n\n#villageviticole #couchey21 #maisonancienne #viealacampagne #cotedor"
+    },
+    {
+     "id": "v4",
+     "instagram": false,
+     "style": "question",
+     "accroche": "Tu vis dans l’une,|tu loues l’autre ?",
+     "photos": [
+      16,
+      11,
+      17,
+      19,
+      23,
+      1
+     ],
+     "lignes": [
+      "",
+      "Indépendante",
+      "",
+      "",
+      ""
+     ],
+     "legende": "La seconde maison de 63 m² est totalement indépendante, parfaite pour de la location courte ou longue durée. Et toi, tu en ferais quoi ? 🔑\n\nCommente COUCHEY et je t’envoie la visite complète en privé 📩\n\n#investissementlocatif #locationcourteduree #revenuslocatifs #maisonrenovee #dijonimmobilier"
+    }
+   ]
+  },
+  {
+   "ref": "525",
+   "src": "assets/biens/525/video.mp4",
+   "mot": "NEUILLY",
+   "nom": "maison-neuilly",
+   "mode": "photos",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": true,
+     "style": "chiffre_choc",
+     "accroche": "142 m², 5 chambres,|construite en 2018",
+     "photos": [
+      1,
+      7,
+      2,
+      18,
+      24,
+      22
+     ],
+     "lignes": [
+      "Sans travaux",
+      "",
+      "",
+      "",
+      ""
+     ],
+     "legende": "Une maison de 2018 aux normes RT 2012, sans travaux à prévoir, avec sa garantie décennale en cours, aux portes de Dijon 🏠\n\nCommente NEUILLY et je t’envoie la visite complète en privé 📩\n\n#maisonneuve #5chambres #neuillycrimolois #rt2012 #maisonfamiliale"
+    },
+    {
+     "id": "v2",
+     "instagram": false,
+     "style": "defi_1pourcent",
+     "accroche": "Seul 1 % y arrive :|compter les chambres",
+     "photos": [
+      12,
+      15,
+      17,
+      20,
+      21,
+      23
+     ],
+     "lignes": [
+      "",
+      "",
+      "5 chambres",
+      "",
+      ""
+     ],
+     "legende": "Une chambre au rez-de-chaussée et quatre à l’étage avec placards, dont une suite parentale. Tu en as compté combien ? 🛏️\n\nCommente NEUILLY et je t’envoie la visite complète en privé 📩\n\n#defi #grandefamille #chambres #maisonavendre #cotedorimmobilier"
+    },
+    {
+     "id": "v3",
+     "instagram": false,
+     "style": "revelation",
+     "accroche": "Ouvre la suite parentale,|regarde ce dressing",
+     "photos": [
+      13,
+      17,
+      18,
+      19,
+      14,
+      3
+     ],
+     "lignes": [
+      "",
+      "Immense dressing",
+      "",
+      "",
+      ""
+     ],
+     "legende": "À l’étage, la suite parentale cache un immense dressing et son coin douche 👗\n\nCommente NEUILLY et je t’envoie la visite complète en privé 📩\n\n#suiteparentale #dressingroom #maisonmoderne #interieur #portesdedijon"
+    },
+    {
+     "id": "v4",
+     "instagram": false,
+     "style": "chiffre_choc",
+     "accroche": "429 m² de terrain,|tes enfants y jouent ?",
+     "photos": [
+      22,
+      24,
+      23,
+      4,
+      9,
+      1
+     ],
+     "lignes": [
+      "Terrasse 36 m²",
+      "",
+      "",
+      "",
+      ""
+     ],
+     "legende": "Une parcelle de 429 m² dans un lotissement calme, une terrasse ombragée de 36 m² et un garage chauffé de 23 m². Tu t’y vois déjà ? ☀️\n\nCommente NEUILLY et je t’envoie la visite complète en privé 📩\n\n#jardin #lotissementcalme #terrasseombragee #achatimmobilier #dijonmetropole"
+    }
+   ]
+  },
+  {
+   "ref": "527",
+   "src": "assets/biens/527/video.mp4",
+   "mot": "BEAUNE",
+   "nom": "hotel-beaune-cour",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": true,
+     "style": "autre",
+     "accroche": "Vivre au XVIIe siècle,|en plein Beaune",
+     "plans": [
+      [
+       0.0,
+       2.5,
+       1
+      ],
+      [
+       3.0,
+       5.0,
+       1
+      ],
+      [
+       27.0,
+       29.5,
+       1
+      ],
+      [
+       42.5,
+       44.5,
+       1,
+       "Cour intérieure"
+      ],
+      [
+       44.5,
+       46.5,
+       1
+      ],
+      [
+       66.0,
+       68.8,
+       1
+      ]
+     ],
+     "legende": "Un hôtel particulier du XVIIe dans le cœur historique de Beaune, organisé autour de sa cour intérieure. La pierre, les poutres, la cave voûtée : tout y est 🍷\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#hotelparticulier #beaune #patrimoinefrancais #demeuredecaractere #bourgogneimmobilier"
+    },
+    {
+     "id": "v2",
+     "instagram": false,
+     "style": "chiffre_choc",
+     "accroche": "2 500 000 €,|3 appartements|et 1 local",
+     "plans": [
+      [
+       27.5,
+       29.8,
+       1
+      ],
+      [
+       12.0,
+       14.0,
+       1
+      ],
+      [
+       51.0,
+       53.0,
+       1,
+       "Monopropriété"
+      ],
+      [
+       21.0,
+       23.0,
+       1
+      ],
+      [
+       38.5,
+       40.5,
+       1
+      ],
+      [
+       0.5,
+       3.3,
+       1
+      ]
+     ],
+     "legende": "Trois appartements indépendants et un local professionnel, réunis en monopropriété dans un hôtel particulier de Beaune, à 2 500 000 € 🏛️\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#investissementimmobilier #monopropriete #immeubleancien #beaunecentre #patrimoinelocatif"
+    },
+    {
+     "id": "v3",
+     "instagram": false,
+     "style": "defi_1pourcent",
+     "accroche": "Seul 1 % y arrive :|voir les 3 cuisines",
+     "plans": [
+      [
+       3.0,
+       5.0,
+       1
+      ],
+      [
+       18.0,
+       20.3,
+       1,
+       "3 cuisines"
+      ],
+      [
+       51.0,
+       53.0,
+       1
+      ],
+      [
+       54.0,
+       56.5,
+       1
+      ],
+      [
+       59.0,
+       61.0,
+       1
+      ],
+      [
+       66.0,
+       68.8,
+       1
+      ]
+     ],
+     "legende": "Les trois cuisines équipées sont comprises dans la vente, une par appartement. Tu les as toutes vues ? 👀\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#defi1pourcent #cuisineequipee #hotelparticulierbeaune #immobilierdeprestige #cotedor"
+    },
+    {
+     "id": "v4",
+     "instagram": false,
+     "style": "question",
+     "accroche": "Tu reçois qui|dans un hôtel du XVIIe ?",
+     "plans": [
+      [
+       1.0,
+       3.0,
+       1
+      ],
+      [
+       9.0,
+       11.2,
+       1,
+       "Espaces de jardin"
+      ],
+      [
+       62.0,
+       64.0,
+       1
+      ],
+      [
+       43.0,
+       45.0,
+       1
+      ],
+      [
+       31.0,
+       33.0,
+       1
+      ],
+      [
+       5.5,
+       8.3,
+       1
+      ]
+     ],
+     "legende": "Plusieurs appartements pour recevoir tes proches, des espaces de jardin, une terrasse et un garage, au cœur de Beaune. Tu invites qui en premier ? 🥂\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#maisondefamille #artderecevoir #beaune21 #vieabeaune #vinsdebourgogne"
+    }
+   ]
+  },
+  {
+   "ref": "438",
+   "src": "assets/biens/438/video.mp4",
+   "mot": "CHATEAU",
+   "nom": "chateau-beaune-boiseries",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": true,
+     "style": "defi_1pourcent",
+     "accroche": "Mets pause :|1 % voit|les boiseries",
+     "plans": [
+      [
+       8.3,
+       10.8,
+       1
+      ],
+      [
+       13.3,
+       15.1,
+       1
+      ],
+      [
+       15.2,
+       17.2,
+       1,
+       "Boiseries"
+      ],
+      [
+       19.2,
+       21.2,
+       1
+      ],
+      [
+       5.2,
+       7.1,
+       1
+      ],
+      [
+       27.2,
+       29.95,
+       1
+      ]
+     ],
+     "legende": "Boiseries raffinées, moulures, parquets anciens et cheminées : un château du XVIIIe à 15 minutes de Beaune, 1 600 000 €. Tu les as repérées ? 🏰\n\nCommente CHATEAU et je t’envoie la visite complète en privé 📩\n\n#chateaudebourgogne #boiseries #patrimoine #defiimmobilier #maisondexception"
+    },
+    {
+     "id": "v2",
+     "instagram": false,
+     "style": "chiffre_choc",
+     "accroche": "1 600 000 €,|parquets et cheminées|d’époque",
+     "plans": [
+      [
+       13.3,
+       15.1,
+       1
+      ],
+      [
+       19.2,
+       21.5,
+       1
+      ],
+      [
+       15.2,
+       17.2,
+       1,
+       "Parquets anciens"
+      ],
+      [
+       3.2,
+       5.1,
+       1
+      ],
+      [
+       1.2,
+       3.1,
+       1
+      ],
+      [
+       8.3,
+       11.1,
+       1
+      ]
+     ],
+     "legende": "Entretenu depuis vingt ans, ce château a gardé ses éléments d’époque : parquets anciens, cheminées, moulures. 520 m² à 1 600 000 € 🔥\n\nCommente CHATEAU et je t’envoie la visite complète en privé 📩\n\n#chateaufrancais #parquetancien #cheminee #immobilierdeluxe #cotedebeaune"
+    },
+    {
+     "id": "v3",
+     "instagram": false,
+     "style": "lieu_exception",
+     "accroche": "Un château remanié|aux XVIIIe et XIXe siècles",
+     "plans": [
+      [
+       11.2,
+       13.15,
+       1
+      ],
+      [
+       1.2,
+       3.1,
+       1
+      ],
+      [
+       3.3,
+       5.1,
+       1,
+       "Parc et étang"
+      ],
+      [
+       5.2,
+       7.1,
+       1
+      ],
+      [
+       13.3,
+       15.1,
+       1
+      ],
+      [
+       8.3,
+       11.1,
+       1
+      ]
+     ],
+     "legende": "Il domine la campagne bourguignonne, au cœur d’un domaine de 15 hectares avec parc topiaire et étang, à quinze minutes de Beaune 🌳\n\nCommente CHATEAU et je t’envoie la visite complète en privé 📩\n\n#chateauxviiie #campagnebourguignonne #domaine #parctopiaire #bourgogne"
+    },
+    {
+     "id": "v4",
+     "instagram": false,
+     "style": "question",
+     "accroche": "Une cuisine pareille,|tu reçois combien ?",
+     "plans": [
+      [
+       19.3,
+       21.6,
+       1
+      ],
+      [
+       22.2,
+       24.1,
+       1
+      ],
+      [
+       24.2,
+       26.2,
+       1,
+       "7 chambres"
+      ],
+      [
+       15.2,
+       17.2,
+       1
+      ],
+      [
+       1.2,
+       3.1,
+       1
+      ],
+      [
+       8.3,
+       11.1,
+       1
+      ]
+     ],
+     "legende": "Sept chambres, trois salons, une salle à manger et une grande cuisine pour tout ce monde. Tu invites combien de personnes ? 🍽️\n\nCommente CHATEAU et je t’envoie la visite complète en privé 📩\n\n#grandecuisine #recevoir #chateaufamilial #septchambres #immobilierdeprestige"
+    }
+   ]
+  }
+ ]
+}
