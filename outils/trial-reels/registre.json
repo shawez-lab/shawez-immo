@@ -24197,6 +24197,12 @@
      "url": "",
      "date": "2026-11-21",
      "heure": "21:40"
+    },
+    "gmb": {
+     "uuid": "-1593672450820980028",
+     "url": "",
+     "date": "2026-11-22",
+     "heure": "09:00"
     }
    },
    "reseaux": {
@@ -24324,6 +24330,12 @@
      "url": "",
      "date": "2026-11-20",
      "heure": "13:40"
+    },
+    "linkedin": {
+     "uuid": "7855624359330661850",
+     "url": "",
+     "date": "2026-11-22",
+     "heure": "10:30"
     }
    },
    "reseaux": {
@@ -24505,6 +24517,12 @@
      "url": "",
      "date": "2026-11-21",
      "heure": "08:30"
+    },
+    "tiktok": {
+     "uuid": "2355623709926180067",
+     "url": "",
+     "date": "2026-11-22",
+     "heure": "10:30"
     }
    },
    "reseaux": {
@@ -24656,6 +24674,12 @@
      "url": "",
      "date": "2026-11-20",
      "heure": "19:15"
+    },
+    "facebook": {
+     "uuid": "46729251354068716",
+     "url": "",
+     "date": "2026-11-22",
+     "heure": "15:00"
     }
    }
   },
@@ -24793,7 +24817,15 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://672bcabf.shawez-immo.pages.dev/trial/2026-11-20/chateau-etang-parc-438-v1.mp4",
-   "instagram": true
+   "instagram": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "-4205022787104456020",
+     "url": "",
+     "date": "2026-11-22",
+     "heure": "09:00"
+    }
+   }
   },
   {
    "id": "TR-2011-438-v2c",
@@ -25006,6 +25038,12 @@
      "url": "",
      "date": "2026-11-21",
      "heure": "11:10"
+    },
+    "pinterest": {
+     "uuid": "-8062448703692849152",
+     "url": "",
+     "date": "2026-11-22",
+     "heure": "10:00"
     }
    }
   },
@@ -25594,7 +25632,15 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://11302e28.shawez-immo.pages.dev/trial/2026-11-20/t2-etudiant-loue-481-v2.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "bluesky": {
+     "uuid": "6711564294758353299",
+     "url": "",
+     "date": "2026-11-22",
+     "heure": "11:00"
+    }
+   }
   },
   {
    "id": "TR-2011-481-v3b",
@@ -25639,7 +25685,15 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://11302e28.shawez-immo.pages.dev/trial/2026-11-20/t2-montchapet-renove-446-v1.mp4",
-   "instagram": true
+   "instagram": true,
+   "diffusions": {
+    "youtube": {
+     "uuid": "1936974929386950380",
+     "url": "",
+     "date": "2026-11-22",
+     "heure": "12:30"
+    }
+   }
   },
   {
    "id": "TR-2011-446-v2b",
