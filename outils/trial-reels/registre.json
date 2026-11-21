@@ -19728,6 +19728,12 @@
      "url": "",
      "date": "2026-11-21",
      "heure": "09:55"
+    },
+    "gmb": {
+     "uuid": "2684450528674662949",
+     "url": "",
+     "date": "2026-11-22",
+     "heure": "16:15"
     }
    },
    "url": "https://www.instagram.com/reel/Df7yuZPjjNo/",
@@ -20713,6 +20719,30 @@
      "url": "",
      "date": "2026-11-21",
      "heure": "11:00"
+    },
+    "linkedin": {
+     "uuid": "6224307016493515485",
+     "url": "",
+     "date": "2026-11-21",
+     "heure": "16:20"
+    },
+    "pinterest": {
+     "uuid": "-8855162856764520966",
+     "url": "",
+     "date": "2026-11-21",
+     "heure": "16:20"
+    },
+    "bluesky": {
+     "uuid": "-1353784984914080588",
+     "url": "",
+     "date": "2026-11-21",
+     "heure": "16:20"
+    },
+    "facebook": {
+     "uuid": "-2967579152736041672",
+     "url": "",
+     "date": "2026-11-21",
+     "heure": "18:15"
     }
    }
   },
@@ -23216,6 +23246,24 @@
      "url": "",
      "date": "2026-11-21",
      "heure": "11:30"
+    },
+    "pinterest": {
+     "uuid": "-2013924840441297858",
+     "url": "",
+     "date": "2026-11-21",
+     "heure": "16:45"
+    },
+    "bluesky": {
+     "uuid": "-3987914375218969221",
+     "url": "",
+     "date": "2026-11-21",
+     "heure": "16:45"
+    },
+    "youtube": {
+     "uuid": "3603185875151048481",
+     "url": "",
+     "date": "2026-11-21",
+     "heure": "17:15"
     }
    }
   },
@@ -23330,6 +23378,18 @@
      "url": "",
      "date": "2026-11-21",
      "heure": "09:30"
+    },
+    "linkedin": {
+     "uuid": "5269535830578842318",
+     "url": "",
+     "date": "2026-11-21",
+     "heure": "17:45"
+    },
+    "tiktok": {
+     "uuid": "-247323944947924370",
+     "url": "",
+     "date": "2026-11-21",
+     "heure": "17:00"
     }
    }
   },
@@ -23400,6 +23460,18 @@
      "url": "",
      "date": "2026-11-21",
      "heure": "20:10"
+    },
+    "pinterest": {
+     "uuid": "3659385849827970414",
+     "url": "",
+     "date": "2026-11-21",
+     "heure": "19:15"
+    },
+    "bluesky": {
+     "uuid": "398189873690067651",
+     "url": "",
+     "date": "2026-11-21",
+     "heure": "19:15"
     }
    }
   },
@@ -23646,6 +23718,18 @@
      "url": "",
      "date": "2026-11-21",
      "heure": "10:00"
+    },
+    "linkedin": {
+     "uuid": "2598351541817789366",
+     "url": "",
+     "date": "2026-11-21",
+     "heure": "19:15"
+    },
+    "tiktok": {
+     "uuid": "5822176832523158125",
+     "url": "",
+     "date": "2026-11-21",
+     "heure": "18:30"
     }
    },
    "reseaux": {
@@ -23995,6 +24079,18 @@
      "url": "",
      "date": "2026-11-21",
      "heure": "18:10"
+    },
+    "pinterest": {
+     "uuid": "-1777332382437325658",
+     "url": "",
+     "date": "2026-11-21",
+     "heure": "17:15"
+    },
+    "bluesky": {
+     "uuid": "7003309138238655460",
+     "url": "",
+     "date": "2026-11-21",
+     "heure": "17:15"
     }
    }
   },
@@ -24018,6 +24114,18 @@
      "url": "",
      "date": "2026-11-21",
      "heure": "21:40"
+    },
+    "pinterest": {
+     "uuid": "-7663192110335572869",
+     "url": "",
+     "date": "2026-11-21",
+     "heure": "19:45"
+    },
+    "bluesky": {
+     "uuid": "3394728285081193902",
+     "url": "",
+     "date": "2026-11-21",
+     "heure": "19:45"
     }
    }
   },
@@ -24122,6 +24230,18 @@
      "url": "",
      "date": "2026-11-21",
      "heure": "18:40"
+    },
+    "pinterest": {
+     "uuid": "6998779854818329246",
+     "url": "",
+     "date": "2026-11-21",
+     "heure": "17:45"
+    },
+    "bluesky": {
+     "uuid": "660895161473450723",
+     "url": "",
+     "date": "2026-11-21",
+     "heure": "17:45"
     }
    }
   },
@@ -24209,6 +24329,12 @@
      "url": "",
      "date": "2026-11-22",
      "heure": "09:00"
+    },
+    "youtube": {
+     "uuid": "-8648221213617863704",
+     "url": "",
+     "date": "2026-11-21",
+     "heure": "16:45"
     }
    },
    "reseaux": {
@@ -24249,6 +24375,18 @@
      "url": "",
      "date": "2026-11-21",
      "heure": "19:10"
+    },
+    "pinterest": {
+     "uuid": "-3836412641855451627",
+     "url": "",
+     "date": "2026-11-21",
+     "heure": "18:15"
+    },
+    "bluesky": {
+     "uuid": "-8201327249203573193",
+     "url": "",
+     "date": "2026-11-21",
+     "heure": "18:15"
     }
    }
   },
@@ -24846,7 +24984,15 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://672bcabf.shawez-immo.pages.dev/trial/2026-11-20/chateau-etang-parc-438-v2.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "8621888683927225806",
+     "url": "",
+     "date": "2026-11-21",
+     "heure": "19:10"
+    }
+   }
   },
   {
    "id": "TR-2011-438-v3c",
@@ -25313,7 +25459,15 @@
    "uuid": "-8496239568377200117",
    "statut": "publie",
    "media": "https://af3e4492.shawez-immo.pages.dev/trial/2026-11-20/loft-spa-dijon-483-v1.mp4",
-   "instagram": true
+   "instagram": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "8053628752592717876",
+     "url": "",
+     "date": "2026-11-21",
+     "heure": "17:10"
+    }
+   }
   },
   {
    "id": "TR-2011-483-v2d",
@@ -25651,6 +25805,12 @@
      "url": "",
      "date": "2026-11-22",
      "heure": "11:00"
+    },
+    "threads": {
+     "uuid": "-2477079027197718556",
+     "url": "",
+     "date": "2026-11-21",
+     "heure": "16:15"
     }
    }
   },
@@ -25667,7 +25827,15 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://11302e28.shawez-immo.pages.dev/trial/2026-11-20/t2-etudiant-loue-481-v3.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "974801334003777730",
+     "url": "",
+     "date": "2026-11-21",
+     "heure": "19:40"
+    }
+   }
   },
   {
    "id": "TR-2011-481-v4b",
@@ -25704,6 +25872,12 @@
      "url": "",
      "date": "2026-11-22",
      "heure": "12:30"
+    },
+    "threads": {
+     "uuid": "-5639394602836014962",
+     "url": "",
+     "date": "2026-11-21",
+     "heure": "17:40"
     }
    }
   },
@@ -25720,7 +25894,15 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://11302e28.shawez-immo.pages.dev/trial/2026-11-20/t2-montchapet-renove-446-v2.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "-6597596086527504710",
+     "url": "",
+     "date": "2026-11-21",
+     "heure": "20:10"
+    }
+   }
   },
   {
    "id": "TR-2011-446-v3b",
@@ -25945,7 +26127,15 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://cb67105a.shawez-immo.pages.dev/trial/2026-11-21/t2-dijon-a-rafraichir-507-v1.mp4",
-   "instagram": true
+   "instagram": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "4560210678151725930",
+     "url": "",
+     "date": "2026-11-21",
+     "heure": "18:10"
+    }
+   }
   },
   {
    "id": "TR-2111-507-v2",
@@ -25960,7 +26150,15 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://cb67105a.shawez-immo.pages.dev/trial/2026-11-21/t2-dijon-a-rafraichir-507-v2.mp4",
-   "instagram": false
+   "instagram": false,
+   "diffusions": {
+    "threads": {
+     "uuid": "-4626923938600828631",
+     "url": "",
+     "date": "2026-11-21",
+     "heure": "20:40"
+    }
+   }
   },
   {
    "id": "TR-2111-507-v3",
@@ -26073,7 +26271,15 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://226c3c8b.shawez-immo.pages.dev/trial/2026-11-21/maison-neuilly-525-v1.mp4",
-   "instagram": true
+   "instagram": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "-4604427240532982502",
+     "url": "",
+     "date": "2026-11-21",
+     "heure": "18:40"
+    }
+   }
   },
   {
    "id": "TR-2111-525-v2",
