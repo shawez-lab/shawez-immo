@@ -23779,6 +23779,12 @@
      "url": "",
      "date": "2026-11-21",
      "heure": "09:25"
+    },
+    "pinterest": {
+     "uuid": "-3375052178101877321",
+     "url": "",
+     "date": "2026-11-23",
+     "heure": "08:00"
     }
    }
   },
@@ -24892,6 +24898,12 @@
      "url": "",
      "date": "2026-11-21",
      "heure": "12:55"
+    },
+    "tiktok": {
+     "uuid": "-5567347142892699409",
+     "url": "",
+     "date": "2026-11-23",
+     "heure": "12:45"
     }
    }
   },
@@ -25993,7 +26005,15 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://226c3c8b.shawez-immo.pages.dev/trial/2026-11-21/deux-maisons-couchey-509-v1.mp4",
-   "instagram": true
+   "instagram": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "-5314050156687111767",
+     "url": "",
+     "date": "2026-11-23",
+     "heure": "08:00"
+    }
+   }
   },
   {
    "id": "TR-2111-509-v2",
@@ -26113,7 +26133,15 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://226c3c8b.shawez-immo.pages.dev/trial/2026-11-21/hotel-beaune-cour-527-v1.mp4",
-   "instagram": true
+   "instagram": true,
+   "diffusions": {
+    "bluesky": {
+     "uuid": "-569263094428447551",
+     "url": "",
+     "date": "2026-11-23",
+     "heure": "09:30"
+    }
+   }
   },
   {
    "id": "TR-2111-527-v2",
@@ -26173,7 +26201,15 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://226c3c8b.shawez-immo.pages.dev/trial/2026-11-21/chateau-beaune-boiseries-438-v1.mp4",
-   "instagram": true
+   "instagram": true,
+   "diffusions": {
+    "facebook": {
+     "uuid": "-1952405466625588964",
+     "url": "",
+     "date": "2026-11-23",
+     "heure": "17:00"
+    }
+   }
   },
   {
    "id": "TR-2111-438-v2",
@@ -26413,7 +26449,15 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://111d7a31.shawez-immo.pages.dev/trial/2026-11-21/t3-chevigny-jardin-520-v1.mp4",
-   "instagram": true
+   "instagram": true,
+   "diffusions": {
+    "youtube": {
+     "uuid": "-8778431708765140432",
+     "url": "",
+     "date": "2026-11-23",
+     "heure": "12:00"
+    }
+   }
   },
   {
    "id": "TR-2111-520-v2",
