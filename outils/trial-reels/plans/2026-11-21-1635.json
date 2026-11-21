@@ -1,0 +1,755 @@
+{
+ "jour": "2026-11-21",
+ "choisir": "choisir.py a rendu 425 513 403 431 ; vivier : 425 513 403 431 527 438 415 520 483 501 494 481 446 507 509 525 461",
+ "ecartes": {
+  "425": "face caméra avec sous-titres incrustés (planche revue 21/11 16h35)",
+  "513": "face caméra avec sous-titres incrustés (planche revue 21/11 16h35)",
+  "403": "face caméra avec sous-titres incrustés (planche revue 21/11 16h35)",
+  "431": "face caméra avec sous-titres incrustés (planche revue 21/11 16h35)"
+ },
+ "remplacants": "les 4 biens rendus sont face caméra : remplacés par les suivants du vivier dans l’ordre de choisir.py : 527 438 415 520. 415 et 520 : seuls les plans sans personne ni texte incrusté.",
+ "biens": [
+  {
+   "ref": "527",
+   "src": "assets/biens/527/video.mp4",
+   "mot": "BEAUNE",
+   "nom": "hotel-beaune-cour",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": false,
+     "style": "autre",
+     "accroche": "Habite un étage,|loue|les deux autres",
+     "plans": [
+      [
+       51,
+       53,
+       1
+      ],
+      [
+       3,
+       5,
+       1,
+       "3 appartements"
+      ],
+      [
+       55,
+       57,
+       1
+      ],
+      [
+       66,
+       68,
+       1
+      ],
+      [
+       27,
+       29,
+       1
+      ],
+      [
+       42.5,
+       45.3,
+       1
+      ]
+     ],
+     "legende": "Trois appartements indépendants et un local professionnel dans un hôtel particulier du XVIIe à Beaune, 2 500 000 €. Tu vis en haut, le reste travaille pour toi 🏛️\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#investissementimmobilier #revenuslocatifs #beaune #hotelparticulier #patrimoineimmobilier"
+    },
+    {
+     "id": "v2",
+     "instagram": true,
+     "style": "revelation",
+     "accroche": "Pousse ce porche :|une cour cachée",
+     "plans": [
+      [
+       1,
+       3,
+       1
+      ],
+      [
+       27,
+       29.5,
+       1
+      ],
+      [
+       29.5,
+       31.5,
+       1,
+       "Cour intérieure"
+      ],
+      [
+       38.5,
+       40.5,
+       1
+      ],
+      [
+       44.5,
+       46.5,
+       1
+      ],
+      [
+       9,
+       11.8,
+       1
+      ]
+     ],
+     "legende": "Depuis la rue, un simple porche. Derrière, la cour intérieure d’un hôtel particulier du XVIIe, en plein cœur historique de Beaune 🗝️\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#courinterieure #beaunehistorique #demeuredexception #pierredebourgogne #immobilierdeprestige"
+    },
+    {
+     "id": "v3",
+     "instagram": false,
+     "style": "autre",
+     "accroche": "Bâti au XVIIe,|rénové en 2025",
+     "plans": [
+      [
+       0,
+       2.5,
+       1
+      ],
+      [
+       5,
+       7,
+       1
+      ],
+      [
+       21,
+       23,
+       1,
+       "Rénové 2025"
+      ],
+      [
+       17,
+       19,
+       1
+      ],
+      [
+       73,
+       75,
+       1
+      ],
+      [
+       59,
+       61.8,
+       1
+      ]
+     ],
+     "legende": "Un hôtel particulier du XVIIe au cœur de Beaune, avec 117 m² rénovés en 2025 sous les poutres et une pompe à chaleur. L’ancien, sans les travaux ✨\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#renovation #poutresapparentes #beaunecentreville #xviiesiecle #vieillespierres"
+    },
+    {
+     "id": "v4",
+     "instagram": false,
+     "style": "question",
+     "accroche": "Ton café,|tu le prends|dans cette cour ?",
+     "plans": [
+      [
+       42.5,
+       44.5,
+       1
+      ],
+      [
+       47,
+       49,
+       1
+      ],
+      [
+       9,
+       11,
+       1,
+       "Jardin"
+      ],
+      [
+       38.5,
+       40.5,
+       1
+      ],
+      [
+       76,
+       78,
+       1
+      ],
+      [
+       0,
+       2.8,
+       1
+      ]
+     ],
+     "legende": "Une cour intérieure, une terrasse et des espaces de jardin, à deux pas des rues pavées de Beaune. Tu t’y vois déjà ? ☕\n\nPrix : 2 500 000 €.\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#viedechateau #matinaubeaune #artdevivre #bourgognefranchecomte #maisondemaitre"
+    }
+   ]
+  },
+  {
+   "ref": "438",
+   "src": "assets/biens/438/video.mp4",
+   "mot": "CHATEAU",
+   "nom": "chateau-beaune-etang",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": false,
+     "style": "chiffre_choc",
+     "accroche": "18 pièces|et 520 m²|à habiter",
+     "plans": [
+      [
+       8.3,
+       10.2,
+       1
+      ],
+      [
+       13.3,
+       15.1,
+       1
+      ],
+      [
+       15.2,
+       17.2,
+       1,
+       "18 pièces"
+      ],
+      [
+       19.2,
+       21.2,
+       1
+      ],
+      [
+       22.2,
+       24.1,
+       1
+      ],
+      [
+       5.2,
+       8.0,
+       1
+      ]
+     ],
+     "legende": "18 pièces sur 520 m², dont sept chambres et trois salons, dans un château du XVIIIe à 15 minutes de Beaune, 1 600 000 € 🏰\n\nCommente CHATEAU et je t’envoie la visite complète en privé 📩\n\n#grandefamille #18pieces #chateauxviiie #propriete #immobilierdecharme"
+    },
+    {
+     "id": "v2",
+     "instagram": false,
+     "style": "revelation",
+     "accroche": "Derrière cette porte,|un vestibule|majestueux",
+     "plans": [
+      [
+       13.3,
+       15.1,
+       1
+      ],
+      [
+       15.2,
+       17.2,
+       1,
+       "Vestibule"
+      ],
+      [
+       17.2,
+       19.1,
+       1
+      ],
+      [
+       24.2,
+       26.1,
+       1
+      ],
+      [
+       1.2,
+       3.1,
+       1
+      ],
+      [
+       8.3,
+       11.1,
+       1
+      ]
+     ],
+     "legende": "On pousse la porte d’entrée et on tombe sur un vestibule majestueux, puis les salons et le boudoir. Ce château t’attend près de Beaune 🚪\n\nCommente CHATEAU et je t’envoie la visite complète en privé 📩\n\n#porteouverte #vestibule #interieurdechateau #patrimoinefrancais #bourgognesecrete"
+    },
+    {
+     "id": "v3",
+     "instagram": true,
+     "style": "question",
+     "accroche": "Un étang|devant chez toi,|tu dis oui ?",
+     "plans": [
+      [
+       1.2,
+       3.1,
+       1
+      ],
+      [
+       3.3,
+       5.1,
+       1
+      ],
+      [
+       5.2,
+       7.1,
+       1,
+       "Étang"
+      ],
+      [
+       11.2,
+       13.1,
+       1
+      ],
+      [
+       19.2,
+       21.2,
+       1
+      ],
+      [
+       24.2,
+       27.1,
+       1
+      ]
+     ],
+     "legende": "Un étang, un parc et une vue dégagée autour d’un château de 520 m², avec maison d’amis, colombier et grange. Tu signes ? 🦆\n\nCommente CHATEAU et je t’envoie la visite complète en privé 📩\n\n#etang #vuedegagee #viealacampagne #chateauavendre #saoneetloireimmobilier"
+    },
+    {
+     "id": "v4",
+     "instagram": false,
+     "style": "autre",
+     "accroche": "Ton château|à 15 minutes|de Beaune",
+     "plans": [
+      [
+       11.2,
+       13.1,
+       1
+      ],
+      [
+       8.3,
+       10.2,
+       1
+      ],
+      [
+       7.0,
+       8.2,
+       1
+      ],
+      [
+       13.3,
+       15.1,
+       1,
+       "XVIIIe siècle"
+      ],
+      [
+       25.2,
+       27.1,
+       1
+      ],
+      [
+       29.0,
+       29.9,
+       1
+      ],
+      [
+       3.3,
+       6.1,
+       1
+      ]
+     ],
+     "legende": "Un château remanié aux XVIIIe et XIXe siècles, à un quart d’heure de Beaune, au calme et proche des premiers commerces. 1 600 000 € 🍇\n\nCommente CHATEAU et je t’envoie la visite complète en privé 📩\n\n#routedesvins #chateaubourguignon #beaunealentour #demeurehistorique #maisondefamille"
+    }
+   ]
+  },
+  {
+   "ref": "415",
+   "src": "assets/biens/415/video.mp4",
+   "mot": "DUPLEX",
+   "nom": "duplex-dijon-toits",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": true,
+     "style": "autre",
+     "accroche": "Sous cette lucarne,|un duplex|de 92 m²",
+     "plans": [
+      [
+       1.15,
+       2.8,
+       1
+      ],
+      [
+       3.0,
+       4.6,
+       1
+      ],
+      [
+       4.7,
+       6.4,
+       1,
+       "92 m² au sol"
+      ],
+      [
+       10.1,
+       11.9,
+       1
+      ],
+      [
+       8.25,
+       10.0,
+       1
+      ],
+      [
+       13.75,
+       14.6,
+       1
+      ],
+      [
+       36.43,
+       37.3,
+       0.3
+      ]
+     ],
+     "legende": "De la rue, on ne voit qu’une lucarne. Dedans, un duplex de 92 m² au sol, 69,89 m² Carrez, au dernier étage en plein cœur de Dijon 🏠\n\nCommente DUPLEX et je t’envoie la visite complète en privé 📩\n\n#duplexsouslestoits #dijonhypercentre #lucarne #appartementatypique #immobilier21"
+    },
+    {
+     "id": "v2",
+     "instagram": false,
+     "style": "chiffre_choc",
+     "accroche": "69,89 m² Carrez,|2 chambres,|1 poêle à bois",
+     "plans": [
+      [
+       6.5,
+       8.2,
+       1
+      ],
+      [
+       8.25,
+       10.0,
+       1
+      ],
+      [
+       13.75,
+       15.5,
+       1,
+       "Poêle à bois"
+      ],
+      [
+       10.1,
+       11.9,
+       1
+      ],
+      [
+       32.75,
+       34.6,
+       1
+      ],
+      [
+       12.0,
+       12.8,
+       1
+      ],
+      [
+       38.27,
+       39.1,
+       0.3
+      ]
+     ],
+     "legende": "Deux chambres, une cuisine américaine équipée, un poêle à bois et une cave, pour 220 000 € en centre-ville de Dijon 🔥\n\nCommente DUPLEX et je t’envoie la visite complète en privé 📩\n\n#poeleabois #cuisineamericaine #dijoncentreville #t3dijon #achatappartement"
+    },
+    {
+     "id": "v3",
+     "instagram": false,
+     "style": "question",
+     "accroche": "Tu montes|ou tu restes|près du feu ?",
+     "plans": [
+      [
+       13.75,
+       15.5,
+       1
+      ],
+      [
+       10.1,
+       11.9,
+       1
+      ],
+      [
+       11.95,
+       12.8,
+       1
+      ],
+      [
+       4.7,
+       6.4,
+       1
+      ],
+      [
+       6.5,
+       8.2,
+       1
+      ],
+      [
+       16.5,
+       18.2,
+       1,
+       "Deux niveaux"
+      ],
+      [
+       39.23,
+       40.0,
+       0.28
+      ]
+     ],
+     "legende": "En bas, la pièce de vie et son feu de bois. En haut, une chambre avec sa salle de bains. Toi, tu passes ta soirée où ? 🪵\n\nCommente DUPLEX et je t’envoie la visite complète en privé 📩\n\n#soireecocooning #duplexdijon #feudebois #vieencentreville #chezsoi"
+    },
+    {
+     "id": "v4",
+     "instagram": false,
+     "style": "autre",
+     "accroche": "Un duplex sous les toits,|en plein hypercentre",
+     "plans": [
+      [
+       3.0,
+       4.6,
+       1
+      ],
+      [
+       1.15,
+       2.8,
+       1
+      ],
+      [
+       5.0,
+       6.4,
+       1
+      ],
+      [
+       6.5,
+       8.2,
+       1
+      ],
+      [
+       8.25,
+       10.0,
+       1,
+       "Cuisine équipée"
+      ],
+      [
+       12.0,
+       13.7,
+       1
+      ],
+      [
+       37.33,
+       38.2,
+       0.3
+      ]
+     ],
+     "legende": "Au deuxième et dernier étage d’une petite copropriété, un duplex avec chauffage individuel en plein centre de Dijon, à 220 000 € 🏙️\n\nCommente DUPLEX et je t’envoie la visite complète en privé 📩\n\n#vivreadijon #souslescombles #appartementcentreville #coupdecoeur #immodijon"
+    }
+   ]
+  },
+  {
+   "ref": "520",
+   "src": "assets/biens/520/video.mp4",
+   "mot": "CHEVIGNY",
+   "nom": "t3-chevigny-terrasse",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": false,
+     "style": "question",
+     "accroche": "Jardin et garage,|il te faut|quoi de plus ?",
+     "plans": [
+      [
+       21.25,
+       22.2,
+       1
+      ],
+      [
+       13.45,
+       15.3,
+       1
+      ],
+      [
+       19.25,
+       21.2,
+       1,
+       "Terrasse"
+      ],
+      [
+       15.35,
+       17.4,
+       1
+      ],
+      [
+       17.5,
+       19.2,
+       1
+      ],
+      [
+       23.3,
+       25.3,
+       1
+      ],
+      [
+       22.25,
+       24.3,
+       0.75
+      ]
+     ],
+     "legende": "Un T3 en rez-de-chaussée à Chevigny-Saint-Sauveur, avec deux chambres, un jardin privatif et un garage fermé en sous-sol, 200 000 € 🔑\n\nCommente CHEVIGNY et je t’envoie la visite complète en privé 📩\n\n#listedesouhaits #t3chevigny #garageferme #jardinprive #achatresidenceprincipale"
+    },
+    {
+     "id": "v2",
+     "instagram": true,
+     "style": "chiffre_choc",
+     "accroche": "61,49 m²|+ jardin|+ garage",
+     "plans": [
+      [
+       14.4,
+       15.3,
+       1
+      ],
+      [
+       19.25,
+       21.2,
+       1
+      ],
+      [
+       15.35,
+       17.4,
+       1,
+       "Garage fermé"
+      ],
+      [
+       22.25,
+       23.25,
+       1
+      ],
+      [
+       18.3,
+       19.2,
+       1
+      ],
+      [
+       13.45,
+       14.35,
+       1
+      ],
+      [
+       25.35,
+       26.3,
+       1
+      ],
+      [
+       23.3,
+       24.3,
+       1
+      ],
+      [
+       20.3,
+       22.2,
+       0.7
+      ]
+     ],
+     "legende": "61,49 m² en rez-de-jardin, une terrasse orientée ouest et un garage fermé, dans une résidence de 2013 calme et sécurisée 🌿\n\nCommente CHEVIGNY et je t’envoie la visite complète en privé 📩\n\n#rezdejardin #orientationouest #chevignysaintsauveur #residencesecurisee #immobilierdijonnais"
+    },
+    {
+     "id": "v3",
+     "instagram": false,
+     "style": "question",
+     "accroche": "Un balcon ?|Non,|un vrai jardin",
+     "plans": [
+      [
+       19.25,
+       20.25,
+       1
+      ],
+      [
+       20.3,
+       21.2,
+       1
+      ],
+      [
+       21.25,
+       22.2,
+       1,
+       "Jardin"
+      ],
+      [
+       13.45,
+       14.35,
+       1
+      ],
+      [
+       15.35,
+       17.4,
+       1
+      ],
+      [
+       17.5,
+       18.25,
+       1
+      ],
+      [
+       23.3,
+       25.3,
+       1
+      ],
+      [
+       14.4,
+       15.3,
+       1
+      ],
+      [
+       22.25,
+       24.3,
+       0.75
+      ]
+     ],
+     "legende": "Pas de balcon ici : une terrasse et un jardin privatif, en prolongement d’une pièce de vie de plus de 25 m² ☀️\n\nCommente CHEVIGNY et je t’envoie la visite complète en privé 📩\n\n#jardinprivatif #terrasse #pieddansleherbe #t3avecjardin #dijonmetropole"
+    },
+    {
+     "id": "v4",
+     "instagram": false,
+     "style": "autre",
+     "accroche": "Un rez-de-jardin|aux portes de Dijon",
+     "plans": [
+      [
+       13.45,
+       15.3,
+       1
+      ],
+      [
+       19.25,
+       21.2,
+       1
+      ],
+      [
+       15.35,
+       16.4,
+       1
+      ],
+      [
+       16.4,
+       17.4,
+       1,
+       "Résidence récente"
+      ],
+      [
+       25.35,
+       26.3,
+       1
+      ],
+      [
+       22.25,
+       23.25,
+       1
+      ],
+      [
+       23.3,
+       25.3,
+       1
+      ],
+      [
+       20.3,
+       22.2,
+       0.7
+      ]
+     ],
+     "legende": "À Chevigny-Saint-Sauveur, aux portes de Dijon, un T3 de 61,49 m² avec terrasse et jardin, prêt à vivre pour 200 000 € 🏡\n\nCommente CHEVIGNY et je t’envoie la visite complète en privé 📩\n\n#portesdedijon #premierappartement #chevigny #pretavivre #immobilierbourgogne"
+    }
+   ]
+  }
+ ]
+}
