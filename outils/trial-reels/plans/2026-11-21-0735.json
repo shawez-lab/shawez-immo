@@ -1,0 +1,536 @@
+{
+ "jour": "2026-11-21",
+ "choisir": "choisir.py a rendu 425 513 403 431 ; vivier : 425 513 403 431 501 461 446 507 509 525 527 438 415 520 483 494 481",
+ "ecartes": {
+  "425": "face caméra avec sous-titres/mots incrustés (planche revue 21/11 07h35)",
+  "513": "face caméra avec sous-titres/mots incrustés (planche revue 21/11 07h35)",
+  "403": "face caméra avec sous-titres/mots incrustés (planche revue 21/11 07h35)",
+  "431": "face caméra avec sous-titres/mots incrustés (planche revue 21/11 07h35)"
+ },
+ "remplacants": "les 4 biens rendus sont face caméra : remplacés par les suivants du vivier, dans l’ordre de choisir.py : 501 461 446 507.",
+ "outil": "fabriquer.py pour 501 et 461 ; outils/biens/diaporama.py (monter) photo par photo dans l’ordre de « photos » pour 446 et 507 (video.mp4 = Reel photo fini). 446 et 507 : pas de prix_honoraires_inclus, aucun prix cité.",
+ "biens": [
+  {
+   "ref": "501",
+   "src": "assets/biens/501/video.mp4",
+   "mot": "LUMIÈRE",
+   "nom": "t3-dijon-deux-chambres",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": true,
+     "style": "chiffre_choc",
+     "accroche": "139 000 €|pour 3 pièces à Dijon",
+     "plans": [
+      [
+       0.2,
+       2.6,
+       1
+      ],
+      [
+       12.0,
+       14.0,
+       1,
+       "Cuisine équipée"
+      ],
+      [
+       17.5,
+       19.5,
+       1
+      ],
+      [
+       22.3,
+       24.3,
+       1,
+       "2 chambres"
+      ],
+      [
+       26.5,
+       28.5,
+       1
+      ],
+      [
+       33.0,
+       36.0,
+       1
+      ]
+     ],
+     "legende": "Un T3 de 53,62 m² au premier étage, avec deux chambres, une cuisine séparée équipée et une cave, affiché à 139 000 €. Tu viens le voir ?\n\nCommente LUMIÈRE et je t’envoie la visite complète en privé 📩\n\n#dijon #t3dijon #achatimmobilier #primoaccedant #immobilierbourgogne"
+    },
+    {
+     "id": "v2",
+     "instagram": false,
+     "style": "question",
+     "accroche": "Gardien, cave et parking,|tu signes ?",
+     "plans": [
+      [
+       8.5,
+       10.0,
+       1
+      ],
+      [
+       1.3,
+       3.5,
+       1
+      ],
+      [
+       30.7,
+       32.4,
+       1
+      ],
+      [
+       19.0,
+       21.0,
+       1,
+       "Parking collectif"
+      ],
+      [
+       14.5,
+       16.0,
+       1
+      ],
+      [
+       32.8,
+       36.0,
+       1
+      ]
+     ],
+     "legende": "Copropriété de 1969 avec gardien, parking collectif en placement libre et cave privative en sous-sol. Pratique, non ?\n\nCommente LUMIÈRE et je t’envoie la visite complète en privé 📩\n\n#coproprieteavecgardien #parkingdijon #vivreadijon #appartementt3 #projetimmo"
+    },
+    {
+     "id": "v3",
+     "instagram": false,
+     "style": "autre",
+     "accroche": "Ouvre cette porte :|la cuisine est déjà équipée",
+     "plans": [
+      [
+       11.0,
+       13.2,
+       1
+      ],
+      [
+       13.5,
+       15.5,
+       1
+      ],
+      [
+       4.6,
+       5.8,
+       1
+      ],
+      [
+       18.0,
+       20.0,
+       1
+      ],
+      [
+       25.5,
+       27.5,
+       1,
+       "Salle de bains"
+      ],
+      [
+       33.5,
+       36.6,
+       1
+      ]
+     ],
+     "legende": "Ici la cuisine est séparée, entièrement meublée et équipée : tu poses tes cartons et tu cuisines le soir même 🍳\n\nCommente LUMIÈRE et je t’envoie la visite complète en privé 📩\n\n#cuisineequipee #emmenagement #appartdijon #immo21 #chezsoi"
+    },
+    {
+     "id": "v4",
+     "instagram": false,
+     "style": "chiffre_choc",
+     "accroche": "53,62 m² de lumière|au premier étage",
+     "plans": [
+      [
+       1.0,
+       3.0,
+       1
+      ],
+      [
+       8.6,
+       10.1,
+       1
+      ],
+      [
+       22.0,
+       24.0,
+       1
+      ],
+      [
+       16.2,
+       18.0,
+       1
+      ],
+      [
+       10.7,
+       12.7,
+       1,
+       "Chauffage urbain"
+      ],
+      [
+       32.8,
+       35.8,
+       1
+      ]
+     ],
+     "legende": "Un appartement lumineux au premier étage, salon confortable, deux chambres et chauffage urbain. Tu t’y vois ? ☀️\n\nCommente LUMIÈRE et je t’envoie la visite complète en privé 📩\n\n#appartementlumineux #dijoncentre #t3 #achatdijon #nouveaudepart"
+    }
+   ]
+  },
+  {
+   "ref": "461",
+   "src": "assets/biens/461/video.mp4",
+   "mot": "MARRAKECH",
+   "nom": "studio-marrakech-darcy",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": true,
+     "style": "chiffre_choc",
+     "accroche": "19,15 m² rénovés|par un architecte",
+     "plans": [
+      [
+       1.0,
+       3.0,
+       1
+      ],
+      [
+       4.0,
+       6.0,
+       1
+      ],
+      [
+       12.3,
+       14.3,
+       1,
+       "Balnéo"
+      ],
+      [
+       8.5,
+       10.5,
+       1
+      ],
+      [
+       19.5,
+       21.5,
+       1
+      ],
+      [
+       30.0,
+       33.0,
+       1
+      ]
+     ],
+     "legende": "Studio entièrement rénové par architecte, inspiration Marrakech, rangements sur mesure et finitions haut de gamme, à 129 000 € près du parc Darcy.\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#studiodarchitecte #dijon #inspirationmarrakech #renovation #petitesurface"
+    },
+    {
+     "id": "v2",
+     "instagram": false,
+     "style": "detail_surprenant",
+     "accroche": "Soirée cinéma dans 19 m²,|tu viens ?",
+     "plans": [
+      [
+       9.0,
+       11.5,
+       1
+      ],
+      [
+       27.0,
+       28.5,
+       1
+      ],
+      [
+       17.0,
+       19.0,
+       1,
+       "Rétroprojecteur"
+      ],
+      [
+       2.0,
+       4.0,
+       1
+      ],
+      [
+       24.0,
+       26.0,
+       1
+      ],
+      [
+       30.5,
+       33.5,
+       1
+      ]
+     ],
+     "legende": "Rétroprojecteur intégré, baignoire balnéothérapie et cour intérieure au calme : ce studio coche toutes les cases d’une soirée cocooning 🎬\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#soireecinema #cocooning #studiodijon #pieddaterre #decointerieur"
+    },
+    {
+     "id": "v3",
+     "instagram": false,
+     "style": "chiffre_choc",
+     "accroche": "129 000 € et 23 %|de rendement saisonnier",
+     "plans": [
+      [
+       0.0,
+       2.0,
+       1
+      ],
+      [
+       14.0,
+       16.0,
+       1
+      ],
+      [
+       5.0,
+       7.0,
+       1,
+       "Clé en main"
+      ],
+      [
+       21.5,
+       23.5,
+       1
+      ],
+      [
+       10.5,
+       12.5,
+       1
+      ],
+      [
+       29.5,
+       32.5,
+       1
+      ]
+     ],
+     "legende": "L’annonce indique un rendement locatif saisonnier de 23 % pour ce studio clé en main, avec un syndic bénévole et de faibles charges 📈\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#investissementlocatif #locationsaisonniere #rendement #dijoninvest #studio"
+    },
+    {
+     "id": "v4",
+     "instagram": false,
+     "style": "revelation",
+     "accroche": "Derrière le lit,|un écran de cinéma",
+     "plans": [
+      [
+       3.0,
+       5.0,
+       1
+      ],
+      [
+       6.0,
+       8.0,
+       1
+      ],
+      [
+       8.2,
+       10.7,
+       1
+      ],
+      [
+       15.5,
+       17.0,
+       1
+      ],
+      [
+       25.0,
+       27.0,
+       1,
+       "Cour intérieure"
+      ],
+      [
+       31.0,
+       34.0,
+       1
+      ]
+     ],
+     "legende": "Niché au fond d’une cour intérieure, à l’abri des regards, ce studio cache un rétroprojecteur intégré face au lit 👀\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#detailcache #studioderêve #courinterieure #dijonimmobilier #amenagement"
+    }
+   ]
+  },
+  {
+   "ref": "446",
+   "src": "assets/biens/446/video.mp4",
+   "mot": "MONTCHAPET",
+   "nom": "t2-montchapet-renove",
+   "mode": "photos",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": true,
+     "style": "chiffre_choc",
+     "accroche": "45 m² entièrement rénovés|au rez-de-chaussée",
+     "photos": [
+      1,
+      6,
+      8,
+      9,
+      10,
+      2
+     ],
+     "lignes": [
+      "Cuisine ouverte",
+      "Chambre 14 m²",
+      "",
+      "Salle d’eau"
+     ],
+     "legende": "Un T2 en rez-de-chaussée d’une petite copropriété bien entretenue du bas Montchapet, entièrement rénové et prêt à l’habitation.\n\nCommente MONTCHAPET et je t’envoie la visite complète en privé 📩\n\n#t2renove #rezdechaussee #dijonmontchapet #primoaccession #appartementdijon"
+    },
+    {
+     "id": "v2",
+     "instagram": false,
+     "style": "question",
+     "accroche": "Cave et grenier en plus,|tu dis oui ?",
+     "photos": [
+      5,
+      7,
+      2,
+      11,
+      6,
+      1
+     ],
+     "lignes": [
+      "Parquet chêne",
+      "Séjour 26 m²",
+      "",
+      "Fibre"
+     ],
+     "legende": "En plus du séjour et de la chambre, une cave accessible depuis le logement et un grenier. Du rangement, enfin ! 📦\n\nCommente MONTCHAPET et je t’envoie la visite complète en privé 📩\n\n#rangement #caveetgrenier #petitecopro #t2dijon #immobilier21"
+    },
+    {
+     "id": "v3",
+     "instagram": false,
+     "style": "revelation",
+     "accroche": "Tu crois que c’est un studio ?|Regarde bien",
+     "photos": [
+      2,
+      9,
+      7,
+      8,
+      10,
+      5
+     ],
+     "lignes": [
+      "Une vraie chambre",
+      "14 m² de parquet",
+      "",
+      "Douche et WC"
+     ],
+     "legende": "Une entrée sur séjour avec cuisine ouverte, puis une belle chambre séparée de 14 m² au parquet chêne. C’est bien un T2 😉\n\nCommente MONTCHAPET et je t’envoie la visite complète en privé 📩\n\n#revelation #visiteimmo #appartementrenove #montchapet #dijon21"
+    },
+    {
+     "id": "v4",
+     "instagram": false,
+     "style": "autre",
+     "accroche": "Chaudière à condensation,|double vitrage, fibre",
+     "photos": [
+      6,
+      1,
+      9,
+      8,
+      11,
+      7
+     ],
+     "lignes": [
+      "Thermostat",
+      "",
+      "Chambre parquet chêne"
+     ],
+     "legende": "Chaudière à condensation, double vitrage PVC, thermostat et fibre : un T2 rénové pour vivre sans travaux 🔧\n\nCommente MONTCHAPET et je t’envoie la visite complète en privé 📩\n\n#sanstravaux #appartfibre #renovationcomplete #investirdijon #premierachat"
+    }
+   ]
+  },
+  {
+   "ref": "507",
+   "src": "assets/biens/507/video.mp4",
+   "mot": "POTENTIEL",
+   "nom": "t2-dijon-a-rafraichir",
+   "mode": "photos",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": true,
+     "style": "autre",
+     "accroche": "Une cave voûtée|de plus de 15 m²",
+     "photos": [
+      10,
+      1,
+      3,
+      8,
+      4,
+      2
+     ],
+     "lignes": [
+      "Chambre 20 m²",
+      "Deux cheminées",
+      "",
+      "Double vitrage"
+     ],
+     "legende": "Un T2 de 44,30 m² Carrez au premier étage d’une copropriété ancienne, et sous tes pieds une grande cave voûtée de plus de 15 m².\n\nCommente POTENTIEL et je t’envoie la visite complète en privé 📩\n\n#cavevoutee #charmedelancien #dijon #t2arafraichir #immobilierancien"
+    },
+    {
+     "id": "v2",
+     "instagram": false,
+     "style": "question",
+     "accroche": "Ce mur framboise,|tu le repeins en quoi ?",
+     "photos": [
+      1,
+      3,
+      4,
+      2,
+      6,
+      10
+     ],
+     "lignes": [
+      "Cheminée",
+      "Cuisine",
+      "",
+      "Cave voûtée"
+     ],
+     "legende": "Un rafraîchissement global est à prévoir : c’est le moment de choisir tes couleurs dans ce T2 plein de charme 🎨\n\nCommente POTENTIEL et je t’envoie la visite complète en privé 📩\n\n#decoration #projetrenovation #coupdepinceau #appartdijon #avantapres"
+    },
+    {
+     "id": "v3",
+     "instagram": false,
+     "style": "revelation",
+     "accroche": "Tu pensais à un T2 banal ?|Regarde les cheminées",
+     "photos": [
+      2,
+      8,
+      1,
+      3,
+      5,
+      7
+     ],
+     "lignes": [
+      "Charme de l’ancien",
+      "Chambre parquet",
+      "",
+      "Salle d’eau"
+     ],
+     "legende": "Deux belles cheminées en bon état, du parquet dans la chambre et des volets roulants : l’ancien comme on l’aime 🔥\n\nCommente POTENTIEL et je t’envoie la visite complète en privé 📩\n\n#cheminee #parquetancien #appartementancien #dijonchic #charme"
+    },
+    {
+     "id": "v4",
+     "instagram": false,
+     "style": "defi_1pourcent",
+     "accroche": "99 % ratent|la deuxième cheminée",
+     "photos": [
+      3,
+      4,
+      1,
+      2,
+      10,
+      8
+     ],
+     "lignes": [
+      "Cuisine",
+      "Chambre 20 m²",
+      "",
+      "Regarde bien"
+     ],
+     "legende": "Mets pause et cherche-la : ce T2 de 47,70 m² au sol cache deux cheminées. Tu l’as trouvée ? 🔍\n\nCommente POTENTIEL et je t’envoie la visite complète en privé 📩\n\n#defi #metspause #t2dijon #observation #immobilierdijon"
+    }
+   ]
+  }
+ ]
+}
