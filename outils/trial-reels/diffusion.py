@@ -45,9 +45,14 @@ REGISTRE = os.path.join(ICI, 'registre.json')
 JUGE = os.path.join(ICI, 'juge.json')
 JOUR = dt.timedelta(hours=24)
 RESEAUX = {  # plafond sur 24 h glissantes, écart minimal, horizon de diffusion après la Trial Reel
-    'tiktok': {'plafond': 10, 'ecart': dt.timedelta(minutes=45)},
-    'youtube': {'plafond': 20, 'ecart': dt.timedelta(minutes=30)},
-    'facebook': {'plafond': 5, 'ecart': dt.timedelta(minutes=120)},
+    # 23/11/2026, Shawez : « sans la musique, ça marche pas ». Les fichiers fabriqués jusqu'ici ont une piste
+    # son VIDE (anullsrc) : la musique n'existe que sur Instagram, ajoutée par audioConfiguration. Sur TikTok,
+    # YouTube et Facebook ils partaient donc muets. Plafond à 0 tant que fabriquer.py n'intègre pas une musique
+    # dans le fichier (voir MUSIQUE dans fabriquer.py). Ne remonte ces trois plafonds que pour des versions
+    # fabriquées AVEC musique.
+    'tiktok': {'plafond': 0, 'ecart': dt.timedelta(minutes=45)},
+    'youtube': {'plafond': 0, 'ecart': dt.timedelta(minutes=30)},
+    'facebook': {'plafond': 0, 'ecart': dt.timedelta(minutes=120)},
     'threads': {'plafond': 20, 'ecart': dt.timedelta(minutes=30)},
     'linkedin': {'plafond': 8, 'ecart': dt.timedelta(minutes=90)},
     # Ajoutés le 01/11/2026 : trois canaux déjà connectés à Metricool et jamais utilisés. Pinterest est un

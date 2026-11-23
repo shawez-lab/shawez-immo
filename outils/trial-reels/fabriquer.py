@@ -29,6 +29,7 @@ import io
 import os
 import subprocess
 import sys
+import random
 import tempfile
 
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
@@ -158,6 +159,9 @@ def duree_accroche(texte):
     return max(2.4, min(3.4, 1.5 + 0.13 * len(texte.replace('|', ' ').split())))
 
 
+MUSIQUE = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'musique')
+
+
 def monter(src, version, mot, sortie, tmp, prive=False):
     plans = version['plans']
     entrees = ['-i', src]
@@ -205,10 +209,25 @@ def monter(src, version, mot, sortie, tmp, prive=False):
         filtres.append(f"[{courant}][c{j}]overlay=0:0:enable='between(t,{d0:.3f},{d1:.3f})':eof_action=pass[o{j}]")
         courant = f'o{j}'
     filtres.append(f'[{courant}]format=yuv420p[v]')
-    entrees += ['-f', 'lavfi', '-t', f'{total:.3f}', '-i', 'anullsrc=channel_layout=stereo:sample_rate=48000']
+    # MUSIQUE (23/11/2026). Avant : piste son vide, la musique n'existait que sur Instagram et la vidéo
+    # partait muette sur TikTok, YouTube et Facebook. Maintenant une musique libre de droits du dossier
+    # musique/ est intégrée dans le fichier, avec un fondu à l'entrée et à la sortie. Dossier vide : silence,
+    # et diffusion.py garde TikTok, YouTube et Facebook à 0 pour ces versions.
+    pistes = sorted(f for f in os.listdir(MUSIQUE) if f.lower().endswith(('.mp3', '.m4a', '.wav'))) \
+        if os.path.isdir(MUSIQUE) else []
     audio = len(calques) + 1
+    if pistes:
+        piste = os.path.join(MUSIQUE, random.Random(sortie).choice(pistes))
+        entrees += ['-stream_loop', '-1', '-i', piste]
+        filtres.append(f'[{audio}:a]atrim=0:{total:.3f},asetpts=PTS-STARTPTS,volume=0.9,'
+                       f'afade=t=in:st=0:d=0.4,afade=t=out:st={max(0.0, total - 1.2):.3f}:d=1.2,'
+                       f'aformat=sample_rates=48000:channel_layouts=stereo[a]')
+        carte_audio = '[a]'
+    else:
+        entrees += ['-f', 'lavfi', '-t', f'{total:.3f}', '-i', 'anullsrc=channel_layout=stereo:sample_rate=48000']
+        carte_audio = f'{audio}:a'
     cmd = ['ffmpeg', '-v', 'error', '-y'] + entrees + [
-        '-filter_complex', ';'.join(filtres), '-map', '[v]', '-map', f'{audio}:a',
+        '-filter_complex', ';'.join(filtres), '-map', '[v]', '-map', carte_audio,
         # Réglages du 06/11/2026. Avant : CRF 24, soit 2,5 Mbps. Shawez : « la qualité est complètement
         # éclatée ». Instagram recompresse TOUT ce qu'on lui envoie : lui donner un fichier déjà écrasé,
         # c'est deux compressions l'une sur l'autre, et ça se voit sur les visages et les cheveux.
