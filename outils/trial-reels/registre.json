@@ -28024,7 +28024,15 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://111d7a31.shawez-immo.pages.dev/trial/2026-11-21/hotel-beaune-etages-527-v1.mp4",
-   "instagram": true
+   "instagram": true,
+   "diffusions": {
+    "threads": {
+     "uuid": "-4204283807752306232",
+     "url": "",
+     "date": "2026-11-23",
+     "heure": "11:00"
+    }
+   }
   },
   {
    "id": "TR-2111-527-v2b",
