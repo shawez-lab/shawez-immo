@@ -224,3 +224,10 @@ if __name__ == '__main__':
         print('pages liées :', n, 'pages mises à jour')
     except Exception as e:
         print('seo :', e)
+    # Templates copied by the generators above can carry another page's language links.
+    # Run last, including after plan_du_site, and keep real FR/EN/NL families together.
+    from seo.hreflang import normaliser_site
+    langues = normaliser_site(ROOT, chemins=pages(), ecrire=True)
+    print('hreflang :', len(langues['modifiees']), 'pages corrigées')
+    if langues['ambigues']:
+        print('hreflang : familles ambiguës conservées', ', '.join(langues['ambigues']))
