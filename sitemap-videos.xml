@@ -89,17 +89,6 @@
     </video:video>
   </url>
   <url>
-    <loc>https://shawez-immo.com/biens/512-appartement-chenove/</loc>
-    <video:video>
-      <video:thumbnail_loc>https://shawez-immo.com/assets/biens/512/video-poster.jpg</video:thumbnail_loc>
-      <video:title>Visite en vidéo : Appartement 4 pièces, 93,17 m² à Chenôve</video:title>
-      <video:description>Visite en vidéo : Appartement 4 pièces, 93,17 m² à Chenôve</video:description>
-      <video:content_loc>https://shawez-immo.com/assets/biens/512/video.mp4</video:content_loc>
-      <video:duration>24</video:duration>
-      <video:publication_date>2026-10-10</video:publication_date>
-    </video:video>
-  </url>
-  <url>
     <loc>https://shawez-immo.com/biens/519-appartement-dijon/</loc>
     <video:video>
       <video:thumbnail_loc>https://shawez-immo.com/assets/biens/519/video-poster.jpg</video:thumbnail_loc>

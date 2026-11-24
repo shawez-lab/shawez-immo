@@ -140,3 +140,12 @@ Chaque passage de `outils/sync_annonces.py` ajoute ici les changements constaté
 - Nouvelle annonce 485 : Maison à Saint-Vallier, 160 000 €.
 - Annonce 474 : prix 79 800 € → 69 500 €.
 - Annonce 452IMMEUBLE : absente des pages de l'agence et fiche hors ligne, sans mention → « retirée ».
+
+## 2026-11-24
+
+- Annonce 501 : statut « en vente » → « sous offre » (mention de l'agence : Sous-offre, Exclusivité, Coup de coeur).
+- Annonce 500A : statut « en vente » → « sous offre » (mention de l'agence : Sous-offre, Coup de coeur).
+- Annonce 415A : absente des pages de l'agence et fiche hors ligne, sans mention → « retirée ».
+- Annonce 485 : absente des pages de l'agence et fiche hors ligne, sans mention → « retirée ».
+- Annonce 494 : absente des pages de l'agence et fiche hors ligne, sans mention → « retirée ».
+- Annonce 512 : absente des pages de l'agence et fiche hors ligne, sans mention → « retirée ».
