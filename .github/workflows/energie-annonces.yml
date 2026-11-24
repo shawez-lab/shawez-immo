@@ -1,9 +1,9 @@
 name: Tests DPE et GES sur fiches réelles
 on:
   push:
-    paths: ['outils/sync_annonces.py', 'outils/energie_annonces.py', 'outils/tests-annonces/**', '.github/workflows/energie-annonces.yml']
+    paths: ['outils/sync_annonces.py', 'outils/energie_annonces.py', 'outils/biens/build_biens.py', 'outils/biens/commun.py', 'outils/seo/search_reponses.py', 'outils/tests-annonces/**', '.github/workflows/energie-annonces.yml']
   pull_request:
-    paths: ['outils/sync_annonces.py', 'outils/energie_annonces.py', 'outils/tests-annonces/**', '.github/workflows/energie-annonces.yml']
+    paths: ['outils/sync_annonces.py', 'outils/energie_annonces.py', 'outils/biens/build_biens.py', 'outils/biens/commun.py', 'outils/seo/search_reponses.py', 'outils/tests-annonces/**', '.github/workflows/energie-annonces.yml']
 permissions:
   contents: read
 jobs:
