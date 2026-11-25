@@ -1105,7 +1105,18 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
 #menu .m-alt+.m-alt{margin-top:10px;}
 </style>
 <style id="nav-location">@media(min-width:760px){#nav .brand{flex-shrink:0;}}@media(max-width:1439px){.nav-links{gap:16px;}}@media(max-width:1380px){.nav-links{display:none;} #burger{display:inline-flex;align-items:center;gap:8px;} .nav-cta .btn-primary{display:none;}}</style>
-<link rel="stylesheet" href="/assets/search-reponses.css"></head>
+<link rel="stylesheet" href="/assets/search-reponses.css"><style id="acquisition-estimation-style">
+.acq-est{display:grid;gap:12px;margin:22px 0;padding:clamp(16px,2.3vw,26px);border:1px solid var(--line-strong,#d8d1c4);border-radius:var(--r-m,12px);background:var(--surface,#faf8f3);color:var(--ink,#29251e);text-align:left;max-width:760px;box-sizing:border-box}
+.acq-est.acq-est-main{margin:24px auto;width:calc(100% - 2 * var(--gutter,24px))}
+.acq-est .acq-est-title{font-family:inherit;font-size:clamp(1.1rem,1.6vw,1.35rem);line-height:1.3;font-weight:700;margin:0;color:inherit;letter-spacing:normal}
+.acq-est .acq-est-copy{font-size:.96rem;line-height:1.5;margin:0;color:inherit;max-width:60ch}
+.acq-est .acq-est-actions{display:flex;align-items:center;gap:12px 18px;flex-wrap:wrap;margin:0}
+.acq-est .acq-est-actions .btn{white-space:normal;text-align:center;line-height:1.35;min-height:48px;font-size:.96rem;padding:12px 20px}
+.acq-est .acq-est-call{color:inherit;font-size:.92rem;text-underline-offset:3px}
+.acq-est a:focus-visible{outline:3px solid var(--accent,#b5891f);outline-offset:4px}
+@media(max-width:480px){.acq-est .acq-est-actions{align-items:stretch;flex-direction:column}.acq-est .acq-est-call{text-align:center;padding:5px}}
+</style>
+</head>
 <body data-route="/vendre">
 <header id="nav">
   <a class="brand" href="/" aria-label="Shawez Ali — accueil"><img class="lg-ink" src="/assets/logo-horiz-ink.webp" alt="Shawez Ali" width="1259" height="176" decoding="async"><img class="lg-ivory" src="/assets/logo-horiz-ivory.webp" alt="" width="1259" height="176" decoding="async" aria-hidden="true"></a>
@@ -1163,6 +1174,8 @@ body{font-family:var(--font-text);font-kerning:normal;text-rendering:optimizeLeg
       <p class="label">Vendre à Dijon</p>
       <h1 class="display d-xl" style="margin-top:14px;max-width:18ch;">Vendre votre maison ou votre appartement à Dijon, au bon prix</h1><!-- search-reponses --><div class="search-reponses"><div class="search-reponse"><p class="label">Vendre sa maison rapidement à Dijon</p><p>Un prix argumenté par les ventes réelles, un dossier préparé et une présentation claire sont les leviers pour vendre. Shawez Ali, agent immobilier chez GRAVELIN IMMO à Dijon, réalise l’estimation offerte, organise les photos et le film, puis suit les visites et la négociation sans promettre un délai de recherche d’acheteur.</p></div><div class="search-reponse"><p class="label">Combien de temps pour vendre une maison à Dijon ?</p><p>Il faut habituellement compter environ trois mois entre le compromis et l’acte authentique, selon le financement, les conditions suspensives et la préparation du dossier ; ce n’est pas un délai légal fixe. Le temps nécessaire pour trouver l’acheteur dépend du bien et du prix de départ. Shawez Ali, agent immobilier chez GRAVELIN IMMO à Dijon, suit le dossier jusqu’à la signature chez le notaire.</p></div></div><!-- /search-reponses -->
       <p class="lede" style="color:var(--night-muted);">À Dijon, dans la métropole et à Beaune, je vous accompagne pour vendre votre maison ou votre appartement. Une vente bloque pour trois raisons&nbsp;: un prix faux, une annonce qui ne donne pas envie, un vendeur laissé sans nouvelles. Ici, vous évitez les trois. Et l'estimation est offerte, sans engagement.</p>
+<!-- acquisition-estimation --><aside class="acq-est" aria-label="Votre estimation avec Shawez"><p class="acq-est-title">Votre bien à Dijon : parlons de sa valeur.</p><p class="acq-est-copy">Une estimation offerte et sans engagement, étudiée personnellement par Shawez Ali.</p><div class="acq-est-actions"><a class="btn btn-primary" href="/estimation-immobiliere-dijon/?commune=Dijon&amp;origine=%2Fvendre-bien-immobilier-dijon%2F#formulaire">Demander mon estimation à Shawez <span aria-hidden="true">→</span></a><a class="acq-est-call" href="tel:+33767579228">Appeler le 07 67 57 92 28</a></div></aside><!-- /acquisition-estimation -->
+
       <div class="btn-row" style="margin-top:28px;"><a class="btn btn-primary btn-lg" href="/estimer/">Connaître le prix de mon bien <span class="arw">→</span></a><a class="btn btn-lg" href="/contact/#rdv">Prendre rendez-vous</a></div>
     </div>
   </div>

@@ -152,6 +152,10 @@ def patch(s, f=''):
         sys.path.insert(0, P('outils', 'seo'))
         from search_reponses import appliquer
         s = appliquer(s, '/' + f.removesuffix('index.html'), ROOT)
+        from acquisition_estimation import appliquer as acquisition
+        s = acquisition(s, '/' + f.removesuffix('index.html'), ROOT)
+        from estimation_secteurs import appliquer as secteurs_estimation
+        s = secteurs_estimation(s, '/' + f.removesuffix('index.html'), ROOT)
     return patch_chat(s, f)
 
 def patch_chat(s, f=''):

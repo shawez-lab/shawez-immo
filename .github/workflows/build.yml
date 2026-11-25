@@ -11,6 +11,8 @@ on:
       - 'assets/**'
       - 'outils/build.py'
       - 'outils/seo/hreflang.py'
+      - 'outils/seo/acquisition_estimation.py'
+      - 'outils/seo/estimation_secteurs.py'
       - 'outils/seo/dijon_quartiers.py'
       - 'outils/seo/dijon-quartiers.geojson'
   workflow_dispatch: {}
