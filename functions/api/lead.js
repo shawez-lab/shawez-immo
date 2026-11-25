@@ -29,6 +29,21 @@ function surfaceLue(v) {
   return Number.isFinite(n) && n > 0 && n <= 100000 ? Math.round(n) : null;
 }
 
+/* Attribution facultative : chemins publics sans requête ni fragment, libellés de campagne bornés.
+   Aucun référent externe, adresse complète ni paramètre libre n'est conservé. Une valeur inutilisable
+   est simplement ignorée : elle ne doit pas empêcher l'enregistrement d'une demande. */
+function attributionLue(v) {
+  if (!v || typeof v !== 'object' || Array.isArray(v)) return {};
+  const out = {};
+  if (typeof v.origine === 'string' && v.origine.length <= 240
+    && /^\/(?:[a-z0-9-]+\/)*$/.test(v.origine)
+    && !/^\/(?:admin|mon-espace|api)(?:\/|$)/.test(v.origine)) out.origine = v.origine;
+  for (const k of ['utm_source', 'utm_medium', 'utm_campaign']) {
+    if (typeof v[k] === 'string' && /^[a-zA-Z0-9_-]{1,80}$/.test(v[k]) && !/[0-9]{9,}/.test(v[k])) out[k] = v[k];
+  }
+  return out;
+}
+
 export async function onRequest(context) {
   const { request, env } = context;
   try {
@@ -63,11 +78,12 @@ async function recevoir(ctx) {
     pieces_libelle: piecesLibelle,
     delai: DELAIS[d.delai] || 'nsp',
     delai_libelle: texte(d.delai, 60, { nom: 'delai' }),
-    deja_en_agence: d.deja_en_agence === true,
+    deja_en_agence: typeof d.deja_en_agence === 'boolean' ? d.deja_en_agence : null,
     creneau: texte(d.creneau, 30, { nom: 'creneau' }),
     message: texte(d.message, 1500, { nom: 'message' }),
     newsletter: d.consent_newsletter === true,
     formulaire: 'estimation-immobiliere-dijon',
+    attribution: attributionLue(d.attribution),
   };
   // « Demander une visite » depuis une fiche /biens/… : même circuit, la demande porte le bien concerné.
   const visite = d.formulaire === 'visite-bien';
@@ -90,9 +106,13 @@ async function recevoir(ctx) {
   const base = await db(env);
   const ref = reference();
   const t = maintenant();
-  const notes = visite
+  let notes = visite
     ? `Demande de visite du bien réf. ${rep.bien.ref}${rep.bien.titre ? ' (' + rep.bien.titre + ')' : ''} depuis ${rep.bien.url || 'shawez-immo.com'} : rappeler pour fixer la visite.`
     : 'Formulaire « être rappelé » (page Estimation) : pas de fourchette automatique, rappel au plus vite.';
+  const provenance = [rep.attribution.origine,
+    ...['utm_source', 'utm_medium', 'utm_campaign'].filter(k => rep.attribution[k]).map(k => `${k}=${rep.attribution[k]}`),
+  ].filter(Boolean).join(' · ');
+  if (provenance) notes += `\nProvenance : ${provenance}`;
   await base.prepare(
     `INSERT INTO demandes (reference, compte_id, source, type, adresse, code_postal, commune, reponses, contact, cree_le, suspect, notes)
      VALUES (?1, NULL, ?2, ?3, '', '', ?4, ?5, ?6, ?7, ?8, ?9)`
@@ -109,7 +129,7 @@ async function alerter(env, request, ref, rep, c) {
   const lignes = [
     ['Contact', nom], ['Téléphone', c.telephone || '(non donné)'], ['E-mail', c.email],
     ['Bien', [typeLib, rep.commune, rep.surface ? rep.surface + ' m²' : '', rep.pieces_libelle].filter(Boolean).join(' · ')],
-    ['Projet', rep.delai_libelle], ['Déjà en agence', rep.deja_en_agence ? 'oui (second avis)' : 'non'],
+    ['Projet', rep.delai_libelle], ['Déjà en agence', rep.deja_en_agence === true ? 'oui (second avis)' : rep.deja_en_agence === false ? 'non' : 'non renseigné'],
     ['Rappel souhaité', rep.creneau], ['Message', rep.message], ['Fourchette', 'aucune (formulaire « être rappelé ») : rappel promis au plus vite'],
   ].filter(([, v]) => v);
   if (rep.bien) {
@@ -118,6 +138,9 @@ async function alerter(env, request, ref, rep, c) {
       ['Fiche', rep.bien.url], ['Disponibilités', rep.creneau], ['Message', rep.message]);
     for (let i = lignes.length - 1; i >= 0; i--) if (!lignes[i][1]) lignes.splice(i, 1);
   }
+  if (rep.attribution.origine) lignes.push(['Page d’origine', rep.attribution.origine]);
+  const campagne = ['utm_source', 'utm_medium', 'utm_campaign'].filter(k => rep.attribution[k]).map(k => `${k}=${rep.attribution[k]}`).join(' · ');
+  if (campagne) lignes.push(['Provenance', campagne]);
   const admin = new URL('/admin/?q=' + encodeURIComponent(ref), request.url).toString();
   const boutons = (c.telephone ? bouton('tel:' + c.telephone.replace(/[^\d+]/g, ''), 'Appeler ' + c.prenom, true) : '')
     + bouton('mailto:' + c.email + '?subject=' + encodeURIComponent('Votre demande d\'estimation ' + ref), 'Répondre', !c.telephone);
