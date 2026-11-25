@@ -21,6 +21,8 @@ FIABILITE = ('Une estimation en ligne donne une fourchette indicative à partir 
 LANGUES = ['fr', 'en', 'hi', 'ur', 'pa', 'fa', 'el', 'ar']
 MAP = 'https://www.google.com/maps/search/?api=1&query=Shawez%20Ali&query_place_id=ChIJqQpGAKPcg6gRg_CLthoGaP8'
 SITE = 'https://shawez-immo.com'
+# Compte TikTok connecté à Metricool, vérifié le 25 novembre 2026.
+TIKTOK = 'https://www.tiktok.com/@shawez_immo'
 TITRES = {
     '/vendre-bien-immobilier-dijon/': ('Vendre sa maison ou son appartement à Dijon | Shawez Ali', 'Vendre votre maison ou votre appartement à Dijon, au bon prix'),
     '/vendre-commerce-dijon/': ('Vendre un fonds de commerce à Dijon, en toute discrétion | Shawez Ali', 'Vendre votre fonds de commerce à Dijon, au bon prix et en toute discrétion'),
@@ -112,7 +114,10 @@ def balisage(s, chemin=''):
                 if n.get('hasMap'):
                     n['hasMap'] = MAP
                 if n.get('sameAs'):
-                    n['sameAs'] = list(dict.fromkeys(MAP if 'query_place_id=ChIJqQpGAKPcg6gRg_CLthoGaP8' in u else u for u in n['sameAs'] if '@gravelinimmo' not in u))
+                    n['sameAs'] = list(dict.fromkeys(
+                        MAP if 'query_place_id=ChIJqQpGAKPcg6gRg_CLthoGaP8' in u else
+                        TIKTOK if u.rstrip('/') == 'https://www.tiktok.com/@shawez_immobilier' else u
+                        for u in n['sameAs'] if '@gravelinimmo' not in u))
                 n['sameAs'] = list(dict.fromkeys(n.get('sameAs', []) + [CYLEX]))
             if ident == SITE + '/#gravelin':
                 n.pop('openingHoursSpecification', None)
