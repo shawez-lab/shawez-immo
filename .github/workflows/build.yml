@@ -13,6 +13,9 @@ on:
       - 'outils/seo/hreflang.py'
       - 'outils/seo/acquisition_estimation.py'
       - 'outils/seo/estimation_secteurs.py'
+      - 'outils/seo/fraicheur.py'
+      - 'outils/seo/modifications-significatives.json'
+      - 'outils/seo/search_reponses.py'
       - 'outils/seo/dijon_quartiers.py'
       - 'outils/seo/dijon-quartiers.geojson'
   workflow_dispatch: {}
@@ -44,7 +47,7 @@ jobs:
         run: |
           git config user.name "build-site"
           git config user.email "build-site@users.noreply.github.com"
-          git add -A conseils '*.html'
+          git add -A conseils '*.html' sitemap.xml
           if git diff --cached --quiet; then
             echo "Rien à reconstruire."
           else

@@ -17,6 +17,7 @@
 """
 import datetime as dt, glob, html, json, os, re, subprocess, sys
 from zoneinfo import ZoneInfo
+from pathlib import Path
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = 'https://shawez-immo.com'
@@ -235,3 +236,17 @@ if __name__ == '__main__':
     print('hreflang :', len(langues['modifiees']), 'pages corrigées')
     if langues['ambigues']:
         print('hreflang : familles ambiguës conservées', ', '.join(langues['ambigues']))
+
+    # Dates des changements de contenu établis : ne pas les confondre avec le millésime DVF.
+    from seo.fraicheur import appliquer_page as dater_page, appliquer_sitemap as dater_sitemap
+    for f in pages():
+        p = Path(P(f))
+        source = p.read_text(encoding='utf-8')
+        cible = dater_page(source, '/' + f.removesuffix('index.html'), ROOT)
+        if cible != source:
+            p.write_text(cible, encoding='utf-8')
+    p = Path(P('sitemap.xml'))
+    source = p.read_text(encoding='utf-8')
+    cible = dater_sitemap(source, ROOT)
+    if cible != source:
+        p.write_text(cible, encoding='utf-8')
