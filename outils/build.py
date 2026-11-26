@@ -33,6 +33,8 @@ OAI = '<script src="/assets/oai-mesure.js" defer></script>'
 # 5. Assistant du site, bulle en bas a droite : /assets/chat/chat.js, branche sur /api/chat.
 #    Jamais sur les pages privees (admin/, mon-espace/).
 CHAT = '<script src="/assets/chat/chat.js" defer></script>'
+# Provenance des liens d'estimation : paramètres de campagne validés, sans collecte ni stockage.
+PROVENANCE = '<script src="/assets/estimation-provenance.js" defer></script>'
 
 PRIVEES = ('admin/', 'mon-espace/')
 SANS_PARAM = ('estimer/',)
@@ -157,7 +159,17 @@ def patch(s, f=''):
         s = acquisition(s, '/' + f.removesuffix('index.html'), ROOT)
         from estimation_secteurs import appliquer as secteurs_estimation
         s = secteurs_estimation(s, '/' + f.removesuffix('index.html'), ROOT)
-    return patch_chat(s, f)
+    return patch_chat(patch_provenance(s, f), f)
+
+def patch_provenance(s, f=''):
+    """Conserve l'origine de campagne jusqu'au formulaire personnel d'estimation."""
+    if f.startswith(PRIVEES + ('estimer/', 'merci/')):
+        return s.replace(PROVENANCE + '\n', '').replace(PROVENANCE, '')
+    if PROVENANCE not in s and re.search(r'''(?:href|action)=["']/estimation-immobiliere-dijon/''', s):
+        i = s.rfind('</body>')
+        if i >= 0:
+            s = s[:i] + PROVENANCE + '\n' + s[i:]
+    return s
 
 def patch_chat(s, f=''):
     """Bulle seule : aucune modification des mesures, du RSS, des liens ni des pages métier."""
