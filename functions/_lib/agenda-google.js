@@ -2,7 +2,7 @@
    Les secrets sont fournis uniquement par l'environnement de production.
    La base du site reste la source de vérité ; les réservations directes
    sont provisoires jusqu'à confirmation par l'agence. Aucun invité ajouté. */
-const PREFIX = 'shawez';
+const PREFIX = 'ag'; // alphabet base32hex accepté par Google Agenda
 const TOKEN_URL = 'https://oauth2.googleapis.com/token';
 const API_URL = 'https://www.googleapis.com/calendar/v3/calendars/';
 const PARIS = 'Europe/Paris';
@@ -33,7 +33,7 @@ export function evenementSouhaite(d, maintenant, depuis) {
     if (Array.isArray(liste) && liste.length === 1) { debut = liste[0]; provisoire = true; }
   }
   if (!dateValide(debut) || Date.parse(debut) <= maintenant ||
-      (!d.event_id && Date.parse(d.maj_le || d.fixee_le || d.demandee_le || d.cree_le) < depuis)) return null;
+      (!d.event_id && !(Date.parse(d.maj_le || d.fixee_le || d.demandee_le || d.cree_le) >= depuis))) return null;
   const duree = Number(d.duree) || 45;
   if (duree < 1 || duree > 480) return null;
   const type = objet(d.reponses).autre_type === 'visite_bien' ? 'Visite immobilière' : 'Rendez-vous immobilier';
@@ -119,16 +119,16 @@ export async function synchroniserAgendaGoogle(ctx, base, fetcher = fetch) {
     for (const d of [...(r.results || []), ...(absents.results || [])]) {
       const evt = evenementSouhaite(d, now, depuis);
       // Conserver l'historique d'un rendez-vous terminé, sauf suppression explicite.
-      if (!evt && d.event_id && d.etat === 'fixee' && dateValide(d.debut) && Date.parse(d.debut) <= now && d.debut === d.ancien_debut && !d.suspect && !d.en_attente && !['pause','close'].includes(d.statut)) continue;
+      if (!evt && d.event_id && d.etat === 'fixee' && dateValide(d.debut) && Date.parse(d.debut) <= now && d.debut === d.ancien_debut) continue;
       if (!evt && !d.event_id) continue;
-      const empreinte = evt ? JSON.stringify(evt) : '';
+      const empreinte = evt ? Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(JSON.stringify(evt)))), b => b.toString(16).padStart(2, '0')).join('') : '';
       if (evt && d.empreinte === empreinte) continue;
       operations.push({ d, evt, empreinte });
     }
     if (!operations.length) return { etat: 'ok', n, erreurs };
     const token = await jetonGoogle(env, fetcher);
     // Limiter les appels et garder un temps total inférieur à la durée du verrou.
-    for (const { d, evt, empreinte } of operations.slice(0, 8)) {
+    for (const { d, evt, empreinte } of operations.slice(0, 4)) {
       let id = d.event_id;
       try {
         if (!id) {
