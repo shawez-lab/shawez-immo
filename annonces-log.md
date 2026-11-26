@@ -149,3 +149,7 @@ Chaque passage de `outils/sync_annonces.py` ajoute ici les changements constaté
 - Annonce 485 : absente des pages de l'agence et fiche hors ligne, sans mention → « retirée ».
 - Annonce 494 : absente des pages de l'agence et fiche hors ligne, sans mention → « retirée ».
 - Annonce 512 : absente des pages de l'agence et fiche hors ligne, sans mention → « retirée ».
+
+## 2026-11-26
+
+- Nouvelle annonce 530 : Maison à Bligny-sur-Ouche, 249 000 €.
