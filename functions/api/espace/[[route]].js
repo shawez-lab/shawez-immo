@@ -92,6 +92,7 @@ import { envoyer, mailPossible, mailClients, peutEcrire, destinatairesAlerte, ad
 import { deposer, lire as lireFichier, supprimerFichier, fichiersDe, supprimerFichiersDe, TAILLE_MAX } from '../../_lib/fichiers.js';
 import { mesurer, tableau, delaiFr, PROMESSES, PERIODES } from '../../_lib/promesses.js';
 import { agendaOccupe, retirerOccupes, adresseIcsValide } from '../../_lib/agenda.js';
+import { agendaGoogleConfigure, lancerAgendaGoogle } from '../../_lib/agenda-google.js';
 import { ombre, rapportOmbre, socleConfigure } from '../../_lib/socle.js';
 
 export async function onRequest(context) {
@@ -1712,7 +1713,10 @@ async function rdvExpress(ctx) {
   await journal(base, dem.id, 'visite_demandee', 'client', { creneaux: [creneau], deplacee: false }).catch(() => {});
 
   if (bien && !robot && !essai(contact)) await compterBien(base, bien, 'rdv').catch(() => {});
-  if (!robot && !essai(contact)) ctx.waitUntil(alerteVisite(env, request, dem, contact, [creneau], message, false).catch((e) => console.log('alerte rdv', e && e.message)));
+  if (!robot && !essai(contact)) {
+    ctx.waitUntil(alerteVisite(env, request, dem, contact, [creneau], message, false).catch((e) => console.log('alerte rdv', e && e.message)));
+    lancerAgendaGoogle(ctx, base);
+  }
   return json(201, { reference: ref, creneau, quand: quandFr(creneau) });
 }
 
@@ -1790,6 +1794,7 @@ async function visiteDemander(ctx) {
 
   const contact = lireJson(dem.contact);
   if (!adresseDeTest(contact.email)) ctx.waitUntil(alerteVisite(env, request, dem, contact, liste, message, !!fixee).catch((e) => console.log('alerte visite', e && e.message)));
+  lancerAgendaGoogle(ctx, base);
   return json(201, { ...suiviVendeur(dem, v, {}), parcours: undefined });
 }
 
@@ -1827,6 +1832,7 @@ async function adminVisite(ctx) {
     if (!ancienne || ancienne.etat === 'annulee') throw new Erreur(404, 'introuvable');
     await base.prepare("UPDATE visites SET etat = 'annulee', maj_le = ?1 WHERE id = ?2").bind(t, ancienne.id).run();
     await journal(base, id, 'visite_annulee', 'agence', ancienne.debut ? { debut: ancienne.debut } : null);
+    lancerAgendaGoogle(ctx, base);
     return json(200, { demande: vueAgence(dem, null, (await etatOffres(base, id)).get(id)), mail: 'non' });
   }
 
@@ -1852,6 +1858,7 @@ async function adminVisite(ctx) {
   if (avant(dem.statut, 'visite')) dem = await changerStatut(ctx, dem, 'visite', { prevenir: false });
   let mail = 'non';
   if (d.prevenir !== false && debut.getTime() > maintenantMs) mail = await annoncer(ctx, dem, mailVisite('confirmation', { debut: iso, adresse: dem.adresse, deplacee }), 'visite_fixee', { visite: iso });
+  lancerAgendaGoogle(ctx, base);
   return json(200, { demande: vueAgence(dem, v, (await etatOffres(base, id)).get(id)), mail });
 }
 
@@ -1895,6 +1902,7 @@ async function taches(ctx) {
   // tests locaux seulement (variable HORLOGE_TEST) : l'heure peut être donnée, pour vérifier le rappel de la veille
   const faux = String(ctx.env.HORLOGE_TEST || '') === '1' ? new Date(new URL(ctx.request.url).searchParams.get('maintenant') || '') : null;
   const now = faux && !Number.isNaN(faux.getTime()) ? faux : new Date();
+  if (agendaGoogleConfigure(ctx.env, ctx.request.url)) lancerAgendaGoogle(ctx, await db(ctx.env));
   return json(200, { ok: true, rappels: await rappels(ctx, now), courriers: await courriersDus(ctx, now) });
 }
 
@@ -1926,6 +1934,7 @@ function tachesAuPassage(ctx) {
   const h = paris(new Date(t)).h;
   if (h >= 18 && h < 21) ctx.waitUntil(rappels(ctx).catch((e) => console.log('taches', e && e.message)));
   if (h >= 8 && h < 21) ctx.waitUntil(courriersDus(ctx).catch((e) => console.log('courriers', e && e.message)));
+  if (agendaGoogleConfigure(ctx.env, ctx.request.url)) ctx.waitUntil(db(ctx.env).then((base) => lancerAgendaGoogle(ctx, base)).catch(() => console.log('agenda_google echec_base')));
 }
 
 /* ---------------------- Avis de valeur ----------------------
