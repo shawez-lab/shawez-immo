@@ -660,7 +660,8 @@
     }
    },
    "pieces": 1,
-   "prix": 54500.0,
+   "prix": 52500.0,
+   "prix_precedent": 54500.0,
    "ref": "431",
    "status": "en vente",
    "status_changed": "2026-09-28",
@@ -5067,6 +5068,20 @@
    "ref": "530",
    "texte": "Maison de 4 pièces, 125 m², à Bligny-sur-Ouche.\n\nPrix : 249 000 €, honoraires inclus.\n\n• Terrain de 510 m²\n• Garage\n• 2 chambres\n\nRéférence 530, GRAVELIN IMMO. Visites et informations : Shawez Ali, 07 67 57 92 28.",
    "titre": "Maison 4 pièces, 125 m² à Bligny-sur-Ouche"
+  },
+  {
+   "action": "mettre à jour",
+   "cle": "prix-52500",
+   "date": "2026-11-26",
+   "lien": "https://shawez-immo.com/biens/431-appartement-dijon/",
+   "photos": [
+    "https://shawez-immo.com/annonces/431/1.jpg",
+    "https://shawez-immo.com/annonces/431/2.jpg",
+    "https://shawez-immo.com/annonces/431/3.jpg"
+   ],
+   "ref": "431",
+   "texte": "Appartement de 1 pièce, 20,55 m², à Dijon.\n\nPrix : 52 500 €, honoraires inclus.\n\n• Cuisine équipée\n• 5e étage\n\nDépenses annuelles d'énergie estimées entre 530 € et 718 € (usage standard).\n\nRéférence 431, GRAVELIN IMMO. Visites et informations : Shawez Ali, 07 67 57 92 28.",
+   "titre": "Appartement 1 pièce, 21 m² à Dijon"
   }
  ]
 }

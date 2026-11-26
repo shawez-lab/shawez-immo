@@ -153,3 +153,7 @@ Chaque passage de `outils/sync_annonces.py` ajoute ici les changements constaté
 ## 2026-11-26
 
 - Nouvelle annonce 530 : Maison à Bligny-sur-Ouche, 249 000 €.
+
+## 2026-11-26
+
+- Annonce 431 : prix 54 500 € → 52 500 €.
