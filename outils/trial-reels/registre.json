@@ -29102,6 +29102,34 @@
    "uuid": "",
    "statut": "publie",
    "media": "https://4970f15b.shawez-immo.pages.dev/trial/2026-11-27/t3-chevigny-terrasse-520-v4.mp4"
+  },
+  {
+   "id": "TR-2711-483-v1b",
+   "date": "2026-11-27",
+   "heure": "10:30",
+   "ref": "483",
+   "mot": "LOFT",
+   "style": "chiffre_choc",
+   "accroche": "178 500 € pour un loft avec sauna privé",
+   "legende": "Tu cherches un pied-à-terre qui ne ressemble à aucun autre ? Ce loft de 42 m² en plein cœur historique de Dijon a son sa",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://d7f852da.shawez-immo.pages.dev/trial/2026-11-27/loft-sauna-dijon-483-v1.mp4"
+  },
+  {
+   "id": "TR-2711-461-v1b",
+   "date": "2026-11-27",
+   "heure": "10:30",
+   "ref": "461",
+   "mot": "MARRAKECH",
+   "style": "autre",
+   "accroche": "Marrakech au fond d’une cour à Dijon",
+   "legende": "Tu passes la porte d’une cour intérieure à Dijon et tu te retrouves à Marrakech. Studio rénové par architecte, à deux pa",
+   "source": "monteur",
+   "uuid": "",
+   "statut": "publie",
+   "media": "https://d7f852da.shawez-immo.pages.dev/trial/2026-11-27/studio-marrakech-dijon-461-v1.mp4"
   }
  ]
 }
