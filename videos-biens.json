@@ -225,7 +225,7 @@
       "ref": "527",
       "libelle": "l’hôtel particulier de Beaune",
       "depuis": "2026-10-29",
-      "jusqu_au": "2026-12-10"
+      "jusqu_au": "2026-12-11"
     },
     {
       "mot": "MARRAKECH",
@@ -239,19 +239,12 @@
       "ref": "438",
       "libelle": "le château près de Beaune",
       "depuis": "2026-11-02",
-      "jusqu_au": "2026-12-10"
+      "jusqu_au": "2026-12-11"
     },
     {
       "mot": "COUCHEY",
       "ref": "509",
       "libelle": "les deux maisons de Couchey",
-      "depuis": "2026-11-06",
-      "jusqu_au": "2026-12-06"
-    },
-    {
-      "mot": "BISTRO",
-      "ref": "494",
-      "libelle": "l’ancien bistro de Bragny-sur-Saône",
       "depuis": "2026-11-06",
       "jusqu_au": "2026-12-06"
     },
@@ -284,25 +277,18 @@
       "jusqu_au": "2026-12-02"
     },
     {
-      "mot": "LUMIÈRE",
-      "ref": "501",
-      "libelle": "l’appartement T3 lumineux à Dijon",
-      "depuis": "2026-11-18",
-      "jusqu_au": "2026-12-02"
-    },
-    {
       "mot": "DUPLEX",
       "ref": "415",
       "libelle": "le duplex en plein cœur de Dijon",
       "depuis": "2026-11-18",
-      "jusqu_au": "2026-12-03"
+      "jusqu_au": "2026-12-11"
     },
     {
       "mot": "CHEVIGNY",
       "ref": "520",
       "libelle": "l’appartement T3 avec jardin de Chevigny-Saint-Sauveur",
       "depuis": "2026-11-18",
-      "jusqu_au": "2026-12-03"
+      "jusqu_au": "2026-12-11"
     },
     {
       "mot": "NEUILLY",
