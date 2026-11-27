@@ -1,0 +1,136 @@
+{
+ "jour": "2026-11-27",
+ "choisir": "choisir.py a rendu 425 513 403 431 ; vivier : 425 513 403 431 483 481 446 507 509 525 461 527 438 415 520",
+ "ecartes": {
+  "425": "face caméra avec sous-titres incrustés (revu 27/11 07h35 et 10h30)",
+  "513": "face caméra avec sous-titres incrustés (revu 27/11 07h35)",
+  "403": "face caméra avec sous-titres incrustés (revu 27/11 07h35)",
+  "431": "face caméra avec sous-titres incrustés (revu 27/11 07h35)",
+  "481": "diaporama déjà monté, texte incrusté sur chaque plan",
+  "446": "diaporama déjà monté, texte incrusté sur chaque plan",
+  "507": "diaporama déjà monté, texte incrusté sur chaque plan",
+  "509": "diaporama déjà monté, texte incrusté sur chaque plan",
+  "525": "prix et texte incrustés en haut de chaque plan"
+ },
+ "remplacants": "suivants du vivier dans l’ordre de choisir.py sans texte incrusté : 483 puis 461. Passage réduit à 2 Trial Reels : juge.json (Chef d’orchestre 27/11) fixe max_par_jour 3 et 16 versions sont déjà parties ce matin.",
+ "biens": [
+  {
+   "ref": "483",
+   "src": "assets/biens/483/video.mp4",
+   "mot": "LOFT",
+   "nom": "loft-sauna-dijon",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": true,
+     "style": "chiffre_choc",
+     "accroche": "178 500 €|pour un loft|avec sauna privé",
+     "publier": "2026-11-27T12:30",
+     "plans": [
+      [
+       20.0,
+       21.8,
+       1
+      ],
+      [
+       24.0,
+       25.8,
+       1,
+       "Jacuzzi balnéo"
+      ],
+      [
+       26.0,
+       27.8,
+       1
+      ],
+      [
+       18.0,
+       19.5,
+       1
+      ],
+      [
+       12.0,
+       13.6,
+       1
+      ],
+      [
+       16.0,
+       17.8,
+       1
+      ],
+      [
+       9.3,
+       10.4,
+       1
+      ],
+      [
+       32.0,
+       34.7,
+       1
+      ]
+     ],
+     "legende": "Tu cherches un pied-à-terre qui ne ressemble à aucun autre ? Ce loft de 42 m² en plein cœur historique de Dijon a son sauna, son jacuzzi balnéo et sa cheminée d’ambiance. Prix : 178 500 €.\n\nCommente LOFT et je t’envoie la visite complète en privé 📩\n\n#loftdijon #saunaprive #jacuzziprive #piedaterre #dijoncentre"
+    }
+   ]
+  },
+  {
+   "ref": "461",
+   "src": "assets/biens/461/video.mp4",
+   "mot": "MARRAKECH",
+   "nom": "studio-marrakech-dijon",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": true,
+     "style": "autre",
+     "accroche": "Marrakech|au fond d’une cour|à Dijon",
+     "publier": "2026-11-27T15:00",
+     "plans": [
+      [
+       4.0,
+       5.8,
+       1
+      ],
+      [
+       0.0,
+       1.8,
+       1
+      ],
+      [
+       13.0,
+       15.0,
+       1,
+       "Baignoire balnéo"
+      ],
+      [
+       8.5,
+       10.3,
+       1
+      ],
+      [
+       1.2,
+       2.8,
+       1
+      ],
+      [
+       17.0,
+       18.6,
+       1
+      ],
+      [
+       24.0,
+       25.6,
+       1
+      ],
+      [
+       29.0,
+       32.0,
+       1
+      ]
+     ],
+     "legende": "Tu passes la porte d’une cour intérieure à Dijon et tu te retrouves à Marrakech. Studio rénové par architecte, à deux pas du parc Darcy. Prix : 129 000 €.\n\nCommente MARRAKECH et je t’envoie la visite complète en privé 📩\n\n#inspirationmarrakech #studiodijon #parcdarcy #courinterieure"
+    }
+   ]
+  }
+ ]
+}
