@@ -2379,8 +2379,8 @@
    "pieces": 7,
    "prix": 415000.0,
    "ref": "500A",
-   "status": "sous offre",
-   "status_changed": "2026-11-24",
+   "status": "retirée",
+   "status_changed": "2026-11-27",
    "surface": 206.0,
    "type": "Maison",
    "visite_virtuelle": null
@@ -2634,7 +2634,7 @@
    "last_seen": "2026-11-27",
    "lien_complet": false,
    "mentions_agence": [
-    "Sous-offre",
+    "Sous-compromis",
     "Exclusivité",
     "Nouveauté"
    ],
@@ -2671,8 +2671,8 @@
    "pieces": 5,
    "prix": 220000.0,
    "ref": "506",
-   "status": "sous offre",
-   "status_changed": "2026-10-17",
+   "status": "sous compromis",
+   "status_changed": "2026-11-27",
    "surface": 84.0,
    "type": "Maison",
    "visite_virtuelle": null
@@ -5082,6 +5082,34 @@
    "ref": "431",
    "texte": "Appartement de 1 pièce, 20,55 m², à Dijon.\n\nPrix : 52 500 €, honoraires inclus.\n\n• Cuisine équipée\n• 5e étage\n\nDépenses annuelles d'énergie estimées entre 530 € et 718 € (usage standard).\n\nRéférence 431, GRAVELIN IMMO. Visites et informations : Shawez Ali, 07 67 57 92 28.",
    "titre": "Appartement 1 pièce, 21 m² à Dijon"
+  },
+  {
+   "action": "mettre à jour",
+   "cle": "retiree",
+   "date": "2026-11-27",
+   "lien": "https://shawez-immo.com/biens/500a-maison-allerey-sur-saone/",
+   "photos": [
+    "https://shawez-immo.com/annonces/500A/1.jpg",
+    "https://shawez-immo.com/annonces/500A/2.jpg",
+    "https://shawez-immo.com/annonces/500A/3.jpg"
+   ],
+   "ref": "500A",
+   "texte": "N'est plus disponible",
+   "titre": "Maison 7 pièces, 206 m² à Allerey-sur-Saône"
+  },
+  {
+   "action": "mettre à jour",
+   "cle": "compromis",
+   "date": "2026-11-27",
+   "lien": "https://shawez-immo.com/biens/506-maison-dijon/",
+   "photos": [
+    "https://shawez-immo.com/annonces/506/1.jpg",
+    "https://shawez-immo.com/annonces/506/2.jpg",
+    "https://shawez-immo.com/annonces/506/3.jpg"
+   ],
+   "ref": "506",
+   "texte": "Sous compromis — Maison de 5 pièces, 84 m², à Dijon.\n\nPrix : 220 000 €, honoraires inclus.\n\n• Terrain de 314 m²\n• Terrasse\n• Garage\n\nDépenses annuelles d'énergie estimées entre 3 630 € et 4 950 € (usage standard).\n\nRéférence 506, GRAVELIN IMMO. Visites et informations : Shawez Ali, 07 67 57 92 28.",
+   "titre": "Maison 5 pièces, 84 m² à Dijon"
   }
  ]
 }

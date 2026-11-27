@@ -157,3 +157,8 @@ Chaque passage de `outils/sync_annonces.py` ajoute ici les changements constaté
 ## 2026-11-26
 
 - Annonce 431 : prix 54 500 € → 52 500 €.
+
+## 2026-11-27
+
+- Annonce 506 : statut « sous offre » → « sous compromis » (mention de l'agence : Sous-compromis, Exclusivité, Nouveauté).
+- Annonce 500A : absente des pages de l'agence et fiche hors ligne, sans mention → « retirée ».
