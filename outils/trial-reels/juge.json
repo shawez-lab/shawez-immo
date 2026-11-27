@@ -1,5 +1,5 @@
 {
- "maj": "2026-11-23T06:56",
+ "maj": "2026-11-27T06:53",
  "regles": {
   "fenetre": "Trial Reels publiés depuis 14 jours, jugés 24 h après publication",
   "gagnant": "au moins 3 fois la médiane du réseau (plancher 30 vues sur Instagram), ou au moins 2 réactions",
@@ -12,44 +12,44 @@
   "mediane_vues": 0,
   "gagnant_des": 30,
   "perdant_sous": 0,
-  "versions_jugees": 114,
-  "versions_en_cours": 8,
+  "versions_jugees": 129,
+  "versions_en_cours": 0,
   "par_reseau": {
    "instagram": {
     "mediane_vues": 0,
     "gagnant_des": 30,
     "perdant_sous": 0,
-    "versions_mesurees": 122
+    "versions_mesurees": 129
    },
    "tiktok": {
-    "mediane_vues": 233,
-    "gagnant_des": 700,
-    "perdant_sous": 116,
-    "versions_mesurees": 34
+    "mediane_vues": 59,
+    "gagnant_des": 177,
+    "perdant_sous": 29,
+    "versions_mesurees": 33
    },
    "youtube": {
-    "mediane_vues": 153,
-    "gagnant_des": 459,
-    "perdant_sous": 76,
-    "versions_mesurees": 29
+    "mediane_vues": 104,
+    "gagnant_des": 313,
+    "perdant_sous": 52,
+    "versions_mesurees": 44
    },
    "facebook": {
     "mediane_vues": 2,
     "gagnant_des": 30,
     "perdant_sous": 1,
-    "versions_mesurees": 18
+    "versions_mesurees": 17
    },
    "threads": {
     "mediane_vues": 2,
     "gagnant_des": 300,
     "perdant_sous": 20,
-    "versions_mesurees": 50
+    "versions_mesurees": 47
    },
    "linkedin": {
-    "mediane_vues": 5,
+    "mediane_vues": 7,
     "gagnant_des": 300,
     "perdant_sous": 20,
-    "versions_mesurees": 17
+    "versions_mesurees": 23
    },
    "pinterest": {
     "mediane_vues": 0,
@@ -77,12 +77,11 @@
   "revelation",
   "defi_1pourcent",
   "question",
+  "detail_surprenant",
   "business",
   "autre"
  ],
- "styles_a_tester": [
-  "detail_surprenant"
- ],
+ "styles_a_tester": [],
  "styles_interdits": [
   "defi_autre",
   "descriptif",
@@ -110,20 +109,20 @@
   "chiffre_choc": {
    "definition": "le prix ou un chiffre fort dès le premier mot (« 2 500 000 € derrière cette porte », « 18 pièces, 520 m², un étang »)",
    "statut": "gagnant",
-   "versions_jugees": 40,
-   "gagnants": 26,
-   "perdants": 1,
+   "versions_jugees": 44,
+   "gagnants": 28,
+   "perdants": 0,
    "mediane_vues": 0,
    "meilleure": {
     "id": "TR-1911-501-v4",
-    "vues": 1046
+    "vues": 1050
    }
   },
   "lieu_exception": {
    "definition": "le bien d'exception annoncé d'emblée, en une phrase courte (« Château du XVIIIe à 15 min de Beaune », « Marrakech, en plein centre de Dijon »)",
    "statut": "gagnant",
-   "versions_jugees": 3,
-   "gagnants": 2,
+   "versions_jugees": 5,
+   "gagnants": 3,
    "perdants": 0,
    "mediane_vues": 0,
    "meilleure": {
@@ -134,49 +133,49 @@
   "revelation": {
    "definition": "une porte, un placard ou une pièce cachée qu'on ouvre (« Tu pensais que c'était un placard ? », « Derrière cette porte… »)",
    "statut": "gagnant",
-   "versions_jugees": 6,
-   "gagnants": 3,
-   "perdants": 1,
+   "versions_jugees": 11,
+   "gagnants": 4,
+   "perdants": 2,
    "mediane_vues": 0,
    "meilleure": {
     "id": "TR-1811-525-x",
-    "vues": 509
+    "vues": 522
    }
   },
   "defi_1pourcent": {
    "definition": "défi pause avec la statistique « Seul 1 % y arrive » ou « 99 % ratent ce moment »",
    "statut": "gagnant",
-   "versions_jugees": 10,
-   "gagnants": 6,
-   "perdants": 1,
-   "mediane_vues": 58,
+   "versions_jugees": 9,
+   "gagnants": 4,
+   "perdants": 0,
+   "mediane_vues": 0,
    "meilleure": {
-    "id": "TR-2011-438-v1d",
-    "vues": 1270
+    "id": "TR-1911-438-v1",
+    "vues": 1539
    }
   },
   "question": {
    "definition": "l'accroche est une question posée au spectateur (« Tu choisis quoi ? », « Un week-end ici, tu dis oui ? »)",
    "statut": "gagnant",
    "versions_jugees": 22,
-   "gagnants": 9,
-   "perdants": 2,
+   "gagnants": 6,
+   "perdants": 3,
    "mediane_vues": 0,
    "meilleure": {
     "id": "TR-1811-501-v3",
-    "vues": 1047
+    "vues": 1048
    }
   },
   "detail_surprenant": {
    "definition": "un équipement inattendu (« Une baignoire balnéo dans 19 m², oui c'est possible »)",
-   "statut": "neutre",
+   "statut": "gagnant",
    "versions_jugees": 2,
-   "gagnants": 0,
+   "gagnants": 2,
    "perdants": 0,
    "mediane_vues": 0,
    "meilleure": {
-    "id": "TR-2011-446-v1",
-    "vues": 37
+    "id": "TR-2011-507-v1",
+    "vues": 175
    }
   },
   "business": {
@@ -188,17 +187,20 @@
    "mediane_vues": 0,
    "meilleure": {
     "id": "TR-1811-483-v5",
-    "vues": 744
+    "vues": 766
    }
   },
   "descriptif": {
    "definition": "visite guidée : « je te montre », « je commence par », « je te propose », liste de pièces ou d'équipements",
    "statut": "interdit",
-   "versions_jugees": 0,
+   "versions_jugees": 1,
    "gagnants": 0,
    "perdants": 0,
-   "mediane_vues": null,
-   "meilleure": null
+   "mediane_vues": 0,
+   "meilleure": {
+    "id": "TR-1611-estimation-x",
+    "vues": 0
+   }
   },
   "pov": {
    "definition": "« POV : … »",
@@ -221,13 +223,13 @@
   "autre": {
    "definition": "rien de ce qui précède",
    "statut": "gagnant",
-   "versions_jugees": 29,
+   "versions_jugees": 33,
    "gagnants": 22,
    "perdants": 0,
    "mediane_vues": 0,
    "meilleure": {
     "id": "TR-1811-483-v2",
-    "vues": 1446
+    "vues": 1464
    }
   }
  },
@@ -235,40 +237,40 @@
   "415": {
    "versions_jugees": 9,
    "gagnants": 6,
-   "messages_prives": 0,
+   "messages_prives": 1,
    "mediane_vues": 0,
    "statut": "fort"
   },
   "438": {
-   "versions_jugees": 11,
-   "gagnants": 6,
+   "versions_jugees": 12,
+   "gagnants": 7,
    "messages_prives": 0,
    "mediane_vues": 0,
    "statut": "fort"
   },
   "446": {
-   "versions_jugees": 8,
-   "gagnants": 4,
+   "versions_jugees": 11,
+   "gagnants": 5,
    "messages_prives": 0,
    "mediane_vues": 0,
    "statut": "fort"
   },
   "461": {
-   "versions_jugees": 8,
+   "versions_jugees": 7,
    "gagnants": 4,
    "messages_prives": 0,
    "mediane_vues": 0,
    "statut": "fort"
   },
   "481": {
-   "versions_jugees": 8,
-   "gagnants": 2,
+   "versions_jugees": 11,
+   "gagnants": 4,
    "messages_prives": 0,
    "mediane_vues": 0,
    "statut": "fort"
   },
   "483": {
-   "versions_jugees": 8,
+   "versions_jugees": 9,
    "gagnants": 7,
    "messages_prives": 0,
    "mediane_vues": 0,
@@ -282,28 +284,28 @@
    "statut": "fort"
   },
   "501": {
-   "versions_jugees": 10,
+   "versions_jugees": 11,
    "gagnants": 8,
    "messages_prives": 0,
    "mediane_vues": 0,
    "statut": "fort"
   },
   "507": {
-   "versions_jugees": 7,
+   "versions_jugees": 8,
    "gagnants": 3,
-   "messages_prives": 0,
+   "messages_prives": 1,
    "mediane_vues": 0,
    "statut": "fort"
   },
   "509": {
-   "versions_jugees": 4,
+   "versions_jugees": 5,
    "gagnants": 3,
    "messages_prives": 0,
    "mediane_vues": 0,
    "statut": "fort"
   },
   "520": {
-   "versions_jugees": 7,
+   "versions_jugees": 8,
    "gagnants": 4,
    "messages_prives": 0,
    "mediane_vues": 0,
@@ -311,486 +313,27 @@
   },
   "525": {
    "versions_jugees": 10,
-   "gagnants": 5,
+   "gagnants": 3,
    "messages_prives": 0,
    "mediane_vues": 0,
    "statut": "fort"
   },
   "527": {
-   "versions_jugees": 9,
+   "versions_jugees": 10,
    "gagnants": 6,
-   "messages_prives": 0,
+   "messages_prives": 1,
    "mediane_vues": 0,
    "statut": "fort"
   },
   "estimation": {
-   "versions_jugees": 9,
+   "versions_jugees": 12,
    "gagnants": 8,
    "messages_prives": 0,
-   "mediane_vues": 113,
+   "mediane_vues": 111,
    "statut": "fort"
   }
  },
- "gagnants_recents": [
-  {
-   "id": "TR-2011-438-v1d",
-   "ref": "438",
-   "style": "defi_1pourcent",
-   "vues": 1270,
-   "vues_total": 1270,
-   "gagnant_sur": [
-    "instagram"
-   ],
-   "url": "https://www.instagram.com/reel/DgAZ0DoiJtu/",
-   "date": "2026-11-21"
-  },
-  {
-   "id": "TR-1911-438-v1",
-   "ref": "438",
-   "style": "defi_1pourcent",
-   "vues": 954,
-   "vues_total": 1208,
-   "gagnant_sur": [
-    "instagram",
-    "tiktok"
-   ],
-   "url": "https://www.instagram.com/reel/Df78ZNEiB4m/",
-   "date": "2026-11-19"
-  },
-  {
-   "id": "TR-1911-501-v4",
-   "ref": "501",
-   "style": "chiffre_choc",
-   "vues": 0,
-   "vues_total": 1046,
-   "gagnant_sur": [
-    "youtube"
-   ],
-   "url": null,
-   "date": "2026-11-19"
-  },
-  {
-   "id": "TR-2011-527-v1",
-   "ref": "527",
-   "style": "autre",
-   "vues": 997,
-   "vues_total": 997,
-   "gagnant_sur": [
-    "instagram"
-   ],
-   "url": "https://www.instagram.com/reel/Df9jdrtGG54/",
-   "date": "2026-11-20"
-  },
-  {
-   "id": "TR-1911-501-v1",
-   "ref": "501",
-   "style": "chiffre_choc",
-   "vues": 0,
-   "vues_total": 744,
-   "gagnant_sur": [
-    "tiktok"
-   ],
-   "url": null,
-   "date": "2026-11-19"
-  },
-  {
-   "id": "TR-1911-415-v2",
-   "ref": "415",
-   "style": "question",
-   "vues": 0,
-   "vues_total": 724,
-   "gagnant_sur": [
-    "tiktok"
-   ],
-   "url": null,
-   "date": "2026-11-19"
-  },
-  {
-   "id": "TR-2011-438-v1",
-   "ref": "438",
-   "style": "chiffre_choc",
-   "vues": 706,
-   "vues_total": 706,
-   "gagnant_sur": [
-    "instagram"
-   ],
-   "url": "https://www.instagram.com/reel/Df91PlbjFOL/",
-   "date": "2026-11-20"
-  },
-  {
-   "id": "TR-1911-525-v1",
-   "ref": "525",
-   "style": "revelation",
-   "vues": 0,
-   "vues_total": 482,
-   "gagnant_sur": [
-    "youtube"
-   ],
-   "url": null,
-   "date": "2026-11-19"
-  },
-  {
-   "id": "TR-1811-520-v1",
-   "ref": "520",
-   "style": "chiffre_choc",
-   "vues": 322,
-   "vues_total": 420,
-   "gagnant_sur": [
-    "instagram"
-   ],
-   "url": "https://www.instagram.com/reel/Df60sLMiB39/",
-   "date": "2026-11-19"
-  },
-  {
-   "id": "TR-2011-415-v1c",
-   "ref": "415",
-   "style": "chiffre_choc",
-   "vues": 377,
-   "vues_total": 377,
-   "gagnant_sur": [
-    "instagram"
-   ],
-   "url": "https://www.instagram.com/reel/Df_-OB0iGxM/",
-   "date": "2026-11-21"
-  },
-  {
-   "id": "TR-2011-483-v1d",
-   "ref": "483",
-   "style": "chiffre_choc",
-   "vues": 374,
-   "vues_total": 374,
-   "gagnant_sur": [
-    "instagram"
-   ],
-   "url": "https://www.instagram.com/reel/DgAnpymEpwn/",
-   "date": "2026-11-21"
-  },
-  {
-   "id": "TR-2011-494-v1",
-   "ref": "494",
-   "style": "chiffre_choc",
-   "vues": 373,
-   "vues_total": 373,
-   "gagnant_sur": [
-    "instagram"
-   ],
-   "url": "https://www.instagram.com/reel/Df_ss3ukr4z/",
-   "date": "2026-11-21"
-  },
-  {
-   "id": "TR-1811-415-v1",
-   "ref": "415",
-   "style": "lieu_exception",
-   "vues": 316,
-   "vues_total": 316,
-   "gagnant_sur": [
-    "instagram"
-   ],
-   "url": "https://www.instagram.com/reel/Df6jIFRkz31/",
-   "date": "2026-11-19"
-  },
-  {
-   "id": "TR-1911-446-v1",
-   "ref": "446",
-   "style": "chiffre_choc",
-   "vues": 0,
-   "vues_total": 246,
-   "gagnant_sur": [
-    "tiktok"
-   ],
-   "url": null,
-   "date": "2026-11-19"
-  },
-  {
-   "id": "TR-2011-520-v2",
-   "ref": "520",
-   "style": "chiffre_choc",
-   "vues": 0,
-   "vues_total": 229,
-   "gagnant_sur": [
-    "tiktok"
-   ],
-   "url": null,
-   "date": "2026-11-20"
-  },
-  {
-   "id": "TR-2111-461-v1",
-   "ref": "461",
-   "style": "chiffre_choc",
-   "vues": 222,
-   "vues_total": 222,
-   "gagnant_sur": [
-    "instagram"
-   ],
-   "url": "https://www.instagram.com/reel/DgCRfmdiPIb/",
-   "date": "2026-11-22"
-  },
-  {
-   "id": "TR-1911-483-v1",
-   "ref": "483",
-   "style": "chiffre_choc",
-   "vues": 192,
-   "vues_total": 201,
-   "gagnant_sur": [
-    "instagram"
-   ],
-   "url": "https://www.instagram.com/reel/Df9H6tACWsa/",
-   "date": "2026-11-20"
-  },
-  {
-   "id": "TR-2111-501-v1",
-   "ref": "501",
-   "style": "chiffre_choc",
-   "vues": 166,
-   "vues_total": 166,
-   "gagnant_sur": [
-    "instagram"
-   ],
-   "url": "https://www.instagram.com/reel/DgBF98hDdLb/",
-   "date": "2026-11-21"
-  },
-  {
-   "id": "TR-2011-520-v1",
-   "ref": "520",
-   "style": "autre",
-   "vues": 157,
-   "vues_total": 157,
-   "gagnant_sur": [
-    "instagram"
-   ],
-   "url": "https://www.instagram.com/reel/Df-DI5LGTwX/",
-   "date": "2026-11-20"
-  },
-  {
-   "id": "TR-2011-461-v1",
-   "ref": "461",
-   "style": "autre",
-   "vues": 153,
-   "vues_total": 153,
-   "gagnant_sur": [
-    "instagram"
-   ],
-   "url": "https://www.instagram.com/reel/Df-hMMxnHKA/",
-   "date": "2026-11-20"
-  },
-  {
-   "id": "TR-2011-527-v1d",
-   "ref": "527",
-   "style": "chiffre_choc",
-   "vues": 150,
-   "vues_total": 150,
-   "gagnant_sur": [
-    "instagram"
-   ],
-   "url": "https://www.instagram.com/reel/DgAIOPmisVE/",
-   "date": "2026-11-21"
-  },
-  {
-   "id": "TR-1911-415-v1",
-   "ref": "415",
-   "style": "chiffre_choc",
-   "vues": 140,
-   "vues_total": 140,
-   "gagnant_sur": [
-    "instagram"
-   ],
-   "url": "https://www.instagram.com/reel/Df9ZeXWgkgb/",
-   "date": "2026-11-20"
-  },
-  {
-   "id": "TR-2011-481-v1b",
-   "ref": "481",
-   "style": "chiffre_choc",
-   "vues": 132,
-   "vues_total": 132,
-   "gagnant_sur": [
-    "instagram"
-   ],
-   "url": "https://www.instagram.com/reel/DgA8E50la_f/",
-   "date": "2026-11-21"
-  },
-  {
-   "id": "TR-2011-501-v1",
-   "ref": "501",
-   "style": "chiffre_choc",
-   "vues": 130,
-   "vues_total": 130,
-   "gagnant_sur": [
-    "instagram"
-   ],
-   "url": "https://www.instagram.com/reel/Df-XOJeAUh5/",
-   "date": "2026-11-20"
-  },
-  {
-   "id": "TR-2011-415-v2c",
-   "ref": "415",
-   "style": "lieu_exception",
-   "vues": 0,
-   "vues_total": 128,
-   "gagnant_sur": [
-    "tiktok"
-   ],
-   "url": null,
-   "date": "2026-11-20"
-  },
-  {
-   "id": "TR-2211-estimation-x",
-   "ref": "estimation",
-   "style": "autre",
-   "vues": 121,
-   "vues_total": 121,
-   "gagnant_sur": [
-    "instagram"
-   ],
-   "url": "https://www.instagram.com/reel/DgCqCcztT3V/",
-   "date": "2026-11-22"
-  },
-  {
-   "id": "TR-2011-520-v1d",
-   "ref": "520",
-   "style": "chiffre_choc",
-   "vues": 115,
-   "vues_total": 115,
-   "gagnant_sur": [
-    "instagram"
-   ],
-   "url": "https://www.instagram.com/reel/DgAxdWLj-NR/",
-   "date": "2026-11-21"
-  },
-  {
-   "id": "TR-1811-494-v1",
-   "ref": "494",
-   "style": "chiffre_choc",
-   "vues": 111,
-   "vues_total": 112,
-   "gagnant_sur": [
-    "instagram"
-   ],
-   "url": "https://www.instagram.com/reel/Df7QKPGnAqp/",
-   "date": "2026-11-19"
-  },
-  {
-   "id": "TR-1811-estimation-x",
-   "ref": "estimation",
-   "style": "autre",
-   "vues": 107,
-   "vues_total": 107,
-   "gagnant_sur": [
-    "instagram"
-   ],
-   "url": "https://www.instagram.com/reel/Df7eYc5hCLD/",
-   "date": "2026-11-19"
-  },
-  {
-   "id": "TR-1811-509-v1",
-   "ref": "509",
-   "style": "autre",
-   "vues": 107,
-   "vues_total": 107,
-   "gagnant_sur": [
-    "instagram"
-   ],
-   "url": "https://www.instagram.com/reel/Df7yuZPjjNo/",
-   "date": "2026-11-19"
-  },
-  {
-   "id": "TR-2011-483-v2d",
-   "ref": "483",
-   "style": "business",
-   "vues": 0,
-   "vues_total": 62,
-   "gagnant_sur": [
-    "tiktok"
-   ],
-   "url": null,
-   "date": "2026-11-20"
-  },
-  {
-   "id": "TR-1911-527-v1",
-   "ref": "527",
-   "style": "chiffre_choc",
-   "vues": 0,
-   "vues_total": 61,
-   "gagnant_sur": [
-    "tiktok"
-   ],
-   "url": null,
-   "date": "2026-11-19"
-  },
-  {
-   "id": "TR-2011-501-v3",
-   "ref": "501",
-   "style": "autre",
-   "vues": 0,
-   "vues_total": 56,
-   "gagnant_sur": [
-    "tiktok"
-   ],
-   "url": null,
-   "date": "2026-11-20"
-  },
-  {
-   "id": "TR-1811-527-x",
-   "ref": "527",
-   "style": "chiffre_choc",
-   "vues": 33,
-   "vues_total": 33,
-   "gagnant_sur": [
-    "instagram"
-   ],
-   "url": "https://www.instagram.com/reel/Df7r_SXBjSZ/",
-   "date": "2026-11-19"
-  },
-  {
-   "id": "TR-2011-438-v2",
-   "ref": "438",
-   "style": "question",
-   "vues": 0,
-   "vues_total": 31,
-   "gagnant_sur": [
-    "tiktok"
-   ],
-   "url": null,
-   "date": "2026-11-20"
-  },
-  {
-   "id": "TR-2011-481-v1",
-   "ref": "481",
-   "style": "chiffre_choc",
-   "vues": 0,
-   "vues_total": 31,
-   "gagnant_sur": [
-    "tiktok"
-   ],
-   "url": null,
-   "date": "2026-11-20"
-  },
-  {
-   "id": "TR-2011-509-v1",
-   "ref": "509",
-   "style": "autre",
-   "vues": 0,
-   "vues_total": 30,
-   "gagnant_sur": [
-    "tiktok"
-   ],
-   "url": null,
-   "date": "2026-11-20"
-  },
-  {
-   "id": "TR-2011-527-v2",
-   "ref": "527",
-   "style": "chiffre_choc",
-   "vues": 0,
-   "vues_total": 8,
-   "gagnant_sur": [
-    "tiktok"
-   ],
-   "url": null,
-   "date": "2026-11-20"
-  }
- ],
- "consigne_monteur": "Le 23/11, refais en priorité trois styles : chiffre_choc sur la maison de Neuilly-Crimolois 525 pour les acheteurs (« 450 000 €, 149 m², 5 chambres aux portes de Dijon » dès la première seconde, car le Reel Neuilly du 21/11 a fait 3 902 vues, 37 partages et 8 enregistrements alors que la version révélation du 18/11 n'en a fait que 3), defi_1pourcent sur le château 438 pour les acheteurs (1 270 vues et 3 réactions le 21/11, 954 vues le 19/11) avec un autre premier plan, et autre sur l'hôtel particulier 527 de Beaune pour les acheteurs (997 vues, 6 partages, 1 enregistrement le 20/11) ; si la vidéo du gîte de Corcelles-les-Monts à 990 000 € est dans le vivier, elle passe avant tout le reste (4 381 vues et 51 partages le 21/11, 2 674 vues et 12 commentaires le 17/11). Pour les vendeurs, une seule version par jour au plus, toujours face caméra avec un prix réellement signé dans la première phrase, dans le style de « Son bien s'est vendu 280 000 € » (TR-2211-estimation-x2, à juger demain), et chaque vidéo finit par « Commente ESTIMATION » ou le mot-clé ManyChat du bien. Coupés : les conseils vendeurs sans chiffre (estimation 17, 19 et 22/11 : 0 à 121 vues, 0 réaction), les chiffre_choc sur les T2 et T3 à moins de 200 000 € (Chevigny 520, 501, 481, Beaune 4 pièces 527 : 115 à 166 vues), et plus de 3 Trial Reels par jour.",
- "consigne_codex": "Ne livre plus aucun Trial Reel dans un style de styles_interdits : il sera refusé. Livre d'abord des variantes des gagnants_recents (même accroche, autre musique, autres premiers plans).",
- "max_par_jour": 3
+ "gagnants_recents": [],
+ "consigne_monteur": "Chaque version porte un « style » de la liste. Jamais un style de styles_interdits, jamais un bien de biens_en_pause. Au moins 80 % des versions du jour dans styles_gagnants (sur les biens les plus forts), au plus 20 % dans styles_a_tester. Chaque Trial Reel programmé est ajouté à registre.json. BOUCLE DU JOUR (Shawez, 18/11/2026 : « dès que ça marche pas, le lendemain on change ; quand ça marche on ne touche pas, on multiplie ») : 1. chaque Reel de gagnants_recents de moins de 72 h est refait en 3 versions le lendemain, même style et même accroche, en ne changeant qu'UNE chose à la fois (autre bien, ou autres premiers plans, ou autre heure) ; 2. un style reste gagnant tant qu'il reste devant : on ne l'abandonne jamais sur une seule vidéo ; 3. chaque jour, une version au moins teste une accroche jamais publiée ; 4. jamais deux jours de suite la même accroche quand elle a fait zéro réaction. Plafond Metricool : 8 publications par 24 h, tous réseaux.",
+ "consigne_codex": "Ne livre plus aucun Trial Reel dans un style de styles_interdits : il sera refusé. Livre d'abord des variantes des gagnants_recents (même accroche, autre musique, autres premiers plans)."
 }
