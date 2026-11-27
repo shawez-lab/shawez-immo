@@ -70,6 +70,27 @@ def date_fr(d):
     y, m, j = d.split('-')
     return '%d %s %s' % (int(j), MOIS[int(m) - 1], y)
 
+def description_avis():
+    return (f"Shawez Ali, agent immobilier à Dijon : {fr(F['note'])}/5 sur {F['nombre']} avis Google "
+            f"(relevé du {date_fr(F['releve_le'])}). Lisez-les, puis recevez votre estimation offerte.")
+
+def preuves_courantes(s, chemin):
+    """Actualise les preuves d'accueil et les métas Avis, sans réécrire les articles datés."""
+    preuve = f"{fr(F['note'])}/5 sur {F['nombre']} avis Google (relevé du {date_fr(F['releve_le'])})"
+    if chemin == '/':
+        for classe in ('hero-assure', 'cmp-proof'):
+            s = re.sub(r'(<p class="' + classe + r'\b[^\"]*"[^>]*>)(.*?)(</p>)',
+                       lambda m: m[1] + re.sub(r'\d+,\d+/5 sur \d+ avis Google(?: \(relevé du [^<]*?\))?',
+                                               lambda _: E(preuve), m[2], count=1) + m[3], s, flags=re.S)
+        s = re.sub(r'(<p class="fact"><b>)[\d,]+/5(</b><span>)\d+ avis Google[^<]*(</span>)',
+                   lambda m: m[1] + fr(F['note']) + '/5' + m[2] +
+                   f"{F['nombre']} avis Google (relevé du {date_fr(F['releve_le'])})" + m[3], s)
+    elif chemin == '/avis/':
+        for attr in ('name="description"', 'property="og:description"', 'name="twitter:description"'):
+            s = re.sub(r'(<meta ' + attr + r' content=")[^\"]*(")',
+                       lambda m: m[1] + E(description_avis()) + m[2], s)
+    return s
+
 def entete():
     """Preuve sociale : d'abord la note de la fiche Google « Shawez Ali — Agent immobilier » (vérifiée et datée,
     avis.json → fiche), puis celle de l'AGENCE Gravelin Immo (avis.json → preuve_agence), datée elle aussi."""
@@ -147,7 +168,7 @@ def with_css(s):
     s = re.sub(r'<style id="avis-css">.*?</style>\n?', '', s, flags=re.S)
     return s.replace('</head>', CSS + '\n</head>', 1)
 
-def jsonld(s):
+def jsonld(s, chemin='/'):
     """Nœud RealEstateAgent de la fiche Google « Shawez Ali — Agent immobilier » (distinct de celui de l'agence),
     avec aggregateRating et review uniquement s'il y a des avis réels dans avis.json."""
     def fix(m):
@@ -156,6 +177,10 @@ def jsonld(s):
         if g is None or not any(x.get('@id') == 'https://shawez-immo.com/#shawez' for x in g):
             return m.group(0)
         g[:] = [x for x in g if x.get('@id') != 'https://shawez-immo.com/#fiche-google']
+        if chemin == '/avis/':
+            for n in g:
+                if n.get('@type') == 'WebPage' and n.get('url') == 'https://shawez-immo.com/avis/':
+                    n['description'] = description_avis()
         if AVIS:
             g.append({'@type': 'RealEstateAgent', '@id': 'https://shawez-immo.com/#fiche-google', 'name': F['nom'],
                       'url': 'https://shawez-immo.com/', 'telephone': '+33767579228', 'image': 'https://shawez-immo.com/assets/shawez-ali-portrait-costume-rose.webp',
@@ -174,7 +199,7 @@ if '<!-- avis:accueil -->' not in s:   # premier passage : remplace le bloc d'at
     s, n = re.subn(r'<div class="avis-empty rv">.*?</div>\s*</div>(\s*</div>\s*<!-- 3.11)', lambda m: '<!-- avis:accueil --><!-- /avis:accueil -->' + m.group(1), s, count=1, flags=re.S)
     assert n == 1, 'bloc d\'attente introuvable'
 s = repl(s, 'accueil', bloc_accueil())
-s = with_css(jsonld(s))
+s = with_css(jsonld(preuves_courantes(s, '/')))
 s = appliquer(s, '/' + p.removesuffix('index.html'), Path.cwd())
 open(p, 'w', encoding='utf-8').write(s)
 
@@ -187,7 +212,16 @@ if '<!-- avis:page -->' not in s:
     s = s.replace('<a class="link ext" href="https://www.opinionsystem.fr/fr-fr/certificate/12511" target="_blank" rel="noopener">Avis de l\'agence GRAVELIN IMMO sur Opinion System</a>',
                   '<p class="body" style="margin:0 0 10px;font-size:.96rem;">Les avis de l\'agence GRAVELIN IMMO dans son ensemble sont collectés par un organisme indépendant :</p><a class="link ext" href="https://www.opinionsystem.fr/fr-fr/certificate/12511" target="_blank" rel="noopener">Avis de l\'agence GRAVELIN IMMO sur Opinion System</a>')
 s = repl(s, 'page', bloc_page())
-s = with_css(s)
+s = with_css(jsonld(preuves_courantes(s, '/avis/'), '/avis/'))
 s = appliquer(s, '/' + p.removesuffix('index.html'), Path.cwd())
 open(p, 'w', encoding='utf-8').write(s)
+
+# Résumé courant du site : seule la preuve personnelle de cette ligne est remplacée.
+p = Path('llms.txt')
+if p.exists():
+    s = p.read_text(encoding='utf-8')
+    preuve = (f'- Avis : la fiche Google « Shawez Ali » est notée {fr(F["note"])}/5 sur {F["nombre"]} avis '
+              f'(relevé du {date_fr(F["releve_le"])})')
+    s = re.sub(r'^- Avis : la fiche Google .*?(?= ; l\x27agence)', lambda _: preuve, s, count=1, flags=re.M)
+    p.write_text(s, encoding='utf-8')
 print('%d avis · fiche Shawez %s/5 sur %d avis · agence %s/5 sur %d avis' % (len(AVIS), fr(F['note']), F['nombre'], fr(D['preuve_agence']['note']), D['preuve_agence']['nombre']))

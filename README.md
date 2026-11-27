@@ -100,6 +100,7 @@ Source unique : **`avis.json`**, à la racine. Le script `outils/avis.py` en tir
 
 - l'accueil, section « Ce que les autres disent » : note moyenne, nombre d'avis, carrousel de cartes (82 % de la largeur sur mobile, 3 cartes côte à côte sur ordinateur, extrait de 220 caractères au plus) ;
 - la page `/avis/` : tous les avis, texte complet ;
+- les autres preuves courantes de l'accueil, les descriptions de `/avis/` et la ligne Avis de `llms.txt`, avec la date réelle du relevé ; les citations historiques des articles restent datées ;
 - le JSON-LD de l'accueil : un nœud `RealEstateAgent` « Shawez Ali — Agent immobilier » (`#fiche-google`), distinct de celui de l'agence GRAVELIN IMMO, avec `aggregateRating` et `review`. Il n'est ajouté que si `avis.json` contient au moins un avis.
 
 ### Format
