@@ -1,5 +1,5 @@
 {
- "maj": "2026-11-27T06:53",
+ "maj": "2026-11-28T06:52",
  "regles": {
   "fenetre": "Trial Reels publiés depuis 14 jours, jugés 24 h après publication",
   "gagnant": "au moins 3 fois la médiane du réseau (plancher 30 vues sur Instagram), ou au moins 2 réactions",
@@ -12,14 +12,14 @@
   "mediane_vues": 0,
   "gagnant_des": 30,
   "perdant_sous": 0,
-  "versions_jugees": 129,
+  "versions_jugees": 124,
   "versions_en_cours": 0,
   "par_reseau": {
    "instagram": {
     "mediane_vues": 0,
     "gagnant_des": 30,
     "perdant_sous": 0,
-    "versions_mesurees": 129
+    "versions_mesurees": 124
    },
    "tiktok": {
     "mediane_vues": 59,
@@ -46,7 +46,7 @@
     "versions_mesurees": 47
    },
    "linkedin": {
-    "mediane_vues": 7,
+    "mediane_vues": 9,
     "gagnant_des": 300,
     "perdant_sous": 20,
     "versions_mesurees": 23
@@ -135,11 +135,11 @@
    "statut": "gagnant",
    "versions_jugees": 11,
    "gagnants": 4,
-   "perdants": 2,
+   "perdants": 0,
    "mediane_vues": 0,
    "meilleure": {
     "id": "TR-1811-525-x",
-    "vues": 522
+    "vues": 523
    }
   },
   "defi_1pourcent": {
@@ -151,15 +151,15 @@
    "mediane_vues": 0,
    "meilleure": {
     "id": "TR-1911-438-v1",
-    "vues": 1539
+    "vues": 1542
    }
   },
   "question": {
    "definition": "l'accroche est une question posée au spectateur (« Tu choisis quoi ? », « Un week-end ici, tu dis oui ? »)",
    "statut": "gagnant",
-   "versions_jugees": 22,
-   "gagnants": 6,
-   "perdants": 3,
+   "versions_jugees": 21,
+   "gagnants": 5,
+   "perdants": 0,
    "mediane_vues": 0,
    "meilleure": {
     "id": "TR-1811-501-v3",
@@ -175,7 +175,7 @@
    "mediane_vues": 0,
    "meilleure": {
     "id": "TR-2011-507-v1",
-    "vues": 175
+    "vues": 176
    }
   },
   "business": {
@@ -187,7 +187,7 @@
    "mediane_vues": 0,
    "meilleure": {
     "id": "TR-1811-483-v5",
-    "vues": 766
+    "vues": 770
    }
   },
   "descriptif": {
@@ -223,13 +223,13 @@
   "autre": {
    "definition": "rien de ce qui précède",
    "statut": "gagnant",
-   "versions_jugees": 33,
-   "gagnants": 22,
+   "versions_jugees": 29,
+   "gagnants": 19,
    "perdants": 0,
    "mediane_vues": 0,
    "meilleure": {
     "id": "TR-1811-483-v2",
-    "vues": 1464
+    "vues": 1465
    }
   }
  },
@@ -312,8 +312,8 @@
    "statut": "fort"
   },
   "525": {
-   "versions_jugees": 10,
-   "gagnants": 3,
+   "versions_jugees": 8,
+   "gagnants": 2,
    "messages_prives": 0,
    "mediane_vues": 0,
    "statut": "fort"
@@ -326,15 +326,14 @@
    "statut": "fort"
   },
   "estimation": {
-   "versions_jugees": 12,
-   "gagnants": 8,
+   "versions_jugees": 9,
+   "gagnants": 5,
    "messages_prives": 0,
-   "mediane_vues": 111,
+   "mediane_vues": 107,
    "statut": "fort"
   }
  },
  "gagnants_recents": [],
- "consigne_monteur": "Chef d'orchestre 27/11 : refais en priorité, et seulement ces 3 styles, lieu_exception sur le gîte de Corcelles-les-Monts pour les acheteurs (Reel du 21/11 : 5 186 vues, 60 partages, 6 enregistrements, 2 commentaires), autre sur la maison de Neuilly-Crimolois 525 pour les acheteurs (4 486 vues, 41 partages, 10 enregistrements, 3 commentaires) et chiffre_choc pour les vendeurs, face caméra, avec le prix réel d'une vente à Dijon dès la première seconde (meilleur chiffre_choc mûr : TR-1911-501-v4, 1 050 vues), chacun finissant par un mot-clé ManyChat à commenter. Au plus 3 Trial Reels par jour (max_par_jour 3, le 27/11 en a vu partir 16 d'un coup sur les biens 527, 438, 415 et 520, qui ne reviennent pas tant que Corcelles et Neuilly ne sont pas ressortis), et jamais 4 jours sans rien : rien n'est sorti sur Instagram du 23 au 26/11. Coupés : les conseils vendeurs sans chiffre (« Son bien s'est vendu 280 000 € » 3 vues et 100 % de sortie avant 3 s, « 3 choses que personne ne te dira » 124 vues et 84,7 %), les T2 et T3 sous 200 000 € (116 à 167 vues, 0 réaction) et les styles de styles_interdits.",
- "consigne_codex": "Ne livre plus aucun Trial Reel dans un style de styles_interdits : il sera refusé. Livre d'abord des variantes des gagnants_recents (même accroche, autre musique, autres premiers plans).",
- "max_par_jour": 3
+ "consigne_monteur": "Chaque version porte un « style » de la liste. Jamais un style de styles_interdits, jamais un bien de biens_en_pause. Au moins 80 % des versions du jour dans styles_gagnants (sur les biens les plus forts), au plus 20 % dans styles_a_tester. Chaque Trial Reel programmé est ajouté à registre.json. BOUCLE DU JOUR (Shawez, 18/11/2026 : « dès que ça marche pas, le lendemain on change ; quand ça marche on ne touche pas, on multiplie ») : 1. chaque Reel de gagnants_recents de moins de 72 h est refait en 3 versions le lendemain, même style et même accroche, en ne changeant qu'UNE chose à la fois (autre bien, ou autres premiers plans, ou autre heure) ; 2. un style reste gagnant tant qu'il reste devant : on ne l'abandonne jamais sur une seule vidéo ; 3. chaque jour, une version au moins teste une accroche jamais publiée ; 4. jamais deux jours de suite la même accroche quand elle a fait zéro réaction. Plafond Metricool : 8 publications par 24 h, tous réseaux.",
+ "consigne_codex": "Ne livre plus aucun Trial Reel dans un style de styles_interdits : il sera refusé. Livre d'abord des variantes des gagnants_recents (même accroche, autre musique, autres premiers plans)."
 }
