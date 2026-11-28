@@ -1,0 +1,695 @@
+{
+ "jour": "2026-11-28-matin",
+ "choisir": "choisir.py a rendu 425 513 403 431 ; vivier : 425 513 403 431 525 527 438 415 520 483 461 481 446 507 509",
+ "ecartes": {
+  "425": "face caméra avec sous-titres ou textes incrustés (planche revue 28/11 07h35)",
+  "513": "face caméra avec sous-titres ou textes incrustés (planche revue 28/11 07h35)",
+  "403": "face caméra avec sous-titres ou textes incrustés (planche revue 28/11 07h35)",
+  "431": "face caméra avec sous-titres ou textes incrustés (planche revue 28/11 07h35)"
+ },
+ "remplacants": "les 4 biens rendus sont face caméra : remplacés par les suivants du vivier dans l’ordre de choisir.py : 525 527 438 415.",
+ "outil": "525 : video-hd porte un prix incrusté (450 000 €) absent de prix_honoraires_inclus → montage photo par photo avec outils/biens/diaporama.monter, aucun prix cité. 527, 438, 415 : fabriquer.py ; 415 seulement les plans sans texte incrusté (0 et 19-26 s exclus).",
+ "biens": [
+  {
+   "ref": "525",
+   "src": "assets/biens/525/video.mp4",
+   "mot": "NEUILLY",
+   "nom": "maison-neuilly",
+   "mode": "photos",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": true,
+     "publier": "2026-11-28T11:00",
+     "style": "autre",
+     "accroche": "Tu poses tes cartons|et c’est fini",
+     "photos": [
+      22,
+      2,
+      7,
+      12,
+      18,
+      23
+     ],
+     "lignes": [
+      "Séjour de 34 m²",
+      "Cuisine équipée",
+      "",
+      "Immense dressing",
+      ""
+     ],
+     "legende": "Construite en 2018 aux normes RT 2012, garantie décennale en cours : rien à refaire, tu t’installes.\n\nCommente NEUILLY et je t’envoie la visite complète en privé 📩\n\n#maisonrecente #sanstravaux #dijonmetropole #maisonfamiliale #rt2012"
+    },
+    {
+     "id": "v2",
+     "instagram": false,
+     "style": "question",
+     "accroche": "Cinq chambres,|qui dort où ?",
+     "photos": [
+      15,
+      12,
+      16,
+      17,
+      20,
+      1
+     ],
+     "lignes": [
+      "Chambre au rez-de-chaussée",
+      "",
+      "4 chambres à l’étage",
+      "",
+      ""
+     ],
+     "legende": "Une chambre de plain-pied pour les parents ou les amis, quatre à l’étage avec placards. Toi, tu prends laquelle ?\n\nCommente NEUILLY et je t’envoie la visite complète en privé 📩\n\n#5chambres #grandefamille #maisonavendre #cotedor #chambreparentale"
+    },
+    {
+     "id": "v3",
+     "instagram": false,
+     "style": "autre",
+     "accroche": "Une salle de bains|avec baignoire ET douche",
+     "photos": [
+      14,
+      10,
+      13,
+      18,
+      9,
+      22
+     ],
+     "lignes": [
+      "Salle d’eau en bas",
+      "",
+      "Suite parentale",
+      "",
+      ""
+     ],
+     "legende": "En haut, une salle de bains avec baignoire et douche ; en bas, une salle d’eau. Plus de bataille le matin.\n\nCommente NEUILLY et je t’envoie la visite complète en privé 📩\n\n#salledebain #baignoire #maisonmoderne #vieenfamille #immobiliercotedor"
+    },
+    {
+     "id": "v4",
+     "instagram": false,
+     "style": "chiffre_choc",
+     "accroche": "9 pièces|sur 2 niveaux,|aux portes de Dijon",
+     "photos": [
+      1,
+      3,
+      11,
+      8,
+      19,
+      24
+     ],
+     "lignes": [
+      "142,10 m²",
+      "",
+      "Garage chauffé de 23 m²",
+      "",
+      ""
+     ],
+     "legende": "142,10 m² sur deux niveaux, une parcelle de 429 m² et une terrasse ombragée de 36 m², dans un lotissement calme.\n\nCommente NEUILLY et je t’envoie la visite complète en privé 📩\n\n#9pieces #parcelle #terrasse #lotissementcalme #achatmaison"
+    }
+   ]
+  },
+  {
+   "ref": "527",
+   "src": "assets/biens/527/video.mp4",
+   "mot": "BEAUNE",
+   "nom": "hotel-beaune-cour",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": true,
+     "publier": "2026-11-28T12:30",
+     "style": "chiffre_choc",
+     "accroche": "2 500 000 €|pour vivre|au XVIIe siècle",
+     "plans": [
+      [
+       1,
+       3,
+       1
+      ],
+      [
+       29,
+       31,
+       1
+      ],
+      [
+       38,
+       40,
+       1,
+       "Monopropriété"
+      ],
+      [
+       66,
+       68,
+       1
+      ],
+      [
+       5,
+       7,
+       1
+      ],
+      [
+       43,
+       45,
+       1
+      ],
+      [
+       27,
+       29.8,
+       1
+      ]
+     ],
+     "legende": "Un hôtel particulier du XVIIe siècle au cœur historique de Beaune : pierre, poutres, cave voûtée et cour intérieure. Prix : 2 500 000 €.\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#hotelparticulier #xviiesiecle #beaune #demeuredecaractere #patrimoinebourguignon"
+    },
+    {
+     "id": "v2",
+     "instagram": false,
+     "style": "revelation",
+     "accroche": "Une porte de rue,|et derrière,|un jardin",
+     "plans": [
+      [
+       0,
+       2,
+       1
+      ],
+      [
+       2,
+       3.5,
+       1
+      ],
+      [
+       9,
+       11,
+       1,
+       "Espaces de jardin"
+      ],
+      [
+       27.5,
+       29.5,
+       1
+      ],
+      [
+       31,
+       33,
+       1
+      ],
+      [
+       45,
+       47,
+       1
+      ],
+      [
+       29.5,
+       32.3,
+       1
+      ]
+     ],
+     "legende": "Depuis la rue, une façade en pierre. Derrière : la cour, la terrasse et les espaces de jardin, en plein centre de Beaune.\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#jardinsecret #courinterieure #beaunecentre #maisondeville #bourgognefranchecomte"
+    },
+    {
+     "id": "v3",
+     "instagram": false,
+     "style": "question",
+     "accroche": "Trois appartements,|tu gardes lequel ?",
+     "plans": [
+      [
+       59,
+       61,
+       1
+      ],
+      [
+       18,
+       20,
+       1,
+       "139 m² au 1er"
+      ],
+      [
+       3,
+       5,
+       1,
+       "117 m² au 2e"
+      ],
+      [
+       13,
+       15,
+       1
+      ],
+      [
+       54,
+       56,
+       1
+      ],
+      [
+       76,
+       78,
+       1
+      ],
+      [
+       66,
+       68.8,
+       1
+      ]
+     ],
+     "legende": "139 m² au premier, 117 m² rénovés en 2025 au deuxième, 42 m² au rez-de-chaussée, plus un local pro. Tu t’installes où ?\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#troisappartements #investissementbeaune #patrimoine #localpro #immeubleentier"
+    },
+    {
+     "id": "v4",
+     "instagram": false,
+     "style": "revelation",
+     "accroche": "Une cour intérieure|cachée dans|le vieux Beaune",
+     "plans": [
+      [
+       31,
+       33,
+       1
+      ],
+      [
+       47,
+       49,
+       1
+      ],
+      [
+       27,
+       29,
+       1,
+       "Cour intérieure"
+      ],
+      [
+       42,
+       44,
+       1
+      ],
+      [
+       9,
+       11,
+       1
+      ],
+      [
+       60,
+       62,
+       1
+      ],
+      [
+       0,
+       2.8,
+       1
+      ]
+     ],
+     "legende": "Toute la propriété s’organise autour de sa cour intérieure, à quelques pas des rues historiques de la capitale des vins.\n\nCommente BEAUNE et je t’envoie la visite complète en privé 📩\n\n#vieuxbeaune #cotedebeaune #pierredebourgogne #architectureancienne #capitaledesvins"
+    }
+   ]
+  },
+  {
+   "ref": "438",
+   "src": "assets/biens/438/video.mp4",
+   "mot": "CHATEAU",
+   "nom": "chateau-cote-beaune",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": true,
+     "publier": "2026-11-28T15:00",
+     "style": "lieu_exception",
+     "accroche": "Un château qui domine|la campagne bourguignonne",
+     "plans": [
+      [
+       5.2,
+       7.1,
+       1
+      ],
+      [
+       1.3,
+       3.1,
+       1
+      ],
+      [
+       8.3,
+       10.2,
+       1
+      ],
+      [
+       13.3,
+       15.1,
+       1
+      ],
+      [
+       15.2,
+       17.2,
+       1,
+       "Vestibule d’entrée"
+      ],
+      [
+       24.2,
+       26.1,
+       1
+      ],
+      [
+       8.3,
+       11.1,
+       1
+      ]
+     ],
+     "legende": "À quinze minutes de Beaune, un château dont l’origine remonte au XVIIIe siècle, avec une vue dégagée sur la Côte de Beaune.\n\nCommente CHATEAU et je t’envoie la visite complète en privé 📩\n\n#chateaudebourgogne #proprietedexception #campagnebourguignonne #demeurehistorique #beaunevignoble"
+    },
+    {
+     "id": "v2",
+     "instagram": false,
+     "style": "chiffre_choc",
+     "accroche": "10 hectares de bois|autour de ton château",
+     "plans": [
+      [
+       8.3,
+       10.2,
+       1
+      ],
+      [
+       5.3,
+       7.1,
+       1,
+       "15 ha de domaine"
+      ],
+      [
+       3.3,
+       5.1,
+       1
+      ],
+      [
+       0.05,
+       1.25,
+       1
+      ],
+      [
+       11.2,
+       13.1,
+       1
+      ],
+      [
+       19.2,
+       21.2,
+       1
+      ],
+      [
+       1.3,
+       4.1,
+       1
+      ]
+     ],
+     "legende": "Un domaine de 15 hectares, dont 10 de bois, avec un étang et un parc d’agrément. Le château est à 1 600 000 €.\n\nCommente CHATEAU et je t’envoie la visite complète en privé 📩\n\n#domaine #foretprivee #etang #chateauavendre #vieencampagne"
+    },
+    {
+     "id": "v3",
+     "instagram": false,
+     "style": "question",
+     "accroche": "Un boudoir,|tu en fais quoi ?",
+     "plans": [
+      [
+       29.2,
+       29.95,
+       0.4
+      ],
+      [
+       13.3,
+       15.1,
+       1
+      ],
+      [
+       17.2,
+       19.1,
+       1
+      ],
+      [
+       24.2,
+       26.1,
+       1,
+       "3 salons de réception"
+      ],
+      [
+       5.2,
+       7.1,
+       1
+      ],
+      [
+       1.3,
+       3.1,
+       1
+      ],
+      [
+       20.2,
+       23.1,
+       1
+      ]
+     ],
+     "legende": "Trois salons de réception, une salle à manger, un boudoir et sept chambres. Bureau, bibliothèque ou salon de musique ?\n\nCommente CHATEAU et je t’envoie la visite complète en privé 📩\n\n#boudoir #salonsdereception #grandedemeure #artdevivre #chateaufrance"
+    },
+    {
+     "id": "v4",
+     "instagram": false,
+     "style": "revelation",
+     "accroche": "Pousse la double porte,|regarde ce vestibule",
+     "plans": [
+      [
+       13.3,
+       15.1,
+       1
+      ],
+      [
+       15.2,
+       17.2,
+       1
+      ],
+      [
+       17.2,
+       19.1,
+       1,
+       "Vestibule majestueux"
+      ],
+      [
+       27.2,
+       29.1,
+       1
+      ],
+      [
+       3.3,
+       5.1,
+       1
+      ],
+      [
+       11.2,
+       13.1,
+       1
+      ],
+      [
+       5.2,
+       8.1,
+       1
+      ]
+     ],
+     "legende": "Derrière les portes, un vestibule d’entrée majestueux, puis les boiseries, les moulures et les parquets anciens.\n\nCommente CHATEAU et je t’envoie la visite complète en privé 📩\n\n#vestibule #boiseries #parquetancien #moulures #patrimoinefrancais"
+    }
+   ]
+  },
+  {
+   "ref": "415",
+   "src": "assets/biens/415/video.mp4",
+   "mot": "DUPLEX",
+   "nom": "duplex-dijon",
+   "versions": [
+    {
+     "id": "v1",
+     "instagram": true,
+     "publier": "2026-11-28T17:00",
+     "style": "chiffre_choc",
+     "accroche": "69 m² Carrez,|92 m² au sol",
+     "plans": [
+      [
+       10.08,
+       11.9,
+       1
+      ],
+      [
+       3,
+       4.6,
+       1
+      ],
+      [
+       13.75,
+       15.5,
+       1,
+       "Cheminée"
+      ],
+      [
+       8.25,
+       10,
+       1
+      ],
+      [
+       32.7,
+       34.6,
+       1
+      ],
+      [
+       6.48,
+       8.15,
+       1
+      ],
+      [
+       27.9,
+       30.6,
+       1
+      ]
+     ],
+     "legende": "Un duplex au 2e et dernier étage, en plein cœur de Dijon, avec une pièce de vie de 49 m² et sa cheminée. Prix : 220 000 €.\n\nCommente DUPLEX et je t’envoie la visite complète en privé 📩\n\n#duplex #dernieretage #coeurdedijon #appartementdecharme #premierachat"
+    },
+    {
+     "id": "v2",
+     "instagram": false,
+     "style": "question",
+     "accroche": "Ton premier Noël|dans ce duplex ?",
+     "plans": [
+      [
+       27.9,
+       29.5,
+       1
+      ],
+      [
+       30,
+       31.5,
+       1
+      ],
+      [
+       13.75,
+       15.5,
+       1
+      ],
+      [
+       1.15,
+       2.8,
+       1,
+       "Dernier étage"
+      ],
+      [
+       34.7,
+       35.5,
+       1
+      ],
+      [
+       10.08,
+       11.9,
+       1
+      ],
+      [
+       5,
+       6.4,
+       1
+      ],
+      [
+       36.43,
+       39.1,
+       1
+      ]
+     ],
+     "legende": "La cheminée qui fonctionne, la grande pièce de vie et la cuisine américaine : il ne manque que le sapin.\n\nCommente DUPLEX et je t’envoie la visite complète en privé 📩\n\n#noel #cocooning #feudecheminee #duplexdijon #nouvellemaison"
+    },
+    {
+     "id": "v3",
+     "instagram": false,
+     "style": "autre",
+     "accroche": "Une cheminée qui fonctionne|au 2e étage",
+     "plans": [
+      [
+       13.75,
+       15.5,
+       1
+      ],
+      [
+       16.5,
+       18.2,
+       1
+      ],
+      [
+       5,
+       6.4,
+       1
+      ],
+      [
+       3,
+       4.6,
+       1,
+       "Chauffage au gaz"
+      ],
+      [
+       8.25,
+       10,
+       1
+      ],
+      [
+       37.33,
+       38.2,
+       1
+      ],
+      [
+       29,
+       30,
+       1
+      ],
+      [
+       10.08,
+       12.8,
+       1
+      ]
+     ],
+     "legende": "Au deuxième et dernier étage, une vraie cheminée fonctionnelle, et le chauffage individuel au gaz pour le reste de l’année.\n\nCommente DUPLEX et je t’envoie la visite complète en privé 📩\n\n#cheminee #feudebois #appartementancien #dijoncentre #charmeauthentique"
+    },
+    {
+     "id": "v4",
+     "instagram": false,
+     "style": "autre",
+     "accroche": "Deux étages à toi|en plein Dijon",
+     "plans": [
+      [
+       1.15,
+       2.8,
+       1
+      ],
+      [
+       10.08,
+       11.9,
+       1,
+       "Duplex"
+      ],
+      [
+       12,
+       12.8,
+       1
+      ],
+      [
+       32.7,
+       34.6,
+       1
+      ],
+      [
+       38.27,
+       39.1,
+       1
+      ],
+      [
+       6.48,
+       8.15,
+       1
+      ],
+      [
+       3,
+       4.6,
+       1
+      ],
+      [
+       13.75,
+       16.5,
+       1
+      ]
+     ],
+     "legende": "En bas, la pièce de vie, une chambre et une salle d’eau. En haut, une chambre avec sa salle de bains privative.\n\nCommente DUPLEX et je t’envoie la visite complète en privé 📩\n\n#deuxniveaux #suiteparentale #hypercentre #achatdijon #viecitadine"
+    }
+   ]
+  }
+ ]
+}
