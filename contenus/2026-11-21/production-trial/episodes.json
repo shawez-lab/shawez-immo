@@ -1,0 +1,333 @@
+{
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "duration": 32,
+  "seed": 20261121,
+  "style": "Mission Dijon — carte abstraite indigo, écran ivoire, accents vert citron et corail, typo éditoriale massive, aucun visuel de jeu existant",
+  "safe_bounds": [
+    100,
+    250,
+    980,
+    1510
+  ],
+  "episodes": [
+    {
+      "id": "mission-vendre-dijon",
+      "script": "V01",
+      "title": [
+        "MISSION :",
+        "VENDRE TA",
+        "MAISON"
+      ],
+      "subtitle": "À DIJON",
+      "accent": "lime",
+      "scenes": [
+        {
+          "start": 0,
+          "end": 3,
+          "kind": "intro",
+          "kicker": "NOUVELLE MISSION",
+          "lines": [
+            "MISSION :",
+            "VENDRE TA",
+            "MAISON"
+          ],
+          "small": "À DIJON"
+        },
+        {
+          "start": 3,
+          "end": 7,
+          "kind": "map",
+          "kicker": "CHOISIS TON PARCOURS",
+          "lines": [
+            "Le bon départ :",
+            "comprendre ton bien."
+          ],
+          "nodes": [
+            "COMPARER",
+            "PRÉPARER",
+            "VENDRE"
+          ],
+          "small": "DIJON • CÔTE-D’OR"
+        },
+        {
+          "start": 7,
+          "end": 12,
+          "kind": "compare",
+          "kicker": "INDICE À DÉBLOQUER",
+          "lines": [
+            "Une annonce montre",
+            "un prix demandé."
+          ],
+          "left": "PRIX AFFICHÉ",
+          "right": "VENTE SIGNÉE",
+          "small": "Pour estimer, regarde les ventes comparables."
+        },
+        {
+          "start": 12,
+          "end": 17,
+          "kind": "scan",
+          "kicker": "EXAMINE TON BIEN",
+          "lines": [
+            "État. Travaux.",
+            "Terrain. Lumière."
+          ],
+          "tokens": [
+            "ÉTAT",
+            "TRAVAUX",
+            "TERRAIN",
+            "LUMIÈRE"
+          ],
+          "small": "Chaque caractéristique compte."
+        },
+        {
+          "start": 17,
+          "end": 23,
+          "kind": "statement",
+          "kicker": "INDICE TROUVÉ",
+          "lines": [
+            "Une moyenne",
+            "ne visite pas",
+            "ta maison."
+          ],
+          "small": "Ton prix mérite une explication."
+        },
+        {
+          "start": 23,
+          "end": 28,
+          "kind": "resolve",
+          "kicker": "PROCHAINE ÉTAPE",
+          "lines": [
+            "Prépare ton prix",
+            "avec Shawez."
+          ],
+          "small": "Estimation offerte • Dijon et Côte-d’Or"
+        },
+        {
+          "start": 28,
+          "end": 32,
+          "kind": "cta",
+          "kicker": "À TOI DE JOUER",
+          "lines": [
+            "Commente",
+            "ESTIMATION"
+          ],
+          "small": "@shawez_immo"
+        }
+      ],
+      "caption": "Mission : vendre ta maison à Dijon. Le bon départ, c’est une estimation expliquée avec des ventes comparables et les caractéristiques de ton bien. Tu prépares une vente à Dijon ou en Côte-d’Or ? Commente ESTIMATION. Shawez Ali, agent immobilier chez GRAVELIN IMMO. #Dijon #CotedOr #VendreSaMaison Carte : contour communal de Dijon, geo.api.gouv.fr, consulté le 21 novembre 2026, Licence Ouverte 2.0. Graphisme original."
+    },
+    {
+      "id": "niveau-1-bon-prix",
+      "script": "V05",
+      "title": [
+        "NIVEAU 1 :",
+        "TROUVER LE",
+        "BON PRIX"
+      ],
+      "accent": "coral",
+      "scenes": [
+        {
+          "start": 0,
+          "end": 3,
+          "kind": "intro",
+          "kicker": "MISSION VENTE • DIJON",
+          "lines": [
+            "NIVEAU 1 :",
+            "TROUVER LE",
+            "BON PRIX"
+          ],
+          "small": "Ton prix fait le premier tri."
+        },
+        {
+          "start": 3,
+          "end": 7,
+          "kind": "map",
+          "kicker": "CARTE DE MISSION",
+          "lines": [
+            "Avant l’annonce,",
+            "pose une base solide."
+          ],
+          "nodes": [
+            "COMPARER",
+            "EXPLIQUER",
+            "SUIVRE"
+          ],
+          "small": "DIJON • CÔTE-D’OR"
+        },
+        {
+          "start": 7,
+          "end": 12,
+          "kind": "compare",
+          "kicker": "LA QUESTION À TE POSER",
+          "lines": [
+            "Ton acheteur",
+            "compare aussi."
+          ],
+          "left": "TON LOGEMENT",
+          "right": "AUTRES BIENS",
+          "small": "Dans son budget, qu’est-ce qui fait la différence ?"
+        },
+        {
+          "start": 12,
+          "end": 17,
+          "kind": "sequence",
+          "kicker": "SUIVRE LES BONS SIGNAUX",
+          "lines": [
+            "Demandes.",
+            "Visites. Retours."
+          ],
+          "tokens": [
+            "DEMANDES",
+            "VISITES",
+            "RETOURS"
+          ],
+          "small": "Des faits pour comprendre ce qui bloque."
+        },
+        {
+          "start": 17,
+          "end": 23,
+          "kind": "statement",
+          "kicker": "OBJECTIF DU NIVEAU",
+          "lines": [
+            "Un prix expliqué.",
+            "Un ajustement",
+            "justifié."
+          ],
+          "small": "Pas un montant choisi au hasard."
+        },
+        {
+          "start": 23,
+          "end": 28,
+          "kind": "resolve",
+          "kicker": "PRÉPARE LA SUITE",
+          "lines": [
+            "Tu penses vendre",
+            "à Dijon ?"
+          ],
+          "small": "Shawez Ali • Agent immobilier"
+        },
+        {
+          "start": 28,
+          "end": 32,
+          "kind": "cta",
+          "kicker": "ESTIMATION OFFERTE",
+          "lines": [
+            "Commente",
+            "ESTIMATION"
+          ],
+          "small": "@shawez_immo"
+        }
+      ],
+      "caption": "Niveau 1 : trouver le bon prix. Ton acheteur compare ton logement aux autres biens de sa recherche. Prépare un prix expliqué, puis suis les demandes et les retours. Pour une estimation offerte à Dijon ou en Côte-d’Or, commente ESTIMATION. Shawez Ali, agent immobilier chez GRAVELIN IMMO. #Dijon #EstimationImmobiliere #Vendeur Carte : contour communal de Dijon, geo.api.gouv.fr, consulté le 21 novembre 2026, Licence Ouverte 2.0. Graphisme original."
+    },
+    {
+      "id": "niveau-2-preparer-visites",
+      "script": "V03 et V07",
+      "title": [
+        "NIVEAU 2 :",
+        "PRÉPARER",
+        "LES VISITES"
+      ],
+      "accent": "lime",
+      "scenes": [
+        {
+          "start": 0,
+          "end": 3,
+          "kind": "intro",
+          "kicker": "MISSION VENTE • DIJON",
+          "lines": [
+            "NIVEAU 2 :",
+            "PRÉPARER",
+            "LES VISITES"
+          ],
+          "small": "Aide l’acheteur à comprendre ton bien."
+        },
+        {
+          "start": 3,
+          "end": 7,
+          "kind": "map",
+          "kicker": "CARTE DE MISSION",
+          "lines": [
+            "Avant la visite,",
+            "prépare les réponses."
+          ],
+          "nodes": [
+            "RÉUNIR",
+            "EXPLIQUER",
+            "VISITER"
+          ],
+          "small": "DIJON • CÔTE-D’OR"
+        },
+        {
+          "start": 7,
+          "end": 12,
+          "kind": "scan",
+          "kicker": "INVENTAIRE UTILE",
+          "lines": [
+            "Documents.",
+            "Travaux. Charges."
+          ],
+          "tokens": [
+            "DOCUMENTS",
+            "TRAVAUX",
+            "CHARGES"
+          ],
+          "small": "Rassemble les éléments disponibles."
+        },
+        {
+          "start": 12,
+          "end": 17,
+          "kind": "compare",
+          "kicker": "UN DOUTE À CLARIFIER",
+          "lines": [
+            "Un défaut connu ?",
+            "Explique-le."
+          ],
+          "left": "UNE QUESTION",
+          "right": "UNE RÉPONSE",
+          "small": "Fais chiffrer les travaux qui doivent l’être."
+        },
+        {
+          "start": 17,
+          "end": 23,
+          "kind": "statement",
+          "kicker": "OBJECTIF DU NIVEAU",
+          "lines": [
+            "Dégage les passages.",
+            "Rends chaque pièce",
+            "facile à comprendre."
+          ],
+          "small": "Une présentation fidèle aide à se projeter."
+        },
+        {
+          "start": 23,
+          "end": 28,
+          "kind": "resolve",
+          "kicker": "PRÉPARE TA VENTE",
+          "lines": [
+            "Fais le point",
+            "avec Shawez."
+          ],
+          "small": "Agent immobilier • Dijon et Côte-d’Or"
+        },
+        {
+          "start": 28,
+          "end": 32,
+          "kind": "cta",
+          "kicker": "ESTIMATION OFFERTE",
+          "lines": [
+            "Commente",
+            "ESTIMATION"
+          ],
+          "small": "@shawez_immo"
+        }
+      ],
+      "caption": "Niveau 2 : préparer les visites. Documents, explications sur les défauts connus et devis adaptés aident l’acheteur à comprendre le logement. Tu prépares ta vente à Dijon ou en Côte-d’Or ? Commente ESTIMATION pour une estimation offerte. Shawez Ali, agent immobilier chez GRAVELIN IMMO. #Dijon #VisiteImmobiliere #VendreSaMaison Carte : contour communal de Dijon, geo.api.gouv.fr, consulté le 21 novembre 2026, Licence Ouverte 2.0. Graphisme original."
+    }
+  ],
+  "geodata_source": "https://geo.api.gouv.fr/communes/21231?fields=nom,contour&format=geojson&geometry=contour",
+  "geodata_accessed": "2026-11-21",
+  "geodata_license": "Licence Ouverte 2.0"
+}
