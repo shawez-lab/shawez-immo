@@ -1,0 +1,17 @@
+name: Tests avis documentés et parcours postal
+on:
+  pull_request:
+    paths: ['functions/**', 'outils/avis-prospects/**', '.github/workflows/avis-postal.yml']
+  push:
+    paths: ['functions/**', 'outils/avis-prospects/**', '.github/workflows/avis-postal.yml']
+permissions:
+  contents: read
+jobs:
+  avis-postal:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+      - run: node outils/avis-prospects/test.mjs

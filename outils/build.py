@@ -36,7 +36,7 @@ CHAT = '<script src="/assets/chat/chat.js" defer></script>'
 # Provenance des liens d'estimation : paramètres de campagne validés, sans collecte ni stockage.
 PROVENANCE = '<script src="/assets/estimation-provenance.js" defer></script>'
 
-PRIVEES = ('admin/', 'mon-espace/')
+PRIVEES = ('admin/', 'mon-espace/', 'estimation-personnalisee/', 'votre-estimation/', 'avis-google/')
 SANS_PARAM = ('estimer/',)
 METRICOOL_SANS_PARAM = METRICOOL.replace('<script>', '<script>if(!location.search){', 1).replace('</script>', '}</script>', 1)
 
